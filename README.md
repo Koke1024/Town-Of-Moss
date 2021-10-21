@@ -7,6 +7,7 @@
 ### Town of Moss
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
+| 2021.6.30s | v0.362 | [Download](https://spiel.jp/mod/Moss0362.zip) |
 | 2021.6.30s | v0.352 | [Download](https://spiel.jp/mod/Moss0352.zip) |
 | 2021.6.30s | v0.35 | [Download](https://spiel.jp/mod/Moss035.zip) |
 | 2021.6.30s | v0.34 | [Download](https://spiel.jp/mod/Moss034.zip) |
@@ -22,6 +23,10 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 
 <details>
   <summary> Changelog </summary>
+  <details>
+  <summary> v0.362 </summary>
+  <ul> <li>Bug Fix</li> </ul>
+  </details>
   <details>
   <summary> v0.352 </summary>
   <ul> <li>Bug Fix</li> </ul>
@@ -51,8 +56,8 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 |[Medic](#Medic)|[Undertaker](#Undertaker)|[Zombie](#Zombie)||
 |[Seer](#Seer)|[Kirby](#Kirby)|||
 |[SecurityGuard](#SecurityGuard)|[Cracker](#Cracker)|||
-|[Snitch](#Snitch)|[MultiKiller](#Multikiller)|||
-|[Altruist](#Altruist)||||
+|[Snitch](#Snitch)|[MultiKiller](#MultiKiller)|||
+|[Altruist](#Altruist)|[Puppeteer](#Puppeteer)|||
 |[Charger](#Charger)||||
 |[Druid](#Druid)||||
 -----------------------
@@ -265,7 +270,31 @@ Admin閲覧中は消費電力が3倍になります。
 |----------|:-------------:|:------:|:------:|
 | Clean Cooldown | 死体を消せるクールダウン時間 | Time | 35s |
 | Clean Duration | 死体を消すのにかかる時間 | Time | 3.0s |
+-----------------------
+## Morphling
+### **Team: Impostors**
 
+サンプルを取得した対象の姿に変身することができます。\
+変身中に再度ボタンを押すことで変身を解除できます。\
+ベントは使用できません。
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Morph Cooldown | 変身のクールダウン | Time | 15s |
+| Morph Duration | 変身の継続時間 | Time | 10s |
+
+-----------------------
+## Camouflager
+### **Team: Impostors**
+
+互いのクルーを識別できなくなるカモフラージュ状態を発生させることができます。
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Camouflage Cooldown | カモフラージュ能力のクールダウン時間 | Time | 25s |
+| Camouflage Duration | カモフラージュ状態の継続時間 | Time | 5s |
 
 -----------------------
 ## Miner
@@ -336,6 +365,22 @@ Skeldの廊下に仕掛けた場合、すべての廊下が停電状態になり
 ### **Team: Impostors**
 
 死体を吸い込んだり吐き出したりします。吸い込んでいる間は対象の姿をコピーします。
+
+-----------------------
+## Puppeteer
+### **Team: Impostors**
+
+3秒間かけて接触している相手に憑依します。\
+憑依されたクルーは、次に近付いた他のクルーをキルします。\
+キルが発生するかReleaseボタンにより憑依は解除されます。\
+憑依している間は移動ができず、憑依解除後にも憑依していたのと同じ時間動けなくなります。
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Possess Time | 憑依に必要な接触時間 | Time | 3s
+| Possess Cooldown | 憑依のクールダウン時間 | Time | 25s
+| Possess Max Time | 憑依し続けられる最大時間  | Time | 15s
 
 -----------------------
 # Neutral Roles
@@ -423,32 +468,6 @@ Skeldの廊下に仕掛けた場合、すべての廊下が停電状態になり
 |----------|:-------------:|:------:|:------:|
 | Zombie Revive Time | 蘇生するまでの時間 | Time | 15s |
 | Killed By Seer | 占われたときに死亡する | Toggle | True |
------------------------
-## Morphling
-### **Team: Impostors**
-
-サンプルを取得した対象の姿に変身することができます。\
-変身中に再度ボタンを押すことで変身を解除できます。\
-ベントは使用できません。
-
-### Game Options
-| Name | Description | Type | Default |
-|----------|:-------------:|:------:|:------:|
-| Morph Cooldown | 変身のクールダウン | Time | 15s |
-| Morph Duration | 変身の継続時間 | Time | 10s |
-
------------------------
-## Camouflager
-### **Team: Impostors**
-
-互いのクルーを識別できなくなるカモフラージュ状態を発生させることができます。
-
-### Game Options
-| Name | Description | Type | Default |
-|----------|:-------------:|:------:|:------:|
-| Camouflage Cooldown | カモフラージュ能力のクールダウン時間 | Time | 25s |
-| Camouflage Duration | カモフラージュ状態の継続時間 | Time | 5s |
-
 -----------------------
 
 # Modifiers
