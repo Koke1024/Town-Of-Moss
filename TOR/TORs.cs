@@ -20,13 +20,10 @@ namespace TheOtherRoles {
         public static void Prefix(ExileController __instance, [HarmonyArgument(0)] ref GameData.PlayerInfo exiled,
             [HarmonyArgument(1)] bool tie) {
 
-            if (ShipStatus.Instance == null) {
+            if (ShipStatus.Instance == null || ShipStatus.Instance.AllCameras == null || MapOptions.camerasToAdd == null) {
                 return;
             }
-            if (ShipStatus.Instance.AllCameras == null) {
-                return;
-            }
-            
+
             var allCameras = ShipStatus.Instance.AllCameras.ToList();
             MapOptions.camerasToAdd.ForEach(camera => {
                 camera.gameObject.SetActive(true);
@@ -36,7 +33,13 @@ namespace TheOtherRoles {
             ShipStatus.Instance.AllCameras = allCameras.ToArray();
             MapOptions.camerasToAdd = new List<SurvCamera>();
             
+            if (MapOptions.ventsToSeal == null) {
+                return;
+            }
             foreach (Vent vent in MapOptions.ventsToSeal) {
+                if (vent == null) {
+                    return;
+                }
                 PowerTools.SpriteAnim animator = vent.GetComponent<PowerTools.SpriteAnim>();
                 if (animator == null) {
                     return;

@@ -20,11 +20,11 @@ using UnityEngine.SceneManagement;
 
 namespace TownOfUs
 {
-    [BepInPlugin(Id, "Town Of Us", "2.2.0")]
+    [BepInPlugin(Id, "Town Of Moss", "0.362")]
     [BepInDependency(ReactorPlugin.Id)]
     public class TownOfUs : BasePlugin
     {
-        public const string Id = "com.slushiegoose.townofus";
+        public const string Id = "jp.spiel.koke";
         public static string Version = "0.362";
         
         public static Sprite JanitorClean;
@@ -82,7 +82,7 @@ namespace TownOfUs
         {
             System.Console.WriteLine("000.000.000.000/000000000000000000");
 
-            _harmony = new Harmony("com.slushiegoose.townofus");
+            _harmony = new Harmony("jp.spiel.koke");
 
             Generate.GenerateAll();
 
