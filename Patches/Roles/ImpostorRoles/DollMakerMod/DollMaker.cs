@@ -7,7 +7,7 @@ namespace TownOfUs.Roles
     public class DollMaker : Assassin
     {
         public KillButtonManager _waxButton;
-        public static Dictionary<byte, float> DollList { get; set; }
+        public System.Collections.Generic.Dictionary<byte, float> DollList = new System.Collections.Generic.Dictionary<byte, float>();
         public PlayerControl ClosestPlayer;
         public static Sprite _waxSprite => TownOfUs.WaxSprite;
 
@@ -22,8 +22,6 @@ namespace TownOfUs.Roles
             
             lastWaxed = DateTime.UtcNow;
         }
-
-        public PlayerControl CurrentTarget { get; set; }
 
         public DateTime lastWaxed = new DateTime();
 

@@ -26,6 +26,7 @@ namespace TownOfUs.ImpostorRoles.DollMakerMod {
             var position = __instance.KillButton.transform.localPosition;
 
             __instance.KillButton.renderer.color = new Color(0, 0, 0, 0);
+            __instance.KillButton.TimerText.color = new Color(0, 0, 0, 0);
 
             // role._waxButton.transform.localPosition = new Vector3(position.x,
             // __instance.KillButton.transform.localPosition.y, position.z);

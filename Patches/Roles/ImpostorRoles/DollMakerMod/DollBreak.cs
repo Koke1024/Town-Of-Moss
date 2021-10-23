@@ -9,7 +9,7 @@ using UnityEngineInternal;
 
 namespace TownOfUs.ImpostorRoles.DollMakerMod {
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
-    public static class DollCrash {
+    public static class DollBreak {
         public static void Postfix(PlayerControl __instance) {
             if (!__instance.Is(RoleEnum.DollMaker)) {
                 return;
@@ -17,17 +17,17 @@ namespace TownOfUs.ImpostorRoles.DollMakerMod {
             
             DollMaker role = Role.GetRole<DollMaker>(__instance);
             if (LobbyBehaviour.Instance || MeetingHud.Instance) {
-                if (DollMaker.DollList.Count > 0) {
-                    foreach (var doll in DollMaker.DollList) {
+                if (role.DollList.Count > 0) {
+                    foreach (var doll in role.DollList) {
                         GameData.Instance.GetPlayerById(doll.Key)._object.RpcMurderPlayer(GameData.Instance.GetPlayerById(doll.Key)._object);
                     }
-                    DollMaker.DollList.Clear();
+                    role.DollList.Clear();
                 }
                 return;
             }
 
 
-            foreach (var doll in DollMaker.DollList) {
+            foreach (var doll in role.DollList) {
                 if (GameData.Instance.GetPlayerById(doll.Key).IsDead) {
                     continue;
                 }
@@ -52,16 +52,16 @@ namespace TownOfUs.ImpostorRoles.DollMakerMod {
             }
             DollMaker role = Role.GetRole<DollMaker>(__instance);
 
-            foreach (var doll in DollMaker.DollList) {
-                if (doll.key != PlayerControl.LocalPlayer.PlayerId) {
+            foreach (var doll in role.DollList) {
+                if (doll.Key != PlayerControl.LocalPlayer.PlayerId) {
                     continue;
                 }
                 if (GameData.Instance.GetPlayerById(doll.Key).IsDead) {
                     continue;
                 }
-                doll.value += Time.deltaTime;
+                role.DollList[doll.Key] += Time.deltaTime;
                 PlayerControl.LocalPlayer.moveable = false;
-                if (doll.value >= CustomGameOptions.DollBreakTime) {
+                if (doll.Value >= CustomGameOptions.DollBreakTime) {
                     Utils.RpcMurderPlayer(PlayerControl.LocalPlayer, PlayerControl.LocalPlayer);
                 }
             }

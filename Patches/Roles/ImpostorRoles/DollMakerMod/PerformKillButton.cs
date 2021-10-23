@@ -35,7 +35,7 @@ namespace TownOfUs.ImpostorRoles.DollMakerMod
                 writer.Write(role.ClosestPlayer.PlayerId);
                 AmongUsClient.Instance.FinishRpcImmediately(writer);
                 
-                DollMaker.DollList.Add(role.ClosestPlayer.PlayerId, 0);
+                role.DollList.Add(role.ClosestPlayer.PlayerId, 0);
 
                 Utils.AirKill(role.Player, role.ClosestPlayer);
                 SoundManager.Instance.PlaySound(PlayerControl.LocalPlayer.KillSfx, false, 0.8f);
