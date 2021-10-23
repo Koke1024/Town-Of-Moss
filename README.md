@@ -483,7 +483,7 @@ Skeldの廊下に仕掛けた場合、すべての廊下が停電状態になり
 
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
-| Possess Time | 憑依に必要な接触時間 | Time | 3s
+| Possess Time | 憑依に必要な接触時間 | Time | 1s
 | Possess Cooldown | 憑依のクールダウン時間 | Time | 25s
 | Possess Max Time | 憑依し続けられる最大時間  | Time | 15s
 
