@@ -50,7 +50,8 @@ namespace TownOfUs.Roles
             if (PlayerControl.LocalPlayer == Player) {
                 PossessButton.renderer.sprite = Puppeteer.PossessSprite;
             }
-            duration = Mathf.Max(PossessTime, 3.0f);
+            // duration = Mathf.Max(PossessTime, 3.0f);
+            duration = CustomGameOptions.ReleaseWaitTime;
         }
         public void KillUnPossess() {
             if (PlayerControl.LocalPlayer == Player) {

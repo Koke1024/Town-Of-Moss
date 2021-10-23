@@ -24,7 +24,7 @@ namespace TownOfUs.ImpostorRoles.PuppeteerMod
             var target = role.ClosestPlayer;
 
 
-            if ((role.lastPossess - DateTime.UtcNow).TotalMilliseconds / 1000.0f + CustomGameOptions.PossessCd > 0) {
+            if ((role.lastPossess - DateTime.UtcNow).TotalMilliseconds / 1000.0f + PlayerControl.GameOptions.KillCooldown > 0) {
                 return false;
             }
             if (role.Player.killTimer > 0) {
@@ -40,7 +40,8 @@ namespace TownOfUs.ImpostorRoles.PuppeteerMod
                 return false;
             }
             if(__instance.renderer.sprite == Puppeteer.UnPossessSprite){
-                role.duration = Mathf.Max(role.PossessTime, 3.0f);
+                role.duration = CustomGameOptions.ReleaseWaitTime;
+                // role.duration = Mathf.Max(role.PossessTime, 3.0f);
                 
                 var writer2 = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                     (byte) CustomRPC.UnPossess,

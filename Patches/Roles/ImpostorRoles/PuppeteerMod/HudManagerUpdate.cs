@@ -33,21 +33,22 @@ namespace TownOfUs.ImpostorRoles.PuppeteerMod {
                 __instance.ReportButton.transform.localPosition.y, position.z);
 
             if (role.PossessButton.renderer.sprite == Puppeteer.PossessSprite) {
-                if ((role.lastPossess - DateTime.UtcNow).TotalMilliseconds / 1000.0f + CustomGameOptions.PossessCd > 0) {
-                    role.PossessButton.SetCoolDown((float)(role.lastPossess - DateTime.UtcNow).TotalMilliseconds / 1000 + CustomGameOptions.PossessCd, CustomGameOptions.PossessCd);       
+                if ((role.lastPossess - DateTime.UtcNow).TotalMilliseconds / 1000.0f + PlayerControl.GameOptions.KillCooldown > 0) {
+                    role.PossessButton.SetCoolDown((float)(role.lastPossess - DateTime.UtcNow).TotalMilliseconds / 1000 + PlayerControl.GameOptions.KillCooldown, PlayerControl.GameOptions.KillCooldown);       
                     return;
                 }
 
                 if (role.duration > 0) {
                     //待機
-                    role.PossessButton.SetCoolDown(role.duration, Mathf.Max(3.0f, role.PossessTime));
+                    role.PossessButton.SetCoolDown(role.duration, CustomGameOptions.ReleaseWaitTime);
+                    // role.PossessButton.SetCoolDown(role.duration, Mathf.Max(3.0f, role.PossessTime));
                 }
                 else {
                     if ((float)(CustomGameOptions.PossessTime - (DateTime.UtcNow - role.PossStart).TotalMilliseconds / 1000.0f) > 0) {
                         role.PossessButton.SetCoolDown( (float)(CustomGameOptions.PossessTime - (DateTime.UtcNow - role.PossStart).TotalMilliseconds / 1000.0f), CustomGameOptions.PossessTime);                    
                     }
                     else {
-                        role.PossessButton.SetCoolDown(role.Player.killTimer, CustomGameOptions.PossessCd);
+                        role.PossessButton.SetCoolDown(role.Player.killTimer, PlayerControl.GameOptions.KillCooldown);
                     }
                 }
                 Utils.SetTarget(ref role.ClosestPlayer, role.PossessButton);

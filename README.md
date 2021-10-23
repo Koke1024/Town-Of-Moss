@@ -488,15 +488,15 @@ Skeldの廊下に仕掛けた場合、すべての廊下が停電状態になり
 3秒間かけて接触している相手に憑依します。\
 憑依されたクルーは、次に近付いた他のクルーをキルします。\
 キルが発生するかReleaseボタンにより憑依は解除されます。\
-憑依している間は移動ができず、憑依解除後にも憑依していたのと同じ時間動けなくなります。
+憑依している間と憑依解除後の3秒間は移動ができなくなります。
 
 ### Game Options
 
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
-| Possess Time | 憑依に必要な接触時間 | Time | 1s
-| Possess Cooldown | 憑依のクールダウン時間 | Time | 25s
+| Possess Time | 憑依に必要な接触時間 | Time | 3s
 | Possess Max Time | 憑依し続けられる最大時間  | Time | 15s
+| Wait Time After Release | 憑依解除後の行動不能時間  | Time | 3s
 
 ## DollMaker
 

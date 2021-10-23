@@ -19,7 +19,7 @@ namespace TownOfUs.ImpostorRoles.PuppeteerMod
                 var flag3 = distBetweenPlayers <
                             GameOptionsData.KillDistances[PlayerControl.GameOptions.KillDistance];
                 if (!flag3) {
-                    puppeteer.PossStart = DateTime.UtcNow.AddSeconds(-CustomGameOptions.PossessCd);
+                    puppeteer.PossStart = DateTime.UtcNow.AddSeconds(-PlayerControl.GameOptions.KillCooldown);
                     yield break;
                 }
                 yield return new WaitForSeconds(0.016f);
