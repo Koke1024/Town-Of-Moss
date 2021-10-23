@@ -100,6 +100,9 @@ namespace TownOfUs.Roles
                         writer.EndMessage();
                         SGAction.placeCamera(buff);
                     }
+                    else {
+                        return;
+                    }
 
                     SecurityGuardButton.Timer = SecurityGuardButton.MaxTimer;
                 },
@@ -111,7 +114,9 @@ namespace TownOfUs.Roles
                 },
                 () => {
                     SecurityGuardButton.killButtonManager.renderer.sprite =
-                        (SecurityGuard.ventTarget == null && PlayerControl.GameOptions.MapId != 1)
+                        (SecurityGuard.ventTarget == null &&
+                         PlayerControl.GameOptions.MapId != (byte)ShipStatus.MapType.Hq &&
+                         PlayerControl.GameOptions.MapId != (byte)ShipStatus.MapType.Ship)
                             ? SecurityGuard.getPlaceCameraButtonSprite()
                             : SecurityGuard.getCloseVentButtonSprite();
                     if (SecurityGuardButtonScrewsText != null)
