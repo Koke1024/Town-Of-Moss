@@ -1,5 +1,6 @@
 using HarmonyLib;
 using Hazel;
+using Reactor.Extensions;
 using TownOfUs.Roles;
 using UnityEngine;
 
@@ -62,7 +63,8 @@ namespace TownOfUs.NeutralRoles.ExecutionerMod
             }
             player.myTasks.RemoveAt(0);
             Role.RoleDictionary.Remove(player.PlayerId);
-
+            Role.GetRole<Executioner>(player).Arrow.Destroy();
+            Role.GetRole<Executioner>(player).Arrow = null;
 
             if (CustomGameOptions.OnTargetDead == OnTargetDead.Jester)
             {
