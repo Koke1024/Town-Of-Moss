@@ -48,5 +48,20 @@ namespace TownOfUs.Roles
         {
             Player.Data.IsImpostor = true;
         }
+        
+        
+        public ArrowBehaviour Arrow;
+        public static Sprite Sprite => TownOfUs.Arrow;
+
+        public void SetExecutionTarget()
+        {
+            var gameObj = new GameObject();
+            Arrow = gameObj.AddComponent<ArrowBehaviour>();
+            gameObj.transform.parent = PlayerControl.LocalPlayer.gameObject.transform;
+            var renderer = gameObj.AddComponent<SpriteRenderer>();
+            renderer.sprite = Sprite;
+            Arrow.image = renderer;
+            gameObj.layer = 5;
+        }
     }
 }

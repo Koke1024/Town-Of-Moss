@@ -22,7 +22,7 @@ namespace TownOfUs.CustomOption
         public static CustomStringOption PolusVitalMove;
         public static CustomToggleOption AdminTimeLimit;
         public static CustomNumberOption AdminTimeLimitTime;
-        
+        #region Crewmate Roles
         public static CustomHeaderOption CrewmateRoles;
         public static CustomNumberOption MayorOn;
         public static CustomNumberOption LoversOn;
@@ -38,19 +38,18 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption AltruistOn;
         public static CustomNumberOption ChargerOn;
         public static CustomNumberOption DruidOn;
-        
-        public static CustomNumberOption ZombieOn;
-
+        #endregion
+        #region Neutral Roles
         public static CustomHeaderOption NeutralRoles;
+        public static CustomNumberOption ZombieOn;
         public static CustomNumberOption JesterOn;
         public static CustomNumberOption ShifterOn;
         public static CustomNumberOption ExecutionerOn;
         public static CustomNumberOption ArsonistOn;
         public static CustomNumberOption PhantomOn;
         public static CustomNumberOption SniperOn;
-
-
-
+        #endregion
+        #region Impostor Roles
         public static CustomHeaderOption ImpostorRoles;
         public static CustomNumberOption JanitorOn;
         public static CustomNumberOption KirbyOn;
@@ -64,10 +63,13 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption CrackerOn;
         public static CustomNumberOption MultiKillerOn;
         public static CustomNumberOption PuppeteerOn;
+        public static CustomNumberOption DollMakerOn;
+        #endregion
 
         public static CustomHeaderOption RoleOptions;
-        
         public static CustomHeaderOption CrewmateRolesSetting;
+        
+//-------------------------------------CREWMATE-------------------------------------------------------
 
         public static CustomHeaderOption Mayor;
         public static CustomNumberOption MayorVoteBank;
@@ -87,13 +89,7 @@ namespace TownOfUs.CustomOption
         public static CustomToggleOption SheriffKillsMadmate;
         public static CustomNumberOption SheriffKillCd;
         public static CustomToggleOption SheriffBodyReport;
-
-
-        public static CustomHeaderOption Shifter;
-        public static CustomNumberOption ShifterCd;
-        public static CustomStringOption WhoShifts;
-
-
+        
         public static CustomHeaderOption Engineer;
         public static CustomStringOption EngineerPer;
 
@@ -142,29 +138,6 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption SecurityGuardCamPrice;
         public static CustomNumberOption SecurityGuardVentPrice;
 
-        public static CustomHeaderOption NeutralRolesSetting;
-        public static CustomHeaderOption ImpostorRolesSetting;
-
-        public static CustomHeaderOption TheGlitch;
-        public static CustomNumberOption MimicCooldownOption;
-        public static CustomNumberOption MimicDurationOption;
-        public static CustomNumberOption HackCooldownOption;
-        public static CustomNumberOption HackDurationOption;
-        public static CustomNumberOption GlitchKillCooldownOption;
-        public static CustomStringOption GlitchHackDistanceOption;
-
-
-        public static CustomHeaderOption Morphling;
-        public static CustomNumberOption MorphlingCooldown;
-        public static CustomNumberOption MorphlingDuration;
-
-        public static CustomHeaderOption Camouflager;
-        public static CustomNumberOption CamouflagerCooldown;
-        public static CustomNumberOption CamouflagerDuration;
-
-        public static CustomHeaderOption Executioner;
-        public static CustomStringOption OnTargetDead;
-
         public static CustomHeaderOption Snitch;
         public static CustomToggleOption SnitchOnLaunch;
         public static CustomToggleOption SnitchSeesNeutrals;
@@ -173,6 +146,17 @@ namespace TownOfUs.CustomOption
         public static CustomHeaderOption Altruist;
         public static CustomNumberOption ReviveDuration;
         public static CustomToggleOption AltruistTargetBody;
+        
+//-------------------------------------IMPOSTOR ROLES-------------------------------------------------------
+        public static CustomHeaderOption ImpostorRolesSetting;
+
+        public static CustomHeaderOption Morphling;
+        public static CustomNumberOption MorphlingCooldown;
+        public static CustomNumberOption MorphlingDuration;
+
+        public static CustomHeaderOption Camouflager;
+        public static CustomNumberOption CamouflagerCooldown;
+        public static CustomNumberOption CamouflagerDuration;
 
         public static CustomHeaderOption Janitor;
         public static CustomNumberOption CleanCd;
@@ -185,23 +169,6 @@ namespace TownOfUs.CustomOption
         public static CustomHeaderOption Swooper;
         public static CustomNumberOption SwoopCooldown;
         public static CustomNumberOption SwoopDuration;
-
-        public static CustomHeaderOption Arsonist;
-        public static CustomNumberOption ArsonistDouseTime;
-        public static CustomNumberOption DouseCooldown;
-        public static CustomToggleOption ArsonistGameEnd;
-        
-        public static CustomHeaderOption Sniper;
-        public static CustomNumberOption SniperWinCnt;
-        
-        public static CustomHeaderOption Zombie;
-        public static CustomNumberOption ZombieReviveTime;
-        public static CustomToggleOption ZombieKilledBySeer;
-
-        public static CustomHeaderOption Jester;
-        public static CustomToggleOption JesterUseVent;
-        public static CustomToggleOption JesterDragBody;
-        public static CustomToggleOption JesterCanMorph;
 
         public static CustomHeaderOption Undertaker;
         public static CustomNumberOption DragCooldown;
@@ -230,6 +197,44 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption PossessCd;
         public static CustomNumberOption PossessMaxTime;
         
+        public static CustomHeaderOption DollMaker;
+        
+//-------------------------------------NEUTRAL ROLES-------------------------------------------------------
+        public static CustomHeaderOption NeutralRolesSetting;
+
+        public static CustomHeaderOption TheGlitch;
+        public static CustomNumberOption MimicCooldownOption;
+        public static CustomNumberOption MimicDurationOption;
+        public static CustomNumberOption HackCooldownOption;
+        public static CustomNumberOption HackDurationOption;
+        public static CustomNumberOption GlitchKillCooldownOption;
+        public static CustomStringOption GlitchHackDistanceOption;
+
+        public static CustomHeaderOption Jester;
+        public static CustomToggleOption JesterUseVent;
+        public static CustomToggleOption JesterDragBody;
+        public static CustomToggleOption JesterCanMorph;
+        
+        public static CustomHeaderOption Executioner;
+        public static CustomStringOption OnTargetDead;
+
+        public static CustomHeaderOption Arsonist;
+        public static CustomNumberOption ArsonistDouseTime;
+        public static CustomNumberOption DouseCooldown;
+        public static CustomToggleOption ArsonistGameEnd;
+        
+        public static CustomHeaderOption Sniper;
+        public static CustomNumberOption SniperWinCnt;
+        
+        public static CustomHeaderOption Zombie;
+        public static CustomNumberOption ZombieReviveTime;
+        public static CustomToggleOption ZombieKilledBySeer;
+
+        public static CustomHeaderOption Shifter;
+        public static CustomNumberOption ShifterCd;
+        public static CustomStringOption WhoShifts;
+        
+//-------------------------------------MODIFIER-------------------------------------------------------
         public static CustomHeaderOption Modifiers;
         public static CustomNumberOption TorchOn;
         public static CustomNumberOption DiseasedOn;
@@ -250,7 +255,7 @@ namespace TownOfUs.CustomOption
             Patches.ExportButton = new Export(num++);
             Patches.ImportButton = new Import(num++);
 
-
+#region Custom Game Setting
             CustomGameSettings = new CustomHeaderOption(num++, "Custom Game Settings");
             // MaxImpostorRoles =
             //      new CustomNumberOption(num++, "<color=#FF0000FF>Max Impostor Roles</color>", 3f, 1f, 3f, 1f);
@@ -275,7 +280,8 @@ namespace TownOfUs.CustomOption
             RoleUnderName = new CustomToggleOption(num++, "Role Appears Under Name");
             // VanillaGame = new CustomNumberOption(num++, "Probability of a completely vanilla game", 0f, 0f, 100f, 5f,
             //     PercentFormat);
-
+#endregion
+#region Crewmate Roles
             CrewmateRoles = new CustomHeaderOption(num++, "<color=#00FF00FF>Crewmate Roles</color>");
             MayorOn = new CustomNumberOption(true, num++, "<color=#704FA8FF>Mayor</color>", 100.0f, 0f, 100f, 10f,
                 PercentFormat);
@@ -307,7 +313,8 @@ namespace TownOfUs.CustomOption
                 PercentFormat);
             DruidOn = new CustomNumberOption(true, num++, "<color=#66008EFF>Druid</color>", 100.0f, 0f, 100f, 10f,
                 PercentFormat);
-
+#endregion
+#region Neutral Roles
             NeutralRoles = new CustomHeaderOption(num++, "<color=#FF00FFFF>Neutral Roles</color>");
             JesterOn = new CustomNumberOption(true, num++, "<color=#FFBFCCFF>Jester</color>", 100.0f, 0f, 100f, 10f,
                 PercentFormat);
@@ -323,7 +330,8 @@ namespace TownOfUs.CustomOption
                 PercentFormat);
             ZombieOn = new CustomNumberOption(true, num++, "<color=#773800>Zombie</color>", 100.0f, 0f, 100f, 10f,
                 PercentFormat);
-
+#endregion
+#region Impostor Roles
             ImpostorRoles = new CustomHeaderOption(num++, "<color=#FF0000FF>Impostor Roles</color>");
             AssassinOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Assassin</color>", 100.0f, 0f, 100f, 10f,
                 PercentFormat);
@@ -353,7 +361,11 @@ namespace TownOfUs.CustomOption
 
             PuppeteerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Puppeteer</color>", 100.0f, 0f, 100f, 10f,
                 PercentFormat);
+            DollMakerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>DollMaker</color>", 100.0f, 0f, 100f, 10f,
+                PercentFormat);
 
+#endregion
+#region Role Options
             RoleOptions = new CustomHeaderOption(num++, "Custom Role Settings");
             CrewmateRolesSetting = new CustomHeaderOption(num++, "<color=#00FF00FF>Crewmate Roles</color>");
             Mayor =
@@ -588,9 +600,11 @@ namespace TownOfUs.CustomOption
             
             
             Puppeteer = new CustomHeaderOption(num++, "<color=#FF0000FF>Puppeteer</color>");
-            PossessTime = new CustomNumberOption(num++, "Possess Time", 3.0f, 1f, 20f, 1f, CooldownFormat);
+            PossessTime = new CustomNumberOption(num++, "Possess Time", 1.0f, 1f, 5f, 0.5f, CooldownFormat);
             PossessCd = new CustomNumberOption(num++, "Possess Cooldown", 25.0f, 10f, 50f, 2.5f, CooldownFormat);
             PossessMaxTime = new CustomNumberOption(num++, "Possess Max Time", 15.0f, 5f, 30f, 2.5f, CooldownFormat);
+            
+            DollMaker = new CustomHeaderOption(num++, "<color=#FF0000FF>DollMaker</color>");
             
             Assassin = new CustomHeaderOption(num++, "<color=#FF0000FF>Assassin</color>");
             AssassinKills = new CustomNumberOption(num++, "Number of Assassin Kills", 5, 1, 5, 1);
@@ -600,7 +614,7 @@ namespace TownOfUs.CustomOption
             // AssassinGuessImpostors = new CustomToggleOption(num++, "Assassin can Snipe Impostor", true);
             // AllImpostorCanGuess = new CustomToggleOption(num++, "All of Impostors can snipe while meeting", false);
             LastImpostorCanGuess = new CustomToggleOption(num++, "Last Impostor Can Snipe", true);
-            
+#endregion
 
             Modifiers = new CustomHeaderOption(num++, "Modifiers");
             TorchOn = new CustomNumberOption(true, num++, "<color=#FFFF99FF>Torch</color>", 0f, 0f, 100f, 10f,

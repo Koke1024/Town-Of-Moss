@@ -45,6 +45,7 @@ namespace TownOfUs
         public static int DruidOn => (int) Generate.DruidOn.Get();
         public static int UndertakerOn => (int) Generate.UndertakerOn.Get();
         public static int PuppeteerOn => (int) Generate.PuppeteerOn.Get();
+        public static int DollMakerOn => (int) Generate.DollMakerOn.Get();
         public static int AssassinOn => (int) Generate.AssassinOn.Get();
         public static int UnderdogOn => 0;
         // public static int UnderdogOn => (int) Generate.UnderdogOn.Get();

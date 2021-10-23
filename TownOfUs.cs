@@ -20,12 +20,12 @@ using UnityEngine.SceneManagement;
 
 namespace TownOfUs
 {
-    [BepInPlugin(Id, "Town Of Moss", "0.363")]
+    [BepInPlugin(Id, "Town Of Moss", "0.37")]
     [BepInDependency(ReactorPlugin.Id)]
     public class TownOfUs : BasePlugin
     {
         public const string Id = "jp.spiel.koke";
-        public static string Version = "0.363";
+        public static string Version = "0.37";
         
         public static Sprite JanitorClean;
         public static Sprite Inhale;
@@ -63,9 +63,9 @@ namespace TownOfUs
         public static Sprite AnimatedVentSprite;
         public static Sprite StaticVentSprite;
 
-
         public static Sprite DragSprite;
         public static Sprite DropSprite;
+        public static Sprite WaxSprite;
 
         private static DLoadImage _iCallLoadImage;
 
@@ -118,6 +118,7 @@ namespace TownOfUs
             PolusSprite = CreateSprite("TownOfUs.Resources.polus.gg.png");
             TargetSprite = CreateSprite("TownOfUs.Resources.TargetIcon.png");
             HackSprite = CreateSprite("TownOfUs.Resources.Hack.png");
+            WaxSprite = CreateSprite("TownOfUs.Resources.Wax.png");
             CloseVentButtonSprite = CreateSprite("TownOfUs.Resources.CloseVentButton.png");
             PlaceCameraSprite = CreateSprite("TownOfUs.Resources.PlaceCameraButton.png");
             AnimatedVentSprite = CreateSprite("TownOfUs.Resources.AnimatedVentSealed.png");

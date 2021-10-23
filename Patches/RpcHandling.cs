@@ -315,6 +315,10 @@ namespace TownOfUs
                         readByte = reader.ReadByte();
                         new Morphling(Utils.PlayerById(readByte));
                         break;
+                    case CustomRPC.SetDollMaker:
+                        readByte = reader.ReadByte();
+                        new DollMaker(Utils.PlayerById(readByte));
+                        break;
 
                     case CustomRPC.LoveWin:
                         var winnerlover = Utils.PlayerById(reader.ReadByte());
@@ -988,6 +992,9 @@ namespace TownOfUs
 
                 if (Check(CustomGameOptions.MorphlingOn))
                     ImpostorRoles.Add((typeof(Morphling), CustomRPC.SetMorphling, CustomGameOptions.MorphlingOn));
+
+                if (Check(CustomGameOptions.DollMakerOn))
+                    ImpostorRoles.Add((typeof(DollMaker), CustomRPC.SetDollMaker, CustomGameOptions.DollMakerOn));
 
                 if (Check(CustomGameOptions.CamouflagerOn))
                     ImpostorRoles.Add((typeof(Camouflager), CustomRPC.SetCamouflager, CustomGameOptions.CamouflagerOn));

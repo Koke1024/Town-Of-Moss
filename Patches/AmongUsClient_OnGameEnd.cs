@@ -184,7 +184,7 @@ namespace TownOfUs {
                     Role.GetRole(player).Name + "</color>";
                 var taskInfo = "";
                 if (!player.Is(RoleEnum.Assassin) && (player.Is(Faction.Crewmates) || player.Is(RoleEnum.Phantom))) {
-                    taskInfo = $" - <color=#FAD934FF>({player.myTasks.ToArray().Count(x => x.IsComplete)}/{player.myTasks.Count})</color>";
+                    taskInfo = $" - <color=#FAD934FF>({player.Data.Tasks.ToArray().Count(x => x.Complete)}/{player.Data.Tasks.ToArray().Count()})</color>";
                 }
                 if (player.Is(RoleEnum.Arsonist)) {
                     taskInfo = $" - <color=#{Role.GetRole(player).Color.ToHtmlStringRGBA()}>({Role.GetRole<Arsonist>(player).DousedPlayers.Count}/{(PlayerControl.AllPlayerControls.Count-1)})</color>";

@@ -39,8 +39,8 @@ namespace TownOfUs
         Underdog,
         MultiKiller,
         Cracker,
-
-
+        DollMaker,
+        
         Glitch,
 
         Crewmate,

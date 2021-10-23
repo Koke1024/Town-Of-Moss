@@ -108,6 +108,7 @@ namespace TownOfUs.Roles
                 { "Cracker", CustomGameOptions.CrackerOn },
                 { "MultiKiller", CustomGameOptions.MultiKillerOn },
                 { "Puppeteer", CustomGameOptions.PuppeteerOn },
+                { "DollMaker", CustomGameOptions.DollMakerOn },
             };
 
             foreach (var row in onList) {

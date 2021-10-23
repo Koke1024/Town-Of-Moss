@@ -66,6 +66,7 @@ namespace TownOfUs
         SetJanitor,
         SetKirby,
         SetMorphling,
+        SetDollMaker,
         SetCamouflager,
         SetMiner,
         SetSwooper,
@@ -152,5 +153,6 @@ namespace TownOfUs
         Possess,
         UnPossess,
         PossessKill,
+        Wax,
     }
 }

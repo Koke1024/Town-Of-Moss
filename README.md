@@ -10,7 +10,7 @@
 
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
-| 2021.6.30s | v0.363 | [Download](https://spiel.jp/mod/Moss0363.zip) |
+| 2021.6.30s | v0.363 ※動作安定 | [Download](https://spiel.jp/mod/Moss0363.zip) |
 | 2021.6.30s | v0.362 | [Download](https://spiel.jp/mod/Moss0362.zip) |
 | 2021.6.30s | v0.352 | [Download](https://spiel.jp/mod/Moss0352.zip) |
 | 2021.6.30s | v0.35 | [Download](https://spiel.jp/mod/Moss035.zip) |
@@ -27,28 +27,30 @@
 AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscapture) を元に非公式に作成しています。
 
 <details>
-  <summary> Changelog </summary>
-  <details>
-  <summary> v0.363 </summary>
-<ul> 
-<li>Bug Fix</li>
-<li>Kirbyベント使用不可に</li>
-</ul>
-  </details>
-  <details>
-  <summary> v0.352 </summary>
-  <ul> <li>Bug Fix</li> </ul>
-  </details>
-  <details>
-  <summary> v0.35 </summary>
-  <ul> <li>Bug Fix</li> </ul>
-  </details>
-  <details>
-  <summary> v0.33 </summary>
-  <ul> <li>新役職Kirby追加</li> </ul>
-  <ul> <li>新役職Zombie追加</li> </ul>
-  <ul> <li>Mayor能力変更</li> </ul>
-  </details>
+    <summary> Changelog </summary>
+    <details>
+        <summary> v0.363 </summary>
+        <ul> 
+            <li>Bug Fix</li>
+            <li>Kirbyベント使用不可に</li>
+        </ul>
+    </details>
+    <details>
+        <summary> v0.352 </summary>
+            <ul> <li>Bug Fix</li> </ul>
+        </details>
+        <details>
+            <summary> v0.35 </summary>
+            <ul> <li>Bug Fix</li> </ul>
+        </details>
+        <details>
+            <summary> v0.33 </summary>
+        <ul>
+            <li>新役職Kirby追加</li>
+            <li>新役職Zombie追加</li>
+            <li>Mayor能力変更</li>
+        </ul>
+    </details>
 </details>
 
 -----------------------

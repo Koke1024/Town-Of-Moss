@@ -21,7 +21,7 @@ namespace TownOfUs.Roles
         public Cracker(PlayerControl player) : base(player)
         {
             Name = "Cracker";
-            ImpostorText = () => "Crack rooms to disturb crews";
+            ImpostorText = () => "The room is in your palm";
             TaskText = () => "Crack rooms to disturb crews";
             Color = Palette.ImpostorRed;
             RoleType = RoleEnum.Cracker;
