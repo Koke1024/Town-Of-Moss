@@ -10,6 +10,7 @@
 
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
+| 2021.6.30s | v0.37 | [Download](https://spiel.jp/mod/Moss037.zip) |
 | 2021.6.30s | v0.363 ※動作安定 | [Download](https://spiel.jp/mod/Moss0363.zip) |
 | 2021.6.30s | v0.362 | [Download](https://spiel.jp/mod/Moss0362.zip) |
 | 2021.6.30s | v0.352 | [Download](https://spiel.jp/mod/Moss0352.zip) |
@@ -28,6 +29,12 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v0.37 </summary>
+        <ul> 
+            <li>DollMaker追加</li>
+        </ul>
+    </details>
     <details>
         <summary> v0.363 </summary>
         <ul> 
@@ -68,7 +75,7 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 |[SecurityGuard](#SecurityGuard)|[Cracker](#Cracker)|||
 |[Snitch](#Snitch)|[MultiKiller](#MultiKiller)|||
 |[Altruist](#Altruist)|[Puppeteer](#Puppeteer)|||
-|[Charger](#Charger)||||
+|[Charger](#Charger)|[DollMaker](#DollMaker)|||
 |[Druid](#Druid)||||
 
 -----------------------
@@ -479,6 +486,19 @@ Skeldの廊下に仕掛けた場合、すべての廊下が停電状態になり
 | Possess Time | 憑依に必要な接触時間 | Time | 3s
 | Possess Cooldown | 憑依のクールダウン時間 | Time | 25s
 | Possess Max Time | 憑依し続けられる最大時間  | Time | 15s
+
+## DollMaker
+
+### **Team: Impostors**
+
+キルの代わりにクルーを蝋人形状態にします。\
+蝋人形になったクルーは行動できなくなり、一定時間が経過するか、他のプレイヤーに触れられるか、ミーティングが始まると死亡します。\
+
+### Game Options
+
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Doll Self Broken Time | 蝋人形にされたクルーが自動で死亡するまでの時間 | Time | 20s
 
 -----------------------
 
