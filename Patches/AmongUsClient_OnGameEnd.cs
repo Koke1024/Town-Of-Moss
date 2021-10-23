@@ -180,14 +180,19 @@ namespace TownOfUs {
             var roleSummaryText = new StringBuilder();
             roleSummaryText.AppendLine("Players and roles at the end of the game:");
             foreach (var player in PlayerControl.AllPlayerControls) {
+                if (Role.GetRole(player) == null) {
+                    continue;
+                }
                 var roles = "<color=#"+Role.GetRole(player).Color.ToHtmlStringRGBA()+">" + 
                     Role.GetRole(player).Name + "</color>";
                 var taskInfo = "";
-                if (!player.Is(RoleEnum.Assassin) && (player.Is(Faction.Crewmates) || player.Is(RoleEnum.Phantom))) {
+                if (!player.Is(RoleEnum.Assassin) && (player.Is(Faction.Crewmates) || player.Is(RoleEnum.Phantom) || player.Is(RoleEnum.Zombie))) {
                     taskInfo = $" - <color=#FAD934FF>({player.Data.Tasks.ToArray().Count(x => x.Complete)}/{player.Data.Tasks.ToArray().Count()})</color>";
                 }
                 if (player.Is(RoleEnum.Arsonist)) {
-                    taskInfo = $" - <color=#{Role.GetRole(player).Color.ToHtmlStringRGBA()}>({Role.GetRole<Arsonist>(player).DousedPlayers.Count}/{(PlayerControl.AllPlayerControls.Count-1)})</color>";
+                    var livingPlayer = PlayerControl.AllPlayerControls.ToArray().Where(x => !x.Data.IsDead && x != player).ToList();
+                    taskInfo = $" - <color=#{Role.GetRole(player).Color.ToHtmlStringRGBA()}>({livingPlayer.Count(x => Role.GetRole<Arsonist>(player).DousedPlayers.Contains(x.PlayerId))}/{livingPlayer.Count})</color>";
+                    taskInfo += $" - <color=#{Role.GetRole(player).Color.ToHtmlStringRGBA()}>({Role.GetRole<Arsonist>(player).DousedPlayers.Count}/{PlayerControl.AllPlayerControls.Count - 1})</color>";
                 }
                 roleSummaryText.AppendLine($"{player.Data.PlayerName} - {roles}{taskInfo}");
             }

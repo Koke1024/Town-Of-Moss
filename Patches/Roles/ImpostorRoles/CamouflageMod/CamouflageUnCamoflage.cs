@@ -31,16 +31,14 @@ namespace TownOfUs.ImpostorRoles.CamouflageMod
 
             if (CustomGameOptions.ColourblindComms)
             {
-                if (ShipStatus.Instance != null)
-                    switch (PlayerControl.GameOptions.MapId)
-                    {
+                if (ShipStatus.Instance != null && ShipStatus.Instance.Systems.ContainsKey(SystemTypes.Comms)) {
+                    switch (PlayerControl.GameOptions.MapId) {
                         case 0:
                         case 2:
                         case 3:
                         case 4:
                             var comms1 = ShipStatus.Instance.Systems[SystemTypes.Comms].Cast<HudOverrideSystemType>();
-                            if (comms1.IsActive)
-                            {
+                            if (comms1.IsActive) {
                                 CommsEnabled = true;
                                 Utils.Camouflage();
                                 return;
@@ -49,8 +47,7 @@ namespace TownOfUs.ImpostorRoles.CamouflageMod
                             break;
                         case 1:
                             var comms2 = ShipStatus.Instance.Systems[SystemTypes.Comms].Cast<HqHudSystemType>();
-                            if (comms2.IsActive)
-                            {
+                            if (comms2.IsActive) {
                                 CommsEnabled = true;
                                 Utils.Camouflage();
                                 return;
@@ -58,6 +55,7 @@ namespace TownOfUs.ImpostorRoles.CamouflageMod
 
                             break;
                     }
+                }
 
                 if (CommsEnabled)
                 {

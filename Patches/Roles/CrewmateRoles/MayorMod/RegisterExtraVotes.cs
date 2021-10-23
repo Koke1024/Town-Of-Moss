@@ -106,10 +106,7 @@ namespace TownOfUs.CrewmateRoles.MayorMod
                 {
                     if (role is Mayor mayor)
                     {
-                        AmongUsExtensions.Log($"{mayor.ExtraVotes.Count}");
-                        AmongUsExtensions.Log($"RemoveAll");
                         var votesRegained = mayor.ExtraVotes.RemoveAll(x => x == player.PlayerId);
-                        AmongUsExtensions.Log($"{mayor.ExtraVotes.Count}");
                         
                         if (mayor.Player == PlayerControl.LocalPlayer)
                             mayor.VoteBank += votesRegained;

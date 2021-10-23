@@ -100,12 +100,18 @@ namespace TownOfUs
             var crewmates = Utils.GetCrewmates(impostors);
             crewmates.Shuffle();
             impostors.Shuffle();
-
-
+            
             SortRoles(CrewmateRoles);
-            SortRoles(NeutralRoles, CustomGameOptions.MaxNeutralRoles);
-            SortRoles(ImpostorRoles, Math.Min(impostors.Count, 
-                CustomGameOptions.MadMateOn? CustomGameOptions.MaxImpostorRoles + 1: CustomGameOptions.MaxImpostorRoles));
+            var maxNeutral = Il2CppSystem.Math.Min(PlayerControl.AllPlayerControls.Count - impostors.Count - 1, CustomGameOptions.MaxNeutralRoles);
+            SortRoles(NeutralRoles, maxNeutral);
+            for (; impostors.Count - ImpostorRoles.Count > 0;) {
+                ImpostorRoles.Add((typeof(Impostor), CustomRPC.SetImpostor, 100));
+            }
+            int impostorNum = Math.Min(impostors.Count,
+                CustomGameOptions.MadMateOn
+                    ? CustomGameOptions.MaxImpostorRoles + 1
+                    : CustomGameOptions.MaxImpostorRoles);
+            SortRoles(ImpostorRoles, impostorNum);
             SortRoles(CrewmateModifiers, crewmates.Count);
             SortRoles(GlobalModifiers, crewmates.Count + impostors.Count);
 
@@ -114,17 +120,15 @@ namespace TownOfUs
             SortRoles(crewAndNeutralRoles, crewmates.Count);
             if (CustomGameOptions.MadMateOn) {
                 crewAndNeutralRoles.Insert(0, (typeof(Assassin), CustomRPC.SetAssassin, 100));
-                crewAndNeutralRoles.RemoveAt(crewAndNeutralRoles.Count - 1);
             }
 
+            
             if (GlitchRoles.Any()) {
                 crewAndNeutralRoles.InsertRange(0, GlitchRoles);
-                crewAndNeutralRoles.RemoveAt(crewAndNeutralRoles.Count - 1);
             }
 
             if (NeutralRoles.Any()) {
                 crewAndNeutralRoles.InsertRange(0, NeutralRoles);
-                crewAndNeutralRoles.RemoveAt(crewAndNeutralRoles.Count - 1);
             }
 
             if (Check(CustomGameOptions.VanillaGame))
@@ -140,6 +144,10 @@ namespace TownOfUs
             }
 
             PlayerControl executioner = null;
+            var maxCrewAndNeutralNum = GameData.Instance.PlayerCount - impostors.Count;
+            while (crewAndNeutralRoles.Count > maxCrewAndNeutralNum) {
+                crewAndNeutralRoles.RemoveAt(crewAndNeutralRoles.Count - 1);
+            }
             foreach (var (type, rpc, _) in crewAndNeutralRoles)
             {
                 if (rpc == CustomRPC.SetExecutioner)
@@ -452,7 +460,6 @@ namespace TownOfUs
                         var mayor = Utils.PlayerById(reader.ReadByte());
                         var mayorRole = Role.GetRole<Mayor>(mayor);
                         mayorRole.ExtraVotes = reader.ReadBytesAndSize().ToList();
-                        AmongUsExtensions.Log($"{mayorRole.ExtraVotes.Count}");
                         if (!mayor.Is(RoleEnum.Mayor) && !mayor.Is(RoleEnum.Executioner)) {
                             mayorRole.VoteBank -= mayorRole.ExtraVotes.Count;
                         }
@@ -466,8 +473,6 @@ namespace TownOfUs
                         readSByte2 = reader.ReadSByte();
                         SwapVotes.Swap2 =
                             MeetingHud.Instance.playerStates.FirstOrDefault(x => x.TargetPlayerId == readSByte2);
-                        PluginSingleton<TownOfUs>.Instance.Log.LogMessage("Bytes received - " + readSByte + " - " +
-                                                                          readSByte2);
                         break;
 
                     case CustomRPC.Shift:
@@ -795,7 +800,6 @@ namespace TownOfUs
 
                         break;
                     case CustomRPC.Drop:
-                        PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"RPC.Drop received");
                         readByte1 = reader.ReadByte();
                         var v2 = reader.ReadVector2();
                         var v2z = reader.ReadSingle();
@@ -1036,6 +1040,7 @@ namespace TownOfUs
                     GlobalModifiers.Add(
                         (typeof(ButtonBarry), CustomRPC.SetButtonBarry, CustomGameOptions.ButtonBarryOn));
                 #endregion
+
                 GenEachRole(infected.ToList());
 
                 

@@ -27,16 +27,16 @@ namespace TownOfUs.Roles
                 { "Medic", new Color(0f, 0.4f, 0f, 1f) },
                 { "Seer", new Color(1f, 0.8f, 0.5f, 1f) },
                 { "SecurityGuard", new Color(0.67f, 0.67f, 1f)},
-                { "Spy", new Color(0.8f, 0.64f, 0.8f, 1f) },
+                // { "Spy", new Color(0.8f, 0.64f, 0.8f, 1f) },
                 { "Snitch", new Color(0.83f, 0.69f, 0.22f, 1f) },
                 { "Altruist", new Color(0.4f, 0f, 0f, 1f) },
                 { "Charger", new Color(0.99f, 1f, 0.2f) },
                 { "Druid", new Color(0.4f, 0f, 0.56f) },
                 
+                { "The Glitch", Color.green},
                 { "Jester", new Color(1f, 0.75f, 0.8f, 1f)},
                 { "Shifter", new Color(0.6f, 0.6f, 0.6f, 1f)},
                 { "Executioner", new Color(0.55f, 0.25f, 0.02f, 1f)},
-                { "The Glitch", Color.green},
                 { "Arsonist", new Color(1f, 0.3f, 0f)},
                 { "Zombie", new Color(0.47f, 0.22f, 0f)},
 
@@ -47,9 +47,12 @@ namespace TownOfUs.Roles
                 { "Miner", Color.red},
                 { "Swooper", Color.red},
                 { "Undertaker", Color.red},
-                { "Underdog", Color.red},
+                // { "Underdog", Color.red},
+                { "Kirby", new Color(0.66f, 0.42f, 0.64f)},
                 { "Cracker", Color.red},
                 { "MultiKiller", Color.red},
+                { "Puppeteer", Color.red},
+                { "DollMaker", Color.red},
             };
             CleanUpMapping();
         }

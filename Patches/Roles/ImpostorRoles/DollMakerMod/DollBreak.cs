@@ -59,6 +59,10 @@ namespace TownOfUs.ImpostorRoles.DollMakerMod {
                 if (GameData.Instance.GetPlayerById(doll.Key).IsDead) {
                     continue;
                 }
+
+                if (!role.DollList.ContainsKey(doll.Key)) {
+                    continue;
+                }
                 role.DollList[doll.Key] += Time.deltaTime;
                 PlayerControl.LocalPlayer.moveable = false;
                 if (doll.Value >= CustomGameOptions.DollBreakTime) {

@@ -86,7 +86,8 @@ namespace TownOfUs.Roles
                         SGAction.sealVent(SecurityGuard.ventTarget.Id);
                         SecurityGuard.ventTarget = null;
                     }
-                    else if (PlayerControl.GameOptions.MapId != 1) {
+                    else if (PlayerControl.GameOptions.MapId != (byte)ShipStatus.MapType.Hq &&
+                             PlayerControl.GameOptions.MapId != (byte)ShipStatus.MapType.Ship) {
                         // Place camera if there's no vent and it's not MiraHQ
                         var pos = PlayerControl.LocalPlayer.transform.position;
                         byte[] buff = new byte[sizeof(float) * 2];
