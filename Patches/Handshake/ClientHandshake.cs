@@ -14,7 +14,7 @@ namespace TownOfUs.Handshake
     {
         private const byte TOU_ROOT_HANDSHAKE_TAG = 69;
         
-        private const int MOSS_VERSION = 29;
+        private const int MOSS_VERSION = 37;
 
         [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.OnGameJoined))]
         public static class AmongUsClient_OnGameJoined

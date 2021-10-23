@@ -26,7 +26,7 @@ namespace TownOfUs
     {
         internal static bool ShowDeadBodies = false;
 
-        public static Dictionary<PlayerControl, Color> oldColors = new Dictionary<PlayerControl, Color>();
+        public static Dictionary<byte, Color> oldColors = new Dictionary<byte, Color>();
 
         public static List<WinningPlayerData> potentialWinners = new List<WinningPlayerData>();
         public static Dictionary<byte, float> MeetingKillTimers = new Dictionary<byte, float>();
@@ -301,6 +301,25 @@ namespace TownOfUs
             );
             var closeEnough = player == null || (
                 getDistBetweenPlayers(PlayerControl.LocalPlayer, player) < maxDistance
+            );
+            return closestPlayer = closeEnough ? player : null;
+        }
+
+        public static PlayerControl SetClosestPlayerToPlayer(
+            PlayerControl fromPlayer,
+            ref PlayerControl closestPlayer,
+            float maxDistance = float.NaN,
+            List<PlayerControl> targets = null
+        )
+        {
+            if (float.IsNaN(maxDistance))
+                maxDistance = GameOptionsData.KillDistances[PlayerControl.GameOptions.KillDistance];
+            var player = getClosestPlayer(
+                fromPlayer,
+                targets ?? PlayerControl.AllPlayerControls.ToArray().ToList()
+            );
+            var closeEnough = player == null || (
+                getDistBetweenPlayers(fromPlayer, player) < maxDistance
             );
             return closestPlayer = closeEnough ? player : null;
         }
@@ -613,6 +632,12 @@ namespace TownOfUs
 
 
             __result = $"<size=1.25>{__result}</size>";
+        }
+        
+        public static void AirKill(PlayerControl player, PlayerControl target){
+            Vector3 vector = target.transform.position;
+            vector.z = vector.y / 1000f;
+            player.transform.position = vector;
         }
     }
     

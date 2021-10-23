@@ -1,5 +1,6 @@
 using HarmonyLib;
 using Hazel;
+using Il2CppSystem;
 using Reactor;
 using TownOfUs.Roles;
 using UnityEngine;
@@ -23,18 +24,23 @@ namespace TownOfUs.ImpostorRoles.DollMakerMod
                 var flag2 = __instance.isCoolingDown;
                 if (flag2) return false;
                 if (!__instance.enabled) return false;
+                
                 var maxDistance = GameOptionsData.KillDistances[PlayerControl.GameOptions.KillDistance];
-                if (Vector2.Distance(role.CurrentTarget.TruePosition,
+                if (Vector2.Distance(role.ClosestPlayer.GetTruePosition(),
                     PlayerControl.LocalPlayer.GetTruePosition()) > maxDistance) return false;
-                var playerId = role.CurrentTarget.ParentId;
 
                 var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                     (byte) CustomRPC.Wax, SendOption.Reliable, -1);
-                writer.Write(PlayerControl.LocalPlayer.PlayerId);
-                writer.Write(playerId);
+                writer.Write(role.Player.PlayerId);
+                writer.Write(role.ClosestPlayer.PlayerId);
                 AmongUsClient.Instance.FinishRpcImmediately(writer);
+                
+                DollMaker.DollList.Add(role.ClosestPlayer.PlayerId, 0);
 
-                Coroutines.Start(Coroutine.CleanCoroutine(role.CurrentTarget, role));
+                Utils.AirKill(role.Player, role.ClosestPlayer);
+                SoundManager.Instance.PlaySound(PlayerControl.LocalPlayer.KillSfx, false, 0.8f);
+                __instance.SetCoolDown(role.CleanTimer(), PlayerControl.GameOptions.KillCooldown);
+                role.lastWaxed = DateTime.UtcNow;
                 return false;
             }
 

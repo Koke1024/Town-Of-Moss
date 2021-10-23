@@ -401,6 +401,12 @@ namespace TownOfUs
                                 Coroutines.Start(Coroutine.CleanCoroutine(body, janitorRole));
 
                         break;
+                    case CustomRPC.Wax:
+                        readByte = reader.ReadByte();
+                        readByte1 = reader.ReadByte();
+                        var dollMaker = Role.GetRole<DollMaker>(Utils.PlayerById(readByte));
+                        DollMaker.DollList.Add(readByte1, 0);
+                        break;
                     case CustomRPC.Inhale:
                         readByte1 = reader.ReadByte();
                         var kirbyPlayer = Utils.PlayerById(readByte1);

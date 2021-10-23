@@ -196,10 +196,11 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption PossessTime;
         public static CustomNumberOption PossessCd;
         public static CustomNumberOption PossessMaxTime;
-        
+
         public static CustomHeaderOption DollMaker;
-        
-//-------------------------------------NEUTRAL ROLES-------------------------------------------------------
+        public static CustomNumberOption DollBreakTime;
+
+        //-------------------------------------NEUTRAL ROLES-------------------------------------------------------
         public static CustomHeaderOption NeutralRolesSetting;
 
         public static CustomHeaderOption TheGlitch;
@@ -605,6 +606,7 @@ namespace TownOfUs.CustomOption
             PossessMaxTime = new CustomNumberOption(num++, "Possess Max Time", 15.0f, 5f, 30f, 2.5f, CooldownFormat);
             
             DollMaker = new CustomHeaderOption(num++, "<color=#FF0000FF>DollMaker</color>");
+            DollBreakTime = new CustomNumberOption(num++, "Doll Self Broken Time", 20.0f, 5f, 60f, 5f, CooldownFormat);
             
             Assassin = new CustomHeaderOption(num++, "<color=#FF0000FF>Assassin</color>");
             AssassinKills = new CustomNumberOption(num++, "Number of Assassin Kills", 5, 1, 5, 1);

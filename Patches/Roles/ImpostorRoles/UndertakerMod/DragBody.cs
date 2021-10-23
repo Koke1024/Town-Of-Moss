@@ -49,11 +49,11 @@ namespace TownOfUs.ImpostorRoles.UndertakerMod
                 false
             ))
             {
-                body.transform.position = currentPosition;
+                body.transform.position = new Vector3(currentPosition.x, currentPosition.y, currentPosition.y / 1000.0f);;
             }
             else
             {
-                body.transform.position = newPos;
+                body.transform.position = new Vector3(newPos.x, newPos.y, newPos.y / 1000.0f);
             }
 
             if (!__instance.AmOwner) return;
