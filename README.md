@@ -20,15 +20,6 @@
 | 2021.6.30s | v0.33 | [Download](https://spiel.jp/mod/Moss033.zip) |
 | 2021.6.30s | v0.32 | [Download](https://spiel.jp/mod/Moss032.zip) |
 
-### AUCapture for MOD
-
-| Version | Link |
-|----------|-----------------|
-| v1.00 | [Download](https://spiel.jp/mod/AUCapture_MOD.zip) |
-
-AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscapture) を元に非公式に作成しています。\
-ゲーム中の蘇生に対応していますが、追放直後の一度だけミュート解除されないことがあるようです。
-
 <details>
     <summary> Changelog </summary>
     <details>
@@ -78,6 +69,15 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
         </ul>
     </details>
 </details>
+
+### AUCapture for MOD
+
+| Version | Link |
+|----------|-----------------|
+| v1.00 | [Download](https://spiel.jp/mod/AUCapture_MOD.zip) |
+
+AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscapture) を元に非公式に作成しています。\
+ゲーム中の蘇生に対応していますが、追放直後の一度だけミュート解除されないことがあるようです。
 
 -----------------------
 
