@@ -21,16 +21,15 @@ namespace TownOfUs.CustomOption
         public static bool inited = false;
         public static float x, y, z;
 
+        public static ToggleOption togglePrefab;
 
         private static List<OptionBehaviour> CreateOptions(GameOptionsMenu __instance)
         {
             var options = new List<OptionBehaviour>();
 
-            var togglePrefab = Object.FindObjectOfType<ToggleOption>();
             var numberPrefab = Object.FindObjectOfType<NumberOption>();
             var stringPrefab = Object.FindObjectOfType<StringOption>();
-
-
+            
             if (ExportButton.Setting != null)
             {
                 ExportButton.Setting.gameObject.SetActive(true);
@@ -68,26 +67,45 @@ namespace TownOfUs.CustomOption
 
             foreach (var option in CustomOption.AllOptions)
             {
+                AmongUsExtensions.Log($"{option.Name}");
                 if (option.Setting != null)
                 {
+                    AmongUsExtensions.Log($"セット済み");
+                    AmongUsExtensions.Log($"{option.Setting.Title}");
                     option.Setting.gameObject.SetActive(true);
                     options.Add(option.Setting);
                     continue;
                 }
 
+                AmongUsExtensions.Log($"{option.Type}");
                 switch (option.Type)
                 {
                     case CustomOptionType.Header:
-                        var toggle = Object.Instantiate(togglePrefab, togglePrefab.transform.parent).DontDestroy();
-                        toggle.transform.GetChild(1).gameObject.SetActive(false);
-                        toggle.transform.GetChild(2).gameObject.SetActive(false);
-                        option.Setting = toggle;
-                        options.Add(toggle);
+                        if (AmongUsClient.Instance.AmHost) {
+                            var toggle = Object.Instantiate(togglePrefab, togglePrefab.transform.parent).DontDestroy();
+                            toggle.transform.GetChild(1).gameObject.SetActive(false);
+                            toggle.transform.GetChild(2).gameObject.SetActive(false);
+                            option.Setting = toggle;
+                            options.Add(toggle);                            
+                        }
+                        else {
+                            var header = Object.Instantiate(togglePrefab, togglePrefab.transform.parent).DontDestroy();
+                            option.Setting = header;
+                            options.Add(header);
+                        }
                         break;
+                        
                     case CustomOptionType.Toggle:
-                        var toggle2 = Object.Instantiate(togglePrefab, togglePrefab.transform.parent).DontDestroy();
-                        option.Setting = toggle2;
-                        options.Add(toggle2);
+                        if (AmongUsClient.Instance.AmHost) {
+                            var toggle2 = Object.Instantiate(togglePrefab, togglePrefab.transform.parent).DontDestroy();
+                            option.Setting = toggle2;
+                            options.Add(toggle2);
+                        }
+                        else {
+                            var toggle2 = Object.Instantiate(togglePrefab, togglePrefab.transform.parent).DontDestroy();
+                            option.Setting = toggle2;
+                            options.Add(toggle2);
+                        }
                         break;
                     case CustomOptionType.Number:
                         var number = Object.Instantiate(numberPrefab, numberPrefab.transform.parent).DontDestroy();
@@ -157,10 +175,12 @@ namespace TownOfUs.CustomOption
 
                 foreach (var option in customOptions) {
                     option.transform.localPosition = new Vector3(x, y - i++ * 0.25f, z);
-                    option.transform.localScale = Vector3.one * 0.5f;
                 }
 
                 __instance.Children = new Il2CppReferenceArray<OptionBehaviour>(customOptions.ToArray());
+            }
+            public static void Prefix(GameOptionsMenu __instance) {
+                togglePrefab = Object.FindObjectOfType<ToggleOption>();
             }
         }
 
@@ -196,6 +216,7 @@ namespace TownOfUs.CustomOption
                     }
 
                     option.transform.localPosition = new Vector3(x - 1.25f + 2.5f * (i % 2), y - (i / 2) * 0.25f, z);
+                    option.transform.localScale = Vector3.one * 0.5f;
                     ++i;
                     if (opt is CustomHeaderOption header2) {
                         if (i % 2 == 1) {
