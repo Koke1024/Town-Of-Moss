@@ -17,7 +17,7 @@ namespace TownOfUs.ImpostorRoles.DollMakerMod
             
             foreach (var role in Role.GetRoles(RoleEnum.DollMaker))
             {
-                ((DollMaker)role).lastWaxed = DateTime.UtcNow;
+                // ((DollMaker)role).lastWaxed = DateTime.UtcNow;
                 ((DollMaker)role).DollList.Clear();
             }
         }

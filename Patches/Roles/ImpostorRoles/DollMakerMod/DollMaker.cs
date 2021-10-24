@@ -19,20 +19,6 @@ namespace TownOfUs.Roles
             Color = Palette.ImpostorRed;
             RoleType = RoleEnum.DollMaker;
             Faction = Faction.Impostors;
-            
-            lastWaxed = DateTime.UtcNow;
-        }
-
-        public DateTime lastWaxed = new DateTime();
-
-        public float CleanTimer()
-        {
-            var utcNow = DateTime.UtcNow;
-            var timeSpan = utcNow - lastWaxed;
-            var num = PlayerControl.GameOptions.KillCooldown * 1000f;
-            var flag2 = num - (float)timeSpan.TotalMilliseconds < 0f;
-            if (flag2) return 0;
-            return (num - (float)timeSpan.TotalMilliseconds) / 1000f;
         }
         
         public KillButtonManager WaxButton

@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using Il2CppSystem;
 using Reactor;
+using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -23,13 +24,12 @@ namespace TownOfUs.ImpostorRoles.DollMakerMod {
             }
 
             role._waxButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
-            var position = __instance.KillButton.transform.localPosition;
+            role._waxButton.transform.localPosition = __instance.KillButton.transform.localPosition;
 
             __instance.KillButton.renderer.color = new Color(0, 0, 0, 0);
             __instance.KillButton.TimerText.color = new Color(0, 0, 0, 0);
+            __instance.KillButton.gameObject.SetActive(false);
 
-            // role._waxButton.transform.localPosition = new Vector3(position.x,
-            // __instance.KillButton.transform.localPosition.y, position.z);
 
             Utils.SetTarget(ref role.ClosestPlayer, role._waxButton);
             

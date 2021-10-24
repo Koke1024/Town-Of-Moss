@@ -25,7 +25,7 @@ namespace TownOfUs.ImpostorRoles.DollMakerMod
             role.WaxButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
             role.WaxButton.transform.localPosition = __instance.KillButton.transform.localPosition;
 
-            role.WaxButton.SetCoolDown(role.CleanTimer(), PlayerControl.GameOptions.KillCooldown);
+            role.WaxButton.SetCoolDown(role.Player.killTimer, PlayerControl.GameOptions.KillCooldown);
         }
     }
 }

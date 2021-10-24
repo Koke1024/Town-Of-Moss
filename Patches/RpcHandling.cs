@@ -148,6 +148,8 @@ namespace TownOfUs
             while (crewAndNeutralRoles.Count > maxCrewAndNeutralNum) {
                 crewAndNeutralRoles.RemoveAt(crewAndNeutralRoles.Count - 1);
             }
+
+            AmongUsExtensions.Log($"crewmates.Count:{crewmates.Count}");
             foreach (var (type, rpc, _) in crewAndNeutralRoles)
             {
                 if (rpc == CustomRPC.SetExecutioner)

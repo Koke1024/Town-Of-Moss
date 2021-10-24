@@ -26,6 +26,9 @@ namespace TheOtherRoles {
 
             var allCameras = ShipStatus.Instance.AllCameras.ToList();
             MapOptions.camerasToAdd.ForEach(camera => {
+                if (camera.gameObject == null) {
+                    return;
+                }
                 camera.gameObject.SetActive(true);
                 camera.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
                 allCameras.Add(camera);

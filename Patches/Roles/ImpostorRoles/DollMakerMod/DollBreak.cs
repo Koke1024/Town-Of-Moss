@@ -5,6 +5,7 @@ using Hazel;
 using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngineInternal;
 
 namespace TownOfUs.ImpostorRoles.DollMakerMod {
@@ -27,6 +28,7 @@ namespace TownOfUs.ImpostorRoles.DollMakerMod {
             }
 
 
+            var breakList = new Queue<byte>();
             foreach (var doll in role.DollList) {
                 if (GameData.Instance.GetPlayerById(doll.Key).IsDead) {
                     continue;
@@ -38,8 +40,13 @@ namespace TownOfUs.ImpostorRoles.DollMakerMod {
                 if (Utils.SetClosestPlayerToPlayer(GameData.Instance.GetPlayerById(doll.Key)._object, ref closestPlayer,
                     0.8f, targets
                 )) {
-                    Utils.RpcMurderPlayer(GameData.Instance.GetPlayerById(doll.Key)._object, GameData.Instance.GetPlayerById(doll.Key)._object);
+                    breakList.Enqueue(doll.Key);
                 }
+            }
+
+            foreach (var breakQueue in breakList) {
+                Utils.RpcMurderPlayer(GameData.Instance.GetPlayerById(breakQueue)._object, GameData.Instance.GetPlayerById(breakQueue)._object);
+                role.DollList.Remove(breakQueue);
             }
         }
     }
@@ -52,22 +59,24 @@ namespace TownOfUs.ImpostorRoles.DollMakerMod {
             }
             DollMaker role = Role.GetRole<DollMaker>(__instance);
 
-            foreach (var doll in role.DollList) {
-                if (doll.Key != PlayerControl.LocalPlayer.PlayerId) {
+            var breakList = new Queue<byte>();
+            var keys = role.DollList.Keys.ToArray();
+            foreach (var key in keys) {
+                if (key != PlayerControl.LocalPlayer.PlayerId) {
                     continue;
                 }
-                if (GameData.Instance.GetPlayerById(doll.Key).IsDead) {
+                if (GameData.Instance.GetPlayerById(key).IsDead) {
                     continue;
                 }
-
-                if (!role.DollList.ContainsKey(doll.Key)) {
-                    continue;
-                }
-                role.DollList[doll.Key] += Time.deltaTime;
+                role.DollList[key] += Time.deltaTime;
                 PlayerControl.LocalPlayer.moveable = false;
-                if (doll.Value >= CustomGameOptions.DollBreakTime) {
-                    Utils.RpcMurderPlayer(PlayerControl.LocalPlayer, PlayerControl.LocalPlayer);
+                if (role.DollList[key] >= CustomGameOptions.DollBreakTime) {
+                    breakList.Enqueue(key);
                 }
+            }
+            foreach (var breakQueue in breakList) {
+                Utils.RpcMurderPlayer(GameData.Instance.GetPlayerById(breakQueue)._object, GameData.Instance.GetPlayerById(breakQueue)._object);
+                role.DollList.Remove(breakQueue);
             }
         }
     }
