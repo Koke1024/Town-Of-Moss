@@ -10,7 +10,7 @@
 
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
-| 2021.6.30s | v0.371 | [Download](https://spiel.jp/mod/Moss0371.zip) |
+| 2021.6.30s | v0.372 | [Download](https://spiel.jp/mod/Moss0372.zip) |
 | 2021.6.30s | v0.37 | [Download](https://spiel.jp/mod/Moss037.zip) |
 | 2021.6.30s | v0.363 ※動作安定 | [Download](https://spiel.jp/mod/Moss0363.zip) |
 | 2021.6.30s | v0.362 | [Download](https://spiel.jp/mod/Moss0362.zip) |
@@ -31,6 +31,14 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v0.372 </summary>
+        <ul> 
+            <li>Janitorのデフォルトのクールダウンを長く</li>
+            <li>Puppeteerの憑依解除後の硬直時間を3秒に固定</li>
+            <li>Puppeteerのクールダウン時間をキルクールダウン時間と共通に</li>
+        </ul>
+    </details>
     <details>
         <summary> v0.371 </summary>
         <ul> 
@@ -350,13 +358,13 @@ Admin閲覧中は消費電力が3倍になります。
 
 ### **Team: Impostors**
 
-死体を消すことができます。死体に隣接して3秒間その場に留まり、死体を発見されなくします。
+3秒間死体に隣接することで死体を消し、発見されなくします。
 
 ### Game Options
 
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
-| Clean Cooldown | 死体を消せるクールダウン時間 | Time | 35s |
+| Clean Cooldown | 死体を消せるクールダウン時間 | Time | 45s |
 | Clean Duration | 死体を消すのにかかる時間 | Time | 3.0s |
 
 -----------------------

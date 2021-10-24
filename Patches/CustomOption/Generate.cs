@@ -571,7 +571,7 @@ namespace TownOfUs.CustomOption
             
             Janitor = new CustomHeaderOption(num++, "<color=#FF0000FF>Janitor</color>");
             CleanCd =
-                new CustomNumberOption(num++, "Clean Cooldown", 35, 10, 40, 2.5f, CooldownFormat);
+                new CustomNumberOption(num++, "Clean Cooldown", 45, 15, 60, 5f, CooldownFormat);
             CleanDuration =
                 new CustomNumberOption(num++, "Clean Duration", 3.0f, 0.5f, 5f, 0.5f, CooldownFormat);
             
