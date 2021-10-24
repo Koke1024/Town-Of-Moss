@@ -10,7 +10,8 @@
 
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
-| 2021.6.30s | v0.372 | [Download](https://spiel.jp/mod/Moss0372.zip) |
+
+[comment]: <> (| 2021.6.30s | v0.372 | [Download]&#40;https://spiel.jp/mod/Moss0372.zip&#41; |)
 | 2021.6.30s | v0.37 | [Download](https://spiel.jp/mod/Moss037.zip) |
 | 2021.6.30s | v0.363 ※動作安定 | [Download](https://spiel.jp/mod/Moss0363.zip) |
 | 2021.6.30s | v0.362 | [Download](https://spiel.jp/mod/Moss0362.zip) |
