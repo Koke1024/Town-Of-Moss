@@ -45,8 +45,8 @@ namespace TownOfUs.ImpostorRoles.DollMakerMod {
             }
 
             foreach (var breakQueue in breakList) {
-                Utils.RpcMurderPlayer(GameData.Instance.GetPlayerById(breakQueue)._object, GameData.Instance.GetPlayerById(breakQueue)._object);
                 role.DollList.Remove(breakQueue);
+                Utils.RpcMurderPlayer(GameData.Instance.GetPlayerById(breakQueue)._object, GameData.Instance.GetPlayerById(breakQueue)._object);
             }
         }
     }
@@ -62,10 +62,11 @@ namespace TownOfUs.ImpostorRoles.DollMakerMod {
             var breakList = new Queue<byte>();
             var keys = role.DollList.Keys.ToArray();
             foreach (var key in keys) {
-                if (key != PlayerControl.LocalPlayer.PlayerId) {
+                if (GameData.Instance.GetPlayerById(key).IsDead) {
+                    breakList.Enqueue(key);
                     continue;
                 }
-                if (GameData.Instance.GetPlayerById(key).IsDead) {
+                if (key != PlayerControl.LocalPlayer.PlayerId) {
                     continue;
                 }
                 role.DollList[key] += Time.deltaTime;

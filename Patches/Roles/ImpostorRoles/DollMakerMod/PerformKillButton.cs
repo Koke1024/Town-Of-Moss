@@ -24,6 +24,9 @@ namespace TownOfUs.ImpostorRoles.DollMakerMod
             if (flag2) return false;
             AmongUsExtensions.Log($"{__instance.enabled}");
             if (!__instance.enabled) return false;
+            if (role.ClosestPlayer == null) {
+                return false;
+            }
             
             var maxDistance = GameOptionsData.KillDistances[PlayerControl.GameOptions.KillDistance];
             if (Vector2.Distance(role.ClosestPlayer.GetTruePosition(),

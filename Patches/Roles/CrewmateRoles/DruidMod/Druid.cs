@@ -37,7 +37,6 @@ namespace TownOfUs.Roles
         }
 
         public bool Revive() {
-            
             var flag = PlayerControl.LocalPlayer.Is(RoleEnum.Druid);
             if (!flag) return true;
             if (!PlayerControl.LocalPlayer.CanMove) return false;
@@ -57,6 +56,7 @@ namespace TownOfUs.Roles
             AmongUsClient.Instance.FinishRpcImmediately(writer);
 
             DruidRevive(role.CurrentlyDragging, role);
+            
             role.CurrentlyDragging = null;
             role.LastDragged = DateTime.UtcNow;
             return false;

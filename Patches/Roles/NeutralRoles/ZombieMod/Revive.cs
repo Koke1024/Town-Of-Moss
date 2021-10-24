@@ -34,6 +34,10 @@ namespace TownOfUs.Patches.NeutralRoles.ZombieMod {
 
             Object.Destroy(body.gameObject);
 
+            if (player == PlayerControl.LocalPlayer) {
+                player.myTasks.RemoveAt(0);
+            }
+
             var revived = new System.Collections.Generic.List<PlayerControl>();
             revived.Add(player);
 
