@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using HarmonyLib;
 using TownOfUs.CrewmateRoles.MedicMod;
 using TownOfUs.Roles;
 using UnityEngine;
@@ -48,6 +49,15 @@ namespace TownOfUs.Patches.NeutralRoles.ZombieMod {
                 }
                 catch {
                 }
+            }
+        }
+    }
+    
+    [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.Revive))]
+    public static class Movable {
+        public static void Postfix(PlayerControl __instance) {
+            if (__instance.Is(RoleEnum.Zombie)) {
+                Role.GetRole<Zombie>(__instance).Player.moveable = true;
             }
         }
     }

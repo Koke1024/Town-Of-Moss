@@ -3,6 +3,7 @@ using Hazel;
 using Il2CppSystem;
 using Il2CppSystem.Web.Util;
 using TownOfUs.CrewmateRoles.MedicMod;
+using TownOfUs.Extensions;
 using TownOfUs.Patches.NeutralRoles.ZombieMod;
 using TownOfUs.Roles;
 using TownOfUs.Roles.Modifiers;

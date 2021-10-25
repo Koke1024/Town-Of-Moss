@@ -8,7 +8,7 @@ using TownOfUs.Roles.Modifiers;
 namespace TownOfUs.Extensions
 {
     public static class AmongUsExtensions {
-        private static bool useLog = true;
+        private static bool useLog = false;
         public static KeyValuePair<byte, int> MaxPair(this Dictionary<byte, int> self, out bool tie)
         {
             tie = true;
