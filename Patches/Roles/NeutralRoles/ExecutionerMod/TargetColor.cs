@@ -1,6 +1,7 @@
 using HarmonyLib;
 using Hazel;
 using Reactor.Extensions;
+using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine;
 
@@ -61,9 +62,15 @@ namespace TownOfUs.NeutralRoles.ExecutionerMod
             if (player == null) {
                 return;
             }
-            player.myTasks.RemoveAt(0);
+
+            if (player.myTasks != null && player.myTasks.Count > 0) {
+                player.myTasks.RemoveAt(0);                
+            }
             if (PlayerControl.LocalPlayer == player) {
-                Role.GetRole<Executioner>(player).Arrow.gameObject.Destroy();
+                if (Role.GetRole<Executioner>(player) != null && Role.GetRole<Executioner>(player).Arrow != null&&
+                    Role.GetRole<Executioner>(player).Arrow.gameObject != null) {
+                    Role.GetRole<Executioner>(player).Arrow.gameObject.Destroy();                    
+                }
             }
             Role.RoleDictionary.Remove(player.PlayerId);
 

@@ -210,7 +210,7 @@ namespace TownOfUs.CrewmateRoles.MayorMod
                 foreach (var role in Role.AllRoles.Where(x =>
                     x.RoleType == RoleEnum.Mayor)) {
                     var mayor = (Mayor) role;
-                    AmongUsExtensions.Log($"{role.PlayerName}のExtraVote:{mayor.ExtraVotes.Count}個");
+                    // AmongUsExtensions.Log($"{role.PlayerName}のExtraVote:{mayor.ExtraVotes.Count}個");
                 }
 
                 var allNums = new Dictionary<int, int>();
