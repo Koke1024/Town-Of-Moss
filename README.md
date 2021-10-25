@@ -123,7 +123,7 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
-| Call Meeting On Dead | キルされた際に緊急会議を開く | Toggle | True |
+| Call Meeting On Dead | キルされた際に緊急会議を開く | Toggle | On |
 
 -----------------------
 
@@ -137,11 +137,11 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
-| Show Sheriff | 自身の役職が全員に公開される | Toggle | False |
-| Sheriff Miskill Kills Crewmate | クルーメイトもキルする | Toggle | False |
-| Sheriff Kills Mad Mate | Mad Mateもキルできる対象に含む | Toggle | False |
+| Show Sheriff | 自身の役職が全員に公開される | Toggle | Off |
+| Sheriff Miskill Kills Crewmate | クルーメイトもキルする | Toggle | Off |
+| Sheriff Kills Mad Mate | Mad Mateもキルできる対象に含む | Toggle | Off |
 | Sheriff Kill Cooldown | キルのクールダウン時間 | Time | 25s |
-| Sheriff can report who they've killed | 自身でキルした相手をReportできる | Toggle | True |
+| Sheriff can report who they've killed | 自身でキルした相手をReportできる | Toggle | On |
 
 -----------------------
 
@@ -196,10 +196,10 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
-| Revive During Rewind | 時間内に死亡していたクルーが蘇生する | Toggle | True |
+| Revive During Rewind | 時間内に死亡していたクルーが蘇生する | Toggle | On |
 | Rewind Duration | 巻き戻される時間の秒数 | Time | 3s |
 | Rewind Cooldown | 巻き戻すボタンのクールダウン時間 | Time | 25s |
-| Time Lord can use Vitals | バイタルを見れるかどうか | Toggle | False |
+| Time Lord can use Vitals | バイタルを見れるかどうか | Toggle | Off |
 
 -----------------------
 
@@ -239,11 +239,11 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
 | Show Shielded Player | 誰にシールドが見えるか | Self / Medic / Self + Medic / Everyone | Medic |
-| Show Medic Reports | 死体発見時に追加情報を得る | Toggle | True |
+| Show Medic Reports | 死体発見時に追加情報を得る | Toggle | On |
 | Time Where Medic Reports Will Have Name | 追加情報でキルしたクルーの名前が見られるまでの発見時間 | Time | 0s |
 | Time Where Medic Reports Will Have Color Type | 追加情報でキルしたクルーの色の濃さがわかるまでの発見時間 | Time | 15s |
 | Who gets murder attempt indicator | シールドを張られたクルーにキルが試みられた際の点灯が見えるプレイヤー | Medic / Shielded / Everyone / Nobody | Medic |
-| Shield breaks on murder attempt | シールドが一度のキルにより破壊されるかどうか | Toggle | True |
+| Shield breaks on murder attempt | シールドが一度のキルにより破壊されるかどうか | Toggle | On |
 
 -----------------------
 
@@ -262,7 +262,7 @@ Zombieを占った場合、Zombieが死亡します。
 | Seer Investigating Time | 占いを行うために必要な接触時間 | Time | 3s |
 | Info that Seer sees | 占いによって得られる情報 | Role / Team | Team |
 | Who Sees That They Are Revealed | 占われたことを知るプレイヤー | Crewmates / Impostors + Neutral / All / Nobody | None |
-| Neutrals show up as Impostors | 第三陣営をインポスターと同じ表示にする | Toggle | True |
+| Neutrals show up as Impostors | 第三陣営をインポスターと同じ表示にする | Toggle | On |
 
 -----------------------
 
@@ -291,7 +291,7 @@ Polus、Airshipでは、閉じられたドアに触れるだけでドアを開�
 
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
-| Sees Neutral Roles | 第三陣営も知れるかどうか | Toggle | False |
+| Sees Neutral Roles | 第三陣営も知れるかどうか | Toggle | Off |
 | Open door immediately | いつドアを即座に開けられるか | Always / One Task Left / None | Always |
 
 -----------------------
@@ -307,7 +307,7 @@ Polus、Airshipでは、閉じられたドアに触れるだけでドアを開�
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
 | Revive Duration | 蘇生に必要な時間 | Time | 1.0s |
-| Target's body disappears | 蘇生中、蘇生対象の死体を見えなくする | Toggle | False |
+| Target's body disappears | 蘇生中、蘇生対象の死体を見えなくする | Toggle | Off |
 
 -----------------------
 
@@ -357,8 +357,8 @@ Admin閲覧中は消費電力が3倍になります。
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
 | Number of Assassin Kill | 会議中にキルできる最大人数 | Number | 5 |
-| Assassin Can Kill Continuous  | 一度の会議中に二人以上狙撃できる | Toggle | True |
-| Last Impostor Can Snipe  | 最後の一人となったインポスターは狙撃能力を得る | Toggle | True |
+| Assassin Can Kill Continuous  | 一度の会議中に二人以上狙撃できる | Toggle | On |
+| Last Impostor Can Snipe  | 最後の一人となったインポスターは狙撃能力を得る | Toggle | On |
 
 -----------------------
 
@@ -543,7 +543,7 @@ Puppeteerは、憑依している間と憑依解除後の3秒間は行動が行�
 
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
-| Add Glitch | チェックを入れた場合、Neutral Rolesの数と関係なく、必ずGlitchが誰かに割り当てられます。 | Toggle | False |
+| Add Glitch | チェックを入れた場合、Neutral Rolesの数と関係なく、必ずGlitchが誰かに割り当てられます。 | Toggle | Off |
 | Mimic Cooldown | Mimic能力のクールダウン時間 | Time | 10s |
 | Mimic Duration | Mimic能力の効果時間 | Time | 15s |
 | Hack Cooldown | Hack能力のクールダウン時間 | Time | 10s |
@@ -563,9 +563,9 @@ Puppeteerは、憑依している間と憑依解除後の3秒間は行動が行�
 
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
-| Jester Can Use Vents | ベントを使用できる | Toggle | True |
-| Jester Can Drag Body | 死体を移動できる | Toggle | True |
-| Jester Can Morph | 変身できる | Toggle | True |
+| Jester Can Use Vents | ベントを使用できる | Toggle | On |
+| Jester Can Drag Body | 死体を移動できる | Toggle | On |
+| Jester Can Morph | 変身できる | Toggle | On |
 
 -----------------------
 
@@ -628,7 +628,7 @@ Puppeteerは、憑依している間と憑依解除後の3秒間は行動が行�
 
 ### **Team: Neutral**
 
-インポスターの残数が０になるか、インポスターの数が全体の半数となったとき、自身のタスクが完了していれば単独勝利します。\
+インポスターの人数が0または全体の半数以上となったときに、自身のタスクが完了していれば単独勝利します。\
 キルされても一定時間後に蘇生しますが、蘇生前に会議が始まるか、追放されるか、Seerに占われた場合は蘇生しません。
 
 ### Game Options
@@ -636,7 +636,7 @@ Puppeteerは、憑依している間と憑依解除後の3秒間は行動が行�
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
 | Zombie Revive Time | 蘇生するまでの時間 | Time | 15s |
-| Killed By Seer | 占われたときに死亡する | Toggle | True |
+| Killed By Seer | 占われたときに死亡する | Toggle | On |
 
 -----------------------
 
@@ -680,18 +680,18 @@ Puppeteerは、憑依している間と憑依解除後の3秒間は行動が行�
 
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
-| Add Assassin As Mad Mate |インポスターとは別に、狙撃能力を持つAssassinがMad Mateとして追加されます。この場合、通常のインポスターとしてのAssassinは登場しません。狂人はインポスター陣営ですが、通常キルはできず、クルー陣営の人数としてカウントされます。他のインポスターからはクルーと同様に見え、キルすることもできます。SeerでTeamを占った場合、クルー（緑色）として表示されます。SheriffはMad Mateをキルできません。 | Toggle | False |
-| Add Glitch | グリッチが追加されます。 | Toggle | False |
+| Add Assassin As Mad Mate | 狙撃能力を持つAssassinをMad Mateとして追加する。Onの場合、通常のインポスターとしてのAssassinは登場しません。狂人はインポスター陣営ですが、通常キルはできず、クルー陣営の人数としてカウントされます。他のインポスターからはクルーと同様に見え、キルすることもできます。SeerでTeamを占った場合、クルー（緑色）として表示されます。SheriffはMad Mateをキルできません。 | Toggle | Off |
+| Add Glitch | グリッチを追加する | Toggle | Off |
 | Number of Neutral Roles | 割り当てられる第三陣営の数 | Number | 1 |
-| Kill Cooldown Reset on Meeting | 会議の後にインポスターのキルクールダウンを初期化するかどうか | Toggle | False |
-| Camouflaged Comms | コミュニケーションサボタージュ中、カモフラージュ状態になる | Toggle | True |
-| Impostors can see the roles of their team | インポスター同士が互いの役職を知っている | Toggle | True |
+| Kill Cooldown Reset on Meeting | 会議の後にインポスターのキルクールダウンを初期化するかどうか | Toggle | Off |
+| Camouflaged Comms | コミュニケーションサボタージュ中、カモフラージュ状態になる | Toggle | On |
+| Impostors can see the roles of their team | インポスター同士が互いの役職を知っている | Toggle | On |
 | Polus Reactor Time Limit | PolusのMelt Downサボタージュの制限時間 | Time | 45.0s |
 | Polus Vital Move | PolusのVitalの位置を変更できる。Shipにした場合Drop Ship内にベントが一つ追加される | Default / Labo / Ship / O2 | Default |
-| Admin Has Usable Limit Time | AdminのRoundごとの合計使用時間に制限をかける | Toggle | False |
+| Admin Has Usable Limit Time | AdminのRoundごとの合計使用時間に制限をかける | Toggle | Off |
 | Admin Usable Time | 制限がある場合、Adminの利用可能時間 | Time | 120s |
-| Dead can see everyone's roles | 死亡後に全員の役職がわかる | Toggle | True |
-| Role Appears Under Name | 自身の役職を名前の下に表示する | Toggle | True |
+| Dead can see everyone's roles | 死亡後に全員の役職がわかる | Toggle | On |
+| Role Appears Under Name | 自身の役職を名前の下に表示する | Toggle | On |
 
 -----------------------
 
