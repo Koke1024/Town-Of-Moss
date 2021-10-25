@@ -416,6 +416,9 @@ namespace TownOfUs
                         readByte1 = reader.ReadByte();
                         var dollMaker = Role.GetRole<DollMaker>(Utils.PlayerById(readByte));
                         dollMaker.DollList.Add(readByte1, 0);
+                        if (readByte1 == PlayerControl.LocalPlayer.PlayerId) {
+                            Utils.PlayerById(readByte1).NetTransform.Halt();                            
+                        }
                         break;
                     case CustomRPC.Inhale:
                         readByte1 = reader.ReadByte();
