@@ -62,9 +62,10 @@ namespace TownOfUs.NeutralRoles.ExecutionerMod
                 return;
             }
             player.myTasks.RemoveAt(0);
+            if (PlayerControl.LocalPlayer == player) {
+                Role.GetRole<Executioner>(player).Arrow.gameObject.Destroy();
+            }
             Role.RoleDictionary.Remove(player.PlayerId);
-            Role.GetRole<Executioner>(player).Arrow.Destroy();
-            Role.GetRole<Executioner>(player).Arrow = null;
 
             if (CustomGameOptions.OnTargetDead == OnTargetDead.Jester)
             {

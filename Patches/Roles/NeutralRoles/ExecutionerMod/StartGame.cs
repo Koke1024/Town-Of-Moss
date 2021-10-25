@@ -1,17 +1,19 @@
 using HarmonyLib;
+using TownOfUs.Extensions;
 using TownOfUs.Roles;
 
 namespace TownOfUs.NeutralRoles.ExecutionerMod
 {
-    [HarmonyPatch(typeof(ShipStatus), nameof(ShipStatus.Start))]
-    public static class StartGame
+    [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.SetInfected))]
+    public class StartGame
     {
-        public static void Postfix(ShipStatus __instance) {
-            foreach (var player in Role.GetRoles(RoleEnum.Executioner)) {
-                if (player.Player != PlayerControl.LocalPlayer) {
+        public static void Postfix() {
+            foreach (var role in Role.GetRoles(RoleEnum.Executioner)) {
+                if (role.Player != PlayerControl.LocalPlayer) {
                     return;
                 }
-                ((Executioner)player).SetExecutionTarget();
+                ((Executioner)role).SetExecutionTarget();
+                AmongUsExtensions.Log($"Set Execution Target Arrow");
             }
         }
     }
