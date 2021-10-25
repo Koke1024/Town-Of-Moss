@@ -12,6 +12,14 @@ using Object = UnityEngine.Object;
 namespace TownOfUs.NeutralRoles.ZombieMod {
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
     static class ZombieUpdate {
+        public static void Prefix(PlayerControl __instance) {
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Zombie)) return;
+            Zombie zombie = Role.GetRole<Zombie>(PlayerControl.LocalPlayer);
+            if (zombie.Player.Data.IsDead && !zombie.KilledBySeer) {
+                zombie.Player.moveable = false;
+            }
+        }
+
         public static void Postfix(PlayerControl __instance) {
             if (!PlayerControl.LocalPlayer.Is(RoleEnum.Zombie)) return;
             Zombie zombie = Role.GetRole<Zombie>(PlayerControl.LocalPlayer);
