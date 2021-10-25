@@ -10,6 +10,7 @@
 
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
+| 2021.6.30s | v0.374 | [Download](https://spiel.jp/mod/Moss0374.zip) |
 | 2021.6.30s | v0.37 | [Download](https://spiel.jp/mod/Moss037.zip) |
 | 2021.6.30s | v0.363 ※動作安定 | [Download](https://spiel.jp/mod/Moss0363.zip) |
 | 2021.6.30s | v0.362 | [Download](https://spiel.jp/mod/Moss0362.zip) |
@@ -21,6 +22,14 @@
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v0.374 </summary>
+        <ul> 
+            <li>DollMakerのバグを修正</li>
+            <li>Executionerのバグを修正</li>
+            <li>Zombieの復活待ち中に霊体での移動を不可に</li>
+        </ul>
+    </details>
     <details>
         <summary> v0.372 </summary>
         <ul> 
