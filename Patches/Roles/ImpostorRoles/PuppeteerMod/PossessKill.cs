@@ -29,7 +29,7 @@ namespace TownOfUs.ImpostorRoles.PuppeteerMod {
                 __instance.moveable = false;
                 __instance.NetTransform.Halt();
                 if (PlayerControl.LocalPlayer == __instance) {
-                    role.PossessTime += Time.deltaTime;
+                    role.PossessTime += Time.fixedDeltaTime;
                     if (role.PossessTime > CustomGameOptions.PossessMaxTime) {
                         var writer2 = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                             (byte) CustomRPC.UnPossess,
@@ -43,7 +43,7 @@ namespace TownOfUs.ImpostorRoles.PuppeteerMod {
             if (role.PossessPlayer == null) {
                 if (role.duration > 0) {
                     __instance.moveable = false;
-                    role.duration -= Time.deltaTime;
+                    role.duration -= Time.fixedDeltaTime;
                 }
 
                 if (role.duration <= 0) {

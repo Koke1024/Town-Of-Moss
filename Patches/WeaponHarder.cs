@@ -113,7 +113,7 @@ namespace GameCustomize {
                 return;
             }
 
-            AdminTimeLimit.timeLimit -= Time.deltaTime * AdminTimeLimit.AdminWatcher.Count;
+            AdminTimeLimit.timeLimit -= Time.fixedDeltaTime * AdminTimeLimit.AdminWatcher.Count;
         }
     }
 

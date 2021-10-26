@@ -69,7 +69,7 @@ namespace TownOfUs.ImpostorRoles.DollMakerMod {
                 if (key != PlayerControl.LocalPlayer.PlayerId) {
                     continue;
                 }
-                role.DollList[key] += Time.deltaTime;
+                role.DollList[key] += Time.fixedDeltaTime;
                 PlayerControl.LocalPlayer.moveable = false;
                 if (role.DollList[key] >= CustomGameOptions.DollBreakTime) {
                     breakList.Enqueue(key);
