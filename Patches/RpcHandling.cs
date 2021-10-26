@@ -710,6 +710,9 @@ namespace TownOfUs
                         break;
                     case CustomRPC.PassHost:
                         var hostId = reader.ReadByte();
+                        if (AmongUsClient.Instance.HostId == AmongUsClient.Instance.ClientId) {
+                            GameStartManager.Instance.StartButton.gameObject.SetActive(false);
+                        }
                         AmongUsClient.Instance.HostId = hostId;
                         break;
                     case CustomRPC.SetAltruist:

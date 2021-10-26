@@ -17,9 +17,6 @@ namespace TownOfUs.ImpostorRoles.PuppeteerMod {
             
             Puppeteer role = Role.GetRole<Puppeteer>(__instance);
             if (LobbyBehaviour.Instance || MeetingHud.Instance) {
-                if (role.PossessPlayer != null) {
-                }
-
                 role.PossessPlayer = null;
                 __instance.moveable = true;
                 return;
