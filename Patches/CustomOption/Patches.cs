@@ -67,17 +67,15 @@ namespace TownOfUs.CustomOption
 
             foreach (var option in CustomOption.AllOptions)
             {
-                AmongUsExtensions.Log($"{option.Name}");
+                // AmongUsExtensions.Log($"{option.Name}");
                 if (option.Setting != null)
                 {
-                    AmongUsExtensions.Log($"セット済み");
-                    AmongUsExtensions.Log($"{option.Setting.Title}");
                     option.Setting.gameObject.SetActive(true);
                     options.Add(option.Setting);
                     continue;
                 }
 
-                AmongUsExtensions.Log($"{option.Type}");
+                // AmongUsExtensions.Log($"{option.Type}");
                 switch (option.Type)
                 {
                     case CustomOptionType.Header:

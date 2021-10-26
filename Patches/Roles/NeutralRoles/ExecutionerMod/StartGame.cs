@@ -13,7 +13,6 @@ namespace TownOfUs.NeutralRoles.ExecutionerMod
                     return;
                 }
                 ((Executioner)role).SetExecutionTarget();
-                AmongUsExtensions.Log($"Set Execution Target Arrow");
             }
         }
     }

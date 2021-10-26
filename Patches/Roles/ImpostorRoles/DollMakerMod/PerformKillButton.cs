@@ -22,7 +22,6 @@ namespace TownOfUs.ImpostorRoles.DollMakerMod
 
             var flag2 = __instance.isCoolingDown;
             if (flag2) return false;
-            AmongUsExtensions.Log($"{__instance.enabled}");
             if (!__instance.enabled) return false;
             if (role.ClosestPlayer == null) {
                 return false;
@@ -32,7 +31,6 @@ namespace TownOfUs.ImpostorRoles.DollMakerMod
             if (Vector2.Distance(role.ClosestPlayer.GetTruePosition(),
                 PlayerControl.LocalPlayer.GetTruePosition()) > maxDistance) return false;
             
-            AmongUsExtensions.Log($"nearest:{role.ClosestPlayer.PlayerId}");
             if (role.DollList.ContainsKey(role.ClosestPlayer.PlayerId)) {
                 return false;
             }

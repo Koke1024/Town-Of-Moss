@@ -206,7 +206,6 @@ namespace TownOfUs.CrewmateRoles.MayorMod
                 // var states = arr.Select(byte.Parse).ToArray();
 
                 // var allnums = new int[__instance.playerStates.Length];
-                AmongUsExtensions.Log($"a ");
                 foreach (var role in Role.AllRoles.Where(x =>
                     x.RoleType == RoleEnum.Mayor)) {
                     var mayor = (Mayor) role;
@@ -219,17 +218,14 @@ namespace TownOfUs.CrewmateRoles.MayorMod
                 __instance.TitleText.text = Object.FindObjectOfType<TranslationController>()
                     .GetString(StringNames.MeetingVotingResults, Array.Empty<Il2CppSystem.Object>());
                 var amountOfSkippedVoters = 0;
-                AmongUsExtensions.Log($"b ");
                 for (var i = 0; i < __instance.playerStates.Length; i++)
                 {
-                    AmongUsExtensions.Log($"id: i:{i}");
                     var playerVoteArea = __instance.playerStates[i];
                     playerVoteArea.ClearForResults();
                     allNums.Add(i, 0);
 
                     for (var stateIdx = 0; stateIdx < statess.Length; stateIdx++)
                     {
-                        AmongUsExtensions.Log($"{stateIdx}: {statess[stateIdx].VoterId} voted for {statess[stateIdx].VotedForId}");
                         var voteState = statess[stateIdx];
                         var playerInfo = GameData.Instance.GetPlayerById(voteState.VoterId);
                         if (playerInfo == null)
@@ -258,8 +254,6 @@ namespace TownOfUs.CrewmateRoles.MayorMod
                     var anonVotesOption = PlayerControl.GameOptions.AnonymousVotes;
                     PlayerControl.GameOptions.AnonymousVotes = true;
 
-                    AmongUsExtensions.Log($"{role.PlayerName}のExtraVote:{mayor.ExtraVotes.Count}個");
-                    
                     foreach (var extraVote in mayor.ExtraVotes)
                     {
                         if (extraVote == PlayerVoteArea.HasNotVoted ||

@@ -18,7 +18,6 @@ namespace TownOfUs.ImpostorRoles.KirbyMod
 
 
             foreach (var p in PlayerControl.AllPlayerControls.ToArray().Where(x => x.Is(RoleEnum.Kirby))) {
-                AmongUsExtensions.Log($"reset onaka");
                 var role = Role.GetRole<Kirby>(p);
                 role.SampledPlayer = null;
                 role._aten = null;

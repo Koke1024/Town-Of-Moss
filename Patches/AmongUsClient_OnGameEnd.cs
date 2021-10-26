@@ -153,7 +153,6 @@ namespace TownOfUs {
     [HarmonyPatch(typeof(EndGameManager), nameof(EndGameManager.SetEverythingUp))]
     public class SetRoleString {
         public static void Postfix(EndGameManager __instance) {
-            AmongUsExtensions.Log($"{Utils.roleString}");
             var position = Camera.main.ViewportToWorldPoint(new Vector3(0f, 1f, Camera.main.nearClipPlane));
             GameObject roleSummary = UnityEngine.Object.Instantiate(__instance.WinText.gameObject);
             roleSummary.transform.position = new Vector3(__instance.ExitButton.transform.position.x + 0.1f,
@@ -197,7 +196,6 @@ namespace TownOfUs {
                 roleSummaryText.AppendLine($"{player.Data.PlayerName} - {roles}{taskInfo}");
             }
             Utils.roleString = roleSummaryText.ToString();
-            AmongUsExtensions.Log($"{Utils.roleString}");
         }
     }
 }
