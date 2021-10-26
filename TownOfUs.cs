@@ -20,11 +20,11 @@ using UnityEngine.SceneManagement;
 
 namespace TownOfUs
 {
-    [BepInPlugin(Id, "Town Of Moss", "0.376")]
+    [BepInPlugin(Id, "Town Of Moss", "0.377")]
     [BepInDependency(ReactorPlugin.Id)]
     public class TownOfUs : BasePlugin
     {
-        public static string Version = "0.376";
+        public static string Version = "0.377";
         public const string Id = "jp.spiel.koke";
 
         public static Sprite JanitorClean;
@@ -198,5 +198,40 @@ namespace TownOfUs
         }
 
         private delegate bool DLoadImage(IntPtr tex, IntPtr data, bool markNonReadable);
+    }
+
+    [HarmonyPatch]
+    public static class CredentialsPatch {
+        [HarmonyPriority(Priority.VeryLow)]
+        [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.LateUpdate))]
+        private static class LogoPatchUpd {
+            private static GameObject _onlineButton = null;
+            private static GameObject ToRLogo = null;
+            
+            static void Postfix(MainMenuManager __instance) {
+                var ToRLogo = GameObject.Find("bannerLogo_TOR");
+                
+                if (ToRLogo != null) {
+                    var vShower = GameObject.FindObjectOfType<VersionShower>();
+                    if (vShower != null) {
+                        vShower.text.text = " <color=#FF0000FF>ERROR!!異なるMODが混在しています！</color>";
+                    }
+
+                    var pingTracker = GameObject.FindObjectOfType<PingTracker>();
+                    if (pingTracker != null) {
+                        pingTracker.text.text = " <color=#FF0000FF>ERROR!!異なるMODが混在しています！</color>";
+                    }
+                    _onlineButton = GameObject.Find("PlayOnlineButton");
+                    if (_onlineButton) {
+                        ButtonRolloverHandler component = _onlineButton.GetComponent<ButtonRolloverHandler>();
+                        if (component != null) {
+                            component.SetDisabledColors();
+                        }
+
+                        _onlineButton.GetComponent<PassiveButton>().enabled = false;
+                    }
+                }
+            }
+        }
     }
 }
