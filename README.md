@@ -4,6 +4,10 @@
 を個人的に改変した、[Among Us](https://www.innersloth.com/games/among-us/) の非公式MODです。\
 蘇生に対応したAutoMuteUsのCaptureツールも公開しています。
 
+### 注意
+MODの導入されていないAmong Usディレクトリに展開してください。\
+異なるMODの導入されたディレクトリに展開すると正常に動作しません。
+
 ## Releases
 
 ### Town of Moss
@@ -693,6 +697,12 @@ Puppeteerは、憑依している間と憑依解除後の3秒間は行動が行�
 | Admin Usable Time | 制限がある場合、Adminの利用可能時間 | Time | 120s |
 | Dead can see everyone's roles | 死亡後に全員の役職がわかる | Toggle | On |
 | Role Appears Under Name | 自身の役職を名前の下に表示する | Toggle | On |
+
+-----------------------
+
+# Lobby Setting
+
+ロビーでのゲーム設定では、W、Sで上下スクロール、A、Dでトップとボトムに移動、Shiftを押しながらの数値設定で1/10単位での変更ができます。
 
 -----------------------
 

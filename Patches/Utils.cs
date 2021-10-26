@@ -638,6 +638,7 @@ namespace TownOfUs
             Vector3 vector = target.transform.position;
             vector.z = vector.y / 1000f;
             player.transform.position = vector;
+            player.NetTransform.SnapTo(vector);
         }
     }
     

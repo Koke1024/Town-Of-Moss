@@ -419,6 +419,7 @@ namespace TownOfUs
                         if (readByte1 == PlayerControl.LocalPlayer.PlayerId) {
                             Utils.PlayerById(readByte1).NetTransform.Halt();                            
                         }
+                        Utils.AirKill(dollMaker.Player, Utils.PlayerById(readByte1));
                         break;
                     case CustomRPC.Inhale:
                         readByte1 = reader.ReadByte();
