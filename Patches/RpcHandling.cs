@@ -710,6 +710,8 @@ namespace TownOfUs
                         Rpc.ReceiveRpc(reader);
                         break;
                     case CustomRPC.PassHost:
+                        var hostId = reader.ReadByte();
+                        AmongUsClient.Instance.HostId = hostId;
                         break;
                     case CustomRPC.SetAltruist:
                         new Altruist(Utils.PlayerById(reader.ReadByte()));
