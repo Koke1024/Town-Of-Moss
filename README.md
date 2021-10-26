@@ -14,6 +14,7 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
+| 2021.6.30s | v0.377 | [Download](https://spiel.jp/mod/Moss0377.zip) |
 | 2021.6.30s | v0.376 | [Download](https://spiel.jp/mod/Moss0376.zip) |
 | 2021.6.30s | v0.375 ※動作安定 | [Download](https://spiel.jp/mod/Moss0375.zip) |
 | 2021.6.30s | v0.37 | [Download](https://spiel.jp/mod/Moss037.zip) |
@@ -27,6 +28,12 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v0.377 </summary>
+        <ul> 
+            <li>異なるMODのデータと混在されていた際に警告を出すように</li>
+        </ul>
+    </details>
     <details>
         <summary> v0.376 </summary>
         <ul> 
@@ -347,7 +354,7 @@ Admin閲覧中は消費電力が3倍になります。
 ### **Team: Crewmates**
 
 死体を一定距離移動させることで蘇生させます。\
-距離は、死体を拾った位置からどれだけ離れたかによって判定されます。
+距離は、死体を運び始めた位置からどれだけ離れたかによって判定されます。
 
 ### Game Options
 
@@ -363,7 +370,8 @@ Admin閲覧中は消費電力が3倍になります。
 
 ### **Team: Impostors**
 
-会議中に相手の役職を当てることで狙撃し、キルすることができます。
+会議中にクルーの役職を当てることで狙撃し、キルすることができます。\
+[Add Assassin As Mad Mate](#Custom Game Options)がオンになっている場合、Assassinは通常キルのできない狂人として追加されます。
 
 ### Game Options
 
