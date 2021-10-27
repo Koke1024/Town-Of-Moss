@@ -14,6 +14,7 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
+| 2021.6.30s | v0.378 | [Download](https://spiel.jp/mod/Moss0378.zip) |
 | 2021.6.30s | v0.377 | [Download](https://spiel.jp/mod/Moss0377.zip) |
 | 2021.6.30s | v0.376 | [Download](https://spiel.jp/mod/Moss0376.zip) |
 | 2021.6.30s | v0.375 ※動作安定 | [Download](https://spiel.jp/mod/Moss0375.zip) |
@@ -28,6 +29,13 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v0.378 </summary>
+        <ul> 
+            <li>Executionerが最初の会議でJesterになってしまう不具合を修正</li>
+            <li>部屋コードを隠す設定を追加</li>
+        </ul>
+    </details>
     <details>
         <summary> v0.377 </summary>
         <ul> 
