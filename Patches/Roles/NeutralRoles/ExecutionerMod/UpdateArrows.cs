@@ -22,8 +22,6 @@ namespace TownOfUs.CrewmateRoles.ExecutionerMod
                 if (LobbyBehaviour.Instance || MeetingHud.Instance || PlayerControl.LocalPlayer.Data.IsDead ||
                     role.target.Data.IsDead)
                 {
-                    role.Arrow.gameObject.Destroy();
-                    role.target = null;
                     return;
                 }
 
