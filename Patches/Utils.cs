@@ -31,6 +31,7 @@ namespace TownOfUs
         public static List<WinningPlayerData> potentialWinners = new List<WinningPlayerData>();
         public static Dictionary<byte, float> MeetingKillTimers = new Dictionary<byte, float>();
         public static string roleString = "";
+        public static bool IsStreamMode = false;
         public static string settingString = "";
 
         public static void SetSkin(PlayerControl Player, uint skin)

@@ -20,11 +20,11 @@ using UnityEngine.SceneManagement;
 
 namespace TownOfUs
 {
-    [BepInPlugin(Id, "Town Of Moss", "0.377")]
+    [BepInPlugin(Id, "Town Of Moss", "0.378")]
     [BepInDependency(ReactorPlugin.Id)]
     public class TownOfUs : BasePlugin
     {
-        public static string Version = "0.377";
+        public static string Version = "0.378";
         public const string Id = "jp.spiel.koke";
 
         public static Sprite JanitorClean;
@@ -205,8 +205,6 @@ namespace TownOfUs
         [HarmonyPriority(Priority.VeryLow)]
         [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.LateUpdate))]
         private static class LogoPatchUpd {
-            private static GameObject _onlineButton = null;
-            private static GameObject ToRLogo = null;
             
             static void Postfix(MainMenuManager __instance) {
                 var ToRLogo = GameObject.Find("bannerLogo_TOR");
@@ -221,7 +219,7 @@ namespace TownOfUs
                     if (pingTracker != null) {
                         pingTracker.text.text = " <color=#FF0000FF>ERROR!!異なるMODが混在しています！</color>";
                     }
-                    _onlineButton = GameObject.Find("PlayOnlineButton");
+                    var _onlineButton = GameObject.Find("PlayOnlineButton");
                     if (_onlineButton) {
                         ButtonRolloverHandler component = _onlineButton.GetComponent<ButtonRolloverHandler>();
                         if (component != null) {
