@@ -213,6 +213,9 @@ namespace TownOfUs.NeutralRoles.ShifterMod
                 case RoleEnum.Shifter:
                 case RoleEnum.Cracker:
                 case RoleEnum.MultiKiller:
+                case RoleEnum.Puppeteer:
+                case RoleEnum.Kirby:
+                case RoleEnum.DollMaker:
                     shifter.Data.IsImpostor = true;
                     shifter.MurderPlayer(shifter);
                     shifter.Data.IsImpostor = false;

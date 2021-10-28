@@ -15,7 +15,8 @@ namespace TownOfUs
         public static int JesterOn => (int) Generate.JesterOn.Get();
         public static int LoversOn => 0;
         // public static int LoversOn => (int) Generate.LoversOn.Get();
-        public static int SheriffOn => (int) Generate.SheriffOn.Get();
+        public static int SheriffOn => 0;
+        public static int PoliceOn => (int) Generate.PoliceOn.Get();
         public static int JanitorOn => (int) Generate.JanitorOn.Get();
         public static int KirbyOn => (int) Generate.KirbyOn.Get();
         public static int EngineerOn => (int) Generate.EngineerOn.Get();
@@ -181,5 +182,6 @@ namespace TownOfUs
         public static bool AssassinCanKillAfterVote => false;
         public static bool AllImpCanGuess => false;
         public static bool LastImpCanGuess => Generate.LastImpostorCanGuess.Get();
+        public static bool NoticeNeutral => Generate.NoticeNeutral.Get();
     }
 }

@@ -22,11 +22,13 @@ namespace TownOfUs.CustomOption
         public static CustomStringOption PolusVitalMove;
         public static CustomToggleOption AdminTimeLimit;
         public static CustomNumberOption AdminTimeLimitTime;
+        public static CustomToggleOption NoticeNeutral;
         #region Crewmate Roles
         public static CustomHeaderOption CrewmateRoles;
         public static CustomNumberOption MayorOn;
         public static CustomNumberOption LoversOn;
         public static CustomNumberOption SheriffOn;
+        public static CustomNumberOption PoliceOn;
         public static CustomNumberOption EngineerOn;
         public static CustomNumberOption SwapperOn;
         public static CustomNumberOption InvestigatorOn;
@@ -280,6 +282,7 @@ namespace TownOfUs.CustomOption
                 new CustomToggleOption(num++, "Dead can see everyone's roles", true);
 
             RoleUnderName = new CustomToggleOption(num++, "Role Appears Under Name");
+            NoticeNeutral = new CustomToggleOption(num++, "Notice Assigned Neutral Roles");
             // VanillaGame = new CustomNumberOption(num++, "Probability of a completely vanilla game", 0f, 0f, 100f, 5f,
             //     PercentFormat);
 #endregion
@@ -289,7 +292,9 @@ namespace TownOfUs.CustomOption
                 PercentFormat);
             // LoversOn = new CustomNumberOption(true, num++, "<color=#FF66CCFF>Lovers</color>", 100.0f, 0f, 100f, 10f,
             //     PercentFormat);
-            SheriffOn = new CustomNumberOption(true, num++, "<color=#FFFF00FF>Sheriff</color>", 100.0f, 0f, 100f, 10f,
+            // SheriffOn = new CustomNumberOption(true, num++, "<color=#FFFF00FF>Sheriff</color>", 100.0f, 0f, 100f, 10f,
+            //     PercentFormat);
+            PoliceOn = new CustomNumberOption(true, num++, "<color=#FFFF00FF>Sheriff</color>", 100.0f, 0f, 100f, 10f,
                 PercentFormat);
             EngineerOn = new CustomNumberOption(true, num++, "<color=#FFA60AFF>Engineer</color>", 100.0f, 0f, 100f, 10f,
                 PercentFormat);
@@ -349,7 +354,7 @@ namespace TownOfUs.CustomOption
                 PercentFormat);
             UndertakerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Undertaker</color>", 100.0f, 0f, 100f, 10f,
                 PercentFormat);
-            KirbyOn = new CustomNumberOption(true, num++, "<color=#A86BA3FF>Kirby</color>", 100.0f, 0f, 100f, 10f,
+            KirbyOn = new CustomNumberOption(true, num++, "<color=#A86BA3FF>Popopo</color>", 100.0f, 0f, 100f, 10f,
                 PercentFormat);
             
             // UnderdogOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Underdog</color>", 0.0f, 0f, 100f, 10f,
