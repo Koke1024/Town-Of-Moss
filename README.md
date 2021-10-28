@@ -12,10 +12,6 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 ### Town of Moss
 
-### 不具合について
-ここ最近、Sheriffが割り当てられてゲームがスタートした際にホストがハック判定で切断される不具合が発生しているようです。\
-お手数ですが、Sheriffの出現率を0にしてプレイしていただくようお願いします。
-
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
 | 2021.6.30s | v0.38 | [Download](https://spiel.jp/mod/Moss038.zip) |
@@ -34,6 +30,12 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v0.38 </summary>
+        <ul> 
+            <li>Sheriff導入時にホストがキックされる不具合を修正</li>
+        </ul>
+    </details>
     <details>
         <summary> v0.378 </summary>
         <ul> 
