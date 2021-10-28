@@ -14,11 +14,11 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
-| 2021.6.30s | v0.38 | [Download](https://spiel.jp/mod/Moss038.zip) |
+| 2021.6.30s | v0.38 ※動作安定 | [Download](https://spiel.jp/mod/Moss038.zip) |
 | 2021.6.30s | v0.378 | [Download](https://spiel.jp/mod/Moss0378.zip) |
 | 2021.6.30s | v0.377 | [Download](https://spiel.jp/mod/Moss0377.zip) |
 | 2021.6.30s | v0.376 | [Download](https://spiel.jp/mod/Moss0376.zip) |
-| 2021.6.30s | v0.375 ※動作安定 | [Download](https://spiel.jp/mod/Moss0375.zip) |
+| 2021.6.30s | v0.375 | [Download](https://spiel.jp/mod/Moss0375.zip) |
 | 2021.6.30s | v0.37 | [Download](https://spiel.jp/mod/Moss037.zip) |
 | 2021.6.30s | v0.363 | [Download](https://spiel.jp/mod/Moss0363.zip) |
 | 2021.6.30s | v0.362 | [Download](https://spiel.jp/mod/Moss0362.zip) |
