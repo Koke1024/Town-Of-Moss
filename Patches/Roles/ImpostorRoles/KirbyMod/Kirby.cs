@@ -14,9 +14,9 @@ namespace TownOfUs.Roles
 
         public Kirby(PlayerControl player) : base(player)
         {
-            Name = "Kirby";
-            ImpostorText = () => "Eat all";
-            TaskText = () => "Eat all";
+            Name = "Popopo";
+            ImpostorText = () => "Twinkle Hungry Ball";
+            TaskText = () => "Twinkle Hungry Ball";
             Color = Palette.ImpostorRed;
             RoleType = RoleEnum.Kirby;
             Faction = Faction.Impostors;

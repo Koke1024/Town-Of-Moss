@@ -270,6 +270,11 @@ namespace TownOfUs
                         new Sheriff(Utils.PlayerById(readByte));
                         break;
 
+                    case CustomRPC.SetPolice:
+                        readByte = reader.ReadByte();
+                        new Police(Utils.PlayerById(readByte));
+                        break;
+
                     case CustomRPC.SetEngineer:
                         readByte = reader.ReadByte();
                         new Engineer(Utils.PlayerById(readByte));
@@ -932,6 +937,9 @@ namespace TownOfUs
 
                 if (Check(CustomGameOptions.SheriffOn))
                     CrewmateRoles.Add((typeof(Sheriff), CustomRPC.SetSheriff, CustomGameOptions.SheriffOn));
+
+                if (Check(CustomGameOptions.PoliceOn))
+                    CrewmateRoles.Add((typeof(Police), CustomRPC.SetPolice, CustomGameOptions.PoliceOn));
 
                 if (Check(CustomGameOptions.EngineerOn))
                     CrewmateRoles.Add((typeof(Engineer), CustomRPC.SetEngineer, CustomGameOptions.EngineerOn));

@@ -3,6 +3,7 @@ namespace TownOfUs
     public enum RoleEnum
     {
         Sheriff,
+        Police,
         Jester,
         Engineer,
         LoverImpostor,

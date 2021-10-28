@@ -17,6 +17,7 @@ namespace TownOfUs.Roles
         public Dictionary<string, Color> ColorMapping = new Dictionary<string, Color>
         {
             { "Mayor", new Color(0.44f, 0.31f, 0.66f, 1f) },
+            // { "Sheriff", Color.yellow },
             { "Sheriff", Color.yellow },
             { "Engineer", new Color(1f, 0.65f, 0.04f, 1f) },
             { "Swapper", new Color(0.4f, 0.9f, 0.4f, 1f) },
@@ -74,7 +75,8 @@ namespace TownOfUs.Roles
         protected void CleanUpMapping() {
             Dictionary<string, int> onList = new Dictionary<string, int> {
                 { "Mayor", CustomGameOptions.MayorOn },
-                { "Sheriff", CustomGameOptions.SheriffOn },
+                // { "Sheriff", CustomGameOptions.SheriffOn },
+                { "Sheriff", CustomGameOptions.PoliceOn },
                 { "Engineer", CustomGameOptions.EngineerOn },
                 { "Swapper", CustomGameOptions.SwapperOn },
                 { "Investigator", CustomGameOptions.InvestigatorOn },
@@ -98,7 +100,7 @@ namespace TownOfUs.Roles
                 
                 { "Assassin", CustomGameOptions.AssassinOn },
                 { "Janitor", CustomGameOptions.JanitorOn },
-                { "Kirby", CustomGameOptions.KirbyOn },
+                { "Popopo", CustomGameOptions.KirbyOn },
                 { "Morphling", CustomGameOptions.MorphlingOn },
                 { "Camouflager", CustomGameOptions.CamouflagerOn },
                 { "Miner", CustomGameOptions.MinerOn },

@@ -48,7 +48,7 @@ namespace TownOfUs.Roles
                 { "Swooper", Color.red},
                 { "Undertaker", Color.red},
                 // { "Underdog", Color.red},
-                { "Kirby", new Color(0.66f, 0.42f, 0.64f)},
+                { "Popopo", new Color(0.66f, 0.42f, 0.64f)},
                 { "Cracker", Color.red},
                 { "MultiKiller", Color.red},
                 { "Puppeteer", Color.red},
