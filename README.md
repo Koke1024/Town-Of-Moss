@@ -12,6 +12,10 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 ### Town of Moss
 
+### 不具合について
+最新のバージョンで、Sheriffが割り当てられてゲームがスタートした際にホストがハック判定で切断される不具合が発生しているようです。\
+現在対応中です。
+
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
 | 2021.6.30s | v0.378 | [Download](https://spiel.jp/mod/Moss0378.zip) |
@@ -379,7 +383,7 @@ Admin閲覧中は消費電力が3倍になります。
 ### **Team: Impostors**
 
 会議中にクルーの役職を当てることで狙撃し、キルすることができます。\
-[Add Assassin As Mad Mate](#Custom Game Options)がオンになっている場合、Assassinは通常キルのできない狂人として追加されます。
+[Add Assassin As Mad Mate](#Custom Game Options) がオンになっている場合、Assassinは通常キルのできない狂人として追加されます。
 
 ### Game Options
 
