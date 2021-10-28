@@ -282,7 +282,7 @@ namespace TownOfUs.CustomOption
                 new CustomToggleOption(num++, "Dead can see everyone's roles", true);
 
             RoleUnderName = new CustomToggleOption(num++, "Role Appears Under Name");
-            NoticeNeutral = new CustomToggleOption(num++, "Notice Assigned Neutral Roles");
+            NoticeNeutral = new CustomToggleOption(num++, "Report Assigned Neutral Roles", false);
             // VanillaGame = new CustomNumberOption(num++, "Probability of a completely vanilla game", 0f, 0f, 100f, 5f,
             //     PercentFormat);
 #endregion

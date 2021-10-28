@@ -34,6 +34,9 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
         <summary> v0.38 </summary>
         <ul> 
             <li>Sheriff導入時にホストがキックされる不具合を修正</li>
+            <li>通常キル以外の要因の死でMayorのボタンが発動する問題を修正</li>
+            <li>第三陣営の内訳通知機能を追加</li>
+            <li>吸ったり吐いたりするインポスターの名前をPopopoに変更（お察しください）</li>
         </ul>
     </details>
     <details>
@@ -59,7 +62,7 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
     <details>
         <summary> v0.375 </summary>
         <ul> 
-            <li>Kirbyのコピー中にキルタイマーが進まないように</li>
+            <li>Popopoのコピー中にキルタイマーが進まないように</li>
             <li>DollMakerのバグを修正</li>
             <li>Executionerのバグを修正</li>
             <li>Zombieの復活待ち中に霊体での移動を不可に</li>
@@ -92,7 +95,7 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
         <summary> v0.363 </summary>
         <ul> 
             <li>Bug Fix</li>
-            <li>Kirbyベント使用不可に</li>
+            <li>Popopoベント使用不可に</li>
         </ul>
     </details>
     <details>
@@ -106,7 +109,7 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
         <details>
             <summary> v0.33 </summary>
         <ul>
-            <li>新役職Kirby追加</li>
+            <li>新役職Popopo追加</li>
             <li>新役職Zombie追加</li>
             <li>Mayor能力変更</li>
         </ul>
@@ -133,7 +136,7 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 |[Investigator](#Investigator)|[Swooper](#Swooper)|[Phantom](#Phantom)||
 |[Time Lord](#TimeLord)|[Assassin](#Assassin)|[Sniper](#Sniper)||
 |[Medic](#Medic)|[Undertaker](#Undertaker)|[Zombie](#Zombie)||
-|[Seer](#Seer)|[Kirby](#Kirby)|||
+|[Seer](#Seer)|[Popopo](#Popopo)|||
 |[SecurityGuard](#SecurityGuard)|[Cracker](#Cracker)|||
 |[Snitch](#Snitch)|[MultiKiller](#MultiKiller)|||
 |[Altruist](#Altruist)|[Puppeteer](#Puppeteer)|||
@@ -525,7 +528,7 @@ Skeldの廊下に仕掛けた場合、すべての廊下が停電状態になり
 
 -----------------------
 
-## Kirby
+## Popopo
 
 ### **Team: Impostors**
 
@@ -728,6 +731,7 @@ Puppeteerは、憑依している間と憑依解除後の3秒間は行動が行�
 | Admin Usable Time | 制限がある場合、Adminの利用可能時間 | Time | 120s |
 | Dead can see everyone's roles | 死亡後に全員の役職がわかる | Toggle | On |
 | Role Appears Under Name | 自身の役職を名前の下に表示する | Toggle | On |
+| Report Assigned Neutral Roles | 生存者が半分以下になったあとの会議で、そのゲームで最初に割り当てられた第三陣営の内訳が通知される | Toggle | Off |
 
 -----------------------
 

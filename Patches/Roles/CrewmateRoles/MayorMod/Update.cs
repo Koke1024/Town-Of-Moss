@@ -63,6 +63,10 @@ namespace TownOfUs.CrewmateRoles.MayorMod {
 
             Mayor mayor = Role.GetRole<Mayor>(PlayerControl.LocalPlayer);
             if (mayor.Player.Data.IsDead && !mayor.ButtonUsed) {
+                mayor.ButtonUsed = true;
+                if (MeetingHud.Instance != null) {
+                    return;
+                }
                 mayor.reportDelay -= Time.fixedDeltaTime;
                 if (mayor.reportDelay <= 0f) {
                     PerformKill.MayorEmergencyMeeting(mayor);
