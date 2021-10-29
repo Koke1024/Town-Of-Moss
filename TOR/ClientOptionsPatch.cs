@@ -4,10 +4,15 @@ using UnityEngine;
 using System.Collections.Generic;
 using Hazel;
 using System;
+using System.Numerics;
 using Reactor.Extensions;
 using TownOfUs;
+using TownOfUs.Patches;
+using TownOfUs.Roles;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 namespace TheOtherRoles.Patches {
     [HarmonyPatch(typeof(OptionsMenuBehaviour), nameof(OptionsMenuBehaviour.Start))]
@@ -15,6 +20,8 @@ namespace TheOtherRoles.Patches {
         private static Vector3? origin;
         public static ToggleButtonBehaviour getHostButton;
         public static ToggleButtonBehaviour streamButton;
+        public static ToggleButtonBehaviour settingCheckButton;
+        public static ToggleButtonBehaviour roleManualButton;
 
         public static float xOffset = 1.75f;
         public static float yOffset = -0.5f;
@@ -42,6 +49,22 @@ namespace TheOtherRoles.Patches {
             return null;
         }
 
+        private static ToggleButtonBehaviour createCustomButton(string text, Vector3 offset, UnityEngine.Events.UnityAction onClick, OptionsMenuBehaviour __instance) {
+            if (__instance.CensorChatButton != null) {
+                var button = UnityEngine.Object.Instantiate(__instance.CensorChatButton, __instance.CensorChatButton.transform.parent);
+                button.transform.localPosition = (origin ?? Vector3.zero) + offset;
+                PassiveButton passiveButton = button.GetComponent<PassiveButton>();
+                passiveButton.OnClick = new Button.ButtonClickedEvent();
+                passiveButton.OnClick.AddListener(onClick);
+                button.Text.text = text;
+                Color color = new Color(0f, 1f, 0.16470589f, 1f);
+                if (button.Rollover) button.Rollover.ChangeOutColor(color);
+                
+                return button;
+            }
+            return null;
+        }
+
         public static void Postfix(OptionsMenuBehaviour __instance) {
             if (__instance.CensorChatButton != null) {
                 if (origin == null) origin = __instance.CensorChatButton.transform.localPosition + Vector3.up * 0.25f;
@@ -56,6 +79,40 @@ namespace TheOtherRoles.Patches {
                     if (GameStartManager.Instance != null) {
                         Utils.IsStreamMode = !Utils.IsStreamMode;
                         updateToggle(streamButton, "Hide Room Code: ", Utils.IsStreamMode);
+                    }
+                }
+            }
+
+            if ((settingCheckButton == null || settingCheckButton.gameObject == null)) {
+                settingCheckButton = createCustomButton("Game Setting Check", Vector3.right * xOffset, (UnityEngine.Events.UnityAction)SettingCheck, __instance);
+
+                void SettingCheck() {
+                    if (GameStartManager.Instance != null) {
+                        if (DestroyableSingleton<HudManager>.Instance) {
+                            var settingString = $"Player Num: {PlayerControl.AllPlayerControls.Count}\n";
+                            settingString += $"Impostor: {PlayerControl.GameOptions.NumImpostors}\n";
+                            settingString += $"MadMate: {(CustomGameOptions.MadMateOn? "On": "Off")}\n";
+                            settingString += $"Max Neutral Roles: {CustomGameOptions.MaxNeutralRoles}\n";
+                            settingString += $"Glitch: {(CustomGameOptions.GlitchOn? "On": "Off")}\n";
+                            settingString += $"KillCoolDown: {PlayerControl.GameOptions.KillCooldown}s";
+
+                            DestroyableSingleton<HudManager>.Instance.Chat.AddChat(PlayerControl.LocalPlayer, settingString);
+                        }
+                    }
+                }
+            }
+
+            if ((roleManualButton == null || roleManualButton.gameObject == null)) {
+                roleManualButton = createCustomButton("Show Role Manual", new Vector2(-xOffset, yOffset), (UnityEngine.Events.UnityAction)ShowRoleInfo, __instance);
+
+                void ShowRoleInfo() {
+                    if (MeetingHud.Instance != null) {
+                        if (DestroyableSingleton<HudManager>.Instance) {
+                            var role = Role.GetRole(PlayerControl.LocalPlayer);
+                            var settingString = TownOfUs.Roles.RoleManual.roleManual[role.RoleType];
+
+                            DestroyableSingleton<HudManager>.Instance.Chat.AddChat(PlayerControl.LocalPlayer, settingString);
+                        }
                     }
                 }
             }

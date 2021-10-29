@@ -14,12 +14,14 @@ namespace TownOfUs.ImpostorRoles.PuppeteerMod
             }
             puppeteer.PossStart = DateTime.UtcNow;
             var start = DateTime.UtcNow;
+            puppeteer.possessStarting = true;
             while (true) {
                 var distBetweenPlayers = Utils.getDistBetweenPlayers(PlayerControl.LocalPlayer, target);
                 var flag3 = distBetweenPlayers <
                             GameOptionsData.KillDistances[PlayerControl.GameOptions.KillDistance];
                 if (!flag3) {
                     puppeteer.PossStart = DateTime.UtcNow.AddSeconds(-PlayerControl.GameOptions.KillCooldown);
+                    puppeteer.possessStarting = false;
                     yield break;
                 }
                 yield return new WaitForSeconds(0.016f);
@@ -28,7 +30,8 @@ namespace TownOfUs.ImpostorRoles.PuppeteerMod
                     break;
                 }
             }
-            
+
+            puppeteer.possessStarting = false;
             puppeteer.PossStart = DateTime.UtcNow;
             
             puppeteer.PossessPlayer = target;

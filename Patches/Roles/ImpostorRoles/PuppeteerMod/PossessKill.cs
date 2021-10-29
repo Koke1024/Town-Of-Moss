@@ -37,8 +37,8 @@ namespace TownOfUs.ImpostorRoles.PuppeteerMod {
                     }
                 }
             }
-            if (role.PossessPlayer == null) {
-                if (role.duration > 0) {
+            if (role.duration > 0) {
+                if (role.PossessPlayer == null) {
                     __instance.moveable = false;
                     role.duration -= Time.fixedDeltaTime;
                 }

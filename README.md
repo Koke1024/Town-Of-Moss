@@ -16,6 +16,7 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
+| 2021.6.30s | v0.39 | [Download](https://spiel.jp/mod/Moss039.zip) |
 | 2021.6.30s | v0.38 ※動作安定 | [Download](https://spiel.jp/mod/Moss038.zip) |
 | 2021.6.30s | v0.378 | [Download](https://spiel.jp/mod/Moss0378.zip) |
 | 2021.6.30s | v0.377 | [Download](https://spiel.jp/mod/Moss0377.zip) |
@@ -32,6 +33,13 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v0.39 </summary>
+        <ul> 
+            <li>PuppeteerのAirshipでの不具合、クールダウン表示の不具合を修正</li>
+            <li>ゲーム設定確認ボタン、ロール説明表示ボタンを追加</li>
+        </ul>
+    </details>
     <details>
         <summary> v0.38 </summary>
         <ul> 
@@ -391,7 +399,7 @@ Admin閲覧中は消費電力が3倍になります。
 ### **Team: Impostors**
 
 会議中にクルーの役職を当てることで狙撃し、キルすることができます。\
-[Add Assassin As Mad Mate](#Custom Game Options) がオンになっている場合、Assassinは通常キルのできない狂人として追加されます。
+Add Assassin As Mad Mateがオンになっている場合、Assassinは通常キルのできない狂人として追加されます。
 
 ### Game Options
 

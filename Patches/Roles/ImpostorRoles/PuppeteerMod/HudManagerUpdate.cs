@@ -35,6 +35,7 @@ namespace TownOfUs.ImpostorRoles.PuppeteerMod {
             if (role.PossessButton.renderer.sprite == Puppeteer.PossessSprite) {
                 if ((role.lastPossess - DateTime.UtcNow).TotalMilliseconds / 1000.0f + PlayerControl.GameOptions.KillCooldown > 0) {
                     role.PossessButton.SetCoolDown((float)(role.lastPossess - DateTime.UtcNow).TotalMilliseconds / 1000 + PlayerControl.GameOptions.KillCooldown, PlayerControl.GameOptions.KillCooldown);       
+                    role.Player.SetKillTimer((float)(role.lastPossess - DateTime.UtcNow).TotalMilliseconds / 1000 + PlayerControl.GameOptions.KillCooldown);
                     return;
                 }
 
@@ -45,7 +46,7 @@ namespace TownOfUs.ImpostorRoles.PuppeteerMod {
                 }
                 else {
                     if ((float)(CustomGameOptions.PossessTime - (DateTime.UtcNow - role.PossStart).TotalMilliseconds / 1000.0f) > 0) {
-                        role.PossessButton.SetCoolDown( (float)(CustomGameOptions.PossessTime - (DateTime.UtcNow - role.PossStart).TotalMilliseconds / 1000.0f), CustomGameOptions.PossessTime);                    
+                        role.PossessButton.SetCoolDown( (float)(CustomGameOptions.PossessTime - (DateTime.UtcNow - role.PossStart).TotalMilliseconds / 1000.0f), CustomGameOptions.PossessTime);
                     }
                     else {
                         role.PossessButton.SetCoolDown(role.Player.killTimer, PlayerControl.GameOptions.KillCooldown);

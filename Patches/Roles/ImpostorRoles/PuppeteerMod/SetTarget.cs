@@ -1,4 +1,6 @@
 using HarmonyLib;
+using TownOfUs;
+using TownOfUs.Extensions;
 using TownOfUs.Roles;
 
 namespace TownOfUs.ImpostorRoles.PuppeteerMod
@@ -19,4 +21,32 @@ namespace TownOfUs.ImpostorRoles.PuppeteerMod
             }
         }
     }
+    
+    [HarmonyPatch(typeof(PlatformConsole), nameof(PlatformConsole.Use))]
+    public class CantUsePlatformOnPossess
+    {
+        public static bool Prefix(PlatformConsole __instance)
+        {
+            var playerControl = PlayerControl.LocalPlayer;
+            if (playerControl.Is(RoleEnum.Puppeteer) && Role.GetRole<Puppeteer>(playerControl).possessStarting) {
+                return false;
+            }
+            return true;
+        }
+    }
+    
+    [HarmonyPatch(typeof(PlatformConsole), nameof(Ladder.Use))]
+    public class CantUseOnPossess
+    {
+        public static bool Prefix(PlatformConsole __instance)
+        {
+            var playerControl = PlayerControl.LocalPlayer;
+            if (playerControl.Is(RoleEnum.Puppeteer) && Role.GetRole<Puppeteer>(playerControl).possessStarting) {
+                return false;
+            }
+            return true;
+        }
+    }
 }
+
+

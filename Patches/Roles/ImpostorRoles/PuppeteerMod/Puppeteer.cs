@@ -13,6 +13,7 @@ namespace TownOfUs.Roles
         public float PossessTime;
         public float duration;
         public DateTime lastPossess;
+        public bool possessStarting = false; 
         
         public static Sprite PossessSprite => TownOfUs.PossessSprite;
         public static Sprite UnPossessSprite => TownOfUs.ReleaseSprite;
