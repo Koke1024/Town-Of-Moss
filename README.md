@@ -10,9 +10,6 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 ## Releases
 ### Town of Moss
-## 注意
-現在、AirShipでPuppeteerを使用すると不具合が発生します。\
-申し訳ありませんが、AirShipではPuppeteerを使用しないようお願いします。
 
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
