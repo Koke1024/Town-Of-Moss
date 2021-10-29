@@ -751,6 +751,21 @@ Puppeteerは、憑依している間と憑依解除後の3秒間は行動が行�
 
 -----------------------
 
+# Additive Menu Button
+
+右上の歯車マークから開くメニュー画面に、以下のボタンが追加されています。
+![メニュー](md_resource/menuButton.png)
+
+![ロール情報](md_resource/roleInfo.png)
+
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Hide Room Code | ONのとき、ロビーでルームコードが非表示になります。 |
+| Game Setting Check | クリックすると、チャットに現在のゲームの設定が表示されます。 |
+| Show Role Manual | クリックすると、チャットに現在の自分のロールの情報が表示されます。 |
+
+-----------------------
+
 # Bug / Suggestions
 
 バグ報告、提案は [Twitter](https://twitter.com/Koke1024) までお願いします。
