@@ -758,8 +758,8 @@ Puppeteerは、憑依している間と憑依解除後の3秒間は行動が行�
 
 ![ロール情報](md_resource/roleInfo.png)
 
-| Name | Description | Type | Default |
-|----------|:-------------:|:------:|:------:|
+| Name | Description |
+|----------|:-------------:|
 | Hide Room Code | ONのとき、ロビーでルームコードが非表示になります。 |
 | Game Setting Check | クリックすると、チャットに現在のゲームの設定が表示されます。 |
 | Show Role Manual | クリックすると、チャットに現在の自分のロールの情報が表示されます。 |
