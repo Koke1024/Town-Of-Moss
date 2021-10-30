@@ -59,10 +59,13 @@ namespace TownOfUs.CrewmateRoles.MayorMod {
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
     static class MayorUpdate {
         public static void Postfix(PlayerControl __instance) {
+            if (PlayerControl.LocalPlayer == null) return;
             if (!PlayerControl.LocalPlayer.Is(RoleEnum.Mayor)) return;
+            if (PlayerControl.AllPlayerControls.Count <= 1) return;
+            if (PlayerControl.LocalPlayer.Data == null) return;
 
             Mayor mayor = Role.GetRole<Mayor>(PlayerControl.LocalPlayer);
-            if (mayor.Player.Data.IsDead && !mayor.ButtonUsed) {
+            if (mayor.Player.Data.IsDead && !mayor.ButtonUsed && CustomGameOptions.MayorMeetingOnDead) {
                 mayor.ButtonUsed = true;
                 if (MeetingHud.Instance != null) {
                     return;

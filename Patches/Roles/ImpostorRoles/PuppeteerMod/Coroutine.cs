@@ -24,6 +24,10 @@ namespace TownOfUs.ImpostorRoles.PuppeteerMod
                     puppeteer.possessStarting = false;
                     yield break;
                 }
+                if (MeetingHud.Instance != null) {
+                    puppeteer.possessStarting = false;
+                    yield break;
+                }
                 yield return new WaitForSeconds(0.016f);
                 
                 if ((DateTime.UtcNow - start).TotalMilliseconds >= CustomGameOptions.PossessTime * 1000.0f) {

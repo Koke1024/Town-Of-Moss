@@ -16,9 +16,16 @@ namespace TownOfUs.ImpostorRoles.PuppeteerMod {
             }
             
             Puppeteer role = Role.GetRole<Puppeteer>(__instance);
-            if (LobbyBehaviour.Instance || MeetingHud.Instance) {
+            if (role.PossessPlayer != null && (LobbyBehaviour.Instance || MeetingHud.Instance)) {
                 role.PossessPlayer = null;
                 __instance.moveable = true;
+                role.PossessTime = 0;
+                var writer2 = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
+                    (byte) CustomRPC.UnPossess,
+                    SendOption.Reliable, -1);
+                writer2.Write(role.Player.PlayerId);
+                AmongUsClient.Instance.FinishRpcImmediately(writer2);
+                role.UnPossess();
                 return;
             }
 

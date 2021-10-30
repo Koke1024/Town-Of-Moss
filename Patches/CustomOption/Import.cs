@@ -49,7 +49,7 @@ namespace TownOfUs.CustomOption
                     button.Setting = toggle;
                     button.OptionCreated();
                     options.Add(toggle);
-                }
+            }
 
             return options;
         }
@@ -90,6 +90,12 @@ namespace TownOfUs.CustomOption
             SlotButtons.Add(new CustomButtonOption(1, "Slot 1", delegate { ImportSlot(1); }));
             SlotButtons.Add(new CustomButtonOption(1, "Slot 2", delegate { ImportSlot(2); }));
             SlotButtons.Add(new CustomButtonOption(1, "Slot 3", delegate { ImportSlot(3); }));
+            SlotButtons.Add(new CustomButtonOption(1, "Slot 4", delegate { ImportSlot(4); }));
+            SlotButtons.Add(new CustomButtonOption(1, "Slot 5", delegate { ImportSlot(5); }));
+            SlotButtons.Add(new CustomButtonOption(1, "Slot 6", delegate { ImportSlot(6); }));
+            SlotButtons.Add(new CustomButtonOption(1, "Slot 7", delegate { ImportSlot(7); }));
+            SlotButtons.Add(new CustomButtonOption(1, "Slot 8", delegate { ImportSlot(8); }));
+            SlotButtons.Add(new CustomButtonOption(1, "Slot 9", delegate { ImportSlot(9); }));
             SlotButtons.Add(new CustomButtonOption(1, "Cancel", delegate { Cancel(FlashWhite); }));
 
             var options = CreateOptions();
@@ -139,8 +145,8 @@ namespace TownOfUs.CustomOption
                 {
                     try
                     {
-                        splitText.RemoveAt(0);
-                    }
+                            splitText.RemoveAt(0);                            
+                        }
                     catch
                     {
                     }

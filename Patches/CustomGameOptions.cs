@@ -2,6 +2,7 @@ using TownOfUs.CrewmateRoles.EngineerMod;
 using TownOfUs.CrewmateRoles.MedicMod;
 using TownOfUs.CrewmateRoles.SeerMod;
 using TownOfUs.CustomOption;
+using TownOfUs.ImpostorRoles.MorphlingMod;
 using TownOfUs.NeutralRoles.ExecutionerMod;
 using TownOfUs.NeutralRoles.ShifterMod;
 using TownOfUs.OnStartGame;
@@ -68,6 +69,7 @@ namespace TownOfUs
         public static bool SheriffKillsMadmate => Generate.SheriffKillsMadmate.Get();
         public static float SheriffKillCd => Generate.SheriffKillCd.Get();
         public static int MayorVoteBank => 0;
+        public static bool MayorMeetingOnDead => Generate.MayorMeetingOnDead.Get();
         public static bool MayorAnonymous => Generate.MayorAnonymous.Get();
         // public static int MayorVoteBank => (int) Generate.MayorVoteBank.Get();
         // public static bool MayorAnonymous => Generate.MayorAnonymous.Get();
@@ -116,6 +118,7 @@ namespace TownOfUs
         public static int GlitchHackDistance => Generate.GlitchHackDistanceOption.Get();
         public static float MorphlingCd => Generate.MorphlingCooldown.Get();
         public static float MorphlingDuration => Generate.MorphlingDuration.Get();
+        public static MorphVentOptions MorphCanVent => (MorphVentOptions)Generate.MorphCanVent.Get();
         public static float CamouflagerCd => Generate.CamouflagerCooldown.Get();
         public static float CamouflagerDuration => Generate.CamouflagerDuration.Get();
         public static bool KillCoolResetOnMeeting => Generate.KillCoolResetOnMeeting.Get();

@@ -1,4 +1,5 @@
 using HarmonyLib;
+using TownOfUs.ImpostorRoles.MorphlingMod;
 using TownOfUs.Roles;
 using UnityEngine;
 
@@ -36,11 +37,19 @@ namespace TownOfUs
             }
                 
 
-            if (player.Is(RoleEnum.Morphling)
-                || player.Is(RoleEnum.Swooper)
+            if (player.Is(RoleEnum.Swooper)
                 || player.Is(RoleEnum.Kirby)
                 || (player.CanDrag() && Role.GetRole<Undertaker>(player).CurrentlyDragging != null))
                 return false;
+            if (player.Is(RoleEnum.Morphling)) {
+                if (CustomGameOptions.MorphCanVent == MorphVentOptions.None) {
+                    return false;
+                }
+                if (Role.GetRole<Morphling>(player).Morphed && CustomGameOptions.MorphCanVent == MorphVentOptions.OnNotMorph) {
+                    return false;
+                }
+                
+            }
 
 
             if (player.Is(RoleEnum.Engineer))
@@ -51,6 +60,8 @@ namespace TownOfUs
                 playerInfo.IsImpostor = true;
             if (player.Is(RoleEnum.Charger))
                 playerInfo.IsImpostor = true;
+            // if (player.Is(RoleEnum.Defect))
+            //     playerInfo.IsImpostor = true;
             // if (player.Is(RoleEnum.Assassin) && CustomGameOptions.MadMateOn)
             //     playerInfo.IsImpostor = false;
             
@@ -67,6 +78,8 @@ namespace TownOfUs
                 playerInfo.IsImpostor = false;
             if (playerInfo.Object.Is(RoleEnum.Jester) && CustomGameOptions.JesterUseVent)
                 playerInfo.IsImpostor = false;
+            // if (playerInfo.Object.Is(RoleEnum.Defect))
+            //     playerInfo.IsImpostor = false;
         }
     }
 }

@@ -91,6 +91,12 @@ namespace TownOfUs.CustomOption
             SlotButtons.Add(new CustomButtonOption(1, "Slot 1", delegate { ExportSlot(1); }));
             SlotButtons.Add(new CustomButtonOption(1, "Slot 2", delegate { ExportSlot(2); }));
             SlotButtons.Add(new CustomButtonOption(1, "Slot 3", delegate { ExportSlot(3); }));
+            SlotButtons.Add(new CustomButtonOption(1, "Slot 4", delegate { ExportSlot(4); }));
+            SlotButtons.Add(new CustomButtonOption(1, "Slot 5", delegate { ExportSlot(5); }));
+            SlotButtons.Add(new CustomButtonOption(1, "Slot 6", delegate { ExportSlot(6); }));
+            SlotButtons.Add(new CustomButtonOption(1, "Slot 7", delegate { ExportSlot(7); }));
+            SlotButtons.Add(new CustomButtonOption(1, "Slot 8", delegate { ExportSlot(8); }));
+            SlotButtons.Add(new CustomButtonOption(1, "Slot 9", delegate { ExportSlot(9); }));
             SlotButtons.Add(new CustomButtonOption(1, "Cancel", delegate { Cancel(FlashWhite); }));
 
             var options = CreateOptions();
