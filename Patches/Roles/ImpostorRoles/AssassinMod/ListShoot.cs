@@ -52,8 +52,6 @@ namespace TownOfUs.Patches.ImpostorRoles.AssassinMod {
             Transform selectedButton = null;
 
             PlayerControl target = Utils.PlayerById((byte)__instance.playerStates[buttonTarget].TargetPlayerId);
-            var targetRole = Role.GetRole(target).Name;
-            AmongUsExtensions.Log($"{targetRole}");
             
             foreach (var pair in role.ColorMapping) {
                 Transform buttonParent = (new GameObject()).transform;
