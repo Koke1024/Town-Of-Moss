@@ -1,3 +1,4 @@
+
 # Town of Moss
 
 当MODは [Town of Us](https://github.com/polusgg/Town-Of-Us)
@@ -13,6 +14,7 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
+| 2021.6.30s | v0.391 | [Download](https://spiel.jp/mod/Moss0391.zip) |
 | 2021.6.30s | v0.39 | [Download](https://spiel.jp/mod/Moss039.zip) |
 | 2021.6.30s | v0.38 ※動作安定 | [Download](https://spiel.jp/mod/Moss038.zip) |
 | 2021.6.30s | v0.378 | [Download](https://spiel.jp/mod/Moss0378.zip) |
@@ -30,6 +32,14 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v0.391 </summary>
+        <ul> 
+            <li>Mayorカウンターボタンが設定によらず常に有効だった不具合を修正</li>
+            <li>Morphlingがベントできる設定を追加</li>
+            <li>Puppeteer憑依中に会議が行われると以降憑依が使えなくなる不具合を修正</li>
+        </ul>
+    </details>
     <details>
         <summary> v0.39 </summary>
         <ul> 
@@ -429,7 +439,7 @@ Add Assassin As Mad Mateがオンになっている場合、Assassinは通常キ
 
 サンプルを取得した対象の姿に変身することができます。\
 変身中に再度ボタンを押すことで変身を解除できます。\
-ベントは使用できません。
+ベントは基本的に使用できません。
 
 ### Game Options
 
@@ -437,6 +447,7 @@ Add Assassin As Mad Mateがオンになっている場合、Assassinは通常キ
 |----------|:-------------:|:------:|:------:|
 | Morph Cooldown | 変身のクールダウン | Time | 15s |
 | Morph Duration | 変身の継続時間 | Time | 10s |
+| Morphling Can Use Vent | ベントは使えないか、変身中のみ使えないか、いつでも使える | None / On not Morphing / Always | None |
 
 -----------------------
 
