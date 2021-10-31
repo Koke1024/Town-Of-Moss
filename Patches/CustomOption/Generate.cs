@@ -107,6 +107,7 @@ namespace TownOfUs.CustomOption
 
         public static CustomHeaderOption TimeLord;
         public static CustomToggleOption RewindRevive;
+        public static CustomToggleOption RewindFlash;
         public static CustomNumberOption RewindDuration;
         public static CustomNumberOption RewindCooldown;
         public static CustomToggleOption TimeLordVitals;
@@ -430,6 +431,7 @@ namespace TownOfUs.CustomOption
             TimeLord =
                 new CustomHeaderOption(num++, "<color=#0000FFFF>Time Lord</color>");
             RewindRevive = new CustomToggleOption(num++, "Revive During Rewind", true);
+            RewindFlash = new CustomToggleOption(num++, "Has Blue Outline on Rewind", true);
             RewindDuration = new CustomNumberOption(num++, "Rewind Duration", 3f, 1f, 15f, 0.5f, CooldownFormat);
             RewindCooldown = new CustomNumberOption(num++, "Rewind Cooldown", 35f, 20f, 50f, 2.5f, CooldownFormat);
 

@@ -18,7 +18,7 @@ namespace TownOfUs.Roles
             Faction = Faction.Impostors;
             
             killedOnce = false;
-            firstKillTime = System.DateTime.UtcNow.AddSeconds(5.0f);
+            firstKillTime = System.DateTime.UtcNow.AddSeconds(3.0f);
         }
 
         public float MaxTimer() => PlayerControl.GameOptions.KillCooldown * CustomGameOptions.MultiKillerCdRate / 100.0f;

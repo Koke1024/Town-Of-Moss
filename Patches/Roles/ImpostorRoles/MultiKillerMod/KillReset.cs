@@ -21,7 +21,7 @@ namespace TownOfUs.ImpostorRoles.MultiKillerMod
                     mk.killedOnce = false;
                     mk.firstKillTime = null;
                     if (mk.isFirstTime) {
-                        mk.Player.SetKillTimer(mk.MaxTimer() - 15);
+                        mk.Player.SetKillTimer(mk.MaxTimer() - 13);
                         mk.isFirstTime = false;
                     }
                     else {

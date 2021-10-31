@@ -1,5 +1,6 @@
 using HarmonyLib;
 using Hazel;
+using TownOfUs.CrewmateRoles.TimeLordMod;
 using TownOfUs.Roles;
 using TownOfUs.Roles.Modifiers;
 
@@ -26,6 +27,9 @@ namespace TownOfUs.CrewmateRoles.MayorMod
         }
 
         public static void MayorEmergencyMeeting(Mayor role) {
+            if (RecordRewind.rewinding) {
+                return;
+            }
             role.ButtonUsed = true;
             var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                 (byte) CustomRPC.BarryButton, SendOption.Reliable, -1);

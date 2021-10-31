@@ -19,6 +19,7 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
         private static float deadTime;
         private static bool isDead;
         private static float recordTime => CustomGameOptions.RewindDuration;
+        public static MovingPlatformBehaviour patapata;
 
         public static void Record()
         {
@@ -28,7 +29,7 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
 
             Vector3 position;
             Vector2 velocity;
-            if (!PlayerControl.LocalPlayer.moveable && points.Count > 0)
+            if ((!PlayerControl.LocalPlayer.moveable || (patapata && patapata.Target == PlayerControl.LocalPlayer)) && points.Count > 0)
             {
                 position = points[0].position;
                 velocity = Vector2.zero;
@@ -147,6 +148,10 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
 
         public static void Postfix()
         {
+            AirshipStatus airshipStatus = ShipStatus.Instance as AirshipStatus;
+            if (airshipStatus && patapata == null) {
+                patapata = airshipStatus.GetComponentInChildren<MovingPlatformBehaviour>();
+            }
             if (rewinding)
                 Rewind();
             else Record();

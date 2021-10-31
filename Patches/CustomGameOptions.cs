@@ -85,6 +85,7 @@ namespace TownOfUs
         public static float InvestigatorMapUpdate => Generate.InvestigatorMapUpdate.Get();
 
         public static bool RewindRevive => Generate.RewindRevive.Get();
+        public static bool RewindFlash => Generate.RewindFlash.Get();
         public static float RewindDuration => Generate.RewindDuration.Get();
         public static float RewindCooldown => Generate.RewindCooldown.Get();
         public static bool TimeLordVitals => Generate.TimeLordVitals.Get();

@@ -14,6 +14,7 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
+| 2021.6.30s | v0.392 | [Download](https://spiel.jp/mod/Moss0392.zip) |
 | 2021.6.30s | v0.391 | [Download](https://spiel.jp/mod/Moss0391.zip) |
 | 2021.6.30s | v0.39 | [Download](https://spiel.jp/mod/Moss039.zip) |
 | 2021.6.30s | v0.38 | [Download](https://spiel.jp/mod/Moss038.zip) |
@@ -32,6 +33,13 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v0.392 </summary>
+        <ul> 
+            <li>TimeLordの巻き戻し中にアウトラインを表示</li>
+            <li>TimeLordの能力に関する不具合を修正</li>
+        </ul>
+    </details>
     <details>
         <summary> v0.391 </summary>
         <ul> 
@@ -246,12 +254,15 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 
 全プレイヤーの時間を数秒間巻き戻すことができます。その時間内に死亡していたクルーは蘇生されます。\
 また、バイタル情報を見ることができません。
+巻き戻している間、Time Lordには以下のように青いアウトラインがつきます。\
+![Rewind](md_resource/Rewind.png)
 
 ### Game Options
 
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
 | Revive During Rewind | 時間内に死亡していたクルーが蘇生する | Toggle | On |
+| Has Blue Outline on Rewind | 巻き戻し中、青いアウトラインがつく | Toggle | On |
 | Rewind Duration | 巻き戻される時間の秒数 | Time | 3s |
 | Rewind Cooldown | 巻き戻すボタンのクールダウン時間 | Time | 25s |
 | Time Lord can use Vitals | バイタルを見れるかどうか | Toggle | Off |

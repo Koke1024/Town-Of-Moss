@@ -81,7 +81,7 @@ namespace TownOfUs.CustomOption
             __instance.Children = OldButtons.ToArray();
 
             yield return new WaitForEndOfFrame();
-            yield return flashCoro();
+            // yield return flashCoro();
         }
 
         protected internal void ToDo()

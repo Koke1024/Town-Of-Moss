@@ -15,9 +15,23 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
             RecordRewind.whoIsRewinding = role;
             PlayerControl.LocalPlayer.moveable = false;
             oldColor = HudManager.Instance.FullScreen.color;
-            HudManager.Instance.FullScreen.color = new Color(0f, 0.5f, 0.8f, 0.3f);
+            var rewindColor = new Color(0f, 0.5f, 0.8f, 0.3f);
+            HudManager.Instance.FullScreen.color = rewindColor;
             HudManager.Instance.FullScreen.enabled = true;
             role.StartRewind = DateTime.UtcNow;
+            
+            PlayerControl.LocalPlayer.Collider.enabled = false;
+            PlayerControl.LocalPlayer.NetTransform.enabled = false;
+
+            if (CustomGameOptions.RewindFlash) {
+                role.Player.myRend.material.SetFloat("_Outline", 10f);
+                role.Player.myRend.material.SetColor("_OutlineColor", role.Color);                
+            }
+
+            if (Minigame.Instance) {
+                Minigame.Instance.Close();
+                Minigame.Instance.Close();                
+            }
         }
 
         public static void StopRewind(TimeLord role)
@@ -28,6 +42,15 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
             PlayerControl.LocalPlayer.moveable = true;
             HudManager.Instance.FullScreen.enabled = false;
             HudManager.Instance.FullScreen.color = oldColor;
+
+            if (CustomGameOptions.RewindFlash) {
+                role.Player.myRend.material.SetFloat("_Outline", 0f);
+                role.Player.myRend.material.SetColor("_OutlineColor", new Color());
+            }
+
+            PlayerControl.LocalPlayer.MyPhysics.ResetMoveState(true);
+            PlayerControl.LocalPlayer.Collider.enabled = true;
+            PlayerControl.LocalPlayer.NetTransform.enabled = true;
         }
     }
 }
