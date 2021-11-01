@@ -14,6 +14,7 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
+| 2021.6.30s | v0.393 | [Download](https://spiel.jp/mod/Moss0393.zip) |
 | 2021.6.30s | v0.392 | [Download](https://spiel.jp/mod/Moss0392.zip) |
 | 2021.6.30s | v0.391 | [Download](https://spiel.jp/mod/Moss0391.zip) |
 | 2021.6.30s | v0.39 | [Download](https://spiel.jp/mod/Moss039.zip) |
@@ -33,6 +34,15 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v0.393 </summary>
+        <ul> 
+            <li>Mayorのボタンの挙動を修正</li>
+            <li>Zombie死亡時の勝利判定を修正</li>
+            <li>Impostorが狙撃能力を持つとバグるのを修正</li>
+            <li>ゲーム開始時に発生する場合があったエラーを修正</li>
+        </ul>
+    </details>
     <details>
         <summary> v0.392 </summary>
         <ul> 
