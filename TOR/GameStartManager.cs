@@ -8,7 +8,9 @@ namespace TheOtherRoles.Patches {
         [HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.Start))]
         public class GameStartManagerStartPatch {
             public static void Postfix(GameStartManager __instance) {
-                lobbyCodeText = __instance.GameRoomName.text;
+                if (Utils.IsStreamMode && __instance.GameRoomName) {
+                    lobbyCodeText = __instance.GameRoomName.text;                    
+                }
             }
         }
 
