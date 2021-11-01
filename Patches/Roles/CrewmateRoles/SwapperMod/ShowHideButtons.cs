@@ -120,7 +120,7 @@ namespace TownOfUs.CrewmateRoles.SwapperMod
                     foreach (var row in self) {
                         // AmongUsExtensions.Log($"{row.Key}: {row.Value}票");
                     }
-                    PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"Meeting was a tie = {tie}");
+                    // PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"Meeting was a tie = {tie}");
                     var exiled = GameData.Instance.AllPlayers.ToArray().FirstOrDefault(v => !tie && v.PlayerId == maxIdx.Key);
                     for (var i = 0; i < __instance.playerStates.Length; i++)
                     {

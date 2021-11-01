@@ -79,19 +79,19 @@ namespace TownOfUs.Handshake
         private static HashSet<int> HandshakedClients = new HashSet<int>();
         private static IEnumerator WaitForHandshake(InnerNetClient innerNetClient, int clientId)
         {
-            PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"WaitForHandshake(innerNetClient, clientId = {clientId})");
+            // PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"WaitForHandshake(innerNetClient, clientId = {clientId})");
 
             yield return new WaitForSeconds(5f);
-            PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"WaitForHandshake() - Waited 5 seconds");
+            // PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"WaitForHandshake() - Waited 5 seconds");
             if (!HandshakedClients.Contains(clientId))
             {
-                PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"WaitForHandshake() - HandshakedClients did not contain clientId {clientId}");
+                // PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"WaitForHandshake() - HandshakedClients did not contain clientId {clientId}");
                 if (innerNetClient.allClients.ToArray().Any(x => x.Id == clientId))
                     innerNetClient.SendCustomDisconnect(clientId);
             }
             else
             {
-                PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"WaitForHandshake() - HandshakedClients contained clientId {clientId}");
+                // PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"WaitForHandshake() - HandshakedClients contained clientId {clientId}");
             }
         }
         

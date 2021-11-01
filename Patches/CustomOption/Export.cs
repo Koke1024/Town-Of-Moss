@@ -74,7 +74,9 @@ namespace TownOfUs.CustomOption
 
             yield return new WaitForSeconds(0.5f);
 
-            Loading.Setting.gameObject.Destroy();
+            if (Loading.Setting != null && Loading.Setting.gameObject != null) {
+                Loading.Setting.gameObject.Destroy();
+            }
 
             foreach (var option in OldButtons) option.gameObject.SetActive(true);
 
