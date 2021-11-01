@@ -11,7 +11,7 @@ namespace TownOfUs.NeutralRoles.ZombieMod
         public static void Postfix(EndGameManager __instance)
         {
             var role = Role.AllRoles.FirstOrDefault(x =>
-                x.RoleType == RoleEnum.Zombie && ((Zombie) x).CompleteZombieTasks);
+                x.RoleType == RoleEnum.Zombie && ((Zombie) x).CompleteZombieTasks && !x.Player.Data.IsDead);
             if (role == null) return;
             PoolablePlayer[] array = Object.FindObjectsOfType<PoolablePlayer>();
             array[0].NameText.text = role.ColorString + array[0].NameText.text + "</color>";

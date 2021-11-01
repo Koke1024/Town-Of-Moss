@@ -42,8 +42,6 @@ namespace TownOfUs {
     public class EndGameManager_SetEverythingUp {
         public static void Prefix() {
             var jester = Role.AllRoles.FirstOrDefault(x => x.RoleType == RoleEnum.Jester && ((Jester)x).VotedOut);
-            var executioner = Role.AllRoles.FirstOrDefault(x =>
-                x.RoleType == RoleEnum.Executioner && ((Executioner)x).TargetVotedOut);
             if (Role.NobodyWins) {
                 TempData.winners = new List<WinningPlayerData>();
                 return;
@@ -59,6 +57,16 @@ namespace TownOfUs {
 
                 return;
             }
+
+            var executioner = Role.AllRoles.FirstOrDefault(x =>
+                x.RoleType == RoleEnum.Executioner && ((Executioner)x).TargetVotedOut);
+            if (executioner != null) {
+                var winners = Utils.potentialWinners.Where(x => x.Name == executioner.PlayerName).ToList();
+                TempData.winners = new List<WinningPlayerData>();
+                foreach (var win in winners) TempData.winners.Add(win);
+                return;
+            }
+            
             var zombie = Role.AllRoles.FirstOrDefault(x => x.RoleType == RoleEnum.Zombie && !x.Player.Data.IsDead && ((Zombie)x).CompleteZombieTasks);
             if (zombie != null) {
                 var winners = Utils.potentialWinners.Where(x => x.Name == zombie.PlayerName).ToList();
@@ -67,13 +75,6 @@ namespace TownOfUs {
                     win.IsDead = false;
                     TempData.winners.Add(win);
                 }
-                return;
-            }
-
-            if (executioner != null) {
-                var winners = Utils.potentialWinners.Where(x => x.Name == executioner.PlayerName).ToList();
-                TempData.winners = new List<WinningPlayerData>();
-                foreach (var win in winners) TempData.winners.Add(win);
                 return;
             }
 
@@ -112,6 +113,7 @@ namespace TownOfUs {
             if (arsonist != null) {
                 var winners = Utils.potentialWinners.Where(x => x.Name == arsonist.PlayerName).ToList();
                 TempData.winners = new List<WinningPlayerData>();
+                winners.First().IsDead = false;
                 foreach (var win in winners) TempData.winners.Add(win);
                 return;
             }
