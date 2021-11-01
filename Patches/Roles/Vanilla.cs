@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace TownOfUs.Roles
 {
-    public class Impostor : Role
+    public class Impostor : Assassin
     {
         public Impostor(PlayerControl player) : base(player)
         {
