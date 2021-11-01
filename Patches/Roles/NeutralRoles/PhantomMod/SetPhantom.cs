@@ -1,6 +1,8 @@
 using System;
+using System.Linq;
 using HarmonyLib;
 using Hazel;
+using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine;
 using UnityEngine.UI;
@@ -48,8 +50,16 @@ namespace TownOfUs.NeutralRoles.PhantomMod
             }
 
             if (Role.GetRole<Phantom>(PlayerControl.LocalPlayer).Caught) return;
-            var startingVent =
-                ShipStatus.Instance.AllVents[Random.RandomRangeInt(0, ShipStatus.Instance.AllVents.Count)];
+            Vent startingVent = null;
+            if (ShipStatus.Instance.Type == ShipStatus.MapType.Pb) {
+                startingVent =
+                    ShipStatus.Instance.AllVents.Where(x => x.name != "AdminVent").ToArray()[
+                        Random.RandomRangeInt(0, ShipStatus.Instance.AllVents.Count - 1)];
+            }
+            else {
+                startingVent =
+                    ShipStatus.Instance.AllVents[Random.RandomRangeInt(0, ShipStatus.Instance.AllVents.Count)];                
+            }
             PlayerControl.LocalPlayer.NetTransform.RpcSnapTo(startingVent.transform.position);
             PlayerControl.LocalPlayer.MyPhysics.RpcEnterVent(startingVent.Id);
         }
