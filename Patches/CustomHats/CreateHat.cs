@@ -87,7 +87,7 @@ namespace TownOfUs.CustomHats
                             }
                             catch (Exception)
                             {
-                                PluginSingleton<TownOfUs>.Instance.Log.LogError($"Couldn't generate {hatData.name}");
+                                // PluginSingleton<TownOfUs>.Instance.Log.LogError($"Couldn't generate {hatData.name}");
                             }
                         }
                     }

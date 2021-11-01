@@ -78,7 +78,11 @@ namespace TownOfUs.CustomOption
                 Loading.Setting.gameObject.Destroy();
             }
 
-            foreach (var option in OldButtons) option.gameObject.SetActive(true);
+            foreach (var option in OldButtons) {
+                if (option.gameObject != null) {
+                    option.gameObject.SetActive(true);
+                }
+            }
 
 
             __instance.Children = OldButtons.ToArray();

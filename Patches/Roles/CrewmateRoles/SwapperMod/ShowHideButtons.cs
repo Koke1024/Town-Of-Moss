@@ -20,15 +20,11 @@ namespace TownOfUs.CrewmateRoles.SwapperMod
             if (SwapVotes.Swap1 == null || SwapVotes.Swap2 == null) return self;
             //
 
-            PluginSingleton<TownOfUs>.Instance.Log.LogInfo($"Swap1 playerid = {SwapVotes.Swap1.TargetPlayerId}");
             var swap1 = 0;
             if (self.TryGetValue(SwapVotes.Swap1.TargetPlayerId, out var value)) swap1 = value;
-            PluginSingleton<TownOfUs>.Instance.Log.LogInfo($"Swap1 player has votes = {swap1}");
 
             var swap2 = 0;
-            PluginSingleton<TownOfUs>.Instance.Log.LogInfo($"Swap2 playerid = {SwapVotes.Swap2.TargetPlayerId}");
             if (self.TryGetValue(SwapVotes.Swap2.TargetPlayerId, out var value2)) swap2 = value2;
-            PluginSingleton<TownOfUs>.Instance.Log.LogInfo($"Swap2 player has votes  = {swap2}");
 
             self[SwapVotes.Swap2.TargetPlayerId] = swap1;
             self[SwapVotes.Swap1.TargetPlayerId] = swap2;

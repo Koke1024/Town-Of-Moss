@@ -25,7 +25,6 @@ namespace TownOfUs.Handshake
                     return;
 
                 // If I am client, send handshake
-                PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"AmongUsClient.OnGameJoined.Postfix - Am client, sending handshake");
                 var messageWriter = MessageWriter.Get(SendOption.Reliable);
                 messageWriter.StartMessage(6);
                 messageWriter.Write(__instance.GameId);
@@ -52,18 +51,18 @@ namespace TownOfUs.Handshake
                     var handshakeReader = MessageReader.Get(reader).ReadMessageAsNewBuffer();
                     if (handshakeReader.Tag == TOU_ROOT_HANDSHAKE_TAG)
                     {
-                        PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"InnerNetClient.HandleMessage.Prefix - Host recieved TOU handshake");
+                        // PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"InnerNetClient.HandleMessage.Prefix - Host recieved TOU handshake");
                         
                         var clientId = handshakeReader.ReadInt32();
                         var touVersion = handshakeReader.ReadInt32();
                         
                         // List<int> HandshakedClients - exists to disconnect legacy clients that don't send handshake
-                        PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"InnerNetClient.HandleMessage.Prefix - Adding {clientId} with TOU version {touVersion} to List<int>HandshakedClients");
+                        // PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"InnerNetClient.HandleMessage.Prefix - Adding {clientId} with TOU version {touVersion} to List<int>HandshakedClients");
                         HandshakedClients.Add(clientId);
 
                         if (touVersion != MOSS_VERSION)
                         {
-                            PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"InnerNetClient.HandleMessage.Prefix - ClientId {clientId} has mismatched TOU version {touVersion}. (Ours is {MOSS_VERSION})");
+                            // PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"InnerNetClient.HandleMessage.Prefix - ClientId {clientId} has mismatched TOU version {touVersion}. (Ours is {MOSS_VERSION})");
                             __instance.SendCustomDisconnect(clientId);
                         }
                         
@@ -102,7 +101,7 @@ namespace TownOfUs.Handshake
             {
                 if (AmongUsClient.Instance.AmHost && __instance.GameState != InnerNetClient.GameStates.Ended)
                 {
-                    PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"Am host and clientId {data.Id} sent JoinGameResponse");
+                    // PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"Am host and clientId {data.Id} sent JoinGameResponse");
                     Coroutines.Start(WaitForHandshake(__instance, data.Id));
                 }
             }

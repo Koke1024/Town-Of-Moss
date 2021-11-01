@@ -62,6 +62,11 @@ namespace TownOfUs.Roles
         public static IEnumerator HackRoomCoroutine(SystemTypes roomId, Cracker role) {
             role.RoomDetected = DateTime.UtcNow;
             while (true) {
+                if (HudManager.Instance == null) {
+                    role.HackingRoom = null;
+                    role.RoomDetected = null;
+                    break;
+                }
                 HudManager.Instance.ReportButton.enabled = true;
                 
                 if ((DateTime.UtcNow - role.RoomDetected).Value.Seconds > CustomGameOptions.CrackDur) {
