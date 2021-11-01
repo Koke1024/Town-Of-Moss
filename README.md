@@ -14,6 +14,7 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
+| 2021.6.30s | v0.394 | [Download](https://spiel.jp/mod/Moss0394.zip) |
 | 2021.6.30s | v0.393 | [Download](https://spiel.jp/mod/Moss0393.zip) |
 | 2021.6.30s | v0.392 | [Download](https://spiel.jp/mod/Moss0392.zip) |
 | 2021.6.30s | v0.391 | [Download](https://spiel.jp/mod/Moss0391.zip) |
@@ -34,6 +35,13 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v0.394 </summary>
+        <ul> 
+            <li>PolusでPhantomがAdminのVentからスタートしないように変更</li>
+            <li>Crackerなどで発生しうるエラーの対処</li>
+        </ul>
+    </details>
     <details>
         <summary> v0.393 </summary>
         <ul> 
