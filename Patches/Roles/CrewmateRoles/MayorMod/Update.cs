@@ -45,7 +45,7 @@ namespace TownOfUs.CrewmateRoles.MayorMod {
                 Camera.main.ScreenToWorldPoint(new Vector3(0, 0)).x + 0.75f, position1.y,
                 position1.z);
 
-            if (!role.ButtonUsed) {
+            if (!role.ButtonUsed && PlayerControl.LocalPlayer.RemainingEmergencies > 0){
                 renderer.color = Palette.EnabledColor;
                 renderer.material.SetFloat("_Desat", 0f);
                 return;
@@ -65,7 +65,7 @@ namespace TownOfUs.CrewmateRoles.MayorMod {
             if (PlayerControl.LocalPlayer.Data == null) return;
 
             Mayor mayor = Role.GetRole<Mayor>(PlayerControl.LocalPlayer);
-            if (mayor.Player.Data.IsDead && !mayor.ButtonUsed && CustomGameOptions.MayorMeetingOnDead) {
+            if (mayor.Player.Data.IsDead && !mayor.ButtonUsed && CustomGameOptions.MayorMeetingOnDead && PlayerControl.LocalPlayer.RemainingEmergencies > 0) {
                 mayor.ButtonUsed = true;
                 if (MeetingHud.Instance != null) {
                     return;
