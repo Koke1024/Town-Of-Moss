@@ -8,9 +8,7 @@ namespace TheOtherRoles.Patches {
         [HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.Start))]
         public class GameStartManagerStartPatch {
             public static void Postfix(GameStartManager __instance) {
-                if (Utils.IsStreamMode && __instance.GameRoomName) {
-                    lobbyCodeText = __instance.GameRoomName.text;                    
-                }
+                lobbyCodeText = __instance.GameRoomName.text;
             }
         }
 
@@ -20,11 +18,13 @@ namespace TheOtherRoles.Patches {
             }
 
             public static void Postfix(GameStartManager __instance) {
-                if (Utils.IsStreamMode) {
-                    __instance.GameRoomName.text = "******";
-                }
-                else {
-                    __instance.GameRoomName.text = lobbyCodeText;
+                if (__instance.GameRoomName != null) {
+                    if (Utils.IsStreamMode) {
+                        __instance.GameRoomName.text = "******";
+                    }
+                    else {
+                        __instance.GameRoomName.text = lobbyCodeText;
+                    }
                 }
             }
         }
