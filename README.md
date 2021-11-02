@@ -14,6 +14,7 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
+| 2021.6.30s | v0.396 | [Download](https://spiel.jp/mod/Moss0396.zip) |
 | 2021.6.30s | v0.395 | [Download](https://spiel.jp/mod/Moss0395.zip) |
 | 2021.6.30s | v0.394 | [Download](https://spiel.jp/mod/Moss0394.zip) |
 | 2021.6.30s | v0.393 | [Download](https://spiel.jp/mod/Moss0393.zip) |
@@ -36,6 +37,12 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v0.396 </summary>
+        <ul> 
+            <li>DollMakerが味方をキル出来る不具合を修正</li>
+        </ul>
+    </details>
     <details>
         <summary> v0.395 </summary>
         <ul> 
