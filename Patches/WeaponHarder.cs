@@ -105,7 +105,7 @@ namespace GameCustomize {
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
     public class ConsumeAdmin {
         public static void Prefix(PlayerControl __instance) {
-            if (!CustomGameOptions.AdminTimeLimit) {
+            if (CustomGameOptions.AdminTimeLimitTime == 0) {
                 return;
             }
 
@@ -131,7 +131,7 @@ namespace GameCustomize {
         public static TextMeshPro timeText = null;
 
         public static bool Prefix(MapCountOverlay __instance) {
-            if (!CustomGameOptions.AdminTimeLimit) {
+            if (CustomGameOptions.AdminTimeLimitTime == 0) {
                 return true;
             }
 
@@ -167,7 +167,7 @@ namespace GameCustomize {
     [HarmonyPatch(typeof(MapBehaviour), nameof(MapBehaviour.Close))]
     public static class AdminTimeLimitClose {
         public static void Prefix(MapCountOverlay __instance) {
-            if (!CustomGameOptions.AdminTimeLimit) {
+            if (CustomGameOptions.AdminTimeLimitTime == 0) {
                 return;
             }
 
@@ -188,7 +188,7 @@ namespace GameCustomize {
         public static void Postfix(Object obj) {
             if (ExileController.Instance == null || obj != ExileController.Instance.gameObject) return;
 
-            if (CustomGameOptions.AdminTimeLimit) {
+            if (CustomGameOptions.AdminTimeLimitTime > 0) {
                 AdminTimeLimit.timeLimit = CustomGameOptions.AdminTimeLimitTime;
                 AdminTimeLimit.AdminWatcher = new List<byte>();
             }

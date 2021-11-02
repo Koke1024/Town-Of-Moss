@@ -20,7 +20,6 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption VanillaGame;
         public static CustomNumberOption PolusReactorTimeLimit;
         public static CustomStringOption PolusVitalMove;
-        public static CustomToggleOption AdminTimeLimit;
         public static CustomNumberOption AdminTimeLimitTime;
         public static CustomToggleOption NoticeNeutral;
         #region Crewmate Roles
@@ -277,8 +276,7 @@ namespace TownOfUs.CustomOption
             PolusReactorTimeLimit = new CustomNumberOption(num++, "Polus Reactor Time Limit", 45.0f, 30f, 60f, 5f, CooldownFormat);
             PolusVitalMove = 
                 new CustomStringOption(num++, "Polus Vital Move", new[] {"Default", "Labo", "Ship", "O2"});
-            AdminTimeLimit = new CustomToggleOption(num++, "Admin Has Usable Limit Time", false);
-            AdminTimeLimitTime = new CustomNumberOption(num++, "Admin Usable Time", 120.0f, 30f, 180f, 15f, CooldownFormat);
+            AdminTimeLimitTime = new CustomNumberOption(num++, "Admin Usable Time", 0, 0f, 60f, 5f, CooldownFormat);
 
             DeadSeeRoles =
                 new CustomToggleOption(num++, "Dead can see everyone's roles", true);
