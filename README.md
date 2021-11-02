@@ -14,6 +14,7 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
+| 2021.6.30s | v0.395 | [Download](https://spiel.jp/mod/Moss0395.zip) |
 | 2021.6.30s | v0.394 | [Download](https://spiel.jp/mod/Moss0394.zip) |
 | 2021.6.30s | v0.393 | [Download](https://spiel.jp/mod/Moss0393.zip) |
 | 2021.6.30s | v0.392 | [Download](https://spiel.jp/mod/Moss0392.zip) |
@@ -35,6 +36,12 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v0.395 </summary>
+        <ul> 
+            <li>admin使用時間制限の処理変更</li>
+        </ul>
+    </details>
     <details>
         <summary> v0.394 </summary>
         <ul> 
@@ -774,8 +781,8 @@ Puppeteerは、憑依している間と憑依解除後の3秒間は行動が行�
 | Impostors can see the roles of their team | インポスター同士が互いの役職を知っている | Toggle | On |
 | Polus Reactor Time Limit | PolusのMelt Downサボタージュの制限時間 | Time | 45.0s |
 | Polus Vital Move | PolusのVitalの位置を変更できる。Shipにした場合Drop Ship内にベントが一つ追加される | Default / Labo / Ship / O2 | Default |
-| Admin Has Usable Limit Time | AdminのRoundごとの合計使用時間に制限をかける | Toggle | Off |
-| Admin Usable Time | 制限がある場合、Adminの利用可能時間 | Time | 120s |
+| Admin Has Usable Limit Time | に制限をかける | Toggle | Off |
+| Admin Usable Time | AdminのRoundごとの合計使用可能時間（0なら制限なし） | Time | 0s |
 | Dead can see everyone's roles | 死亡後に全員の役職がわかる | Toggle | On |
 | Role Appears Under Name | 自身の役職を名前の下に表示する | Toggle | On |
 | Report Assigned Neutral Roles | 生存者が半分以下になったあとの会議で、そのゲームで最初に割り当てられた第三陣営の内訳が通知される | Toggle | Off |
