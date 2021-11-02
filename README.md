@@ -40,6 +40,7 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
         <summary> v0.395 </summary>
         <ul> 
             <li>admin使用時間制限の処理変更</li>
+            <li>不具合のため非公開</li>
         </ul>
     </details>
     <details>
@@ -47,6 +48,7 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
         <ul> 
             <li>PolusでPhantomがAdminのVentからスタートしないように変更</li>
             <li>Crackerなどで発生しうるエラーの対処</li>
+            <li>不具合のため非公開</li>
         </ul>
     </details>
     <details>

@@ -36,6 +36,9 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
 
         public static void StopRewind(TimeLord role)
         {
+            if (PlayerControl.LocalPlayer == null) {
+                return;
+            }
             //System.Console.WriteLine("STOP...");
             role.FinishRewind = DateTime.UtcNow;
             RecordRewind.rewinding = false;
@@ -43,7 +46,7 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
             HudManager.Instance.FullScreen.enabled = false;
             HudManager.Instance.FullScreen.color = oldColor;
 
-            if (CustomGameOptions.RewindFlash) {
+            if (CustomGameOptions.RewindFlash && role.Player != null && role.Player.myRend != null) {
                 role.Player.myRend.material.SetFloat("_Outline", 0f);
                 role.Player.myRend.material.SetColor("_OutlineColor", new Color());
             }

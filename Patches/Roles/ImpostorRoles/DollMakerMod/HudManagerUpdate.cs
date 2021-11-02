@@ -1,5 +1,7 @@
-﻿using HarmonyLib;
+﻿using System.Linq;
+using HarmonyLib;
 using Il2CppSystem;
+using Il2CppSystem.Linq;
 using Reactor;
 using TownOfUs.Extensions;
 using TownOfUs.Roles;
@@ -30,8 +32,10 @@ namespace TownOfUs.ImpostorRoles.DollMakerMod {
             __instance.KillButton.TimerText.color = new Color(0, 0, 0, 0);
             __instance.KillButton.gameObject.SetActive(false);
 
-
-            Utils.SetTarget(ref role.ClosestPlayer, role._waxButton);
+            var notImpostor = PlayerControl.AllPlayerControls.ToArray().Where(
+                x => !x.Is(Faction.Impostors)
+            ).ToList();
+            Utils.SetTarget(ref role.ClosestPlayer, role._waxButton, float.NaN, notImpostor);
             
             if (role.ClosestPlayer) {
                 role._waxButton.renderer.color = Palette.EnabledColor;
