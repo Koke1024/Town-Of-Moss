@@ -1,4 +1,6 @@
+using System.Linq;
 using HarmonyLib;
+using UnityEngine;
 
 namespace TownOfUs.Patches
 {
@@ -20,9 +22,15 @@ namespace TownOfUs.Patches
                            && !MeetingHud.Instance
                            && !CustomPlayerMenu.Instance
                            && !ExileController.Instance
-                           && !IntroCutscene.Instance;
+                           && !IntroCutscene.Instance
+                           && !MyBodyExists();
 
                 return false;
+            }
+            public static bool MyBodyExists() {
+                var body = Object.FindObjectsOfType<DeadBody>()
+                    .FirstOrDefault(b => b.ParentId == PlayerControl.LocalPlayer.PlayerId);
+                return body != null;
             }
         }
     }
