@@ -23,14 +23,14 @@ namespace TownOfUs.Patches
                            && !CustomPlayerMenu.Instance
                            && !ExileController.Instance
                            && !IntroCutscene.Instance
-                           && !MyBodyExists();
+                           && !GetMyBody();
 
                 return false;
             }
-            public static bool MyBodyExists() {
-                var body = Object.FindObjectsOfType<DeadBody>()
+            public static DeadBody GetMyBody() {
+                DeadBody body = Object.FindObjectsOfType<DeadBody>()
                     .FirstOrDefault(b => b.ParentId == PlayerControl.LocalPlayer.PlayerId);
-                return body != null;
+                return body;
             }
         }
     }
