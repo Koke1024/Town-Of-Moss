@@ -14,6 +14,7 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
+| 2021.6.30s | v0.397 | [Download](https://spiel.jp/mod/Moss0397.zip) |
 | 2021.6.30s | v0.396 | [Download](https://spiel.jp/mod/Moss0396.zip) |
 | 2021.6.30s | v0.395 | [Download](https://spiel.jp/mod/Moss0395.zip) |
 | 2021.6.30s | v0.394 | [Download](https://spiel.jp/mod/Moss0394.zip) |
@@ -37,6 +38,12 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v0.397 </summary>
+        <ul> 
+            <li>蘇生までの間に情報を集めることを防止するため、自身の死体があるうちはその場から動けず、視界も生前と同様になるよう変更</li>
+        </ul>
+    </details>
     <details>
         <summary> v0.396 </summary>
         <ul> 

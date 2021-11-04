@@ -13,13 +13,6 @@ using Object = UnityEngine.Object;
 namespace TownOfUs.NeutralRoles.ZombieMod {
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
     static class ZombieUpdate {
-        public static void Prefix(PlayerControl __instance) {
-            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Zombie)) return;
-            Zombie zombie = Role.GetRole<Zombie>(PlayerControl.LocalPlayer);
-            if (zombie.Player.Data.IsDead && !zombie.KilledBySeer) {
-                zombie.Player.moveable = false;
-            }
-        }
 
         public static void Postfix(PlayerControl __instance) {
             if (!PlayerControl.LocalPlayer.Is(RoleEnum.Zombie)) return;
@@ -33,15 +26,8 @@ namespace TownOfUs.NeutralRoles.ZombieMod {
                 zombie.deadTime = null;
                 return;
             }
-
-            if (zombie.Player.Data.IsDead && zombie.deadTime == null) {
-                zombie.deadTime = DateTime.UtcNow;
-                zombie.Player.NetTransform.Halt();
-                zombie.Player.moveable = false;
-            }
-
+            
             if (zombie.deadTime != null && (DateTime.UtcNow - zombie.deadTime).Value.TotalMilliseconds >= CustomGameOptions.ZombieReviveTime * 1000.0f) {
-                zombie.Player.moveable = true;
                 var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                     (byte) CustomRPC.ZombieRevive, SendOption.Reliable, -1);
                 writer.Write(PlayerControl.LocalPlayer.PlayerId);

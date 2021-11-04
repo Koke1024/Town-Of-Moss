@@ -1,6 +1,8 @@
 using System;
 using HarmonyLib;
+using SteamKit2.GC.TF2.Internal;
 using TownOfUs.Extensions;
+using TownOfUs.Patches;
 using TownOfUs.Roles;
 using TownOfUs.Roles.Modifiers;
 using UnityEngine;
@@ -13,7 +15,7 @@ namespace TownOfUs
         public static bool Prefix(ShipStatus __instance, [HarmonyArgument(0)] GameData.PlayerInfo player,
             ref float __result)
         {
-            if (player == null || player.IsDead)
+            if (player == null || (player.IsDead && !CanMove.CanMovePatch.GetMyBody()))
             {
                 __result = __instance.MaxLightRadius;
                 return false;
@@ -63,6 +65,15 @@ namespace TownOfUs
                     __result *= 0.5f;
 
             return false;
+        }
+    }
+
+    [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
+    public static class deadLowSight {
+        public static void Prefix(PlayerControl __instance) {
+            if (PlayerControl.LocalPlayer.Data.IsDead && CanMove.CanMovePatch.GetMyBody()) {
+                DestroyableSingleton<HudManager>.Instance.ShadowQuad.gameObject.SetActive(true);                
+            }
         }
     }
 }
