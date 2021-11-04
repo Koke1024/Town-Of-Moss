@@ -71,8 +71,12 @@ namespace TownOfUs
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
     public static class deadLowSight {
         public static void Prefix(PlayerControl __instance) {
+            if (LobbyBehaviour.Instance || MeetingHud.Instance) {
+                return;
+            }
+
             if (PlayerControl.LocalPlayer.Data.IsDead && CanMove.CanMovePatch.GetMyBody()) {
-                DestroyableSingleton<HudManager>.Instance.ShadowQuad.gameObject.SetActive(true);                
+                DestroyableSingleton<HudManager>.Instance.ShadowQuad.gameObject.SetActive(true);
             }
         }
     }

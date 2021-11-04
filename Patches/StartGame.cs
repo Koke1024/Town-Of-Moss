@@ -1,6 +1,7 @@
 using System.Linq;
 using Epic.OnlineServices.AntiCheatCommon;
 using HarmonyLib;
+using TownOfUs.Extensions;
 using TownOfUs.ImpostorRoles.MinerMod;
 using UnityEngine;
 
@@ -17,6 +18,9 @@ namespace TownOfUs.OnStartGame
     {
         public static void Postfix(ShipStatus __instance)
         {
+            // foreach (var obj in GameObject.FindObjectsOfType<MonoBehaviour>()) {
+            //     AmongUsExtensions.Log($"{obj.name}: {obj.transform.position.x}, {obj.transform.position.y}");
+            // }
             if (__instance.Type != ShipStatus.MapType.Pb || CustomGameOptions.PolusVitalMove == PolusVitalPosition.Default) {
                 return;
             }
