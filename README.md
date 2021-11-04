@@ -12,29 +12,16 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 ## Releases
 ### Town of Moss
 
-| Among Us - Version| Mod Version | Link |
-|----------|-------------|-----------------|
-| 2021.6.30s | v0.397 | [Download](https://spiel.jp/mod/Moss0397.zip) |
-| 2021.6.30s | v0.396 | [Download](https://spiel.jp/mod/Moss0396.zip) |
-| 2021.6.30s | v0.395 | [Download](https://spiel.jp/mod/Moss0395.zip) |
-| 2021.6.30s | v0.394 | [Download](https://spiel.jp/mod/Moss0394.zip) |
-| 2021.6.30s | v0.393 | [Download](https://spiel.jp/mod/Moss0393.zip) |
-| 2021.6.30s | v0.392 | [Download](https://spiel.jp/mod/Moss0392.zip) |
-| 2021.6.30s | v0.391 | [Download](https://spiel.jp/mod/Moss0391.zip) |
-| 2021.6.30s | v0.39 | [Download](https://spiel.jp/mod/Moss039.zip) |
-| 2021.6.30s | v0.38 | [Download](https://spiel.jp/mod/Moss038.zip) |
-| 2021.6.30s | v0.378 | [Download](https://spiel.jp/mod/Moss0378.zip) |
-| 2021.6.30s | v0.377 | [Download](https://spiel.jp/mod/Moss0377.zip) |
-| 2021.6.30s | v0.376 | [Download](https://spiel.jp/mod/Moss0376.zip) |
-| 2021.6.30s | v0.375 | [Download](https://spiel.jp/mod/Moss0375.zip) |
-| 2021.6.30s | v0.37 | [Download](https://spiel.jp/mod/Moss037.zip) |
-| 2021.6.30s | v0.363 | [Download](https://spiel.jp/mod/Moss0363.zip) |
-| 2021.6.30s | v0.362 | [Download](https://spiel.jp/mod/Moss0362.zip) |
-| 2021.6.30s | v0.352 | [Download](https://spiel.jp/mod/Moss0352.zip) |
-| 2021.6.30s | v0.35 | [Download](https://spiel.jp/mod/Moss035.zip) |
-| 2021.6.30s | v0.34 | [Download](https://spiel.jp/mod/Moss034.zip) |
-| 2021.6.30s | v0.33 | [Download](https://spiel.jp/mod/Moss033.zip) |
-| 2021.6.30s | v0.32 | [Download](https://spiel.jp/mod/Moss032.zip) |
+| Date | Among Us - Version| Mod Version | Link |
+|---|----------|-------------|-----------------|
+| 21-11-04 | 2021.6.30s | v0.397 | [Download](https://spiel.jp/mod/Moss0397.zip) |
+| 21-11-03 | 2021.6.30s | v0.396 | [Download](https://spiel.jp/mod/Moss0396.zip) |
+| 21-11-03 | 2021.6.30s | v0.395 | [Download](https://spiel.jp/mod/Moss0395.zip) |
+| 21-11-02 | 2021.6.30s | v0.394 | [Download](https://spiel.jp/mod/Moss0394.zip) |
+| 21-11-01 | 2021.6.30s | v0.393 | [Download](https://spiel.jp/mod/Moss0393.zip) |
+| 21-10-31 | 2021.6.30s | v0.392 | [Download](https://spiel.jp/mod/Moss0392.zip) |
+| 21-10-31 | 2021.6.30s | v0.391 | [Download](https://spiel.jp/mod/Moss0391.zip) |
+| 21-10-30 | 2021.6.30s | v0.39 | [Download](https://spiel.jp/mod/Moss039.zip) |
 
 <details>
     <summary> Changelog </summary>
@@ -797,7 +784,6 @@ Puppeteerは、憑依している間と憑依解除後の3秒間は行動が行�
 | Impostors can see the roles of their team | インポスター同士が互いの役職を知っている | Toggle | On |
 | Polus Reactor Time Limit | PolusのMelt Downサボタージュの制限時間 | Time | 45.0s |
 | Polus Vital Move | PolusのVitalの位置を変更できる。Shipにした場合Drop Ship内にベントが一つ追加される | Default / Labo / Ship / O2 | Default |
-| Admin Has Usable Limit Time | に制限をかける | Toggle | Off |
 | Admin Usable Time | AdminのRoundごとの合計使用可能時間（0なら制限なし） | Time | 0s |
 | Dead can see everyone's roles | 死亡後に全員の役職がわかる | Toggle | On |
 | Role Appears Under Name | 自身の役職を名前の下に表示する | Toggle | On |
@@ -821,7 +807,7 @@ Puppeteerは、憑依している間と憑依解除後の3秒間は行動が行�
 | Name | Description |
 |----------|:-------------:|
 | Hide Room Code | ONのとき、ロビーでルームコードが非表示になります。 |
-| Game Setting Check | クリックすると、チャットに現在のゲームの設定が表示されます。 |
+| Game Setting Check | クリックすると、チャットに現在のゲームのインポスターや第三陣営の人数情報が表示されます。 |
 | Show Role Manual | クリックすると、チャットに現在の自分のロールの情報が表示されます。 |
 
 -----------------------
