@@ -1,5 +1,6 @@
 using System;
 using TownOfUs.Extensions;
+using TownOfUs.Patches;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -54,7 +55,9 @@ namespace TownOfUs.Roles
             Enabled = true;
             TimeRemaining -= Time.deltaTime;
             var color = Color.clear;
-            if (PlayerControl.LocalPlayer.Data.IsImpostor || PlayerControl.LocalPlayer.Data.IsDead) color.a = 0.1f;
+            if (PlayerControl.LocalPlayer.Data.IsImpostor || (PlayerControl.LocalPlayer.Data.IsDead && !CanMove.CanMovePatch.GetMyBody())) {
+                color.a = 0.1f;
+            }
 
 
             Player.MyRend.color = color;
