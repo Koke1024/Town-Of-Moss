@@ -14,6 +14,7 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 | Date | Among Us - Version| Mod Version | Link |
 |---|----------|-------------|-----------------|
+| 21-11-05 | 2021.6.30s | v0.4 | [Download](https://spiel.jp/mod/Moss04.zip) |
 | 21-11-04 | 2021.6.30s | v0.397 | [Download](https://spiel.jp/mod/Moss0397.zip) |
 | 21-11-03 | 2021.6.30s | v0.396 | [Download](https://spiel.jp/mod/Moss0396.zip) |
 | 21-11-03 | 2021.6.30s | v0.395 | [Download](https://spiel.jp/mod/Moss0395.zip) |
@@ -25,6 +26,13 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v0.4 </summary>
+        <ul> 
+            <li>Druidのラウンドごとの蘇生回数上限設定を追加</li>
+            <li>安定性の向上</li>
+        </ul>
+    </details>
     <details>
         <summary> v0.397 </summary>
         <ul> 
@@ -435,6 +443,7 @@ Admin閲覧中は消費電力が3倍になります。
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
 | Distance to revive dead | 蘇生に必要な距離 | Time | 20.0m |
+| Revive Limit Per Limit | ラウンドごとの蘇生可能回数 | No Limit / 1 / 2 / 3 | No Limit |
 
 -----------------------
 
