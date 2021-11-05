@@ -9,6 +9,7 @@ using InnerNet;
 using Reactor.Extensions;
 using TownOfUs.CrewmateRoles.MedicMod;
 using Il2CppSystem.Collections.Generic;
+using TownOfUs.Extensions;
 using Object = UnityEngine.Object;
 
 namespace TownOfUs.Roles
@@ -109,8 +110,9 @@ namespace TownOfUs.Roles
             }
             revivedCount += 1;
             if (!CanRevive()) {
-                _dragDropButton.renderer.color = Palette.DisabledClear;
-                _dragDropButton.renderer.material.SetFloat("_Desat", 1f);    
+                if (_dragDropButton) {
+                    _dragDropButton.renderer.color = new Color(0, 0, 0, 0);
+                }    
             }
         }
     }

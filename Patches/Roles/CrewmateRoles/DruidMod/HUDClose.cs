@@ -11,11 +11,12 @@ namespace TownOfUs.CrewmateRoles.DruidMod
         public static void Postfix(Object obj)
         {
             if (ExileController.Instance == null || obj != ExileController.Instance.gameObject) return;
-            foreach (var role in Role.GetRoles(RoleEnum.Druid))
-            {
-                var druid = (Druid) role;
-                druid.revivedCount = 0;
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Druid)) {
+                return;
             }
+            var druid = Role.GetRole<Druid>(PlayerControl.LocalPlayer);
+            druid.revivedCount = 0;
+            druid._dragDropButton.renderer.color = new Color(1, 1, 1, 1);;
         }
     }
 }
