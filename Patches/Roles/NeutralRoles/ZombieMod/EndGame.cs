@@ -16,8 +16,9 @@ namespace TownOfUs.NeutralRoles.ZombieMod
                     ((Zombie) role).Loses();
 
             var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
-                (byte) CustomRPC.ZombieLose,
+                (byte) CustomRPC.NeutralLose,
                 SendOption.Reliable, -1);
+            writer.Write((byte)RoleEnum.Zombie);
             AmongUsClient.Instance.FinishRpcImmediately(writer);
 
             return true;

@@ -53,8 +53,8 @@ namespace TownOfUs.NeutralRoles.ArsonistMod
         }
 
         public static IEnumerator Ignite(Arsonist role) {
-            Coroutines.Start(Utils.FlashCoroutine(new Color(1.0f, 0, 0, 1.0f), 3.0f));
-            yield return new WaitForSeconds(3.0f);
+            Coroutines.Start(Utils.FlashCoroutine(new Color(1.0f, 0, 0, 1.0f), 5.0f));
+            yield return new WaitForSeconds(2.0f);
             foreach (var playerId in role.DousedPlayers)
             {
                 var player = Utils.PlayerById(playerId);
@@ -63,11 +63,9 @@ namespace TownOfUs.NeutralRoles.ArsonistMod
                     player.Data.Disconnected ||
                     player.Data.IsDead
                 ) continue;
-                Utils.MurderPlayer(player, player);
+                Utils.MurderPlayer(role.Player, player);
             }
-
-            Utils.MurderPlayer(role.Player, role.Player);
-
+            yield return new WaitForSeconds(3.0f);
 
             role.IgniteUsed = true;
         }

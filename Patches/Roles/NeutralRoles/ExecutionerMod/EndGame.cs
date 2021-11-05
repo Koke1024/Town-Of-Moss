@@ -16,8 +16,9 @@ namespace TownOfUs.NeutralRoles.ExecutionerMod
                     ((Executioner) role).Loses();
 
             var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
-                (byte) CustomRPC.ExecutionerLose,
+                (byte) CustomRPC.NeutralLose,
                 SendOption.Reliable, -1);
+            writer.Write((byte)RoleEnum.Executioner);
             AmongUsClient.Instance.FinishRpcImmediately(writer);
 
             return true;

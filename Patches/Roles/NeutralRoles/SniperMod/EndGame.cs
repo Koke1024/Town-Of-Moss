@@ -19,8 +19,9 @@ namespace TownOfUs.NeutralRoles.SniperMod
                         ((Sniper) role).Loses();
 
                         var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
-                            (byte) CustomRPC.SniperLose,
+                            (byte) CustomRPC.NeutralLose,
                             SendOption.Reliable, -1);
+                        writer.Write((byte)RoleEnum.Sniper);
                         AmongUsClient.Instance.FinishRpcImmediately(writer);
 
                         return true;

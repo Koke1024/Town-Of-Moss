@@ -16,8 +16,9 @@ namespace TownOfUs.NeutralRoles.ArsonistMod
                     ((Arsonist) role).Loses();
 
             var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
-                (byte) CustomRPC.ArsonistLose,
+                (byte) CustomRPC.NeutralLose,
                 SendOption.Reliable, -1);
+            writer.Write((byte)RoleEnum.Arsonist);
             AmongUsClient.Instance.FinishRpcImmediately(writer);
 
             return true;

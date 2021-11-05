@@ -18,6 +18,9 @@ namespace TownOfUs.Roles
             Faction = Faction.Neutral;
         }
 
+        public void Wins() {
+            CompletePhantomTasks = true;
+        }
         public void Loses()
         {
             Player.Data.IsImpostor = true;

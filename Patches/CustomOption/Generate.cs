@@ -49,6 +49,7 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption ArsonistOn;
         public static CustomNumberOption PhantomOn;
         public static CustomNumberOption SniperOn;
+        public static CustomNumberOption VultureOn;
         #endregion
         #region Impostor Roles
         public static CustomHeaderOption ImpostorRoles;
@@ -231,6 +232,9 @@ namespace TownOfUs.CustomOption
         public static CustomHeaderOption Sniper;
         public static CustomNumberOption SniperWinCnt;
         
+        public static CustomHeaderOption Vulture;
+        public static CustomNumberOption VultureWinCnt;
+        
         public static CustomHeaderOption Zombie;
         public static CustomNumberOption ZombieReviveTime;
         public static CustomToggleOption ZombieKilledBySeer;
@@ -336,6 +340,8 @@ namespace TownOfUs.CustomOption
             SniperOn = new CustomNumberOption(true, num++, "<color=#545459>Sniper</color>", 100.0f, 0f, 100f, 10f,
                 PercentFormat);
             ZombieOn = new CustomNumberOption(true, num++, "<color=#773800>Zombie</color>", 100.0f, 0f, 100f, 10f,
+                PercentFormat);
+            VultureOn = new CustomNumberOption(true, num++, "<color=#773800>Vulture</color>", 100.0f, 0f, 100f, 10f,
                 PercentFormat);
 #endregion
 #region Impostor Roles
@@ -560,6 +566,11 @@ namespace TownOfUs.CustomOption
             ZombieReviveTime =
                 new CustomNumberOption(num++, "Zombie Revive Time", 15, 1, 60, 2.5f, CooldownFormat);
             ZombieKilledBySeer = new CustomToggleOption(num++, "Killed By Seer", true);
+
+            Vulture = new CustomHeaderOption(num++, "<color=#545459>Sniper</color>");
+
+            VultureWinCnt =
+                new CustomNumberOption(num++, "Number of Vulture Eats to Win", 4, 2, 6, 1);
 
             ImpostorRolesSetting = new CustomHeaderOption(num++, "<color=#FF0000FF>Impostor Roles</color>");
 

@@ -16,8 +16,9 @@ namespace TownOfUs.NeutralRoles.GlitchMod
                     ((Glitch) role).Loses();
 
             var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
-                (byte) CustomRPC.GlitchLose,
+                (byte) CustomRPC.NeutralLose,
                 SendOption.Reliable, -1);
+            writer.Write((byte)RoleEnum.Glitch);
             AmongUsClient.Instance.FinishRpcImmediately(writer);
 
             return true;

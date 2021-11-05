@@ -78,11 +78,11 @@ namespace TownOfUs.Roles
             {
                 var writer = AmongUsClient.Instance.StartRpcImmediately(
                     PlayerControl.LocalPlayer.NetId,
-                    (byte)CustomRPC.GlitchWin,
+                    (byte)CustomRPC.NeutralWin,
                     SendOption.Reliable,
                     -1
                 );
-                writer.Write(Player.PlayerId);
+                writer.Write((byte)RoleEnum.Glitch);
                 Wins();
                 AmongUsClient.Instance.FinishRpcImmediately(writer);
                 Utils.EndGame();

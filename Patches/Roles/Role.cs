@@ -227,22 +227,23 @@ namespace TownOfUs.Roles
                 $"{ColorString}Role: {Name}\n{TaskText()}</color>";
         }
 
-        public static T Gen<T>(Type type, PlayerControl player, CustomRPC rpc)
+        public static T Gen<T>(Type type, PlayerControl player, byte roleType)
         {
             var role = (T)Activator.CreateInstance(type, new object[] { player });
 
             var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
-                (byte)rpc, SendOption.Reliable, -1);
+                (byte)CustomRPC.SetRole, SendOption.Reliable, -1);
             writer.Write(player.PlayerId);
+            writer.Write((byte)roleType);
             AmongUsClient.Instance.FinishRpcImmediately(writer);
             return role;
         }
 
-        public static T Gen<T>(Type type, List<PlayerControl> players, CustomRPC rpc)
+        public static T Gen<T>(Type type, List<PlayerControl> players, byte roleType)
         {
             var player = players[Random.RandomRangeInt(0, players.Count)];
             
-            var role = Gen<T>(type, player, rpc);
+            var role = Gen<T>(type, player, roleType);
             players.Remove(player);
             return role;
         }

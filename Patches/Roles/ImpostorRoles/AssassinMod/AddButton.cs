@@ -112,8 +112,6 @@ namespace TownOfUs.ImpostorRoles.AssassinMod
     }
 
     public static class ShootExecute {
-        
-
         public static void Guess(Assassin role, PlayerVoteArea voteArea, string currentGuess)
         {
             if (
@@ -135,8 +133,9 @@ namespace TownOfUs.ImpostorRoles.AssassinMod
                 
                 if (((Sniper)role).KilledCount >= CustomGameOptions.SniperWinCnt) {
                     var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
-                        (byte) CustomRPC.SniperWin, SendOption.Reliable, -1);
+                        (byte) CustomRPC.NeutralWin, SendOption.Reliable, -1);
                     writer.Write(role.Player.PlayerId);
+                    writer.Write((byte)RoleEnum.Sniper);
                     AmongUsClient.Instance.FinishRpcImmediately(writer);
                     Utils.EndGame();
                 }

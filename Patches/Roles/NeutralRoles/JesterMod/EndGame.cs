@@ -16,8 +16,9 @@ namespace TownOfUs.NeutralRoles.JesterMod
                     ((Jester) role).Loses();
 
             var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
-                (byte) CustomRPC.JesterLose,
+                (byte) CustomRPC.NeutralLose,
                 SendOption.Reliable, -1);
+            writer.Write((byte)RoleEnum.Jester);
             AmongUsClient.Instance.FinishRpcImmediately(writer);
 
             return true;
