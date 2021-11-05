@@ -13,8 +13,16 @@ using Object = UnityEngine.Object;
 
 namespace TownOfUs.Roles
 {
+    public enum ReviveLimit
+    {
+        NoLimit = 0,
+        One = 1,
+        Two = 2,
+        Three = 3
+    }
     public class Druid : Undertaker {
         private static Vector2 _dragStartPosition;
+        public int revivedCount = 0;
         
         public Druid(PlayerControl player) : base(player)
         {
@@ -24,6 +32,7 @@ namespace TownOfUs.Roles
             Color = new Color(0.4f, 0f, 0.56f);
             RoleType = RoleEnum.Druid;
             Faction = Faction.Crewmates;
+            revivedCount = 0;
         }
         
         public void DragStart(Vector2 startPos) {
@@ -34,6 +43,13 @@ namespace TownOfUs.Roles
             if(distance > CustomGameOptions.DruidReviveRange / 2.0f){
                 Revive();
             }
+        }
+
+        public bool CanRevive() {
+            if (CustomGameOptions.DruidReviveLimit == ReviveLimit.NoLimit) {
+                return true;
+            }
+            return revivedCount < (int)CustomGameOptions.DruidReviveLimit;
         }
 
         public bool Revive() {
@@ -90,6 +106,11 @@ namespace TownOfUs.Roles
                 }
                 catch {
                 }
+            }
+            revivedCount += 1;
+            if (!CanRevive()) {
+                _dragDropButton.renderer.color = Palette.DisabledClear;
+                _dragDropButton.renderer.material.SetFloat("_Desat", 1f);    
             }
         }
     }

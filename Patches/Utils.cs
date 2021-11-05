@@ -175,7 +175,9 @@ namespace TownOfUs
         }
         public static bool CanDrag(this PlayerControl player)
         {
-            return player.Is(RoleEnum.Undertaker) || player.Is(RoleEnum.Druid) || 
+            return player.Is(RoleEnum.Undertaker) || 
+                   (player.Is(RoleEnum.Druid) && Role.GetRole<Druid>(player).CanRevive())
+                   || 
                     (CustomGameOptions.JesterDragBody && player.Is(RoleEnum.Jester));
         }
         public static bool CanMorph(this PlayerControl player)

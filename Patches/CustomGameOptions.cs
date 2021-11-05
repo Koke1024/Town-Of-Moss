@@ -101,8 +101,7 @@ namespace TownOfUs
         public static float SeerCd => Generate.SeerCooldown.Get();
         public static float MaxChargeTime => Generate.MaxChargeTime.Get();
         public static float DruidReviveRange => Generate.DruidReviveRange.Get();
-        
-        public static float SecurityGuardSpawnRate => Generate.SecurityGuardSpawnRate.Get();
+        public static ReviveLimit DruidReviveLimit => (ReviveLimit)Generate.DruidReviveLimit.Get();
         public static float SecurityGuardCooldown => Generate.SecurityGuardCooldown.Get();
         public static int SecurityGuardTotalScrews => (int)Generate.SecurityGuardTotalScrews.Get();
         public static int SecurityGuardCamPrice => (int)Generate.SecurityGuardCamPrice.Get();

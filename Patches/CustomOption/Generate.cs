@@ -132,9 +132,9 @@ namespace TownOfUs.CustomOption
 
         public static CustomHeaderOption Druid;
         public static CustomNumberOption DruidReviveRange;
+        public static CustomStringOption DruidReviveLimit;
         
         public static CustomHeaderOption SecurityGuard;
-        public static CustomNumberOption SecurityGuardSpawnRate;
         public static CustomNumberOption SecurityGuardCooldown;
         public static CustomNumberOption SecurityGuardTotalScrews;
         public static CustomNumberOption SecurityGuardCamPrice;
@@ -504,6 +504,8 @@ namespace TownOfUs.CustomOption
             Druid =
                 new CustomHeaderOption(num++, "<color=#66008EFF>Druid</color>");
             DruidReviveRange = new CustomNumberOption(num++, "Distance to revive dead", 20f, 2f, 40f, 1f, DistanceFormat);
+            DruidReviveLimit =
+                new CustomStringOption(num++, "Revive Limit Per Round", new[] {"No Limit", "1", "2", "3"});
 
             NeutralRolesSetting = new CustomHeaderOption(num++, "<color=#FF00FFFF>Neutral Roles</color>");
             
