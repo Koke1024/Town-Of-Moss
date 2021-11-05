@@ -290,6 +290,16 @@ namespace TownOfUs
                             case RoleEnum.Charger: new Charger(Utils.PlayerById(readByte)); break;
                             case RoleEnum.Druid: new Druid(Utils.PlayerById(readByte)); break;
                             case RoleEnum.SecurityGuard: new SecurityGuard(Utils.PlayerById(readByte)); break;
+                            case RoleEnum.Vulture: new Vulture(Utils.PlayerById(readByte)); break;
+                            case RoleEnum.Puppeteer: new Puppeteer(Utils.PlayerById(readByte)); break;
+                            case RoleEnum.Undertaker: new Undertaker(Utils.PlayerById(readByte)); break;
+                            case RoleEnum.Assassin: new Assassin(Utils.PlayerById(readByte)); break;
+                            case RoleEnum.Underdog: new Underdog(Utils.PlayerById(readByte)); break;
+                            case RoleEnum.MultiKiller: new MultiKiller(Utils.PlayerById(readByte)); break;
+                            case RoleEnum.Cracker: new Cracker(Utils.PlayerById(readByte)); break;
+                            default:
+                                AmongUsExtensions.Log($"Uncaught Role {(RoleEnum)readByte1} has been received.");
+                                break;
                         }
                         break;
                     case CustomRPC.SetModifier:
@@ -320,6 +330,9 @@ namespace TownOfUs
                                 case RoleEnum.Shifter: ((Shifter) role).Loses(); break;
                                 case RoleEnum.Sniper: ((Sniper) role).Loses(); break;
                                 case RoleEnum.Executioner: ((Executioner) role).Loses(); break;
+                                default:
+                                    AmongUsExtensions.Log($"Uncaught Role {loseRoleType} lose has been received.");
+                                    break;
                             }
                         }
                         break;
@@ -335,6 +348,9 @@ namespace TownOfUs
                                 case RoleEnum.Glitch: ((Glitch) role).Wins(); break;
                                 case RoleEnum.Sniper: ((Sniper) role).Wins(); break;
                                 case RoleEnum.Executioner: ((Executioner) role).Wins(); break;
+                                default:
+                                    AmongUsExtensions.Log($"Uncaught Role {winRoleType} win has been received.");
+                                    break;
                             }
                         }
                         break;
@@ -438,7 +454,6 @@ namespace TownOfUs
                         if (!mayor.Is(RoleEnum.Mayor) && !mayor.Is(RoleEnum.Executioner)) {
                             mayorRole.VoteBank -= mayorRole.ExtraVotes.Count;
                         }
-
                         break;
 
                     case CustomRPC.SetSwaps:
@@ -643,8 +658,7 @@ namespace TownOfUs
                                 if (body.ParentId == PlayerControl.LocalPlayer.PlayerId)
                                     Coroutines.Start(Utils.FlashCoroutine(druidRole.Color,
                                         CustomGameOptions.ReviveDuration, 0.5f));
-
-                                    druidRole.DruidRevive(body, druidRole);
+                                druidRole.DruidRevive(body, druidRole);
                             }
 
                         break;
