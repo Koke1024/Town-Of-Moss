@@ -1,16 +1,9 @@
-  
+
 using HarmonyLib;
 using UnityEngine;
-using System.Collections.Generic;
-using Hazel;
-using System;
-using System.Numerics;
-using Reactor.Extensions;
 using TownOfUs;
-using TownOfUs.Patches;
 using TownOfUs.Roles;
 using UnityEngine.UI;
-using UnityEngine.Events;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
@@ -145,23 +138,23 @@ namespace TheOtherRoles.Patches {
 		}
 	}
 
-    [HarmonyPatch(typeof(OptionsMenuBehaviour), nameof(OptionsMenuBehaviour.Update))]
-    public class ButtonUpdate {
-        
-        private static void updateToggle(ToggleButtonBehaviour button, string text, bool on) {
-            if (button == null || button.gameObject == null) return;
-
-            Color color = on ? new Color(0f, 1f, 0.16470589f, 1f) : Color.white;
-            button.Background.color = color;
-            button.Text.text = $"{text}{(on ? "On" : "Off")}";
-            if (button.Rollover) button.Rollover.ChangeOutColor(color);
-        }
-
-        static void Prefix() {
-            updateToggle(OptionsMenuBehaviourStartPatch.getHostButton, "Room Host: ", AmongUsClient.Instance.AmHost);
-            if (GameStartManager.Instance != null && GameStartManager.Instance.StartButton != null) {
-                GameStartManager.Instance.StartButton.gameObject.SetActive(AmongUsClient.Instance.AmHost);                
-            }
-        }
-    }
+    // [HarmonyPatch(typeof(OptionsMenuBehaviour), nameof(OptionsMenuBehaviour.Update))]
+    // public class ButtonUpdate {
+    //     
+    //     private static void updateToggle(ToggleButtonBehaviour button, string text, bool on) {
+    //         if (button == null || button.gameObject == null) return;
+    //
+    //         Color color = on ? new Color(0f, 1f, 0.16470589f, 1f) : Color.white;
+    //         button.Background.color = color;
+    //         button.Text.text = $"{text}{(on ? "On" : "Off")}";
+    //         if (button.Rollover) button.Rollover.ChangeOutColor(color);
+    //     }
+    //
+    //     static void Prefix() {
+    //         updateToggle(OptionsMenuBehaviourStartPatch.getHostButton, "Room Host: ", AmongUsClient.Instance.AmHost);
+    //         if (GameStartManager.Instance != null && GameStartManager.Instance.StartButton != null) {
+    //             GameStartManager.Instance.StartButton.gameObject.SetActive(AmongUsClient.Instance.AmHost);                
+    //         }
+    //     }
+    // }
 }
