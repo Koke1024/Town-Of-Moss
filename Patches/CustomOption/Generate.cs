@@ -22,6 +22,7 @@ namespace TownOfUs.CustomOption
         public static CustomStringOption PolusVitalMove;
         public static CustomNumberOption AdminTimeLimitTime;
         public static CustomToggleOption NoticeNeutral;
+        public static CustomToggleOption GhostCantMove;
         #region Crewmate Roles
         public static CustomHeaderOption CrewmateRoles;
         public static CustomNumberOption MayorOn;
@@ -49,7 +50,7 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption ArsonistOn;
         public static CustomNumberOption PhantomOn;
         public static CustomNumberOption SniperOn;
-        public static CustomNumberOption VultureOn;
+        public static CustomNumberOption ScavengerOn;
         #endregion
         #region Impostor Roles
         public static CustomHeaderOption ImpostorRoles;
@@ -232,8 +233,8 @@ namespace TownOfUs.CustomOption
         public static CustomHeaderOption Sniper;
         public static CustomNumberOption SniperWinCnt;
         
-        public static CustomHeaderOption Vulture;
-        public static CustomNumberOption VultureWinCnt;
+        public static CustomHeaderOption Scavenger;
+        public static CustomNumberOption ScavengerWinCnt;
         
         public static CustomHeaderOption Zombie;
         public static CustomNumberOption ZombieReviveTime;
@@ -287,6 +288,7 @@ namespace TownOfUs.CustomOption
 
             RoleUnderName = new CustomToggleOption(num++, "Role Appears Under Name");
             NoticeNeutral = new CustomToggleOption(num++, "Report Assigned Neutral Roles", false);
+            GhostCantMove = new CustomToggleOption(num++, "Dead Player Can't Move Before Report", false);
             // VanillaGame = new CustomNumberOption(num++, "Probability of a completely vanilla game", 0f, 0f, 100f, 5f,
             //     PercentFormat);
 #endregion
@@ -341,7 +343,7 @@ namespace TownOfUs.CustomOption
                 PercentFormat);
             ZombieOn = new CustomNumberOption(true, num++, "<color=#773800>Zombie</color>", 100.0f, 0f, 100f, 10f,
                 PercentFormat);
-            VultureOn = new CustomNumberOption(true, num++, "<color=#773800>Vulture</color>", 100.0f, 0f, 100f, 10f,
+            ScavengerOn = new CustomNumberOption(true, num++, "<color=#773800>Scavenger</color>", 100.0f, 0f, 100f, 10f,
                 PercentFormat);
 #endregion
 #region Impostor Roles
@@ -567,10 +569,10 @@ namespace TownOfUs.CustomOption
                 new CustomNumberOption(num++, "Zombie Revive Time", 15, 1, 60, 2.5f, CooldownFormat);
             ZombieKilledBySeer = new CustomToggleOption(num++, "Killed By Seer", true);
 
-            Vulture = new CustomHeaderOption(num++, "<color=#545459>Sniper</color>");
+            Scavenger = new CustomHeaderOption(num++, "<color=#545459>Scavenger</color>");
 
-            VultureWinCnt =
-                new CustomNumberOption(num++, "Number of Vulture Eats to Win", 4, 2, 6, 1);
+            ScavengerWinCnt =
+                new CustomNumberOption(num++, "Number of Scavenger Eats to Win", 4, 1, 6, 1);
 
             ImpostorRolesSetting = new CustomHeaderOption(num++, "<color=#FF0000FF>Impostor Roles</color>");
 

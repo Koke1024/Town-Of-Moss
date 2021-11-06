@@ -1,21 +1,15 @@
 using System.Collections;
 using System.Linq;
 using Hazel;
-using Il2CppSystem;
-using Reactor.Extensions;
-using SteamKit2.GC.Underlords.Internal;
-using TownOfUs.Extensions;
-using TownOfUs.ImpostorRoles.MorphlingMod;
 using TownOfUs.Roles;
 using UnityEngine;
 using DateTime = System.DateTime;
-using Object = UnityEngine.Object;
 
-namespace TownOfUs.ImpostorRoles.VultureMod
+namespace TownOfUs.ImpostorRoles.ScavengerMod
 {
-    public class VultureCoroutine
+    public class ScavengerCoroutine
     {
-        public static IEnumerator EatCoroutine(DeadBody body, Vulture role)
+        public static IEnumerator EatCoroutine(DeadBody body, Scavenger role)
         {
             EatButtonTarget.SetTarget(DestroyableSingleton<HudManager>.Instance.KillButton, null, role);
             role.Player.NetTransform.Halt();
@@ -34,6 +28,7 @@ namespace TownOfUs.ImpostorRoles.VultureMod
                 role.Player.moveable = false;
                 yield return null;
             }
+            
             foreach (var p in PlayerControl.AllPlayerControls.ToArray().Where(x => x.CanDrag())) {
                 var taker = Role.GetRole<Undertaker>(p);
                 if (taker.CurrentlyDragging != null &&
@@ -46,10 +41,18 @@ namespace TownOfUs.ImpostorRoles.VultureMod
                     taker._dragDropButton.renderer.sprite = TownOfUs.DragSprite;
                 }
             }
+            
+            body.Reported = true;
+            body.gameObject.SetActive(false);
             role.Player.moveable = true;
             role.eatCount++;
-            if (role.eatCount >= CustomGameOptions.VultureWinCount) {
-                
+            if (role.eatCount >= CustomGameOptions.ScavengerWinCount) {
+                var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
+                    (byte) CustomRPC.NeutralWin, SendOption.Reliable, -1);
+                writer.Write(role.Player.PlayerId);
+                writer.Write((byte)RoleEnum.Scavenger);
+                AmongUsClient.Instance.FinishRpcImmediately(writer);
+                Utils.EndGame();
             }
         }
     }

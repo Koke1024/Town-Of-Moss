@@ -16,6 +16,7 @@ namespace TownOfUs
         NobodyWins,
         JanitorClean,
         Inhale,
+        Eat,
         FixLights,
         EngineerFix,
         SetExtraVotes,

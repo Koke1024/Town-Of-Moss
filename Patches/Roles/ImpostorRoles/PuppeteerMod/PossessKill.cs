@@ -18,7 +18,7 @@ namespace TownOfUs.ImpostorRoles.PuppeteerMod {
             Puppeteer role = Role.GetRole<Puppeteer>(__instance);
             if (role.PossessPlayer != null && (LobbyBehaviour.Instance || MeetingHud.Instance)) {
                 role.PossessPlayer = null;
-                __instance.moveable = true;
+                // __instance.moveable = true;
                 role.PossessTime = 0;
                 var writer2 = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                     (byte) CustomRPC.UnPossess,
@@ -30,7 +30,7 @@ namespace TownOfUs.ImpostorRoles.PuppeteerMod {
             }
 
             if (role.PossessPlayer != null) {
-                __instance.moveable = false;
+                // __instance.moveable = false;
                 __instance.NetTransform.Halt();
                 if (PlayerControl.LocalPlayer == __instance) {
                     role.PossessTime += Time.fixedDeltaTime;
@@ -57,9 +57,9 @@ namespace TownOfUs.ImpostorRoles.PuppeteerMod {
             
             if (role.PossessPlayer == PlayerControl.LocalPlayer) {
                 PlayerControl closestPlayer = null;
-                System.Collections.Generic.List<PlayerControl> targets = PlayerControl.AllPlayerControls.ToArray()
-                    .ToList().FindAll(x =>
-                        x.PlayerId != role.Player.PlayerId && x.PlayerId != role.PossessPlayer.PlayerId);
+                var targets = PlayerControl.AllPlayerControls.ToArray().Where(
+                    x => !x.Is(Faction.Impostors) && x.PlayerId != role.PossessPlayer.PlayerId
+                ).ToList();
                 if (Utils.SetClosestPlayer(ref closestPlayer,
                     GameOptionsData.KillDistances[PlayerControl.GameOptions.KillDistance] * 0.75f, targets
                 )) {

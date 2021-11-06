@@ -19,6 +19,8 @@ using TownOfUs.NeutralRoles.ExecutionerMod;
 using TownOfUs.NeutralRoles.PhantomMod;
 using TownOfUs.NeutralRoles.ArsonistMod;
 using TownOfUs.ImpostorRoles.KirbyMod;
+using TownOfUs.ImpostorRoles.ScavengerMod;
+using TownOfUs.Patches;
 using TownOfUs.Patches.CrewmateRoles.SecurityGuardMod;
 using TownOfUs.Patches.NeutralRoles.ZombieMod;
 using TownOfUs.Roles;
@@ -290,7 +292,7 @@ namespace TownOfUs
                             case RoleEnum.Charger: new Charger(Utils.PlayerById(readByte)); break;
                             case RoleEnum.Druid: new Druid(Utils.PlayerById(readByte)); break;
                             case RoleEnum.SecurityGuard: new SecurityGuard(Utils.PlayerById(readByte)); break;
-                            case RoleEnum.Vulture: new Vulture(Utils.PlayerById(readByte)); break;
+                            case RoleEnum.Scavenger: new Scavenger(Utils.PlayerById(readByte)); break;
                             case RoleEnum.Puppeteer: new Puppeteer(Utils.PlayerById(readByte)); break;
                             case RoleEnum.Undertaker: new Undertaker(Utils.PlayerById(readByte)); break;
                             case RoleEnum.Assassin: new Assassin(Utils.PlayerById(readByte)); break;
@@ -330,6 +332,7 @@ namespace TownOfUs
                                 case RoleEnum.Shifter: ((Shifter) role).Loses(); break;
                                 case RoleEnum.Sniper: ((Sniper) role).Loses(); break;
                                 case RoleEnum.Executioner: ((Executioner) role).Loses(); break;
+                                case RoleEnum.Scavenger: ((Scavenger) role).Loses(); break;
                                 default:
                                     AmongUsExtensions.Log($"Uncaught Role {loseRoleType} lose has been received.");
                                     break;
@@ -348,6 +351,7 @@ namespace TownOfUs
                                 case RoleEnum.Glitch: ((Glitch) role).Wins(); break;
                                 case RoleEnum.Sniper: ((Sniper) role).Wins(); break;
                                 case RoleEnum.Executioner: ((Executioner) role).Wins(); break;
+                                case RoleEnum.Scavenger: ((Scavenger) role).Wins(); break;
                                 default:
                                     AmongUsExtensions.Log($"Uncaught Role {winRoleType} win has been received.");
                                     break;
@@ -402,19 +406,41 @@ namespace TownOfUs
                         var dollMaker = Role.GetRole<DollMaker>(Utils.PlayerById(readByte));
                         dollMaker.DollList.Add(readByte1, 0);
                         if (readByte1 == PlayerControl.LocalPlayer.PlayerId) {
-                            Utils.PlayerById(readByte1).NetTransform.Halt();                            
+                            Utils.PlayerById(readByte1).NetTransform.Halt();
+                            Utils.PlayerById(readByte1).moveable = false;
                         }
                         Utils.AirKill(dollMaker.Player, Utils.PlayerById(readByte1));
                         break;
                     case CustomRPC.Inhale:
                         readByte1 = reader.ReadByte();
-                        var kirbyPlayer = Utils.PlayerById(readByte1);
-                        var kirbyRole = Role.GetRole<Kirby>(kirbyPlayer);
+                        var kirbyRole = Role.GetRole<Kirby>(Utils.PlayerById(readByte1));
                         readByte = reader.ReadByte();
-                        var deadBodies2 = Object.FindObjectsOfType<DeadBody>();
-                        foreach (var body in deadBodies2) {
+                        foreach (var body in Object.FindObjectsOfType<DeadBody>()) {
                             if (body.ParentId == readByte) {
                                 Coroutines.Start(KirbyCoroutine.inhaleCoroutine(body, kirbyRole));
+                            }
+                        }
+                        foreach (var p in PlayerControl.AllPlayerControls.ToArray().Where(x => x.CanDrag())) {
+                            var taker = Role.GetRole<Undertaker>(p);
+                            if (taker.CurrentlyDragging != null &&
+                                taker.CurrentlyDragging.ParentId == readByte) {
+                                taker.CurrentlyDragging = null;
+                                taker.LastDragged = DateTime.UtcNow;
+                            }
+
+                            if (taker.Player == PlayerControl.LocalPlayer) {
+                                taker._dragDropButton.renderer.sprite = TownOfUs.DragSprite;
+                            }
+                        }
+
+                        break;
+                    case CustomRPC.Eat:
+                        readByte1 = reader.ReadByte();
+                        var scavengerRole = Role.GetRole<Scavenger>(Utils.PlayerById(readByte1));
+                        readByte = reader.ReadByte();
+                        foreach (var body in Object.FindObjectsOfType<DeadBody>()) {
+                            if (body.ParentId == readByte) {
+                                Coroutines.Start(ScavengerCoroutine.EatCoroutine(body, scavengerRole));
                             }
                         }
                         foreach (var p in PlayerControl.AllPlayerControls.ToArray().Where(x => x.CanDrag())) {
@@ -759,10 +785,10 @@ namespace TownOfUs
                         SGAction.sealVent(reader.ReadPackedInt32());
                         break;
                     case CustomRPC.StartWatchAdmin:
-                        AdminTimeLimit.AdminWatcher.Add(reader.ReadByte());
+                        AdminLimit.AdminTimeLimit.AdminWatcher.Add(reader.ReadByte());
                         break;
                     case CustomRPC.EndWatchAdmin:
-                        AdminTimeLimit.AdminWatcher.Remove(reader.ReadByte());
+                        AdminLimit.AdminTimeLimit.AdminWatcher.Remove(reader.ReadByte());
                         break;
                 }
             }
@@ -863,6 +889,9 @@ namespace TownOfUs
 
                 if (Check(CustomGameOptions.ExecutionerOn))
                     NeutralRoles.Add((typeof(Executioner), (byte)RoleEnum.Executioner, CustomGameOptions.ExecutionerOn));
+
+                if (Check(CustomGameOptions.ScavengerOn))
+                    NeutralRoles.Add((typeof(Scavenger), (byte)RoleEnum.Scavenger, CustomGameOptions.ScavengerOn));
                 #endregion
                 #region Impostor Roles
                 if (Check(CustomGameOptions.UndertakerOn))

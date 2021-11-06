@@ -2,7 +2,7 @@ using HarmonyLib;
 using Hazel;
 using TownOfUs.Roles;
 
-namespace TownOfUs.NeutralRoles.VultureMod
+namespace TownOfUs.NeutralRoles.ScavengerMod
 {
     [HarmonyPatch(typeof(ShipStatus), nameof(ShipStatus.RpcEndGame))]
     public class EndGame

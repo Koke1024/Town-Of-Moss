@@ -9,6 +9,9 @@ namespace TownOfUs
     {
         public static void Postfix(PlayerControl __instance)
         {
+            if (!CustomGameOptions.GhostCantMove) {
+                return;
+            }
             if (PlayerControl.LocalPlayer == __instance) {
                 DeadBody body = CanMove.CanMovePatch.GetMyBody();
                 if (body) {

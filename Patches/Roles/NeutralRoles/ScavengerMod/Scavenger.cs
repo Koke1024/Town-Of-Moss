@@ -6,17 +6,17 @@ using UnityEngine;
 
 namespace TownOfUs.Roles
 {
-    public class Vulture : Role {
+    public class Scavenger : Role {
         public int eatCount;  
         public KillButtonManager _eatButton;
-        public new DeadBody CurrentTarget { get; set; }
-        public Vulture(PlayerControl player) : base(player)
+        public DeadBody CurrentTarget { get; set; }
+        public Scavenger(PlayerControl player) : base(player)
         {
-            Name = "Vulture";
-            ImpostorText = () => "You won't be killed!";
-            TaskText = () => "You will revive after killed";
-            Color = new Color(0.47f, 0.22f, 0f);
-            RoleType = RoleEnum.Vulture;
+            Name = "Scavenger";
+            ImpostorText = () => "Eat dead bodies";
+            TaskText = () => "Eat dead bodies";
+            Color = new Color(0.47f, 0.1f, 0.4f);
+            RoleType = RoleEnum.Scavenger;
             Faction = Faction.Neutral;
             eatCount = 0;
         }
@@ -40,7 +40,7 @@ namespace TownOfUs.Roles
         }
 
         public void Wins() {
-            eatCount = CustomGameOptions.VultureWinCount;
+            eatCount = CustomGameOptions.ScavengerWinCount;
         }
 
         public void Loses()
@@ -65,7 +65,7 @@ namespace TownOfUs.Roles
         
         internal override bool EABBNOODFGL(ShipStatus __instance)
         {
-            if (eatCount < CustomGameOptions.VultureWinCount) {
+            if (eatCount < CustomGameOptions.ScavengerWinCount) {
                 return true;
             }
             Utils.EndGame();

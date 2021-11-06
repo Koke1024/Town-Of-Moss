@@ -23,7 +23,7 @@ namespace TownOfUs.Patches
                            && !CustomPlayerMenu.Instance
                            && !ExileController.Instance
                            && !IntroCutscene.Instance
-                           && !GetMyBody();
+                           && (!GetMyBody() || !CustomGameOptions.GhostCantMove);
 
                 return false;
             }

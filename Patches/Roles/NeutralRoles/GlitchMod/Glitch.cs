@@ -82,6 +82,7 @@ namespace TownOfUs.Roles
                     SendOption.Reliable,
                     -1
                 );
+                writer.Write(Player.PlayerId);
                 writer.Write((byte)RoleEnum.Glitch);
                 Wins();
                 AmongUsClient.Instance.FinishRpcImmediately(writer);

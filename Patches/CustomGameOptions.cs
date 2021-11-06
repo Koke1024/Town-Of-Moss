@@ -41,8 +41,8 @@ namespace TownOfUs
         public static int ArsonistOn => (int) Generate.ArsonistOn.Get();
         public static int SniperOn => (int) Generate.SniperOn.Get();
         public static int SniperWinCnt => (int) Generate.SniperWinCnt.Get();
-        public static int VultureOn => (int) Generate.VultureOn.Get();
-        public static int VultureWinCount => (int) Generate.VultureWinCnt.Get();
+        public static int ScavengerOn => (int) Generate.ScavengerOn.Get();
+        public static int ScavengerWinCount => (int) Generate.ScavengerWinCnt.Get();
         public static int AltruistOn => (int) Generate.AltruistOn.Get();
         public static int ZombieOn => (int) Generate.ZombieOn.Get();
         public static int ChargerOn => (int) Generate.ChargerOn.Get();
@@ -187,5 +187,6 @@ namespace TownOfUs
         public static bool AllImpCanGuess => false;
         public static bool LastImpCanGuess => Generate.LastImpostorCanGuess.Get();
         public static bool NoticeNeutral => Generate.NoticeNeutral.Get();
+        public static bool GhostCantMove => Generate.GhostCantMove.Get();
     }
 }

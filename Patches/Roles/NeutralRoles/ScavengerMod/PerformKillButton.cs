@@ -1,11 +1,11 @@
 using HarmonyLib;
 using Hazel;
 using Reactor;
-using TownOfUs.ImpostorRoles.VultureMod;
+using TownOfUs.ImpostorRoles.ScavengerMod;
 using TownOfUs.Roles;
 using UnityEngine;
 
-namespace TownOfUs.NeutralRoles.VultureMod
+namespace TownOfUs.NeutralRoles.ScavengerMod
 {
     [HarmonyPatch(typeof(KillButtonManager), nameof(KillButtonManager.PerformKill))]
     public class PerformKillButton
@@ -13,11 +13,11 @@ namespace TownOfUs.NeutralRoles.VultureMod
     {
         public static bool Prefix(KillButtonManager __instance)
         {
-            var flag = PlayerControl.LocalPlayer.Is(RoleEnum.Vulture);
+            var flag = PlayerControl.LocalPlayer.Is(RoleEnum.Scavenger);
             if (!flag) return true;
             if (!PlayerControl.LocalPlayer.CanMove) return false;
             if (PlayerControl.LocalPlayer.Data.IsDead) return false;
-            var role = Role.GetRole<Vulture>(PlayerControl.LocalPlayer);
+            var role = Role.GetRole<Scavenger>(PlayerControl.LocalPlayer);
 
             if (__instance == role.EatButton)
             {
@@ -33,12 +33,12 @@ namespace TownOfUs.NeutralRoles.VultureMod
                 var playerId = role.CurrentTarget.ParentId;
 
                 var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
-                    (byte) CustomRPC.Inhale, SendOption.Reliable, -1);
+                    (byte) CustomRPC.Eat, SendOption.Reliable, -1);
                 writer.Write(PlayerControl.LocalPlayer.PlayerId);
                 writer.Write(playerId);
                 AmongUsClient.Instance.FinishRpcImmediately(writer);
 
-                Coroutines.Start(VultureCoroutine.EatCoroutine(role.CurrentTarget, role));
+                Coroutines.Start(ScavengerCoroutine.EatCoroutine(role.CurrentTarget, role));
                 return false;
             }
 

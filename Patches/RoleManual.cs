@@ -5,7 +5,7 @@ namespace TownOfUs.Roles {
     public class RoleManual {
         public static readonly Dictionary<RoleEnum, string> roleManual = new Dictionary<RoleEnum, string>() {
             {RoleEnum.Sheriff, "Sheriff\nキルボタンを持っており、第三陣営、インポスターをキルすることができますが、対象がクルーメイトだった場合は自身が死亡します。"},
-            {RoleEnum.Police, "Police\nキルボタンを持っており、第三陣営、インポスターをキルすることができますが、対象がクルーメイトだった場合は自身が死亡します。"},
+            {RoleEnum.Police, "Sheriff\nキルボタンを持っており、第三陣営、インポスターをキルすることができますが、対象がクルーメイトだった場合は自身が死亡します。"},
             {RoleEnum.Jester, "Jester\n会議により追放されると勝利します。 ベントの使用、死体の移動、変身の能力を持ちます。"},
             {RoleEnum.Engineer, "Engineer\nゲーム中一度だけ、サボタージュをどこからでも即座に修理できるFixボタンを持っています。\nベントが使用できます。"},
             {RoleEnum.LoverImpostor, "LoverImpostor\n"},

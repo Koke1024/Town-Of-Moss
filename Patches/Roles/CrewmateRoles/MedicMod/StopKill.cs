@@ -1,10 +1,8 @@
 using HarmonyLib;
 using Hazel;
-using Il2CppSystem;
 using Reactor;
 using TownOfUs.Roles;
 using UnityEngine;
-using System;
 
 namespace TownOfUs.CrewmateRoles.MedicMod
 {

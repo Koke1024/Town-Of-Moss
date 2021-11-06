@@ -77,6 +77,18 @@ namespace TownOfUs {
                 }
                 return;
             }
+            
+            var scavenger = Role.AllRoles.FirstOrDefault(x =>
+                x.RoleType == RoleEnum.Scavenger && ((Scavenger) x).eatCount >= CustomGameOptions.ScavengerWinCount);
+            if (scavenger != null) {
+                var winners = Utils.potentialWinners.Where(x => x.Name == scavenger.PlayerName).ToList();
+                TempData.winners = new List<WinningPlayerData>();
+                foreach (var win in winners) {
+                    win.IsDead = false;
+                    TempData.winners.Add(win);
+                }
+                return;
+            }
 
             var lover = Role.AllRoles
                 .Where(x => x.RoleType == RoleEnum.Lover || x.RoleType == RoleEnum.LoverImpostor)

@@ -27,7 +27,7 @@ namespace TownOfUs
         Altruist,
         Phantom,
         Sniper,
-        Vulture,
+        Scavenger,
 
         Miner,
         Swooper,
