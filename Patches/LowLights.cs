@@ -71,7 +71,7 @@ namespace TownOfUs
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
     public static class deadLowSight {
         public static void Prefix(PlayerControl __instance) {
-            if (LobbyBehaviour.Instance || MeetingHud.Instance) {
+            if (LobbyBehaviour.Instance || MeetingHud.Instance || !CustomGameOptions.GhostCantMove) {
                 return;
             }
 
