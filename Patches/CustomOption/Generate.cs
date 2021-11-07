@@ -95,6 +95,7 @@ namespace TownOfUs.CustomOption
         
         public static CustomHeaderOption Engineer;
         public static CustomStringOption EngineerPer;
+        public static CustomToggleOption EngineerCanFixOnlyInVent;
 
         public static CustomHeaderOption Investigator;
         public static CustomNumberOption FootprintSize;
@@ -420,6 +421,8 @@ namespace TownOfUs.CustomOption
                 new CustomHeaderOption(num++, "<color=#FFA60AFF>Engineer</color>");
             EngineerPer =
                 new CustomStringOption(num++, "Engineer Fix Per", new[] {"Game", "Round"});
+            EngineerCanFixOnlyInVent =
+                new CustomToggleOption(num++, "Fix Only In Vent", false);
 
 
             Investigator =

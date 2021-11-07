@@ -1,12 +1,13 @@
 using HarmonyLib;
+using TownOfUs.Roles;
 using UnityEngine;
 
-namespace TownOfUs.Patches
+namespace TownOfUs.NeutralRoles.JesterMod
 {
-    [HarmonyPatch(typeof(HudManager), nameof(HudManager.OpenMeetingRoom), typeof(PlayerControl))]
-    public class DeadBodyClean
+    [HarmonyPatch(typeof(ExileController), nameof(ExileController.Begin))]
+    internal class DeadBodyClean
     {
-        public static void Postfix(HudManager __instance)
+        private static void Postfix(ExileController __instance)
         {
             foreach (var body in Object.FindObjectsOfType<DeadBody>()) {
                 Object.Destroy(body.gameObject);

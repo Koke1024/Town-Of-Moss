@@ -1,5 +1,6 @@
 using System.Linq;
 using HarmonyLib;
+using Rewired;
 using TownOfUs.Roles;
 using UnityEngine;
 
@@ -35,7 +36,7 @@ namespace TownOfUs.CrewmateRoles.EngineerMod
             var dummyActive = system.dummy.IsActive;
             var sabActive = specials.Any(s => s.IsActive);
             var renderer = __instance.KillButton.renderer;
-            if (sabActive & !dummyActive & !role.UsedThisRound & __instance.KillButton.enabled)
+            if (sabActive & !dummyActive & !role.UsedThisRound & __instance.KillButton.enabled && PlayerControl.LocalPlayer.inVent)
             {
                 renderer.color = Palette.EnabledColor;
                 renderer.material.SetFloat("_Desat", 0f);

@@ -165,6 +165,7 @@ namespace TownOfUs
         public static float AdminTimeLimitTime => (float) Generate.AdminTimeLimitTime.Get();
         public static bool RoleUnderName => Generate.RoleUnderName.Get();
         public static EngineerFixPer EngineerFixPer => (EngineerFixPer) Generate.EngineerPer.Get();
+        public static bool EngineerCanFixOnlyInVent => Generate.EngineerCanFixOnlyInVent.Get();
         public static float ReviveDuration => Generate.ReviveDuration.Get();
         // public static int MayorExtendTime => (int) Generate.MayorExtendTime.Get();
         public static int MayorExtendTime => 0;
