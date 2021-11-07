@@ -1,7 +1,12 @@
-﻿using HarmonyLib;
+﻿using System.Collections;
+using HarmonyLib;
+using Reactor;
+using Rewired;
 using TownOfUs;
+using TownOfUs.Extensions;
+using UnityEngine;
 
-namespace TheOtherRoles.Patches {
+namespace TownOfUs.Patches {
     public class GameStartManagerPatch {
         private static string lobbyCodeText = "";
         
@@ -29,6 +34,26 @@ namespace TheOtherRoles.Patches {
                     }
                 }
             }
+        }
+    }
+    
+    [HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.FinallyBegin))]
+    public static class HostHandicap2 {
+        public static void Postfix(GameStartManager __instance) {
+            if (__instance.startState == GameStartManager.StartingStates.Countdown)
+            {
+                return;
+            }
+            Coroutines.Start(StartingWait());
+        }
+    
+        public static IEnumerator StartingWait() {
+            PlayerControl.LocalPlayer.moveable = false;
+            yield return new WaitForSeconds(1.0f);
+            if (AmongUsClient.Instance.AmHost) {
+                yield return new WaitForSeconds(2.0f);
+            }
+            PlayerControl.LocalPlayer.moveable = true;
         }
     }
 }

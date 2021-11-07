@@ -4,12 +4,10 @@ namespace TownOfUs
     {
         Sheriff,
         Police,
-        Jester,
         Engineer,
         LoverImpostor,
         Lover,
         Mayor,
-        Zombie,
         Swapper,
         Investigator,
         TimeLord,
@@ -23,11 +21,14 @@ namespace TownOfUs
         Druid,
         SecurityGuard,
         
+        Glitch,
         Arsonist,
         Altruist,
         Phantom,
         Sniper,
         Scavenger,
+        Jester,
+        Zombie,
 
         Miner,
         Swooper,
@@ -42,8 +43,6 @@ namespace TownOfUs
         MultiKiller,
         Cracker,
         DollMaker,
-        
-        Glitch,
 
         Crewmate,
         Impostor,

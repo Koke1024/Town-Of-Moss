@@ -64,6 +64,9 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
 
         public static void Rewind()
         {
+            if (LobbyBehaviour.Instance || MeetingHud.Instance) {
+                return;
+            }
             if (Minigame.Instance)
                 try
                 {
@@ -87,12 +90,12 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
                 
                 if (!PlayerControl.LocalPlayer.inVent)
                 {
-                    if (!PlayerControl.LocalPlayer.Collider.enabled)
+                    if (PlayerControl.LocalPlayer.Collider && !PlayerControl.LocalPlayer.Collider.enabled)
                     {
                         PlayerControl.LocalPlayer.MyPhysics.ResetMoveState();
                         PlayerControl.LocalPlayer.Collider.enabled = true;
                         PlayerControl.LocalPlayer.NetTransform.enabled = true;
-
+ 
 
                         var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                             (byte) CustomRPC.FixAnimation, SendOption.Reliable, -1);
@@ -148,6 +151,10 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
 
         public static void Postfix()
         {
+            if (LobbyBehaviour.Instance || MeetingHud.Instance) {
+                return;
+            }
+            
             AirshipStatus airshipStatus = ShipStatus.Instance as AirshipStatus;
             if (airshipStatus && patapata == null) {
                 patapata = airshipStatus.GetComponentInChildren<MovingPlatformBehaviour>();
@@ -162,6 +169,17 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
                 if ((DateTime.UtcNow - TimeLord.StartRewind).TotalMilliseconds >
                     CustomGameOptions.RewindDuration * 1000f && TimeLord.FinishRewind < TimeLord.StartRewind)
                     StartStop.StopRewind(TimeLord);
+            }
+        }
+        
+        
+        [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.OnGameEnd))]
+        public class AmongUsClient_OnGameEnd {
+            public static void Postfix(AmongUsClient __instance, [HarmonyArgument(0)] GameOverReason reason,
+                [HarmonyArgument(0)] bool showAd) {
+                if (rewinding) {
+                    StartStop.StopRewind(whoIsRewinding);
+                }
             }
         }
     }

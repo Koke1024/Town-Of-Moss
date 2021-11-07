@@ -333,6 +333,7 @@ namespace TownOfUs
                                 case RoleEnum.Sniper: ((Sniper) role).Loses(); break;
                                 case RoleEnum.Executioner: ((Executioner) role).Loses(); break;
                                 case RoleEnum.Scavenger: ((Scavenger) role).Loses(); break;
+                                case RoleEnum.Arsonist: ((Arsonist) role).Loses(); break;
                                 default:
                                     AmongUsExtensions.Log($"Uncaught Role {loseRoleType} lose has been received.");
                                     break;
@@ -352,6 +353,7 @@ namespace TownOfUs
                                 case RoleEnum.Sniper: ((Sniper) role).Wins(); break;
                                 case RoleEnum.Executioner: ((Executioner) role).Wins(); break;
                                 case RoleEnum.Scavenger: ((Scavenger) role).Wins(); break;
+                                case RoleEnum.Arsonist: ((Arsonist) role).Wins(); break;
                                 default:
                                     AmongUsExtensions.Log($"Uncaught Role {winRoleType} win has been received.");
                                     break;
@@ -406,8 +408,10 @@ namespace TownOfUs
                         var dollMaker = Role.GetRole<DollMaker>(Utils.PlayerById(readByte));
                         dollMaker.DollList.Add(readByte1, 0);
                         if (readByte1 == PlayerControl.LocalPlayer.PlayerId) {
+                            PlayerControl.LocalPlayer.NetTransform.RpcSnapTo(Utils.PlayerById(readByte1).transform.position);
                             Utils.PlayerById(readByte1).NetTransform.Halt();
                             Utils.PlayerById(readByte1).moveable = false;
+                            ShipStatus.Instance.StartCoroutine(Effects.SwayX(Camera.main.transform, 0.75f, 0.25f));
                         }
                         Utils.AirKill(dollMaker.Player, Utils.PlayerById(readByte1));
                         break;

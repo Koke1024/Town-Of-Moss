@@ -521,4 +521,14 @@ namespace TownOfUs.CustomOption
             }
         }
     }
+
+    [HarmonyPatch(typeof(LobbyBehaviour), nameof(LobbyBehaviour.Start))]
+    public static class ButtonReset {
+        public static void Postfix(LobbyBehaviour __instance) {
+            foreach (var button in HudManager.Instance.GetComponentsInChildren<KillButtonManager>()) {
+                button.Destroy();
+            }
+        }
+    }
+    
 }

@@ -18,12 +18,6 @@ namespace TownOfUs.ImpostorRoles.DollMakerMod {
             
             DollMaker role = Role.GetRole<DollMaker>(__instance);
             if (LobbyBehaviour.Instance || MeetingHud.Instance) {
-                if (role.DollList.Count > 0) {
-                    foreach (var doll in role.DollList) {
-                        GameData.Instance.GetPlayerById(doll.Key)._object.RpcMurderPlayer(GameData.Instance.GetPlayerById(doll.Key)._object);
-                    }
-                    role.DollList.Clear();
-                }
                 return;
             }
 
@@ -78,6 +72,23 @@ namespace TownOfUs.ImpostorRoles.DollMakerMod {
             foreach (var breakQueue in breakList) {
                 Utils.RpcMurderPlayer(GameData.Instance.GetPlayerById(breakQueue)._object, GameData.Instance.GetPlayerById(breakQueue)._object);
                 role.DollList.Remove(breakQueue);
+            }
+        }
+    }
+
+    [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.CoStartMeeting))]
+    class StartMeetingPatch {
+        public static void Prefix(PlayerControl __instance, [HarmonyArgument(0)]GameData.PlayerInfo meetingTarget) {
+            if (__instance == null) {
+                return;
+            }
+            foreach (var role in Role.GetRoles(RoleEnum.DollMaker)) {
+                if (((DollMaker)role).DollList.Count <= 0) continue;
+                foreach (var (key, _) in ((DollMaker)role).DollList) {
+                    role.Player.MurderPlayer(GameData.Instance.GetPlayerById(key)._object);
+                    AmongUsExtensions.Log($"{GameData.Instance.GetPlayerById(key).IsDead}");
+                }
+                ((DollMaker)role).DollList.Clear();
             }
         }
     }

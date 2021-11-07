@@ -53,21 +53,12 @@ namespace TownOfUs.NeutralRoles.ArsonistMod
         }
 
         public static IEnumerator Ignite(Arsonist role) {
-            Coroutines.Start(Utils.FlashCoroutine(new Color(1.0f, 0, 0, 1.0f), 5.0f));
-            yield return new WaitForSeconds(2.0f);
-            foreach (var playerId in role.DousedPlayers)
-            {
-                var player = Utils.PlayerById(playerId);
-                if (
-                    player == null ||
-                    player.Data.Disconnected ||
-                    player.Data.IsDead
-                ) continue;
-                Utils.MurderPlayer(role.Player, player);
-            }
-            yield return new WaitForSeconds(3.0f);
-
             role.IgniteUsed = true;
+            role.Wins();
+            Coroutines.Start(Utils.FlashCoroutine(new Color(1.0f, 0, 0, 1.0f), 5.0f));
+            ShipStatus.Instance.StartCoroutine(Effects.SwayX(Camera.main.transform, 5.0f, 0.15f));
+            yield return new WaitForSeconds(3.0f);
+            Utils.EndGame();
         }
     }
 }
