@@ -20,6 +20,7 @@ namespace TownOfUs
         Charger,
         Druid,
         SecurityGuard,
+        Painter,
         
         Glitch,
         Arsonist,
