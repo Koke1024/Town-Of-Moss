@@ -86,7 +86,6 @@ namespace TownOfUs.ImpostorRoles.DollMakerMod {
                 if (((DollMaker)role).DollList.Count <= 0) continue;
                 foreach (var (key, _) in ((DollMaker)role).DollList) {
                     role.Player.MurderPlayer(GameData.Instance.GetPlayerById(key)._object);
-                    AmongUsExtensions.Log($"{GameData.Instance.GetPlayerById(key).IsDead}");
                 }
                 ((DollMaker)role).DollList.Clear();
             }

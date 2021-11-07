@@ -299,6 +299,7 @@ namespace TownOfUs
                             case RoleEnum.Underdog: new Underdog(Utils.PlayerById(readByte)); break;
                             case RoleEnum.MultiKiller: new MultiKiller(Utils.PlayerById(readByte)); break;
                             case RoleEnum.Cracker: new Cracker(Utils.PlayerById(readByte)); break;
+                            case RoleEnum.Painter: new Painter(Utils.PlayerById(readByte)); break;
                             default:
                                 AmongUsExtensions.Log($"Uncaught Role {(RoleEnum)readByte1} has been received.");
                                 break;
@@ -793,6 +794,16 @@ namespace TownOfUs
                         break;
                     case CustomRPC.EndWatchAdmin:
                         AdminLimit.AdminTimeLimit.AdminWatcher.Remove(reader.ReadByte());
+                        break;
+                    case CustomRPC.SetPaintPoint:
+                        Painter.SetPaintPoint(reader.ReadVector2(), (PaintColor)reader.ReadByte());
+                        break;
+                    case CustomRPC.SetPaintVent:
+                        Painter.SetPaintVent(reader.ReadByte(), (PaintColor)reader.ReadByte());
+                        
+                        break;
+                    case CustomRPC.SetPaintPlayer:
+                        Painter.SetPaintPlayer(reader.ReadByte(), (PaintColor)reader.ReadByte());
                         break;
                 }
             }

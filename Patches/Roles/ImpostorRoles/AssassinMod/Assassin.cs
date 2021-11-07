@@ -31,7 +31,8 @@ namespace TownOfUs.Roles
             { "Snitch", new Color(0.83f, 0.69f, 0.22f, 1f) },
             { "Altruist", new Color(0.4f, 0f, 0f, 1f) },
             { "Charger", new Color(0.99f, 1f, 0.2f) },
-            { "Druid", new Color(0.4f, 0f, 0.56f) }
+            { "Druid", new Color(0.4f, 0f, 0.56f) },
+            { "Painter", new Color(0.81f, 0.81f, 0.81f) }
         };
 
         public Dictionary<byte, string> Guesses = new Dictionary<byte, string>();
@@ -91,6 +92,7 @@ namespace TownOfUs.Roles
                 { "Altruist", CustomGameOptions.AltruistOn },
                 { "Charger", CustomGameOptions.ChargerOn },
                 { "Druid", CustomGameOptions.DruidOn },
+                { "Painter", CustomGameOptions.PainterOn },
                 
                 { "Jester", CustomGameOptions.JesterOn },
                 { "Shifter", CustomGameOptions.ShifterOn },

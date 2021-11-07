@@ -66,6 +66,9 @@ namespace TownOfUs
         public static Sprite DragSprite;
         public static Sprite DropSprite;
         public static Sprite WaxSprite;
+        public static Sprite PaintSprite;
+        public static Sprite InkSprite;
+        public static Sprite PourSprite;
 
         private static DLoadImage _iCallLoadImage;
 
@@ -119,6 +122,9 @@ namespace TownOfUs
             TargetSprite = CreateSprite("TownOfUs.Resources.TargetIcon.png");
             HackSprite = CreateSprite("TownOfUs.Resources.Hack.png");
             WaxSprite = CreateSprite("TownOfUs.Resources.Wax.png");
+            PaintSprite = CreateSprite("TownOfUs.Resources.Paint.png");
+            InkSprite = CreateSprite("TownOfUs.Resources.Ink.png");
+            PourSprite = CreateSprite("TownOfUs.Resources.Pour.png");
             CloseVentButtonSprite = CreateSprite("TownOfUs.Resources.CloseVentButton.png");
             PlaceCameraSprite = CreateSprite("TownOfUs.Resources.PlaceCameraButton.png");
             AnimatedVentSprite = CreateSprite("TownOfUs.Resources.AnimatedVentSealed.png");

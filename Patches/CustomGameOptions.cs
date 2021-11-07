@@ -190,5 +190,7 @@ namespace TownOfUs
         public static bool LastImpCanGuess => Generate.LastImpostorCanGuess.Get();
         public static bool NoticeNeutral => Generate.NoticeNeutral.Get();
         public static bool GhostCantMove => Generate.GhostCantMove.Get();
+        public static int PaintColorMax => (int)Generate.PaintColorMax.Get();
+        public static float PaintCd => Generate.PaintCd.Get();
     }
 }

@@ -1,7 +1,5 @@
 using System;
 using HarmonyLib;
-using SteamKit2.GC.TF2.Internal;
-using TownOfUs.Extensions;
 using TownOfUs.Patches;
 using TownOfUs.Roles;
 using TownOfUs.Roles.Modifiers;

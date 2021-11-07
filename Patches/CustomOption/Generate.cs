@@ -129,14 +129,6 @@ namespace TownOfUs.CustomOption
         public static CustomStringOption SeerInfo;
         public static CustomStringOption SeeReveal;
         public static CustomToggleOption NeutralRed;
-
-        public static CustomHeaderOption Charger;
-        public static CustomNumberOption MaxChargeTime;
-        public static CustomNumberOption ConsumeChargeTime;
-
-        public static CustomHeaderOption Druid;
-        public static CustomNumberOption DruidReviveRange;
-        public static CustomStringOption DruidReviveLimit;
         
         public static CustomHeaderOption SecurityGuard;
         public static CustomNumberOption SecurityGuardCooldown;
@@ -152,6 +144,18 @@ namespace TownOfUs.CustomOption
         public static CustomHeaderOption Altruist;
         public static CustomNumberOption ReviveDuration;
         public static CustomToggleOption AltruistTargetBody;
+
+        public static CustomHeaderOption Charger;
+        public static CustomNumberOption MaxChargeTime;
+        public static CustomNumberOption ConsumeChargeTime;
+
+        public static CustomHeaderOption Druid;
+        public static CustomNumberOption DruidReviveRange;
+        public static CustomStringOption DruidReviveLimit;
+
+        public static CustomHeaderOption Painter;
+        public static CustomNumberOption PaintColorMax;
+        public static CustomNumberOption PaintCd;
         
 //-------------------------------------IMPOSTOR ROLES-------------------------------------------------------
         public static CustomHeaderOption ImpostorRolesSetting;
@@ -271,7 +275,7 @@ namespace TownOfUs.CustomOption
             CustomGameSettings = new CustomHeaderOption(num++, "Custom Game Settings");
             // MaxImpostorRoles =
             //      new CustomNumberOption(num++, "<color=#FF0000FF>Max Impostor Roles</color>", 3f, 1f, 3f, 1f);
-            MadMateOn = new CustomToggleOption(num++, "<color=#FF0000FF>Add Assassin As Mad Mate</color>", false);
+            MadMateOn = new CustomToggleOption(num++, "<color=#FF0000FF>Add Mad Mate</color>", false);
             GlitchOn = new CustomToggleOption(num++, "<color=#00FF00FF>Add Glitch</color>", false);
             MaxNeutralRoles =
                 new CustomNumberOption(num++, "<color=#FF00FFFF>Number of Neutral Roles</color>", 1, 0, 3, 1);
@@ -520,6 +524,12 @@ namespace TownOfUs.CustomOption
             DruidReviveRange = new CustomNumberOption(num++, "Distance to revive dead", 20f, 2f, 40f, 1f, DistanceFormat);
             DruidReviveLimit =
                 new CustomStringOption(num++, "Revive Limit Per Round", new[] {"No Limit", "1", "2", "3"});
+            
+            Painter =
+                new CustomHeaderOption(num++, "<color=#CECECEFF>Painter</color>");
+            PaintColorMax = new CustomNumberOption(num++, "Paint Color Max", 3f, 1f, 4f, 1f);
+            PaintCd = new CustomNumberOption(num++, "Paint Cool Down", 10f, 5f, 40f, 2.5f, CooldownFormat);
+            // PaintCd = new CustomNumberOption(num++, "Paint Cool Down", 20f, 5f, 40f, 2.5f, DistanceFormat);
 
             NeutralRolesSetting = new CustomHeaderOption(num++, "<color=#FF00FFFF>Neutral Roles</color>");
             

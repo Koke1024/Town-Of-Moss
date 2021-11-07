@@ -64,5 +64,8 @@ namespace TownOfUs
         UnPossess,
         PossessKill,
         Wax,
+        SetPaintPoint,
+        SetPaintVent,
+        SetPaintPlayer,
     }
 }
