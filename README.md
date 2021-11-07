@@ -453,8 +453,7 @@ Admin閲覧中は消費電力が3倍になります。
 
 ### **Team: Impostors**
 
-会議中にクルーの役職を当てることで狙撃し、キルすることができます。\
-Add Assassin As Mad Mateがオンになっている場合、Assassinは通常キルのできない狂人として追加されます。
+会議中にクルーの役職を当てることで狙撃し、キルすることができます。
 
 ### Game Options
 
@@ -635,6 +634,19 @@ Puppeteerは、憑依している間と憑依解除後の3秒間は行動が行�
 
 -----------------------
 
+## Mad Mate
+
+### **Team: Impostors**
+
+Add Mad MateがOnのとき、Impostorの数に加えて必ず追加されます。\
+Mad Mateは味方のインポスターが誰かわからず、インポスターからもクルーと同様に見え、キルすることもできます。\
+チームはImpostorですが、SheriffやSeerの能力対象とされたときはクルーメイトと同じ結果が出ます。\
+キルやベントの使用はできず、勝敗判定ではクルー陣営の数として計算されます。\
+Mad Mateが存在するとき、Assassinがインポスター陣営に採用されることはありません。\
+会議のとき、Assassinの狙撃能力を持ちます。
+
+-----------------------
+
 # Neutral Roles
 
 ## Glitch
@@ -785,7 +797,7 @@ Puppeteerは、憑依している間と憑依解除後の3秒間は行動が行�
 
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
-| Add Assassin As Mad Mate | 狙撃能力を持つAssassinをMad Mateとして追加する。Onの場合、通常のインポスターとしてのAssassinは登場しません。狂人はインポスター陣営ですが、通常キルはできず、クルー陣営の人数としてカウントされます。他のインポスターからはクルーと同様に見え、キルすることもできます。SeerでTeamを占った場合、クルー（緑色）として表示されます。SheriffはMad Mateをキルできません。 | Toggle | Off |
+| Add Mad Mate | [Mad Mate](#Mad Mate)を追加する | Toggle | Off |
 | Add Glitch | グリッチを追加する | Toggle | Off |
 | Number of Neutral Roles | 割り当てられる第三陣営の数 | Number | 1 |
 | Kill Cooldown Reset on Meeting | 会議の後にインポスターのキルクールダウンを初期化するかどうか | Toggle | Off |
