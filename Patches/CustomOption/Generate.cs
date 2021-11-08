@@ -351,8 +351,8 @@ namespace TownOfUs.CustomOption
                 PercentFormat);
             ZombieOn = new CustomNumberOption(true, num++, "<color=#773800>Zombie</color>", 100.0f, 0f, 100f, 10f,
                 PercentFormat);
-            ScavengerOn = new CustomNumberOption(true, num++, "<color=#773800>Scavenger</color>", 100.0f, 0f, 100f, 10f,
-                PercentFormat);
+            // ScavengerOn = new CustomNumberOption(true, num++, "<color=#773800>Scavenger</color>", 100.0f, 0f, 100f, 10f,
+            //     PercentFormat);
 #endregion
 #region Impostor Roles
             ImpostorRoles = new CustomHeaderOption(num++, "<color=#FF0000FF>Impostor Roles</color>");
@@ -527,8 +527,8 @@ namespace TownOfUs.CustomOption
             
             Painter =
                 new CustomHeaderOption(num++, "<color=#CECECEFF>Painter</color>");
-            PaintColorMax = new CustomNumberOption(num++, "Paint Color Max", 2f, 1f, 3f, 1f);
-            PaintCd = new CustomNumberOption(num++, "Paint Cool Down", 10f, 5f, 40f, 2.5f, CooldownFormat);
+            PaintColorMax = new CustomNumberOption(num++, "Paint Color Num", 2f, 1f, 3f, 1f);
+            PaintCd = new CustomNumberOption(num++, "Paint Cool Down", 25f, 5f, 40f, 2.5f, CooldownFormat);
             // PaintCd = new CustomNumberOption(num++, "Paint Cool Down", 20f, 5f, 40f, 2.5f, DistanceFormat);
 
             NeutralRolesSetting = new CustomHeaderOption(num++, "<color=#FF00FFFF>Neutral Roles</color>");
@@ -585,12 +585,12 @@ namespace TownOfUs.CustomOption
                 new CustomNumberOption(num++, "Zombie Revive Time", 15, 1, 60, 2.5f, CooldownFormat);
             ZombieKilledBySeer = new CustomToggleOption(num++, "Killed By Seer", true);
 
-            Scavenger = new CustomHeaderOption(num++, "<color=#545459>Scavenger</color>");
-
-            ScavengerWinCnt =
-                new CustomNumberOption(num++, "Number of Scavenger Eats to Win", 4, 1, 6, 1);
-
-            ImpostorRolesSetting = new CustomHeaderOption(num++, "<color=#FF0000FF>Impostor Roles</color>");
+            // Scavenger = new CustomHeaderOption(num++, "<color=#545459>Scavenger</color>");
+            //
+            // ScavengerWinCnt =
+            //     new CustomNumberOption(num++, "Number of Scavenger Eats to Win", 4, 1, 6, 1);
+            //
+            // ImpostorRolesSetting = new CustomHeaderOption(num++, "<color=#FF0000FF>Impostor Roles</color>");
 
             Morphling =
                 new CustomHeaderOption(num++, "<color=#FF0000FF>Morphling</color>");

@@ -9,17 +9,24 @@ namespace TownOfUs.CrewmateRoles.PainterMod {
     [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
     public class SeePlayerColors {
         public static void Prefix() {
-            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Painter)) {
-                return;
-            }
+            // if (!PlayerControl.LocalPlayer.Is(RoleEnum.Painter)) {
+            //     return;
+            // }
 
             if (MeetingHud.Instance) {
                 UpdateMeeting(MeetingHud.Instance);
+                return;
             }
 
             foreach (var (id, c) in Painter.PaintedPlayers) {
                 var player = GameData.Instance.GetPlayerById(id);
                 player._object.myRend.material.SetColor("_VisorColor", Painter.PaintColors[(int)c]);
+            }
+
+            foreach (var (id, c) in Painter.PaintedVent) {
+                Vent vent = ShipStatus.Instance.AllVents[id];
+                vent.myRend.color = Painter.PaintColors[(int)c];
+                vent.myRend.material.SetColor("_OutlineColor", Painter.PaintColors[(int)c]);
             }
         }
 

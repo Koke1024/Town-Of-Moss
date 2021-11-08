@@ -21,7 +21,7 @@ namespace TownOfUs
         private static Sprite Seer => TownOfUs.SeerSprite;
         private static Sprite Douse => TownOfUs.DouseSprite;
         private static Sprite Revive => TownOfUs.ReviveSprite;
-        private static Sprite Paint => TownOfUs.PaintSprite;
+        private static Sprite[] Paint => TownOfUs.PaintSprite;
 
         private static Sprite Button => TownOfUs.ButtonSprite;
 
@@ -63,7 +63,9 @@ namespace TownOfUs
             }
             else if (PlayerControl.LocalPlayer.Is(RoleEnum.Painter))
             {
-                __instance.KillButton.renderer.sprite = Paint;
+                // __instance.KillButton.renderer.sprite = Paint;
+                // __instance.KillButton.renderer.sprite = Paint;
+                // __instance.KillButton.renderer.sprite = Paint;
                 flag = true;
             }
             else

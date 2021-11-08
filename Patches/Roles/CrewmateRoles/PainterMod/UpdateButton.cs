@@ -10,7 +10,7 @@ namespace TownOfUs.CrewmateRoles.PainterMod
     [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
     public class HudManagerUpdate
     {
-        public static Sprite PaintSprite => TownOfUs.PaintSprite;
+        public static Sprite[] PaintSprite => TownOfUs.PaintSprite;
 
         public static void Postfix(HudManager __instance)
         {
@@ -28,26 +28,50 @@ namespace TownOfUs.CrewmateRoles.PainterMod
                 for (int i = 0; i < CustomGameOptions.PaintColorMax; ++i) {
                     KillButtonManager btn = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);
                     btn.renderer.enabled = true;
-                    btn.renderer.sprite = PaintSprite;
-                    btn.renderer.material.color = Painter.PaintColors[i];
+                    btn.renderer.sprite = PaintSprite[i];
                     
-                    btn.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
                     role._paintButtons.Add(btn);
                 }
             }
 
             var t = 0; 
             role.closeVent = ClosestVent();
+
+            bool onInk = false;
+            foreach (var (pos, color) in Painter.PaintedPoint) {
+                var dist = Vector2.Distance(pos, PlayerControl.LocalPlayer.GetTruePosition());
+                if (dist < 2.5f) {
+                    onInk = true;
+                    break;
+                }
+            }
+
+            if (!onInk) {
+                foreach (var (pos, color) in Painter.PaintedPointBefore) {
+                    var dist = Vector2.Distance(pos, PlayerControl.LocalPlayer.GetTruePosition());
+                    if (dist < 2.5f) {
+                        onInk = true;
+                        break;
+                    }
+                }
+            }
+            
             foreach(var btn in role._paintButtons) {
                 btn.SetCoolDown(role.PaintTimer(), CustomGameOptions.PaintCd);
-                if (role.PaintTimer() == 0) {
-                    btn.enabled = true;
+                if (!onInk) {
+                    btn.renderer.color = Palette.EnabledColor;
+                    btn.renderer.material.SetFloat("_Desat", 0f);
                 }
-                if (role.closeVent == null) {
-                    btn.renderer.sprite = TownOfUs.PaintSprite;
-                }else{
-                    btn.renderer.sprite = TownOfUs.PourSprite;
+                else {
+                    btn.renderer.color = Palette.DisabledClear;
+                    btn.renderer.material.SetFloat("_Desat", 1f);
                 }
+                btn.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
+                // if (role.closeVent == null) {
+                //     btn.renderer.sprite = TownOfUs.PaintSprite[t];
+                // }else{
+                //     btn.renderer.sprite = TownOfUs.PourSprite;
+                // }
                 var offset = __instance.UseButton.transform.localPosition.y - __instance.ReportButton.transform.localPosition.y;
                 var position = __instance.KillButton.transform.localPosition;
                 btn.transform.localPosition = new Vector3(position.x + offset,

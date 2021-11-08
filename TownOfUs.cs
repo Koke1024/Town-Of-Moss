@@ -66,7 +66,7 @@ namespace TownOfUs
         public static Sprite DragSprite;
         public static Sprite DropSprite;
         public static Sprite WaxSprite;
-        public static Sprite PaintSprite;
+        public static readonly Sprite[] PaintSprite = new Sprite[3];
         public static Sprite InkSprite;
         public static Sprite PourSprite;
 
@@ -122,7 +122,9 @@ namespace TownOfUs
             TargetSprite = CreateSprite("TownOfUs.Resources.TargetIcon.png");
             HackSprite = CreateSprite("TownOfUs.Resources.Hack.png");
             WaxSprite = CreateSprite("TownOfUs.Resources.Wax.png");
-            PaintSprite = CreateSprite("TownOfUs.Resources.Paint.png");
+            PaintSprite[0] = CreateSprite("TownOfUs.Resources.PaintRed.png");
+            PaintSprite[1] = CreateSprite("TownOfUs.Resources.PaintBlue.png");
+            PaintSprite[2] = CreateSprite("TownOfUs.Resources.PaintYellow.png");
             InkSprite = CreateSprite("TownOfUs.Resources.Ink.png");
             PourSprite = CreateSprite("TownOfUs.Resources.Pour.png");
             CloseVentButtonSprite = CreateSprite("TownOfUs.Resources.CloseVentButton.png");

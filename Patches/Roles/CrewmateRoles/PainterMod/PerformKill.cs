@@ -16,7 +16,6 @@ namespace TownOfUs.CrewmateRoles.PainterMod
     {
         public static bool Prefix(KillButtonManager __instance)
         {
-            AmongUsExtensions.Log($"perform kill");
             var flag = PlayerControl.LocalPlayer.Is(RoleEnum.Painter);
             if (!flag) return true;
             var role = Role.GetRole<Painter>(PlayerControl.LocalPlayer);
@@ -27,24 +26,25 @@ namespace TownOfUs.CrewmateRoles.PainterMod
 
             int c = 0;
             foreach (var btn in role._paintButtons) {
-                if(btn == __instance) {
-                    break;
+                if(btn != __instance) {
+                    ++c;
+                    continue;
                 }
-                ++c;
-            }
 
-            if (c >= CustomGameOptions.PaintColorMax) {
-                AmongUsExtensions.Log($"wrong color paint clicked");
-                return false;
-            }
-            
-            role.lastPainted = DateTime.UtcNow;
-            
-            if (__instance.renderer.sprite == TownOfUs.PaintSprite) {
-                Painter.RpcSetPaintPoint(role.Player.GetTruePosition(), (PaintColor)c);
-            }
-            else {
-                Painter.RpcSetPaintVent(role.closeVent.Id, (PaintColor)c);
+                if (c >= CustomGameOptions.PaintColorMax) {
+                    return false;
+                }
+                
+                role.lastPainted = DateTime.UtcNow;
+                
+                if (__instance.renderer.sprite == TownOfUs.PaintSprite[c]) {
+                    Painter.RpcSetPaintPoint(role.Player.GetTruePosition(), (PaintColor)c);
+                }
+                else {
+                    Painter.RpcSetPaintVent(role.closeVent.Id, (PaintColor)c);
+                }
+
+                break;
             }
 
             return false;

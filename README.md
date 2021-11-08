@@ -11,16 +11,15 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 開発途中のため、ゲーム途中で切断されたり予期しない動作が起こる場合があります。\
 全てのプレイヤーが一度ゲームを閉じて起動し直すことをおすすめします。
 
-### v0.4 既知の不具合
-Puppeteerの能力使用時に味方インポスターをキルできる\
-DollMakerのWaxを受けたプレイヤーが移動し続ける場合がある\
-DollMakerの人形が残っているときに会議が開かれた際に表示が人によって異なる
+### v0.401 既知の不具合
+DollMakerのWaxを受けたプレイヤーが移動し続ける場合がある
 
 ## Releases
 ### Town of Moss
 
 | Date | Among Us - Version| Mod Version | Link |
 |---|----------|-------------|-----------------|
+| 21-11-09 | 2021.6.30s | v0.401 | [Download](https://spiel.jp/mod/Moss0401.zip) |
 | 21-11-05 | 2021.6.30s | v0.4 | [Download](https://spiel.jp/mod/Moss04.zip) |
 | 21-11-04 | 2021.6.30s | v0.397 | [Download](https://spiel.jp/mod/Moss0397.zip) |
 | 21-11-03 | 2021.6.30s | v0.396 | [Download](https://spiel.jp/mod/Moss0396.zip) |
@@ -33,6 +32,14 @@ DollMakerの人形が残っているときに会議が開かれた際に表示�
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v0.401 </summary>
+        <ul> 
+            <li>新役職Painterの追加</li>
+            <li>Puppeteerの能力使用時に味方インポスターをキルできる不具合の修正</li>
+            <li>DollMakerの人形が残っているときに会議が開かれた際に表示が人によって異なる不具合の修正</li>
+        </ul>
+    </details>
     <details>
         <summary> v0.4 </summary>
         <ul> 
@@ -451,6 +458,23 @@ Admin閲覧中は消費電力が3倍になります。
 |----------|:-------------:|:------:|:------:|
 | Distance to revive dead | 蘇生に必要な距離 | Time | 20.0m |
 | Revive Limit Per Limit | ラウンドごとの蘇生可能回数 | No Limit / 1 / 2 / 3 | No Limit |
+
+-----------------------
+
+## Painter
+
+### **Team: Crewmates**
+
+床にペンキを塗ります。\
+塗ったペンキは会議を挟んだ後全プレイヤーに視認されるようになり、その上を通過したクルーのバイザー（目の部分）の色を変化させます。\
+この色は次の会議後まで全てのプレイヤーが視認でき、会議が終わると元に戻ります。
+
+### Game Options
+
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Paint Color Num | 塗れるペンキの色の数 | 1 / 2 / 3 | 2 |
+| Paint Cool Down | ペイントのクールダウン時間 | Time | 25s |
 
 -----------------------
 

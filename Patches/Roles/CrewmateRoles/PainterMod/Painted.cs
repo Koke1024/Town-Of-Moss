@@ -13,6 +13,10 @@ namespace TownOfUs.CrewmateRoles.PainterMod
             if (__instance != PlayerControl.LocalPlayer) {
                 return;
             }
+
+            if (__instance.inVent) {
+                return;
+            }
             foreach (var (pos, color) in Painter.PaintedPoint) {
                 var dist = Vector2.Distance(pos, PlayerControl.LocalPlayer.GetTruePosition());
                 if (dist < 1.2f) {

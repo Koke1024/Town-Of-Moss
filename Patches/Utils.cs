@@ -642,6 +642,10 @@ namespace TownOfUs
             player.transform.position = vector;
             player.NetTransform.SnapTo(vector);
         }
+    
+        public static float getZfromY(float y){
+            return y / 1000f;
+        }
     }
     
     [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Start))]

@@ -42,7 +42,8 @@ namespace TownOfUs
         public static int ArsonistOn => (int) Generate.ArsonistOn.Get();
         public static int SniperOn => (int) Generate.SniperOn.Get();
         public static int SniperWinCnt => (int) Generate.SniperWinCnt.Get();
-        public static int ScavengerOn => (int) Generate.ScavengerOn.Get();
+        // public static int ScavengerOn => (int) Generate.ScavengerOn.Get();
+        public static int ScavengerOn => 0;
         public static int ScavengerWinCount => (int) Generate.ScavengerWinCnt.Get();
         public static int AltruistOn => (int) Generate.AltruistOn.Get();
         public static int ZombieOn => (int) Generate.ZombieOn.Get();
