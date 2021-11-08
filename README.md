@@ -38,6 +38,9 @@ DollMakerのWaxを受けたプレイヤーが移動し続ける場合がある
             <li>新役職Painterの追加</li>
             <li>Puppeteerの能力使用時に味方インポスターをキルできる不具合の修正</li>
             <li>DollMakerの人形が残っているときに会議が開かれた際に表示が人によって異なる不具合の修正</li>
+            <li>Mad Mateとして割り当てられた役職はAssassinでなくMad Mateとして表示</li>
+            <li>幽霊が動けるかどうかの設定の追加</li>
+            <li>Puppeteerの大幅強化</li>
         </ul>
     </details>
     <details>
@@ -640,7 +643,7 @@ Skeldの廊下に仕掛けた場合、すべての廊下が停電状態になり
 3秒間かけて接触している相手に憑依します。\
 憑依されたクルーは、次に近付いた他のクルーをキルします。\
 キルが発生するかReleaseボタンにより憑依は解除されます。\
-Puppeteerは、憑依している間と憑依解除後の3秒間は行動が行なえません。
+Puppeteerは、憑依解除後の3秒間は行動が行えません。
 
 ### Game Options
 
@@ -828,7 +831,7 @@ Mad Mateが存在するとき、Assassinがインポスター陣営に採用さ�
 
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
-| Add Mad Mate | [Mad Mate](#Mad Mate)を追加する | Toggle | Off |
+| Add Mad Mate | Mad Mateを追加する | Toggle | Off |
 | Add Glitch | グリッチを追加する | Toggle | Off |
 | Number of Neutral Roles | 割り当てられる第三陣営の数 | Number | 1 |
 | Kill Cooldown Reset on Meeting | 会議の後にインポスターのキルクールダウンを初期化するかどうか | Toggle | Off |
@@ -840,6 +843,7 @@ Mad Mateが存在するとき、Assassinがインポスター陣営に採用さ�
 | Dead can see everyone's roles | 死亡後に全員の役職がわかる | Toggle | On |
 | Role Appears Under Name | 自身の役職を名前の下に表示する | Toggle | On |
 | Report Assigned Neutral Roles | 生存者が半分以下になったあとの会議で、そのゲームで最初に割り当てられた第三陣営の内訳が通知される | Toggle | Off |
+| Dead Player Can't Move Before Report | 幽霊になっても死体が残っているうちはその場から動けない | Toggle | Off |
 
 -----------------------
 
