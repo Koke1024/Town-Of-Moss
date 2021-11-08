@@ -409,8 +409,8 @@ namespace TownOfUs
                         var dollMaker = Role.GetRole<DollMaker>(Utils.PlayerById(readByte));
                         dollMaker.DollList.Add(readByte1, 0);
                         if (readByte1 == PlayerControl.LocalPlayer.PlayerId) {
-                            PlayerControl.LocalPlayer.NetTransform.RpcSnapTo(Utils.PlayerById(readByte1).transform.position);
-                            Utils.PlayerById(readByte1).moveable = false;
+                            PlayerControl.LocalPlayer.moveable = false;
+                            PlayerControl.LocalPlayer.NetTransform.Halt();
                             ShipStatus.Instance.StartCoroutine(Effects.SwayX(Camera.main.transform, 0.75f, 0.25f));
                         }
                         Utils.AirKill(dollMaker.Player, Utils.PlayerById(readByte1));

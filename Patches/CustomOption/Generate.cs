@@ -440,9 +440,9 @@ namespace TownOfUs.CustomOption
             // FootprintDuration = new CustomNumberOption(num++, "Footprint Duration", 10f, 1f, 10f, 0.5f, CooldownFormat);
             // AnonymousFootPrint = new CustomToggleOption(num++, "Anonymous Footprint", false);
             // VentFootprintVisible = new CustomToggleOption(num++, "Footprint Vent Visible", false);
-            InvestigatorSeeRange = new CustomNumberOption(num++, "See Someone Range", 6f, 3f, 30f, 1f, DistanceFormat);
-            InvestigatorSeeColorRange = new CustomNumberOption(num++, "See Color Range", 30f, 0f, 100f, 100f, PercentFormat);
-            InvestigatorMapUpdate = new CustomNumberOption(num++, "Map Update Interval", 2f, 0f, 10f, 0.5f, CooldownFormat);
+            InvestigatorSeeRange = new CustomNumberOption(num++, "See Someone Range", 8f, 3f, 30f, 1f, DistanceFormat);
+            InvestigatorSeeColorRange = new CustomNumberOption(num++, "See Color Range", 50f, 0f, 100f, 100f, PercentFormat);
+            InvestigatorMapUpdate = new CustomNumberOption(num++, "Map Update Interval", 1f, 0f, 10f, 0.5f, CooldownFormat);
 
             TimeLord =
                 new CustomHeaderOption(num++, "<color=#0000FFFF>Time Lord</color>");

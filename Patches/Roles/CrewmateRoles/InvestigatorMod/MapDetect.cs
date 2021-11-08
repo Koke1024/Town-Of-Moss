@@ -21,16 +21,20 @@ namespace TownOfUs.CrewmateRoles.InvestigatorMod
                 foreach (var row in role.crewPoints) {
                     row.Value.enabled = false;
                 }
+                PlayerControl.LocalPlayer.moveable = true;
             }
         }
 
         [HarmonyPatch(typeof(MapBehaviour), nameof(MapBehaviour.FixedUpdate))]
         public static class positionUpdate {
-            private static void Postfix(MapTaskOverlay __instance) {
+            private static void Postfix(MapBehaviour __instance) {
                 if (!PlayerControl.LocalPlayer.Is(RoleEnum.Investigator)) {
                     return;
                 }
                 var role = Role.GetRole<Investigator>(PlayerControl.LocalPlayer);
+
+                PlayerControl.LocalPlayer.moveable = false;
+                PlayerControl.LocalPlayer.NetTransform.Halt();
                 if ((DateTime.UtcNow - role.lastUpdated).TotalSeconds < CustomGameOptions.InvestigatorMapUpdate) {
                     return;
                 }
@@ -40,9 +44,7 @@ namespace TownOfUs.CrewmateRoles.InvestigatorMod
                     if (body.Reported) {
                         continue;
                     }
-                    
                     positions.Add(body.ParentId, body.TruePosition);
-                    
                 }
 
                 role.lastUpdated = DateTime.UtcNow;

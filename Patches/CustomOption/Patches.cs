@@ -179,9 +179,22 @@ namespace TownOfUs.CustomOption
             }
         }
 
+        [HarmonyPatch(typeof(LobbyBehaviour), nameof(LobbyBehaviour.Start))]
+        public static class DontShake {
+            public static void Postfix(LobbyBehaviour __instance) {
+                Camera main = Camera.main;
+                FollowerCamera component = main.GetComponent<FollowerCamera>();
+                if (component)
+                {
+                    component.shakeAmount = 0f;
+                    component.shakePeriod = 0;
+                }
+            }
+        }
+
         [HarmonyPatch(typeof(GameOptionsMenu), nameof(GameOptionsMenu.Update))]
-        private class GameOptionsMenu_Update
-        {
+        private class GameOptionsMenu_Update {
+            public static float bottomY;
             public static void Postfix(GameOptionsMenu __instance)
             {
                 if (!inited) {
@@ -219,45 +232,27 @@ namespace TownOfUs.CustomOption
                         }
                     }
                 }
+                    
+                bottomY = -3 + 3.57f - __instance.Children
+                    .Min(option => option.transform.localPosition.y);
 
                 var position = __instance.transform.position;
                 if (BepInEx.IL2CPP.UnityEngine.Input.GetKeyInt(BepInEx.IL2CPP.UnityEngine.KeyCode.W)) {
-                    __instance.transform.position = new Vector3(position.x, Mathf.Max(position.y - 0.3f, 3.57f - y), position.z);
+                    __instance.transform.position += new Vector3(0, -0.3f, 0);
                 }
                 if (BepInEx.IL2CPP.UnityEngine.Input.GetKeyInt(BepInEx.IL2CPP.UnityEngine.KeyCode.S)) {
-                    __instance.transform.position = new Vector3(position.x, Mathf.Min(position.y + 0.3f, -3 + 3.57f - __instance.Children
-                        .Min(option => option.transform.localPosition.y)), position.z);
+                    __instance.transform.position += new Vector3(0, 0.3f, 0);
                 }
                 if (BepInEx.IL2CPP.UnityEngine.Input.GetKeyInt(BepInEx.IL2CPP.UnityEngine.KeyCode.Home) ||
-                    BepInEx.IL2CPP.UnityEngine.Input.GetKeyInt(BepInEx.IL2CPP.UnityEngine.KeyCode.A)) {
+                    BepInEx.IL2CPP.UnityEngine.Input.GetKeyInt(BepInEx.IL2CPP.UnityEngine.KeyCode.A) ||
+                    __instance.transform.position.y < 3.57f - y) {
                     __instance.transform.position = new Vector3(position.x, 3.57f - y, position.z);
                 }
                 if (BepInEx.IL2CPP.UnityEngine.Input.GetKeyInt(BepInEx.IL2CPP.UnityEngine.KeyCode.End) ||
-                    BepInEx.IL2CPP.UnityEngine.Input.GetKeyInt(BepInEx.IL2CPP.UnityEngine.KeyCode.D)) {
-                    __instance.transform.position = new Vector3(position.x,-3 + 3.57f - __instance.Children
-                        .Min(option => option.transform.localPosition.y), position.z);
+                    BepInEx.IL2CPP.UnityEngine.Input.GetKeyInt(BepInEx.IL2CPP.UnityEngine.KeyCode.D) ||
+                    __instance.transform.position.y > bottomY) {
+                    __instance.transform.position = new Vector3(position.x, bottomY, position.z);
                 }
-                //
-                // if (BepInEx.IL2CPP.UnityEngine.Input.GetKeyInt(BepInEx.IL2CPP.UnityEngine.KeyCode.PageUp)) {
-                //     var before = __instance.Children
-                //         .Where(x => x.OnValueChanged == null &&
-                //                     3.57f < x.transform.localPosition.y + __instance.transform.position.y).ToList();
-                //     if (before.Any()) {
-                //         __instance.transform.position = 
-                //             new Vector3(position.x, 3.57f - before.Min(x => x.transform.localPosition.y),
-                //             position.z);
-                //     }
-                // }
-                // if (BepInEx.IL2CPP.UnityEngine.Input.GetKeyInt(BepInEx.IL2CPP.UnityEngine.KeyCode.PageDown)) {
-                //     var next = __instance.Children
-                //         .Where(x => x.OnValueChanged == null &&
-                //                     3.57f > x.transform.localPosition.y + __instance.transform.position.y).ToList();
-                //     if (next.Any()) {
-                //         __instance.transform.position = 
-                //             new Vector3(position.x, 3.57f - next.Max(x => x.transform.localPosition.y),
-                //                 position.z);
-                //     }
-                // }
             }
         }
 
