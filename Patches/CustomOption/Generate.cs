@@ -527,7 +527,7 @@ namespace TownOfUs.CustomOption
             
             Painter =
                 new CustomHeaderOption(num++, "<color=#CECECEFF>Painter</color>");
-            PaintColorMax = new CustomNumberOption(num++, "Paint Color Max", 3f, 1f, 4f, 1f);
+            PaintColorMax = new CustomNumberOption(num++, "Paint Color Max", 2f, 1f, 3f, 1f);
             PaintCd = new CustomNumberOption(num++, "Paint Cool Down", 10f, 5f, 40f, 2.5f, CooldownFormat);
             // PaintCd = new CustomNumberOption(num++, "Paint Cool Down", 20f, 5f, 40f, 2.5f, DistanceFormat);
 

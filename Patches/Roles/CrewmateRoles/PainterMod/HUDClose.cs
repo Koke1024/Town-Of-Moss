@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using HarmonyLib;
+using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine;
 
@@ -20,6 +21,8 @@ namespace TownOfUs.CrewmateRoles.PainterMod
                 var player = GameData.Instance.GetPlayerById(id);
                 player._object.myRend.material.SetColor("_VisorColor", Palette.VisorColor);
             }
+
+            AmongUsExtensions.Log($"paint wash");
             Painter.PaintedPlayers.Clear();
         }
     }

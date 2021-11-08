@@ -12,10 +12,6 @@ namespace TownOfUs.Roles
         PaintRed,
         PaintGreen,
         PaintBlue,
-        PaintPink,
-        PaintBlack,
-        PaintPurple,
-        PaintYellow,
         PaintColorMax,
         PaintNone,
     }
@@ -24,12 +20,8 @@ namespace TownOfUs.Roles
         public Vent closeVent;
         public static readonly Color[] PaintColors = {
             new Color(1, 0, 0),
-            new Color(0, 1, 1),
             new Color(0, 0, 1),
-            Color.magenta,
-            Color.black,
-            new Color(0.57f, 0f, 1f),
-            new Color(1f, 0.93f, 0f),
+            new Color(0, 0.6f, 0),
         };
         public DateTime lastPainted;
         public static Dictionary<byte, PaintColor> PaintedPlayers = new Dictionary<byte, PaintColor>();

@@ -22,24 +22,18 @@ namespace TownOfUs.CrewmateRoles.PainterMod
             var role = Role.GetRole<Painter>(PlayerControl.LocalPlayer);
 
             if (!role._paintButtons.Any()) {
-                AmongUsExtensions.Log($"no button");
                 if (__instance.KillButton == null) {
-                    AmongUsExtensions.Log($"kill button null");
                     return;
                 }
                 for (int i = 0; i < CustomGameOptions.PaintColorMax; ++i) {
                     KillButtonManager btn = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);
-                    AmongUsExtensions.Log($"Instantiate");
                     btn.renderer.enabled = true;
                     btn.renderer.sprite = PaintSprite;
                     btn.renderer.material.color = Painter.PaintColors[i];
                     
                     btn.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
                     role._paintButtons.Add(btn);
-                    
-                    
                 }
-                AmongUsExtensions.Log($"count {role._paintButtons.Count}");
             }
 
             var t = 0; 
