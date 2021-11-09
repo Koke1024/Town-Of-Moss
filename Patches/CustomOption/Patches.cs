@@ -243,15 +243,15 @@ namespace TownOfUs.CustomOption
                 if (BepInEx.IL2CPP.UnityEngine.Input.GetKeyInt(BepInEx.IL2CPP.UnityEngine.KeyCode.S)) {
                     __instance.transform.position += new Vector3(0, 0.3f, 0);
                 }
-                if (BepInEx.IL2CPP.UnityEngine.Input.GetKeyInt(BepInEx.IL2CPP.UnityEngine.KeyCode.Home) ||
-                    BepInEx.IL2CPP.UnityEngine.Input.GetKeyInt(BepInEx.IL2CPP.UnityEngine.KeyCode.A) ||
-                    __instance.transform.position.y < 3.57f - y) {
-                    __instance.transform.position = new Vector3(position.x, 3.57f - y, position.z);
-                }
                 if (BepInEx.IL2CPP.UnityEngine.Input.GetKeyInt(BepInEx.IL2CPP.UnityEngine.KeyCode.End) ||
                     BepInEx.IL2CPP.UnityEngine.Input.GetKeyInt(BepInEx.IL2CPP.UnityEngine.KeyCode.D) ||
                     __instance.transform.position.y > bottomY) {
                     __instance.transform.position = new Vector3(position.x, bottomY, position.z);
+                }
+                if (BepInEx.IL2CPP.UnityEngine.Input.GetKeyInt(BepInEx.IL2CPP.UnityEngine.KeyCode.Home) ||
+                    BepInEx.IL2CPP.UnityEngine.Input.GetKeyInt(BepInEx.IL2CPP.UnityEngine.KeyCode.A) ||
+                    __instance.transform.position.y < 3.57f - y) {
+                    __instance.transform.position = new Vector3(position.x, 3.57f - y, position.z);
                 }
             }
         }

@@ -9,10 +9,6 @@ namespace TownOfUs.CrewmateRoles.PainterMod {
     [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
     public class SeePlayerColors {
         public static void Prefix() {
-            // if (!PlayerControl.LocalPlayer.Is(RoleEnum.Painter)) {
-            //     return;
-            // }
-
             if (MeetingHud.Instance) {
                 UpdateMeeting(MeetingHud.Instance);
                 return;
