@@ -3,6 +3,7 @@ using Hazel;
 using Il2CppSystem.Collections.Generic;
 using Reactor.Extensions;
 using TMPro;
+using TownOfUs.Extensions;
 using UnityEngine;
 
 namespace TownOfUs.Patches {
@@ -114,6 +115,18 @@ namespace TownOfUs.Patches {
             }
         }
 
+        [HarmonyPatch(typeof(PlanetSurveillanceMinigame), nameof(PlanetSurveillanceMinigame.Update))]
+        public static class PolusCameraTimeLimit {
+            public static bool Prefix(PlanetSurveillanceMinigame __instance) {
+                if (!MechanicalUpdate()) {
+                    __instance.isStatic = true;
+                    __instance.ViewPort.sharedMaterial = __instance.StaticMaterial;
+                    return false;
+                }
+                return true;
+            }
+        }
+
         [HarmonyPatch(typeof(VitalsMinigame), nameof(VitalsMinigame.Update))]
         public static class VitalTimeLimit {
             public static bool Prefix(VitalsMinigame __instance) {
@@ -136,7 +149,7 @@ namespace TownOfUs.Patches {
             if (timeText == null) {
                 timeText = Object.Instantiate(PlayerControl.LocalPlayer.nameText, null);
                 timeText.transform.position = HudManager.Instance.UseButton.transform.position;
-                timeText.transform.position += Vector3.forward;
+                timeText.transform.position += new Vector3(0, 0, 10f);
                 timeText.color = Color.white;
                 timeText.transform.localScale = Vector3.one * 2.0f;
             }
@@ -170,7 +183,8 @@ namespace TownOfUs.Patches {
 
         [HarmonyPatch(typeof(VitalsMinigame), nameof(VitalsMinigame.Close))]
         public static class VitalTimeLimitClose {
-            public static void Prefix(VitalsMinigame __instance) {
+            public static void Postfix(VitalsMinigame __instance) {
+                AmongUsExtensions.Log($"CoStartClose");
                 MechanicalClose();
             }
         }

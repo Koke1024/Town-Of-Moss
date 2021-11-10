@@ -338,6 +338,7 @@ namespace TownOfUs.Roles
 
                 public static void Postfix(IntroCutscene._CoBegin_d__14 __instance)
                 {
+                    AmongUsExtensions.Log($"IntroCutscene._CoBegin_d__14 __instance");
                     var role = GetRole(PlayerControl.LocalPlayer);
                     var alpha = __instance.__4__this.Title.color.a;
                     if (role != null && !role.Hidden)
