@@ -41,6 +41,7 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption ChargerOn;
         public static CustomNumberOption DruidOn;
         public static CustomNumberOption PainterOn;
+        public static CustomNumberOption SnifferOn;
         #endregion
         #region Neutral Roles
         public static CustomHeaderOption NeutralRoles;
@@ -333,6 +334,8 @@ namespace TownOfUs.CustomOption
             DruidOn = new CustomNumberOption(true, num++, "<color=#66008EFF>Druid</color>", 100.0f, 0f, 100f, 10f,
                 PercentFormat);
             PainterOn = new CustomNumberOption(true, num++, "<color=#CECECEFF>Painter</color>", 100.0f, 0f, 100f, 10f,
+                PercentFormat);
+            SnifferOn = new CustomNumberOption(true, num++, "<color=#CECECEFF>Sniffer</color>", 100.0f, 0f, 100f, 10f,
                 PercentFormat);
 #endregion
 #region Neutral Roles

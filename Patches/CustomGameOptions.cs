@@ -30,6 +30,7 @@ namespace TownOfUs
         public static int SeerOn => (int) Generate.SeerOn.Get();
         public static int SecurityGuardOn => (int) Generate.SecurityGuardOn.Get();
         public static int PainterOn => (int) Generate.PainterOn.Get();
+        public static int SnifferOn => (int) Generate.SnifferOn.Get();
         public static bool GlitchOn => Generate.GlitchOn.Get();
         public static int MorphlingOn => (int) Generate.MorphlingOn.Get();
         public static int CamouflagerOn => (int) Generate.CamouflagerOn.Get();

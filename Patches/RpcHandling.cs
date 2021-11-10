@@ -884,6 +884,9 @@ namespace TownOfUs
 
                 if (Check(CustomGameOptions.PainterOn))
                     CrewmateRoles.Add((typeof(Painter), (byte)RoleEnum.Painter, CustomGameOptions.PainterOn));
+
+                if (Check(CustomGameOptions.SnifferOn))
+                    CrewmateRoles.Add((typeof(Sniffer), (byte)RoleEnum.Sniffer, CustomGameOptions.SnifferOn));
                 #endregion
                 #region Neutral Roles
                 if (CustomGameOptions.GlitchOn)

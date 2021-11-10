@@ -21,6 +21,7 @@ namespace TownOfUs
         Druid,
         SecurityGuard,
         Painter,
+        Sniffer,
         
         Glitch,
         Arsonist,
