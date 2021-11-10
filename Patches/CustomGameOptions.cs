@@ -194,5 +194,7 @@ namespace TownOfUs
         public static bool GhostCantMove => Generate.GhostCantMove.Get();
         public static int PaintColorMax => (int)Generate.PaintColorMax.Get();
         public static float PaintCd => Generate.PaintCd.Get();
+        public static bool SnifferCanReport => Generate.SnifferCanReport.Get();
+        public static float SnifferMaxRange => Generate.SnifferMaxRange.Get();
     }
 }

@@ -32,7 +32,8 @@ namespace TownOfUs.Roles
             { "Altruist", new Color(0.4f, 0f, 0f, 1f) },
             { "Charger", new Color(0.99f, 1f, 0.2f) },
             { "Druid", new Color(0.4f, 0f, 0.56f) },
-            { "Painter", new Color(0.81f, 0.81f, 0.81f) }
+            { "Painter", new Color(0.81f, 0.81f, 0.81f) },
+            { "Sniffer", new Color(0.65f, 0f, 0.83f) }
         };
 
         public Dictionary<byte, string> Guesses = new Dictionary<byte, string>();

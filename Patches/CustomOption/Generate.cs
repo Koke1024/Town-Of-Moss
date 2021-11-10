@@ -157,6 +157,10 @@ namespace TownOfUs.CustomOption
         public static CustomHeaderOption Painter;
         public static CustomNumberOption PaintColorMax;
         public static CustomNumberOption PaintCd;
+
+        public static CustomHeaderOption Sniffer;
+        public static CustomToggleOption SnifferCanReport;
+        public static CustomNumberOption SnifferMaxRange;
         
 //-------------------------------------IMPOSTOR ROLES-------------------------------------------------------
         public static CustomHeaderOption ImpostorRolesSetting;
@@ -335,7 +339,7 @@ namespace TownOfUs.CustomOption
                 PercentFormat);
             PainterOn = new CustomNumberOption(true, num++, "<color=#CECECEFF>Painter</color>", 100.0f, 0f, 100f, 10f,
                 PercentFormat);
-            SnifferOn = new CustomNumberOption(true, num++, "<color=#CECECEFF>Sniffer</color>", 100.0f, 0f, 100f, 10f,
+            SnifferOn = new CustomNumberOption(true, num++, "<color=#A500D3FF>Sniffer</color>", 100.0f, 0f, 100f, 10f,
                 PercentFormat);
 #endregion
 #region Neutral Roles
@@ -532,6 +536,11 @@ namespace TownOfUs.CustomOption
                 new CustomHeaderOption(num++, "<color=#CECECEFF>Painter</color>");
             PaintColorMax = new CustomNumberOption(num++, "Paint Color Num", 2f, 1f, 3f, 1f);
             PaintCd = new CustomNumberOption(num++, "Paint Cool Down", 25f, 5f, 40f, 2.5f, CooldownFormat);
+            
+            Sniffer =
+                new CustomHeaderOption(num++, "<color=#A500D3FF>Sniffer</color>");
+            SnifferCanReport = new CustomToggleOption(num++, "Sniffer Can Report", false);
+            SnifferMaxRange = new CustomNumberOption(num++, "Sniff Max Range", 10f, 5f, 50f, 5f, DistanceFormat);
             // PaintCd = new CustomNumberOption(num++, "Paint Cool Down", 20f, 5f, 40f, 2.5f, DistanceFormat);
 
             NeutralRolesSetting = new CustomHeaderOption(num++, "<color=#FF00FFFF>Neutral Roles</color>");

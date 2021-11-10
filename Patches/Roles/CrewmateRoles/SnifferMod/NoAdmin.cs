@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace TownOfUs.CrewmateRoles.SniffMod {
 
-    public class AdminLimit {
+    public class NoAdmin {
         [HarmonyPatch(typeof(MapCountOverlay), nameof(MapCountOverlay.Update))]
         public static class AdminTimeLimit {
             public static bool Prefix(MapCountOverlay __instance) {

@@ -7,7 +7,6 @@ namespace TownOfUs.Roles
 {
     public class Sniffer : Role
     {
-        public List<DeadBody> SnifferTargets = new List<DeadBody>();
         public float sniffInterval = 5f;
 
         public Sniffer(PlayerControl player) : base(player)

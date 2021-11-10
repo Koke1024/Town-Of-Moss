@@ -518,6 +518,25 @@ namespace TownOfUs
             }
         }
 
+        public static IEnumerator ShadowQuadFlashCoroutine(Color color, float waitfor = 1f) {
+            float alpha;
+            Color c = Color.black;
+            if (DestroyableSingleton<HudManager>.Instance.ShadowQuad)
+            {
+                alpha = DestroyableSingleton<HudManager>.Instance.ShadowQuad.material.color.a;
+                c = DestroyableSingleton<HudManager>.Instance.ShadowQuad.material.color;
+                color.a = alpha;
+                DestroyableSingleton<HudManager>.Instance.ShadowQuad.material.color = color;
+            }
+
+            yield return new WaitForSeconds(waitfor);
+
+            if (DestroyableSingleton<HudManager>.Instance.ShadowQuad)
+            {
+                DestroyableSingleton<HudManager>.Instance.ShadowQuad.material.color = c;
+            }
+        }
+
         public static IEnumerable<(T1, T2)> Zip<T1, T2>(List<T1> first, List<T2> second)
         {
             return first.Zip(second, (x, y) => (x, y));

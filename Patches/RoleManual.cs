@@ -24,6 +24,7 @@ namespace TownOfUs.Roles {
             {RoleEnum.Seer, "Seer\n占いによってクルーメイトの陣営を知ります。占うためには一定時間触れている必要があり、その間自身は移動できません。\nZombieを占った場合、Zombieが死亡します。"},
             {RoleEnum.Executioner, "Executioner\nゲーム開始時に指定されるターゲットが会議で追放されると勝利します。ターゲットが追放以外で死亡した場合、役職がJesterまたはCrewmateになります。"},
             {RoleEnum.Spy, "Spy\n"},
+            {RoleEnum.Sniffer, "Sniffer\n死体が周辺にあると周囲が赤く変化します。\n通報を行うことができません。"},
             {RoleEnum.Snitch, "Snitch\n自身のタスクを完了させることによって誰がインポスターかを知ることができます。\nPolus、Airshipでは、閉じられたドアに触れるだけでドアを開くことができます。"},
             {RoleEnum.Charger, "Charger\n電力を消費して視界とAdmin情報をパワーアップさせます。\n電力はベントに入ることで充電できますが、他のベントへの移動はできません。\n充電が切れた場合、Admin情報を見ることができなくなります。\nAdmin閲覧中は消費電力が3倍になります。"},
             {RoleEnum.Druid, "Druid\n死体を一定距離移動させることで蘇生させます。\n距離は、死体を運び始めた位置からどれだけ離れたかによって判定されます。"},
