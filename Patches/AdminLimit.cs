@@ -181,11 +181,13 @@ namespace TownOfUs.Patches {
             }
         }
 
-        [HarmonyPatch(typeof(VitalsMinigame), nameof(VitalsMinigame.Close))]
+        [HarmonyPatch(typeof(Minigame), nameof(Minigame.Close))]
         public static class VitalTimeLimitClose {
-            public static void Postfix(VitalsMinigame __instance) {
+            public static void Postfix(Minigame __instance) {
                 AmongUsExtensions.Log($"CoStartClose");
-                MechanicalClose();
+                if (__instance is VitalsMinigame) {
+                    MechanicalClose();                    
+                }
             }
         }
 
