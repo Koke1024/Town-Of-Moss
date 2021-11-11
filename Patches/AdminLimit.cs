@@ -3,7 +3,6 @@ using Hazel;
 using Il2CppSystem.Collections.Generic;
 using Reactor.Extensions;
 using TMPro;
-using TownOfUs.Extensions;
 using UnityEngine;
 
 namespace TownOfUs.Patches {
@@ -184,9 +183,8 @@ namespace TownOfUs.Patches {
         [HarmonyPatch(typeof(Minigame), nameof(Minigame.Close))]
         public static class VitalTimeLimitClose {
             public static void Postfix(Minigame __instance) {
-                AmongUsExtensions.Log($"CoStartClose");
                 if (__instance is VitalsMinigame) {
-                    MechanicalClose();                    
+                    MechanicalClose();
                 }
             }
         }

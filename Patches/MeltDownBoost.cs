@@ -43,10 +43,8 @@ namespace GameCustomize {
                 return true;
             }
             if (ShipStatus.Instance is AirshipStatus) {
-                AmongUsExtensions.Log($"airship");
             }
             if (ShipStatus.Instance.Type != ShipStatus.MapType.Pb) {
-                AmongUsExtensions.Log($"not pb");
                 return true;
             }
 

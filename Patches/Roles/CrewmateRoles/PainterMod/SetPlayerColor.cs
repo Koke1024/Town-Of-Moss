@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
 using Rewired;
@@ -13,17 +14,22 @@ namespace TownOfUs.CrewmateRoles.PainterMod {
                 UpdateMeeting(MeetingHud.Instance);
                 return;
             }
-
+            
             foreach (var (id, c) in Painter.PaintedPlayers) {
                 var player = GameData.Instance.GetPlayerById(id);
-                player._object.myRend.material.SetColor("_VisorColor", Painter.PaintColors[(int)c]);
+                if (player.Disconnected) {
+                    continue;
+                }
+                if (player._object.myRend) {
+                    player._object.myRend.material.SetColor("_VisorColor", Painter.PaintColors[(int)c]);                    
+                }
             }
 
-            foreach (var (id, c) in Painter.PaintedVent) {
-                Vent vent = ShipStatus.Instance.AllVents[id];
-                vent.myRend.color = Painter.PaintColors[(int)c];
-                vent.myRend.material.SetColor("_OutlineColor", Painter.PaintColors[(int)c]);
-            }
+            // foreach (var (id, c) in Painter.PaintedVent) {
+            //     Vent vent = ShipStatus.Instance.AllVents[id];
+            //     vent.myRend.color = Painter.PaintColors[(int)c];
+            //     vent.myRend.material.SetColor("_OutlineColor", Painter.PaintColors[(int)c]);
+            // }
         }
 
         static void UpdateMeeting(MeetingHud __instance) {
@@ -31,7 +37,9 @@ namespace TownOfUs.CrewmateRoles.PainterMod {
                 var id = state.TargetPlayerId;
                 if (Painter.PaintedPlayers.ContainsKey(id)) {
                     var c = (int)Painter.PaintedPlayers[id];
-                    state.PlayerIcon.Body.material.SetColor("_VisorColor", Painter.PaintColors[c]);
+                    if (state.PlayerIcon.Body) {
+                        state.PlayerIcon.Body.material.SetColor("_VisorColor", Painter.PaintColors[c]);                        
+                    }
                 }
             }
         }

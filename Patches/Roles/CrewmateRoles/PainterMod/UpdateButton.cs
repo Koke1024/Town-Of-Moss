@@ -35,7 +35,7 @@ namespace TownOfUs.CrewmateRoles.PainterMod
             }
 
             var t = 0; 
-            role.closeVent = ClosestVent();
+            // role.closeVent = ClosestVent();
 
             bool onInk = false;
             foreach (var (pos, color) in Painter.PaintedPoint) {
