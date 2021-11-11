@@ -61,12 +61,14 @@ namespace TownOfUs.CrewmateRoles.PainterMod
                 if (!onInk) {
                     btn.renderer.color = Palette.EnabledColor;
                     btn.renderer.material.SetFloat("_Desat", 0f);
+                    btn.enabled = false;
                 }
                 else {
                     btn.renderer.color = Palette.DisabledClear;
                     btn.renderer.material.SetFloat("_Desat", 1f);
+                    btn.enabled = true;
                 }
-                btn.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
+                btn.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance && !MapBehaviour.Instance);
                 // if (role.closeVent == null) {
                 //     btn.renderer.sprite = TownOfUs.PaintSprite[t];
                 // }else{

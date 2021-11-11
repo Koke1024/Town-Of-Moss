@@ -790,10 +790,16 @@ namespace TownOfUs
                         SGAction.sealVent(reader.ReadPackedInt32());
                         break;
                     case CustomRPC.StartWatchAdmin:
-                        MechanicLimit.AdminWatcher.Add(reader.ReadByte());
+                        var watcherId = reader.ReadByte();
+                        if (!MechanicLimit.AdminWatcher.Contains(watcherId)) {
+                            MechanicLimit.AdminWatcher.Add(watcherId);                
+                        }
                         break;
                     case CustomRPC.EndWatchAdmin:
-                        MechanicLimit.AdminWatcher.Remove(reader.ReadByte());
+                        var watcherId2 = reader.ReadByte();
+                        if (MechanicLimit.AdminWatcher.Contains(watcherId2)) {
+                            MechanicLimit.AdminWatcher.Remove(watcherId2);                
+                        }
                         break;
                     case CustomRPC.SetPaintPoint:
                         Painter.SetPaintPoint(reader.ReadVector2(), (PaintColor)reader.ReadByte());

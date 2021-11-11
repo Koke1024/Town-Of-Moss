@@ -164,6 +164,7 @@ namespace TownOfUs
         public static int MultiKillerCdRate => (int) Generate.MultiKillerCdRate.Get();
         public static float MultiKillEnableTime => (float) Generate.MultiKillEnableTime.Get();
         public static int PolusReactorTimeLimit => (int) Generate.PolusReactorTimeLimit.Get();
+        public static int AirshipReactorTimeLimit => (int) Generate.AirshipReactorTimeLimit.Get();
         public static PolusVitalPosition PolusVitalMove => (PolusVitalPosition)Generate.PolusVitalMove.Get();
         public static float AdminTimeLimitTime => (float) Generate.AdminTimeLimitTime.Get();
         public static bool RoleUnderName => Generate.RoleUnderName.Get();

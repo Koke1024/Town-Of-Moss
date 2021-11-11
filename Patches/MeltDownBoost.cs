@@ -42,16 +42,19 @@ namespace GameCustomize {
             if (!__instance.IsActive) {
                 return true;
             }
-            if (ShipStatus.Instance is AirshipStatus) {
-            }
-            if (ShipStatus.Instance.Type != ShipStatus.MapType.Pb) {
+            
+            if (ShipStatus.Instance as AirshipStatus) {
+                if (__instance.Countdown >= CustomGameOptions.AirshipReactorTimeLimit) {
+                    __instance.Countdown = CustomGameOptions.AirshipReactorTimeLimit;
+                }
                 return true;
             }
-
-            if (__instance.Countdown >= CustomGameOptions.PolusReactorTimeLimit) {
-                __instance.Countdown = CustomGameOptions.PolusReactorTimeLimit;
+            if (ShipStatus.Instance.Type == ShipStatus.MapType.Pb) {
+                if (__instance.Countdown >= CustomGameOptions.PolusReactorTimeLimit) {
+                    __instance.Countdown = CustomGameOptions.PolusReactorTimeLimit;
+                }
+                return true;
             }
-
             return true;
         }
     }

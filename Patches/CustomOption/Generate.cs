@@ -19,6 +19,7 @@ namespace TownOfUs.CustomOption
         public static CustomToggleOption RoleUnderName;
         public static CustomNumberOption VanillaGame;
         public static CustomNumberOption PolusReactorTimeLimit;
+        public static CustomNumberOption AirshipReactorTimeLimit;
         public static CustomStringOption PolusVitalMove;
         public static CustomNumberOption AdminTimeLimitTime;
         public static CustomToggleOption NoticeNeutral;
@@ -290,6 +291,7 @@ namespace TownOfUs.CustomOption
             ImpostorSeeRoles = new CustomToggleOption(num++, "Impostors See Teammate's Role", true);
             
             PolusReactorTimeLimit = new CustomNumberOption(num++, "Polus Reactor Time Limit", 45.0f, 30f, 60f, 5f, CooldownFormat);
+            AirshipReactorTimeLimit = new CustomNumberOption(num++, "AirShip Reactor Time Limit", 75.0f, 45f, 90f, 5f, CooldownFormat);
             PolusVitalMove = 
                 new CustomStringOption(num++, "Polus Vital Move", new[] {"Default", "Labo", "Ship", "O2"});
             AdminTimeLimitTime = new CustomNumberOption(num++, "Admin Usable Time", 0, 0f, 60f, 5f, CooldownFormat);
