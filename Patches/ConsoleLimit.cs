@@ -70,74 +70,70 @@ namespace TownOfUs.Patches {
             }
         }
 
-        [HarmonyPatch(typeof(SurveillanceMinigame), nameof(SurveillanceMinigame.CoAnimateOpen))]
-        public static class CameraTimeLimitOpen {
-            public static bool Prefix(SurveillanceMinigame __instance) {
-                return MechanicalOpen(__instance);
-            }
-        }
-
-        [HarmonyPatch(typeof(SurveillanceMinigame), nameof(SurveillanceMinigame.Update))]
-        public static class CameraTimeLimit {
-            public static bool Prefix(SurveillanceMinigame __instance) {
-                if (!MechanicalUpdate(__instance)) {
-                    __instance.isStatic = true;
-                    for (int j = 0; j < __instance.ViewPorts.Length; j++) {
-                        __instance.ViewPorts[j].sharedMaterial = __instance.StaticMaterial;
-                    }
-                    return false;
-                }
-                return true;
-            }
-        }
-
-        [HarmonyPatch(typeof(SurveillanceMinigame), nameof(SurveillanceMinigame.CoDestroySelf))]
-        public static class CameraTimeLimitClose {
-            public static void Postfix(SurveillanceMinigame __instance) {
-                MechanicalClose(__instance);
-            }
-        }
-
-        [HarmonyPatch(typeof(PlanetSurveillanceMinigame), nameof(PlanetSurveillanceMinigame.CoAnimateOpen))]
-        public static class PbCameraTimeLimitOpen {
-            public static bool Prefix(PlanetSurveillanceMinigame __instance) {
-                return MechanicalOpen(__instance);
-            }
-        }
-
-        [HarmonyPatch(typeof(PlanetSurveillanceMinigame), nameof(PlanetSurveillanceMinigame.Update))]
-        public static class PolusCameraTimeLimit {
-            public static bool Prefix(PlanetSurveillanceMinigame __instance) {
-                if (!MechanicalUpdate(__instance)) {
-                    __instance.isStatic = true;
-                    __instance.ViewPort.sharedMaterial = __instance.StaticMaterial;
-                    return false;
-                }
-                return true;
-            }
-        }
-
-        [HarmonyPatch(typeof(PlanetSurveillanceMinigame), nameof(PlanetSurveillanceMinigame.CoDestroySelf))]
-        public static class PolusCameraTimeLimitClose {
-            public static void Postfix(PlanetSurveillanceMinigame __instance) {
-                MechanicalClose(__instance);
-            }
-        }
-
-        [HarmonyPatch(typeof(PlanetSurveillanceMinigame), nameof(PlanetSurveillanceMinigame.NextCamera))]
-        public static class PolusCameraTimeLimitNext {
-            public static bool Prefix(PlanetSurveillanceMinigame __instance, [HarmonyArgument(0)]int direction) {
-                if (CustomGameOptions.AdminTimeLimitTime == 0) {
-                    return true;
-                }
-                // _timeText.sortingOrder += direction;
-                // _timeText.renderer.sortingOrder += direction;
-                _timeText.gameObject.GetComponent<MeshRenderer>().sortingOrder += direction;
-                AmongUsExtensions.Log($"order: {_timeText.gameObject.GetComponent<MeshRenderer>().sortingOrder}");
-
-                return !(TimeLimit <= 1);
-            }
-        }
+        // [HarmonyPatch(typeof(SurveillanceMinigame), nameof(SurveillanceMinigame.CoAnimateOpen))]
+        // public static class CameraTimeLimitOpen {
+        //     public static bool Prefix(SurveillanceMinigame __instance) {
+        //         return MechanicalOpen(__instance);
+        //     }
+        // }
+        //
+        // [HarmonyPatch(typeof(SurveillanceMinigame), nameof(SurveillanceMinigame.Update))]
+        // public static class CameraTimeLimit {
+        //     public static bool Prefix(SurveillanceMinigame __instance) {
+        //         if (!MechanicalUpdate(__instance)) {
+        //             __instance.isStatic = true;
+        //             for (int j = 0; j < __instance.ViewPorts.Length; j++) {
+        //                 __instance.ViewPorts[j].sharedMaterial = __instance.StaticMaterial;
+        //             }
+        //             return false;
+        //         }
+        //         return true;
+        //     }
+        // }
+        //
+        // [HarmonyPatch(typeof(SurveillanceMinigame), nameof(SurveillanceMinigame.CoDestroySelf))]
+        // public static class CameraTimeLimitClose {
+        //     public static void Postfix(SurveillanceMinigame __instance) {
+        //         MechanicalClose(__instance);
+        //     }
+        // }
+        //
+        // [HarmonyPatch(typeof(PlanetSurveillanceMinigame), nameof(PlanetSurveillanceMinigame.CoAnimateOpen))]
+        // public static class PbCameraTimeLimitOpen {
+        //     public static bool Prefix(PlanetSurveillanceMinigame __instance) {
+        //         return MechanicalOpen(__instance);
+        //     }
+        // }
+        //
+        // [HarmonyPatch(typeof(PlanetSurveillanceMinigame), nameof(PlanetSurveillanceMinigame.Update))]
+        // public static class PolusCameraTimeLimit {
+        //     public static bool Prefix(PlanetSurveillanceMinigame __instance) {
+        //         if (!MechanicalUpdate(__instance)) {
+        //             __instance.isStatic = true;
+        //             __instance.ViewPort.sharedMaterial = __instance.StaticMaterial;
+        //             return false;
+        //         }
+        //         return true;
+        //     }
+        // }
+        //
+        // [HarmonyPatch(typeof(PlanetSurveillanceMinigame), nameof(PlanetSurveillanceMinigame.CoDestroySelf))]
+        // public static class PolusCameraTimeLimitClose {
+        //     public static void Postfix(PlanetSurveillanceMinigame __instance) {
+        //         MechanicalClose(__instance);
+        //     }
+        // }
+        //
+        // [HarmonyPatch(typeof(PlanetSurveillanceMinigame), nameof(PlanetSurveillanceMinigame.NextCamera))]
+        // public static class PolusCameraTimeLimitNext {
+        //     public static bool Prefix(PlanetSurveillanceMinigame __instance, [HarmonyArgument(0)]int direction) {
+        //         if (CustomGameOptions.AdminTimeLimitTime == 0) {
+        //             return true;
+        //         }
+        //
+        //         return !(TimeLimit <= 1);
+        //     }
+        // }
         
         public static bool MechanicalUpdate(MonoBehaviour __instance) {
             if (CustomGameOptions.AdminTimeLimitTime == 0) {
@@ -145,42 +141,28 @@ namespace TownOfUs.Patches {
             }
 
             if (_timeText == null) {
-                _timeText = Object.Instantiate(HudManager.Instance.KillButton.killText, null);
-                _timeText.text = "";
-                _timeText.transform.position = HudManager.Instance.KillButton.transform.position;
+                // if (__instance as SurveillanceMinigame != null) {
+                //     _timeText = Object.Instantiate(((SurveillanceMinigame)__instance).SabText[0], __instance.transform);
+                // }
+                // if (__instance as PlanetSurveillanceMinigame != null) {
+                //     _timeText = Object.Instantiate(((PlanetSurveillanceMinigame)__instance).SabText, __instance.transform);
+                // }
+                if (_timeText == null) {
+                    // _timeText = Object.Instantiate(PlayerControl.LocalPlayer.nameText, __instance.transform);         
+                    _timeText = Object.Instantiate(PlayerControl.LocalPlayer.nameText, __instance.transform);         
+                }
+                _timeText.gameObject.SetActive(true);
+                // _timeText.transform.SetParent(__instance.transform);
+                // _timeText.text = "TIME";
+                var pos = HudManager.Instance.UseButton.transform.position;
+                _timeText.transform.position = new Vector3(pos.x, pos.y, pos.z - 20.0f);
                 _timeText.color = Color.white;
                 _timeText.transform.localScale = Vector3.one * 2.5f;
-                
-                _timeText.gameObject.transform.SetParent(__instance.transform);
-                if (__instance as SurveillanceMinigame != null) {
-                    // _timeText.transform.position = new Vector3(_timeText.transform.position.x, _timeText.transform.position.y, -10000.0f);
-                    _timeText.transform.SetParent(__instance.transform);
-                    _timeText.transform.position = ((SurveillanceMinigame)__instance).FillQuad.transform.position;
-                    AmongUsExtensions.Log($"{((SurveillanceMinigame)__instance).FillQuad.name}, {((SurveillanceMinigame)__instance).FillQuad.sortingOrder}");
-                    AmongUsExtensions.Log($" {((SurveillanceMinigame)__instance).FillQuad.sortingLayerID}");
-                    ((SurveillanceMinigame)__instance).FillQuad.material.color = new Color(0, 0, 0, 0);
-                }
-                if (__instance as PlanetSurveillanceMinigame != null) {
-                    // _timeText.transform.position = new Vector3(_timeText.transform.position.x, _timeText.transform.position.y, -10000.0f);
-                    _timeText.transform.SetParent(__instance.transform);
-                    _timeText.transform.position = ((PlanetSurveillanceMinigame)__instance).FillQuad.transform.position;
-                    AmongUsExtensions.Log($"{((PlanetSurveillanceMinigame)__instance).FillQuad.name}, {((PlanetSurveillanceMinigame)__instance).FillQuad.sortingOrder}");
-                    AmongUsExtensions.Log($" {((PlanetSurveillanceMinigame)__instance).FillQuad.sortingLayerID}");
-                    ((PlanetSurveillanceMinigame)__instance).FillQuad.material.color = new Color(0, 0, 0, 0);
-                }
 
-                AmongUsExtensions.Log($"{_timeText.transform.localPosition.x}");
-                AmongUsExtensions.Log($"{_timeText.transform.localPosition.y}");
-                
-                foreach (var obj in GameObject.FindObjectsOfType<MonoBehaviour>()) {
-                    AmongUsExtensions.Log($"{obj.name}: {obj.transform.position.x}, {obj.transform.position.y}, {obj.transform.position.z}");
-                }
-                foreach (var obj in __instance.GetComponentsInChildren<MonoBehaviour>().ToArray()) {
-                    AmongUsExtensions.Log($"{obj.name}: {obj.transform.position.x}, {obj.transform.position.y}, {obj.transform.position.z}");
-                }
+                // _timeText.gameObject.transform.SetParent(__instance.transform);
             }
             
-            AmongUsExtensions.Log($"{_timeText.transform.localPosition.z}");
+            // AmongUsExtensions.Log($"{_timeText.transform.position.z}");
             
             _timeText.text = (int)TimeLimit > 10 ? $"{(int)TimeLimit}" : $"<color=#FF0000FF>{(int)TimeLimit}</color>";
             if (TimeLimit <= 1) {

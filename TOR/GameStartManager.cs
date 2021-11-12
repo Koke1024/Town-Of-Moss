@@ -13,7 +13,7 @@ namespace TownOfUs.Patches {
         [HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.Start))]
         public class GameStartManagerStartPatch {
             public static void Postfix(GameStartManager __instance) {
-                if (__instance.GameRoomName != null) {
+                if (__instance && __instance.GameRoomName != null) {
                     lobbyCodeText = __instance.GameRoomName.text;                    
                 }
             }
@@ -25,7 +25,7 @@ namespace TownOfUs.Patches {
             }
 
             public static void Postfix(GameStartManager __instance) {
-                if (__instance.GameRoomName != null) {
+                if (__instance && __instance.GameRoomName != null) {
                     if (Utils.IsStreamMode) {
                         __instance.GameRoomName.text = "******";
                     }

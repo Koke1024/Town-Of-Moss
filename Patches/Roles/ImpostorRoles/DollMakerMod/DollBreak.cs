@@ -65,6 +65,7 @@ namespace TownOfUs.ImpostorRoles.DollMakerMod {
                 }
                 role.DollList[key] += Time.fixedDeltaTime;
                 PlayerControl.LocalPlayer.moveable = false;
+                PlayerControl.LocalPlayer.NetTransform.Halt();
                 if (role.DollList[key] >= CustomGameOptions.DollBreakTime) {
                     breakList.Enqueue(key);
                 }

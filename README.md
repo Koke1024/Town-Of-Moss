@@ -20,6 +20,7 @@ DollMakerのWaxを受けたプレイヤーが移動し続ける場合がある\
 
 | Date | Among Us - Version| Mod Version | Link |
 |---|----------|-------------|-----------------|
+| 21-11-10 | 2021.6.30s | v0.403 | [Download](https://spiel.jp/mod/Moss0402.zip) |
 | 21-11-10 | 2021.6.30s | v0.402 | [Download](https://spiel.jp/mod/Moss0402.zip) |
 | 21-11-09 | 2021.6.30s | v0.401 | [Download](https://spiel.jp/mod/Moss0401.zip) |
 | 21-11-05 | 2021.6.30s | v0.4 | [Download](https://spiel.jp/mod/Moss04.zip) |
@@ -34,6 +35,16 @@ DollMakerのWaxを受けたプレイヤーが移動し続ける場合がある\
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v0.403 </summary>
+        <ul> 
+            <li>Puppeteerの挙動の不具合の修正</li>
+            <li>Painterのペイントを重ねられないよう修正修正</li>
+            <li>着色中のクルーが回線落ちした際の不具合を修正</li>
+            <li>プレイ中にメニューボタンを押した際のエラーを修正</li>
+            <li>DollMakerのWaxを受けたプレイヤーが移動し続けるバグを修正</li>
+        </ul>
+    </details>
     <details>
         <summary> v0.402 </summary>
         <ul> 

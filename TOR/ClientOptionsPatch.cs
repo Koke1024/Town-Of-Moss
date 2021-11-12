@@ -1,7 +1,9 @@
 
+using Discord;
 using HarmonyLib;
 using UnityEngine;
 using TownOfUs;
+using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine.UI;
 using Vector2 = UnityEngine.Vector2;
@@ -65,22 +67,23 @@ namespace TheOtherRoles.Patches {
                 __instance.CensorChatButton.transform.localScale = Vector3.one * 2f / 3f;
             }
 
-            if ((streamButton == null || streamButton.gameObject == null)) {
+            if (streamButton == null || streamButton.gameObject == null) {
                 streamButton = createCustomToggle("Hide Room Code: ", Utils.IsStreamMode, Vector3.zero, (UnityEngine.Events.UnityAction)SetStreamMode, __instance);
 
                 void SetStreamMode() {
-                    if (GameStartManager.Instance != null) {
+                    if (LobbyBehaviour.Instance != null) {
                         Utils.IsStreamMode = !Utils.IsStreamMode;
                         updateToggle(streamButton, "Hide Room Code: ", Utils.IsStreamMode);
                     }
                 }
             }
 
-            if ((settingCheckButton == null || settingCheckButton.gameObject == null)) {
+            if (settingCheckButton == null || settingCheckButton.gameObject == null) {
                 settingCheckButton = createCustomButton("Game Setting Check", Vector3.right * xOffset, (UnityEngine.Events.UnityAction)SettingCheck, __instance);
+                settingCheckButton.UpdateText(false);
 
                 void SettingCheck() {
-                    if (GameStartManager.Instance != null) {
+                    if (MeetingHud.Instance != null) {
                         if (DestroyableSingleton<HudManager>.Instance) {
                             var settingString = $"Player Num: {PlayerControl.AllPlayerControls.Count}\n";
                             settingString += $"Impostor: {PlayerControl.GameOptions.NumImpostors}\n";
@@ -95,8 +98,9 @@ namespace TheOtherRoles.Patches {
                 }
             }
 
-            if ((roleManualButton == null || roleManualButton.gameObject == null)) {
+            if (roleManualButton == null || roleManualButton.gameObject == null) {
                 roleManualButton = createCustomButton("Show Role Manual", new Vector2(-xOffset, yOffset), (UnityEngine.Events.UnityAction)ShowRoleInfo, __instance);
+                roleManualButton.UpdateText(false);
 
                 void ShowRoleInfo() {
                     if (MeetingHud.Instance != null) {

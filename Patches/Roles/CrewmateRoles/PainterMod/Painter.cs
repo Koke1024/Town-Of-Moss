@@ -130,7 +130,6 @@ namespace TownOfUs.Roles
         
         public static void SetPaintPlayer(byte id, PaintColor color) {
             PaintedPlayers[id] = color;
-            AmongUsExtensions.Log($"player {id}'s new color:{PaintedPlayers[id]}");
         }
 
         public static void IsColoredVent(int id, ref PaintColor color) {

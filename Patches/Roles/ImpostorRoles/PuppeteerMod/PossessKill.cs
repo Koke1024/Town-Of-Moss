@@ -31,7 +31,7 @@ namespace TownOfUs.ImpostorRoles.PuppeteerMod {
 
             if (role.PossessPlayer != null) {
                 // __instance.moveable = false;
-                __instance.NetTransform.Halt();
+                // __instance.NetTransform.Halt();
                 if (PlayerControl.LocalPlayer == __instance) {
                     role.PossessTime += Time.fixedDeltaTime;
                     if (role.PossessTime > CustomGameOptions.PossessMaxTime) {
