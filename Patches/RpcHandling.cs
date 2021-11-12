@@ -791,14 +791,14 @@ namespace TownOfUs
                         break;
                     case CustomRPC.StartWatchAdmin:
                         var watcherId = reader.ReadByte();
-                        if (!MechanicLimit.AdminWatcher.Contains(watcherId)) {
-                            MechanicLimit.AdminWatcher.Add(watcherId);                
+                        if (!ConsoleLimit.AdminWatcher.Contains(watcherId)) {
+                            ConsoleLimit.AdminWatcher.Add(watcherId);                
                         }
                         break;
                     case CustomRPC.EndWatchAdmin:
                         var watcherId2 = reader.ReadByte();
-                        if (MechanicLimit.AdminWatcher.Contains(watcherId2)) {
-                            MechanicLimit.AdminWatcher.Remove(watcherId2);                
+                        if (ConsoleLimit.AdminWatcher.Contains(watcherId2)) {
+                            ConsoleLimit.AdminWatcher.Remove(watcherId2);                
                         }
                         break;
                     case CustomRPC.SetPaintPoint:

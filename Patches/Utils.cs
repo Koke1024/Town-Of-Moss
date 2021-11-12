@@ -515,6 +515,7 @@ namespace TownOfUs
             {
                 var fullscreen = DestroyableSingleton<HudManager>.Instance.FullScreen;
                 fullscreen.enabled = false;
+                fullscreen.color = new Color(1f, 0f, 0f, 0.37254903f);
             }
         }
 

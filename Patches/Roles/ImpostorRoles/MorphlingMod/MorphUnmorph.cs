@@ -6,9 +6,9 @@ namespace TownOfUs.ImpostorRoles.MorphlingMod
 {
     public enum MorphVentOptions
     {
-        None = 0,
-        OnNotMorph = 1,
-        Always = 2,
+        OnNotMorph = 0,
+        Always = 1,
+        None = 2,
     }
     [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
     public class MorphUnmorph

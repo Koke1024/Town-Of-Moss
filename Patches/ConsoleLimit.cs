@@ -1,36 +1,36 @@
-﻿using HarmonyLib;
+﻿using System.Linq;
+using HarmonyLib;
 using Hazel;
 using Il2CppSystem.Collections.Generic;
 using Reactor.Extensions;
 using TMPro;
 using TownOfUs.Extensions;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace TownOfUs.Patches {
-    public class MechanicLimit {
-        public static float timeLimit;
+    public class ConsoleLimit {
+        static TextMeshPro _timeText;
+        public static float TimeLimit;
         public static List<byte> AdminWatcher = new List<byte>();
-        static TextMeshPro timeText;
 
         [HarmonyPatch(typeof(ShipStatus), nameof(ShipStatus.Start))]
         public static class OnGameStart {
             public static void Postfix(ShipStatus __instance) {
-                timeLimit = CustomGameOptions.AdminTimeLimitTime;
+                TimeLimit = CustomGameOptions.AdminTimeLimitTime;
             }
         }
-
         [HarmonyPatch(typeof(Object), nameof(Object.Destroy), typeof(Object))]
         public static class AdminTimeReset {
             public static void Postfix(Object obj) {
                 if (ExileController.Instance == null || obj != ExileController.Instance.gameObject) return;
 
                 if (CustomGameOptions.AdminTimeLimitTime > 0) {
-                    timeLimit = CustomGameOptions.AdminTimeLimitTime;
+                    TimeLimit = CustomGameOptions.AdminTimeLimitTime;
                     AdminWatcher = new List<byte>();
                 }
             }
         }
-        
         [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
         public class ConsumeAdmin {
             public static void Prefix(PlayerControl __instance) {
@@ -40,10 +40,10 @@ namespace TownOfUs.Patches {
                 if (__instance.PlayerId != PlayerControl.LocalPlayer.PlayerId) {
                     return;
                 }
-                timeLimit -= Time.fixedDeltaTime * AdminWatcher.Count;
+                TimeLimit -= Time.fixedDeltaTime * AdminWatcher.Count;
             }
         }
-
+        
         [HarmonyPatch(typeof(MapBehaviour), nameof(MapBehaviour.ShowCountOverlay))]
         public static class MapOpen {
             public static void Postfix(MapBehaviour __instance) {
@@ -72,8 +72,8 @@ namespace TownOfUs.Patches {
 
         [HarmonyPatch(typeof(SurveillanceMinigame), nameof(SurveillanceMinigame.CoAnimateOpen))]
         public static class CameraTimeLimitOpen {
-            public static void Postfix(SurveillanceMinigame __instance) {
-                MechanicalOpen(__instance);
+            public static bool Prefix(SurveillanceMinigame __instance) {
+                return MechanicalOpen(__instance);
             }
         }
 
@@ -100,8 +100,8 @@ namespace TownOfUs.Patches {
 
         [HarmonyPatch(typeof(PlanetSurveillanceMinigame), nameof(PlanetSurveillanceMinigame.CoAnimateOpen))]
         public static class PbCameraTimeLimitOpen {
-            public static void Postfix(PlanetSurveillanceMinigame __instance) {
-                MechanicalOpen(__instance);
+            public static bool Prefix(PlanetSurveillanceMinigame __instance) {
+                return MechanicalOpen(__instance);
             }
         }
 
@@ -124,39 +124,69 @@ namespace TownOfUs.Patches {
             }
         }
 
-        // [HarmonyPatch(typeof(SurveillanceMinigame), nameof(SurveillanceMinigame.Close))]
-        // public static class CameraTimeLimitClose {
-        //     public static void Prefix(SurveillanceMinigame __instance) {
-        //         MechanicalClose(__instance);
-        //     }
-        // }
+        [HarmonyPatch(typeof(PlanetSurveillanceMinigame), nameof(PlanetSurveillanceMinigame.NextCamera))]
+        public static class PolusCameraTimeLimitNext {
+            public static bool Prefix(PlanetSurveillanceMinigame __instance, [HarmonyArgument(0)]int direction) {
+                if (CustomGameOptions.AdminTimeLimitTime == 0) {
+                    return true;
+                }
+                // _timeText.sortingOrder += direction;
+                // _timeText.renderer.sortingOrder += direction;
+                _timeText.gameObject.GetComponent<MeshRenderer>().sortingOrder += direction;
+                AmongUsExtensions.Log($"order: {_timeText.gameObject.GetComponent<MeshRenderer>().sortingOrder}");
 
-        // [HarmonyPatch(typeof(Minigame), nameof(Minigame.CoDestroySelf))]
-        // public static class DestroySelf {
-        //     public static void Postfix(Minigame __instance) {
-        //         AmongUsExtensions.Log($"CoDestroySelf {(__instance.GetType().Name)}");
-        //         AmongUsExtensions.Log($"VitalsMinigame {__instance as VitalsMinigame != null}");
-        //         AmongUsExtensions.Log($"PlanetSurveillanceMinigame {__instance as PlanetSurveillanceMinigame != null}");
-        //         AmongUsExtensions.Log($"SurveillanceMinigame {__instance as SurveillanceMinigame != null}");
-        //         MechanicalClose(__instance);
-        //     }
-        // }
-
+                return !(TimeLimit <= 1);
+            }
+        }
+        
         public static bool MechanicalUpdate(MonoBehaviour __instance) {
             if (CustomGameOptions.AdminTimeLimitTime == 0) {
                 return true;
             }
 
+            if (_timeText == null) {
+                _timeText = Object.Instantiate(HudManager.Instance.KillButton.killText, null);
+                _timeText.text = "";
+                _timeText.transform.position = HudManager.Instance.KillButton.transform.position;
+                _timeText.color = Color.white;
+                _timeText.transform.localScale = Vector3.one * 2.5f;
+                
+                _timeText.gameObject.transform.SetParent(__instance.transform);
+                if (__instance as SurveillanceMinigame != null) {
+                    // _timeText.transform.position = new Vector3(_timeText.transform.position.x, _timeText.transform.position.y, -10000.0f);
+                    _timeText.transform.SetParent(__instance.transform);
+                    _timeText.transform.position = ((SurveillanceMinigame)__instance).FillQuad.transform.position;
+                    AmongUsExtensions.Log($"{((SurveillanceMinigame)__instance).FillQuad.name}, {((SurveillanceMinigame)__instance).FillQuad.sortingOrder}");
+                    AmongUsExtensions.Log($" {((SurveillanceMinigame)__instance).FillQuad.sortingLayerID}");
+                    ((SurveillanceMinigame)__instance).FillQuad.material.color = new Color(0, 0, 0, 0);
+                }
+                if (__instance as PlanetSurveillanceMinigame != null) {
+                    // _timeText.transform.position = new Vector3(_timeText.transform.position.x, _timeText.transform.position.y, -10000.0f);
+                    _timeText.transform.SetParent(__instance.transform);
+                    _timeText.transform.position = ((PlanetSurveillanceMinigame)__instance).FillQuad.transform.position;
+                    AmongUsExtensions.Log($"{((PlanetSurveillanceMinigame)__instance).FillQuad.name}, {((PlanetSurveillanceMinigame)__instance).FillQuad.sortingOrder}");
+                    AmongUsExtensions.Log($" {((PlanetSurveillanceMinigame)__instance).FillQuad.sortingLayerID}");
+                    ((PlanetSurveillanceMinigame)__instance).FillQuad.material.color = new Color(0, 0, 0, 0);
+                }
 
-            if (timeText) {
-                timeText.text = (int)timeLimit > 10 ? $"{(int)timeLimit}" : $"<color=#FF0000FF>{(int)timeLimit}</color>";
+                AmongUsExtensions.Log($"{_timeText.transform.localPosition.x}");
+                AmongUsExtensions.Log($"{_timeText.transform.localPosition.y}");
+                
+                foreach (var obj in GameObject.FindObjectsOfType<MonoBehaviour>()) {
+                    AmongUsExtensions.Log($"{obj.name}: {obj.transform.position.x}, {obj.transform.position.y}, {obj.transform.position.z}");
+                }
+                foreach (var obj in __instance.GetComponentsInChildren<MonoBehaviour>().ToArray()) {
+                    AmongUsExtensions.Log($"{obj.name}: {obj.transform.position.x}, {obj.transform.position.y}, {obj.transform.position.z}");
+                }
             }
             
-            if (timeLimit <= 1) {
-                timeLimit = 0;
+            AmongUsExtensions.Log($"{_timeText.transform.localPosition.z}");
+            
+            _timeText.text = (int)TimeLimit > 10 ? $"{(int)TimeLimit}" : $"<color=#FF0000FF>{(int)TimeLimit}</color>";
+            if (TimeLimit <= 1) {
+                TimeLimit = 0;
                 return false;
             }
-
             return true;
         }
         
@@ -175,29 +205,18 @@ namespace TownOfUs.Patches {
                 AdminWatcher.Remove(PlayerControl.LocalPlayer.PlayerId);                
             }
 
-            timeText.Destroy();
-            timeText = null;
+            _timeText.Destroy();
+            _timeText = null;
         }
         
         static bool MechanicalOpen(MonoBehaviour __instance) {
             if (CustomGameOptions.AdminTimeLimitTime == 0) {
                 return true;
             }
-
-            // AmongUsExtensions.Log($"update {(__instance.GetType().Name)}");
-
-            if (timeText == null) {
-                timeText = Object.Instantiate(PlayerControl.LocalPlayer.nameText, null);
-                timeText.transform.position = HudManager.Instance.UseButton.transform.position;
-                timeText.color = Color.white;
-                timeText.transform.localScale = Vector3.one * 2.0f;
-                timeText.text = "";
-                
-                timeText.gameObject.transform.SetParent(__instance.transform);
-                if (__instance as PlanetSurveillanceMinigame != null) {
-                    timeText.transform.position = new Vector3(timeText.transform.position.x, timeText.transform.position.y, 0.0f);
-                    timeText.transform.SetParent(((PlanetSurveillanceMinigame)__instance).FillQuad.transform);
-                }
+            
+            if (TimeLimit <= 1) {
+                TimeLimit = 0;
+                return false;
             }
 
             DestroyableSingleton<HudManager>.Instance.SetHudActive(false);
@@ -210,6 +229,8 @@ namespace TownOfUs.Patches {
                 AmongUsClient.Instance.FinishRpcImmediately(writer);
                 AdminWatcher.Add(PlayerControl.LocalPlayer.PlayerId);
             }
+
+            MechanicalUpdate(__instance);
 
             return true;
         }
