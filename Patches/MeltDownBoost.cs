@@ -38,24 +38,33 @@ namespace GameCustomize {
 
     [HarmonyPatch(typeof(ReactorSystemType), nameof(ReactorSystemType.Detoriorate))]
     public static class MeltdownBooster {
-        public static bool Prefix(ReactorSystemType __instance, float deltaTime) {
+        public static void Prefix(ReactorSystemType __instance, float deltaTime) {
             if (!__instance.IsActive) {
-                return true;
+                return;
             }
             
-            if (ShipStatus.Instance as AirshipStatus) {
-                if (__instance.Countdown >= CustomGameOptions.AirshipReactorTimeLimit) {
-                    __instance.Countdown = CustomGameOptions.AirshipReactorTimeLimit;
-                }
-                return true;
-            }
             if (ShipStatus.Instance.Type == ShipStatus.MapType.Pb) {
                 if (__instance.Countdown >= CustomGameOptions.PolusReactorTimeLimit) {
                     __instance.Countdown = CustomGameOptions.PolusReactorTimeLimit;
                 }
-                return true;
+                return;
             }
-            return true;
+            return;
+        }
+    }
+
+    [HarmonyPatch(typeof(HeliSabotageSystem), nameof(HeliSabotageSystem.Detoriorate))]
+    public static class HeliMeltdownBooster {
+        public static void Prefix(HeliSabotageSystem __instance, float deltaTime) {
+            if (!__instance.IsActive) {
+                return;
+            }
+            
+            if (AirshipStatus.Instance != null) {
+                if (__instance.Countdown >= CustomGameOptions.AirshipReactorTimeLimit) {
+                    __instance.Countdown = CustomGameOptions.AirshipReactorTimeLimit;
+                }
+            }
         }
     }
 

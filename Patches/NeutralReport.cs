@@ -12,7 +12,7 @@ namespace TownOfUs.NeutralReport {
         public class MeetingHudStart {
 
             private static void Postfix(MeetingHud __instance) {
-                if (!CustomGameOptions.NoticeNeutral || reported || PlayerControl.LocalPlayer.Data.IsDead) {
+                if (!CustomGameOptions.NoticeNeutral || reported) {
                     return;
                 }
 

@@ -43,6 +43,7 @@ DollMakerのWaxを受けたプレイヤーが移動し続ける場合がある\
             <li>着色中のクルーが回線落ちした際の不具合を修正</li>
             <li>プレイ中にメニューボタンを押した際のエラーを修正</li>
             <li>DollMakerのWaxを受けたプレイヤーが移動し続けるバグを修正</li>
+            <li>新役職Snifferの追加</li>
         </ul>
     </details>
     <details>
@@ -500,6 +501,22 @@ Admin閲覧中は消費電力が3倍になります。
 
 -----------------------
 
+## Sniffer
+
+### **Team: Crewmates**
+
+死体から一定距離以内にいると死体の気配を察知し、死体に近付くほど視界が赤くなります。\
+ただし死体を見つけても通報することができず、Adminを見ることもできません。
+
+### Game Options
+
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Sniffer Can Report | 死体を通報できるか | Toggle | Off |
+| Sniff Max Range | 死体を察知できる範囲 | Number | 10m |
+
+-----------------------
+
 # Impostor Roles
 
 ## Assassin
@@ -857,11 +874,12 @@ Mad Mateが存在するとき、Assassinがインポスター陣営に採用さ�
 | Camouflaged Comms | コミュニケーションサボタージュ中、カモフラージュ状態になる | Toggle | On |
 | Impostors can see the roles of their team | インポスター同士が互いの役職を知っている | Toggle | On |
 | Polus Reactor Time Limit | PolusのMelt Downサボタージュの制限時間 | Time | 45.0s |
+| AirShip Reactor Time Limit | AirShipのMelt Downサボタージュの制限時間 | Time | 75.0s |
 | Polus Vital Move | PolusのVitalの位置を変更できる。Shipにした場合Drop Ship内にベントが一つ追加される | Default / Labo / Ship / O2 | Default |
 | Admin Usable Time | AdminのRoundごとの合計使用可能時間（0なら制限なし） | Time | 0s |
 | Dead can see everyone's roles | 死亡後に全員の役職がわかる | Toggle | On |
 | Role Appears Under Name | 自身の役職を名前の下に表示する | Toggle | On |
-| Report Assigned Neutral Roles | 生存者が半分以下になったあとの会議で、そのゲームで最初に割り当てられた第三陣営の内訳が通知される | Toggle | Off |
+| Report Assigned Neutral Roles | 生存者が半分以下になったあとの会議で、そのゲームで最初に割り当てられた第三陣営の内訳がチャットに通知される | Toggle | Off |
 | Dead Player Can't Move Before Report | 幽霊になっても死体が残っているうちはその場から動けない | Toggle | Off |
 
 -----------------------
