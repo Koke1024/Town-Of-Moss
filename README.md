@@ -19,7 +19,8 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 | Date | Among Us - Version| Mod Version | Link |
 |---|----------|-------------|-----------------|
-| 21-11-10 | 2021.6.30s | v0.403 | [Download](https://spiel.jp/mod/Moss0402.zip) |
+| 21-11-10 | 2021.6.30s | v0.405 | [Download](https://spiel.jp/mod/Moss0405.zip) |
+| 21-11-10 | 2021.6.30s | v0.403 | [Download](https://spiel.jp/mod/Moss0403.zip) |
 | 21-11-10 | 2021.6.30s | v0.402 | [Download](https://spiel.jp/mod/Moss0402.zip) |
 | 21-11-09 | 2021.6.30s | v0.401 | [Download](https://spiel.jp/mod/Moss0401.zip) |
 | 21-11-05 | 2021.6.30s | v0.4 | [Download](https://spiel.jp/mod/Moss04.zip) |
@@ -34,6 +35,13 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v0.405 </summary>
+        <ul> 
+            <li>Adminの使用時間制限設定でセキュリティカメラも共通で制限時間を消費するように（点滅したりしてて見づらいのは技術力不足です）</li>
+            <li>Crackerによる停電中にゲームが終了した場合のエラーを修正</li>
+        </ul>
+    </details>
     <details>
         <summary> v0.403 </summary>
         <ul> 
@@ -875,7 +883,7 @@ Mad Mateが存在するとき、Assassinがインポスター陣営に採用さ�
 | Polus Reactor Time Limit | PolusのMelt Downサボタージュの制限時間 | Time | 45.0s |
 | AirShip Reactor Time Limit | AirShipのMelt Downサボタージュの制限時間 | Time | 75.0s |
 | Polus Vital Move | PolusのVitalの位置を変更できる。Shipにした場合Drop Ship内にベントが一つ追加される | Default / Labo / Ship / O2 | Default |
-| Admin Usable Time | AdminのRoundごとの合計使用可能時間（0なら制限なし） | Time | 0s |
+| Admin and Security Camera Usable Time | AdminとセキュリティカメラのRoundごとの合計使用可能時間（0なら制限なし） | Time | 0s |
 | Dead can see everyone's roles | 死亡後に全員の役職がわかる | Toggle | On |
 | Role Appears Under Name | 自身の役職を名前の下に表示する | Toggle | On |
 | Report Assigned Neutral Roles | 生存者が半分以下になったあとの会議で、そのゲームで最初に割り当てられた第三陣営の内訳がチャットに通知される | Toggle | Off |
