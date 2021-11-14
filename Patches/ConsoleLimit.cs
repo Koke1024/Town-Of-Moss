@@ -6,7 +6,6 @@ using Reactor.Extensions;
 using TMPro;
 using TownOfUs.Extensions;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 namespace TownOfUs.Patches {
     public class ConsoleLimit {
@@ -70,70 +69,70 @@ namespace TownOfUs.Patches {
             }
         }
 
-        // [HarmonyPatch(typeof(SurveillanceMinigame), nameof(SurveillanceMinigame.CoAnimateOpen))]
-        // public static class CameraTimeLimitOpen {
-        //     public static bool Prefix(SurveillanceMinigame __instance) {
-        //         return MechanicalOpen(__instance);
-        //     }
-        // }
-        //
-        // [HarmonyPatch(typeof(SurveillanceMinigame), nameof(SurveillanceMinigame.Update))]
-        // public static class CameraTimeLimit {
-        //     public static bool Prefix(SurveillanceMinigame __instance) {
-        //         if (!MechanicalUpdate(__instance)) {
-        //             __instance.isStatic = true;
-        //             for (int j = 0; j < __instance.ViewPorts.Length; j++) {
-        //                 __instance.ViewPorts[j].sharedMaterial = __instance.StaticMaterial;
-        //             }
-        //             return false;
-        //         }
-        //         return true;
-        //     }
-        // }
-        //
-        // [HarmonyPatch(typeof(SurveillanceMinigame), nameof(SurveillanceMinigame.CoDestroySelf))]
-        // public static class CameraTimeLimitClose {
-        //     public static void Postfix(SurveillanceMinigame __instance) {
-        //         MechanicalClose(__instance);
-        //     }
-        // }
-        //
-        // [HarmonyPatch(typeof(PlanetSurveillanceMinigame), nameof(PlanetSurveillanceMinigame.CoAnimateOpen))]
-        // public static class PbCameraTimeLimitOpen {
-        //     public static bool Prefix(PlanetSurveillanceMinigame __instance) {
-        //         return MechanicalOpen(__instance);
-        //     }
-        // }
-        //
-        // [HarmonyPatch(typeof(PlanetSurveillanceMinigame), nameof(PlanetSurveillanceMinigame.Update))]
-        // public static class PolusCameraTimeLimit {
-        //     public static bool Prefix(PlanetSurveillanceMinigame __instance) {
-        //         if (!MechanicalUpdate(__instance)) {
-        //             __instance.isStatic = true;
-        //             __instance.ViewPort.sharedMaterial = __instance.StaticMaterial;
-        //             return false;
-        //         }
-        //         return true;
-        //     }
-        // }
-        //
-        // [HarmonyPatch(typeof(PlanetSurveillanceMinigame), nameof(PlanetSurveillanceMinigame.CoDestroySelf))]
-        // public static class PolusCameraTimeLimitClose {
-        //     public static void Postfix(PlanetSurveillanceMinigame __instance) {
-        //         MechanicalClose(__instance);
-        //     }
-        // }
-        //
-        // [HarmonyPatch(typeof(PlanetSurveillanceMinigame), nameof(PlanetSurveillanceMinigame.NextCamera))]
-        // public static class PolusCameraTimeLimitNext {
-        //     public static bool Prefix(PlanetSurveillanceMinigame __instance, [HarmonyArgument(0)]int direction) {
-        //         if (CustomGameOptions.AdminTimeLimitTime == 0) {
-        //             return true;
-        //         }
-        //
-        //         return !(TimeLimit <= 1);
-        //     }
-        // }
+        [HarmonyPatch(typeof(SurveillanceMinigame), nameof(SurveillanceMinigame.CoAnimateOpen))]
+        public static class CameraTimeLimitOpen {
+            public static void Prefix(SurveillanceMinigame __instance) {
+                MechanicalOpen(__instance);
+            }
+        }
+        
+        [HarmonyPatch(typeof(SurveillanceMinigame), nameof(SurveillanceMinigame.Update))]
+        public static class CameraTimeLimit {
+            public static bool Prefix(SurveillanceMinigame __instance) {
+                if (!MechanicalUpdate(__instance)) {
+                    __instance.isStatic = true;
+                    for (int j = 0; j < __instance.ViewPorts.Length; j++) {
+                        __instance.ViewPorts[j].sharedMaterial = __instance.StaticMaterial;
+                    }
+                    return false;
+                }
+                return true;
+            }
+        }
+        
+        [HarmonyPatch(typeof(SurveillanceMinigame), nameof(SurveillanceMinigame.CoDestroySelf))]
+        public static class CameraTimeLimitClose {
+            public static void Postfix(SurveillanceMinigame __instance) {
+                MechanicalClose(__instance);
+            }
+        }
+        
+        [HarmonyPatch(typeof(PlanetSurveillanceMinigame), nameof(PlanetSurveillanceMinigame.CoAnimateOpen))]
+        public static class PbCameraTimeLimitOpen {
+            public static void Prefix(PlanetSurveillanceMinigame __instance) {
+                MechanicalOpen(__instance);
+            }
+        }
+        
+        [HarmonyPatch(typeof(PlanetSurveillanceMinigame), nameof(PlanetSurveillanceMinigame.Update))]
+        public static class PolusCameraTimeLimit {
+            public static bool Prefix(PlanetSurveillanceMinigame __instance) {
+                if (!MechanicalUpdate(__instance)) {
+                    __instance.isStatic = true;
+                    __instance.ViewPort.sharedMaterial = __instance.StaticMaterial;
+                    return false;
+                }
+                return true;
+            }
+        }
+        
+        [HarmonyPatch(typeof(PlanetSurveillanceMinigame), nameof(PlanetSurveillanceMinigame.CoDestroySelf))]
+        public static class PolusCameraTimeLimitClose {
+            public static void Postfix(PlanetSurveillanceMinigame __instance) {
+                MechanicalClose(__instance);
+            }
+        }
+        
+        [HarmonyPatch(typeof(PlanetSurveillanceMinigame), nameof(PlanetSurveillanceMinigame.NextCamera))]
+        public static class PolusCameraTimeLimitNext {
+            public static bool Prefix(PlanetSurveillanceMinigame __instance, [HarmonyArgument(0)]int direction) {
+                if (CustomGameOptions.AdminTimeLimitTime == 0) {
+                    return true;
+                }
+        
+                return !(TimeLimit <= 1);
+            }
+        }
         
         public static bool MechanicalUpdate(MonoBehaviour __instance) {
             if (CustomGameOptions.AdminTimeLimitTime == 0) {
@@ -141,32 +140,32 @@ namespace TownOfUs.Patches {
             }
 
             if (_timeText == null) {
-                // if (__instance as SurveillanceMinigame != null) {
-                //     _timeText = Object.Instantiate(((SurveillanceMinigame)__instance).SabText[0], __instance.transform);
-                // }
-                // if (__instance as PlanetSurveillanceMinigame != null) {
-                //     _timeText = Object.Instantiate(((PlanetSurveillanceMinigame)__instance).SabText, __instance.transform);
-                // }
-                if (_timeText == null) {
-                    // _timeText = Object.Instantiate(PlayerControl.LocalPlayer.nameText, __instance.transform);         
-                    _timeText = Object.Instantiate(PlayerControl.LocalPlayer.nameText, __instance.transform);         
+                if (__instance as SurveillanceMinigame != null) {
+                    _timeText = Object.Instantiate(((SurveillanceMinigame)__instance).SabText[0], __instance.transform);
+                    _timeText.transform.localScale = Vector3.one * 3.0f;
                 }
-                _timeText.gameObject.SetActive(true);
-                // _timeText.transform.SetParent(__instance.transform);
-                // _timeText.text = "TIME";
-                var pos = HudManager.Instance.UseButton.transform.position;
-                _timeText.transform.position = new Vector3(pos.x, pos.y, pos.z - 20.0f);
+                if (__instance as PlanetSurveillanceMinigame != null) {
+                    _timeText = Object.Instantiate(((PlanetSurveillanceMinigame)__instance).LocationName, __instance.transform);
+                    _timeText.transform.localScale = Vector3.one * 3.0f;
+                }
+                if (_timeText == null) {
+                    _timeText = Object.Instantiate(PlayerControl.LocalPlayer.nameText, __instance.transform);
+                    _timeText.transform.localScale = Vector3.one * 3.0f;
+                }
+                _timeText.text = "";
                 _timeText.color = Color.white;
-                _timeText.transform.localScale = Vector3.one * 2.5f;
-
-                // _timeText.gameObject.transform.SetParent(__instance.transform);
+                var pos = DestroyableSingleton<HudManager>.Instance.UseButton.transform.position;
+                _timeText.transform.position = new Vector3(pos.x, pos.y, _timeText.transform.position.z);
+                _timeText.gameObject.transform.SetParent(__instance.transform);
             }
             
             // AmongUsExtensions.Log($"{_timeText.transform.position.z}");
             
             _timeText.text = (int)TimeLimit > 10 ? $"{(int)TimeLimit}" : $"<color=#FF0000FF>{(int)TimeLimit}</color>";
+            _timeText.gameObject.SetActive(true);
             if (TimeLimit <= 1) {
                 TimeLimit = 0;
+                _timeText.text = $"<color=#FF0000FF>--</color>";
                 return false;
             }
             return true;
@@ -176,8 +175,7 @@ namespace TownOfUs.Patches {
             if (CustomGameOptions.AdminTimeLimitTime == 0) {
                 return;
             }
-            DestroyableSingleton<HudManager>.Instance.SetHudActive(true);
-            // AmongUsExtensions.Log($"close {(__instance.GetType().Name)}");
+            // DestroyableSingleton<HudManager>.Instance.SetHudActive(true);
 
             var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                 (byte)CustomRPC.EndWatchAdmin, SendOption.Reliable, -1);
@@ -201,7 +199,7 @@ namespace TownOfUs.Patches {
                 return false;
             }
 
-            DestroyableSingleton<HudManager>.Instance.SetHudActive(false);
+            // DestroyableSingleton<HudManager>.Instance.SetHudActive(false);
             
             if (!AdminWatcher.Contains(PlayerControl.LocalPlayer.PlayerId) &&
                 !PlayerControl.LocalPlayer.Data.IsDead) {

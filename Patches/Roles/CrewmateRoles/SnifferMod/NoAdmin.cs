@@ -17,6 +17,8 @@ namespace TownOfUs.CrewmateRoles.SniffMod {
                 }
                 __instance.BackgroundColor.SetColor(Palette.DisabledGrey);
                 __instance.OnDisable();
+                MapBehaviour.Instance.Close();
+                MapBehaviour.Instance.Close();
                 return false;
             }
         }

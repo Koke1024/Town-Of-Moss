@@ -36,7 +36,7 @@ namespace TownOfUs
 
             var t = switchSystem.Value / 255f;
             foreach (Cracker cracker in Role.GetRoles(RoleEnum.Cracker)) {
-                if (cracker.MyLastRoom == cracker.HackingRoom &&
+                if (Cracker.MyLastRoom == cracker.HackingRoom &&
                     cracker.RoomDetected > DateTime.UtcNow.AddSeconds(-CustomGameOptions.CrackDur)) {
                     t = 0;
                 }

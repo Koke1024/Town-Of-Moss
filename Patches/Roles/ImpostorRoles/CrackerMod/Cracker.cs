@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using Epic.OnlineServices.PlayerDataStorage;
-using Reactor;
-using UnityEngine;
 
 namespace TownOfUs.Roles
 {
@@ -16,7 +12,9 @@ namespace TownOfUs.Roles
         public SystemTypes? HackingRoom;
         public DateTime? RoomDetected;
         
-        public SystemTypes? MyLastRoom;
+        public static SystemTypes? MyLastRoom;
+
+        public SystemTypes? blackOutRoomId;
 
         public Cracker(PlayerControl player) : base(player)
         {
@@ -57,55 +55,6 @@ namespace TownOfUs.Roles
             HackingRoom = targetRoom;
             RoomDetected = null;
             LastCracked = DateTime.UtcNow;
-        }
-
-        public static IEnumerator HackRoomCoroutine(SystemTypes roomId, Cracker role) {
-            role.RoomDetected = DateTime.UtcNow;
-            while (true) {
-                if (HudManager.Instance == null) {
-                    role.HackingRoom = null;
-                    role.RoomDetected = null;
-                    break;
-                }
-                HudManager.Instance.ReportButton.enabled = true;
-                
-                if ((DateTime.UtcNow - role.RoomDetected).Value.Seconds > CustomGameOptions.CrackDur) {
-                    role.HackingRoom = null;
-                    role.RoomDetected = null;
-                    break;
-                }
-
-                if (roomId != role.HackingRoom) {   //another room hacked
-                    break;
-                }
-
-                if (role.MyLastRoom != roomId) {
-                    yield return null;
-                    continue;
-                }
-                    
-                HudManager.Instance.ReportButton.enabled = false;
-                HudManager.Instance.ReportButton.SetActive(false);
-
-                if (Minigame.Instance) {
-                    if (Minigame.Instance.TaskType != TaskTypes.ResetReactor &&
-                        Minigame.Instance.TaskType != TaskTypes.RestoreOxy &&
-                        Minigame.Instance.TaskType != TaskTypes.FixLights &&
-                        Minigame.Instance.TaskType != TaskTypes.FixComms
-                        ) {
-                        Minigame.Instance.Close();
-                        Minigame.Instance.Close();
-                    }
-                }
-
-                if (MapBehaviour.Instance && !PlayerControl.LocalPlayer.Is(Faction.Impostors)) {
-                    MapBehaviour.Instance.Close();
-                    MapBehaviour.Instance.Close();
-                }
-                yield return null;
-            }
-
-            yield break;
         }
     }
 }

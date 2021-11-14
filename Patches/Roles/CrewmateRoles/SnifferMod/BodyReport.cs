@@ -1,15 +1,16 @@
 using System;
 using System.Linq;
 using HarmonyLib;
+using TownOfUs.Extensions;
 
 namespace TownOfUs.CrewmateRoles.SniffMod
 {
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.CmdReportDeadBody))]
     internal class BodyReportPass
     {
-        private static bool Prefix(PlayerControl __instance, [HarmonyArgument(0)] GameData.PlayerInfo info)
+        private static bool Prefix(PlayerControl __instance, [HarmonyArgument(0)] GameData.PlayerInfo target)
         {
-            if (PlayerControl.LocalPlayer.Is(RoleEnum.Sniffer) && !CustomGameOptions.SnifferCanReport) {
+            if (PlayerControl.LocalPlayer.Is(RoleEnum.Sniffer) && !CustomGameOptions.SnifferCanReport && target != null) {
                 return false;
             }
             return true;

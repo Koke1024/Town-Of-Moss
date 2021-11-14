@@ -20,6 +20,7 @@ using TownOfUs.NeutralRoles.PhantomMod;
 using TownOfUs.NeutralRoles.ArsonistMod;
 using TownOfUs.ImpostorRoles.KirbyMod;
 using TownOfUs.ImpostorRoles.ScavengerMod;
+using TownOfUs.ImpostorRoles.CrackerMod;
 using TownOfUs.Patches;
 using TownOfUs.Patches.CrewmateRoles.SecurityGuardMod;
 using TownOfUs.Patches.NeutralRoles.ZombieMod;
@@ -629,7 +630,8 @@ namespace TownOfUs
                     case CustomRPC.DetectCrackRoom:
                         var roomId = (SystemTypes)reader.ReadByte();
                         var cracker2 = Utils.PlayerById(reader.ReadByte());
-                        Coroutines.Start(Cracker.HackRoomCoroutine(roomId, Role.GetRole<Cracker>(cracker2)));
+                        Role.GetRole<Cracker>(cracker2).RoomDetected = DateTime.UtcNow;
+                        Role.GetRole<Cracker>(cracker2).blackOutRoomId = roomId;
                         if (PlayerControl.LocalPlayer.Is(RoleEnum.Cracker)) {
                             Coroutines.Start(Utils.FlashCoroutine(new Color(0f, 0f, 0f, 1f), CustomGameOptions.CrackDur));
                         }

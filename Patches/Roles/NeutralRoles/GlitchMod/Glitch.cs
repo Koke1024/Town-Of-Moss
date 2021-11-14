@@ -180,9 +180,8 @@ namespace TownOfUs.Roles
                                         MimicList.Toggle();
                                         MimicList.SetVisible(false);
                                         MimicList = null;
-                                        RpcSetMimicked(PlayerControl.AllPlayerControls.ToArray().Where(x =>
-                                                x.Data.PlayerName == bubble.Cast<ChatBubble>().NameText.text)
-                                            .FirstOrDefault());
+                                        RpcSetMimicked(PlayerControl.AllPlayerControls.ToArray()
+                                            .FirstOrDefault(x => x.Data.PlayerName == bubble.Cast<ChatBubble>().NameText.text));
                                         break;
                                     }
 
