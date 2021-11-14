@@ -247,6 +247,7 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 |[Altruist](#Altruist)|[Puppeteer](#Puppeteer)|||
 |[Charger](#Charger)|[DollMaker](#DollMaker)|||
 |[Druid](#Druid)||||
+|[Sniffer](#Sniffer)||||
 
 -----------------------
 
