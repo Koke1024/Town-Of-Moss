@@ -20,6 +20,7 @@ namespace TownOfUs.NeutralReport {
                     GameData.Instance.AllPlayers.Count / 2) {
                     if (DestroyableSingleton<HudManager>.Instance) {
                         DestroyableSingleton<HudManager>.Instance.Chat.AddChat(PlayerControl.LocalPlayer, neutralReport);
+                        DestroyableSingleton<HudManager>.Instance.ShowPopUp(neutralReport);
                         reported = true;
                     }
                 }
@@ -36,10 +37,10 @@ namespace TownOfUs.NeutralReport {
                 reported = false;
                 var neutralList = Role.AllRoles.Where(x => x.Faction == Faction.Neutral);
                 if (!neutralList.Any()) {
-                    neutralReport = "No Neutral Roles have been assigned in this game.";
+                    neutralReport = "Assigned Neutral Roles:\nNone";
                     return;
                 }
-                neutralReport = neutralList.Join(x => x.Name, ", ") + " are assigned in this game.";
+                neutralReport = "Assigned Neutral Roles:\n" + neutralList.Join(x => x.Name, ", ");
             }
         }
     }

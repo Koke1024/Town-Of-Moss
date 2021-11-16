@@ -52,8 +52,7 @@ namespace TheOtherRoles.Patches {
                 passiveButton.OnClick = new Button.ButtonClickedEvent();
                 passiveButton.OnClick.AddListener(onClick);
                 button.Text.text = text;
-                Color color = new Color(0f, 1f, 0.16470589f, 1f);
-                if (button.Rollover) button.Rollover.ChangeOutColor(color);
+                button.Background.color = Color.yellow;
                 
                 return button;
             }
@@ -80,10 +79,10 @@ namespace TheOtherRoles.Patches {
 
             if (settingCheckButton == null || settingCheckButton.gameObject == null) {
                 settingCheckButton = createCustomButton("Game Setting Check", Vector3.right * xOffset, (UnityEngine.Events.UnityAction)SettingCheck, __instance);
-                settingCheckButton.UpdateText(false);
+                // settingCheckButton.UpdateText(false);
 
                 void SettingCheck() {
-                    if (MeetingHud.Instance != null) {
+                    // if (MeetingHud.Instance != null) {
                         if (DestroyableSingleton<HudManager>.Instance) {
                             var settingString = $"Player Num: {PlayerControl.AllPlayerControls.Count}\n";
                             settingString += $"Impostor: {PlayerControl.GameOptions.NumImpostors}\n";
@@ -92,24 +91,25 @@ namespace TheOtherRoles.Patches {
                             settingString += $"Glitch: {(CustomGameOptions.GlitchOn? "On": "Off")}\n";
                             settingString += $"KillCoolDown: {PlayerControl.GameOptions.KillCooldown}s";
 
-                            DestroyableSingleton<HudManager>.Instance.Chat.AddChat(PlayerControl.LocalPlayer, settingString);
+                            // DestroyableSingleton<HudManager>.Instance.Chat.AddChat(PlayerControl.LocalPlayer, settingString);
+                            __instance.Close();
+                            DestroyableSingleton<HudManager>.Instance.ShowPopUp(settingString);
                         }
-                    }
+                    // }
                 }
             }
 
             if (roleManualButton == null || roleManualButton.gameObject == null) {
                 roleManualButton = createCustomButton("Show Role Manual", new Vector2(-xOffset, yOffset), (UnityEngine.Events.UnityAction)ShowRoleInfo, __instance);
-                roleManualButton.UpdateText(false);
+                // roleManualButton.UpdateText(false);
 
                 void ShowRoleInfo() {
-                    if (MeetingHud.Instance != null) {
-                        if (DestroyableSingleton<HudManager>.Instance) {
-                            var role = Role.GetRole(PlayerControl.LocalPlayer);
-                            var settingString = TownOfUs.Roles.RoleManual.roleManual[role.RoleType];
+                    if (DestroyableSingleton<HudManager>.Instance) {
+                        var role = Role.GetRole(PlayerControl.LocalPlayer);
+                        var settingString = RoleManual.roleManual[role.RoleType];
 
-                            DestroyableSingleton<HudManager>.Instance.Chat.AddChat(PlayerControl.LocalPlayer, settingString);
-                        }
+                        __instance.Close();
+                        DestroyableSingleton<HudManager>.Instance.ShowPopUp(settingString);
                     }
                 }
             }

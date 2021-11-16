@@ -300,7 +300,7 @@ namespace TownOfUs.CustomOption
                 new CustomToggleOption(num++, "Dead can see everyone's roles", true);
 
             RoleUnderName = new CustomToggleOption(num++, "Role Appears Under Name");
-            NoticeNeutral = new CustomToggleOption(num++, "Report Assigned Neutral Roles", false);
+            NoticeNeutral = new CustomToggleOption(num++, "Notice Assigned Neutral Roles on Meeting", true);
             GhostCantMove = new CustomToggleOption(num++, "Dead Player Can't Move Before Report", false);
             // VanillaGame = new CustomNumberOption(num++, "Probability of a completely vanilla game", 0f, 0f, 100f, 5f,
             //     PercentFormat);
