@@ -41,7 +41,7 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
         <ul> 
             <li>第三陣営の通知をダイアログで行うように変更</li>
             <li>役職説明、ゲームルール表示をチャットではなくダイアログで表示することで、ゲーム中いつでも見られるように変更</li>
-            <li>（Additive Menu Buttonを参照）</li>
+            （Additive Menu Buttonを参照）
         </ul>
     </details>
     <details>
@@ -896,7 +896,7 @@ Mad Mateが存在するとき、Assassinがインポスター陣営に採用さ�
 | Admin and Security Camera Usable Time | AdminとセキュリティカメラのRoundごとの合計使用可能時間（0なら制限なし） | Time | 0s |
 | Dead can see everyone's roles | 死亡後に全員の役職がわかる | Toggle | On |
 | Role Appears Under Name | 自身の役職を名前の下に表示する | Toggle | On |
-| Report Assigned Neutral Roles | 生存者が半分以下になったあとの会議で、そのゲームで最初に割り当てられた第三陣営の内訳がチャットに通知される | Toggle | Off |
+| Report Assigned Neutral Roles | 生存者が半分以下になったあとの会議で、そのゲームで最初に割り当てられた第三陣営の内訳がダイアログとチャットに通知される | Toggle | Off |
 | Dead Player Can't Move Before Report | 幽霊になっても死体が残っているうちはその場から動けない | Toggle | Off |
 
 -----------------------
@@ -918,8 +918,8 @@ Mad Mateが存在するとき、Assassinがインポスター陣営に採用さ�
 | Name | Description |
 |----------|:-------------:|
 | Hide Room Code | ONのとき、ロビーでルームコードが非表示になります。 |
-| Game Setting Check | クリックすると、チャットに現在のゲームのインポスターや第三陣営の人数情報が表示されます。 |
-| Show Role Manual | クリックすると、チャットに現在の自分のロールの情報が表示されます。 |
+| Game Setting Check | クリックすると、ダイアログで現在のゲームのインポスターや第三陣営の人数情報が表示されます。 |
+| Show Role Manual | クリックすると、ダイアログで現在の自分のロールの情報が表示されます。 |
 
 -----------------------
 
