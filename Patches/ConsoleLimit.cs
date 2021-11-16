@@ -142,27 +142,31 @@ namespace TownOfUs.Patches {
             if (_timeText == null) {
                 if (__instance as SurveillanceMinigame != null) {
                     _timeText = Object.Instantiate(((SurveillanceMinigame)__instance).SabText[0], __instance.transform);
-                    _timeText.transform.localScale = Vector3.one * 3.0f;
                 }
                 if (__instance as PlanetSurveillanceMinigame != null) {
-                    _timeText = Object.Instantiate(((PlanetSurveillanceMinigame)__instance).LocationName, __instance.transform);
-                    _timeText.transform.localScale = Vector3.one * 3.0f;
+                    _timeText = Object.Instantiate(((PlanetSurveillanceMinigame)__instance).SabText, __instance.transform);
+                    _timeText.fontSizeMax = _timeText.fontSize = 1.9f;
+                    _timeText.fontSizeMin = 1;
                 }
                 if (_timeText == null) {
                     _timeText = Object.Instantiate(PlayerControl.LocalPlayer.nameText, __instance.transform);
-                    _timeText.transform.localScale = Vector3.one * 3.0f;
                 }
+                _timeText.transform.localScale = Vector3.one * 3.0f;
+
+                _timeText.name = "ConsoleTimeLimitText";
+                _timeText.gameObject.GetComponent<AlphaBlink>().enabled = false;
+                _timeText.transform.localPosition = new Vector3(1.5f, -2.3f, -15);
                 _timeText.text = "";
                 _timeText.color = Color.white;
                 var pos = DestroyableSingleton<HudManager>.Instance.UseButton.transform.position;
                 _timeText.transform.position = new Vector3(pos.x, pos.y, _timeText.transform.position.z);
                 _timeText.gameObject.transform.SetParent(__instance.transform);
+                _timeText.gameObject.SetActive(true);
             }
             
             // AmongUsExtensions.Log($"{_timeText.transform.position.z}");
             
             _timeText.text = (int)TimeLimit > 10 ? $"{(int)TimeLimit}" : $"<color=#FF0000FF>{(int)TimeLimit}</color>";
-            _timeText.gameObject.SetActive(true);
             if (TimeLimit <= 1) {
                 TimeLimit = 0;
                 _timeText.text = $"<color=#FF0000FF>--</color>";
