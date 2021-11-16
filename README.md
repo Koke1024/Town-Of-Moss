@@ -25,14 +25,6 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 | 21-11-10 | 2021.6.30s | v0.402 | [Download](https://spiel.jp/mod/Moss0402.zip) |
 | 21-11-09 | 2021.6.30s | v0.401 | [Download](https://spiel.jp/mod/Moss0401.zip) |
 | 21-11-05 | 2021.6.30s | v0.4 | [Download](https://spiel.jp/mod/Moss04.zip) |
-| 21-11-04 | 2021.6.30s | v0.397 | [Download](https://spiel.jp/mod/Moss0397.zip) |
-| 21-11-03 | 2021.6.30s | v0.396 | [Download](https://spiel.jp/mod/Moss0396.zip) |
-| 21-11-03 | 2021.6.30s | v0.395 | [Download](https://spiel.jp/mod/Moss0395.zip) |
-| 21-11-02 | 2021.6.30s | v0.394 | [Download](https://spiel.jp/mod/Moss0394.zip) |
-| 21-11-01 | 2021.6.30s | v0.393 | [Download](https://spiel.jp/mod/Moss0393.zip) |
-| 21-10-31 | 2021.6.30s | v0.392 | [Download](https://spiel.jp/mod/Moss0392.zip) |
-| 21-10-31 | 2021.6.30s | v0.391 | [Download](https://spiel.jp/mod/Moss0391.zip) |
-| 21-10-30 | 2021.6.30s | v0.39 | [Download](https://spiel.jp/mod/Moss039.zip) |
 
 <details>
     <summary> Changelog </summary>
@@ -241,6 +233,29 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 
 -----------------------
 
+# Custom Game Options
+
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Add Mad Mate | Mad Mateを追加する | Toggle | Off |
+| Add Glitch | グリッチを追加する | Toggle | Off |
+| Number of Neutral Roles | 割り当てられる第三陣営の数 | Number | 1 |
+| Kill Cooldown Reset on Meeting | 会議の後にインポスターのキルクールダウンを初期化するかどうか | Toggle | Off |
+| Camouflaged Comms | コミュニケーションサボタージュ中、カモフラージュ状態になる | Toggle | On |
+| Impostors can see the roles of their team | インポスター同士が互いの役職を知っている | Toggle | On |
+| Polus Reactor Time Limit | PolusのMelt Downサボタージュの制限時間 | Time | 45.0s |
+| AirShip Reactor Time Limit | AirShipのMelt Downサボタージュの制限時間 | Time | 75.0s |
+| Polus Vital Move | PolusのVitalの位置を変更できる。Shipにした場合Drop Ship内にベントが一つ追加される | Default / Labo / Ship / O2 | Default |
+| Admin and Security Camera Usable Time | AdminとセキュリティカメラのRoundごとの合計使用可能時間（0なら制限なし） | Time | 0s |
+| Dead can see everyone's roles | 死亡後に全員の役職がわかる | Toggle | On |
+| Role Appears Under Name | 自身の役職を名前の下に表示する | Toggle | On |
+| Report Assigned Neutral Roles | 生存者が半分以下になったあとの会議で、そのゲームで最初に割り当てられた第三陣営の内訳がダイアログとチャットに通知される | Toggle | On |
+| Dead Player Can't Move Before Report | 幽霊になっても死体が残っているうちはその場から動けない | Toggle | Off |
+
+-----------------------
+
+# Roles
+
 |**Crewmate Roles**|**Impostor Roles**|**Neutral Roles**|**Modifiers**|
 |----------|-------------|----------|-----|
 |[Mayor](#Mayor)|[Janitor](#Janitor)|[Glitch](#Glitch)|[Torch](#Torch)|
@@ -259,8 +274,6 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 |[Sniffer](#Sniffer)||||
 
 -----------------------
-
-# Roles
 
 # Crewmate Roles
 
@@ -877,27 +890,6 @@ Mad Mateが存在するとき、Assassinがインポスター陣営に採用さ�
 ### **Applied to: All**
 
 大きくなります。
-
------------------------
-
-# Custom Game Options
-
-| Name | Description | Type | Default |
-|----------|:-------------:|:------:|:------:|
-| Add Mad Mate | Mad Mateを追加する | Toggle | Off |
-| Add Glitch | グリッチを追加する | Toggle | Off |
-| Number of Neutral Roles | 割り当てられる第三陣営の数 | Number | 1 |
-| Kill Cooldown Reset on Meeting | 会議の後にインポスターのキルクールダウンを初期化するかどうか | Toggle | Off |
-| Camouflaged Comms | コミュニケーションサボタージュ中、カモフラージュ状態になる | Toggle | On |
-| Impostors can see the roles of their team | インポスター同士が互いの役職を知っている | Toggle | On |
-| Polus Reactor Time Limit | PolusのMelt Downサボタージュの制限時間 | Time | 45.0s |
-| AirShip Reactor Time Limit | AirShipのMelt Downサボタージュの制限時間 | Time | 75.0s |
-| Polus Vital Move | PolusのVitalの位置を変更できる。Shipにした場合Drop Ship内にベントが一つ追加される | Default / Labo / Ship / O2 | Default |
-| Admin and Security Camera Usable Time | AdminとセキュリティカメラのRoundごとの合計使用可能時間（0なら制限なし） | Time | 0s |
-| Dead can see everyone's roles | 死亡後に全員の役職がわかる | Toggle | On |
-| Role Appears Under Name | 自身の役職を名前の下に表示する | Toggle | On |
-| Report Assigned Neutral Roles | 生存者が半分以下になったあとの会議で、そのゲームで最初に割り当てられた第三陣営の内訳がダイアログとチャットに通知される | Toggle | Off |
-| Dead Player Can't Move Before Report | 幽霊になっても死体が残っているうちはその場から動けない | Toggle | Off |
 
 -----------------------
 
