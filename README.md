@@ -19,6 +19,7 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 | Date | Among Us - Version| Mod Version | Link |
 |---|----------|-------------|-----------------|
+| 21-11-15 | 2021.6.30s | v0.406 | [Download](https://spiel.jp/mod/Moss0406.zip) |
 | 21-11-15 | 2021.6.30s | v0.405 | [Download](https://spiel.jp/mod/Moss0405.zip) |
 | 21-11-13 | 2021.6.30s | v0.403 | [Download](https://spiel.jp/mod/Moss0403.zip) |
 | 21-11-10 | 2021.6.30s | v0.402 | [Download](https://spiel.jp/mod/Moss0402.zip) |
@@ -35,6 +36,14 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v0.406 </summary>
+        <ul> 
+            <li>第三陣営の通知をダイアログで行うように変更</li>
+            <li>役職説明、ゲームルール表示をチャットではなくダイアログで表示することで、ゲーム中いつでも見られるように変更</li>
+            <li>（Additive Menu Buttonを参照）</li>
+        </ul>
+    </details>
     <details>
         <summary> v0.405 </summary>
         <ul> 
@@ -902,8 +911,9 @@ Mad Mateが存在するとき、Assassinがインポスター陣営に採用さ�
 
 右上の歯車マークから開くメニュー画面に、以下のボタンが追加されています。
 ![メニュー](md_resource/menuButton.png)
-
-![ロール情報](md_resource/roleInfo.png)
+ゲーム中に自身のロールの情報とゲームルールを確認することができます。
+![ロール情報](md_resource/role_info.png)
+![ルール情報](md_resource/game_info.png)
 
 | Name | Description |
 |----------|:-------------:|
