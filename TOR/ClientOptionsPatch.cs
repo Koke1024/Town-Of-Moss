@@ -106,6 +106,9 @@ namespace TheOtherRoles.Patches {
                 void ShowRoleInfo() {
                     if (DestroyableSingleton<HudManager>.Instance) {
                         var role = Role.GetRole(PlayerControl.LocalPlayer);
+                        if (role == null) {
+                            return;
+                        }
                         var settingString = RoleManual.roleManual[role.RoleType];
 
                         __instance.Close();
