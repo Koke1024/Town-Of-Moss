@@ -11,7 +11,7 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 開発途中のため、ゲーム途中で切断されたり予期しない動作が起こる場合があります。\
 全てのプレイヤーが一度ゲームを閉じて起動し直すことをおすすめします。
 
-### v0.403 既知の不具合
+### v0.406 既知の不具合
 バイザー部分の隠れる帽子の場合Painterによる着色が全く見えないためバイザーの見える帽子の着用をお願いします。
 
 ## Releases
@@ -19,7 +19,7 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 | Date | Among Us - Version| Mod Version | Link |
 |---|----------|-------------|-----------------|
-| 21-11-15 | 2021.6.30s | v0.406 | [Download](https://spiel.jp/mod/Moss0406.zip) |
+| 21-11-16 | 2021.6.30s | v0.406 | [Download](https://spiel.jp/mod/Moss0406.zip) |
 | 21-11-15 | 2021.6.30s | v0.405 | [Download](https://spiel.jp/mod/Moss0405.zip) |
 | 21-11-13 | 2021.6.30s | v0.403 | [Download](https://spiel.jp/mod/Moss0403.zip) |
 | 21-11-10 | 2021.6.30s | v0.402 | [Download](https://spiel.jp/mod/Moss0402.zip) |
