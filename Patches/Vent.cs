@@ -1,3 +1,5 @@
+using System.Linq;
+using System.Runtime.CompilerServices;
 using HarmonyLib;
 using TownOfUs.ImpostorRoles.MorphlingMod;
 using TownOfUs.Roles;
@@ -36,6 +38,9 @@ namespace TownOfUs
                 return false;
             }
                 
+            // if (player.closest != null) {
+            //     return false;
+            // }
 
             if (player.Is(RoleEnum.Swooper)
                 || player.Is(RoleEnum.Kirby)
@@ -80,6 +85,26 @@ namespace TownOfUs
                 playerInfo.IsImpostor = false;
             // if (playerInfo.Object.Is(RoleEnum.Defect))
             //     playerInfo.IsImpostor = false;
+        }
+    }
+
+    [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
+    public static class VentPriority {
+        public static void Postfix(PlayerControl __instance) {
+            if (!(__instance.closest is { UseIcon: ImageNames.VentButton })) {
+                return;
+            }
+
+            float dist = float.MaxValue;
+            foreach (var usable in __instance.itemsInRange.ToArray().Where(j => j.UseIcon != ImageNames.VentButton)) {
+                if (dist > usable.CanUse(GameData.Instance.GetPlayerById(__instance.PlayerId), out var canUse,
+                    out var couldUse)) {
+                    if (canUse && couldUse) {
+                        __instance.closest = usable;
+                        DestroyableSingleton<HudManager>.Instance.UseButton.SetTarget(__instance.closest);                    
+                    }                        
+                }
+            }
         }
     }
 }
