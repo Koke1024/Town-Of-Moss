@@ -19,6 +19,7 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 | Date | Among Us - Version| Mod Version | Link |
 |---|----------|-------------|-----------------|
+| 21-11-18 | 2021.6.30s | v0.41 | [Download](https://spiel.jp/mod/Moss041.zip) |
 | 21-11-17 | 2021.6.30s | v0.407 | [Download](https://spiel.jp/mod/Moss0407.zip) |
 | 21-11-16 | 2021.6.30s | v0.406 | [Download](https://spiel.jp/mod/Moss0406.zip) |
 | 21-11-15 | 2021.6.30s | v0.405 | [Download](https://spiel.jp/mod/Moss0405.zip) |
@@ -33,6 +34,7 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
         <summary> v0.41 </summary>
         <ul> 
             <li>ベント利用とタスクが同時に可能な位置でスペースを押した際にタスクを優先するように</li>
+            <li>ロビーを模様替えし、三角のカーペットに全員が乗っているときのみゲーム開始可能</li>
         </ul>
     </details>
     <details>
