@@ -60,32 +60,48 @@ namespace TownOfUs.CustomOption
             }
 
             DefaultOptions = __instance.Children.ToList();
-            foreach (var defaultOption in __instance.Children) options.Add(defaultOption);
+            foreach (var defaultOption in __instance.Children) {
+                defaultOption.gameObject.SetActive(true);
+                
+                if (!AmongUsClient.Instance.AmHost) {
+                    defaultOption.gameObject.SetActive(true);
+                    if (defaultOption.GetComponent<PassiveButton>()) {
+                        defaultOption.GetComponent<PassiveButton>().enabled = false;                        
+                    }
+                }
 
-            foreach (var option in CustomOption.AllOptions)
+                options.Add(defaultOption);
+            }
+
+            foreach (var row
+                in CustomOption.AllOptions)
             {
                 // AmongUsExtensions.Log($"{option.Name}");
-                if (option.Setting != null)
+                if (row.Setting != null)
                 {
-                    option.Setting.gameObject.SetActive(true);
-                    options.Add(option.Setting);
+                    row.Setting.gameObject.SetActive(true);
+                    
+                    options.Add(row.Setting);
                     continue;
                 }
 
                 // AmongUsExtensions.Log($"{option.Type}");
-                switch (option.Type)
+                switch (row.Type)
                 {
                     case CustomOptionType.Header:
                         if (AmongUsClient.Instance.AmHost) {
                             var toggle = Object.Instantiate(togglePrefab, togglePrefab.transform.parent).DontDestroy();
                             toggle.transform.GetChild(1).gameObject.SetActive(false);
                             toggle.transform.GetChild(2).gameObject.SetActive(false);
-                            option.Setting = toggle;
+                            row.Setting = toggle;
                             options.Add(toggle);                            
                         }
                         else {
                             var header = Object.Instantiate(togglePrefab, togglePrefab.transform.parent).DontDestroy();
-                            option.Setting = header;
+                            header.transform.GetChild(1).gameObject.SetActive(false);
+                            header.transform.GetChild(2).gameObject.SetActive(false);
+                            header.gameObject.SetActive(true);
+                            row.Setting = header;
                             options.Add(header);
                         }
                         break;
@@ -93,28 +109,30 @@ namespace TownOfUs.CustomOption
                     case CustomOptionType.Toggle:
                         if (AmongUsClient.Instance.AmHost) {
                             var toggle2 = Object.Instantiate(togglePrefab, togglePrefab.transform.parent).DontDestroy();
-                            option.Setting = toggle2;
+                            row.Setting = toggle2;
                             options.Add(toggle2);
                         }
                         else {
                             var toggle2 = Object.Instantiate(togglePrefab, togglePrefab.transform.parent).DontDestroy();
-                            option.Setting = toggle2;
+                            row.Setting = toggle2;
+                            toggle2.gameObject.SetActive(true);
+                            toggle2.GetComponent<PassiveButton>().enabled = false;
                             options.Add(toggle2);
                         }
                         break;
                     case CustomOptionType.Number:
                         var number = Object.Instantiate(numberPrefab, numberPrefab.transform.parent).DontDestroy();
-                        option.Setting = number;
+                        row.Setting = number;
                         options.Add(number);
                         break;
                     case CustomOptionType.String:
                         var str = Object.Instantiate(stringPrefab, stringPrefab.transform.parent).DontDestroy();
-                        option.Setting = str;
+                        row.Setting = str;
                         options.Add(str);
                         break;
                 }
 
-                option.OptionCreated();
+                row.OptionCreated();
             }
 
             return options;
