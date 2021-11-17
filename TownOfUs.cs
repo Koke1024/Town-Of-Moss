@@ -20,11 +20,11 @@ using UnityEngine.SceneManagement;
 
 namespace TownOfUs
 {
-    [BepInPlugin(Id, "Town Of Moss", "0.407")]
+    [BepInPlugin(Id, "Town Of Moss", "0.41")]
     [BepInDependency(ReactorPlugin.Id)]
     public class TownOfUs : BasePlugin
     {
-        public static string Version = "0.407";
+        public static string Version = "0.41";
         public const string Id = "jp.spiel.koke";
 
         public static Sprite JanitorClean;
@@ -36,7 +36,6 @@ namespace TownOfUs
         public static Sprite Footprint;
         public static Sprite Rewind;
         public static Sprite NormalKill;
-        public static Sprite ShiftKill;
         public static Sprite MedicSprite;
         public static Sprite SeerSprite;
         public static Sprite SampleSprite;
@@ -99,7 +98,6 @@ namespace TownOfUs
             Footprint = CreateSprite("TownOfUs.Resources.Footprint.png");
             Rewind = CreateSprite("TownOfUs.Resources.Rewind.png");
             NormalKill = CreateSprite("TownOfUs.Resources.NormalKill.png");
-            ShiftKill = CreateSprite("TownOfUs.Resources.ShiftKill.png");
             MedicSprite = CreateSprite("TownOfUs.Resources.Medic.png");
             SeerSprite = CreateSprite("TownOfUs.Resources.Seer.png");
             SampleSprite = CreateSprite("TownOfUs.Resources.Sample.png");

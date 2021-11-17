@@ -30,6 +30,12 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 <details>
     <summary> Changelog </summary>
     <details>
+        <summary> v0.41 </summary>
+        <ul> 
+            <li>ベント利用とタスクが同時に可能な位置でスペースを押した際にタスクを優先するように</li>
+        </ul>
+    </details>
+    <details>
         <summary> v0.407 </summary>
         <ul> 
             <li>Admin、セキュリティの残時間の表示を改良</li>

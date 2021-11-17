@@ -197,19 +197,6 @@ namespace TownOfUs.CustomOption
             }
         }
 
-        [HarmonyPatch(typeof(LobbyBehaviour), nameof(LobbyBehaviour.Start))]
-        public static class DontShake {
-            public static void Postfix(LobbyBehaviour __instance) {
-                Camera main = Camera.main;
-                FollowerCamera component = main.GetComponent<FollowerCamera>();
-                if (component)
-                {
-                    component.shakeAmount = 0f;
-                    component.shakePeriod = 0;
-                }
-            }
-        }
-
         [HarmonyPatch(typeof(GameOptionsMenu), nameof(GameOptionsMenu.Update))]
         private class GameOptionsMenu_Update {
             public static float bottomY;
@@ -540,5 +527,4 @@ namespace TownOfUs.CustomOption
             }
         }
     }
-    
 }

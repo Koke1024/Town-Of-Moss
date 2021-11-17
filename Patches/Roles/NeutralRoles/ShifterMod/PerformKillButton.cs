@@ -78,7 +78,7 @@ namespace TownOfUs.NeutralRoles.ShifterMod
             var flame = transform.GetChild(0).gameObject;
             var renderer = flame.GetComponent<SpriteRenderer>();
 
-            renderer.sprite = TownOfUs.ShiftKill;
+            renderer.sprite = TownOfUs.Footprint;
             var background = overlay.background;
             overlay.flameParent.SetActive(true);
             yield return new WaitForLerp(0.16666667f,

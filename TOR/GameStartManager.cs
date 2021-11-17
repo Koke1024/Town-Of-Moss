@@ -1,14 +1,14 @@
 ﻿using System.Collections;
+using System.Linq;
 using HarmonyLib;
 using Reactor;
-using Rewired;
-using TownOfUs;
-using TownOfUs.Extensions;
 using UnityEngine;
+using UnhollowerBaseLib;
 
 namespace TownOfUs.Patches {
     public class GameStartManagerPatch {
         private static string lobbyCodeText = "";
+        public static GameObject StartPanel;
         
         [HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.Start))]
         public class GameStartManagerStartPatch {
@@ -21,7 +21,32 @@ namespace TownOfUs.Patches {
 
         [HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.Update))]
         public class GameStartManagerUpdatePatch {
+            public static bool startable = false;
             public static void Prefix(GameStartManager __instance) {
+                if (StartPanel == null) {
+                    return;
+                }
+
+                startable = true;
+                var color = Color.white;
+                foreach (var player in PlayerControl.AllPlayerControls) {
+                    if (!player.Collider.IsTouching(StartPanel.GetComponent<PolygonCollider2D>())) {
+                        startable = false;
+                        if (player == PlayerControl.LocalPlayer) {
+                            color = Color.gray;
+                        }
+                    }
+                }
+
+                if (AmongUsClient.Instance.AmHost) {
+                    if (startable) {
+                        __instance.StartButton.color = new Color(1, 1, 1, 1);
+                    }
+                    else {
+                        __instance.StartButton.color = new Color(0.5f, 0.5f, 0.5f, 0.4f);
+                    }
+                }
+                StartPanel.GetComponent<SpriteRenderer>().color = startable? Color.green: color;
             }
 
             public static void Postfix(GameStartManager __instance) {
@@ -33,6 +58,53 @@ namespace TownOfUs.Patches {
                         __instance.GameRoomName.text = lobbyCodeText;
                     }
                 }
+            }
+        }
+
+        [HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.BeginGame))]
+        public static class BeginGameBefore {
+            public static bool Prefix(GameStartManager __instance) {
+                return GameStartManagerUpdatePatch.startable;
+            }
+        }
+        
+
+        [HarmonyPatch(typeof(LobbyBehaviour), nameof(LobbyBehaviour.Start))]
+        public static class RearrangeLobby {
+            public static void Postfix(LobbyBehaviour __instance) {
+                Camera main = Camera.main;
+                FollowerCamera component = main.GetComponent<FollowerCamera>();
+                if (component)
+                {
+                    component.shakeAmount = 0f;
+                    component.shakePeriod = 0;
+                }
+                
+                var box = __instance.GetComponentsInChildren<PolygonCollider2D>().FirstOrDefault(x => x.name == "RightBox");
+                if (box) {
+                    box.gameObject.transform.position = new Vector3(1.77f, 0.86f, Utils.getZfromY(0.86f));                    
+                }
+                box = __instance.GetComponentsInChildren<PolygonCollider2D>().FirstOrDefault(x => x.name == "Leftbox");
+                if (box) {
+                    box.gameObject.transform.position = new Vector3(-1.77f, 0.34f, Utils.getZfromY(0.34f));                    
+                }
+
+                StartPanel = new GameObject("StartPanel");
+                Vector3 position = new Vector3(0.18f, 0.58f, 7); // just behind player
+                StartPanel.transform.position = position;
+                StartPanel.transform.localScale = new Vector3(3, 3, 1);
+                var collider = StartPanel.AddComponent<PolygonCollider2D>();
+                collider.isTrigger = true;
+                collider.points = new Il2CppStructArray<Vector2>(3) {
+                    [0] = new Vector2(-1, 0.5f),
+                    [1] = new Vector2(1, 0),
+                    [2] = new Vector2(-1, -0.5f)
+                };
+
+                var panelRenderer = StartPanel.AddComponent<SpriteRenderer>();
+                panelRenderer.sprite = GameStartManager.Instance.StartButton.sprite;
+                // panelRenderer.sprite = Object.Instantiate(GameStartManager.Instance.StartButton);
+                StartPanel.gameObject.transform.SetParent(__instance.transform);
             }
         }
     }

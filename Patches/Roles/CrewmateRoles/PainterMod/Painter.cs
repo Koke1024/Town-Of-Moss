@@ -104,7 +104,6 @@ namespace TownOfUs.Roles
                 SoundManager.Instance.PlaySound(PlayerControl.LocalPlayer.KillSfx, false, 0.8f);
                 var ink = new GameObject("Ink");
                 Vector3 position = new Vector3(point.x, point.y, PlayerControl.LocalPlayer.transform.localPosition.z + 0.001f); // just behind player
-                ink.transform.position = position;
                 ink.transform.localPosition = position;
 
                 var inkRenderer = ink.AddComponent<SpriteRenderer>();
