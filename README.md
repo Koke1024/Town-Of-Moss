@@ -30,7 +30,7 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 <details>
     <summary> Changelog </summary>
     <details>
-        <summary> v0.406 </summary>
+        <summary> v0.407 </summary>
         <ul> 
             <li>Admin、セキュリティの残時間の表示を改良</li>
             <li>ロビーでホスト以外でも設定がきちんと見れるよう修正</li>
