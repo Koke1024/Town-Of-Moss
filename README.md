@@ -19,6 +19,7 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 | Date | Among Us - Version| Mod Version | Link |
 |---|----------|-------------|-----------------|
+| 21-11-17 | 2021.6.30s | v0.407 | [Download](https://spiel.jp/mod/Moss0407.zip) |
 | 21-11-16 | 2021.6.30s | v0.406 | [Download](https://spiel.jp/mod/Moss0406.zip) |
 | 21-11-15 | 2021.6.30s | v0.405 | [Download](https://spiel.jp/mod/Moss0405.zip) |
 | 21-11-13 | 2021.6.30s | v0.403 | [Download](https://spiel.jp/mod/Moss0403.zip) |
@@ -31,6 +32,14 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
     <details>
         <summary> v0.406 </summary>
         <ul> 
+            <li>Admin、セキュリティの残時間の表示を改良</li>
+            <li>ロビーでホスト以外でも設定がきちんと見れるよう修正</li>
+            <li>他微細な不具合を修正</li>
+        </ul>
+    </details>
+    <details>
+        <summary> v0.406 </summary>
+        <ul> 
             <li>第三陣営の通知をダイアログで行うように変更</li>
             <li>役職説明、ゲームルール表示をチャットではなくダイアログで表示することで、ゲーム中いつでも見られるように変更</li>
             （Additive Menu Buttonを参照）
@@ -39,7 +48,7 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
     <details>
         <summary> v0.405 </summary>
         <ul> 
-            <li>Adminの使用時間制限設定でセキュリティカメラも共通で制限時間を消費するように（点滅したりしてて見づらいのは技術力不足です）</li>
+            <li>Adminの使用時間制限設定でセキュリティカメラも共通で制限時間を消費するように</li>
             <li>Crackerによる停電中にゲームが終了した場合のエラーを修正</li>
         </ul>
     </details>
