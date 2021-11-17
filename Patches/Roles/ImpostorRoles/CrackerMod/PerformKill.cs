@@ -20,7 +20,7 @@ namespace TownOfUs.ImpostorRoles.CrackerMod
             if (!PlayerControl.LocalPlayer.CanMove) return false;
             if (PlayerControl.LocalPlayer.Data.IsDead) return false;
             var role = Role.GetRole<Cracker>(PlayerControl.LocalPlayer);
-            if (__instance == role.CrackButton)
+            if (__instance == role.CrackButton && role.TargetRoom != null)
             {
                 if (__instance.isCoolingDown) return false;
                 if (!__instance.isActiveAndEnabled) return false;

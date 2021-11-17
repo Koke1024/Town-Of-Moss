@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Epic.OnlineServices.AntiCheatCommon;
 using HarmonyLib;
@@ -13,6 +14,16 @@ namespace TownOfUs.OnStartGame
         Ship,
         O2,
     }
+
+    //vent animation off
+    // [HarmonyPatch(typeof(Vent), nameof(Vent.Start))]
+    // public static class RewriteVent {
+    //     public static void Prefix(Vent __instance) {
+    //         __instance.EnterVentAnim = null;
+    //         __instance.ExitVentAnim = null;
+    //     }
+    // }
+    
     [HarmonyPatch(typeof(ShipStatus), nameof(ShipStatus.Start))]
     public static class PolusVitalMoving
     {
@@ -21,6 +32,7 @@ namespace TownOfUs.OnStartGame
             // foreach (var obj in GameObject.FindObjectsOfType<MonoBehaviour>()) {
             //     AmongUsExtensions.Log($"{obj.name}: {obj.transform.position.x}, {obj.transform.position.y}");
             // }
+            
             if (__instance.Type != ShipStatus.MapType.Pb || CustomGameOptions.PolusVitalMove == PolusVitalPosition.Default) {
                 return;
             }

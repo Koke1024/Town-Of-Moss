@@ -159,7 +159,7 @@ namespace TownOfUs.Patches {
                 _timeText.text = "";
                 _timeText.color = Color.white;
                 var pos = DestroyableSingleton<HudManager>.Instance.UseButton.transform.position;
-                _timeText.transform.position = new Vector3(pos.x, pos.y, -65);
+                _timeText.transform.position = new Vector3(pos.x, pos.y, -70);
                 _timeText.gameObject.transform.SetParent(__instance.transform);
                 _timeText.gameObject.SetActive(true);
             }
