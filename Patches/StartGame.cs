@@ -5,6 +5,7 @@ using HarmonyLib;
 using TownOfUs.Extensions;
 using TownOfUs.ImpostorRoles.MinerMod;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace TownOfUs.OnStartGame
 {
