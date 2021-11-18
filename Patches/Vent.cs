@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Runtime.CompilerServices;
 using HarmonyLib;
+using TownOfUs.Extensions;
 using TownOfUs.ImpostorRoles.MorphlingMod;
 using TownOfUs.Roles;
 using UnityEngine;
@@ -25,7 +26,7 @@ namespace TownOfUs
             canUse = couldUse = false;
 
             var player = playerInfo.Object;
-            
+
             if (__instance.name.StartsWith("SealedVent_")) {
                 canUse = couldUse = false;
                 return false;
@@ -34,8 +35,15 @@ namespace TownOfUs
             if (player.inVent)
             {
                 __result = Vector2.Distance(player.Collider.bounds.center, __instance.transform.position);
-                canUse = couldUse = true;
-                return false;
+                if (__result > 0.2f) {
+                    __result = float.MaxValue;
+                    canUse = couldUse = false;
+                    return false;
+                }
+                else {
+                    canUse = couldUse = true;
+                    return false;                    
+                }
             }
                 
             // if (player.closest != null) {
