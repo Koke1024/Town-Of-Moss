@@ -18,6 +18,7 @@ namespace TownOfUs.NeutralRoles.ScavengerMod
             var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                 (byte) CustomRPC.NeutralLose,
                 SendOption.Reliable, -1);
+            writer.Write((byte)RoleEnum.Scavenger);
             AmongUsClient.Instance.FinishRpcImmediately(writer);
 
             return true;

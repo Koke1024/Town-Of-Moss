@@ -102,7 +102,7 @@ namespace TownOfUs.Roles
                 { "Arsonist", CustomGameOptions.ArsonistOn },
                 { "Zombie", CustomGameOptions.ZombieOn },
                 
-                { "Assassin", CustomGameOptions.MadMateOn? 0: CustomGameOptions.AssassinOn },
+                { "Assassin", CustomGameOptions.MadMateOn? 0: (CustomGameOptions.LastImpCanGuess? 0: CustomGameOptions.AssassinOn) },
                 { "Janitor", CustomGameOptions.JanitorOn },
                 { "Popopo", CustomGameOptions.KirbyOn },
                 { "Morphling", CustomGameOptions.MorphlingOn },

@@ -24,7 +24,6 @@ namespace TownOfUs.NeutralRoles.PhantomMod
                 {
                     var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                         (byte) CustomRPC.NeutralWin, SendOption.Reliable, -1);
-                    writer.Write(role.Player.PlayerId);
                     writer.Write((byte)RoleEnum.Phantom);
                     AmongUsClient.Instance.FinishRpcImmediately(writer);
                     Utils.EndGame();

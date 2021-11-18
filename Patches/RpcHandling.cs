@@ -926,7 +926,7 @@ namespace TownOfUs
                 if (Check(CustomGameOptions.UndertakerOn))
                     ImpostorRoles.Add((typeof(Undertaker), (byte)RoleEnum.Undertaker, CustomGameOptions.UndertakerOn));
 
-                if (!CustomGameOptions.MadMateOn && Check(CustomGameOptions.AssassinOn))
+                if (!CustomGameOptions.MadMateOn && !CustomGameOptions.LastImpCanGuess && Check(CustomGameOptions.AssassinOn))
                     ImpostorRoles.Add((typeof(Assassin), (byte)RoleEnum.Assassin, CustomGameOptions.AssassinOn));
 
                 if (Check(CustomGameOptions.UnderdogOn))

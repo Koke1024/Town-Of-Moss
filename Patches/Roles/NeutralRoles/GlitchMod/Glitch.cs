@@ -82,7 +82,6 @@ namespace TownOfUs.Roles
                     SendOption.Reliable,
                     -1
                 );
-                writer.Write(Player.PlayerId);
                 writer.Write((byte)RoleEnum.Glitch);
                 Wins();
                 AmongUsClient.Instance.FinishRpcImmediately(writer);
@@ -95,7 +94,6 @@ namespace TownOfUs.Roles
 
         public void Wins()
         {
-            //System.Console.WriteLine("Reached Here - Glitch Edition");
             GlitchWins = true;
         }
 

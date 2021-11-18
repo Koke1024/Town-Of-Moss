@@ -49,7 +49,6 @@ namespace TownOfUs.ImpostorRoles.ScavengerMod
             if (role.eatCount >= CustomGameOptions.ScavengerWinCount) {
                 var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                     (byte) CustomRPC.NeutralWin, SendOption.Reliable, -1);
-                writer.Write(role.Player.PlayerId);
                 writer.Write((byte)RoleEnum.Scavenger);
                 AmongUsClient.Instance.FinishRpcImmediately(writer);
                 Utils.EndGame();

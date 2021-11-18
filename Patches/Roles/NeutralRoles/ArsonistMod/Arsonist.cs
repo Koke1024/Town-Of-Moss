@@ -49,7 +49,6 @@ namespace TownOfUs.Roles
                     SendOption.Reliable,
                     -1
                 );
-                writer.Write(Player.PlayerId);
                 writer.Write((byte)RoleEnum.Arsonist);
                 Wins();
                 AmongUsClient.Instance.FinishRpcImmediately(writer);

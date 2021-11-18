@@ -14,6 +14,7 @@ namespace TownOfUs.NeutralRoles.ShifterMod
             foreach (var role in Role.AllRoles)
                 if (role.RoleType == RoleEnum.Shifter)
                     ((Shifter) role).Loses();
+            
             var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                 (byte) CustomRPC.NeutralLose,
                 SendOption.Reliable, -1);
