@@ -17,6 +17,7 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 
 | Date | Among Us - Version| Mod Version | Link |
 |---|----------|-------------|-----------------|
+| 21-11-19 | 2021.6.30s | v0.43 | [Download](https://spiel.jp/mod/Moss043.zip) |
 | 21-11-19 | 2021.6.30s | v0.42 | [Download](https://spiel.jp/mod/Moss042.zip) |
 | 21-11-18 | 2021.6.30s | v0.41 | [Download](https://spiel.jp/mod/Moss041.zip) |
 | 21-11-17 | 2021.6.30s | v0.407 | [Download](https://spiel.jp/mod/Moss0407.zip) |
@@ -30,9 +31,9 @@ MODの導入されていないAmong Usディレクトリに展開してくださ
 <details>
     <summary> Changelog </summary>
     <details>
-        <summary> v0.42 </summary>
+        <summary> v0.43 </summary>
         <ul> 
-            <li></li>
+            <li>第三陣営の勝利判定の不具合を修正</li>
         </ul>
     </details>
     <details>
