@@ -77,14 +77,14 @@ namespace TownOfUs.Roles
             }
             SecurityGuardButton = new CustomButton(
                 () => {
-                    if (SecurityGuard.ventTarget != null) {
+                    if (ventTarget != null) {
                         // Seal vent
                         MessageWriter writer = AmongUsClient.Instance.StartRpc(PlayerControl.LocalPlayer.NetId,
                             (byte)CustomRPC.SealVent, Hazel.SendOption.Reliable);
-                        writer.WritePacked(SecurityGuard.ventTarget.Id);
+                        writer.WritePacked(ventTarget.Id);
                         writer.EndMessage();
-                        SGAction.sealVent(SecurityGuard.ventTarget.Id);
-                        SecurityGuard.ventTarget = null;
+                        SGAction.sealVent(ventTarget.Id);
+                        ventTarget = null;
                     }
                     else if (PlayerControl.GameOptions.MapId != (byte)ShipStatus.MapType.Hq &&
                              PlayerControl.GameOptions.MapId != (byte)ShipStatus.MapType.Ship) {
@@ -109,35 +109,45 @@ namespace TownOfUs.Roles
                 () => {
                     return role != null &&
                            role.Player == PlayerControl.LocalPlayer &&
-                           !PlayerControl.LocalPlayer.Data.IsDead && SecurityGuard.remainingScrews >=
-                           Mathf.Min(SecurityGuard.ventPrice, SecurityGuard.camPrice);
+                           !PlayerControl.LocalPlayer.Data.IsDead && remainingScrews >=
+                           Mathf.Min(ventPrice, camPrice);
                 },
                 () => {
-                    SecurityGuardButton.killButtonManager.renderer.sprite =
-                        (SecurityGuard.ventTarget == null &&
-                         PlayerControl.GameOptions.MapId != (byte)ShipStatus.MapType.Hq &&
-                         PlayerControl.GameOptions.MapId != (byte)ShipStatus.MapType.Ship)
-                            ? SecurityGuard.getPlaceCameraButtonSprite()
-                            : SecurityGuard.getCloseVentButtonSprite();
+                    SecurityGuardButton.killButtonManager.renderer.color = Palette.EnabledColor;
+                    SecurityGuardButton.killButtonManager.renderer.material.SetFloat("_Desat", 0f);
+                    if (ventTarget == null) {
+                        if (PlayerControl.GameOptions.MapId == (byte)ShipStatus.MapType.Hq ||
+                            PlayerControl.GameOptions.MapId == (byte)ShipStatus.MapType.Ship) {
+                            SecurityGuardButton.killButtonManager.renderer.sprite = getPlaceCameraButtonSprite();                            
+                        }
+                        else {
+                            SecurityGuardButton.killButtonManager.renderer.sprite = getCloseVentButtonSprite();
+                            SecurityGuardButton.killButtonManager.renderer.color = Palette.DisabledClear;
+                            SecurityGuardButton.killButtonManager.renderer.material.SetFloat("_Desat", 1f);                            
+                        }
+                    }
+                    else {
+                        SecurityGuardButton.killButtonManager.renderer.sprite = getCloseVentButtonSprite();
+                    }
                     if (SecurityGuardButtonScrewsText != null)
                         SecurityGuardButtonScrewsText.text =
-                            $"{SecurityGuard.remainingScrews}/{SecurityGuard.totalScrews}";
+                            $"{remainingScrews}/{totalScrews}";
 
-                    if (SecurityGuard.ventTarget != null)
-                        return SecurityGuard.remainingScrews >= SecurityGuard.ventPrice &&
+                    if (ventTarget != null)
+                        return remainingScrews >= ventPrice &&
                                PlayerControl.LocalPlayer.CanMove;
                     return PlayerControl.GameOptions.MapId != 1 &&
-                           SecurityGuard.remainingScrews >= SecurityGuard.camPrice &&
+                           remainingScrews >= camPrice &&
                            PlayerControl.LocalPlayer.CanMove;
                 },
                 () => { SecurityGuardButton.Timer = SecurityGuardButton.MaxTimer; },
-                SecurityGuard.getPlaceCameraButtonSprite(),
+                getPlaceCameraButtonSprite(),
                 new Vector3(-1.3f, 0f, 0f),
                 HudManager.Instance,
                 KeyCode.Q
             );
 
-            SecurityGuardButton.MaxTimer = SecurityGuard.cooldown;
+            SecurityGuardButton.MaxTimer = cooldown;
             SecurityGuardButtonScrewsText = GameObject.Instantiate(SecurityGuardButton.killButtonManager.TimerText,
                 SecurityGuardButton.killButtonManager.TimerText.transform.parent);
             SecurityGuardButtonScrewsText.text = "";
