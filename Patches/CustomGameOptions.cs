@@ -69,7 +69,8 @@ namespace TownOfUs
         public static int VanillaGame => 0;
         // public static int VanillaGame => (int) Generate.VanillaGame.Get();
         public static bool BothLoversDie => Generate.BothLoversDie.Get();
-        public static bool ShowSheriff => Generate.ShowSheriff.Get();
+        // public static bool ShowSheriff => Generate.ShowSheriff.Get();
+        public static bool ShowSheriff => false;
         public static bool SheriffKillOther => Generate.SheriffKillOther.Get();
         public static bool SheriffKillsMadmate => Generate.SheriffKillsMadmate.Get();
         public static float SheriffKillCd => Generate.SheriffKillCd.Get();
@@ -93,13 +94,16 @@ namespace TownOfUs
         public static bool RewindFlash => Generate.RewindFlash.Get();
         public static float RewindDuration => Generate.RewindDuration.Get();
         public static float RewindCooldown => Generate.RewindCooldown.Get();
-        public static bool TimeLordVitals => Generate.TimeLordVitals.Get();
+        public static bool TimeLordVitals => false;
+        // public static bool TimeLordVitals => Generate.TimeLordVitals.Get();
         public static ShieldOptions ShowShielded => (ShieldOptions) Generate.ShowShielded.Get();
 
         public static NotificationOptions NotificationShield =>
-            (NotificationOptions) Generate.WhoGetsNotification.Get();
+            NotificationOptions.Medic;
+            // (NotificationOptions) Generate.WhoGetsNotification.Get();
 
-        public static bool ShieldBreaks => Generate.ShieldBreaks.Get();
+        public static bool ShieldBreaks => true;
+        // public static bool ShieldBreaks => Generate.ShieldBreaks.Get();
         public static float MedicReportNameDuration => Generate.MedicReportNameDuration.Get();
         public static float MedicReportColorDuration => Generate.MedicReportColorDuration.Get();
         public static bool ShowReports => Generate.MedicReportSwitch.Get();
@@ -122,6 +126,7 @@ namespace TownOfUs
         public static float GlitchKillCooldown => Generate.GlitchKillCooldownOption.Get();
         public static int GlitchHackDistance => Generate.GlitchHackDistanceOption.Get();
         public static float MorphlingCd => Generate.MorphlingCooldown.Get();
+        public static MorphVentOptions SwooperCanVent => (MorphVentOptions)Generate.SwooperCanVent.Get();
         public static float MorphlingDuration => Generate.MorphlingDuration.Get();
         public static MorphVentOptions MorphCanVent => (MorphVentOptions)Generate.MorphCanVent.Get();
         public static float CamouflagerCd => Generate.CamouflagerCooldown.Get();

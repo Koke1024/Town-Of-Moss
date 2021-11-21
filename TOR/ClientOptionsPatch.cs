@@ -17,9 +17,12 @@ namespace TheOtherRoles.Patches {
         public static ToggleButtonBehaviour streamButton;
         public static ToggleButtonBehaviour settingCheckButton;
         public static ToggleButtonBehaviour roleManualButton;
+        public static ToggleButtonBehaviour crewOnButton;
+        public static ToggleButtonBehaviour ImpostorOnButton;
+        public static ToggleButtonBehaviour NeutralOnButton;
 
         public static float xOffset = 1.75f;
-        public static float yOffset = -0.5f;
+        public static float yOffset = -0.3f;
 
         private static void updateToggle(ToggleButtonBehaviour button, string text, bool on) {
             if (button == null || button.gameObject == null) return;
@@ -84,12 +87,14 @@ namespace TheOtherRoles.Patches {
                 void SettingCheck() {
                     // if (MeetingHud.Instance != null) {
                         if (DestroyableSingleton<HudManager>.Instance) {
-                            var settingString = $"Player Num: {PlayerControl.AllPlayerControls.Count}\n";
-                            settingString += $"Impostor: {PlayerControl.GameOptions.NumImpostors}\n";
-                            settingString += $"MadMate: {(CustomGameOptions.MadMateOn? "On": "Off")}\n";
-                            settingString += $"Max Neutral Roles: {CustomGameOptions.MaxNeutralRoles}\n";
-                            settingString += $"Glitch: {(CustomGameOptions.GlitchOn? "On": "Off")}\n";
-                            settingString += $"KillCoolDown: {PlayerControl.GameOptions.KillCooldown}s";
+                            var settingString = $"<color=#FF0000FF>Impostor: {PlayerControl.GameOptions.NumImpostors}</color>　<color=#FF0000FF>Madmate: {(CustomGameOptions.MadMateOn? "On": "Off")}</color>\n";
+                            settingString += $"<color=#00FF00FF>Neutral Roles: {CustomGameOptions.MaxNeutralRoles}</color>　<color=#00FF00FF>Glitch: {(CustomGameOptions.GlitchOn? "On": "Off")}</color>\n";
+                            settingString += $"Kill Cooldown: {PlayerControl.GameOptions.KillCooldown}s\n";
+                            settingString += $"Kill Cooldown Reset On Meeting: {((CustomGameOptions.KillCoolResetOnMeeting)? "On": "Off")}\n";
+                            settingString += $"Last Impostor Can Snipe: {(CustomGameOptions.LastImpCanGuess? "On": "Off")}\n";
+                            if (ShipStatus.Instance == null || ShipStatus.Instance.Type == ShipStatus.MapType.Pb) {
+                                settingString += $"Polus Vital Position: {(new[] {"Default", "Labo", "Ship", "O2"}[(int)CustomGameOptions.PolusVitalMove])}";
+                            }
 
                             // DestroyableSingleton<HudManager>.Instance.Chat.AddChat(PlayerControl.LocalPlayer, settingString);
                             __instance.Close();
@@ -111,6 +116,45 @@ namespace TheOtherRoles.Patches {
                         }
                         var settingString = RoleManual.roleManual[role.RoleType];
 
+                        __instance.Close();
+                        DestroyableSingleton<HudManager>.Instance.ShowPopUp(settingString);
+                    }
+                }
+            }
+
+            if (crewOnButton == null || crewOnButton.gameObject == null) {
+                crewOnButton = createCustomButton("Show Crewmates Role ", new Vector2(-xOffset, yOffset * 2), (UnityEngine.Events.UnityAction)ShowCrewRoleInfo, __instance);
+                // roleManualButton.UpdateText(false);
+
+                void ShowCrewRoleInfo() {
+                    if (DestroyableSingleton<HudManager>.Instance) {
+                        var settingString = Utils.crewRateString;
+                        __instance.Close();
+                        DestroyableSingleton<HudManager>.Instance.ShowPopUp(settingString);
+                    }
+                }
+            }
+
+            if (ImpostorOnButton == null || ImpostorOnButton.gameObject == null) {
+                ImpostorOnButton = createCustomButton("Show Impostor Role ", new Vector2(0, yOffset * 2), (UnityEngine.Events.UnityAction)ShowImpRoleInfo, __instance);
+                // roleManualButton.UpdateText(false);
+
+                void ShowImpRoleInfo() {
+                    if (DestroyableSingleton<HudManager>.Instance) {
+                        var settingString = Utils.impRateString;
+                        __instance.Close();
+                        DestroyableSingleton<HudManager>.Instance.ShowPopUp(settingString);
+                    }
+                }
+            }
+
+            if (NeutralOnButton == null || NeutralOnButton.gameObject == null) {
+                NeutralOnButton = createCustomButton("Show Neutral Role ", new Vector2(xOffset, yOffset * 2), (UnityEngine.Events.UnityAction)ShowNeutralRoleInfo, __instance);
+                // roleManualButton.UpdateText(false);
+
+                void ShowNeutralRoleInfo() {
+                    if (DestroyableSingleton<HudManager>.Instance) {
+                        var settingString = Utils.neutralRateString;
                         __instance.Close();
                         DestroyableSingleton<HudManager>.Instance.ShowPopUp(settingString);
                     }

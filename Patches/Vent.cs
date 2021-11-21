@@ -50,8 +50,7 @@ namespace TownOfUs
             //     return false;
             // }
 
-            if (player.Is(RoleEnum.Swooper)
-                || player.Is(RoleEnum.Kirby)
+            if (player.Is(RoleEnum.Kirby)
                 || (player.CanDrag() && Role.GetRole<Undertaker>(player).CurrentlyDragging != null))
                 return false;
             if (player.Is(RoleEnum.Morphling)) {
@@ -61,7 +60,14 @@ namespace TownOfUs
                 if (Role.GetRole<Morphling>(player).Morphed && CustomGameOptions.MorphCanVent == MorphVentOptions.OnNotMorph) {
                     return false;
                 }
-                
+            }
+            if (player.Is(RoleEnum.Swooper)) {
+                if (CustomGameOptions.SwooperCanVent == MorphVentOptions.None) {
+                    return false;
+                }
+                if (Role.GetRole<Swooper>(player).IsSwooped && CustomGameOptions.SwooperCanVent == MorphVentOptions.OnNotMorph) {
+                    return false;
+                }
             }
 
 
@@ -100,6 +106,10 @@ namespace TownOfUs
     public static class VentPriority {
         public static void Postfix(PlayerControl __instance) {
             if (!(__instance.closest is { UseIcon: ImageNames.VentButton })) {
+                return;
+            }
+
+            if (__instance.inVent) {
                 return;
             }
 

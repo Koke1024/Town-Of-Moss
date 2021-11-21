@@ -32,6 +32,9 @@ namespace TownOfUs
         public static Dictionary<byte, float> MeetingKillTimers = new Dictionary<byte, float>();
         public static string roleString = "";
         public static bool IsStreamMode = false;
+        public static string crewRateString = "";
+        public static string impRateString = "";
+        public static string neutralRateString = "";
 
         public static void SetSkin(PlayerControl Player, uint skin)
         {

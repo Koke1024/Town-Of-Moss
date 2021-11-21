@@ -54,7 +54,7 @@ namespace TownOfUs.Roles
                 { "MultiKiller", Color.red},
                 { "Puppeteer", Color.red},
                 { "DollMaker", Color.red},
-                { "Mad Mate", Color.red},
+                { "Madmate", Color.red},
             };
             CleanUpMapping();
         }

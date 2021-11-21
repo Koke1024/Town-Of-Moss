@@ -92,7 +92,7 @@ MODの導入されていない2021.6.30のAmong Usディレクトリに展開し
             <li>新役職Painterの追加</li>
             <li>Puppeteerの能力使用時に味方インポスターをキルできる不具合の修正</li>
             <li>DollMakerの人形が残っているときに会議が開かれた際に表示が人によって異なる不具合の修正</li>
-            <li>Mad Mateとして割り当てられた役職はAssassinでなくMad Mateとして表示</li>
+            <li>Madmateとして割り当てられた役職はAssassinでなくMadmateとして表示</li>
             <li>幽霊が動けるかどうかの設定の追加</li>
             <li>Puppeteerの大幅強化</li>
         </ul>
@@ -263,11 +263,12 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
-| Add Mad Mate | Mad Mateを追加する | Toggle | Off |
-| Add Glitch | グリッチを追加する | Toggle | Off |
-| Number of Neutral Roles | 割り当てられる第三陣営の数 | Number | 1 |
+| Add Madmate | Madmateを追加する | Toggle | Off |
+| Add Glitch | Glitchを追加する | Toggle | Off |
+| Number of Neutral Roles | 割り当てられる第三陣営の数 | Number | 0 |
 | Kill Cooldown Reset on Meeting | 会議の後にインポスターのキルクールダウンを初期化するかどうか | Toggle | Off |
 | Camouflaged Comms | コミュニケーションサボタージュ中、カモフラージュ状態になる | Toggle | On |
+| Last Impostor Can Snipe  | 最後の一人となったインポスターは狙撃能力を得る | Toggle | On |
 | Impostors can see the roles of their team | インポスター同士が互いの役職を知っている | Toggle | On |
 | Polus Reactor Time Limit | PolusのMelt Downサボタージュの制限時間 | Time | 45.0s |
 | AirShip Reactor Time Limit | AirShipのMelt Downサボタージュの制限時間 | Time | 75.0s |
@@ -331,7 +332,7 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 |----------|:-------------:|:------:|:------:|
 | Show Sheriff | 自身の役職が全員に公開される | Toggle | Off |
 | Sheriff Miskill Kills Crewmate | クルーメイトもキルする | Toggle | Off |
-| Sheriff Kills Mad Mate | Mad Mateもキルできる対象に含む | Toggle | Off |
+| Sheriff Kills Madmate | Madmateもキルできる対象に含む | Toggle | Off |
 | Sheriff Kill Cooldown | キルのクールダウン時間 | Time | 25s |
 | Sheriff can report who they've killed | 自身でキルした相手をReportできる | Toggle | On |
 
@@ -588,7 +589,6 @@ Admin閲覧中は消費電力が3倍になります。
 |----------|:-------------:|:------:|:------:|
 | Number of Assassin Kill | 会議中にキルできる最大人数 | Number | 5 |
 | Assassin Can Kill Continuous  | 一度の会議中に二人以上狙撃できる | Toggle | On |
-| Last Impostor Can Snipe  | 最後の一人となったインポスターは狙撃能力を得る | Toggle | On |
 
 -----------------------
 
@@ -761,15 +761,15 @@ Puppeteerは、憑依解除後の3秒間は行動が行えません。
 
 -----------------------
 
-## Mad Mate
+## Madmate
 
 ### **Team: Impostors**
 
-Add Mad MateがOnのとき、Impostorの数に加えて必ず追加されます。\
-Mad Mateは味方のインポスターが誰かわからず、インポスターからもクルーと同様に見え、キルすることもできます。\
+Add MadmateがOnのとき、Impostorの数に加えて必ず追加されます。\
+Madmateは味方のインポスターが誰かわからず、インポスターからもクルーと同様に見え、キルすることもできます。\
 チームはImpostorですが、SheriffやSeerの能力対象とされたときはクルーメイトと同じ結果が出ます。\
 キルやベントの使用はできず、勝敗判定ではクルー陣営の数として計算されます。\
-Mad Mateが存在するとき、Assassinがインポスター陣営に採用されることはありません。\
+Madmateが存在するとき、Assassinがインポスター陣営に採用されることはありません。\
 会議のとき、Assassinの狙撃能力を持ちます。
 
 -----------------------
@@ -935,10 +935,13 @@ Mad Mateが存在するとき、Assassinがインポスター陣営に採用さ�
 ![ルール情報](md_resource/game_info.png)
 
 | Name | Description |
-|----------|:-------------:|
+|----------|:-------------:|s
 | Hide Room Code | ONのとき、ロビーでルームコードが非表示になります。 |
-| Game Setting Check | クリックすると、ダイアログで現在のゲームのインポスターや第三陣営の人数情報が表示されます。 |
-| Show Role Manual | クリックすると、ダイアログで現在の自分のロールの情報が表示されます。 |
+| Game Setting Check | 現在のゲーム設定情報の概要が表示されます。 |
+| Show Role Manual | 現在の自分のロールの情報を表示します。 |
+| Show Crewmates Role | 現在のクルーメイトのロールの割り当て確率設定を表示します。 |
+| Show Impostor Role | 現在のインポスターのロールの割り当て確率設定を表示します。 |
+| Show Neutral Role | 現在の第三陣営のロールの割り当て確率設定を表示します。 |
 
 -----------------------
 

@@ -49,7 +49,7 @@ namespace TownOfUs.Roles
             Faction = Faction.Impostors;
 
             if (CustomGameOptions.MadMateOn) {
-                Name = "Mad Mate";
+                Name = "Madmate";
                 Faction = Faction.Crewmates;
                 Player.Data.IsImpostor = false;
                 ImpostorText = () => "Support Impostors and shoot crewmates";
@@ -115,7 +115,7 @@ namespace TownOfUs.Roles
                 { "MultiKiller", CustomGameOptions.MultiKillerOn },
                 { "Puppeteer", CustomGameOptions.PuppeteerOn },
                 { "DollMaker", CustomGameOptions.DollMakerOn },
-                { "Mad Mate", CustomGameOptions.MadMateOn? 100: 0 }
+                { "Madmate", CustomGameOptions.MadMateOn? 100: 0 }
             };
 
             foreach (var row in onList) {

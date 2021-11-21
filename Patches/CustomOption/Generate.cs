@@ -87,7 +87,7 @@ namespace TownOfUs.CustomOption
         public static CustomToggleOption BothLoversDie;
 
         public static CustomHeaderOption Sheriff;
-        public static CustomToggleOption ShowSheriff;
+        // public static CustomToggleOption ShowSheriff;
         public static CustomToggleOption SheriffKillOther;
         public static CustomToggleOption SheriffKillsJester;
         public static CustomToggleOption SheriffKillsGlitch;
@@ -115,7 +115,7 @@ namespace TownOfUs.CustomOption
         public static CustomToggleOption RewindFlash;
         public static CustomNumberOption RewindDuration;
         public static CustomNumberOption RewindCooldown;
-        public static CustomToggleOption TimeLordVitals;
+        // public static CustomToggleOption TimeLordVitals;
 
         public static CustomHeaderOption Medic;
         public static CustomStringOption ShowShielded;
@@ -186,6 +186,7 @@ namespace TownOfUs.CustomOption
         public static CustomHeaderOption Swooper;
         public static CustomNumberOption SwoopCooldown;
         public static CustomNumberOption SwoopDuration;
+        public static CustomStringOption SwooperCanVent;
 
         public static CustomHeaderOption Undertaker;
         public static CustomNumberOption DragCooldown;
@@ -281,12 +282,13 @@ namespace TownOfUs.CustomOption
             CustomGameSettings = new CustomHeaderOption(num++, "Custom Game Settings");
             // MaxImpostorRoles =
             //      new CustomNumberOption(num++, "<color=#FF0000FF>Max Impostor Roles</color>", 3f, 1f, 3f, 1f);
-            MadMateOn = new CustomToggleOption(num++, "<color=#FF0000FF>Add Mad Mate</color>", false);
+            MadMateOn = new CustomToggleOption(num++, "<color=#FF0000FF>Add Madmate</color>", false);
             GlitchOn = new CustomToggleOption(num++, "<color=#00FF00FF>Add Glitch</color>", false);
             MaxNeutralRoles =
-                new CustomNumberOption(num++, "<color=#FF00FFFF>Number of Neutral Roles</color>", 1, 0, 3, 1);
+                new CustomNumberOption(num++, "<color=#FF00FFFF>Number of Neutral Roles</color>", 0, 0, 3, 1);
             KillCoolResetOnMeeting = new CustomToggleOption(num++, "Kill Cooldown Reset on Meeting", false);
             ColourblindComms = new CustomToggleOption(num++, "Camouflaged Comms", true);
+            LastImpostorCanGuess = new CustomToggleOption(num++, "Last Impostor Can Snipe", true);
             // MeetingColourblind = new CustomToggleOption(num++, "Camouflaged Meetings", false);
             ImpostorSeeRoles = new CustomToggleOption(num++, "Impostors See Teammate's Role", true);
             
@@ -300,7 +302,7 @@ namespace TownOfUs.CustomOption
                 new CustomToggleOption(num++, "Dead can see everyone's roles", true);
 
             RoleUnderName = new CustomToggleOption(num++, "Role Appears Under Name");
-            NoticeNeutral = new CustomToggleOption(num++, "Notice Assigned Neutral Roles on Meeting", true);
+            NoticeNeutral = new CustomToggleOption(num++, "Notice Assigned Neutral Roles", true);
             GhostCantMove = new CustomToggleOption(num++, "Dead Player Can't Move Before Report", false);
             // VanillaGame = new CustomNumberOption(num++, "Probability of a completely vanilla game", 0f, 0f, 100f, 5f,
             //     PercentFormat);
@@ -421,12 +423,12 @@ namespace TownOfUs.CustomOption
 
             Sheriff =
                 new CustomHeaderOption(num++, "<color=#FFFF00FF>Sheriff</color>");
-            ShowSheriff = new CustomToggleOption(num++, "Show Sheriff", false);
+            // ShowSheriff = new CustomToggleOption(num++, "Show Sheriff", false);
 
             SheriffKillOther =
                 new CustomToggleOption(num++, "Miskill Kills Crewmate", false);
             SheriffKillsMadmate =
-                new CustomToggleOption(num++, "Can Kills Mad Mate", false);
+                new CustomToggleOption(num++, "Can Kills Madmate", false);
 
             SheriffKillCd =
                 new CustomNumberOption(num++, "Sheriff Kill Cooldown", 25f, 10f, 40f, 2.5f, CooldownFormat);
@@ -460,8 +462,8 @@ namespace TownOfUs.CustomOption
             RewindDuration = new CustomNumberOption(num++, "Rewind Duration", 3f, 1f, 15f, 0.5f, CooldownFormat);
             RewindCooldown = new CustomNumberOption(num++, "Rewind Cooldown", 35f, 20f, 50f, 2.5f, CooldownFormat);
 
-            TimeLordVitals =
-                new CustomToggleOption(num++, "Time Lord can use Vitals", false);
+            // TimeLordVitals =
+            //     new CustomToggleOption(num++, "Time Lord can use Vitals", false);
 
             Medic =
                 new CustomHeaderOption(num++, "<color=#006600FF>Medic</color>");
@@ -480,11 +482,11 @@ namespace TownOfUs.CustomOption
                 new CustomNumberOption(num++, "Time Report Shows Color Type", 15, 0, 120, 2.5f,
                     CooldownFormat);
 
-            WhoGetsNotification =
-                new CustomStringOption(num++, "Who gets murder attempt indicator",
-                    new[] {"Medic", "Shielded", "Everyone", "Nobody"});
+            // WhoGetsNotification =
+            //     new CustomStringOption(num++, "Who gets murder attempt indicator",
+            //         new[] {"Medic", "Shielded", "Everyone", "Nobody"});
 
-            ShieldBreaks = new CustomToggleOption(num++, "Shield breaks on murder attempt", true);
+            // ShieldBreaks = new CustomToggleOption(num++, "Shield breaks on murder attempt", true);
 
             Seer =
                 new CustomHeaderOption(num++, "<color=#FFCC80FF>Seer</color>");
@@ -537,13 +539,12 @@ namespace TownOfUs.CustomOption
             Painter =
                 new CustomHeaderOption(num++, "<color=#CECECEFF>Painter</color>");
             PaintColorMax = new CustomNumberOption(num++, "Paint Color Num", 2f, 1f, 3f, 1f);
-            PaintCd = new CustomNumberOption(num++, "Paint Cool Down", 25f, 5f, 40f, 2.5f, CooldownFormat);
+            PaintCd = new CustomNumberOption(num++, "Paint Cooldown", 25f, 5f, 40f, 2.5f, CooldownFormat);
             
             Sniffer =
                 new CustomHeaderOption(num++, "<color=#A500D3FF>Sniffer</color>");
             SnifferCanReport = new CustomToggleOption(num++, "Sniffer Can Report", false);
             SnifferMaxRange = new CustomNumberOption(num++, "Sniff Max Range", 10f, 5f, 50f, 5f, DistanceFormat);
-            // PaintCd = new CustomNumberOption(num++, "Paint Cool Down", 20f, 5f, 40f, 2.5f, DistanceFormat);
 
             NeutralRolesSetting = new CustomHeaderOption(num++, "<color=#FF00FFFF>Neutral Roles</color>");
             
@@ -604,8 +605,10 @@ namespace TownOfUs.CustomOption
             // ScavengerWinCnt =
             //     new CustomNumberOption(num++, "Number of Scavenger Eats to Win", 4, 1, 6, 1);
             //
+            
             // ImpostorRolesSetting = new CustomHeaderOption(num++, "<color=#FF0000FF>Impostor Roles</color>");
 
+            ImpostorRolesSetting = new CustomHeaderOption(num++, "<color=#FF0000FF>Impostor Roles</color>");
             Morphling =
                 new CustomHeaderOption(num++, "<color=#FF0000FF>Morphling</color>");
             MorphlingCooldown =
@@ -640,6 +643,8 @@ namespace TownOfUs.CustomOption
                 new CustomNumberOption(num++, "Swoop Cooldown", 30, 10, 40, 2.5f, CooldownFormat);
             SwoopDuration =
                 new CustomNumberOption(num++, "Swoop Duration", 5, 5, 15, 1f, CooldownFormat);
+            SwooperCanVent =
+                new CustomStringOption(num++, "Swooper Can Use Vent", new[] {"On not Swooping", "Always", "None"});
 
             Undertaker = new CustomHeaderOption(num++, "<color=#FF0000FF>Undertaker</color>");
             DragCooldown = new CustomNumberOption(num++, "Drag Cooldown", 1f, 1f, 40, 1f, CooldownFormat);
@@ -669,7 +674,6 @@ namespace TownOfUs.CustomOption
             // AssassinGuessNeutrals = new CustomToggleOption(num++, "Assassin can Guess Neutral roles", true);
             // AssassinGuessImpostors = new CustomToggleOption(num++, "Assassin can Snipe Impostor", true);
             // AllImpostorCanGuess = new CustomToggleOption(num++, "All of Impostors can snipe while meeting", false);
-            LastImpostorCanGuess = new CustomToggleOption(num++, "Last Impostor Can Snipe", true);
 #endregion
 
             Modifiers = new CustomHeaderOption(num++, "Modifiers");
