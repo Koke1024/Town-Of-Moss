@@ -2,7 +2,7 @@ using HarmonyLib;
 using Rewired;
 using TownOfUs.Roles;
 
-namespace TownOfUs.CrewmateRoles.AssassinMod
+namespace TownOfUs.ImpostorRoles.AssassinMod
 {
     [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
     public class HighlightImpostors
@@ -13,9 +13,12 @@ namespace TownOfUs.CrewmateRoles.AssassinMod
                 return;
             }
             foreach (var state in __instance.playerStates) {
-                PlayerControl player = Role.GetRole(Utils.PlayerById(state.TargetPlayerId)).Player;
                 bool amMad = PlayerControl.LocalPlayer.Is(RoleEnum.Assassin);
                 if (state.TargetPlayerId == PlayerControl.LocalPlayer.PlayerId) {
+                    continue;
+                }
+                PlayerControl player = Utils.PlayerById(state.TargetPlayerId);
+                if (player.Data.Disconnected) {
                     continue;
                 }
                 
