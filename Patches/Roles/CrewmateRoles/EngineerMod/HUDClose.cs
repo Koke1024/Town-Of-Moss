@@ -6,8 +6,8 @@ namespace TownOfUs.CrewmateRoles.EngineerMod
 {
     public enum EngineerFixPer
     {
-        Game,
-        Round
+        Round,
+        Game
     }
 
     [HarmonyPatch(typeof(Object), nameof(Object.Destroy), typeof(Object))]

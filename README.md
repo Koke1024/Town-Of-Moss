@@ -20,6 +20,7 @@ MODの導入されていない2021.6.30のAmong Usディレクトリに展開し
 
 | Date | Among Us - Version| Mod Version | Link |
 |---|----------|-------------|-----------------|
+| 21-11-19 | 2021.6.30s | v0.44 | [Download](https://spiel.jp/mod/Moss044.zip) |
 | 21-11-19 | 2021.6.30s | v0.43 | [Download](https://spiel.jp/mod/Moss043.zip) |
 | 21-11-19 | 2021.6.30s | v0.42 | [Download](https://spiel.jp/mod/Moss042.zip) |
 | 21-11-18 | 2021.6.30s | v0.41 | [Download](https://spiel.jp/mod/Moss041.zip) |
@@ -33,6 +34,18 @@ MODの導入されていない2021.6.30のAmong Usディレクトリに展開し
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v0.44 </summary>
+        <ul>
+            <li>Engineerの能力設定のデフォルトを、ラウンドごとに使用可能、ベントの中からのみ使用可能に変更</li>
+            <li>ロール情報表示で現在の設定を表示するように</li>
+            <li>Game Setting Checkで表示される情報を追加</li>
+            <li>ゲームメニューからShow Crewmates Role、Show Impostor Role、Show Neutral Role機能を追加</li>
+            <li>Snifferの不具合を修正</li>
+            <li>Swooperのベント利用設定を追加</li>
+            <li>最後のインポスターがSnipeできる設定をCustom Game Optionsに移動</li>
+        </ul>
+    </details>
     <details>
         <summary> v0.43 </summary>
         <ul> 
@@ -330,7 +343,6 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
-| Show Sheriff | 自身の役職が全員に公開される | Toggle | Off |
 | Sheriff Miskill Kills Crewmate | クルーメイトもキルする | Toggle | Off |
 | Sheriff Kills Madmate | Madmateもキルできる対象に含む | Toggle | Off |
 | Sheriff Kill Cooldown | キルのクールダウン時間 | Time | 25s |
@@ -342,15 +354,15 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 
 ### **Team: Crewmates**
 
-ゲーム中一度だけ、サボタージュをどこからでも即座に修理できるFixボタンを持っています。\
+サボタージュをどこからでも即座に修理できるFixボタンを持っています。\
 ベントが使用できます。
 
 ### Game Options
 
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
-| Engineer Fix Per | Roundの場合、会議を行うごとにFixボタンが使用できる | Round / Game | Game |
-| Fix Only In Vent | ベントの中にいるときのみFixボタンを使用できる | Toggle | Off |
+| Engineer Fix Per | Roundの場合、会議を行うごとにFixボタンが使用できる | Round / Game | Round |
+| Fix Only In Vent | ベントの中にいるときのみFixボタンを使用できる | Toggle | On |
 
 -----------------------
 
@@ -935,7 +947,7 @@ Madmateが存在するとき、Assassinがインポスター陣営に採用さ�
 ![ルール情報](md_resource/game_info.png)
 
 | Name | Description |
-|----------|:-------------:|s
+|----------|:-------------:|
 | Hide Room Code | ONのとき、ロビーでルームコードが非表示になります。 |
 | Game Setting Check | 現在のゲーム設定情報の概要が表示されます。 |
 | Show Role Manual | 現在の自分のロールの情報を表示します。 |

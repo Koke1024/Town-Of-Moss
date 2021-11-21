@@ -438,9 +438,9 @@ namespace TownOfUs.CustomOption
             Engineer =
                 new CustomHeaderOption(num++, "<color=#FFA60AFF>Engineer</color>");
             EngineerPer =
-                new CustomStringOption(num++, "Engineer Fix Per", new[] {"Game", "Round"});
+                new CustomStringOption(num++, "Engineer Fix Per", new[] {"Round", "Game"});
             EngineerCanFixOnlyInVent =
-                new CustomToggleOption(num++, "Fix Only In Vent", false);
+                new CustomToggleOption(num++, "Fix Only In Vent", true);
 
 
             Investigator =
