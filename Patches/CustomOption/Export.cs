@@ -93,6 +93,7 @@ namespace TownOfUs.CustomOption
 
         protected internal void ToDo()
         {
+            Patches.inited = false;
             SlotButtons.Clear();
             SlotButtons.Add(new CustomButtonOption(1, "Slot 1", delegate { ExportSlot(1); }));
             SlotButtons.Add(new CustomButtonOption(1, "Slot 2", delegate { ExportSlot(2); }));
