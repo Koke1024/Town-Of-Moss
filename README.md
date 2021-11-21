@@ -20,7 +20,7 @@ MODの導入されていない2021.6.30のAmong Usディレクトリに展開し
 
 | Date | Among Us - Version| Mod Version | Link |
 |---|----------|-------------|-----------------|
-| 21-11-19 | 2021.6.30s | v0.44 | [Download](https://spiel.jp/mod/Moss044.zip) |
+| 21-11-22 | 2021.6.30s | v0.44 | [Download](https://spiel.jp/mod/Moss044.zip) |
 | 21-11-19 | 2021.6.30s | v0.43 | [Download](https://spiel.jp/mod/Moss043.zip) |
 | 21-11-19 | 2021.6.30s | v0.42 | [Download](https://spiel.jp/mod/Moss042.zip) |
 | 21-11-18 | 2021.6.30s | v0.41 | [Download](https://spiel.jp/mod/Moss041.zip) |
@@ -940,11 +940,11 @@ Madmateが存在するとき、Assassinがインポスター陣営に採用さ�
 
 # Additive Menu Button
 
-右上の歯車マークから開くメニュー画面に、以下のボタンが追加されています。
-![メニュー](md_resource/menuButton.png)
-ゲーム中に自身のロールの情報とゲームルールを確認することができます。
-![ロール情報](md_resource/role_info.png)
-![ルール情報](md_resource/game_info.png)
+右上の歯車マークから開くメニュー画面に、以下のボタンが追加されています。\
+![メニュー](md_resource/menuButton.png)\
+ゲーム中に自身のロールの情報とゲームルール、ロールの割り当て確率設定を確認することができます。\
+![ロール情報](md_resource/role_info.png)![ルール情報](md_resource/game_info.png)
+![割り当て情報](md_resource/role_assign_rate.png)
 
 | Name | Description |
 |----------|:-------------:|
