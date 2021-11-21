@@ -200,6 +200,7 @@ namespace TownOfUs.CustomOption
         [HarmonyPatch(typeof(GameOptionsMenu), nameof(GameOptionsMenu.Update))]
         private class GameOptionsMenu_Update {
             public static float bottomY;
+            public static float topY;
             public static void Postfix(GameOptionsMenu __instance)
             {
                 if (!inited) {
@@ -218,6 +219,7 @@ namespace TownOfUs.CustomOption
                 }
 
                 int i = 0;
+                float myY = PlayerControl.LocalPlayer.transform.position.y;
                 foreach (var option in __instance.Children) {
                     var opt =
                         CustomOption.AllOptions.FirstOrDefault(o =>
@@ -238,8 +240,10 @@ namespace TownOfUs.CustomOption
                     }
                 }
                     
-                bottomY = -3 + 3.57f - __instance.Children
+                bottomY = -3 + myY - 2.23f + 3.57f - __instance.Children
                     .Min(option => option.transform.localPosition.y);
+                topY = myY - 2.23f + 3.57f;
+                
 
                 var position = __instance.transform.position;
                 if (BepInEx.IL2CPP.UnityEngine.Input.GetKeyInt(BepInEx.IL2CPP.UnityEngine.KeyCode.W)) {
@@ -255,8 +259,8 @@ namespace TownOfUs.CustomOption
                 }
                 if (BepInEx.IL2CPP.UnityEngine.Input.GetKeyInt(BepInEx.IL2CPP.UnityEngine.KeyCode.Home) ||
                     BepInEx.IL2CPP.UnityEngine.Input.GetKeyInt(BepInEx.IL2CPP.UnityEngine.KeyCode.A) ||
-                    __instance.transform.position.y < 3.57f - y) {
-                    __instance.transform.position = new Vector3(position.x, 3.57f - y, position.z);
+                    __instance.transform.position.y < topY - y) {
+                    __instance.transform.position = new Vector3(position.x, topY - y, position.z);
                 }
             }
         }
@@ -266,7 +270,7 @@ namespace TownOfUs.CustomOption
             var target = menu.Children
                 .First(x => x == option.Setting);
             menu.transform.position = 
-                new Vector3(menu.transform.position.x, 3.57f - target.transform.localPosition.y,
+                new Vector3(menu.transform.position.x, GameOptionsMenu_Update.topY - target.transform.localPosition.y,
                     menu.transform.position.z);
         }
 

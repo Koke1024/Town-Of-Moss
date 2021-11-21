@@ -88,7 +88,7 @@ namespace TheOtherRoles.Patches {
                     // if (MeetingHud.Instance != null) {
                         if (DestroyableSingleton<HudManager>.Instance) {
                             var settingString = $"<color=#FF0000FF>Impostor: {PlayerControl.GameOptions.NumImpostors}</color>　<color=#FF0000FF>Madmate: {(CustomGameOptions.MadMateOn? "On": "Off")}</color>\n";
-                            settingString += $"<color=#00FF00FF>Neutral Roles: {CustomGameOptions.MaxNeutralRoles}</color>　<color=#00FF00FF>Glitch: {(CustomGameOptions.GlitchOn? "On": "Off")}</color>\n";
+                            settingString += $"<color=#FF00FFFF>Neutral Roles: {CustomGameOptions.MaxNeutralRoles}</color>　<color=#00FF00FF>Glitch: {(CustomGameOptions.GlitchOn? "On": "Off")}</color>\n";
                             settingString += $"Kill Cooldown: {PlayerControl.GameOptions.KillCooldown}s\n";
                             settingString += $"Kill Cooldown Reset On Meeting: {((CustomGameOptions.KillCoolResetOnMeeting)? "On": "Off")}\n";
                             settingString += $"Last Impostor Can Snipe: {(CustomGameOptions.LastImpCanGuess? "On": "Off")}\n";
