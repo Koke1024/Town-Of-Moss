@@ -407,8 +407,7 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 | Revive During Rewind | 時間内に死亡していたクルーが蘇生する | Toggle | On |
 | Has Blue Outline on Rewind | 巻き戻し中、青いアウトラインがつく | Toggle | On |
 | Rewind Duration | 巻き戻される時間の秒数 | Time | 3s |
-| Rewind Cooldown | 巻き戻すボタンのクールダウン時間 | Time | 25s |
-| Time Lord can use Vitals | バイタルを見れるかどうか | Toggle | Off |
+| Rewind Cooldown | 巻き戻すボタンのクールダウン時間 | Time | 35s |
 
 -----------------------
 
