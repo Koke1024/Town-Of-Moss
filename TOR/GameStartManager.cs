@@ -61,6 +61,13 @@ namespace TownOfUs.Patches {
             }
         }
 
+        // [HarmonyPatch(typeof(OptionsConsole), nameof(OptionsConsole.Use))]
+        // public static class OptionMenu {
+        //     public static void Postfix(OptionsConsole __instance) {
+        //         var menu = Camera.main.transform.GetComponentInChildren<CustomPlayerMenu>();
+        //     }
+        // }
+        
         [HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.BeginGame))]
         public static class BeginGameBefore {
             public static bool Prefix(GameStartManager __instance) {

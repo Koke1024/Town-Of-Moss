@@ -8,25 +8,27 @@ namespace TownOfUs.ImpostorRoles.MultiKillerMod
     [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
     public class CheckMultiKill
     {
-        public static void Postfix(HudManager __instance)
-        {
-            foreach (var role in Role.GetRoles(RoleEnum.MultiKiller))
-            {
-                MultiKiller mk = (MultiKiller) role;
-                if (mk.firstKillTime == null) {
-                    continue;
+        public static void Postfix(HudManager __instance) {
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.MultiKiller)) {
+                return;
+            }
+
+            MultiKiller mk = Role.GetRole<MultiKiller>(PlayerControl.LocalPlayer);
+            if (mk.firstKillTime == null) {
+                return;
+            }
+
+            if ((System.DateTime.UtcNow - mk.firstKillTime).Value.TotalMilliseconds >
+                CustomGameOptions.MultiKillEnableTime * 1000.0f) {
+                mk.killedOnce = false;
+                mk.firstKillTime = null;
+                if (mk.isFirstTime) {
+                    AmongUsExtensions.Log($"キルリセット");
+                    mk.Player.SetKillTimer(mk.MaxTimer() - 13);
+                    mk.isFirstTime = false;
                 }
-                if (mk.firstKillTime != null && 
-                    (System.DateTime.UtcNow - mk.firstKillTime).Value.TotalMilliseconds > CustomGameOptions.MultiKillEnableTime * 1000.0f) {
-                    mk.killedOnce = false;
-                    mk.firstKillTime = null;
-                    if (mk.isFirstTime) {
-                        mk.Player.SetKillTimer(mk.MaxTimer() - 13);
-                        mk.isFirstTime = false;
-                    }
-                    else {
-                        mk.Player.SetKillTimer(mk.MaxTimer());
-                    }
+                else {
+                    mk.Player.SetKillTimer(mk.MaxTimer());
                 }
             }
         }

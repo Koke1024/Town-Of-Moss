@@ -12,11 +12,12 @@ namespace TownOfUs.CrewmateRoles.ChargerMod
         {
             
             if (ExileController.Instance == null || obj != ExileController.Instance.gameObject) return;
-            foreach (var role in Role.GetRoles(RoleEnum.Charger))
-            {
-                var charger = (Charger) role;
-                charger.Charge = 1.0f;
+            
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Charger)) {
+                return;
             }
+            Charger role = Role.GetRole<Charger>(PlayerControl.LocalPlayer);
+            role.Charge = 1.0f;
         }
     }
 }
