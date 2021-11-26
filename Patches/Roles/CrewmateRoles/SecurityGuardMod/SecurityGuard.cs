@@ -116,7 +116,7 @@ namespace TownOfUs.Roles
                     SecurityGuardButton.killButtonManager.renderer.color = Palette.EnabledColor;
                     SecurityGuardButton.killButtonManager.renderer.material.SetFloat("_Desat", 0f);
                     if (ventTarget == null) {
-                        if (PlayerControl.GameOptions.MapId == (byte)ShipStatus.MapType.Hq ||
+                        if (PlayerControl.GameOptions.MapId == (byte)ShipStatus.MapType.Pb ||
                             PlayerControl.GameOptions.MapId == (byte)ShipStatus.MapType.Ship) {
                             SecurityGuardButton.killButtonManager.renderer.sprite = getPlaceCameraButtonSprite();                            
                         }

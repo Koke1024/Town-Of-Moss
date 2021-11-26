@@ -48,16 +48,16 @@ namespace TownOfUs.Roles {
             {RoleEnum.Shifter, $"Shifter\n\n" +
                               $""},
             {RoleEnum.Medic, $"Medic\nゲーム中一回、他のクルーに対して一度だけキルを防ぐシールドを張り、そのクルーにキルが行われると、設定されたプレイヤーに通知されます。" +
-                             "また、自身がキル直後の死体をReportした時、チャット欄に追加情報を得られます。" +
-                             $"死体発見時に追加情報を得る	{(CustomGameOptions.ShowReports? "On": "Off")}\n" +
-                             $"キルしたクルーの名前	{CustomGameOptions.MedicReportNameDuration}s\n" +
-                             $"キルしたクルーの色タイプ	{CustomGameOptions.MedicReportColorDuration}s\n" + 
-                             $"キル通知が見えるプレイヤー	{new[] {"Medic", "Shielded", "Everyone", "Nobody"}[(int)CustomGameOptions.NotificationShield]}s\n"},
-            {RoleEnum.Seer, $"Seer\n占いによってクルーメイトの陣営を知ります。占うためには一定時間触れている必要があり、その間自身は移動できません。\n" +
-                            $"占われた場合、クルーメイトは緑、インポスターは赤く名前の表示が変化します。\nZombieを占った場合、Zombieが死亡します。\n" +
-                              $"占いを行うクールダウン時間	{CustomGameOptions.SeerCd}s\n" +
-                              $"占いを行うために必要な接触時間	{CustomGameOptions.SeerInvestigateTime}s\n" +
-                              $"占いによって得られる情報	{new[] {"陣営", "役職"}[(int)CustomGameOptions.SeerInfo]}\n" +
+                             "また、自身がキル直後の死体をReportした時、チャット欄に追加情報を得られます。\n" +
+                             $"死体発見時の追加情報	{(CustomGameOptions.ShowReports? "On": "Off")}\n" +
+                             $"キルしたクルーの名前通知	{CustomGameOptions.MedicReportNameDuration}s\n" +
+                             $"キルしたクルーの色タイプ通知	{CustomGameOptions.MedicReportColorDuration}s\n" + 
+                             $"キル通知が見えるプレイヤー	{new[] {"Medic", "Shielded", "Everyone", "Nobody"}[(int)CustomGameOptions.NotificationShield]}\n"},
+            {RoleEnum.Seer, $"Seer\n占いによってクルーメイトの陣営を知ります。占うためには一定時間移動せずに触れている必要があります。\n" +
+                            $"占われた場合、クルーメイトは緑、インポスターは赤く名前が表示されます。Zombieを占った場合、Zombieが死亡します。\n" +
+                              $"占いのクールダウン時間	{CustomGameOptions.SeerCd}s\n" +
+                              $"占うために必要な接触時間	{CustomGameOptions.SeerInvestigateTime}s\n" +
+                              $"占いで得られる情報	{new[] {"陣営", "役職"}[(int)CustomGameOptions.SeerInfo]}\n" +
                               $"占われたことを知るプレイヤー	{new[] {"Nobody", "Imps+Neut", "Crew", "All"}[(int)CustomGameOptions.SeeReveal]}\n" +
                               $"第三陣営の占い結果をインポスターと同じにする	{(CustomGameOptions.NeutralRed? "On": "Off")}"},
             {RoleEnum.Executioner, $"Executioner\nゲーム開始時に指定されるターゲットが会議で追放されると勝利します。ターゲットが追放以外で死亡した場合、役職がJesterまたはCrewmateになります。\n" +

@@ -668,7 +668,7 @@ namespace TownOfUs.CustomOption
             DollBreakTime = new CustomNumberOption(num++, "Doll Self Broken Time", 20.0f, 5f, 60f, 5f, CooldownFormat);
             
             Assassin = new CustomHeaderOption(num++, "<color=#FF0000FF>Assassin</color>");
-            AssassinKills = new CustomNumberOption(num++, "Number of Assassin Kills", 5, 1, 10, 1);
+            AssassinKills = new CustomNumberOption(num++, "Number of Assassin Kills", 10, 1, 10, 1);
             AssassinMultiKill = new CustomToggleOption(num++, "Assassin Can Kill Continuous");
             // AssassinCrewmateGuess = new CustomToggleOption(num++, "Assassin can Guess \"Crewmate\"", false);
             // AssassinGuessNeutrals = new CustomToggleOption(num++, "Assassin can Guess Neutral roles", true);

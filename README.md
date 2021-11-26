@@ -21,6 +21,7 @@ MODの導入されていない2021.6.30のAmong Usディレクトリに展開し
 
 | Date | Among Us - Version| Mod Version | Link |
 |---|----------|-------------|-----------------|
+| 21-11-27 | 2021.6.30s | v0.442 | [Download](https://spiel.jp/mod/Moss0442.zip) |
 | 21-11-24 | 2021.6.30s | v0.441 | [Download](https://spiel.jp/mod/Moss0441.zip) |
 | 21-11-22 | 2021.6.30s | v0.44 | [Download](https://spiel.jp/mod/Moss044.zip) |
 | 21-11-19 | 2021.6.30s | v0.43 | [Download](https://spiel.jp/mod/Moss043.zip) |
@@ -36,6 +37,14 @@ MODの導入されていない2021.6.30のAmong Usディレクトリに展開し
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v0.442 </summary>
+        <ul>
+            <li>ChargerがAdmin情報を得られない不具合を修正</li>
+            <li>Camouflager効果中に会議を開始し狙撃された場合の不具合を修正</li>
+            <li>SecurityGuardのアイコン表示のミスを修正</li>
+        </ul>
+    </details>
     <details>
         <summary> v0.441 </summary>
         <ul>

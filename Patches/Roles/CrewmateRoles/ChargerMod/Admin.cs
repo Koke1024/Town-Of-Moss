@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using HarmonyLib;
+using TownOfUs.Extensions;
 using TownOfUs.Patches;
 using TownOfUs.Roles;
 using UnityEngine;
@@ -75,7 +76,7 @@ namespace TownOfUs.CrewmateRoles.ChargerMod
             var localPlayer = PlayerControl.LocalPlayer;
             // if (!localPlayer.Is(RoleEnum.Spy)) return true;
             if (!localPlayer.Is(RoleEnum.Charger)) return true;
-            if (ConsoleLimit.TimeLimit <= 0) {
+            if (CustomGameOptions.AdminTimeLimitTime > 0 && ConsoleLimit.TimeLimit <= 0) {
                 return false;
             }
             __instance.timer += Time.deltaTime;

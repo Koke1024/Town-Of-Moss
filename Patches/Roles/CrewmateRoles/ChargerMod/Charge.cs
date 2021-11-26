@@ -12,7 +12,6 @@ namespace TownOfUs.CrewmateRoles.ChargerMod
         public static void Postfix(PlayerControl __instance) {
             if (!__instance.AmOwner) return;
             if (__instance.Data.IsDead) return;
-            if (!__instance.AmOwner) return;
             if (!__instance.Is(RoleEnum.Charger)) {
                 return;
             }
