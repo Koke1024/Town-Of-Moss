@@ -47,12 +47,12 @@ namespace TownOfUs.Roles {
                               $"ペイントのクールダウン時間	{CustomGameOptions.PaintCd}s"},
             {RoleEnum.Shifter, $"Shifter\n\n" +
                               $""},
-            {RoleEnum.Medic, $"Medic\nゲーム中一回、他のクルーに対して一度だけキルを防ぐシールドを張ることができます。" +
-                             "シールドを張られたクルーメイトにキルが行われると、Medicの画面が緑色に点灯します。" +
-                             "自身が死体をReportした時、キルから発見までの経過時間に応じてチャット欄に情報を得られます。" +
+            {RoleEnum.Medic, $"Medic\nゲーム中一回、他のクルーに対して一度だけキルを防ぐシールドを張り、そのクルーにキルが行われると、設定されたプレイヤーに通知されます。" +
+                             "また、自身がキル直後の死体をReportした時、チャット欄に追加情報を得られます。" +
                              $"死体発見時に追加情報を得る	{(CustomGameOptions.ShowReports? "On": "Off")}\n" +
-                             // $"キルしたクルーの名前が見られるまでの発見時間	{CustomGameOptions.MedicReportNameDuration}s\n" +
-                             $"キルしたクルーの色タイプがわかるまでの発見時間	{CustomGameOptions.MedicReportColorDuration}s\n"},
+                             $"キルしたクルーの名前	{CustomGameOptions.MedicReportNameDuration}s\n" +
+                             $"キルしたクルーの色タイプ	{CustomGameOptions.MedicReportColorDuration}s\n" + 
+                             $"キル通知が見えるプレイヤー	{new[] {"Medic", "Shielded", "Everyone", "Nobody"}[(int)CustomGameOptions.NotificationShield]}s\n"},
             {RoleEnum.Seer, $"Seer\n占いによってクルーメイトの陣営を知ります。占うためには一定時間触れている必要があり、その間自身は移動できません。\n" +
                             $"占われた場合、クルーメイトは緑、インポスターは赤く名前の表示が変化します。\nZombieを占った場合、Zombieが死亡します。\n" +
                               $"占いを行うクールダウン時間	{CustomGameOptions.SeerCd}s\n" +

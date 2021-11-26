@@ -213,6 +213,7 @@ namespace TownOfUs
         private static class LogoPatchUpd {
             
             static void Postfix(MainMenuManager __instance) {
+                
                 var ToRLogo = GameObject.Find("bannerLogo_TOR");
                 
                 if (ToRLogo != null) {

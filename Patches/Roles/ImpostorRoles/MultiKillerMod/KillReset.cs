@@ -12,8 +12,9 @@ namespace TownOfUs.ImpostorRoles.MultiKillerMod
             if (!PlayerControl.LocalPlayer.Is(RoleEnum.MultiKiller)) {
                 return;
             }
-
+            
             MultiKiller mk = Role.GetRole<MultiKiller>(PlayerControl.LocalPlayer);
+
             if (mk.firstKillTime == null) {
                 return;
             }
@@ -23,7 +24,7 @@ namespace TownOfUs.ImpostorRoles.MultiKillerMod
                 mk.killedOnce = false;
                 mk.firstKillTime = null;
                 if (mk.isFirstTime) {
-                    mk.Player.SetKillTimer(mk.MaxTimer() - 13);
+                    mk.Player.SetKillTimer(mk.MaxTimer() - 15);
                     mk.isFirstTime = false;
                 }
                 else {

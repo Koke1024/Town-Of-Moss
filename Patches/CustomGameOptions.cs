@@ -99,8 +99,7 @@ namespace TownOfUs
         public static ShieldOptions ShowShielded => (ShieldOptions) Generate.ShowShielded.Get();
 
         public static NotificationOptions NotificationShield =>
-            NotificationOptions.Medic;
-            // (NotificationOptions) Generate.WhoGetsNotification.Get();
+            (NotificationOptions) Generate.WhoGetsNotification.Get();
 
         public static bool ShieldBreaks => true;
         // public static bool ShieldBreaks => Generate.ShieldBreaks.Get();

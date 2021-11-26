@@ -482,11 +482,11 @@ namespace TownOfUs.CustomOption
                 new CustomNumberOption(num++, "Time Report Shows Color Type", 15, 0, 120, 2.5f,
                     CooldownFormat);
 
-            // WhoGetsNotification =
-            //     new CustomStringOption(num++, "Who gets murder attempt indicator",
-            //         new[] {"Medic", "Shielded", "Everyone", "Nobody"});
+            WhoGetsNotification =
+                new CustomStringOption(num++, "Who gets murder attempt indicator",
+                    new[] {"Medic", "Shielded", "Everyone", "Nobody"});
 
-            // ShieldBreaks = new CustomToggleOption(num++, "Shield breaks on murder attempt", true);
+            ShieldBreaks = new CustomToggleOption(num++, "Shield breaks on murder attempt", true);
 
             Seer =
                 new CustomHeaderOption(num++, "<color=#FFCC80FF>Seer</color>");
