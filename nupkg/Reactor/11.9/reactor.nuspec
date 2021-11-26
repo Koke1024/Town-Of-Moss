@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>Reactor</id>
+    <version>1.1.0</version>
+    <authors>NuclearPowered</authors>
+    <license type="expression">LGPL-3.0-or-later</license>
+    <licenseUrl>https://licenses.nuget.org/LGPL-3.0-or-later</licenseUrl>
+    <icon>icon.png</icon>
+    <description>Core mod and API for Among Us</description>
+    <repository type="git" url="https://github.com/NuclearPowered/Reactor" commit="d92447a49073e16d864e42e620fd78350a467ed9" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.1">
+        <dependency id="BepInEx.IL2CPP" version="6.0.0-be.521" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>
