@@ -5,6 +5,10 @@
 を個人的に改変した、[Among Us](https://www.innersloth.com/games/among-us/) の非公式MODです。\
 蘇生に対応したAutoMuteUsのCaptureツールも公開しています。
 
+### 本MODの特徴
+必ずいずれかのインポスターがAssassin能力を持つ設定により、クルーメイトは無闇に役職を他クルーに知られないよう行動、発言する必要があります。\
+会議を挟んでもインポスターのキルクールダウンがリセットされないため、開始直後やキルクールダウンリセットのための会議を行う必要がありません。
+
 ### 注意
 最新版のAmong Us 2021.11.9には対応していません。\
 MODの導入されていない2021.6.30のAmong Usディレクトリに展開してください。\
@@ -296,7 +300,7 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 | Add Madmate | Madmateを追加する | Toggle | Off |
 | Add Glitch | Glitchを追加する | Toggle | Off |
 | Number of Neutral Roles | 割り当てられる第三陣営の数 | Number | 0 |
-| Kill Cooldown Reset on Meeting | 会議の後にインポスターのキルクールダウンを初期化するかどうか | Toggle | Off |
+| Kill Cooldown Reset on Meeting | 会議の後にインポスターのキルクールダウンを初期化する | Toggle | Off |
 | Camouflaged Comms | コミュニケーションサボタージュ中、カモフラージュ状態になる | Toggle | On |
 | Last Impostor Can Snipe  | 最後の一人となったインポスターは狙撃能力を得る | Toggle | On |
 | Impostors can see the roles of their team | インポスター同士が互いの役職を知っている | Toggle | On |
