@@ -6,7 +6,7 @@ namespace TownOfUs.Roles
 {
     public class DollMaker : Assassin
     {
-        public ActionButton _waxButton;
+        public KillButton _waxButton;
         public System.Collections.Generic.Dictionary<byte, float> DollList = new System.Collections.Generic.Dictionary<byte, float>();
         public PlayerControl ClosestPlayer;
         public static Sprite _waxSprite => TownOfUs.WaxSprite;
@@ -21,7 +21,7 @@ namespace TownOfUs.Roles
             Faction = Faction.Impostors;
         }
         
-        public ActionButton WaxButton
+        public KillButton WaxButton
         {
             get => _waxButton;
             set

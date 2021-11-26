@@ -20,7 +20,7 @@ namespace TownOfUs
             }
 
             var switchSystem = __instance.Systems[SystemTypes.Electrical].Cast<SwitchSystem>();
-            if (player.IsImpostor || player._object.Is(RoleEnum.Glitch) || player._object.Is(RoleEnum.Sniper)) {
+            if (player.Role.IsImpostor || player._object.Is(RoleEnum.Glitch) || player._object.Is(RoleEnum.Sniper)) {
                 if (switchSystem.Value < 230) {
                     Utils.StartFlash(new Color(0, 0, 0, 1.0f));
                 }

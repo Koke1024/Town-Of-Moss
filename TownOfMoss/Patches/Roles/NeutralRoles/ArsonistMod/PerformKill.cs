@@ -7,10 +7,10 @@ using TownOfUs.Roles;
 
 namespace TownOfUs.NeutralRoles.ArsonistMod
 {
-    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.PerformKill))]
-    public class PerformKill
+    [HarmonyPatch(typeof(KillButton), nameof(KillButton.DoClick))]
+    public class DoClick
     {
-        public static bool Prefix(ActionButton __instance)
+        public static bool Prefix(KillButton __instance)
         {
             var flag = PlayerControl.LocalPlayer.Is(RoleEnum.Arsonist);
             if (!flag) return true;

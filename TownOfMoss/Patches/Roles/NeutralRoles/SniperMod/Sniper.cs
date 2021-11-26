@@ -68,7 +68,7 @@ namespace TownOfUs.Roles
             return false;
         }
 
-        protected override void IntroPrefix(IntroCutscene._CoBegin_d__14 __instance)
+        protected override void IntroPrefix(IntroCutscene._CoBegin_d__18 __instance)
         {
             var sniperTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
             sniperTeam.Add(PlayerControl.LocalPlayer);
@@ -81,7 +81,7 @@ namespace TownOfUs.Roles
 
         public void Loses()
         {
-            Player.Data.IsImpostor = true;
+            Player.Data.Role.TeamType = RoleTeamTypes.Impostor;
         }
     }
 }

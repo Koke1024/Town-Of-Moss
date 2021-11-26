@@ -111,7 +111,7 @@ namespace TownOfUs.Roles
             revivedCount += 1;
             if (!CanRevive()) {
                 if (_dragDropButton) {
-                    _dragDropButton.renderer.color = new Color(0, 0, 0, 0);
+                    _dragDropButton.graphic.color = new Color(0, 0, 0, 0);
                 }    
             }
         }

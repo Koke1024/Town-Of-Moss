@@ -9,7 +9,7 @@ using DateTime = Il2CppSystem.DateTime;
 
 namespace TownOfUs.ImpostorRoles.PuppeteerMod
 {
-    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.PerformKill))]
+    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.DoClick))]
     public class PossessButtonKill
     {
 
@@ -31,7 +31,7 @@ namespace TownOfUs.ImpostorRoles.PuppeteerMod
                 return false;
             }
             
-            if (__instance.renderer.sprite == Puppeteer.PossessSprite)
+            if (__instance.graphic.sprite == Puppeteer.PossessSprite)
             {
                 if (target == null) return false;
                 if (role.duration > 0) return false;
@@ -39,7 +39,7 @@ namespace TownOfUs.ImpostorRoles.PuppeteerMod
                 Coroutines.Start(PuppeteerCoroutine.Possessing(target, role));
                 return false;
             }
-            if(__instance.renderer.sprite == Puppeteer.UnPossessSprite){
+            if(__instance.graphic.sprite == Puppeteer.UnPossessSprite){
                 role.duration = CustomGameOptions.ReleaseWaitTime;
                 // role.duration = Mathf.Max(role.PossessTime, 3.0f);
                 
@@ -58,7 +58,7 @@ namespace TownOfUs.ImpostorRoles.PuppeteerMod
     }
     
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.MurderPlayer))]
-    public class PerformKill
+    public class DoClick
     {
         public static void Postfix(PlayerControl __instance, [HarmonyArgument(0)] PlayerControl target)
         {

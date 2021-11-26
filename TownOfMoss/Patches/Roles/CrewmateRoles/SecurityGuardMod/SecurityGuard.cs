@@ -148,8 +148,8 @@ namespace TownOfUs.Roles
             );
 
             SecurityGuardButton.MaxTimer = cooldown;
-            SecurityGuardButtonScrewsText = GameObject.Instantiate(SecurityGuardButton.ActionButton.cooldownTimerText,
-                SecurityGuardButton.ActionButton.cooldownTimerText.transform.parent);
+            SecurityGuardButtonScrewsText = GameObject.Instantiate(SecurityGuardButton.actionButton.cooldownTimerText,
+                SecurityGuardButton.actionButton.cooldownTimerText.transform.parent);
             SecurityGuardButtonScrewsText.text = "";
             SecurityGuardButtonScrewsText.enableWordWrapping = false;
             SecurityGuardButtonScrewsText.transform.localScale = Vector3.one * 0.5f;

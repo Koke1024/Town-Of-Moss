@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace TownOfUs.ImpostorRoles.JanitorMod
 {
-    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.SetTarget))]
+    [HarmonyPatch(typeof(KillButton), nameof(KillButton.SetTarget))]
     public class KillButtonTarget
     {
-        public static bool Prefix(ActionButton __instance)
+        public static bool Prefix(KillButton __instance)
         {
             if (!PlayerControl.LocalPlayer.Is(RoleEnum.Janitor)) return true;
             return __instance == DestroyableSingleton<HudManager>.Instance.KillButton;
@@ -24,13 +24,13 @@ namespace TownOfUs.ImpostorRoles.JanitorMod
                 var component = role.CurrentTarget.bodyRenderer;
                 component.material.SetFloat("_Outline", 1f);
                 component.material.SetColor("_OutlineColor", Color.yellow);
-                __instance.renderer.color = Palette.EnabledColor;
-                __instance.renderer.material.SetFloat("_Desat", 0f);
+                __instance.graphic.color = Palette.EnabledColor;
+                __instance.graphic.material.SetFloat("_Desat", 0f);
                 return;
             }
 
-            __instance.renderer.color = Palette.DisabledClear;
-            __instance.renderer.material.SetFloat("_Desat", 1f);
+            __instance.graphic.color = Palette.DisabledClear;
+            __instance.graphic.material.SetFloat("_Desat", 1f);
         }
     }
 }

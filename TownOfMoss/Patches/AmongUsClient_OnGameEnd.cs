@@ -19,7 +19,7 @@ namespace TownOfUs {
 
             foreach (var row in PlayerControl.AllPlayerControls) {
                 if (row.Is(RoleEnum.Assassin)) {
-                    row.Data.IsImpostor = true;
+                    row.Data.Role.TeamType = RoleTeamTypes.Impostor;
                 }
             }
 
@@ -46,7 +46,7 @@ namespace TownOfUs {
             }
 
             if (jester != null) {
-                var winners = Utils.potentialWinners.Where(x => x.Name == jester.PlayerName).ToList();
+                var winners = Utils.potentialWinners.Where(x => x._playerName == jester.PlayerName).ToList();
                 TempData.winners = new List<WinningPlayerData>();
                 foreach (var win in winners) {
                     win.IsDead = false;
@@ -59,7 +59,7 @@ namespace TownOfUs {
             var executioner = Role.AllRoles.FirstOrDefault(x =>
                 x.RoleType == RoleEnum.Executioner && ((Executioner)x).TargetVotedOut);
             if (executioner != null) {
-                var winners = Utils.potentialWinners.Where(x => x.Name == executioner.PlayerName).ToList();
+                var winners = Utils.potentialWinners.Where(x => x._playerName == executioner.PlayerName).ToList();
                 TempData.winners = new List<WinningPlayerData>();
                 foreach (var win in winners) TempData.winners.Add(win);
                 return;
@@ -67,7 +67,7 @@ namespace TownOfUs {
             
             var zombie = Role.AllRoles.FirstOrDefault(x => x.RoleType == RoleEnum.Zombie && !x.Player.Data.IsDead && ((Zombie)x).CompleteZombieTasks);
             if (zombie != null) {
-                var winners = Utils.potentialWinners.Where(x => x.Name == zombie.PlayerName).ToList();
+                var winners = Utils.potentialWinners.Where(x => x._playerName == zombie.PlayerName).ToList();
                 TempData.winners = new List<WinningPlayerData>();
                 foreach (var win in winners) {
                     win.IsDead = false;
@@ -79,7 +79,7 @@ namespace TownOfUs {
             var scavenger = Role.AllRoles.FirstOrDefault(x =>
                 x.RoleType == RoleEnum.Scavenger && ((Scavenger) x).eatCount >= CustomGameOptions.ScavengerWinCount);
             if (scavenger != null) {
-                var winners = Utils.potentialWinners.Where(x => x.Name == scavenger.PlayerName).ToList();
+                var winners = Utils.potentialWinners.Where(x => x._playerName == scavenger.PlayerName).ToList();
                 TempData.winners = new List<WinningPlayerData>();
                 foreach (var win in winners) {
                     win.IsDead = false;
@@ -95,7 +95,7 @@ namespace TownOfUs {
                 var lover1 = (Lover)lover;
                 var lover2 = lover1.OtherLover;
                 var winners = Utils.potentialWinners
-                    .Where(x => x.Name == lover1.PlayerName || x.Name == lover2.PlayerName).ToList();
+                    .Where(x => x._playerName == lover1.PlayerName || x._playerName == lover2.PlayerName).ToList();
                 TempData.winners = new List<WinningPlayerData>();
                 foreach (var win in winners) TempData.winners.Add(win);
                 return;
@@ -103,7 +103,7 @@ namespace TownOfUs {
 
             var glitch = Role.AllRoles.FirstOrDefault(x => x.RoleType == RoleEnum.Glitch && ((Glitch)x).GlitchWins);
             if (glitch != null) {
-                var winners = Utils.potentialWinners.Where(x => x.Name == glitch.PlayerName).ToList();
+                var winners = Utils.potentialWinners.Where(x => x._playerName == glitch.PlayerName).ToList();
                 TempData.winners = new List<WinningPlayerData>();
                 foreach (var win in winners) TempData.winners.Add(win);
                 return;
@@ -112,7 +112,7 @@ namespace TownOfUs {
             var sniper = Role.AllRoles.FirstOrDefault(x =>
                 x.RoleType == RoleEnum.Sniper && ((Sniper)x).KilledCount >= CustomGameOptions.SniperWinCnt);
             if (sniper != null) {
-                var winners = Utils.potentialWinners.Where(x => x.Name == sniper.PlayerName).ToList();
+                var winners = Utils.potentialWinners.Where(x => x._playerName == sniper.PlayerName).ToList();
                 TempData.winners = new List<WinningPlayerData>();
                 foreach (var win in winners) TempData.winners.Add(win);
                 return;
@@ -121,7 +121,7 @@ namespace TownOfUs {
             var arsonist =
                 Role.AllRoles.FirstOrDefault(x => x.RoleType == RoleEnum.Arsonist && ((Arsonist)x).ArsonistWins);
             if (arsonist != null) {
-                var winners = Utils.potentialWinners.Where(x => x.Name == arsonist.PlayerName).ToList();
+                var winners = Utils.potentialWinners.Where(x => x._playerName == arsonist.PlayerName).ToList();
                 TempData.winners = new List<WinningPlayerData>();
                 winners.First().IsDead = false;
                 foreach (var win in winners) TempData.winners.Add(win);
@@ -131,7 +131,7 @@ namespace TownOfUs {
             var phantom =
                 Role.AllRoles.FirstOrDefault(x => x.RoleType == RoleEnum.Phantom && ((Phantom)x).CompletePhantomTasks);
             if (phantom != null) {
-                var winners = Utils.potentialWinners.Where(x => x.Name == phantom.PlayerName).ToList();
+                var winners = Utils.potentialWinners.Where(x => x._playerName == phantom.PlayerName).ToList();
                 TempData.winners = new List<WinningPlayerData>();
                 foreach (var win in winners) TempData.winners.Add(win);
                 return;
@@ -167,7 +167,7 @@ namespace TownOfUs {
         public static void Postfix(EndGameManager __instance) {
             var position = Camera.main.ViewportToWorldPoint(new Vector3(0f, 1f, Camera.main.nearClipPlane));
             GameObject roleSummary = UnityEngine.Object.Instantiate(__instance.WinText.gameObject);
-            roleSummary.transform.position = new Vector3(__instance.ExitButton.transform.position.x + 0.1f,
+            roleSummary.transform.position = new Vector3(__instance.Navigation.ExitButton.transform.position.x + 0.1f,
                 position.y - 0.1f, -14f);
             roleSummary.transform.localScale = new Vector3(1f, 1f, 1f);
 

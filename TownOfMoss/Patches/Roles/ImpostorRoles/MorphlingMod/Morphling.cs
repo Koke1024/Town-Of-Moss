@@ -8,7 +8,7 @@ namespace TownOfUs.Roles
     public class Morphling : Undertaker, IVisualAlteration
 
     {
-        public ActionButton _morphButton;
+        public KillButton _morphButton;
         public PlayerControl ClosestPlayer;
         public DateTime LastMorphed;
         public PlayerControl MorphedPlayer;
@@ -33,7 +33,7 @@ namespace TownOfUs.Roles
             LastMorphed = DateTime.UtcNow;
         }
 
-        public ActionButton MorphButton
+        public KillButton MorphButton
         {
             get => _morphButton;
             set

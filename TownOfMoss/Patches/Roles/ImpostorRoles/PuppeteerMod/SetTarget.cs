@@ -5,10 +5,10 @@ using TownOfUs.Roles;
 
 namespace TownOfUs.ImpostorRoles.PuppeteerMod
 {
-    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.SetTarget))]
+    [HarmonyPatch(typeof(KillButton), nameof(KillButton.SetTarget))]
     public class SetTarget
     {
-        public static void Postfix(ActionButton __instance, [HarmonyArgument(0)] PlayerControl target)
+        public static void Postfix(KillButton __instance, [HarmonyArgument(0)] PlayerControl target)
         {
             var flag = PlayerControl.LocalPlayer.Is(RoleEnum.Puppeteer);
             if (!flag) return;

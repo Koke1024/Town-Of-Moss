@@ -27,8 +27,8 @@ namespace TownOfUs.CrewmateRoles.PainterMod
                 }
                 for (int i = 0; i < CustomGameOptions.PaintColorMax; ++i) {
                     ActionButton btn = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);
-                    btn.renderer.enabled = true;
-                    btn.renderer.sprite = PaintSprite[i];
+                    btn.graphic.enabled = true;
+                    btn.graphic.sprite = PaintSprite[i];
                     
                     role._paintButtons.Add(btn);
                 }
@@ -59,13 +59,13 @@ namespace TownOfUs.CrewmateRoles.PainterMod
             foreach(var btn in role._paintButtons) {
                 btn.SetCoolDown(role.PaintTimer(), CustomGameOptions.PaintCd);
                 if (!onInk) {
-                    btn.renderer.color = Palette.EnabledColor;
-                    btn.renderer.material.SetFloat("_Desat", 0f);
+                    btn.graphic.color = Palette.EnabledColor;
+                    btn.graphic.material.SetFloat("_Desat", 0f);
                     btn.enabled = true;
                 }
                 else {
-                    btn.renderer.color = Palette.DisabledClear;
-                    btn.renderer.material.SetFloat("_Desat", 1f);
+                    btn.graphic.color = Palette.DisabledClear;
+                    btn.graphic.material.SetFloat("_Desat", 1f);
                     btn.enabled = false;
                 }
                 btn.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);

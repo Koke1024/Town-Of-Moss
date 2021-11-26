@@ -30,7 +30,7 @@ using UnhollowerBaseLib;
 using UnityEngine;
 using Coroutine = TownOfUs.ImpostorRoles.JanitorMod.Coroutine;
 using Object = UnityEngine.Object;
-using PerformKillButton = TownOfUs.NeutralRoles.ShifterMod.PerformKillButton;
+using DoClickButton = TownOfUs.NeutralRoles.ShifterMod.DoClickButton;
 using Random = UnityEngine.Random; //using Il2CppSystem;
 
 namespace TownOfUs
@@ -212,7 +212,7 @@ namespace TownOfUs
             foreach (var (type, rpc, _) in GlobalModifiers)
                 Role.Gen<Modifier>(type, canHaveModifier, rpc);
 
-            canHaveModifier.RemoveAll(player => !player.Data.IsImpostor);
+            canHaveModifier.RemoveAll(player => !player.Data.Role.IsImpostor);
             canHaveModifier.Shuffle();
 
             while (canHaveModifier.Count > 0)
@@ -384,8 +384,8 @@ namespace TownOfUs
 
                     case CustomRPC.Start:
                         /*
-                        EngineerMod.PerformKill.UsedThisRound = false;
-                        EngineerMod.PerformKill.SabotageTime = DateTime.UtcNow.AddSeconds(-100);
+                        EngineerMod.DoClick.UsedThisRound = false;
+                        EngineerMod.DoClick.SabotageTime = DateTime.UtcNow.AddSeconds(-100);
                         */
                         Utils.ShowDeadBodies = false;
                         Murder.KilledPlayers.Clear();
@@ -435,7 +435,7 @@ namespace TownOfUs
                             }
 
                             if (taker.Player == PlayerControl.LocalPlayer) {
-                                taker._dragDropButton.renderer.sprite = TownOfUs.DragSprite;
+                                taker._dragDropButton.graphic.sprite = TownOfUs.DragSprite;
                             }
                         }
 
@@ -458,7 +458,7 @@ namespace TownOfUs
                             }
 
                             if (taker.Player == PlayerControl.LocalPlayer) {
-                                taker._dragDropButton.renderer.sprite = TownOfUs.DragSprite;
+                                taker._dragDropButton.graphic.sprite = TownOfUs.DragSprite;
                             }
                         }
 
@@ -502,7 +502,7 @@ namespace TownOfUs
                         readByte2 = reader.ReadByte();
                         var shifter = Utils.PlayerById(readByte1);
                         var other = Utils.PlayerById(readByte2);
-                        PerformKillButton.Shift(Role.GetRole<Shifter>(shifter), other);
+                        DoClickButton.Shift(Role.GetRole<Shifter>(shifter), other);
                         break;
                     case CustomRPC.Rewind:
                         readByte = reader.ReadByte();
@@ -608,7 +608,7 @@ namespace TownOfUs
                         var minerRole = Role.GetRole<Miner>(miner);
                         var pos = reader.ReadVector2();
                         var zAxis = reader.ReadSingle();
-                        MinerPerformKill.SpawnVent(ventId, minerRole, pos, zAxis);
+                        MinerDoClick.SpawnVent(ventId, minerRole, pos, zAxis);
                         break;
                     case CustomRPC.Swoop:
                         var swooper = Utils.PlayerById(reader.ReadByte());
@@ -817,8 +817,8 @@ namespace TownOfUs
             }
         }
 
-        [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.RpcSetInfected))]
-        public static class RpcSetInfected
+        [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.RpcSetRole))]
+        public static class RpcSetRole
         {
             public static void Prefix([HarmonyArgument(0)] ref Il2CppReferenceArray<GameData.PlayerInfo> infected)
             {

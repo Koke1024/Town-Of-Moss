@@ -12,8 +12,8 @@ namespace TownOfUs
         private static string GenerateHatText()
         {
             HatCreation.HatData data;
-            if (HatCreation.IdToData.ContainsKey(PlayerControl.LocalPlayer.Data.HatId))
-                data = HatCreation.IdToData[PlayerControl.LocalPlayer.Data.HatId];
+            if (HatCreation.IdToData.ContainsKey(PlayerControl.LocalPlayer.Data.DefaultOutfit.HatId))
+                data = HatCreation.IdToData[PlayerControl.LocalPlayer.Data.DefaultOutfit.HatId];
             else return "";
             return data.author == "" ? $"\n{data.name} hat" : $"\n{data.name} hat by {data.author}";
         }

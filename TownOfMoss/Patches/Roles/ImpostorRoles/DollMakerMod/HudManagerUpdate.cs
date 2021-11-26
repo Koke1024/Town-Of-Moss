@@ -17,14 +17,14 @@ namespace TownOfUs.ImpostorRoles.DollMakerMod {
             var role = Role.GetRole<DollMaker>(PlayerControl.LocalPlayer);
             if (role._waxButton == null) {
                 role._waxButton = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);
-                role._waxButton.renderer.enabled = true;
-                role._waxButton.renderer.sprite = DollMaker._waxSprite;
+                role._waxButton.graphic.enabled = true;
+                role._waxButton.graphic.sprite = DollMaker._waxSprite;
             }
 
             role._waxButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
             role._waxButton.transform.localPosition = __instance.KillButton.transform.localPosition;
 
-            __instance.KillButton.renderer.color = new Color(0, 0, 0, 0);
+            __instance.KillButton.graphic.color = new Color(0, 0, 0, 0);
             __instance.KillButton.cooldownTimerText.color = new Color(0, 0, 0, 0);
             __instance.KillButton.gameObject.SetActive(false);
 
@@ -34,12 +34,12 @@ namespace TownOfUs.ImpostorRoles.DollMakerMod {
             Utils.SetTarget(ref role.ClosestPlayer, role._waxButton, float.NaN, notImpostor);
             
             if (role.ClosestPlayer) {
-                role._waxButton.renderer.color = Palette.EnabledColor;
-                role._waxButton.renderer.material.SetFloat(Desat, 0f);
+                role._waxButton.graphic.color = Palette.EnabledColor;
+                role._waxButton.graphic.material.SetFloat(Desat, 0f);
             }
             else {
-                role._waxButton.renderer.color = Palette.DisabledClear;
-                role._waxButton.renderer.material.SetFloat(Desat, 1.0f);
+                role._waxButton.graphic.color = Palette.DisabledClear;
+                role._waxButton.graphic.material.SetFloat(Desat, 1.0f);
             }
         }
     }

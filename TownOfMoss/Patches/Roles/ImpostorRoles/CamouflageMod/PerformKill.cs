@@ -4,8 +4,8 @@ using TownOfUs.Roles;
 
 namespace TownOfUs.ImpostorRoles.CamouflageMod
 {
-    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.PerformKill))]
-    public class PerformKill
+    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.DoClick))]
+    public class DoClick
     {
         public static bool Prefix(ActionButton __instance)
         {
@@ -14,7 +14,7 @@ namespace TownOfUs.ImpostorRoles.CamouflageMod
             if (!PlayerControl.LocalPlayer.CanMove) return false;
             if (PlayerControl.LocalPlayer.Data.IsDead) return false;
             var role = Role.GetRole<Camouflager>(PlayerControl.LocalPlayer);
-            var target = DestroyableSingleton<HudManager>.Instance.KillButton.CurrentTarget;
+            var target = DestroyableSingleton<HudManager>.Instance.KillButton.currentTarget;
             if (__instance == role.CamouflageButton)
             {
                 if (__instance.isCoolingDown) return false;

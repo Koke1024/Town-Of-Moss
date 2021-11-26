@@ -13,7 +13,7 @@ namespace TownOfUs.ImpostorRoles.UndertakerMod
             if (PlayerControl.LocalPlayer.CanDrag())
             {
                 var role = Role.GetRole<Undertaker>(PlayerControl.LocalPlayer);
-                role.DragDropButton.renderer.sprite = TownOfUs.DragSprite;
+                role.DragDropButton.graphic.sprite = TownOfUs.DragSprite;
                 role.CurrentlyDragging = null;
                 role.LastDragged = DateTime.UtcNow;
             }

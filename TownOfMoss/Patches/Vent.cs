@@ -72,17 +72,17 @@ namespace TownOfUs
 
 
             if (player.Is(RoleEnum.Engineer))
-                playerInfo.IsImpostor = true;
+                playerInfo.Role.CanVent = true;
             if (player.Is(RoleEnum.Glitch))
-                playerInfo.IsImpostor = true;
+                playerInfo.Role.CanVent = true;
             if (player.Is(RoleEnum.Jester) && CustomGameOptions.JesterUseVent)
-                playerInfo.IsImpostor = true;
+                playerInfo.Role.CanVent = true;
             if (player.Is(RoleEnum.Charger))
-                playerInfo.IsImpostor = true;
+                playerInfo.Role.CanVent = true;
             // if (player.Is(RoleEnum.Defect))
-            //     playerInfo.IsImpostor = true;
+            //     playerInfo.Role.CanVent = true;
             // if (player.Is(RoleEnum.Assassin) && CustomGameOptions.MadMateOn)
-            //     playerInfo.IsImpostor = false;
+            //     playerInfo.Role.CanVent = false;
             
             return true;
         }
@@ -90,15 +90,15 @@ namespace TownOfUs
         public static void Postfix(Vent __instance, [HarmonyArgument(0)] GameData.PlayerInfo playerInfo)
         {
             if (playerInfo.Object.Is(RoleEnum.Engineer))
-                playerInfo.IsImpostor = false;
+                playerInfo.Role.CanVent = false;
             if (playerInfo.Object.Is(RoleEnum.Glitch))
-                playerInfo.IsImpostor = false;
+                playerInfo.Role.CanVent = false;
             if (playerInfo.Object.Is(RoleEnum.Charger))
-                playerInfo.IsImpostor = false;
+                playerInfo.Role.CanVent = false;
             if (playerInfo.Object.Is(RoleEnum.Jester) && CustomGameOptions.JesterUseVent)
-                playerInfo.IsImpostor = false;
+                playerInfo.Role.CanVent = false;
             // if (playerInfo.Object.Is(RoleEnum.Defect))
-            //     playerInfo.IsImpostor = false;
+            //     playerInfo.Role.CanVent = false;
         }
     }
 

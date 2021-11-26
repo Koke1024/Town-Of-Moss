@@ -11,8 +11,8 @@ using Object = UnityEngine.Object;
 
 namespace TownOfUs.ImpostorRoles.MinerMod
 {
-    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.PerformKill))]
-    public class MinerPerformKill
+    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.DoClick))]
+    public class MinerDoClick
     {
         public static bool Prefix(ActionButton __instance)
         {

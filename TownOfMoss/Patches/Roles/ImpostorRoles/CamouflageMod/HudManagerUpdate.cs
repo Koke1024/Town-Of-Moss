@@ -19,11 +19,11 @@ namespace TownOfUs.ImpostorRoles.CamouflageMod
             if (role.CamouflageButton == null)
             {
                 role.CamouflageButton = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);
-                role.CamouflageButton.renderer.enabled = true;
-                role.CamouflageButton.renderer.sprite = Camouflage;
+                role.CamouflageButton.graphic.enabled = true;
+                role.CamouflageButton.graphic.sprite = Camouflage;
             }
 
-            role.CamouflageButton.renderer.sprite = Camouflage;
+            role.CamouflageButton.graphic.sprite = Camouflage;
 
             role.CamouflageButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
             var position = __instance.KillButton.transform.localPosition;
@@ -37,8 +37,8 @@ namespace TownOfUs.ImpostorRoles.CamouflageMod
             }
 
             role.CamouflageButton.SetCoolDown(role.CamouflageTimer(), CustomGameOptions.CamouflagerCd);
-            role.CamouflageButton.renderer.color = Palette.EnabledColor;
-            role.CamouflageButton.renderer.material.SetFloat("_Desat", 0f);
+            role.CamouflageButton.graphic.color = Palette.EnabledColor;
+            role.CamouflageButton.graphic.material.SetFloat("_Desat", 0f);
         }
     }
 }

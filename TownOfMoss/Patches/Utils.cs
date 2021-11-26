@@ -17,7 +17,7 @@ using TownOfUs.Roles.Modifiers;
 using UnhollowerBaseLib;
 using UnityEngine;
 using Object = UnityEngine.Object;
-using PerformKill = TownOfUs.ImpostorRoles.UnderdogMod.PerformKill;
+using DoClick = TownOfUs.ImpostorRoles.UnderdogMod.DoClick;
 
 namespace TownOfUs
 {
@@ -36,7 +36,7 @@ namespace TownOfUs
         public static string impRateString = "";
         public static string neutralRateString = "";
 
-        public static void SetSkin(PlayerControl Player, uint skin)
+        public static void SetSkin(PlayerControl Player, string skin)
         {
             Player.MyPhysics.SetSkin(skin);
         }
@@ -56,23 +56,23 @@ namespace TownOfUs
             Player.HatRenderer.SetHat(targetAppearance.HatId, targetAppearance.ColorId);
             Player.nameText.transform.localPosition = new Vector3(
                 0f,
-                Player.Data.HatId == 0U ? 1.5f :
-                HatCreation.TallIds.Contains(Player.Data.HatId) ? 2.2f : 2.0f,
+                Player.Data.DefaultOutfit.HatId == "0U" ? 1.5f :
+                HatCreation.TallIds.Contains(Player.Data.DefaultOutfit.HatId) ? 2.2f : 2.0f,
                 -0.5f
             );
 
             if (Player.MyPhysics.Skin.skin.ProdId != DestroyableSingleton<HatManager>.Instance
-                .AllSkins.ToArray()[(int)targetAppearance.SkinId].ProdId)
+                .AllSkins.ToArray()[Convert.ToInt32(targetAppearance.SkinId)].ProdId)
                 SetSkin(Player, targetAppearance.SkinId);
 
-            if (Player.CurrentPet == null || Player.CurrentPet.ProdId !=
-                DestroyableSingleton<HatManager>.Instance.AllPets.ToArray()[(int)targetAppearance.PetId].ProdId)
+            if (Player.CurrentPet == null || Player.CurrentPet.Data.ProdId !=
+                DestroyableSingleton<HatManager>.Instance.AllPets.ToArray()[Convert.ToInt32(targetAppearance.PetId)].ProdId)
             {
                 if (Player.CurrentPet != null) Object.Destroy(Player.CurrentPet.gameObject);
 
                 Player.CurrentPet =
                     Object.Instantiate(
-                        DestroyableSingleton<HatManager>.Instance.AllPets.ToArray()[(int)targetAppearance.PetId]);
+                        DestroyableSingleton<HatManager>.Instance.AllPets.ToArray()[Convert.ToInt32(targetAppearance.PetId)].PetPrefab);
                 Player.CurrentPet.transform.position = Player.transform.position;
                 Player.CurrentPet.Source = Player;
                 Player.CurrentPet.Visible = Player.Visible;
@@ -94,20 +94,20 @@ namespace TownOfUs
             Player.HatRenderer.SetHat(appearance.HatId, appearance.ColorId);
             Player.nameText.transform.localPosition = new Vector3(
                 0f,
-                appearance.HatId == 0U ? 1.5f :
+                appearance.HatId == "0U" ? 1.5f :
                 HatCreation.TallIds.Contains(appearance.HatId) ? 2.2f : 2.0f,
                 -0.5f
             );
 
             if (Player.MyPhysics.Skin.skin.ProdId != DestroyableSingleton<HatManager>.Instance
-                .AllSkins.ToArray()[(int)appearance.SkinId].ProdId)
+                .AllSkins.ToArray()[System.Convert.ToInt32(appearance.SkinId)].ProdId)
                 SetSkin(Player, appearance.SkinId);
 
             if (Player.CurrentPet != null) Object.Destroy(Player.CurrentPet.gameObject);
 
             Player.CurrentPet =
                 Object.Instantiate(
-                    DestroyableSingleton<HatManager>.Instance.AllPets.ToArray()[(int)appearance.PetId]);
+                    DestroyableSingleton<HatManager>.Instance.AllPets.ToArray()[Convert.ToInt32(appearance.PetId)].PetPrefab);
             Player.CurrentPet.transform.position = Player.transform.position;
             Player.CurrentPet.Source = Player;
             Player.CurrentPet.Visible = Player.Visible;
@@ -126,15 +126,15 @@ namespace TownOfUs
             {
                 player.nameText.text = "";
                 PlayerControl.SetPlayerMaterialColors(Color.grey, player.myRend);
-                player.HatRenderer.SetHat(0, 0);
+                player.HatRenderer.SetHat("0", 0);
                 if (player.MyPhysics.Skin.skin.ProdId != DestroyableSingleton<HatManager>.Instance
                     .AllSkins.ToArray()[0].ProdId)
-                    SetSkin(player, 0);
+                    SetSkin(player, "0");
 
                 if (player.CurrentPet != null) Object.Destroy(player.CurrentPet.gameObject);
                 player.CurrentPet =
                     Object.Instantiate(
-                        DestroyableSingleton<HatManager>.Instance.AllPets.ToArray()[0]);
+                        DestroyableSingleton<HatManager>.Instance.AllPets.ToArray()[0]).PetPrefab;
                 player.CurrentPet.transform.position = player.transform.position;
                 player.CurrentPet.Source = player;
                 player.CurrentPet.Visible = player.Visible;
@@ -193,7 +193,7 @@ namespace TownOfUs
             return player.Is(RoleEnum.Assassin) || player.Is(RoleEnum.Sniper) ||
                     (CustomGameOptions.AllImpCanGuess && player.Is(Faction.Impostors)) ||
                     (CustomGameOptions.LastImpCanGuess && player.Is(Faction.Impostors) &&
-                     PlayerControl.AllPlayerControls.ToArray().Count(x => (x.Data.IsImpostor || x.Is(RoleEnum.Assassin)) && !x.Data.IsDead) == 1);
+                     PlayerControl.AllPlayerControls.ToArray().Count(x => (x.Data.Role.IsImpostor || x.Is(RoleEnum.Assassin)) && !x.Data.IsDead) == 1);
         }
 
         public static List<PlayerControl> GetCrewmates(List<PlayerControl> impostors)
@@ -221,7 +221,7 @@ namespace TownOfUs
             var role = Role.GetRole(player);
             if (role != null) return role.RoleType;
 
-            return player.Data.IsImpostor ? RoleEnum.Impostor : RoleEnum.Crewmate;
+            return player.Data.Role.IsImpostor ? RoleEnum.Impostor : RoleEnum.Crewmate;
         }
 
         public static PlayerControl PlayerById(byte id)
@@ -280,7 +280,7 @@ namespace TownOfUs
         }
         public static void SetTarget(
             ref PlayerControl closestPlayer,
-            ActionButton button,
+            KillButton button,
             float maxDistance = float.NaN,
             List<PlayerControl> targets = null
         )
@@ -451,7 +451,7 @@ namespace TownOfUs
                     return;
                 }
 
-                if (target.Is(ModifierEnum.Diseased) && killer.Data.IsImpostor)
+                if (target.Is(ModifierEnum.Diseased) && killer.Data.Role.IsImpostor)
                 {
                     killer.SetKillTimer(PlayerControl.GameOptions.KillCooldown * 3);
                     return;
@@ -459,7 +459,7 @@ namespace TownOfUs
 
                 if (killer.Is(RoleEnum.Underdog))
                 {
-                    killer.SetKillTimer(PlayerControl.GameOptions.KillCooldown * (PerformKill.LastImp() ? 0.5f : 1.5f));
+                    killer.SetKillTimer(PlayerControl.GameOptions.KillCooldown * (DoClick.LastImp() ? 0.5f : 1.5f));
                     return;
                 }
 
@@ -476,7 +476,7 @@ namespace TownOfUs
                     return;
                 }
 
-                if (killer.Data.IsImpostor)
+                if (killer.Data.Role.IsImpostor)
                 {
                     killer.SetKillTimer(PlayerControl.GameOptions.KillCooldown);
                 }

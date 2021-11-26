@@ -6,7 +6,7 @@ namespace TownOfUs.Roles
     public class Puppeteer : Assassin
 
     {
-        public ActionButton _possessButton;
+        public KillButton _possessButton;
         public PlayerControl ClosestPlayer;
         public PlayerControl PossessPlayer;
         public DateTime PossStart;
@@ -34,7 +34,7 @@ namespace TownOfUs.Roles
             lastPossess = DateTime.UtcNow.AddSeconds(-10.0f);
         }
 
-        public ActionButton PossessButton
+        public KillButton PossessButton
         {
             get => _possessButton;
             set
@@ -49,7 +49,7 @@ namespace TownOfUs.Roles
             PossessPlayer = null;
             Player.moveable = true;
             if (PlayerControl.LocalPlayer == Player) {
-                PossessButton.renderer.sprite = Puppeteer.PossessSprite;
+                PossessButton.graphic.sprite = Puppeteer.PossessSprite;
             }
             // duration = Mathf.Max(PossessTime, 3.0f);
             duration = CustomGameOptions.ReleaseWaitTime;

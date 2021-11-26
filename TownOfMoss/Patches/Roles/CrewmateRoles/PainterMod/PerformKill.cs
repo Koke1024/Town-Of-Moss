@@ -11,8 +11,8 @@ using DateTime = Il2CppSystem.DateTime;
 
 namespace TownOfUs.CrewmateRoles.PainterMod
 {
-    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.PerformKill))]
-    public class PerformKill
+    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.DoClick))]
+    public class DoClick
     {
         public static bool Prefix(ActionButton __instance)
         {
@@ -37,7 +37,7 @@ namespace TownOfUs.CrewmateRoles.PainterMod
                 
                 role.lastPainted = DateTime.UtcNow;
                 
-                if (__instance.renderer.sprite == TownOfUs.PaintSprite[c]) {
+                if (__instance.graphic.sprite == TownOfUs.PaintSprite[c]) {
                     Painter.RpcSetPaintPoint(role.Player.GetTruePosition(), (PaintColor)c);
                 }
                 else {

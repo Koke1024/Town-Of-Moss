@@ -5,7 +5,7 @@ using TownOfUs.Roles;
 namespace TownOfUs.ImpostorRoles.UnderdogMod
 {
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.MurderPlayer))]
-    public class PerformKill
+    public class DoClick
     {
         public static void Postfix(PlayerControl __instance, [HarmonyArgument(0)] PlayerControl target)
         {
@@ -17,7 +17,7 @@ namespace TownOfUs.ImpostorRoles.UnderdogMod
         internal static bool LastImp()
         {
             return PlayerControl.AllPlayerControls.ToArray()
-                .Count(x => x.Data.IsImpostor && !x.Data.IsDead) == 1;
+                .Count(x => x.Data.Role.IsImpostor && !x.Data.IsDead) == 1;
         }
     }
 }

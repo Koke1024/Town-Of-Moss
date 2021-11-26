@@ -21,10 +21,10 @@ namespace TownOfUs.ImpostorRoles.CrackerMod
             if (role.CrackButton == null)
             {
                 role.CrackButton = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);
-                role.CrackButton.renderer.enabled = true;
+                role.CrackButton.graphic.enabled = true;
             }
 
-            role.CrackButton.renderer.sprite = CrackSprite;
+            role.CrackButton.graphic.sprite = CrackSprite;
             role.CrackButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
             var position = __instance.KillButton.transform.localPosition;
             role.CrackButton.transform.localPosition = new Vector3(position.x,
@@ -34,13 +34,13 @@ namespace TownOfUs.ImpostorRoles.CrackerMod
             bool available = role.TargetRoom != null;
             if (available)
             {
-                role.CrackButton.renderer.color = Palette.EnabledColor;
-                role.CrackButton.renderer.material.SetFloat("_Desat", 0f);
+                role.CrackButton.graphic.color = Palette.EnabledColor;
+                role.CrackButton.graphic.material.SetFloat("_Desat", 0f);
             }
             else
             {
-                role.CrackButton.renderer.color = Palette.DisabledClear;
-                role.CrackButton.renderer.material.SetFloat("_Desat", 1f);
+                role.CrackButton.graphic.color = Palette.DisabledClear;
+                role.CrackButton.graphic.material.SetFloat("_Desat", 1f);
             }
         }
     }

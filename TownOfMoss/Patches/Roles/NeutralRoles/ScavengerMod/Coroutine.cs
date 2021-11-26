@@ -38,7 +38,7 @@ namespace TownOfUs.ImpostorRoles.ScavengerMod
                 }
 
                 if (taker.Player == PlayerControl.LocalPlayer) {
-                    taker._dragDropButton.renderer.sprite = TownOfUs.DragSprite;
+                    taker._dragDropButton.graphic.sprite = TownOfUs.DragSprite;
                 }
             }
             

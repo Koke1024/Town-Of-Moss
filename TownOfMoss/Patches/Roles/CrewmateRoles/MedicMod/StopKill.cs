@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace TownOfUs.CrewmateRoles.MedicMod
 {
-    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.PerformKill))]
+    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.DoClick))]
     public class StopKill
     {
         public static void BreakShield(byte medicId, byte playerId, bool flag)
@@ -40,11 +40,11 @@ namespace TownOfUs.CrewmateRoles.MedicMod
         }
 
         [HarmonyPriority(Priority.First)]
-        public static bool Prefix(ActionButton __instance)
+        public static bool Prefix(KillButton __instance)
         {
             if (__instance != DestroyableSingleton<HudManager>.Instance.KillButton) return true;
-            if (!PlayerControl.LocalPlayer.Data.IsImpostor) return true;
-            var target = __instance.CurrentTarget;
+            if (!PlayerControl.LocalPlayer.Data.Role.IsImpostor) return true;
+            var target = __instance.currentTarget;
             if (target == null) return true;
             var killer = PlayerControl.LocalPlayer;
             if (target.isShielded())

@@ -15,7 +15,7 @@ namespace TownOfUs.ImpostorRoles.AssassinMod
             if (CustomGameOptions.MadMateOn) {
                 foreach(var role in Role.GetRoles(RoleEnum.Assassin))
                 {
-                    role.Player.Data.IsImpostor = false;
+                    role.Player.Data.Role.TeamType = RoleTeamTypes.Impostor;
                 }
             }
             return true;
@@ -24,7 +24,7 @@ namespace TownOfUs.ImpostorRoles.AssassinMod
         //     if (CustomGameOptions.MadMateOn) {
         //         foreach(var role in Role.GetRoles(RoleEnum.Assassin))
         //         {
-        //             role.Player.Data.IsImpostor = true;
+        //             role.Player.Data.Role.TeamType = RoleTeamTypes.Impostor;
         //         }
         //     }
         // }

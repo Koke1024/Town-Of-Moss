@@ -7,11 +7,11 @@ using UnityEngine;
 
 namespace TownOfUs.ImpostorRoles.MorphlingMod
 {
-    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.PerformKill))]
-    public class PerformKill
+    [HarmonyPatch(typeof(KillButton), nameof(KillButton.DoClick))]
+    public class DoClick
     {
 
-        public static bool Prefix(ActionButton __instance)
+        public static bool Prefix(KillButton __instance)
         {
             var flag = PlayerControl.LocalPlayer.CanMorph();
             if (!flag) return true;
@@ -22,18 +22,18 @@ namespace TownOfUs.ImpostorRoles.MorphlingMod
             if (__instance == role.MorphButton)
             {
                 if (!__instance.isActiveAndEnabled) return false;
-                if (role.MorphButton.renderer.sprite == Morphling.SampleSprite)
+                if (role.MorphButton.graphic.sprite == Morphling.SampleSprite)
                 {
                     if (target == null) return false;
                     role.SampledPlayer = target;
                     
-                    if (RainbowUtils.IsRainbow(target.Data.ColorId))
+                    if (RainbowUtils.IsRainbow(target.Data.DefaultOutfit.ColorId))
                         role.sampledColor = RainbowUtils.Rainbow;
                     else
-                        role.sampledColor = Palette.PlayerColors[target.Data.ColorId];
+                        role.sampledColor = Palette.PlayerColors[target.Data.DefaultOutfit.ColorId];
                     
-                    role.MorphButton.renderer.sprite = Morphling.MorphSprite;
-                    role.MorphButton.renderer.material.SetColor("_Color", role.sampledColor);
+                    role.MorphButton.graphic.sprite = Morphling.MorphSprite;
+                    role.MorphButton.graphic.material.SetColor("_Color", role.sampledColor);
                     role.MorphButton.SetTarget(null);
                     DestroyableSingleton<HudManager>.Instance.KillButton.SetTarget(null);
                     if (role.MorphTimer() < 5f)

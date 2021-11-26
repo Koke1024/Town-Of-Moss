@@ -51,7 +51,7 @@ namespace TownOfUs.Roles
             if (CustomGameOptions.MadMateOn) {
                 Name = "Madmate";
                 Faction = Faction.Crewmates;
-                Player.Data.IsImpostor = false;
+                Player.Data.Role.TeamType = RoleTeamTypes.Crewmate;
                 ImpostorText = () => "Support Impostors and shoot crewmates";
                 TaskText = () => "Support Impostors and shoot crewmates";
             }
@@ -130,7 +130,7 @@ namespace TownOfUs.Roles
                 ColorMapping.Remove("Sniper");
             }
         }
-        protected override void IntroPrefix(IntroCutscene._CoBegin_d__14 __instance)
+        protected override void IntroPrefix(IntroCutscene._CoBegin_d__18 __instance)
         {
             if (!CustomGameOptions.MadMateOn) {
                 return;

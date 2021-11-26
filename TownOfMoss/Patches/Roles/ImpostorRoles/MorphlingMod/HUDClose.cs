@@ -14,7 +14,7 @@ namespace TownOfUs.ImpostorRoles.MorphlingMod
             if (PlayerControl.LocalPlayer.CanMorph())
             {
                 var role = Role.GetRole<Morphling>(PlayerControl.LocalPlayer);
-                role.MorphButton.renderer.sprite = TownOfUs.SampleSprite;
+                role.MorphButton.graphic.sprite = TownOfUs.SampleSprite;
                 role.SampledPlayer = null;
                 role.LastMorphed = DateTime.UtcNow;
             }

@@ -58,14 +58,14 @@ namespace TownOfUs.CrewmateRoles.ChargerMod
                     if (collider.tag == "DeadBody")
                     {
                         var playerId = collider.GetComponent<DeadBody>().ParentId;
-                        colorMap.Add(GameData.Instance.GetPlayerById(playerId).ColorId);
+                        colorMap.Add(GameData.Instance.GetPlayerById(playerId).DefaultOutfit.ColorId);
                         continue;
                     }
 
                     var player = collider.GetComponent<PlayerControl>();
                     var data = player?.Data;
                     if (data != null && !data.Disconnected && !data.IsDead)
-                        colorMap.Add(data.ColorId);
+                        colorMap.Add(data.DefaultOutfit.ColorId);
                 }
                 UpdateBlips(area, colorMap);
             }

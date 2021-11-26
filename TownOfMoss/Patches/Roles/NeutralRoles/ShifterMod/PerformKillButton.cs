@@ -23,9 +23,9 @@ namespace TownOfUs.NeutralRoles.ShifterMod
         Nobody
     }
 
-    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.PerformKill))]
+    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.DoClick))]
     [HarmonyPriority(Priority.Last)]
-    public class PerformKillButton
+    public class DoClickButton
 
     {
         public static bool Prefix(ActionButton __instance)
@@ -216,9 +216,9 @@ namespace TownOfUs.NeutralRoles.ShifterMod
                 case RoleEnum.Puppeteer:
                 case RoleEnum.Kirby:
                 case RoleEnum.DollMaker:
-                    shifter.Data.IsImpostor = true;
+                    shifter.Data.Role.TeamType = RoleTeamTypes.Impostor;
                     shifter.MurderPlayer(shifter);
-                    shifter.Data.IsImpostor = false;
+                    shifter.Data.Role.TeamType = RoleTeamTypes.Crewmate;
                     swapTasks = false;
                     break;
             }
@@ -267,7 +267,7 @@ namespace TownOfUs.NeutralRoles.ShifterMod
                 if (shifter.Is(RoleEnum.Arsonist) && other.AmOwner)
                     Role.GetRole<Arsonist>(shifter).IgniteButton.Destroy();
                 DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(false);
-                DestroyableSingleton<HudManager>.Instance.KillButton.isActive = false;
+                DestroyableSingleton<HudManager>.Instance.KillButton.graphic.enabled = false;
 
                 Lights.SetLights();
             }

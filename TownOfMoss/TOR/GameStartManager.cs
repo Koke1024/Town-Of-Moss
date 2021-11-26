@@ -64,7 +64,7 @@ namespace TownOfUs.Patches {
         // [HarmonyPatch(typeof(OptionsConsole), nameof(OptionsConsole.Use))]
         // public static class OptionMenu {
         //     public static void Postfix(OptionsConsole __instance) {
-        //         var menu = Camera.main.transform.GetComponentInChildren<CustomPlayerMenu>();
+        //         var menu = Camera.main.transform.GetComponentInChildren<PlayerCustomizationMenu>();
         //     }
         // }
         

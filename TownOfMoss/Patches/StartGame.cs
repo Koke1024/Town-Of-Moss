@@ -67,7 +67,7 @@ namespace TownOfUs.OnStartGame
                 var allVents = ShipStatus.Instance.AllVents.ToList();
                 var ventPrefab = Object.FindObjectOfType<Vent>();
                 var vent = Object.Instantiate(ventPrefab, ventPrefab.transform.parent);
-                vent.Id = MinerPerformKill.GetAvailableId();
+                vent.Id = MinerDoClick.GetAvailableId();
                 vent.transform.position = new Vector3(16.67f, -3.89f, 0);
 
                 vent.Left = allVents[10]; //ElectricalBuildingVent

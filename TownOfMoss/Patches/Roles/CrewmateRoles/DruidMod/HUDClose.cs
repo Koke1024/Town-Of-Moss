@@ -16,7 +16,7 @@ namespace TownOfUs.CrewmateRoles.DruidMod
             }
             var druid = Role.GetRole<Druid>(PlayerControl.LocalPlayer);
             druid.revivedCount = 0;
-            druid._dragDropButton.renderer.color = new Color(1, 1, 1, 1);;
+            druid._dragDropButton.graphic.color = new Color(1, 1, 1, 1);;
         }
     }
 }

@@ -6,7 +6,7 @@ using TownOfUs.Roles;
 
 namespace TownOfUs.CrewmateRoles.PoliceMod
 {
-    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.PerformKill))]
+    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.DoClick))]
     public static class Kill
     {
         [HarmonyPriority(Priority.First)]
@@ -41,7 +41,7 @@ namespace TownOfUs.CrewmateRoles.PoliceMod
                 return false;
             }
 
-            var flag4 = role.ClosestPlayer.Data.IsImpostor || 
+            var flag4 = role.ClosestPlayer.Data.Role.IsImpostor || 
                         (role.ClosestPlayer.Is(RoleEnum.Assassin) && CustomGameOptions.SheriffKillsMadmate) ||
                         role.ClosestPlayer.Is(Faction.Neutral);
             if (!flag4)

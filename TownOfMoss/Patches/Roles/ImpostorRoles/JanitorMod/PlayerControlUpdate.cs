@@ -18,7 +18,7 @@ namespace TownOfUs.ImpostorRoles.JanitorMod
             if (role.CleanButton == null)
             {
                 role.CleanButton = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);
-                role.CleanButton.renderer.enabled = true;
+                role.CleanButton.graphic.enabled = true;
             }
 
             role.CleanButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
@@ -26,7 +26,7 @@ namespace TownOfUs.ImpostorRoles.JanitorMod
             role.CleanButton.transform.localPosition = new Vector3(position.x,
                 __instance.ReportButton.transform.localPosition.y, position.z);
 
-            role.CleanButton.renderer.sprite = TownOfUs.JanitorClean;
+            role.CleanButton.graphic.sprite = TownOfUs.JanitorClean;
 
 
             var data = PlayerControl.LocalPlayer.Data;

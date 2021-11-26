@@ -18,7 +18,7 @@ namespace TownOfUs.ImpostorRoles.KirbyMod
             if (role.InhaleButton == null)
             {
                 role.InhaleButton = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);
-                role.InhaleButton.renderer.enabled = true;
+                role.InhaleButton.graphic.enabled = true;
             }
 
             role.InhaleButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
@@ -26,7 +26,7 @@ namespace TownOfUs.ImpostorRoles.KirbyMod
             role.InhaleButton.transform.localPosition = new Vector3(position.x,
                 __instance.ReportButton.transform.localPosition.y, position.z);
 
-            role.InhaleButton.renderer.sprite = TownOfUs.Inhale;
+            role.InhaleButton.graphic.sprite = TownOfUs.Inhale;
 
 
             var data = PlayerControl.LocalPlayer.Data;

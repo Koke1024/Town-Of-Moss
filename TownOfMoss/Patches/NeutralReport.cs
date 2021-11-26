@@ -27,7 +27,7 @@ namespace TownOfUs.NeutralReport {
             }
         }
 
-        [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.SetInfected))]
+        [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.SetRole))]
         public class StartGame {
             public static void Postfix() {
                 if (!CustomGameOptions.NoticeNeutral) {

@@ -6,8 +6,8 @@ using TownOfUs.Roles;
 
 namespace TownOfUs.CrewmateRoles.EngineerMod
 {
-    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.PerformKill))]
-    public class PerformKill
+    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.DoClick))]
+    public class DoClick
     {
         public static bool Prefix(ActionButton __instance)
         {
@@ -129,7 +129,7 @@ namespace TownOfUs.CrewmateRoles.EngineerMod
         
         private static bool CanUseFix(PlayerControl player)
         {
-            return player.inVent && !Minigame.Instance && (!DestroyableSingleton<HudManager>.InstanceExists || (!DestroyableSingleton<HudManager>.Instance.Chat.IsOpen && !DestroyableSingleton<HudManager>.Instance.KillOverlay.IsOpen && !DestroyableSingleton<HudManager>.Instance.GameMenu.IsOpen)) && (!ControllerManager.Instance || !ControllerManager.Instance.IsUiControllerActive) && (!MapBehaviour.Instance || !MapBehaviour.Instance.IsOpenStopped) && !MeetingHud.Instance && !CustomPlayerMenu.Instance && !ExileController.Instance && !IntroCutscene.Instance;
+            return player.inVent && !Minigame.Instance && (!DestroyableSingleton<HudManager>.InstanceExists || (!DestroyableSingleton<HudManager>.Instance.Chat.IsOpen && !DestroyableSingleton<HudManager>.Instance.KillOverlay.IsOpen && !DestroyableSingleton<HudManager>.Instance.GameMenu.IsOpen)) && (!ControllerManager.Instance || !ControllerManager.Instance.IsUiControllerActive) && (!MapBehaviour.Instance || !MapBehaviour.Instance.IsOpenStopped) && !MeetingHud.Instance && !PlayerCustomizationMenu.Instance && !ExileController.Instance && !IntroCutscene.Instance;
         }
         
     }

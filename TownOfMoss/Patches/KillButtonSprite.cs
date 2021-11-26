@@ -33,51 +33,51 @@ namespace TownOfUs
             var flag = false;
             if (PlayerControl.LocalPlayer.Is(RoleEnum.Shifter))
             {
-                __instance.KillButton.renderer.sprite = Shift;
+                __instance.KillButton.graphic.sprite = Shift;
                 flag = true;
             }
             else if (PlayerControl.LocalPlayer.Is(RoleEnum.TimeLord))
             {
-                __instance.KillButton.renderer.sprite = Rewind;
+                __instance.KillButton.graphic.sprite = Rewind;
                 flag = true;
             }
             else if (PlayerControl.LocalPlayer.Is(RoleEnum.Seer))
             {
-                __instance.KillButton.renderer.sprite = Seer;
+                __instance.KillButton.graphic.sprite = Seer;
                 flag = true;
             }
             else if (PlayerControl.LocalPlayer.Is(RoleEnum.Medic))
             {
-                __instance.KillButton.renderer.sprite = Medic;
+                __instance.KillButton.graphic.sprite = Medic;
                 flag = true;
             }
             else if (PlayerControl.LocalPlayer.Is(RoleEnum.Arsonist))
             {
-                __instance.KillButton.renderer.sprite = Douse;
+                __instance.KillButton.graphic.sprite = Douse;
                 flag = true;
             }
             else if (PlayerControl.LocalPlayer.Is(RoleEnum.Altruist))
             {
-                __instance.KillButton.renderer.sprite = Revive;
+                __instance.KillButton.graphic.sprite = Revive;
                 flag = true;
             }
             else if (PlayerControl.LocalPlayer.Is(RoleEnum.Painter))
             {
-                // __instance.KillButton.renderer.sprite = Paint;
-                // __instance.KillButton.renderer.sprite = Paint;
-                // __instance.KillButton.renderer.sprite = Paint;
+                // __instance.KillButton.graphic.sprite = Paint;
+                // __instance.KillButton.graphic.sprite = Paint;
+                // __instance.KillButton.graphic.sprite = Paint;
                 flag = true;
             }
             else
             {
-                __instance.KillButton.renderer.sprite = TranslationController.Instance.GetImage(ImageNames.KillButton);
+                __instance.KillButton.graphic.sprite = TranslationController.Instance.GetImage(ImageNames.KillButton);
                 flag = PlayerControl.LocalPlayer.Is(RoleEnum.Sheriff);
             }
 
             var keyInt = Input.GetKeyInt(KeyCode.Q);
             var controller = ConsoleJoystick.player.GetButtonDown(8);
             if (keyInt | controller && __instance.KillButton != null && flag && !PlayerControl.LocalPlayer.Data.IsDead)
-                __instance.KillButton.PerformKill();
+                __instance.KillButton.DoClick();
         }
     }
 }

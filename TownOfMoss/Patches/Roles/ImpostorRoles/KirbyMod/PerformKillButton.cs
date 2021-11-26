@@ -6,8 +6,8 @@ using UnityEngine;
 
 namespace TownOfUs.ImpostorRoles.KirbyMod
 {
-    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.PerformKill))]
-    public class PerformKillButton
+    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.DoClick))]
+    public class DoClickButton
 
     {
         public static bool Prefix(ActionButton __instance)

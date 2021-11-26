@@ -18,7 +18,7 @@ namespace TownOfUs.ImpostorRoles.ScavengerMod
             if (role.EatButton == null)
             {
                 role.EatButton = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);
-                role.EatButton.renderer.enabled = true;
+                role.EatButton.graphic.enabled = true;
             }
 
             role.EatButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
@@ -27,7 +27,7 @@ namespace TownOfUs.ImpostorRoles.ScavengerMod
             role.EatButton.transform.localPosition = new Vector3(position.x + offset,
                 __instance.ReportButton.transform.localPosition.y, position.z);
 
-            role.EatButton.renderer.sprite = TownOfUs.Inhale;
+            role.EatButton.graphic.sprite = TownOfUs.Inhale;
 
 
             var data = PlayerControl.LocalPlayer.Data;

@@ -6,8 +6,8 @@ using UnityEngine;
 
 namespace TownOfUs.CrewmateRoles.AltruistMod
 {
-    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.PerformKill))]
-    public class AltruistPerformKillButton
+    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.DoClick))]
+    public class AltruistDoClickButton
     {
         public static bool Prefix(ActionButton __instance)
         {

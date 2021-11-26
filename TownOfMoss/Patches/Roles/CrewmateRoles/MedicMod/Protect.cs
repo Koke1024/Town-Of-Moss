@@ -4,7 +4,7 @@ using TownOfUs.Roles;
 
 namespace TownOfUs.CrewmateRoles.MedicMod
 {
-    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.PerformKill))]
+    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.DoClick))]
     public class Protect
     {
         public static bool Prefix(ActionButton __instance)

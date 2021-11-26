@@ -3,8 +3,8 @@ using TownOfUs.Roles;
 
 namespace TownOfUs.NeutralRoles.GlitchMod
 {
-    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.PerformKill))]
-    internal class PerformKill
+    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.DoClick))]
+    internal class DoClick
     {
         public static bool Prefix(ActionButton __instance)
         {

@@ -95,7 +95,7 @@ namespace TownOfUs.CrewmateRoles.MayorMod
         [HarmonyPrefix]
         [HarmonyPatch(
             nameof(MeetingHud.HandleDisconnect),
-            typeof(PlayerControl), typeof(InnerNet.DisconnectReasons)
+            typeof(PlayerControl), typeof(DisconnectReasons)
         )]
         public static void Prefix(
             MeetingHud __instance, [HarmonyArgument(0)] PlayerControl player)

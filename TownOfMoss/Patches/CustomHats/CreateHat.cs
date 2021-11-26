@@ -15,9 +15,9 @@ namespace TownOfUs.CustomHats
 
         public static Sprite EmptySprite = TownOfUs.CreateSprite("TownOfUs.Resources.Hats.transparent.png", true);
 
-        public static List<uint> TallIds = new List<uint>();
+        public static List<string> TallIds = new List<string>();
 
-        protected internal static Dictionary<uint, HatData> IdToData = new Dictionary<uint, HatData>();
+        protected internal static Dictionary<string, HatData> IdToData = new Dictionary<string, HatData>();
 
         protected internal static Dictionary<HatData, List<Sprite>> AnimatedHats =
             new Dictionary<HatData, List<Sprite>>();
@@ -82,8 +82,8 @@ namespace TownOfUs.CustomHats
                             {
                                 var hat = CreateHat(hatData, ++hatId);
                                 __instance.AllHats.Add(hat);
-                                if (hatData.highUp) TallIds.Add((uint) (__instance.AllHats.Count - 1));
-                                IdToData.Add((uint) __instance.AllHats.Count - 1, hatData);
+                                if (hatData.highUp) TallIds.Add((__instance.AllHats.Count - 1).ToString());
+                                IdToData.Add((__instance.AllHats.Count - 1).ToString(), hatData);
                             }
                             catch (Exception)
                             {
@@ -135,7 +135,7 @@ namespace TownOfUs.CustomHats
             {
                 __instance.nameText.transform.localPosition = new Vector3(
                     0f,
-                    __0 == 0U ? 1.5f : TallIds.Contains(__0) ? 2.2f : 2.0f,
+                    __0 == 0U ? 1.5f : TallIds.Contains("__0") ? 2.2f : 2.0f,
                     -0.5f
                 );
             }

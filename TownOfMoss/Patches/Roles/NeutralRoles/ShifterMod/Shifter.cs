@@ -26,7 +26,7 @@ namespace TownOfUs.Roles
 
         public void Loses()
         {
-            Player.Data.IsImpostor = true;
+            Player.Data.Role.TeamType = RoleTeamTypes.Impostor;
         }
 
         public float ShifterShiftTimer()

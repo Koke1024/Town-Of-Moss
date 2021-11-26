@@ -43,7 +43,7 @@ namespace TownOfUs.ImpostorRoles.PuppeteerMod
             puppeteer.PossessButton.SetTarget(null);
             DestroyableSingleton<HudManager>.Instance.KillButton.SetTarget(null);
                 
-            puppeteer.PossessButton.renderer.sprite = Puppeteer.UnPossessSprite;
+            puppeteer.PossessButton.graphic.sprite = Puppeteer.UnPossessSprite;
             puppeteer.Player.NetTransform.Halt();
             var writer2 = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                 (byte) CustomRPC.Possess,

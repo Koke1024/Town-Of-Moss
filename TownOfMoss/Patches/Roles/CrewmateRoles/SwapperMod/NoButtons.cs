@@ -2,7 +2,7 @@ using HarmonyLib;
 
 namespace TownOfUs.CrewmateRoles.SwapperMod
 {
-    [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.SetInfected))]
+    [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.SetRole))]
     public class NoButtons
     {
         public static void Postfix()

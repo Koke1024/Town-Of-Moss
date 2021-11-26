@@ -10,8 +10,8 @@ using Object = UnityEngine.Object;
 
 namespace TownOfUs.ImpostorRoles.CrackerMod
 {
-    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.PerformKill))]
-    public class PerformKill
+    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.DoClick))]
+    public class DoClick
     {
         public static bool Prefix(ActionButton __instance)
         {

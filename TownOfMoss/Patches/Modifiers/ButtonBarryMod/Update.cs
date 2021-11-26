@@ -32,17 +32,17 @@ namespace TownOfUs.Modifiers.ButtonBarryMod
             if (role.ButtonButton == null)
             {
                 role.ButtonButton = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);
-                role.ButtonButton.renderer.enabled = true;
-                role.ButtonButton.renderer.sprite = Button;
+                role.ButtonButton.graphic.enabled = true;
+                role.ButtonButton.graphic.sprite = Button;
             }
 
-            role.ButtonButton.renderer.sprite = Button;
+            role.ButtonButton.graphic.sprite = Button;
 
 
             role.ButtonButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
 
             role.ButtonButton.SetCoolDown(0f, 1f);
-            var renderer = role.ButtonButton.renderer;
+            var renderer = role.ButtonButton.graphic;
 
             var position1 = __instance.UseButton.transform.position;
             role.ButtonButton.transform.position = new Vector3(

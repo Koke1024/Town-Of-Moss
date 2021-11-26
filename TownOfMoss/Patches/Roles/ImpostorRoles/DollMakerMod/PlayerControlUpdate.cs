@@ -18,8 +18,8 @@ namespace TownOfUs.ImpostorRoles.DollMakerMod
             if (role.WaxButton == null)
             {
                 role.WaxButton = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);
-                role.WaxButton.renderer.enabled = true;
-                role.WaxButton.renderer.sprite = TownOfUs.WaxSprite;
+                role.WaxButton.graphic.enabled = true;
+                role.WaxButton.graphic.sprite = TownOfUs.WaxSprite;
             }
 
             role.WaxButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);

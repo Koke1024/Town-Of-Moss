@@ -11,10 +11,10 @@ namespace TownOfUs.RainbowMod
     {
         public static bool Prefix(PlayerTab __instance)
         {
-            PlayerControl.SetPlayerMaterialColors(PlayerControl.LocalPlayer.Data.ColorId, __instance.DemoImage);
-            __instance.HatImage.SetHat(SaveManager.LastHat, PlayerControl.LocalPlayer.Data.ColorId);
-            PlayerControl.SetSkinImage(SaveManager.LastSkin, __instance.SkinImage);
-            PlayerControl.SetPetImage(SaveManager.LastPet, PlayerControl.LocalPlayer.Data.ColorId, __instance.PetImage);
+            // PlayerControl.SetPlayerMaterialColors(PlayerControl.LocalPlayer.Data.DefaultOutfit.ColorId, __instance.DemoImage);
+            // __instance.HatImage.SetHat(SaveManager.LastHat, PlayerControl.LocalPlayer.Data.DefaultOutfit.ColorId);
+            // PlayerControl.SetSkinImage(SaveManager.LastSkin, __instance.SkinImage);
+            // PlayerControl.SetPetImage(SaveManager.LastPet, PlayerControl.LocalPlayer.Data.DefaultOutfit.ColorId, __instance.PetImage);
             var colors = Palette.PlayerColors;
             var num = colors.Length / 4f;
             for (int i = 0;i < colors.Length;i++)

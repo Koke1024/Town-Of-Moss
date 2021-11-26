@@ -7,7 +7,7 @@ namespace TownOfUs.CrewmateRoles.SheriffMod
     [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
     public class HUDKill
     {
-        private static ActionButton KillButton;
+        private static KillButton killButton;
 
         public static void Postfix(HudManager __instance)
         {
@@ -16,7 +16,7 @@ namespace TownOfUs.CrewmateRoles.SheriffMod
 
         private static void UpdateKillButton(HudManager __instance)
         {
-            KillButton = __instance.KillButton;
+            killButton = __instance.KillButton;
             if (PlayerControl.AllPlayerControls.Count <= 1) return;
             if (PlayerControl.LocalPlayer == null) return;
             if (PlayerControl.LocalPlayer.Data == null) return;
@@ -29,23 +29,23 @@ namespace TownOfUs.CrewmateRoles.SheriffMod
                 var isDead = PlayerControl.LocalPlayer.Data.IsDead;
                 if (isDead)
                 {
-                    KillButton.gameObject.SetActive(false);
-                    KillButton.isActive = false;
+                    killButton.gameObject.SetActive(false);
+                    killButton.graphic.enabled = false;
                 }
                 else
                 {
-                    KillButton.gameObject.SetActive(!MeetingHud.Instance);
-                    KillButton.isActive = !MeetingHud.Instance;
-                    KillButton.SetCoolDown(role.SheriffKillTimer(), PlayerControl.GameOptions.KillCooldown + 15f);
+                    killButton.gameObject.SetActive(!MeetingHud.Instance);
+                    killButton.graphic.enabled = !MeetingHud.Instance;
+                    killButton.SetCoolDown(role.SheriffKillTimer(), PlayerControl.GameOptions.KillCooldown + 15f);
 
                     // if (role.bulletCount < role.Player.myTasks.ToArray().Count(x => x.IsComplete)) {
-                        Utils.SetTarget(ref role.ClosestPlayer, KillButton);                        
+                        Utils.SetTarget(ref role.ClosestPlayer, killButton);                        
                     // }
                 }
             }
             else
             {
-                var isImpostor = PlayerControl.LocalPlayer.Data.IsImpostor;
+                var isImpostor = PlayerControl.LocalPlayer.Data.Role.IsImpostor;
                 if (!isImpostor) return;
                 if (PlayerControl.LocalPlayer.Is(RoleEnum.Assassin) && CustomGameOptions.MadMateOn) {
                     return;
@@ -53,13 +53,13 @@ namespace TownOfUs.CrewmateRoles.SheriffMod
                 var isDead2 = PlayerControl.LocalPlayer.Data.IsDead;
                 if (isDead2)
                 {
-                    KillButton.gameObject.SetActive(false);
-                    KillButton.isActive = false;
+                    killButton.gameObject.SetActive(false);
+                    killButton.graphic.enabled = false;
                 }
                 else
                 {
                     __instance.KillButton.gameObject.SetActive(!MeetingHud.Instance);
-                    __instance.KillButton.isActive = !MeetingHud.Instance;
+                    __instance.KillButton.graphic.enabled = !MeetingHud.Instance;
                 }
             }
         }

@@ -24,7 +24,7 @@ namespace TownOfUs.Roles
         public float MaxTimer() => PlayerControl.GameOptions.KillCooldown * CustomGameOptions.MultiKillerCdRate / 100.0f;
     }
     
-    [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.SetInfected))]
+    [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.SetRole))]
     public class multiKillerCd2
     {
         public static void Postfix() {

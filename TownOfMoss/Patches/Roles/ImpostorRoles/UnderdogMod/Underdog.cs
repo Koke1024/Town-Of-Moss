@@ -15,7 +15,7 @@ namespace TownOfUs.Roles
         }
 
         public float MaxTimer() => PlayerControl.GameOptions.KillCooldown * (
-            PerformKill.LastImp() ? 0.5f : 1.5f
+            DoClick.LastImp() ? 0.5f : 1.5f
         );
 
         public void SetKillTimer()

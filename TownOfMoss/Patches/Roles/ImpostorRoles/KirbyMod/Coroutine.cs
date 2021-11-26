@@ -42,7 +42,7 @@ namespace TownOfUs.ImpostorRoles.KirbyMod
                 }
 
                 if (taker.Player == PlayerControl.LocalPlayer) {
-                    taker._dragDropButton.renderer.sprite = TownOfUs.DragSprite;
+                    taker._dragDropButton.graphic.sprite = TownOfUs.DragSprite;
                 }
             }
             role.Player.moveable = true;
