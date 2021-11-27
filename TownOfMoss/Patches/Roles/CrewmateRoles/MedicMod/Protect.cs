@@ -4,10 +4,10 @@ using TownOfUs.Roles;
 
 namespace TownOfUs.CrewmateRoles.MedicMod
 {
-    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.DoClick))]
+    [HarmonyPatch(typeof(KillButton), nameof(KillButton.DoClick))]
     public class Protect
     {
-        public static bool Prefix(ActionButton __instance)
+        public static bool Prefix(KillButton __instance)
         {
             if (__instance != DestroyableSingleton<HudManager>.Instance.KillButton) return true;
             var flag = PlayerControl.LocalPlayer.Is(RoleEnum.Medic);

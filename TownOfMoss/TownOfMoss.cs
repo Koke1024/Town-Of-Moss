@@ -20,11 +20,11 @@ using UnityEngine.SceneManagement;
 
 namespace TownOfUs
 {
-    [BepInPlugin(Id, "Town Of Moss", "0.442")]
+    [BepInPlugin(Id, "Town Of Moss", "1.0")]
     [BepInDependency(ReactorPlugin.Id)]
     public class TownOfUs : BasePlugin
     {
-        public static string Version = "0.442";
+        public static string Version = "1.0";
         public const string Id = "jp.spiel.koke";
 
         public static Sprite JanitorClean;
@@ -88,47 +88,47 @@ namespace TownOfUs
 
             Generate.GenerateAll();
 
-            JanitorClean = CreateSprite("TownOfUs.Resources.Janitor.png");
-            Inhale = CreateSprite("TownOfUs.Resources.Inhale.png");
-            EngineerFix = CreateSprite("TownOfUs.Resources.Engineer.png");
-            //EngineerArrow = CreateSprite("TownOfUs.Resources.EngineerArrow.png");
-            SwapperSwitch = CreateSprite("TownOfUs.Resources.SwapperSwitch.png");
-            SwapperSwitchDisabled = CreateSprite("TownOfUs.Resources.SwapperSwitchDisabled.png");
-            Shift = CreateSprite("TownOfUs.Resources.Shift.png");
-            Footprint = CreateSprite("TownOfUs.Resources.Footprint.png");
-            Rewind = CreateSprite("TownOfUs.Resources.Rewind.png");
-            NormalKill = CreateSprite("TownOfUs.Resources.NormalKill.png");
-            MedicSprite = CreateSprite("TownOfUs.Resources.Medic.png");
-            SeerSprite = CreateSprite("TownOfUs.Resources.Seer.png");
-            SampleSprite = CreateSprite("TownOfUs.Resources.Sample.png");
-            MorphSprite = CreateSprite("TownOfUs.Resources.Morph.png");
-            PossessSprite = CreateSprite("TownOfUs.Resources.Possess.png");
-            ReleaseSprite = CreateSprite("TownOfUs.Resources.Release.png");
-            Camouflage = CreateSprite("TownOfUs.Resources.Camouflage.png");
-            Arrow = CreateSprite("TownOfUs.Resources.Arrow.png");
-            // Abstain = CreateSprite("TownOfUs.Resources.Abstain.png");
-            // Extend = CreateSprite("TownOfUs.Resources.Extend.png");
-            MineSprite = CreateSprite("TownOfUs.Resources.Mine.png");
-            SwoopSprite = CreateSprite("TownOfUs.Resources.Swoop.png");
-            DouseSprite = CreateSprite("TownOfUs.Resources.Douse.png");
-            IgniteSprite = CreateSprite("TownOfUs.Resources.Ignite.png");
-            ReviveSprite = CreateSprite("TownOfUs.Resources.Revive.png");
-            ButtonSprite = CreateSprite("TownOfUs.Resources.Button.png");
-            DragSprite = CreateSprite("TownOfUs.Resources.Drag.png");
-            DropSprite = CreateSprite("TownOfUs.Resources.Drop.png");
-            PolusSprite = CreateSprite("TownOfUs.Resources.polus.gg.png");
-            TargetSprite = CreateSprite("TownOfUs.Resources.TargetIcon.png");
-            HackSprite = CreateSprite("TownOfUs.Resources.Hack.png");
-            WaxSprite = CreateSprite("TownOfUs.Resources.Wax.png");
-            PaintSprite[0] = CreateSprite("TownOfUs.Resources.PaintRed.png");
-            PaintSprite[1] = CreateSprite("TownOfUs.Resources.PaintBlue.png");
-            PaintSprite[2] = CreateSprite("TownOfUs.Resources.PaintYellow.png");
-            InkSprite = CreateSprite("TownOfUs.Resources.Ink.png");
-            PourSprite = CreateSprite("TownOfUs.Resources.Pour.png");
-            CloseVentButtonSprite = CreateSprite("TownOfUs.Resources.CloseVentButton.png");
-            PlaceCameraSprite = CreateSprite("TownOfUs.Resources.PlaceCameraButton.png");
-            AnimatedVentSprite = CreateSprite("TownOfUs.Resources.AnimatedVentSealed.png");
-            StaticVentSprite = CreateSprite("TownOfUs.Resources.StaticVentSealed.png");
+            JanitorClean = CreateSprite("TownOfMoss.Resources.Janitor.png");
+            Inhale = CreateSprite("TownOfMoss.Resources.Inhale.png");
+            EngineerFix = CreateSprite("TownOfMoss.Resources.Engineer.png");
+            //EngineerArrow = CreateSprite("TownOfMoss.Resources.EngineerArrow.png");
+            SwapperSwitch = CreateSprite("TownOfMoss.Resources.SwapperSwitch.png");
+            SwapperSwitchDisabled = CreateSprite("TownOfMoss.Resources.SwapperSwitchDisabled.png");
+            Shift = CreateSprite("TownOfMoss.Resources.Shift.png");
+            Footprint = CreateSprite("TownOfMoss.Resources.Footprint.png");
+            Rewind = CreateSprite("TownOfMoss.Resources.Rewind.png");
+            NormalKill = CreateSprite("TownOfMoss.Resources.NormalKill.png");
+            MedicSprite = CreateSprite("TownOfMoss.Resources.Medic.png");
+            SeerSprite = CreateSprite("TownOfMoss.Resources.Seer.png");
+            SampleSprite = CreateSprite("TownOfMoss.Resources.Sample.png");
+            MorphSprite = CreateSprite("TownOfMoss.Resources.Morph.png");
+            PossessSprite = CreateSprite("TownOfMoss.Resources.Possess.png");
+            ReleaseSprite = CreateSprite("TownOfMoss.Resources.Release.png");
+            Camouflage = CreateSprite("TownOfMoss.Resources.Camouflage.png");
+            Arrow = CreateSprite("TownOfMoss.Resources.Arrow.png");
+            // Abstain = CreateSprite("TownOfMoss.Resources.Abstain.png");
+            // Extend = CreateSprite("TownOfMoss.Resources.Extend.png");
+            MineSprite = CreateSprite("TownOfMoss.Resources.Mine.png");
+            SwoopSprite = CreateSprite("TownOfMoss.Resources.Swoop.png");
+            DouseSprite = CreateSprite("TownOfMoss.Resources.Douse.png");
+            IgniteSprite = CreateSprite("TownOfMoss.Resources.Ignite.png");
+            ReviveSprite = CreateSprite("TownOfMoss.Resources.Revive.png");
+            ButtonSprite = CreateSprite("TownOfMoss.Resources.Button.png");
+            DragSprite = CreateSprite("TownOfMoss.Resources.Drag.png");
+            DropSprite = CreateSprite("TownOfMoss.Resources.Drop.png");
+            PolusSprite = CreateSprite("TownOfMoss.Resources.polus.gg.png");
+            TargetSprite = CreateSprite("TownOfMoss.Resources.TargetIcon.png");
+            HackSprite = CreateSprite("TownOfMoss.Resources.Hack.png");
+            WaxSprite = CreateSprite("TownOfMoss.Resources.Wax.png");
+            PaintSprite[0] = CreateSprite("TownOfMoss.Resources.PaintRed.png");
+            PaintSprite[1] = CreateSprite("TownOfMoss.Resources.PaintBlue.png");
+            PaintSprite[2] = CreateSprite("TownOfMoss.Resources.PaintYellow.png");
+            InkSprite = CreateSprite("TownOfMoss.Resources.Ink.png");
+            PourSprite = CreateSprite("TownOfMoss.Resources.Pour.png");
+            CloseVentButtonSprite = CreateSprite("TownOfMoss.Resources.CloseVentButton.png");
+            PlaceCameraSprite = CreateSprite("TownOfMoss.Resources.PlaceCameraButton.png");
+            AnimatedVentSprite = CreateSprite("TownOfMoss.Resources.AnimatedVentSealed.png");
+            StaticVentSprite = CreateSprite("TownOfMoss.Resources.StaticVentSealed.png");
 
             PalettePatch.Load();
             ClassInjector.RegisterTypeInIl2Cpp<RainbowBehaviour>();
@@ -159,7 +159,9 @@ namespace TownOfUs
 
             SceneManager.add_sceneLoaded((Action<Scene, LoadSceneMode>) ((scene, loadSceneMode) =>
             {
-                ModManager.Instance.ShowModStamp();
+                if (ModManager.Instance != null) {
+                    ModManager.Instance.ShowModStamp();
+                }
             }));
 
             _harmony.PatchAll();
@@ -168,6 +170,7 @@ namespace TownOfUs
 
         public static Sprite CreateSprite(string name, bool hat = false)
         {
+            AmongUsExtensions.Log($"load {name}");
             var pixelsPerUnit = hat ? 225f : 100f;
             var pivot = hat ? new Vector2(0.5f, 0.8f) : new Vector2(0.5f, 0.5f);
 

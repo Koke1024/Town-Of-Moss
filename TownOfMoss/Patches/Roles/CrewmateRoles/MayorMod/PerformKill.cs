@@ -6,10 +6,10 @@ using TownOfUs.Roles.Modifiers;
 
 namespace TownOfUs.CrewmateRoles.MayorMod
 {
-    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.DoClick))]
+    [HarmonyPatch(typeof(KillButton), nameof(KillButton.DoClick))]
     public class DoClick
     {
-        public static bool Prefix(ActionButton __instance)
+        public static bool Prefix(KillButton __instance)
         {
             if (!PlayerControl.LocalPlayer.Is(RoleEnum.Mayor)) return true;
 

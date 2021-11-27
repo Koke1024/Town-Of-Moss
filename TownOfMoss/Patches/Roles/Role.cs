@@ -588,14 +588,4 @@ namespace TownOfUs.Roles
             }
         }
     }
-
-    [HarmonyPatch(typeof(RoleBehaviour), nameof(RoleBehaviour.CanVent))]
-    public static class CanVentOverride {
-        public static void Prefix(RoleBehaviour __instance) {
-            
-        }
-
-        public static void Postfix(RoleBehaviour __instance) {
-        }
-    }
 }

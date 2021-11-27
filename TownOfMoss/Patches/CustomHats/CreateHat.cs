@@ -13,7 +13,7 @@ namespace TownOfUs.CustomHats
         
         private static bool modded;
 
-        public static Sprite EmptySprite = TownOfUs.CreateSprite("TownOfUs.Resources.Hats.transparent.png", true);
+        public static Sprite EmptySprite = TownOfUs.CreateSprite("TownOfMoss.Resources.Hats.transparent.png", true);
 
         public static List<string> TallIds = new List<string>();
 
@@ -27,8 +27,8 @@ namespace TownOfUs.CustomHats
             //PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"Creating Hat {hat.name}");
 
             var sprite = hat.new_hat
-                ? TownOfUs.CreatePolusHat($"TownOfUs.Resources.Hats.{hat.name}.png")
-                : TownOfUs.CreateSprite($"TownOfUs.Resources.Hats.{hat.name}.png", true);
+                ? TownOfUs.CreatePolusHat($"TownOfMoss.Resources.Hats.{hat.name}.png")
+                : TownOfUs.CreateSprite($"TownOfMoss.Resources.Hats.{hat.name}.png", true);
 
             var newHat = ScriptableObject.CreateInstance<HatBehaviour>();
             // TODO: Used as a global identifier that this hatbehaviour was created by TOU. Change later
@@ -39,7 +39,7 @@ namespace TownOfUs.CustomHats
             newHat.InFront = true;
             /*if (hat.has_back)
             {
-                var sprite2 = TownOfUs.CreatePolusHat($"TownOfUs.Resources.Hats.hat_{hat.name}_back.png");
+                var sprite2 = TownOfUs.CreatePolusHat($"TownOfMoss.Resources.Hats.hat_{hat.name}_back.png");
                 newHat.InFront = false;
                 newHat.BackImage = sprite2;
             }*/
@@ -106,7 +106,7 @@ namespace TownOfUs.CustomHats
 
             private static List<HatData> GenerateHat()
             {
-                const string prefix = "TownOfUs.Resources.Hats.";
+                const string prefix = "TownOfMoss.Resources.Hats.";
                 var hatDatas = new List<HatData>();
                 foreach (var resourceName in typeof(TownOfUs).Assembly.GetManifestResourceNames())
                 {

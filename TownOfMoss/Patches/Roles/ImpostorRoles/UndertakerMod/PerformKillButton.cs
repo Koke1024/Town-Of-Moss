@@ -9,10 +9,10 @@ using UnityEngine;
 
 namespace TownOfUs.ImpostorRoles.UndertakerMod
 {
-    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.DoClick))]
+    [HarmonyPatch(typeof(KillButton), nameof(KillButton.DoClick))]
     public class UndertakerDoClickButton
     {
-        public static bool Prefix(ActionButton __instance)
+        public static bool Prefix(KillButton __instance)
         {
             var flag = PlayerControl.LocalPlayer.CanDrag();
             if (!flag) return true;

@@ -2,6 +2,7 @@
 using System.Linq;
 using HarmonyLib;
 using Reactor;
+using TownOfUs.Extensions;
 using UnityEngine;
 using UnhollowerBaseLib;
 
@@ -79,6 +80,7 @@ namespace TownOfUs.Patches {
         [HarmonyPatch(typeof(LobbyBehaviour), nameof(LobbyBehaviour.Start))]
         public static class RearrangeLobby {
             public static void Postfix(LobbyBehaviour __instance) {
+                AmongUsExtensions.Log($"lobby start");
                 Camera main = Camera.main;
                 FollowerCamera component = main.GetComponent<FollowerCamera>();
                 if (component)

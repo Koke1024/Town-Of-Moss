@@ -7,7 +7,7 @@ namespace TownOfUs.Roles
 {
     public class Kirby : Morphling
     {
-        public ActionButton _inhaleButton;
+        public KillButton _inhaleButton;
         public DeadBody _aten;
         public new DeadBody CurrentTarget { get; set; }
         public DateTime eatTime = new DateTime();
@@ -26,7 +26,7 @@ namespace TownOfUs.Roles
             _aten = null;
         }
         
-        public ActionButton InhaleButton
+        public KillButton InhaleButton
         {
             get => _inhaleButton;
             set

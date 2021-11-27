@@ -13,7 +13,7 @@ namespace TownOfUs.ImpostorRoles.JanitorMod
             return __instance == DestroyableSingleton<HudManager>.Instance.KillButton;
         }
 
-        public static void SetTarget(ActionButton __instance, DeadBody target, Janitor role)
+        public static void SetTarget(KillButton __instance, DeadBody target, Janitor role)
         {
             if (role.CurrentTarget && role.CurrentTarget != target)
                 role.CurrentTarget.bodyRenderer.material.SetFloat("_Outline", 0f);

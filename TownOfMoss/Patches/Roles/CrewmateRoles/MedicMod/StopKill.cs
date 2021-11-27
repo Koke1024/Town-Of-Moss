@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace TownOfUs.CrewmateRoles.MedicMod
 {
-    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.DoClick))]
+    [HarmonyPatch(typeof(KillButton), nameof(KillButton.DoClick))]
     public class StopKill
     {
         public static void BreakShield(byte medicId, byte playerId, bool flag)

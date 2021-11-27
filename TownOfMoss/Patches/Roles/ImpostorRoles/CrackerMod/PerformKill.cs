@@ -10,10 +10,10 @@ using Object = UnityEngine.Object;
 
 namespace TownOfUs.ImpostorRoles.CrackerMod
 {
-    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.DoClick))]
+    [HarmonyPatch(typeof(KillButton), nameof(KillButton.DoClick))]
     public class DoClick
     {
-        public static bool Prefix(ActionButton __instance)
+        public static bool Prefix(KillButton __instance)
         {
             var flag = PlayerControl.LocalPlayer.Is(RoleEnum.Cracker);
             if (!flag) return true;

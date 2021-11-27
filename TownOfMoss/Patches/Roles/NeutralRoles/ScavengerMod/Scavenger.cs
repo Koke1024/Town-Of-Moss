@@ -4,7 +4,7 @@ namespace TownOfUs.Roles
 {
     public class Scavenger : Role {
         public int eatCount;  
-        public ActionButton _eatButton;
+        public KillButton _eatButton;
         public DeadBody CurrentTarget { get; set; }
         public Scavenger(PlayerControl player) : base(player)
         {
@@ -17,7 +17,7 @@ namespace TownOfUs.Roles
             eatCount = 0;
         }
         
-        public ActionButton EatButton
+        public KillButton EatButton
         {
             get => _eatButton;
             set

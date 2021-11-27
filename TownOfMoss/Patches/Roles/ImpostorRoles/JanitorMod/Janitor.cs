@@ -4,7 +4,7 @@ namespace TownOfUs.Roles
 {
     public class Janitor : Assassin
     {
-        public ActionButton _cleanButton;
+        public KillButton _cleanButton;
 
         public Janitor(PlayerControl player) : base(player)
         {
@@ -32,7 +32,7 @@ namespace TownOfUs.Roles
             return (num - (float)timeSpan.TotalMilliseconds) / 1000f;
         }
         
-        public ActionButton CleanButton
+        public KillButton CleanButton
         {
             get => _cleanButton;
             set

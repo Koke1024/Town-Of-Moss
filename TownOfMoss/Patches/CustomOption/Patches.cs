@@ -16,7 +16,7 @@ namespace TownOfUs.CustomOption
         public static List<OptionBehaviour> DefaultOptions;
         public static float LobbyTextRowHeight { get; set; } = 0.081F;
         public static bool inited = false;
-        public static float x, y, z;
+        public static float contentX, contentY, contentZ;
 
         public static ToggleOption togglePrefab;
 
@@ -180,14 +180,14 @@ namespace TownOfUs.CustomOption
             public static void Postfix(GameOptionsMenu __instance) {
                 inited = false;
                 var customOptions = CreateOptions(__instance);
-                y = __instance.GetComponentsInChildren<OptionBehaviour>()
+                contentY = __instance.GetComponentsInChildren<OptionBehaviour>()
                     .Max(option => option.transform.localPosition.y);
-                x = __instance.Children[1].transform.localPosition.x;
-                z = __instance.Children[1].transform.localPosition.z;
+                contentX = __instance.Children[1].transform.localPosition.x;
+                contentZ = __instance.Children[1].transform.localPosition.z;
                 var i = 0;
 
                 foreach (var option in customOptions) {
-                    option.transform.localPosition = new Vector3(x, y - i++ * 0.25f, z);
+                    option.transform.localPosition = new Vector3(contentX, contentY - i++ * 0.25f, contentZ);
                 }
 
                 __instance.Children = new Il2CppReferenceArray<OptionBehaviour>(customOptions.ToArray());
@@ -204,15 +204,15 @@ namespace TownOfUs.CustomOption
             public static void Postfix(GameOptionsMenu __instance)
             {
                 if (!inited) {
-                    y = __instance.GetComponentsInChildren<OptionBehaviour>()
+                    contentY = __instance.GetComponentsInChildren<OptionBehaviour>()
                         .Max(option => option.transform.localPosition.y);
                     if (__instance.Children.Length == 1) {
-                        x = __instance.Children[0].transform.localPosition.x;
-                        z = __instance.Children[0].transform.localPosition.z;
+                        contentX = __instance.Children[0].transform.localPosition.x;
+                        contentZ = __instance.Children[0].transform.localPosition.z;
                     }
                     else {
-                        x = __instance.Children[1].transform.localPosition.x;
-                        z = __instance.Children[1].transform.localPosition.z;
+                        contentX = __instance.Children[1].transform.localPosition.x;
+                        contentZ = __instance.Children[1].transform.localPosition.z;
                     }
 
                     inited = true;
@@ -230,7 +230,7 @@ namespace TownOfUs.CustomOption
                         }
                     }
 
-                    option.transform.localPosition = new Vector3(x - 1.25f + 2.5f * (i % 2), y - (i / 2) * 0.25f, z);
+                    option.transform.localPosition = new Vector3(contentX - 1.25f + 2.5f * (i % 2), contentY - (i / 2) * 0.25f, contentZ);
                     option.transform.localScale = Vector3.one * 0.5f;
                     ++i;
                     if (opt is CustomHeaderOption header2) {
@@ -239,10 +239,10 @@ namespace TownOfUs.CustomOption
                         }
                     }
                 }
-                    
-                bottomY = -3 + myY - 2.23f + 3.57f - __instance.Children
+                
+                bottomY = -3 + myY + 1.34f - __instance.Children
                     .Min(option => option.transform.localPosition.y);
-                topY = myY - 2.23f + 3.57f;
+                topY = myY - 0.9227f;
                 
 
                 var position = __instance.transform.position;
@@ -259,8 +259,8 @@ namespace TownOfUs.CustomOption
                 }
                 if (BepInEx.IL2CPP.UnityEngine.Input.GetKeyInt(BepInEx.IL2CPP.UnityEngine.KeyCode.Home) ||
                     BepInEx.IL2CPP.UnityEngine.Input.GetKeyInt(BepInEx.IL2CPP.UnityEngine.KeyCode.A) ||
-                    __instance.transform.position.y < topY - y) {
-                    __instance.transform.position = new Vector3(position.x, topY - y, position.z);
+                    __instance.transform.position.y < topY) {
+                    __instance.transform.position = new Vector3(position.x, topY, position.z);
                 }
             }
         }

@@ -14,7 +14,7 @@ namespace TownOfUs.CrewmateRoles.AltruistMod
             return !PlayerControl.LocalPlayer.Is(RoleEnum.Altruist);
         }
 
-        public static void SetTarget(ActionButton __instance, DeadBody target, Altruist role)
+        public static void SetTarget(KillButton __instance, DeadBody target, Altruist role)
         {
             if (role.CurrentTarget && role.CurrentTarget != target)
                 role.CurrentTarget.bodyRenderer.material.SetFloat("_Outline", 0f);

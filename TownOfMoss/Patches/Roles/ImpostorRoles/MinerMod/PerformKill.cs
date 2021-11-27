@@ -11,10 +11,10 @@ using Object = UnityEngine.Object;
 
 namespace TownOfUs.ImpostorRoles.MinerMod
 {
-    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.DoClick))]
+    [HarmonyPatch(typeof(KillButton), nameof(KillButton.DoClick))]
     public class MinerDoClick
     {
-        public static bool Prefix(ActionButton __instance)
+        public static bool Prefix(KillButton __instance)
         {
             var flag = PlayerControl.LocalPlayer.Is(RoleEnum.Miner);
             if (!flag) return true;

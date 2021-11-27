@@ -65,7 +65,7 @@ namespace TownOfUs.Roles
         public static AssetBundle loadBundle()
         {
             var assembly = Assembly.GetExecutingAssembly();
-            var stream = assembly.GetManifestResourceStream("TownOfUs.Resources.glitchbundle");
+            var stream = assembly.GetManifestResourceStream("TownOfMoss.Resources.glitchbundle");
             var assets = stream.ReadFully();
             return AssetBundle.LoadFromMemory(assets);
         }
@@ -190,7 +190,7 @@ namespace TownOfUs.Roles
             }
         }
 
-        public bool UseAbility(ActionButton __instance)
+        public bool UseAbility(KillButton __instance)
         {
             if (__instance == HackButton)
                 HackButtonHandler.HackButtonPress(this, __instance);
@@ -467,7 +467,7 @@ namespace TownOfUs.Roles
                     __gInstance.KillTarget.myRend.material.SetColor("_OutlineColor", __gInstance.Color);
             }
 
-            public static void KillButtonPress(Glitch __gInstance, ActionButton __instance)
+            public static void KillButtonPress(Glitch __gInstance, KillButton __instance)
             {
                 if (__gInstance.KillTarget != null)
                 {
@@ -533,7 +533,7 @@ namespace TownOfUs.Roles
                     __gInstance.HackTarget.myRend.material.SetColor("_OutlineColor", __gInstance.Color);
             }
 
-            public static void HackButtonPress(Glitch __gInstance, ActionButton __instance)
+            public static void HackButtonPress(Glitch __gInstance, KillButton __instance)
             {
                 if (__gInstance.HackTarget != null)
                 {
@@ -599,7 +599,7 @@ namespace TownOfUs.Roles
                         CustomGameOptions.MimicCooldown);
             }
 
-            public static void MimicButtonPress(Glitch __gInstance, ActionButton __instance)
+            public static void MimicButtonPress(Glitch __gInstance, KillButton __instance)
             {
                 if (__gInstance.MimicList == null)
                 {

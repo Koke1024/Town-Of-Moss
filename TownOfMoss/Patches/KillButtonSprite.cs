@@ -8,7 +8,7 @@ namespace TownOfUs
     {
         public static void Prefix(ActionButton __instance)
         {
-            __instance.transform.Find("Text_TMP").gameObject.SetActive(false);
+            // __instance.transform.Find("Text_TMP").gameObject.SetActive(false);
         }
     }
     

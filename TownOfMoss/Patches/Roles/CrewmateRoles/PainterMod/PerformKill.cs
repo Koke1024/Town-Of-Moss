@@ -11,10 +11,10 @@ using DateTime = Il2CppSystem.DateTime;
 
 namespace TownOfUs.CrewmateRoles.PainterMod
 {
-    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.DoClick))]
+    [HarmonyPatch(typeof(KillButton), nameof(KillButton.DoClick))]
     public class DoClick
     {
-        public static bool Prefix(ActionButton __instance)
+        public static bool Prefix(KillButton __instance)
         {
             var flag = PlayerControl.LocalPlayer.Is(RoleEnum.Painter);
             if (!flag) return true;

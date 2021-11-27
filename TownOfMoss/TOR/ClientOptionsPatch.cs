@@ -1,6 +1,7 @@
 
 using Discord;
 using HarmonyLib;
+using Il2CppSystem.Dynamic.Utils;
 using UnityEngine;
 using TownOfUs;
 using TownOfUs.Extensions;
@@ -10,6 +11,17 @@ using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
 namespace TheOtherRoles.Patches {
+    [HarmonyPatch(typeof(OptionsMenuBehaviour), nameof(OptionsMenuBehaviour.Open))]
+    public static class TabPatch {
+        public static void Prefix(OptionsMenuBehaviour __instance) {
+            
+        }
+
+        public static void Postfix(OptionsMenuBehaviour __instance) {
+            AmongUsExtensions.Log($"open");
+        }
+    }
+    
     [HarmonyPatch(typeof(OptionsMenuBehaviour), nameof(OptionsMenuBehaviour.Start))]
     public class OptionsMenuBehaviourStartPatch {
         private static Vector3? origin;
@@ -62,7 +74,14 @@ namespace TheOtherRoles.Patches {
             return null;
         }
 
+        public static void Prefix(OptionsMenuBehaviour __instance) {
+            var customTab = GameObject.Instantiate(__instance.Tabs[1]);
+            __instance.Tabs.AddLast(customTab);
+        }
+
         public static void Postfix(OptionsMenuBehaviour __instance) {
+
+            AmongUsExtensions.Log($"options menu Start");
             if (__instance.CensorChatButton != null) {
                 if (origin == null) origin = __instance.CensorChatButton.transform.localPosition + Vector3.up * 0.25f;
                 __instance.CensorChatButton.transform.localPosition = origin.Value + Vector3.left * xOffset;

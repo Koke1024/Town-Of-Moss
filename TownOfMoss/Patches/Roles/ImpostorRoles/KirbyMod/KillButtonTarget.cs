@@ -14,7 +14,7 @@ namespace TownOfUs.ImpostorRoles.KirbyMod
             return __instance == DestroyableSingleton<HudManager>.Instance.KillButton;
         }
 
-        public static void SetTarget(ActionButton __instance, DeadBody target, Kirby role)
+        public static void SetTarget(KillButton __instance, DeadBody target, Kirby role)
         {
             if (role.Morphed) {
                 __instance.graphic.color = Palette.EnabledColor;

@@ -6,11 +6,11 @@ using TownOfUs.Roles;
 
 namespace TownOfUs.CrewmateRoles.SheriffMod
 {
-    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.DoClick))]
+    [HarmonyPatch(typeof(KillButton), nameof(KillButton.DoClick))]
     public static class Kill
     {
         [HarmonyPriority(Priority.First)]
-        private static bool Prefix(ActionButton __instance)
+        private static bool Prefix(KillButton __instance)
         {
             if (__instance != DestroyableSingleton<HudManager>.Instance.KillButton) return true;
             var flag = PlayerControl.LocalPlayer.Is(RoleEnum.Sheriff);

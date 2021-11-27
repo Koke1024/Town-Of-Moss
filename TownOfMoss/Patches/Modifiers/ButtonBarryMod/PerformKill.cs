@@ -4,10 +4,10 @@ using TownOfUs.Roles.Modifiers;
 
 namespace TownOfUs.Modifiers.ButtonBarryMod
 {
-    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.DoClick))]
+    [HarmonyPatch(typeof(KillButton), nameof(KillButton.DoClick))]
     public class DoClick
     {
-        public static bool Prefix(ActionButton __instance)
+        public static bool Prefix(KillButton __instance)
         {
             if (!PlayerControl.LocalPlayer.Is(ModifierEnum.ButtonBarry)) return true;
             if (PlayerControl.LocalPlayer.Is(RoleEnum.Swapper)) return true;

@@ -7,7 +7,7 @@ namespace TownOfUs.Roles
 {
     public class Undertaker : Assassin
     {
-        public ActionButton _dragDropButton;
+        public KillButton _dragDropButton;
 
         public Undertaker(PlayerControl player) : base(player)
         {
@@ -23,7 +23,7 @@ namespace TownOfUs.Roles
         public DeadBody CurrentTarget { get; set; }
         public DeadBody CurrentlyDragging { get; set; }
 
-        public ActionButton DragDropButton
+        public KillButton DragDropButton
         {
             get => _dragDropButton;
             set
