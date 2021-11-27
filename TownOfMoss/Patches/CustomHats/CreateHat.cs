@@ -127,18 +127,18 @@ namespace TownOfUs.CustomHats
                 return hatDatas;
             }
         }
-
-        [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.SetHat))]
-        public static class PlayerControl_SetHat
-        {
-            public static void Postfix(PlayerControl __instance, uint __0, int __1)
-            {
-                __instance.nameText.transform.localPosition = new Vector3(
-                    0f,
-                    __0 == 0U ? 1.5f : TallIds.Contains("__0") ? 2.2f : 2.0f,
-                    -0.5f
-                );
-            }
-        }
+        //
+        // [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.SetHat))]
+        // public static class PlayerControl_SetHat
+        // {
+        //     public static void Postfix(PlayerControl __instance, uint __0, int __1)
+        //     {
+        //         __instance.nameText.transform.localPosition = new Vector3(
+        //             0f,
+        //             __0 == 0U ? 1.5f : TallIds.Contains("__0") ? 2.2f : 2.0f,
+        //             -0.5f
+        //         );
+        //     }
+        // }
     }
 }

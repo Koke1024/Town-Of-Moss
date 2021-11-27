@@ -178,8 +178,62 @@ namespace TownOfUs.CustomOption
         private class GameOptionsMenu_Start
         {
             public static void Postfix(GameOptionsMenu __instance) {
+                if (GameObject.Find("TOMSettings") != null) { // Settings setup has already been performed, fixing the title of the tab and returning
+                    GameObject.Find("TOMSettings").transform.FindChild("GameGroup").FindChild("Text").GetComponent<TMPro.TextMeshPro>().SetText("Town of Moss Settings");
+                    return;
+                }
+                
                 inited = false;
                 var customOptions = CreateOptions(__instance);
+                
+                            var gameSettings = GameObject.Find("Game Settings");
+            var gameSettingMenu = UnityEngine.Object.FindObjectsOfType<GameSettingMenu>().FirstOrDefault();
+            var tomSettings = UnityEngine.Object.Instantiate(gameSettings, gameSettings.transform.parent);
+            var tomMenu = tomSettings.transform.FindChild("GameGroup").FindChild("SliderInner").GetComponent<GameOptionsMenu>();
+            tomSettings.name = "TOMSettings";
+
+            var roleTab = GameObject.Find("RoleTab");
+            var gameTab = GameObject.Find("GameTab");
+
+            var tomTab = UnityEngine.Object.Instantiate(roleTab, roleTab.transform.parent);
+            var tomTabHighlight = tomTab.transform.FindChild("Hat Button").FindChild("Tab Background").GetComponent<SpriteRenderer>();
+            tomTab.transform.FindChild("Hat Button").FindChild("Icon").GetComponent<SpriteRenderer>().sprite = ModManager.Instance.ModStamp.sprite;
+
+            gameTab.transform.position += Vector3.left * 0.5f;
+            tomTab.transform.position += Vector3.right * 0.5f;
+            roleTab.transform.position += Vector3.left * 0.5f;  
+
+            var tabs = new GameObject[]{gameTab, roleTab, tomTab};
+            for (int menuIndex = 0; menuIndex < tabs.Length; menuIndex++) {
+                var button = tabs[menuIndex].GetComponentInChildren<PassiveButton>();
+                if (button == null) continue;
+                int copiedIndex = menuIndex;
+                button.OnClick = new UnityEngine.UI.Button.ButtonClickedEvent();
+                button.OnClick.AddListener((UnityEngine.Events.UnityAction)(() => {
+                    gameSettingMenu.RegularGameSettings.SetActive(false);
+                    gameSettingMenu.RolesSettings.gameObject.SetActive(false);
+                    tomSettings.gameObject.SetActive(false);
+                    gameSettingMenu.GameSettingsHightlight.enabled = false;
+                    gameSettingMenu.RolesSettingsHightlight.enabled = false;
+                    tomTabHighlight.enabled = false;
+                    if (copiedIndex == 0) {
+                        gameSettingMenu.RegularGameSettings.SetActive(true);
+                        gameSettingMenu.GameSettingsHightlight.enabled = true;  
+                    } else if (copiedIndex == 1) {
+                        gameSettingMenu.RolesSettings.gameObject.SetActive(true);
+                        gameSettingMenu.RolesSettingsHightlight.enabled = true;
+                    } else if (copiedIndex == 2) {
+                        tomSettings.gameObject.SetActive(true);
+                        tomTabHighlight.enabled = true;
+                    }
+                }));
+            }
+
+            foreach (OptionBehaviour option in tomMenu.GetComponentsInChildren<OptionBehaviour>())
+                UnityEngine.Object.Destroy(option.gameObject);
+            List<OptionBehaviour> torOptions = new List<OptionBehaviour>();
+                
+                
                 contentY = __instance.GetComponentsInChildren<OptionBehaviour>()
                     .Max(option => option.transform.localPosition.y);
                 contentX = __instance.Children[1].transform.localPosition.x;
@@ -216,33 +270,35 @@ namespace TownOfUs.CustomOption
                     }
 
                     inited = true;
-                }
+                    
+                    int i = 0;
+                    foreach (var option in __instance.Children) {
+                        var opt =
+                            CustomOption.AllOptions.FirstOrDefault(o =>
+                                o.Setting == option);
+                        if (opt is CustomHeaderOption header) {
+                            if (i % 2 == 1) {
+                                ++i;
+                            }
+                        }
 
-                int i = 0;
-                float myY = PlayerControl.LocalPlayer.transform.position.y;
-                foreach (var option in __instance.Children) {
-                    var opt =
-                        CustomOption.AllOptions.FirstOrDefault(o =>
-                            o.Setting == option);
-                    if (opt is CustomHeaderOption header) {
-                        if (i % 2 == 1) {
-                            ++i;
+                        option.transform.localPosition = new Vector3(contentX - 1.25f + 2.5f * (i % 2), contentY - (i / 2) * 0.25f, contentZ);
+                        option.transform.localScale = Vector3.one * 0.5f;
+                        ++i;
+                        if (opt is CustomHeaderOption header2) {
+                            if (i % 2 == 1) {
+                                ++i;
+                            }
                         }
                     }
-
-                    option.transform.localPosition = new Vector3(contentX - 1.25f + 2.5f * (i % 2), contentY - (i / 2) * 0.25f, contentZ);
-                    option.transform.localScale = Vector3.one * 0.5f;
-                    ++i;
-                    if (opt is CustomHeaderOption header2) {
-                        if (i % 2 == 1) {
-                            ++i;
-                        }
-                    }
+                    
+                    float myY = PlayerControl.LocalPlayer.transform.position.y;
+                    bottomY = -3 + myY + 1.34f - __instance.Children
+                        .Min(option => option.transform.localPosition.y);
+                    topY = myY - 0.9227f;
                 }
-                
-                bottomY = -3 + myY + 1.34f - __instance.Children
-                    .Min(option => option.transform.localPosition.y);
-                topY = myY - 0.9227f;
+
+                var tomSetting = GameObject.Find("TOMSettings");
                 
 
                 var position = __instance.transform.position;

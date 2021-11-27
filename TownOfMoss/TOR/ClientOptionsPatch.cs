@@ -1,14 +1,12 @@
 
+using System.Collections.Generic;
 using Discord;
 using HarmonyLib;
-using Il2CppSystem.Dynamic.Utils;
 using UnityEngine;
 using TownOfUs;
 using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine.UI;
-using Vector2 = UnityEngine.Vector2;
-using Vector3 = UnityEngine.Vector3;
 
 namespace TheOtherRoles.Patches {
     [HarmonyPatch(typeof(OptionsMenuBehaviour), nameof(OptionsMenuBehaviour.Open))]
@@ -22,7 +20,7 @@ namespace TheOtherRoles.Patches {
         }
     }
     
-    [HarmonyPatch(typeof(OptionsMenuBehaviour), nameof(OptionsMenuBehaviour.Start))]
+    [HarmonyPatch(typeof(OptionsMenuBehaviour), nameof(OptionsMenuBehaviour.Update))]
     public class OptionsMenuBehaviourStartPatch {
         private static Vector3? origin;
         public static ToggleButtonBehaviour getHostButton;
@@ -32,6 +30,7 @@ namespace TheOtherRoles.Patches {
         public static ToggleButtonBehaviour crewOnButton;
         public static ToggleButtonBehaviour ImpostorOnButton;
         public static ToggleButtonBehaviour NeutralOnButton;
+        private static List<ToggleButtonBehaviour> buttons = new List<ToggleButtonBehaviour>();
 
         public static float xOffset = 1.75f;
         public static float yOffset = -0.3f;
@@ -45,10 +44,9 @@ namespace TheOtherRoles.Patches {
             if (button.Rollover) button.Rollover.ChangeOutColor(color);
         }
 
-        private static ToggleButtonBehaviour createCustomToggle(string text, bool on, Vector3 offset, UnityEngine.Events.UnityAction onClick, OptionsMenuBehaviour __instance) {
+        private static ToggleButtonBehaviour createCustomToggle(string text, bool on, ToggleButtonBehaviour model, UnityEngine.Events.UnityAction onClick, OptionsMenuBehaviour __instance) {
             if (__instance.CensorChatButton != null) {
-                var button = UnityEngine.Object.Instantiate(__instance.CensorChatButton, __instance.CensorChatButton.transform.parent);
-                button.transform.localPosition = (origin ?? Vector3.zero) + offset;
+                var button = UnityEngine.Object.Instantiate(model);
                 PassiveButton passiveButton = button.GetComponent<PassiveButton>();
                 passiveButton.OnClick = new Button.ButtonClickedEvent();
                 passiveButton.OnClick.AddListener(onClick);
@@ -59,15 +57,15 @@ namespace TheOtherRoles.Patches {
             return null;
         }
 
-        private static ToggleButtonBehaviour createCustomButton(string text, Vector3 offset, UnityEngine.Events.UnityAction onClick, OptionsMenuBehaviour __instance) {
+        private static ToggleButtonBehaviour createCustomButton(string text, ToggleButtonBehaviour model, UnityEngine.Events.UnityAction onClick, OptionsMenuBehaviour __instance) {
             if (__instance.CensorChatButton != null) {
-                var button = UnityEngine.Object.Instantiate(__instance.CensorChatButton, __instance.CensorChatButton.transform.parent);
-                button.transform.localPosition = (origin ?? Vector3.zero) + offset;
+                var button = UnityEngine.Object.Instantiate(model);
                 PassiveButton passiveButton = button.GetComponent<PassiveButton>();
                 passiveButton.OnClick = new Button.ButtonClickedEvent();
                 passiveButton.OnClick.AddListener(onClick);
                 button.Text.text = text;
                 button.Background.color = Color.yellow;
+                button.name = text + " Button";
                 
                 return button;
             }
@@ -75,21 +73,34 @@ namespace TheOtherRoles.Patches {
         }
 
         public static void Prefix(OptionsMenuBehaviour __instance) {
-            var customTab = GameObject.Instantiate(__instance.Tabs[1]);
-            __instance.Tabs.AddLast(customTab);
+            // var customTab = GameObject.Instantiate(__instance.Tabs[0]);
+            // customTab.transform.SetParent(__instance.Tabs[0].transform.parent);
+            // AmongUsExtensions.Log($"length {__instance.Tabs.Length}");
+            // __instance.Tabs.AddItem(customTab);
+            // AmongUsExtensions.Log($">{__instance.Tabs.Length}");
+            // __instance.Tabs[0].transform.localPosition.Set(-0.7f, 2.4f, -1);
+            // __instance.Tabs[1].transform.localPosition.Set(0, 2.4f, -1);
+            // __instance.Tabs[2].transform.localPosition.Set(0.7f, 2.4f, -1);
         }
 
         public static void Postfix(OptionsMenuBehaviour __instance) {
 
-            AmongUsExtensions.Log($"options menu Start");
-            if (__instance.CensorChatButton != null) {
-                if (origin == null) origin = __instance.CensorChatButton.transform.localPosition + Vector3.up * 0.25f;
-                __instance.CensorChatButton.transform.localPosition = origin.Value + Vector3.left * xOffset;
-                __instance.CensorChatButton.transform.localScale = Vector3.one * 2f / 3f;
+            if (buttons.Count > 0) {
+                return;
             }
 
+            if (GameObject.Find("FullScreenButton") == null || GameObject.Find("VSyncButton") == null) {
+                AmongUsExtensions.Log($"No Button");
+                return;
+            }
+            buttons = new List<ToggleButtonBehaviour> {
+                GameObject.Find("FullScreenButton").GetComponent<ToggleButtonBehaviour>(),
+                GameObject.Find("VSyncButton").GetComponent<ToggleButtonBehaviour>()
+            };
+            if (origin == null) origin = buttons[0].transform.localPosition + Vector3.up * 0.25f;
+
             if (streamButton == null || streamButton.gameObject == null) {
-                streamButton = createCustomToggle("Hide Room Code: ", Utils.IsStreamMode, Vector3.zero, (UnityEngine.Events.UnityAction)SetStreamMode, __instance);
+                streamButton = createCustomToggle("Hide Room Code: ", Utils.IsStreamMode, buttons[0], (UnityEngine.Events.UnityAction)SetStreamMode, __instance);
 
                 void SetStreamMode() {
                     if (LobbyBehaviour.Instance != null) {
@@ -97,10 +108,11 @@ namespace TheOtherRoles.Patches {
                         updateToggle(streamButton, "Hide Room Code: ", Utils.IsStreamMode);
                     }
                 }
+                buttons.Add(streamButton);
             }
 
             if (settingCheckButton == null || settingCheckButton.gameObject == null) {
-                settingCheckButton = createCustomButton("Game Setting Check", Vector3.right * xOffset, (UnityEngine.Events.UnityAction)SettingCheck, __instance);
+                settingCheckButton = createCustomButton("Game Setting Check", buttons[0], (UnityEngine.Events.UnityAction)SettingCheck, __instance);
                 // settingCheckButton.UpdateText(false);
 
                 void SettingCheck() {
@@ -121,10 +133,11 @@ namespace TheOtherRoles.Patches {
                         }
                     // }
                 }
+                buttons.Add(settingCheckButton);
             }
 
             if (roleManualButton == null || roleManualButton.gameObject == null) {
-                roleManualButton = createCustomButton("Show Role Manual", new Vector2(-xOffset, yOffset), (UnityEngine.Events.UnityAction)ShowRoleInfo, __instance);
+                roleManualButton = createCustomButton("Show Role Manual", buttons[0], (UnityEngine.Events.UnityAction)ShowRoleInfo, __instance);
                 // roleManualButton.UpdateText(false);
 
                 void ShowRoleInfo() {
@@ -139,10 +152,11 @@ namespace TheOtherRoles.Patches {
                         DestroyableSingleton<HudManager>.Instance.ShowPopUp(settingString);
                     }
                 }
+                buttons.Add(roleManualButton);
             }
 
             if (crewOnButton == null || crewOnButton.gameObject == null) {
-                crewOnButton = createCustomButton("Show Crewmates Role ", new Vector2(-xOffset, yOffset * 2), (UnityEngine.Events.UnityAction)ShowCrewRoleInfo, __instance);
+                crewOnButton = createCustomButton("Show Crewmates Role ", buttons[0], (UnityEngine.Events.UnityAction)ShowCrewRoleInfo, __instance);
                 // roleManualButton.UpdateText(false);
 
                 void ShowCrewRoleInfo() {
@@ -152,10 +166,11 @@ namespace TheOtherRoles.Patches {
                         DestroyableSingleton<HudManager>.Instance.ShowPopUp(settingString);
                     }
                 }
+                buttons.Add(crewOnButton);
             }
 
             if (ImpostorOnButton == null || ImpostorOnButton.gameObject == null) {
-                ImpostorOnButton = createCustomButton("Show Impostor Role ", new Vector2(0, yOffset * 2), (UnityEngine.Events.UnityAction)ShowImpRoleInfo, __instance);
+                ImpostorOnButton = createCustomButton("Show Impostor Role ", buttons[0], (UnityEngine.Events.UnityAction)ShowImpRoleInfo, __instance);
                 // roleManualButton.UpdateText(false);
 
                 void ShowImpRoleInfo() {
@@ -165,10 +180,11 @@ namespace TheOtherRoles.Patches {
                         DestroyableSingleton<HudManager>.Instance.ShowPopUp(settingString);
                     }
                 }
+                buttons.Add(ImpostorOnButton);
             }
 
             if (NeutralOnButton == null || NeutralOnButton.gameObject == null) {
-                NeutralOnButton = createCustomButton("Show Neutral Role ", new Vector2(xOffset, yOffset * 2), (UnityEngine.Events.UnityAction)ShowNeutralRoleInfo, __instance);
+                NeutralOnButton = createCustomButton("Show Neutral Role ", buttons[0], (UnityEngine.Events.UnityAction)ShowNeutralRoleInfo, __instance);
                 // roleManualButton.UpdateText(false);
 
                 void ShowNeutralRoleInfo() {
@@ -178,6 +194,16 @@ namespace TheOtherRoles.Patches {
                         DestroyableSingleton<HudManager>.Instance.ShowPopUp(settingString);
                     }
                 }
+                buttons.Add(NeutralOnButton);
+            }
+
+            var index = 0;
+            var parent = GameObject.Find("GraphicsTab").transform;
+            foreach (var button in buttons) {
+                button.transform.SetParent(parent);
+                button.transform.localScale = Vector3.one * 1f / 2f;
+                button.transform.localPosition = (origin ?? Vector3.zero) + new Vector3((index % 3 - 1) * xOffset, ((int)index / 3) * yOffset);
+                ++index;
             }
 
             // if ((getHostButton == null || getHostButton.gameObject == null)) {
