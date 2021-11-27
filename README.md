@@ -25,6 +25,7 @@ MODの導入されていない2021.6.30のAmong Usディレクトリに展開し
 
 | Date | Among Us - Version| Mod Version | Link |
 |---|----------|-------------|-----------------|
+| 21-11-27 | 2021.6.30s | v0.5 | [Download](https://spiel.jp/mod/Moss05.zip) |
 | 21-11-27 | 2021.6.30s | v0.442 | [Download](https://spiel.jp/mod/Moss0442.zip) |
 | 21-11-24 | 2021.6.30s | v0.441 | [Download](https://spiel.jp/mod/Moss0441.zip) |
 | 21-11-22 | 2021.6.30s | v0.44 | [Download](https://spiel.jp/mod/Moss044.zip) |
@@ -41,6 +42,13 @@ MODの導入されていない2021.6.30のAmong Usディレクトリに展開し
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v0.5 </summary>
+        <ul>
+            <li>Ventから出られない場合がある不具合を修正</li>
+            <li>Engineerのスキルアイコンの表示の問題を修正</li>
+        </ul>
+    </details>
     <details>
         <summary> v0.442 </summary>
         <ul>
