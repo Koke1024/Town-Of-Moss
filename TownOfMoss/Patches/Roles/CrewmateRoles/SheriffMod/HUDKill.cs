@@ -20,6 +20,7 @@ namespace TownOfUs.CrewmateRoles.SheriffMod
             if (PlayerControl.AllPlayerControls.Count <= 1) return;
             if (PlayerControl.LocalPlayer == null) return;
             if (PlayerControl.LocalPlayer.Data == null) return;
+            if (PlayerControl.LocalPlayer.Data.Role == null) return;
             var flag7 = PlayerControl.AllPlayerControls.Count > 1;
             if (!flag7) return;
             var flag8 = PlayerControl.LocalPlayer.Is(RoleEnum.Sheriff);

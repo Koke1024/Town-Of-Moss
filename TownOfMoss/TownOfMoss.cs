@@ -159,7 +159,7 @@ namespace TownOfUs
 
             SceneManager.add_sceneLoaded((Action<Scene, LoadSceneMode>) ((scene, loadSceneMode) =>
             {
-                if (ModManager.Instance != null) {
+                if (ModManager.Instance != null && ModManager.Instance.ModStamp != null) {
                     ModManager.Instance.ShowModStamp();
                 }
             }));
@@ -170,7 +170,6 @@ namespace TownOfUs
 
         public static Sprite CreateSprite(string name, bool hat = false)
         {
-            AmongUsExtensions.Log($"load {name}");
             var pixelsPerUnit = hat ? 225f : 100f;
             var pivot = hat ? new Vector2(0.5f, 0.8f) : new Vector2(0.5f, 0.5f);
 

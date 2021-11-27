@@ -56,7 +56,7 @@ namespace TownOfUs
             Player.HatRenderer.SetHat(targetAppearance.HatId, targetAppearance.ColorId);
             Player.nameText.transform.localPosition = new Vector3(
                 0f,
-                Player.Data.DefaultOutfit.HatId == "0U" ? 1.5f :
+                Player.Data.DefaultOutfit.HatId == "" ? 1.5f :
                 HatCreation.TallIds.Contains(Player.Data.DefaultOutfit.HatId) ? 2.2f : 2.0f,
                 -0.5f
             );
@@ -94,7 +94,7 @@ namespace TownOfUs
             Player.HatRenderer.SetHat(appearance.HatId, appearance.ColorId);
             Player.nameText.transform.localPosition = new Vector3(
                 0f,
-                appearance.HatId == "0U" ? 1.5f :
+                appearance.HatId == "" ? 1.5f :
                 HatCreation.TallIds.Contains(appearance.HatId) ? 2.2f : 2.0f,
                 -0.5f
             );
@@ -126,7 +126,7 @@ namespace TownOfUs
             {
                 player.nameText.text = "";
                 PlayerControl.SetPlayerMaterialColors(Color.grey, player.myRend);
-                player.HatRenderer.SetHat("0", 0);
+                player.HatRenderer.SetHat("", 0);
                 if (player.MyPhysics.Skin.skin.ProdId != DestroyableSingleton<HatManager>.Instance
                     .AllSkins.ToArray()[0].ProdId)
                     SetSkin(player, "0");
@@ -632,5 +632,12 @@ namespace TownOfUs
             }
         }
     }
+
+    // [HarmonyPatch(typeof(HatParent), nameof(HatParent.SetHat))]
+    // public static class GetHatId {
+    //     public static void Prefix(HatParent __instance, [HarmonyArgument(0)] string hatId, [HarmonyArgument(1)] int color) {
+    //         AmongUsExtensions.Log($"set Hat Id: {hatId}");
+    //     }
+    // }
     
 }

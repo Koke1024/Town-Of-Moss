@@ -103,7 +103,7 @@ namespace TownOfUs.Roles
             if (Player.nameText != null) {
                 Player.nameText.transform.localPosition = new Vector3(
                     0f,
-                    Player.Data.DefaultOutfit.HatId == "0U" ? 1.5f :
+                    Player.Data.DefaultOutfit.HatId == "" ? 1.5f :
                     HatCreation.TallIds.Contains(Player.Data.DefaultOutfit.HatId) ? 2.2f : 2.0f,
                     -0.5f
                 );
@@ -111,6 +111,7 @@ namespace TownOfUs.Roles
 
             if (PlayerControl.LocalPlayer.Data.IsDead && CustomGameOptions.DeadSeeRoles) return Utils.ShowDeadBodies;
             if (Faction == Faction.Impostors && 
+                PlayerControl.LocalPlayer.Data.Role && 
                 PlayerControl.LocalPlayer.Data.Role.IsImpostor && 
                 CustomGameOptions.ImpostorSeeRoles && 
                 (!CustomGameOptions.MadMateOn || 
@@ -182,7 +183,7 @@ namespace TownOfUs.Roles
 
             Player.nameText.transform.localPosition = new Vector3(
                 0f,
-                Player.Data.DefaultOutfit.HatId == "0U" ? 1.5f :
+                Player.Data.DefaultOutfit.HatId == "" ? 1.5f :
                 HatCreation.TallIds.Contains(Player.Data.DefaultOutfit.HatId) ? 2.2f : 2.0f,
                 -0.5f
             );
@@ -565,10 +566,11 @@ namespace TownOfUs.Roles
                 if (PlayerControl.AllPlayerControls.Count <= 1) return;
                 if (PlayerControl.LocalPlayer == null) return;
                 if (PlayerControl.LocalPlayer.Data == null) return;
+                if (LobbyBehaviour.Instance != null) return;
 
                 foreach (var player in PlayerControl.AllPlayerControls)
                 {
-                    if (!(player.Data != null && player.Data.Role.IsImpostor && PlayerControl.LocalPlayer.Data.Role.IsImpostor))
+                    if (!(player.Data != null && player.Data.Role != null && player.Data.Role.IsImpostor && PlayerControl.LocalPlayer.Data.Role.IsImpostor))
                     {
                         player.nameText.text = player.name;
                         player.nameText.color = Color.white;

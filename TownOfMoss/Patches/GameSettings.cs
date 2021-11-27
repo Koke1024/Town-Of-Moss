@@ -68,7 +68,6 @@ namespace TownOfUs {
             }
 
             private static void Postfix(ref string __result) {
-                AmongUsExtensions.Log($"GameOptionsData");
                 var builder = new StringBuilder(AllOptions ? __result : "");
                 builder.AppendLine(
                     $"\n\n<color=#FF0000FF>#Impostors</color>: {PlayerControl.GameOptions.NumImpostors}");

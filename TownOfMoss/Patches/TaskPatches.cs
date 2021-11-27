@@ -11,6 +11,9 @@ namespace TownOfUs {
                 __instance.CompletedTasks = 0;
                 for (var i = 0; i < __instance.AllPlayers.Count; i++) {
                     var playerInfo = __instance.AllPlayers.ToArray()[i];
+                    if (playerInfo == null) {
+                        continue;
+                    }
                     if (!playerInfo.Disconnected && playerInfo.Tasks != null && playerInfo.Object &&
                         (PlayerControl.GameOptions.GhostsDoTasks || !playerInfo.IsDead) &&
                         playerInfo.Role.TeamType != RoleTeamTypes.Impostor &&

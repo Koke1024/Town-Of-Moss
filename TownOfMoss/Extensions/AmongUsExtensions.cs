@@ -50,6 +50,10 @@ namespace TownOfUs.Extensions
             if(player.Data == null){
                 return new VisualAppearance();
             }
+            // AmongUsExtensions.Log($"{player.Data.DefaultOutfit.ColorId}");
+            // AmongUsExtensions.Log($"{player.Data.DefaultOutfit.HatId}");
+            // AmongUsExtensions.Log($"{player.Data.DefaultOutfit.SkinId}");
+            // AmongUsExtensions.Log($"{player.Data.DefaultOutfit.PetId}");
             return new VisualAppearance()
             {
                 ColorId = player.Data.DefaultOutfit.ColorId,

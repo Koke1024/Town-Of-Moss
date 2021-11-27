@@ -13,7 +13,7 @@ namespace TownOfUs
         public static bool Prefix(ShipStatus __instance, [HarmonyArgument(0)] GameData.PlayerInfo player,
             ref float __result)
         {
-            if (player == null || (player.IsDead && !CanMove.CanMovePatch.GetMyBody()))
+            if (player == null || player.Role == null || (player.IsDead && !CanMove.CanMovePatch.GetMyBody()))
             {
                 __result = __instance.MaxLightRadius;
                 return false;
