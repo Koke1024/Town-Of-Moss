@@ -11,6 +11,7 @@ namespace TownOfUs.NeutralRoles.GlitchMod
     {
         private static void Postfix(HudManager __instance)
         {
+            if (PlayerControl.LocalPlayer == null) return;
             if (PlayerControl.LocalPlayer.Data == null) return;
             if (PlayerControl.LocalPlayer.Data.Role == null) return;
             var glitch = Role.AllRoles.FirstOrDefault(x => x.RoleType == RoleEnum.Glitch);

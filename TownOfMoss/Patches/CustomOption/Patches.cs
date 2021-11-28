@@ -7,10 +7,8 @@ using UnhollowerBaseLib;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace TownOfUs.CustomOption
-{
-    public static class Patches
-    {
+namespace TownOfUs.CustomOption {
+    public static class Patches {
         public static Export ExportButton;
         public static Import ImportButton;
         public static List<OptionBehaviour> DefaultOptions;
@@ -20,20 +18,17 @@ namespace TownOfUs.CustomOption
 
         public static ToggleOption togglePrefab;
 
-        private static List<OptionBehaviour> CreateOptions(GameOptionsMenu __instance)
-        {
+        private static List<OptionBehaviour> CreateOptions(GameOptionsMenu __instance) {
             var options = new List<OptionBehaviour>();
 
             var numberPrefab = Object.FindObjectOfType<NumberOption>();
             var stringPrefab = Object.FindObjectOfType<StringOption>();
-            
-            if (ExportButton.Setting != null)
-            {
+
+            if (ExportButton.Setting != null) {
                 ExportButton.Setting.gameObject.SetActive(true);
                 options.Add(ExportButton.Setting);
             }
-            else
-            {
+            else {
                 var toggle = Object.Instantiate(togglePrefab, togglePrefab.transform.parent).DontDestroy();
                 toggle.transform.GetChild(2).gameObject.SetActive(false);
                 toggle.transform.GetChild(0).localPosition += new Vector3(1f, 0f, 0f);
@@ -43,13 +38,11 @@ namespace TownOfUs.CustomOption
                 options.Add(toggle);
             }
 
-            if (ImportButton.Setting != null)
-            {
+            if (ImportButton.Setting != null) {
                 ImportButton.Setting.gameObject.SetActive(true);
                 options.Add(ImportButton.Setting);
             }
-            else
-            {
+            else {
                 var toggle = Object.Instantiate(togglePrefab, togglePrefab.transform.parent).DontDestroy();
                 toggle.transform.GetChild(2).gameObject.SetActive(false);
                 toggle.transform.GetChild(0).localPosition += new Vector3(1f, 0f, 0f);
@@ -62,11 +55,11 @@ namespace TownOfUs.CustomOption
             DefaultOptions = __instance.Children.ToList();
             foreach (var defaultOption in __instance.Children) {
                 defaultOption.gameObject.SetActive(true);
-                
+
                 if (!AmongUsClient.Instance.AmHost) {
                     defaultOption.gameObject.SetActive(true);
                     if (defaultOption.GetComponent<PassiveButton>()) {
-                        defaultOption.GetComponent<PassiveButton>().enabled = false;                        
+                        defaultOption.GetComponent<PassiveButton>().enabled = false;
                     }
                 }
 
@@ -74,27 +67,24 @@ namespace TownOfUs.CustomOption
             }
 
             foreach (var row
-                in CustomOption.AllOptions)
-            {
+                in CustomOption.AllOptions) {
                 // AmongUsExtensions.Log($"{option.Name}");
-                if (row.Setting != null)
-                {
+                if (row.Setting != null) {
                     row.Setting.gameObject.SetActive(true);
-                    
+
                     options.Add(row.Setting);
                     continue;
                 }
 
                 // AmongUsExtensions.Log($"{option.Type}");
-                switch (row.Type)
-                {
+                switch (row.Type) {
                     case CustomOptionType.Header:
                         if (AmongUsClient.Instance.AmHost) {
                             var toggle = Object.Instantiate(togglePrefab, togglePrefab.transform.parent).DontDestroy();
                             toggle.transform.GetChild(1).gameObject.SetActive(false);
                             toggle.transform.GetChild(2).gameObject.SetActive(false);
                             row.Setting = toggle;
-                            options.Add(toggle);                            
+                            options.Add(toggle);
                         }
                         else {
                             var header = Object.Instantiate(togglePrefab, togglePrefab.transform.parent).DontDestroy();
@@ -104,8 +94,9 @@ namespace TownOfUs.CustomOption
                             row.Setting = header;
                             options.Add(header);
                         }
+
                         break;
-                        
+
                     case CustomOptionType.Toggle:
                         if (AmongUsClient.Instance.AmHost) {
                             var toggle2 = Object.Instantiate(togglePrefab, togglePrefab.transform.parent).DontDestroy();
@@ -119,6 +110,7 @@ namespace TownOfUs.CustomOption
                             toggle2.GetComponent<PassiveButton>().enabled = false;
                             options.Add(toggle2);
                         }
+
                         break;
                     case CustomOptionType.Number:
                         var number = Object.Instantiate(numberPrefab, numberPrefab.transform.parent).DontDestroy();
@@ -139,16 +131,13 @@ namespace TownOfUs.CustomOption
         }
 
 
-        private static bool OnEnable(OptionBehaviour opt)
-        {
-            if (opt == ExportButton.Setting)
-            {
+        private static bool OnEnable(OptionBehaviour opt) {
+            if (opt == ExportButton.Setting) {
                 ExportButton.OptionCreated();
                 return false;
             }
 
-            if (opt == ImportButton.Setting)
-            {
+            if (opt == ImportButton.Setting) {
                 ImportButton.OptionCreated();
                 return false;
             }
@@ -158,11 +147,9 @@ namespace TownOfUs.CustomOption
                 CustomOption.AllOptions.FirstOrDefault(option =>
                     option.Setting == opt); // Works but may need to change to gameObject.name check
 
-            if (customOption == null)
-            {
+            if (customOption == null) {
                 customOption = ExportButton.SlotButtons.FirstOrDefault(option => option.Setting == opt);
-                if (customOption == null)
-                {
+                if (customOption == null) {
                     customOption = ImportButton.SlotButtons.FirstOrDefault(option => option.Setting == opt);
                     if (customOption == null) return true;
                 }
@@ -175,69 +162,83 @@ namespace TownOfUs.CustomOption
 
 
         [HarmonyPatch(typeof(GameOptionsMenu), nameof(GameOptionsMenu.Start))]
-        private class GameOptionsMenu_Start
-        {
+        private class GameOptionsMenu_Start {
             public static void Postfix(GameOptionsMenu __instance) {
-                if (GameObject.Find("TOMSettings") != null) { // Settings setup has already been performed, fixing the title of the tab and returning
-                    GameObject.Find("TOMSettings").transform.FindChild("GameGroup").FindChild("Text").GetComponent<TMPro.TextMeshPro>().SetText("Town of Moss Settings");
+                if (GameObject.Find("TOMSettings") != null) {
+                    // Settings setup has already been performed, fixing the title of the tab and returning
+                    GameObject.Find("TOMSettings").transform.FindChild("GameGroup").FindChild("Text")
+                        .GetComponent<TMPro.TextMeshPro>().SetText("Town of Moss Settings");
                     return;
                 }
-                
+
                 inited = false;
                 var customOptions = CreateOptions(__instance);
-                
-                            var gameSettings = GameObject.Find("Game Settings");
-            var gameSettingMenu = UnityEngine.Object.FindObjectsOfType<GameSettingMenu>().FirstOrDefault();
-            var tomSettings = UnityEngine.Object.Instantiate(gameSettings, gameSettings.transform.parent);
-            var tomMenu = tomSettings.transform.FindChild("GameGroup").FindChild("SliderInner").GetComponent<GameOptionsMenu>();
-            tomSettings.name = "TOMSettings";
 
-            var roleTab = GameObject.Find("RoleTab");
-            var gameTab = GameObject.Find("GameTab");
+                var gameSettings = GameObject.Find("Game Settings");
+                var gameSettingMenu = UnityEngine.Object.FindObjectsOfType<GameSettingMenu>().FirstOrDefault();
+                var tomSettings = UnityEngine.Object.Instantiate(gameSettings, gameSettings.transform.parent);
+                var tomMenu = tomSettings.transform.FindChild("GameGroup").FindChild("SliderInner")
+                    .GetComponent<GameOptionsMenu>();
+                tomSettings.name = "TOMSettings";
 
-            var tomTab = UnityEngine.Object.Instantiate(roleTab, roleTab.transform.parent);
-            var tomTabHighlight = tomTab.transform.FindChild("Hat Button").FindChild("Tab Background").GetComponent<SpriteRenderer>();
-            tomTab.transform.FindChild("Hat Button").FindChild("Icon").GetComponent<SpriteRenderer>().sprite = ModManager.Instance.ModStamp.sprite;
+                var roleTab = GameObject.Find("RoleTab");
+                var gameTab = GameObject.Find("GameTab");
 
-            gameTab.transform.position += Vector3.left * 0.5f;
-            tomTab.transform.position += Vector3.right * 0.5f;
-            roleTab.transform.position += Vector3.left * 0.5f;  
+                var tomTab = UnityEngine.Object.Instantiate(roleTab, roleTab.transform.parent);
+                var tomTabHighlight = tomTab.transform.FindChild("Hat Button").FindChild("Tab Background")
+                    .GetComponent<SpriteRenderer>();
+                tomTab.transform.FindChild("Hat Button").FindChild("Icon").GetComponent<SpriteRenderer>().sprite =
+                    ModManager.Instance.ModStamp.sprite;
 
-            var tabs = new GameObject[]{gameTab, roleTab, tomTab};
-            for (int menuIndex = 0; menuIndex < tabs.Length; menuIndex++) {
-                var button = tabs[menuIndex].GetComponentInChildren<PassiveButton>();
-                if (button == null) continue;
-                int copiedIndex = menuIndex;
-                button.OnClick = new UnityEngine.UI.Button.ButtonClickedEvent();
-                button.OnClick.AddListener((UnityEngine.Events.UnityAction)(() => {
-                    gameSettingMenu.RegularGameSettings.SetActive(false);
-                    gameSettingMenu.RolesSettings.gameObject.SetActive(false);
-                    tomSettings.gameObject.SetActive(false);
-                    gameSettingMenu.GameSettingsHightlight.enabled = false;
-                    gameSettingMenu.RolesSettingsHightlight.enabled = false;
-                    tomTabHighlight.enabled = false;
-                    if (copiedIndex == 0) {
-                        gameSettingMenu.RegularGameSettings.SetActive(true);
-                        gameSettingMenu.GameSettingsHightlight.enabled = true;  
-                    } else if (copiedIndex == 1) {
-                        gameSettingMenu.RolesSettings.gameObject.SetActive(true);
-                        gameSettingMenu.RolesSettingsHightlight.enabled = true;
-                    } else if (copiedIndex == 2) {
-                        tomSettings.gameObject.SetActive(true);
-                        tomTabHighlight.enabled = true;
-                    }
-                }));
-            }
+                gameTab.transform.position += Vector3.left * 0.5f;
+                tomTab.transform.position += Vector3.right * 0.5f;
+                roleTab.transform.position += Vector3.left * 0.5f;
 
-            foreach (OptionBehaviour option in tomMenu.GetComponentsInChildren<OptionBehaviour>())
-                UnityEngine.Object.Destroy(option.gameObject);
-            List<OptionBehaviour> torOptions = new List<OptionBehaviour>();
-                
-                
-                contentY = __instance.GetComponentsInChildren<OptionBehaviour>()
-                    .Max(option => option.transform.localPosition.y);
-                contentX = __instance.Children[1].transform.localPosition.x;
-                contentZ = __instance.Children[1].transform.localPosition.z;
+                var tabs = new GameObject[] { gameTab, roleTab, tomTab };
+                for (int menuIndex = 0; menuIndex < tabs.Length; menuIndex++) {
+                    var button = tabs[menuIndex].GetComponentInChildren<PassiveButton>();
+                    if (button == null) continue;
+                    int copiedIndex = menuIndex;
+                    button.OnClick = new UnityEngine.UI.Button.ButtonClickedEvent();
+                    button.OnClick.AddListener((Action)(() => {
+                        gameSettingMenu.RegularGameSettings.SetActive(false);
+                        gameSettingMenu.RolesSettings.gameObject.SetActive(false);
+                        tomSettings.gameObject.SetActive(false);
+                        gameSettingMenu.GameSettingsHightlight.enabled = false;
+                        gameSettingMenu.RolesSettingsHightlight.enabled = false;
+                        tomTabHighlight.enabled = false;
+                        if (copiedIndex == 0) {
+                            gameSettingMenu.RegularGameSettings.SetActive(true);
+                            gameSettingMenu.GameSettingsHightlight.enabled = true;
+                        }
+                        else if (copiedIndex == 1) {
+                            gameSettingMenu.RolesSettings.gameObject.SetActive(true);
+                            gameSettingMenu.RolesSettingsHightlight.enabled = true;
+                        }
+                        else if (copiedIndex == 2) {
+                            tomSettings.gameObject.SetActive(true);
+                            tomTabHighlight.enabled = true;
+                        }
+                    }));
+                }
+                tomSettings.gameObject.SetActive(false);
+
+                foreach (OptionBehaviour option in tomMenu.GetComponentsInChildren<OptionBehaviour>())
+                    UnityEngine.Object.Destroy(option.gameObject);
+                List<OptionBehaviour> torOptions = new List<OptionBehaviour>();
+
+                if (__instance.Children.Count > 0) {
+                    contentY = __instance.GetComponentsInChildren<OptionBehaviour>()
+                        .Max(option => option.transform.localPosition.y);
+                    contentX = __instance.Children[1].transform.localPosition.x;
+                    contentZ = __instance.Children[1].transform.localPosition.z;
+                }
+                else {
+                    contentX = 0;
+                    contentY = 0;
+                    contentZ = -1;
+                }
+
                 var i = 0;
 
                 foreach (var option in customOptions) {
@@ -246,6 +247,7 @@ namespace TownOfUs.CustomOption
 
                 __instance.Children = new Il2CppReferenceArray<OptionBehaviour>(customOptions.ToArray());
             }
+
             public static void Prefix(GameOptionsMenu __instance) {
                 togglePrefab = Object.FindObjectOfType<ToggleOption>();
             }
@@ -255,8 +257,8 @@ namespace TownOfUs.CustomOption
         private class GameOptionsMenu_Update {
             public static float bottomY;
             public static float topY;
-            public static void Postfix(GameOptionsMenu __instance)
-            {
+
+            public static void Postfix(GameOptionsMenu __instance) {
                 if (!inited) {
                     contentY = __instance.GetComponentsInChildren<OptionBehaviour>()
                         .Max(option => option.transform.localPosition.y);
@@ -264,13 +266,17 @@ namespace TownOfUs.CustomOption
                         contentX = __instance.Children[0].transform.localPosition.x;
                         contentZ = __instance.Children[0].transform.localPosition.z;
                     }
-                    else {
+                    else if (__instance.Children.Length > 1){
                         contentX = __instance.Children[1].transform.localPosition.x;
                         contentZ = __instance.Children[1].transform.localPosition.z;
                     }
+                    else {
+                        contentX = 0;
+                        contentZ = -1;
+                    }
 
                     inited = true;
-                    
+
                     int i = 0;
                     foreach (var option in __instance.Children) {
                         var opt =
@@ -282,7 +288,8 @@ namespace TownOfUs.CustomOption
                             }
                         }
 
-                        option.transform.localPosition = new Vector3(contentX - 1.25f + 2.5f * (i % 2), contentY - (i / 2) * 0.25f, contentZ);
+                        option.transform.localPosition = new Vector3(contentX - 1.25f + 2.5f * (i % 2),
+                            contentY - (i / 2) * 0.25f, contentZ);
                         option.transform.localScale = Vector3.one * 0.5f;
                         ++i;
                         if (opt is CustomHeaderOption header2) {
@@ -291,28 +298,31 @@ namespace TownOfUs.CustomOption
                             }
                         }
                     }
-                    
+
                     float myY = PlayerControl.LocalPlayer.transform.position.y;
                     bottomY = -3 + myY + 1.34f - __instance.Children
                         .Min(option => option.transform.localPosition.y);
                     topY = myY - 0.9227f;
                 }
 
-                var tomSetting = GameObject.Find("TOMSettings");
-                
+                // var tomSetting = GameObject.Find("TOMSettings");
+
 
                 var position = __instance.transform.position;
                 if (BepInEx.IL2CPP.UnityEngine.Input.GetKeyInt(BepInEx.IL2CPP.UnityEngine.KeyCode.W)) {
                     __instance.transform.position += new Vector3(0, -0.3f, 0);
                 }
+
                 if (BepInEx.IL2CPP.UnityEngine.Input.GetKeyInt(BepInEx.IL2CPP.UnityEngine.KeyCode.S)) {
                     __instance.transform.position += new Vector3(0, 0.3f, 0);
                 }
+
                 if (BepInEx.IL2CPP.UnityEngine.Input.GetKeyInt(BepInEx.IL2CPP.UnityEngine.KeyCode.End) ||
                     BepInEx.IL2CPP.UnityEngine.Input.GetKeyInt(BepInEx.IL2CPP.UnityEngine.KeyCode.D) ||
                     __instance.transform.position.y > bottomY) {
                     __instance.transform.position = new Vector3(position.x, bottomY, position.z);
                 }
+
                 if (BepInEx.IL2CPP.UnityEngine.Input.GetKeyInt(BepInEx.IL2CPP.UnityEngine.KeyCode.Home) ||
                     BepInEx.IL2CPP.UnityEngine.Input.GetKeyInt(BepInEx.IL2CPP.UnityEngine.KeyCode.A) ||
                     __instance.transform.position.y < topY) {
@@ -325,62 +335,51 @@ namespace TownOfUs.CustomOption
             var menu = Object.FindObjectOfType<GameOptionsMenu>();
             var target = menu.Children
                 .First(x => x == option.Setting);
-            menu.transform.position = 
+            menu.transform.position =
                 new Vector3(menu.transform.position.x, GameOptionsMenu_Update.topY - target.transform.localPosition.y,
                     menu.transform.position.z);
         }
 
         [HarmonyPatch(typeof(ToggleOption), nameof(ToggleOption.OnEnable))]
-        private static class ToggleOption_OnEnable
-        {
-            private static bool Prefix(ToggleOption __instance)
-            {
+        private static class ToggleOption_OnEnable {
+            private static bool Prefix(ToggleOption __instance) {
                 return OnEnable(__instance);
             }
         }
 
         [HarmonyPatch(typeof(NumberOption), nameof(NumberOption.OnEnable))]
-        private static class NumberOption_OnEnable
-        {
-            private static bool Prefix(NumberOption __instance)
-            {
+        private static class NumberOption_OnEnable {
+            private static bool Prefix(NumberOption __instance) {
                 return OnEnable(__instance);
             }
         }
 
         [HarmonyPatch(typeof(StringOption), nameof(StringOption.OnEnable))]
-        private static class StringOption_OnEnable
-        {
-            private static bool Prefix(StringOption __instance)
-            {
+        private static class StringOption_OnEnable {
+            private static bool Prefix(StringOption __instance) {
                 return OnEnable(__instance);
             }
         }
 
 
         [HarmonyPatch(typeof(ToggleOption), nameof(ToggleOption.Toggle))]
-        private class ToggleButtonPatch
-        {
-            public static bool Prefix(ToggleOption __instance)
-            {
+        private class ToggleButtonPatch {
+            public static bool Prefix(ToggleOption __instance) {
                 var option =
                     CustomOption.AllOptions.FirstOrDefault(option =>
                         option.Setting == __instance); // Works but may need to change to gameObject.name check
-                if (option is CustomToggleOption toggle)
-                {
+                if (option is CustomToggleOption toggle) {
                     toggle.Toggle();
                     return false;
                 }
 
-                if (__instance == ExportButton.Setting)
-                {
+                if (__instance == ExportButton.Setting) {
                     if (!AmongUsClient.Instance.AmHost) return false;
                     ExportButton.Do();
                     return false;
                 }
 
-                if (__instance == ImportButton.Setting)
-                {
+                if (__instance == ImportButton.Setting) {
                     if (!AmongUsClient.Instance.AmHost) return false;
                     ImportButton.Do();
                     return false;
@@ -393,20 +392,19 @@ namespace TownOfUs.CustomOption
                     if (jump != null) {
                         JumpToElement(jump);
                     }
+
                     return false;
                 }
 
                 CustomOption option2 = ExportButton.SlotButtons.FirstOrDefault(option => option.Setting == __instance);
-                if (option2 is CustomButtonOption button)
-                {
+                if (option2 is CustomButtonOption button) {
                     if (!AmongUsClient.Instance.AmHost) return false;
                     button.Do();
                     return false;
                 }
 
                 CustomOption option3 = ImportButton.SlotButtons.FirstOrDefault(option => option.Setting == __instance);
-                if (option3 is CustomButtonOption button2)
-                {
+                if (option3 is CustomButtonOption button2) {
                     if (!AmongUsClient.Instance.AmHost) return false;
                     button2.Do();
                     return false;
@@ -417,15 +415,12 @@ namespace TownOfUs.CustomOption
         }
 
         [HarmonyPatch(typeof(NumberOption), nameof(NumberOption.Increase))]
-        private class NumberOptionPatchIncrease
-        {
-            public static bool Prefix(NumberOption __instance)
-            {
+        private class NumberOptionPatchIncrease {
+            public static bool Prefix(NumberOption __instance) {
                 var option =
                     CustomOption.AllOptions.FirstOrDefault(option =>
                         option.Setting == __instance); // Works but may need to change to gameObject.name check
-                if (option is CustomNumberOption number)
-                {
+                if (option is CustomNumberOption number) {
                     number.Increase();
                     return false;
                 }
@@ -435,15 +430,12 @@ namespace TownOfUs.CustomOption
         }
 
         [HarmonyPatch(typeof(NumberOption), nameof(NumberOption.Decrease))]
-        private class NumberOptionPatchDecrease
-        {
-            public static bool Prefix(NumberOption __instance)
-            {
+        private class NumberOptionPatchDecrease {
+            public static bool Prefix(NumberOption __instance) {
                 var option =
                     CustomOption.AllOptions.FirstOrDefault(option =>
                         option.Setting == __instance); // Works but may need to change to gameObject.name check
-                if (option is CustomNumberOption number)
-                {
+                if (option is CustomNumberOption number) {
                     number.Decrease();
                     return false;
                 }
@@ -453,15 +445,12 @@ namespace TownOfUs.CustomOption
         }
 
         [HarmonyPatch(typeof(StringOption), nameof(StringOption.Increase))]
-        private class StringOptionPatchIncrease
-        {
-            public static bool Prefix(StringOption __instance)
-            {
+        private class StringOptionPatchIncrease {
+            public static bool Prefix(StringOption __instance) {
                 var option =
                     CustomOption.AllOptions.FirstOrDefault(option =>
                         option.Setting == __instance); // Works but may need to change to gameObject.name check
-                if (option is CustomStringOption str)
-                {
+                if (option is CustomStringOption str) {
                     str.Increase();
                     return false;
                 }
@@ -471,15 +460,12 @@ namespace TownOfUs.CustomOption
         }
 
         [HarmonyPatch(typeof(StringOption), nameof(StringOption.Decrease))]
-        private class StringOptionPatchDecrease
-        {
-            public static bool Prefix(StringOption __instance)
-            {
+        private class StringOptionPatchDecrease {
+            public static bool Prefix(StringOption __instance) {
                 var option =
                     CustomOption.AllOptions.FirstOrDefault(option =>
                         option.Setting == __instance); // Works but may need to change to gameObject.name check
-                if (option is CustomStringOption str)
-                {
+                if (option is CustomStringOption str) {
                     str.Decrease();
                     return false;
                 }
@@ -489,10 +475,8 @@ namespace TownOfUs.CustomOption
         }
 
         [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.RpcSyncSettings))]
-        private class PlayerControlPatch
-        {
-            public static void Postfix()
-            {
+        private class PlayerControlPatch {
+            public static void Postfix() {
                 if (PlayerControl.AllPlayerControls.Count < 2 || !AmongUsClient.Instance ||
                     !PlayerControl.LocalPlayer || !AmongUsClient.Instance.AmHost) return;
 
@@ -501,8 +485,7 @@ namespace TownOfUs.CustomOption
         }
 
         [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
-        private class HudManagerUpdate
-        {
+        private class HudManagerUpdate {
             private const float
                 MinX = -5.233334F /*-5.3F*/,
                 OriginalY = 2.9F,
@@ -511,17 +494,14 @@ namespace TownOfUs.CustomOption
             private static Scroller Scroller;
             private static Vector3 LastPosition = new Vector3(MinX, MinY);
 
-            public static void Prefix(HudManager __instance)
-            {
+            public static void Prefix(HudManager __instance) {
                 if (__instance.GameSettings?.transform == null) return;
 
 
                 // Scroller disabled
-                if (!CustomOption.LobbyTextScroller)
-                {
+                if (!CustomOption.LobbyTextScroller) {
                     // Remove scroller if disabled late
-                    if (Scroller != null)
-                    {
+                    if (Scroller != null) {
                         __instance.GameSettings.transform.SetParent(Scroller.transform.parent);
                         __instance.GameSettings.transform.localPosition = new Vector3(MinX, OriginalY);
 
@@ -543,8 +523,7 @@ namespace TownOfUs.CustomOption
                 Scroller.YBounds = new FloatRange(MinY, maxY);
 
                 // Prevent scrolling when the player is interacting with a menu
-                if (PlayerControl.LocalPlayer?.CanMove != true)
-                {
+                if (PlayerControl.LocalPlayer?.CanMove != true) {
                     __instance.GameSettings.transform.localPosition = LastPosition;
 
                     return;
@@ -556,8 +535,7 @@ namespace TownOfUs.CustomOption
                 LastPosition = __instance.GameSettings.transform.localPosition;
             }
 
-            private static void CreateScroller(HudManager __instance)
-            {
+            private static void CreateScroller(HudManager __instance) {
                 if (Scroller != null) return;
 
                 Scroller = new GameObject("SettingsScroller").AddComponent<Scroller>();
@@ -582,7 +560,7 @@ namespace TownOfUs.CustomOption
     [HarmonyPatch(typeof(LobbyBehaviour), nameof(LobbyBehaviour.Start))]
     public static class ButtonReset {
         public static void Postfix(LobbyBehaviour __instance) {
-            foreach(var button in GameObject.FindObjectsOfType<MonoBehaviour>().Where(x => x.name == "KillButton")){
+            foreach (var button in GameObject.FindObjectsOfType<MonoBehaviour>().Where(x => x.name == "KillButton")) {
                 button.gameObject.Destroy();
             }
         }

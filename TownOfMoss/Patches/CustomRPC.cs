@@ -2,7 +2,7 @@ namespace TownOfUs
 {
     public enum CustomRPC
     {
-        SetRole = 43,
+        SetRole = 60,
         SetModifier,
         NeutralLose,
         NeutralWin,

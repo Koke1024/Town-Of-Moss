@@ -7,6 +7,9 @@ namespace TownOfUs {
         [HarmonyPatch(typeof(GameData), nameof(GameData.RecomputeTaskCounts))]
         private class GameData_RecomputeTaskCounts {
             private static bool Prefix(GameData __instance) {
+                if (LobbyBehaviour.Instance) {
+                    return true;
+                }
                 __instance.TotalTasks = 0;
                 __instance.CompletedTasks = 0;
                 for (var i = 0; i < __instance.AllPlayers.Count; i++) {
