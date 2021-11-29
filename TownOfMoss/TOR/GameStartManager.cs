@@ -14,8 +14,9 @@ namespace TownOfUs.Patches {
         [HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.Start))]
         public class GameStartManagerStartPatch {
             public static void Postfix(GameStartManager __instance) {
+                AmongUsExtensions.Log($"GameStartManager.Start");
                 if (__instance && __instance.GameRoomName != null) {
-                    lobbyCodeText = __instance.GameRoomName.text;                    
+                    lobbyCodeText = __instance.GameRoomName.text;
                 }
             }
         }
@@ -24,6 +25,7 @@ namespace TownOfUs.Patches {
         public class GameStartManagerUpdatePatch {
             public static bool startable = false;
             public static void Prefix(GameStartManager __instance) {
+                AmongUsExtensions.Log($"GameStartManager.Update pre");
                 if (StartPanel == null) {
                     return;
                 }
@@ -51,6 +53,7 @@ namespace TownOfUs.Patches {
             }
 
             public static void Postfix(GameStartManager __instance) {
+                AmongUsExtensions.Log($"GameStartManager.Start post");
                 if (__instance && __instance.GameRoomName != null) {
                     if (Utils.IsStreamMode) {
                         __instance.GameRoomName.text = "******";
@@ -72,7 +75,35 @@ namespace TownOfUs.Patches {
         [HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.BeginGame))]
         public static class BeginGameBefore {
             public static bool Prefix(GameStartManager __instance) {
-                return GameStartManagerUpdatePatch.startable;
+                if (!GameStartManagerUpdatePatch.startable) {
+                    return false;
+                }
+                AmongUsExtensions.Log($"GameStartManager.BeginGame pre");
+                
+                if (__instance.startState != GameStartManager.StartingStates.NotStarting)
+                {
+                    AmongUsExtensions.Log($"a");
+                    return false;
+                }
+                if (SaveManager.ShowMinPlayerWarning && GameData.Instance.PlayerCount == __instance.MinPlayers)
+                {
+                    __instance.GameSizePopup.SetActive(true);
+                    AmongUsExtensions.Log($"b");
+                    return false;
+                }
+                if (GameData.Instance.PlayerCount < __instance.MinPlayers)
+                {
+                    __instance.StartCoroutine(Effects.SwayX(__instance.PlayerCounter.transform, 0.75f, 0.25f));
+                    AmongUsExtensions.Log($"c");
+                    return false;
+                }
+                AmongUsExtensions.Log($"to ReallyBegin");
+                __instance.ReallyBegin(false);
+                
+                return true;
+            }
+            public static void Postfix(GameStartManager __instance) {
+                AmongUsExtensions.Log($"GameStartManager.BeginGame post");
             }
         }
         
@@ -117,10 +148,23 @@ namespace TownOfUs.Patches {
             }
         }
     }
-    
+
+    [HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.ReallyBegin))]
+    public static class ReallyBeginPatch {
+        public static void Prefix(GameStartManager __instance, [HarmonyArgument(0)]bool neverShow) {
+            AmongUsExtensions.Log($"GameStartManager.ReallyBegin pre");
+        }
+        public static void Postfix(GameStartManager __instance, [HarmonyArgument(0)]bool neverShow) {
+            AmongUsExtensions.Log($"GameStartManager.ReallyBegin post");
+        }
+    }
+
+
+
     [HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.FinallyBegin))]
     public static class HostHandicap2 {
         public static void Postfix(GameStartManager __instance) {
+            AmongUsExtensions.Log($"GameStartManager.FinallyBegin");
             if (__instance.startState == GameStartManager.StartingStates.Countdown)
             {
                 return;
@@ -129,6 +173,7 @@ namespace TownOfUs.Patches {
         }
     
         public static IEnumerator StartingWait() {
+            AmongUsExtensions.Log($"GameStartManager.StartingWait");
             PlayerControl.LocalPlayer.moveable = false;
             yield return new WaitForSeconds(1.0f);
             if (AmongUsClient.Instance.AmHost) {

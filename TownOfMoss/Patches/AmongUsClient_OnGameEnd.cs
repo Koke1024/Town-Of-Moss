@@ -13,8 +13,7 @@ using UnityEngine;
 namespace TownOfUs {
     [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.OnGameEnd))]
     public class AmongUsClient_OnGameEnd {
-        public static void Postfix(AmongUsClient __instance, [HarmonyArgument(0)] GameOverReason reason,
-            [HarmonyArgument(0)] bool showAd) {
+        public static void Postfix(AmongUsClient __instance, [HarmonyArgument(0)] EndGameResult endGameResult) {
             Utils.potentialWinners.Clear();
 
             foreach (var row in PlayerControl.AllPlayerControls) {
@@ -27,7 +26,7 @@ namespace TownOfUs {
                 Utils.potentialWinners.Add(new WinningPlayerData(player.Data));
 
 
-            if (reason == GameOverReason.HumansByTask) {
+            if (endGameResult.GameOverReason == GameOverReason.HumansByTask) {
                 foreach (var role in Role.GetRoles(RoleEnum.Zombie)) {
                     var zombie = (Zombie)role;
                     zombie.CompleteZombieTasks = false;
@@ -187,7 +186,7 @@ namespace TownOfUs {
     }
     [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.OnGameEnd))]
     public class CreateRoleString {
-        public static void Postfix(AmongUsClient __instance) {
+        public static void Postfix(AmongUsClient __instance, [HarmonyArgument(0)] EndGameResult endGameResult) {
             var roleSummaryText = new StringBuilder();
             roleSummaryText.AppendLine("Players and roles at the end of the game:");
             foreach (var player in PlayerControl.AllPlayerControls) {

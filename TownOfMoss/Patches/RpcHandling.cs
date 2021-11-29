@@ -253,6 +253,7 @@ namespace TownOfUs
         {
             public static void Postfix([HarmonyArgument(0)] byte callId, [HarmonyArgument(1)] MessageReader reader)
             {
+                AmongUsExtensions.Log($"PlayerControl.HandleRpc");
                 //if (callId >= 43) //System.Console.WriteLine("Received " + callId);
                 byte readByte, readByte1, readByte2;
                 sbyte readSByte, readSByte2;

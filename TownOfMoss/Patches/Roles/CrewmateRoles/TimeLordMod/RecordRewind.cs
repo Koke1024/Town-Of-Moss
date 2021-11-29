@@ -176,8 +176,7 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
         
         [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.OnGameEnd))]
         public class AmongUsClient_OnGameEnd {
-            public static void Postfix(AmongUsClient __instance, [HarmonyArgument(0)] GameOverReason reason,
-                [HarmonyArgument(0)] bool showAd) {
+            public static void Postfix(AmongUsClient __instance, [HarmonyArgument(0)] EndGameResult endGameResult) {
                 if (rewinding) {
                     StartStop.StopRewind(whoIsRewinding);
                 }

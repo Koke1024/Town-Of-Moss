@@ -22,7 +22,7 @@ namespace TheOtherRoles.Objects {
         private Action OnEffectEnds;
         public bool HasEffect;
         public bool isEffectActive = false;
-        private bool showButtonText = false;
+        public bool showButtonText = false;
         public float EffectDuration;
         public Sprite Sprite;
         private HudManager hudManager;
@@ -45,9 +45,10 @@ namespace TheOtherRoles.Objects {
             this.hotkey = hotkey;
             Timer = 16.2f;
             buttons.Add(this);
-            actionButton = UnityEngine.Object.Instantiate(hudManager.KillButton, hudManager.transform);
-            this.showButtonText = actionButton.graphic.sprite == Sprite;
+            actionButton = UnityEngine.Object.Instantiate(hudManager.KillButton, hudManager.KillButton.transform.parent);
             PassiveButton button = actionButton.GetComponent<PassiveButton>();
+            this.showButtonText = actionButton.graphic.sprite == Sprite;
+            
             button.OnClick = new Button.ButtonClickedEvent();
             button.OnClick.AddListener((UnityEngine.Events.UnityAction)onClickEvent);
 
