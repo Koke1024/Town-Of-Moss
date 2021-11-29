@@ -13,8 +13,9 @@ namespace TownOfUs.Roles
         public DateTime? RoomDetected;
         
         public static SystemTypes? MyLastRoom;
+        public static bool InCrackedRoom;
 
-        public SystemTypes? blackOutRoomId;
+        public SystemTypes? BlackOutRoomId;
 
         public Cracker(PlayerControl player) : base(player)
         {

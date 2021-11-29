@@ -22,10 +22,10 @@ namespace TownOfUs.ImpostorRoles.CrackerMod
             {
                 role.CrackButton = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);
                 role.CrackButton.renderer.enabled = true;
+                role.CrackButton.renderer.sprite = CrackSprite;
             }
-
-            role.CrackButton.renderer.sprite = CrackSprite;
             role.CrackButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
+
             var position = __instance.KillButton.transform.localPosition;
             role.CrackButton.transform.localPosition = new Vector3(position.x,
                 __instance.ReportButton.transform.localPosition.y, position.z);
