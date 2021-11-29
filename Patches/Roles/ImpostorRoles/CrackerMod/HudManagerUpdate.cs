@@ -1,5 +1,6 @@
 using System.Linq;
 using HarmonyLib;
+using TownOfUs.Patches;
 using TownOfUs.Roles;
 using UnityEngine;
 
@@ -31,7 +32,7 @@ namespace TownOfUs.ImpostorRoles.CrackerMod
                 __instance.ReportButton.transform.localPosition.y, position.z);
             role.CrackButton.SetCoolDown(role.CrackTimer(), CustomGameOptions.CrackCd);
 
-            bool available = role.TargetRoom != null;
+            bool available = role.TargetRoom != null && role.Player.CanMove;
             if (available)
             {
                 role.CrackButton.renderer.color = Palette.EnabledColor;

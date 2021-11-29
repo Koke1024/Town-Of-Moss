@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Il2CppSystem;
 using TheOtherRoles;
+using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine;
 
