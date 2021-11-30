@@ -17,15 +17,14 @@ namespace TownOfUs.ImpostorRoles.JanitorMod
             var role = Role.GetRole<Janitor>(PlayerControl.LocalPlayer);
             if (role.CleanButton == null)
             {
-                role.CleanButton = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);
+                role.CleanButton = Object.Instantiate(__instance.KillButton, __instance.KillButton.transform.parent);
                 role.CleanButton.graphic.enabled = true;
+                role.CleanButton.GetComponent<AspectPosition>().DistanceFromEdge = TownOfUs.ButtonPosition;
+                role.CleanButton.gameObject.SetActive(false);
             }
 
+            role.CleanButton.GetComponent<AspectPosition>().Update();
             role.CleanButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
-            var position = __instance.KillButton.transform.localPosition;
-            role.CleanButton.transform.localPosition = new Vector3(position.x,
-                __instance.ReportButton.transform.localPosition.y, position.z);
-
             role.CleanButton.graphic.sprite = TownOfUs.JanitorClean;
 
 

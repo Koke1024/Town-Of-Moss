@@ -16,7 +16,7 @@ namespace TownOfUs.ImpostorRoles.DollMakerMod {
             if (!PlayerControl.LocalPlayer.Is(RoleEnum.DollMaker)) return;
             var role = Role.GetRole<DollMaker>(PlayerControl.LocalPlayer);
             if (role._waxButton == null) {
-                role._waxButton = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);
+                role._waxButton = Object.Instantiate(__instance.KillButton, __instance.KillButton.transform.parent);
                 role._waxButton.graphic.enabled = true;
                 role._waxButton.graphic.sprite = DollMaker._waxSprite;
             }

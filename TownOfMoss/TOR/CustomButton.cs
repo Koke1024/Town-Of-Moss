@@ -126,7 +126,7 @@ namespace TheOtherRoles.Objects {
                 actionButton.graphic.enabled = true;
             } else {
                 actionButton.gameObject.SetActive(false);
-                actionButton.graphic.enabled = false;
+                // actionButton.graphic.enabled = false;
             }
         }
 

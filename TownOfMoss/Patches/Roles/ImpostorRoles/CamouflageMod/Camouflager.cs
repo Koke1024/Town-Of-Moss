@@ -6,7 +6,7 @@ namespace TownOfUs.Roles
     public class Camouflager : Assassin
 
     {
-        public ActionButton _camouflageButton;
+        public KillButton _camouflageButton;
         public bool Enabled;
         public DateTime LastCamouflaged;
         public float TimeRemaining;
@@ -25,7 +25,7 @@ namespace TownOfUs.Roles
 
         public bool Camouflaged => TimeRemaining > 0f;
 
-        public ActionButton CamouflageButton
+        public KillButton CamouflageButton
         {
             get => _camouflageButton;
             set

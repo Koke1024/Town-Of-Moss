@@ -43,25 +43,26 @@ namespace TownOfUs {
                 TempData.winners = new List<WinningPlayerData>();
                 return;
             }
-
-            if (jester != null) {
-                var winners = Utils.potentialWinners.Where(x => x._playerName == jester.PlayerName).ToList();
+            
+            if (jester != null){
+                var winners = Utils.potentialWinners.Where(x => x.PlayerName == jester.PlayerName).ToList();
                 TempData.winners = new List<WinningPlayerData>();
-                foreach (var win in winners) {
+                foreach (var win in winners)
+                {
                     win.IsDead = false;
                     TempData.winners.Add(win);
                 }
-
                 return;
             }
 
             var executioner = Role.AllRoles.FirstOrDefault(x =>
                 x.RoleType == RoleEnum.Executioner && ((Executioner)x).TargetVotedOut);
-            if (executioner != null) {
-                var winners = Utils.potentialWinners.Where(x => x._playerName == executioner.PlayerName).ToList();
-                TempData.winners = new List<WinningPlayerData>();
-                foreach (var win in winners) TempData.winners.Add(win);
-                return;
+
+            var toRemoveColorIds = Role.AllRoles.Where(o => o.LostByRPC).Select(o => o.Player.Data.DefaultOutfit.ColorId).ToArray();
+            var toRemoveWinners = TempData.winners.ToArray().Where(o => toRemoveColorIds.Contains(o.ColorId)).ToArray();
+            for (int i = 0; i < toRemoveWinners.Count(); i++)
+            {
+                TempData.winners.Remove(toRemoveWinners[i]);
             }
             
             var zombie = Role.AllRoles.FirstOrDefault(x => x.RoleType == RoleEnum.Zombie && !x.Player.Data.IsDead && ((Zombie)x).CompleteZombieTasks);
@@ -94,7 +95,7 @@ namespace TownOfUs {
                 var lover1 = (Lover)lover;
                 var lover2 = lover1.OtherLover;
                 var winners = Utils.potentialWinners
-                    .Where(x => x._playerName == lover1.PlayerName || x._playerName == lover2.PlayerName).ToList();
+                    .Where(x => x.PlayerName == lover1.PlayerName || x.PlayerName == lover2.PlayerName).ToList();
                 TempData.winners = new List<WinningPlayerData>();
                 foreach (var win in winners) TempData.winners.Add(win);
                 return;

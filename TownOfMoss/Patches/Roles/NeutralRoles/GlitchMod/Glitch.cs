@@ -444,7 +444,7 @@ namespace TownOfUs.Roles
         {
             public static void KillButtonUpdate(Glitch __gInstance, HudManager __instance)
             {
-                if (!__gInstance.Player.Data.Role.IsImpostor && Input.GetKeyDown(KeyCode.Q))
+                if (!__gInstance.Player.Data.IsImpostor() && Input.GetKeyDown(KeyCode.Q))
                     __instance.KillButton.DoClick();
 
                 __instance.KillButton.gameObject.SetActive(__instance.UseButton.isActiveAndEnabled &&
@@ -500,7 +500,7 @@ namespace TownOfUs.Roles
             {
                 if (__gInstance.HackButton == null)
                 {
-                    __gInstance.HackButton = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);
+                    __gInstance.HackButton = Object.Instantiate(__instance.KillButton, __instance.KillButton.transform.parent);
                     __gInstance.HackButton.gameObject.SetActive(true);
                     __gInstance.HackButton.graphic.enabled = true;
                 }
@@ -566,7 +566,7 @@ namespace TownOfUs.Roles
             {
                 if (__gInstance.MimicButton == null)
                 {
-                    __gInstance.MimicButton = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);
+                    __gInstance.MimicButton = Object.Instantiate(__instance.KillButton, __instance.KillButton.transform.parent);
                     __gInstance.MimicButton.gameObject.SetActive(true);
                     __gInstance.MimicButton.graphic.enabled = true;
                 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TownOfUs
 {
-    [HarmonyPatch(typeof(GameSettingMenu), nameof(GameSettingMenu.Start))]
+    [HarmonyPatch(typeof(GameSettingMenu), nameof(GameSettingMenu.InitializeOptions))]
     public class EnableMapImps
     {
         private static void Prefix(ref GameSettingMenu __instance)

@@ -96,7 +96,7 @@ namespace TownOfUs.CrewmateRoles.AltruistMod
                 }
 
 
-            if (PlayerControl.LocalPlayer.Data.Role.IsImpostor || PlayerControl.LocalPlayer.Is(RoleEnum.Glitch))
+            if (PlayerControl.LocalPlayer.Data.IsImpostor() || PlayerControl.LocalPlayer.Is(RoleEnum.Glitch))
             {
                 var gameObj = new GameObject();
                 Arrow = gameObj.AddComponent<ArrowBehaviour>();

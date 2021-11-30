@@ -212,7 +212,7 @@ namespace TownOfUs
             foreach (var (type, rpc, _) in GlobalModifiers)
                 Role.Gen<Modifier>(type, canHaveModifier, rpc);
 
-            canHaveModifier.RemoveAll(player => !player.Data.Role.IsImpostor);
+            canHaveModifier.RemoveAll(player => !player.Data.IsImpostor());
             canHaveModifier.Shuffle();
 
             while (canHaveModifier.Count > 0)

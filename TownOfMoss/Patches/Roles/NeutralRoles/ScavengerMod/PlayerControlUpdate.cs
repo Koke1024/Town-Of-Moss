@@ -17,17 +17,14 @@ namespace TownOfUs.ImpostorRoles.ScavengerMod
             var role = Role.GetRole<Scavenger>(PlayerControl.LocalPlayer);
             if (role.EatButton == null)
             {
-                role.EatButton = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);
-                role.EatButton.graphic.enabled = true;
+                role.EatButton = Object.Instantiate(__instance.KillButton, __instance.KillButton.transform.parent);
+                
+                role.EatButton.GetComponent<AspectPosition>().DistanceFromEdge = TownOfUs.ButtonPosition;
+                role.EatButton.gameObject.SetActive(false);
+                role.EatButton.graphic.sprite = TownOfUs.Inhale;
             }
-
+            role.EatButton.GetComponent<AspectPosition>().Update();
             role.EatButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
-            var offset = __instance.KillButton.transform.localPosition.y - __instance.ReportButton.transform.localPosition.y;
-            var position = __instance.KillButton.transform.localPosition;
-            role.EatButton.transform.localPosition = new Vector3(position.x + offset,
-                __instance.ReportButton.transform.localPosition.y, position.z);
-
-            role.EatButton.graphic.sprite = TownOfUs.Inhale;
 
 
             var data = PlayerControl.LocalPlayer.Data;

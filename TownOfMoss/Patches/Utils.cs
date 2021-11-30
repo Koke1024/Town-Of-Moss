@@ -8,7 +8,6 @@ using Il2CppSystem.Text;
 using Reactor.Extensions;
 using TMPro;
 using TownOfUs.CrewmateRoles.MedicMod;
-using TownOfUs.CustomHats;
 using TownOfUs.CustomOption;
 using TownOfUs.Extensions;
 using TownOfUs.ImpostorRoles.CamouflageMod;
@@ -36,108 +35,39 @@ namespace TownOfUs
         public static string impRateString = "";
         public static string neutralRateString = "";
 
-        public static void SetSkin(PlayerControl Player, string skin)
-        {
-            Player.MyPhysics.SetSkin(skin);
-        }
-
-        public static void Morph(PlayerControl Player, PlayerControl MorphedPlayer, bool resetAnim = false)
+        public static void Morph(PlayerControl player, PlayerControl MorphedPlayer, bool resetAnim = false)
         {
             if (CamouflageUnCamouflage.IsCamoed) return;
-
-            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Seer))
-            {
-                Player.nameText.text = MorphedPlayer.Data.PlayerName;
+            if (player.GetCustomOutfitType() != CustomPlayerOutfitType.Morph)
+                player.SetOutfit(CustomPlayerOutfitType.Morph, MorphedPlayer.Data.DefaultOutfit);
+            
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Seer)) {
+                player.nameText.text = MorphedPlayer.Data.PlayerName;
             }
-
-            var targetAppearance = MorphedPlayer.GetDefaultAppearance();
-
-            PlayerControl.SetPlayerMaterialColors(targetAppearance.ColorId, Player.myRend);
-            Player.HatRenderer.SetHat(targetAppearance.HatId, targetAppearance.ColorId);
-            Player.nameText.transform.localPosition = new Vector3(
-                0f,
-                Player.Data.DefaultOutfit.HatId == "" ? 1.5f :
-                HatCreation.TallIds.Contains(Player.Data.DefaultOutfit.HatId) ? 2.2f : 2.0f,
-                -0.5f
-            );
-
-            if (Player.MyPhysics.Skin.skin.ProdId != DestroyableSingleton<HatManager>.Instance
-                .AllSkins.ToArray()[Convert.ToInt32(targetAppearance.SkinId)].ProdId)
-                SetSkin(Player, targetAppearance.SkinId);
-
-            if (Player.CurrentPet == null || Player.CurrentPet.Data.ProdId !=
-                DestroyableSingleton<HatManager>.Instance.AllPets.ToArray()[Convert.ToInt32(targetAppearance.PetId)].ProdId)
-            {
-                if (Player.CurrentPet != null) Object.Destroy(Player.CurrentPet.gameObject);
-
-                Player.CurrentPet =
-                    Object.Instantiate(
-                        DestroyableSingleton<HatManager>.Instance.AllPets.ToArray()[Convert.ToInt32(targetAppearance.PetId)].PetPrefab);
-                Player.CurrentPet.transform.position = Player.transform.position;
-                Player.CurrentPet.Source = Player;
-                Player.CurrentPet.Visible = Player.Visible;
-            }
-
-            PlayerControl.SetPlayerMaterialColors(targetAppearance.ColorId, Player.CurrentPet.rend);
-            /*if (resetAnim && !Player.inVent)
-            {
-                Player.MyPhysics.ResetAnim();
-            }*/
         }
 
-        public static void Unmorph(PlayerControl Player)
-        {
-            var appearance = Player.GetDefaultAppearance();
-
-            Player.nameText.text = Player.Data.PlayerName;
-            PlayerControl.SetPlayerMaterialColors(appearance.ColorId, Player.myRend);
-            Player.HatRenderer.SetHat(appearance.HatId, appearance.ColorId);
-            Player.nameText.transform.localPosition = new Vector3(
-                0f,
-                appearance.HatId == "" ? 1.5f :
-                HatCreation.TallIds.Contains(appearance.HatId) ? 2.2f : 2.0f,
-                -0.5f
-            );
-
-            if (Player.MyPhysics.Skin.skin.ProdId != DestroyableSingleton<HatManager>.Instance
-                .AllSkins.ToArray()[System.Convert.ToInt32(appearance.SkinId)].ProdId)
-                SetSkin(Player, appearance.SkinId);
-
-            if (Player.CurrentPet != null) Object.Destroy(Player.CurrentPet.gameObject);
-
-            Player.CurrentPet =
-                Object.Instantiate(
-                    DestroyableSingleton<HatManager>.Instance.AllPets.ToArray()[Convert.ToInt32(appearance.PetId)].PetPrefab);
-            Player.CurrentPet.transform.position = Player.transform.position;
-            Player.CurrentPet.Source = Player;
-            Player.CurrentPet.Visible = Player.Visible;
-
-            PlayerControl.SetPlayerMaterialColors(appearance.ColorId, Player.CurrentPet.rend);
-
-            /*if (!Player.inVent)
+        public static void Unmorph(PlayerControl player)
             {
-                Player.MyPhysics.ResetAnim();
-            }*/
+           player.SetOutfit(CustomPlayerOutfitType.Default);
         }
 
         public static void Camouflage()
         {
             foreach (var player in PlayerControl.AllPlayerControls)
             {
-                player.nameText.text = "";
+                if (player.GetCustomOutfitType() != CustomPlayerOutfitType.Camouflage)
+                {
+                    player.SetOutfit(CustomPlayerOutfitType.Camouflage, new GameData.PlayerOutfit()
+                    {
+                        ColorId = player.GetDefaultOutfit().ColorId,
+                        HatId = "",
+                        SkinId = "",
+                        VisorId = "",
+                        _playerName = " "
+                    });
+                    //player.nameText.text = "";
                 PlayerControl.SetPlayerMaterialColors(Color.grey, player.myRend);
-                player.HatRenderer.SetHat("", 0);
-                if (player.MyPhysics.Skin.skin.ProdId != DestroyableSingleton<HatManager>.Instance
-                    .AllSkins.ToArray()[0].ProdId)
-                    SetSkin(player, "0");
-
-                if (player.CurrentPet != null) Object.Destroy(player.CurrentPet.gameObject);
-                player.CurrentPet =
-                    Object.Instantiate(
-                        DestroyableSingleton<HatManager>.Instance.AllPets.ToArray()[0]).PetPrefab;
-                player.CurrentPet.transform.position = player.transform.position;
-                player.CurrentPet.Source = player;
-                player.CurrentPet.Visible = player.Visible;
+                }
             }
         }
 
@@ -193,7 +123,7 @@ namespace TownOfUs
             return player.Is(RoleEnum.Assassin) || player.Is(RoleEnum.Sniper) ||
                     (CustomGameOptions.AllImpCanGuess && player.Is(Faction.Impostors)) ||
                     (CustomGameOptions.LastImpCanGuess && player.Is(Faction.Impostors) &&
-                     PlayerControl.AllPlayerControls.ToArray().Count(x => (x.Data.Role.IsImpostor || x.Is(RoleEnum.Assassin)) && !x.Data.IsDead) == 1);
+                     PlayerControl.AllPlayerControls.ToArray().Count(x => (x.Data.IsImpostor() || x.Is(RoleEnum.Assassin)) && !x.Data.IsDead) == 1);
         }
 
         public static List<PlayerControl> GetCrewmates(List<PlayerControl> impostors)
@@ -221,7 +151,7 @@ namespace TownOfUs
             var role = Role.GetRole(player);
             if (role != null) return role.RoleType;
 
-            return player.Data.Role.IsImpostor ? RoleEnum.Impostor : RoleEnum.Crewmate;
+            return player.Data.IsImpostor() ? RoleEnum.Impostor : RoleEnum.Crewmate;
         }
 
         public static PlayerControl PlayerById(byte id)
@@ -451,7 +381,7 @@ namespace TownOfUs
                     return;
                 }
 
-                if (target.Is(ModifierEnum.Diseased) && killer.Data.Role.IsImpostor)
+                if (target.Is(ModifierEnum.Diseased) && killer.Data.IsImpostor())
                 {
                     killer.SetKillTimer(PlayerControl.GameOptions.KillCooldown * 3);
                     return;
@@ -476,7 +406,7 @@ namespace TownOfUs
                     return;
                 }
 
-                if (killer.Data.Role.IsImpostor)
+                if (killer.Data.IsImpostor())
                 {
                     killer.SetKillTimer(PlayerControl.GameOptions.KillCooldown);
                 }

@@ -28,7 +28,7 @@ namespace TownOfUs.NeutralRoles.ShifterMod
             if (isDead)
             {
                 shiftButton.gameObject.SetActive(false);
-                shiftButton.graphic.enabled = false;
+                // shiftButton.graphic.enabled = false;
             }
             else
             {

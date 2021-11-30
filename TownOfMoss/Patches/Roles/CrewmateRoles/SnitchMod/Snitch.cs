@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using TownOfUs.CustomHats;
+using TownOfUs.Extensions;
 using TownOfUs.ImpostorRoles.CamouflageMod;
 using UnityEngine;
 
@@ -40,7 +40,7 @@ namespace TownOfUs.Roles
 
         internal override bool Criteria()
         {
-            return OneTaskLeft && PlayerControl.LocalPlayer.Data.Role.IsImpostor ||
+            return OneTaskLeft && PlayerControl.LocalPlayer.Data.IsImpostor() ||
                    base.Criteria();
         }
 
@@ -56,8 +56,7 @@ namespace TownOfUs.Roles
             if (!CustomGameOptions.RoleUnderName && player == null) return Player.name;
             Player.nameText.transform.localPosition = new Vector3(
                 0f,
-                Player.Data.DefaultOutfit.HatId == "" ? 1.5f :
-                HatCreation.TallIds.Contains(Player.Data.DefaultOutfit.HatId) ? 2.2f : 2.0f,
+                Player.CurrentOutfit.HatId == "hat_NoHat" ? 1.5f : 2.0f,
                 -0.5f
             );
             return Player.name + "\n" + "Crewmate";

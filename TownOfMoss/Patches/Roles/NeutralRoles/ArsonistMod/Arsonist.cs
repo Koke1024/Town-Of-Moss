@@ -8,7 +8,7 @@ namespace TownOfUs.Roles
 {
     public class Arsonist : Role
     {
-        private ActionButton _igniteButton;
+        private KillButton _igniteButton;
         public bool ArsonistWins;
         public PlayerControl ClosestPlayer;
         public List<byte> DousedPlayers = new List<byte>();
@@ -28,7 +28,7 @@ namespace TownOfUs.Roles
             LastDoused = DateTime.UtcNow.AddSeconds(5.0f);
         }
 
-        public ActionButton IgniteButton
+        public KillButton IgniteButton
         {
             get => _igniteButton;
             set

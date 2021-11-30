@@ -160,6 +160,69 @@ namespace TownOfUs.CustomOption {
             return false;
         }
 
+        [HarmonyPatch(typeof(GameSettingMenu), nameof(GameSettingMenu.Start))]
+        private class OptionsMenuBehaviour_Start
+        {
+            public static void Postfix(GameSettingMenu __instance)
+            {
+                var obj = __instance.RolesSettingsHightlight.gameObject.transform.parent.parent;
+                var touSettings = Object.Instantiate(__instance.RegularGameSettings, __instance.RegularGameSettings.transform.parent);
+                touSettings.SetActive(false);
+                touSettings.name = "TOUSettings";
+
+                var gameGroup = touSettings.transform.FindChild("GameGroup");
+                var title = gameGroup?.FindChild("Text");
+
+                if (title != null)
+                {
+                    title.GetComponent<TextTranslatorTMP>().Destroy();
+                    title.GetComponent<TMPro.TextMeshPro>().m_text = "Town Of Us Settings";
+                }
+                var sliderInner = gameGroup?.FindChild("SliderInner");
+                if (sliderInner != null)
+                    sliderInner.GetComponent<GameOptionsMenu>().name = "TouGameOptionsMenu";
+
+                var ourSettingsButton = Object.Instantiate(obj.gameObject, obj.transform.parent);
+                ourSettingsButton.transform.localPosition = new Vector3(obj.localPosition.x + 0.906f, obj.localPosition.y, obj.localPosition.z);
+                ourSettingsButton.name = "TOUtab";
+                var hatButton = ourSettingsButton.transform.GetChild(0); //TODO:  change to FindChild I guess to be sure
+                var hatIcon = hatButton.GetChild(0);
+                var tabBackground = hatButton.GetChild(1);
+
+                var renderer = hatIcon.GetComponent<SpriteRenderer>();
+                renderer.sprite = ModManager.Instance.ModStamp.sprite;
+                var touSettingsHighlight = tabBackground.GetComponent<SpriteRenderer>();
+                PassiveButton passiveButton = __instance.GameSettingsHightlight.GetComponent<PassiveButton>();
+                passiveButton.OnClick = new UnityEngine.UI.Button.ButtonClickedEvent();
+                passiveButton.OnClick.AddListener(ToggleButton(__instance, touSettings, touSettingsHighlight, 0));
+                passiveButton = __instance.RolesSettingsHightlight.GetComponent<PassiveButton>();
+                passiveButton.OnClick = new UnityEngine.UI.Button.ButtonClickedEvent();
+                passiveButton.OnClick.AddListener(ToggleButton(__instance, touSettings, touSettingsHighlight, 1));
+                passiveButton = tabBackground.GetComponent<PassiveButton>();
+                passiveButton.OnClick = new UnityEngine.UI.Button.ButtonClickedEvent();
+                passiveButton.OnClick.AddListener(ToggleButton(__instance, touSettings, touSettingsHighlight, 2));
+
+                //fix for scrollbar (bug in among us)
+                touSettings.GetComponentInChildren<Scrollbar>().parent = touSettings.GetComponentInChildren<Scroller>();
+                __instance.RegularGameSettings.GetComponentInChildren<Scrollbar>().parent = __instance.RegularGameSettings.GetComponentInChildren<Scroller>();
+                __instance.RolesSettings.GetComponentInChildren<Scrollbar>().parent = __instance.RolesSettings.GetComponentInChildren<Scroller>();
+
+
+            }
+        }
+
+        public static System.Action ToggleButton(GameSettingMenu settingMenu, GameObject TouSettings, SpriteRenderer highlight, int id)
+        {
+            return new System.Action(() =>
+            {
+                settingMenu.RegularGameSettings.SetActive(id == 0);
+                settingMenu.GameSettingsHightlight.enabled = id == 0;
+                settingMenu.RolesSettings.gameObject.SetActive(id == 1);
+                settingMenu.RolesSettingsHightlight.enabled = id == 1;
+                highlight.enabled = id == 2;
+                TouSettings.SetActive(id == 2);
+            });
+        }
 
         [HarmonyPatch(typeof(GameOptionsMenu), nameof(GameOptionsMenu.Start))]
         private class GameOptionsMenu_Start {
@@ -174,58 +237,58 @@ namespace TownOfUs.CustomOption {
                 inited = false;
                 var customOptions = CreateOptions(__instance);
 
-                var gameSettings = GameObject.Find("Game Settings");
-                var gameSettingMenu = UnityEngine.Object.FindObjectsOfType<GameSettingMenu>().FirstOrDefault();
-                var tomSettings = UnityEngine.Object.Instantiate(gameSettings, gameSettings.transform.parent);
-                var tomMenu = tomSettings.transform.FindChild("GameGroup").FindChild("SliderInner")
-                    .GetComponent<GameOptionsMenu>();
-                tomSettings.name = "TOMSettings";
-
-                var roleTab = GameObject.Find("RoleTab");
-                var gameTab = GameObject.Find("GameTab");
-
-                var tomTab = UnityEngine.Object.Instantiate(roleTab, roleTab.transform.parent);
-                var tomTabHighlight = tomTab.transform.FindChild("Hat Button").FindChild("Tab Background")
-                    .GetComponent<SpriteRenderer>();
-                tomTab.transform.FindChild("Hat Button").FindChild("Icon").GetComponent<SpriteRenderer>().sprite =
-                    ModManager.Instance.ModStamp.sprite;
-
-                gameTab.transform.position += Vector3.left * 0.5f;
-                tomTab.transform.position += Vector3.right * 0.5f;
-                roleTab.transform.position += Vector3.left * 0.5f;
-
-                var tabs = new GameObject[] { gameTab, roleTab, tomTab };
-                for (int menuIndex = 0; menuIndex < tabs.Length; menuIndex++) {
-                    var button = tabs[menuIndex].GetComponentInChildren<PassiveButton>();
-                    if (button == null) continue;
-                    int copiedIndex = menuIndex;
-                    button.OnClick = new UnityEngine.UI.Button.ButtonClickedEvent();
-                    button.OnClick.AddListener((Action)(() => {
-                        gameSettingMenu.RegularGameSettings.SetActive(false);
-                        gameSettingMenu.RolesSettings.gameObject.SetActive(false);
-                        tomSettings.gameObject.SetActive(false);
-                        gameSettingMenu.GameSettingsHightlight.enabled = false;
-                        gameSettingMenu.RolesSettingsHightlight.enabled = false;
-                        tomTabHighlight.enabled = false;
-                        if (copiedIndex == 0) {
-                            gameSettingMenu.RegularGameSettings.SetActive(true);
-                            gameSettingMenu.GameSettingsHightlight.enabled = true;
-                        }
-                        else if (copiedIndex == 1) {
-                            gameSettingMenu.RolesSettings.gameObject.SetActive(true);
-                            gameSettingMenu.RolesSettingsHightlight.enabled = true;
-                        }
-                        else if (copiedIndex == 2) {
-                            tomSettings.gameObject.SetActive(true);
-                            tomTabHighlight.enabled = true;
-                        }
-                    }));
-                }
-                tomSettings.gameObject.SetActive(false);
-
-                foreach (OptionBehaviour option in tomMenu.GetComponentsInChildren<OptionBehaviour>())
-                    UnityEngine.Object.Destroy(option.gameObject);
-                List<OptionBehaviour> torOptions = new List<OptionBehaviour>();
+                // var gameSettings = GameObject.Find("Game Settings");
+                // var gameSettingMenu = UnityEngine.Object.FindObjectsOfType<GameSettingMenu>().FirstOrDefault();
+                // var tomSettings = UnityEngine.Object.Instantiate(gameSettings, gameSettings.transform.parent);
+                // var tomMenu = tomSettings.transform.FindChild("GameGroup").FindChild("SliderInner")
+                //     .GetComponent<GameOptionsMenu>();
+                // tomSettings.name = "TOMSettings";
+                //
+                // var roleTab = GameObject.Find("RoleTab");
+                // var gameTab = GameObject.Find("GameTab");
+                //
+                // var tomTab = UnityEngine.Object.Instantiate(roleTab, roleTab.transform.parent);
+                // var tomTabHighlight = tomTab.transform.FindChild("Hat Button").FindChild("Tab Background")
+                //     .GetComponent<SpriteRenderer>();
+                // tomTab.transform.FindChild("Hat Button").FindChild("Icon").GetComponent<SpriteRenderer>().sprite =
+                //     ModManager.Instance.ModStamp.sprite;
+                //
+                // gameTab.transform.position += Vector3.left * 0.5f;
+                // tomTab.transform.position += Vector3.right * 0.5f;
+                // roleTab.transform.position += Vector3.left * 0.5f;
+                //
+                // var tabs = new GameObject[] { gameTab, roleTab, tomTab };
+                // for (int menuIndex = 0; menuIndex < tabs.Length; menuIndex++) {
+                //     var button = tabs[menuIndex].GetComponentInChildren<PassiveButton>();
+                //     if (button == null) continue;
+                //     int copiedIndex = menuIndex;
+                //     button.OnClick = new UnityEngine.UI.Button.ButtonClickedEvent();
+                //     button.OnClick.AddListener((Action)(() => {
+                //         gameSettingMenu.RegularGameSettings.SetActive(false);
+                //         gameSettingMenu.RolesSettings.gameObject.SetActive(false);
+                //         tomSettings.gameObject.SetActive(false);
+                //         gameSettingMenu.GameSettingsHightlight.enabled = false;
+                //         gameSettingMenu.RolesSettingsHightlight.enabled = false;
+                //         tomTabHighlight.enabled = false;
+                //         if (copiedIndex == 0) {
+                //             gameSettingMenu.RegularGameSettings.SetActive(true);
+                //             gameSettingMenu.GameSettingsHightlight.enabled = true;
+                //         }
+                //         else if (copiedIndex == 1) {
+                //             gameSettingMenu.RolesSettings.gameObject.SetActive(true);
+                //             gameSettingMenu.RolesSettingsHightlight.enabled = true;
+                //         }
+                //         else if (copiedIndex == 2) {
+                //             tomSettings.gameObject.SetActive(true);
+                //             tomTabHighlight.enabled = true;
+                //         }
+                //     }));
+                // }
+                // tomSettings.gameObject.SetActive(false);
+                //
+                // foreach (OptionBehaviour option in tomMenu.GetComponentsInChildren<OptionBehaviour>())
+                //     UnityEngine.Object.Destroy(option.gameObject);
+                // List<OptionBehaviour> torOptions = new List<OptionBehaviour>();
 
                 if (__instance.Children.Count > 0) {
                     contentY = __instance.GetComponentsInChildren<OptionBehaviour>()

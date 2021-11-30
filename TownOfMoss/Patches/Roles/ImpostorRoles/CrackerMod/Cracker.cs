@@ -5,7 +5,7 @@ namespace TownOfUs.Roles
 {
     public class Cracker : Assassin
     {
-        public ActionButton _crackButton;
+        public KillButton _crackButton;
         public DateTime LastCracked;
         public SystemTypes? TargetRoom;
 
@@ -30,7 +30,7 @@ namespace TownOfUs.Roles
             HackingRoom = null;
         }
 
-        public ActionButton CrackButton
+        public KillButton CrackButton
         {
             get => _crackButton;
             set

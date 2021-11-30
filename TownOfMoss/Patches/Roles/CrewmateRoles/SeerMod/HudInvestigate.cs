@@ -28,7 +28,7 @@ namespace TownOfUs.CrewmateRoles.SeerMod
             if (isDead)
             {
                 investigateButton.gameObject.SetActive(false);
-                investigateButton.graphic.enabled = false;
+                // investigateButton.graphic.enabled = false;
             }
             else
             {

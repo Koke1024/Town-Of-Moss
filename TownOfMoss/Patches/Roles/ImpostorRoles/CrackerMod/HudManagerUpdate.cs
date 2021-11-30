@@ -20,15 +20,15 @@ namespace TownOfUs.ImpostorRoles.CrackerMod
             var role = Role.GetRole<Cracker>(PlayerControl.LocalPlayer);
             if (role.CrackButton == null)
             {
-                role.CrackButton = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);
+                role.CrackButton = Object.Instantiate(__instance.KillButton, __instance.KillButton.transform.parent);
                 role.CrackButton.graphic.enabled = true;
+                role.CrackButton.graphic.sprite = CrackSprite;
+                role.CrackButton.GetComponent<AspectPosition>().DistanceFromEdge = TownOfUs.ButtonPosition;
+                role.CrackButton.gameObject.SetActive(false);
             }
+            role.CrackButton.GetComponent<AspectPosition>().Update();
 
-            role.CrackButton.graphic.sprite = CrackSprite;
             role.CrackButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
-            var position = __instance.KillButton.transform.localPosition;
-            role.CrackButton.transform.localPosition = new Vector3(position.x,
-                __instance.ReportButton.transform.localPosition.y, position.z);
             role.CrackButton.SetCoolDown(role.CrackTimer(), CustomGameOptions.CrackCd);
 
             bool available = role.TargetRoom != null;

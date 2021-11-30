@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using HarmonyLib;
+using TownOfUs.Extensions;
 using TownOfUs.Roles;
 
 namespace TownOfUs.CrewmateRoles.PoliceMod
@@ -31,7 +32,7 @@ namespace TownOfUs.CrewmateRoles.PoliceMod
                 if (isDead)
                 {
                     killButton.gameObject.SetActive(false);
-                    killButton.graphic.enabled = false;
+                    // killButton.graphic.enabled = false;
                 }
                 else
                 {
@@ -46,7 +47,7 @@ namespace TownOfUs.CrewmateRoles.PoliceMod
             }
             else
             {
-                var isImpostor = PlayerControl.LocalPlayer.Data.Role.IsImpostor;
+                var isImpostor = PlayerControl.LocalPlayer.Data.IsImpostor();
                 if (!isImpostor) return;
                 if (PlayerControl.LocalPlayer.Is(RoleEnum.Assassin) && CustomGameOptions.MadMateOn) {
                     return;
@@ -55,7 +56,7 @@ namespace TownOfUs.CrewmateRoles.PoliceMod
                 if (isDead2)
                 {
                     killButton.gameObject.SetActive(false);
-                    killButton.graphic.enabled = false;
+                    // killButton.graphic.enabled = false;
                 }
                 else
                 {

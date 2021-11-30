@@ -63,7 +63,7 @@ namespace TownOfUs.CrewmateRoles.MedicMod
                 {25, "lighter"},// rainbow
                 {26, "lighter"},// azure
             };
-            var typeOfColor = colors[br.Killer.Data.DefaultOutfit.ColorId];
+            var typeOfColor = colors[br.Killer.CurrentOutfit.ColorId];
             return
                 $"Body Report: The killer appears to be a {typeOfColor} color. (Killed {Math.Round(br.KillAge / 1000)}s ago)";
         }

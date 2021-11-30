@@ -1,6 +1,6 @@
-using System.Linq;
-using System.Runtime.CompilerServices;
 using HarmonyLib;
+using Reactor;
+using System.Linq;
 using TownOfUs.Extensions;
 using TownOfUs.ImpostorRoles.MorphlingMod;
 using TownOfUs.Roles;
@@ -8,14 +8,64 @@ using UnityEngine;
 
 namespace TownOfUs
 {
+    [HarmonyPatch(typeof(HudManager))]
+    public static class HudManagerVentPatch
+    {
+        [HarmonyPatch(nameof(HudManager.Update))]
+        public static void Postfix(HudManager __instance)
+        {
+            if(__instance.ImpostorVentButton == null || __instance.ImpostorVentButton.gameObject == null || __instance.ImpostorVentButton.IsNullOrDestroyed())
+                return;
+
+            bool active = PlayerControl.LocalPlayer != null && VentPatches.CanVent(PlayerControl.LocalPlayer, PlayerControl.LocalPlayer._cachedData) && !MeetingHud.Instance;
+            if(active != __instance.ImpostorVentButton.gameObject.active)
+            __instance.ImpostorVentButton.gameObject.SetActive(active);
+        }
+    }
+
     [HarmonyPatch(typeof(Vent), nameof(Vent.CanUse))]
-    public static class PlayerVentTimeExtension
+    public static class VentPatches
     {
         private static bool CheckUndertaker(PlayerControl player)
         {
             var role = Role.GetRole<Undertaker>(player);
             return player.Data.IsDead || role.CurrentlyDragging != null;
         }
+
+        public static bool CanVent(PlayerControl player, GameData.PlayerInfo playerInfo)
+        { 
+            if (player.inVent)
+                return true;
+
+            if (playerInfo.IsDead)
+                return false;
+            
+            if (player.Is(RoleEnum.Kirby)
+                || (player.CanDrag() && Role.GetRole<Undertaker>(player).CurrentlyDragging != null))
+                return false;
+            if (player.Is(RoleEnum.Morphling)) {
+                if (CustomGameOptions.MorphCanVent == MorphVentOptions.None) {
+                    return false;
+                }
+                if (Role.GetRole<Morphling>(player).Morphed && CustomGameOptions.MorphCanVent == MorphVentOptions.OnNotMorph) {
+                    return false;
+                }
+            }
+            if (player.Is(RoleEnum.Swooper)) {
+                if (CustomGameOptions.SwooperCanVent == MorphVentOptions.None) {
+                    return false;
+                }
+                if (Role.GetRole<Swooper>(player).IsSwooped && CustomGameOptions.SwooperCanVent == MorphVentOptions.OnNotMorph) {
+                    return false;
+                }
+            }
+
+            if (player.Is(RoleEnum.Engineer) || (player.roleAssigned && playerInfo.Role?.Role == RoleTypes.Engineer)|| (player.Is(RoleEnum.Glitch)))
+                return true;
+
+            return playerInfo.IsImpostor();
+        }
+
         public static bool Prefix(Vent __instance,
             [HarmonyArgument(0)] GameData.PlayerInfo playerInfo,
             [HarmonyArgument(1)] ref bool canUse,
@@ -85,44 +135,6 @@ namespace TownOfUs
             //     playerInfo.Role.CanVent = false;
             
             return true;
-        }
-
-        public static void Postfix(Vent __instance, [HarmonyArgument(0)] GameData.PlayerInfo playerInfo)
-        {
-            if (playerInfo.Object.Is(RoleEnum.Engineer))
-                playerInfo.Role.CanVent = false;
-            if (playerInfo.Object.Is(RoleEnum.Glitch))
-                playerInfo.Role.CanVent = false;
-            if (playerInfo.Object.Is(RoleEnum.Charger))
-                playerInfo.Role.CanVent = false;
-            if (playerInfo.Object.Is(RoleEnum.Jester) && CustomGameOptions.JesterUseVent)
-                playerInfo.Role.CanVent = false;
-            // if (playerInfo.Object.Is(RoleEnum.Defect))
-            //     playerInfo.Role.CanVent = false;
-        }
-    }
-
-    [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
-    public static class VentPriority {
-        public static void Postfix(PlayerControl __instance) {
-            if (!(__instance.closest is { UseIcon: ImageNames.VentButton })) {
-                return;
-            }
-
-            if (__instance.inVent) {
-                return;
-            }
-
-            float dist = float.MaxValue;
-            foreach (var usable in __instance.itemsInRange.ToArray().Where(j => j.UseIcon != ImageNames.VentButton)) {
-                if (dist > usable.CanUse(GameData.Instance.GetPlayerById(__instance.PlayerId), out var canUse,
-                    out var couldUse)) {
-                    if (canUse && couldUse) {
-                        __instance.closest = usable;
-                        DestroyableSingleton<HudManager>.Instance.UseButton.SetTarget(__instance.closest);                    
-                    }                        
-                }
-            }
         }
     }
 }

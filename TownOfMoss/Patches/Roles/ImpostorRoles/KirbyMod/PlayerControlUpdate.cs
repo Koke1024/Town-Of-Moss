@@ -17,16 +17,14 @@ namespace TownOfUs.ImpostorRoles.KirbyMod
             var role = Role.GetRole<Kirby>(PlayerControl.LocalPlayer);
             if (role.InhaleButton == null)
             {
-                role.InhaleButton = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);
+                role.InhaleButton = Object.Instantiate(__instance.KillButton, __instance.KillButton.transform.parent);
                 role.InhaleButton.graphic.enabled = true;
+                role.InhaleButton.GetComponent<AspectPosition>().DistanceFromEdge = TownOfUs.ButtonPosition;
+                role.InhaleButton.gameObject.SetActive(false);
+                role.InhaleButton.graphic.sprite = TownOfUs.Inhale;
             }
-
+            role.InhaleButton.GetComponent<AspectPosition>().Update();
             role.InhaleButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
-            var position = __instance.KillButton.transform.localPosition;
-            role.InhaleButton.transform.localPosition = new Vector3(position.x,
-                __instance.ReportButton.transform.localPosition.y, position.z);
-
-            role.InhaleButton.graphic.sprite = TownOfUs.Inhale;
 
 
             var data = PlayerControl.LocalPlayer.Data;

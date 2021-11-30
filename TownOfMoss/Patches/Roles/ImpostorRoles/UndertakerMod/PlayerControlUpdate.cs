@@ -18,10 +18,13 @@ namespace TownOfUs.ImpostorRoles.UndertakerMod
 
             if (role.DragDropButton == null)
             {
-                role.DragDropButton = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);
+                role.DragDropButton = Object.Instantiate(__instance.KillButton, __instance.KillButton.transform.parent);
                 role.DragDropButton.graphic.enabled = true;
                 role.DragDropButton.graphic.sprite = TownOfUs.DragSprite;
+                role.DragDropButton.GetComponent<AspectPosition>().DistanceFromEdge = TownOfUs.ButtonPosition;
+                role.DragDropButton.gameObject.SetActive(false);
             }
+            role.DragDropButton.GetComponent<AspectPosition>().Update();
 
             if (role.DragDropButton.graphic.sprite != TownOfUs.DragSprite &&
                 role.DragDropButton.graphic.sprite != TownOfUs.DropSprite)
@@ -31,15 +34,15 @@ namespace TownOfUs.ImpostorRoles.UndertakerMod
                 role.DragDropButton.graphic.sprite = TownOfUs.DragSprite;
 
             role.DragDropButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
-            var position = __instance.KillButton.transform.localPosition;
-            if (role.Player.Is(RoleEnum.Undertaker)) {
-                role.DragDropButton.transform.localPosition = new Vector3(position.x,
-                    __instance.ReportButton.transform.localPosition.y, position.z);
-            }else {
-                var size = __instance.UseButton.transform.localPosition.y - __instance.ReportButton.transform.localPosition.y;
-                role.DragDropButton.transform.localPosition = new Vector3(position.x + size,
-                    __instance.UseButton.transform.localPosition.y, position.z);
-            }
+            // var position = __instance.KillButton.transform.localPosition;
+            // if (role.Player.Is(RoleEnum.Undertaker)) {
+            //     role.DragDropButton.transform.localPosition = new Vector3(position.x,
+            //         __instance.ReportButton.transform.localPosition.y, position.z);
+            // }else {
+            //     var size = __instance.UseButton.transform.localPosition.y - __instance.ReportButton.transform.localPosition.y;
+            //     role.DragDropButton.transform.localPosition = new Vector3(position.x + size,
+            //         __instance.UseButton.transform.localPosition.y, position.z);
+            // }
 
             
             if (role.DragDropButton.graphic.sprite == TownOfUs.DragSprite)

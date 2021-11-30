@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Hazel;
-using TownOfUs.CustomHats;
+using TownOfUs.Extensions;
 using TownOfUs.ImpostorRoles.CamouflageMod;
 using UnityEngine;
 
@@ -47,20 +47,25 @@ namespace TownOfUs.Roles
             if (CamouflageUnCamouflage.IsCamoed && player == null) return "";
             if (PlayerControl.LocalPlayer.Data.IsDead || PlayerControl.LocalPlayer == Player)
                 return base.NameText(player);
-            if (player != null && (MeetingHud.Instance.state == MeetingHud.VoteStates.Proceeding ||
-                                   MeetingHud.Instance.state == MeetingHud.VoteStates.Results)) return Player.name;
-            if (!CustomGameOptions.RoleUnderName && player == null) return Player.name;
+            if (!CustomGameOptions.RoleUnderName && player == null) 
             Player.nameText.transform.localPosition = new Vector3(
                 0f,
-                Player.Data.DefaultOutfit.HatId == "" ? 1.5f :
-                HatCreation.TallIds.Contains(Player.Data.DefaultOutfit.HatId) ? 2.2f : 2f,
+                Player.CurrentOutfit.HatId == "hat_NoHat" ? 1.5f : 2f,
                 -0.5f
             );
-            if (PlayerControl.LocalPlayer.Data.Role.IsImpostor && RoleType == RoleEnum.LoverImpostor)
+            if (PlayerControl.LocalPlayer.Data.IsImpostor() && RoleType == RoleEnum.LoverImpostor)
             {
                 Player.nameText.color = Palette.ImpostorRed;
                 if (player != null) player.NameText.color = Palette.ImpostorRed;
+                if (MeetingHud.Instance.state == MeetingHud.VoteStates.Proceeding ||
+                                   MeetingHud.Instance.state == MeetingHud.VoteStates.Results)
+                {
+                    return Player.name;
+                }
+                else
+                {
                 return Player.name + "\n" + "Impostor";
+            }
             }
 
 
@@ -140,7 +145,7 @@ namespace TownOfUs.Roles
             var lover1 = Player;
             var lover2 = OtherLover.Player;
             {
-                return !lover1.Data.IsDead && !lover2.Data.IsDead &&
+                return !(lover1.Data.IsDead || lover1.Data.Disconnected) && !(lover2.Data.IsDead || lover2.Data.Disconnected) &&
                        alives.Count() == 4 && LoverImpostor;
             }
         }
@@ -153,7 +158,7 @@ namespace TownOfUs.Roles
             var lover1 = Player;
             var lover2 = OtherLover.Player;
 
-            return !lover1.Data.IsDead && !lover2.Data.IsDead &&
+            return !(lover1.Data.IsDead || lover1.Data.Disconnected) && !(lover2.Data.IsDead || lover2.Data.Disconnected) &&
                    (alives.Count == 3) | (alives.Count == 2);
         }
 
@@ -163,9 +168,9 @@ namespace TownOfUs.Roles
             /*var lover1 = Player;
             var lover2 = OtherLover.Player;
             //System.Console.WriteLine("reached révoila");
-            lover1.Data.Role.IsImpostor = true;
+            lover1.Data.IsImpostor()() = true;
             lover1.Data.IsDead = false;
-            lover2.Data.Role.IsImpostor = true;
+            lover2.Data.IsImpostor()() = true;
             lover2.Data.IsDead = false;
             foreach (var player in PlayerControl.AllPlayerControls)
             {
@@ -174,7 +179,7 @@ namespace TownOfUs.Roles
                 player.RemoveInfected();
                 player.Die(0);
                 player.Data.IsDead = true;
-                player.Data.Role.IsImpostor = false;
+                player.Data.IsImpostor()() = false;
             }*/
 
             LoveCoupleWins = true;

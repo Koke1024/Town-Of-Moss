@@ -26,7 +26,7 @@ namespace TownOfUs.CrewmateRoles.PainterMod
                     return;
                 }
                 for (int i = 0; i < CustomGameOptions.PaintColorMax; ++i) {
-                    ActionButton btn = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);
+                    ActionButton btn = Object.Instantiate(__instance.KillButton, __instance.KillButton.transform.parent);
                     btn.graphic.enabled = true;
                     btn.graphic.sprite = PaintSprite[i];
                     
@@ -75,10 +75,13 @@ namespace TownOfUs.CrewmateRoles.PainterMod
                 //     btn.renderer.sprite = TownOfUs.PourSprite;
                 // }
                 var offset = __instance.UseButton.transform.localPosition.y - __instance.ReportButton.transform.localPosition.y;
-                var position = __instance.KillButton.transform.localPosition;
-                btn.transform.localPosition = new Vector3(position.x + offset,
-                    position.y - offset * t, position.z);
+                // var position = __instance.KillButton.transform.localPosition;
+                // btn.transform.localPosition = new Vector3(position.x + offset,
+                //     position.y - offset * t, position.z);
+                btn.GetComponent<AspectPosition>().DistanceFromEdge = TownOfUs.ButtonPosition + new Vector3(offset, - offset * t, 0);
                 ++t;
+                btn.gameObject.SetActive(false);
+                btn.GetComponent<AspectPosition>().Update();
             }
         }
         public static Vent ClosestVent() {

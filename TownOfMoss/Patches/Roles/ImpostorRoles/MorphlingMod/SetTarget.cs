@@ -1,4 +1,5 @@
 using HarmonyLib;
+using TownOfUs.Extensions;
 using TownOfUs.Roles;
 
 namespace TownOfUs.ImpostorRoles.MorphlingMod
@@ -14,7 +15,7 @@ namespace TownOfUs.ImpostorRoles.MorphlingMod
             if (!PlayerControl.LocalPlayer.CanMorph()) return;
             var role = Role.GetRole<Morphling>(PlayerControl.LocalPlayer);
             if (target != null && __instance == DestroyableSingleton<HudManager>.Instance.KillButton)
-                if (target.Data.Role.IsImpostor)
+                if (target.Data.IsImpostor())
                 {
                     __instance.graphic.color = Palette.DisabledClear;
                     __instance.graphic.material.SetFloat("_Desat", 1f);

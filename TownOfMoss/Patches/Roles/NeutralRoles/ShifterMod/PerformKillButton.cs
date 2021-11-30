@@ -267,7 +267,7 @@ namespace TownOfUs.NeutralRoles.ShifterMod
                 if (shifter.Is(RoleEnum.Arsonist) && other.AmOwner)
                     Role.GetRole<Arsonist>(shifter).IgniteButton.Destroy();
                 DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(false);
-                DestroyableSingleton<HudManager>.Instance.KillButton.graphic.enabled = false;
+                // DestroyableSingleton<HudManager>.Instance.KillButton.graphic.enabled = false;
 
                 Lights.SetLights();
             }

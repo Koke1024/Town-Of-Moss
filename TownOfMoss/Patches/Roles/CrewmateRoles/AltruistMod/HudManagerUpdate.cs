@@ -47,12 +47,12 @@ namespace TownOfUs.CrewmateRoles.AltruistMod
             if (isDead)
             {
                 killButton.gameObject.SetActive(false);
-                killButton.graphic.enabled = false;
+             //   killButton.isActive = false;
             }
             else
             {
                 killButton.gameObject.SetActive(!MeetingHud.Instance);
-                killButton.graphic.enabled = !MeetingHud.Instance;
+          //      killButton.isActive = !MeetingHud.Instance;
             }
 
             AltruistKillButtonTarget.SetTarget(killButton, closestBody, role);

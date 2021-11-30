@@ -28,15 +28,16 @@ namespace TownOfUs.ImpostorRoles.MinerMod
             }
             if (role.MineButton == null)
             {
-                role.MineButton = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);
+                role.MineButton = Object.Instantiate(__instance.KillButton, __instance.KillButton.transform.parent);
                 role.MineButton.graphic.enabled = true;
+                role.MineButton.GetComponent<AspectPosition>().DistanceFromEdge = TownOfUs.ButtonPosition;
+                role.MineButton.gameObject.SetActive(false);
             }
 
+            role.MineButton.GetComponent<AspectPosition>().Update();
             role.MineButton.graphic.sprite = MineSprite;
             role.MineButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
-            var position = __instance.KillButton.transform.localPosition;
-            role.MineButton.transform.localPosition = new Vector3(position.x,
-                __instance.ReportButton.transform.localPosition.y, position.z);
+
             role.MineButton.SetCoolDown(role.MineTimer(), CustomGameOptions.MineCd);
 
             if (role.VentSize == Vector2.zero) {

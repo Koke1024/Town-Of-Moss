@@ -26,7 +26,7 @@ namespace TownOfUs.Roles
 
         public void Loses()
         {
-            Player.Data.Role.TeamType = RoleTeamTypes.Impostor;
+            LostByRPC = true;
         }
 
         public float ShifterShiftTimer()

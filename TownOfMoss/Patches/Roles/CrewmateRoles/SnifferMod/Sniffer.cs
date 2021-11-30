@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using TownOfUs.CustomHats;
-using TownOfUs.ImpostorRoles.CamouflageMod;
 using UnityEngine;
 
 namespace TownOfUs.Roles

@@ -21,7 +21,7 @@ namespace TownOfUs.NeutralRoles.AssassinMod
 
             // Assassin role = Role.GetRole<Assassin>(PlayerControl.LocalPlayer);
             __instance.KillButton.gameObject.SetActive(false);
-            __instance.KillButton.graphic.enabled = false;
+            // __instance.KillButton.graphic.enabled = false;
         }
     }
 }

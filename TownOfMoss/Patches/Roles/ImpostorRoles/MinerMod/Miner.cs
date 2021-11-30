@@ -10,7 +10,7 @@ namespace TownOfUs.Roles
         public readonly List<Vent> Vents = new List<Vent>();
         public static Vent ventModel = null;
 
-        public ActionButton _mineButton;
+        public KillButton _mineButton;
         public DateTime LastMined;
 
 
@@ -31,7 +31,7 @@ namespace TownOfUs.Roles
         public bool CanPlace { get; set; }
         public Vector2 VentSize { get; set; }
 
-        public ActionButton MineButton
+        public KillButton MineButton
         {
             get => _mineButton;
             set

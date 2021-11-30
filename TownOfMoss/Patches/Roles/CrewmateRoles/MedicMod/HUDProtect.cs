@@ -27,12 +27,12 @@ namespace TownOfUs.CrewmateRoles.MedicMod
             if (isDead)
             {
                 protectButton.gameObject.SetActive(false);
-                protectButton.graphic.enabled = false;
+             //   protectButton.isActive = false;
             }
             else
             {
                 protectButton.gameObject.SetActive(!MeetingHud.Instance);
-                protectButton.graphic.enabled = !MeetingHud.Instance;
+                //protectButton.isActive = !MeetingHud.Instance;
                 protectButton.SetCoolDown(0f, 1f);
                 if (role.UsedAbility) return;
                 Utils.SetTarget(ref role.ClosestPlayer, protectButton);

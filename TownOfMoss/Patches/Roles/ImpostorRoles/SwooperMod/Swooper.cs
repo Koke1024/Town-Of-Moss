@@ -8,7 +8,7 @@ namespace TownOfUs.Roles
 {
     public class Swooper : Assassin
     {
-        public ActionButton _swoopButton;
+        public KillButton _swoopButton;
         public bool Enabled;
         public DateTime LastSwooped;
         public float TimeRemaining;
@@ -28,7 +28,7 @@ namespace TownOfUs.Roles
 
         public bool IsSwooped => TimeRemaining > 0f;
 
-        public ActionButton SwoopButton
+        public KillButton SwoopButton
         {
             get => _swoopButton;
             set
@@ -55,7 +55,7 @@ namespace TownOfUs.Roles
             Enabled = true;
             TimeRemaining -= Time.deltaTime;
             var color = Color.clear;
-            if (PlayerControl.LocalPlayer.Data.Role.IsImpostor || (PlayerControl.LocalPlayer.Data.IsDead && !CanMove.CanMovePatch.GetMyBody())) {
+            if (PlayerControl.LocalPlayer.Data.IsImpostor() || (PlayerControl.LocalPlayer.Data.IsDead && !CanMove.CanMovePatch.GetMyBody())) {
                 color.a = 0.1f;
             }
 

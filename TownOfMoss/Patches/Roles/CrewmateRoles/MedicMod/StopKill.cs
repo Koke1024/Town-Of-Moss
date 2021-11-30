@@ -1,6 +1,7 @@
 using HarmonyLib;
 using Hazel;
 using Reactor;
+using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine;
 
@@ -43,7 +44,7 @@ namespace TownOfUs.CrewmateRoles.MedicMod
         public static bool Prefix(KillButton __instance)
         {
             if (__instance != DestroyableSingleton<HudManager>.Instance.KillButton) return true;
-            if (!PlayerControl.LocalPlayer.Data.Role.IsImpostor) return true;
+            if (!PlayerControl.LocalPlayer.Data.IsImpostor()) return true;
             var target = __instance.currentTarget;
             if (target == null) return true;
             var killer = PlayerControl.LocalPlayer;

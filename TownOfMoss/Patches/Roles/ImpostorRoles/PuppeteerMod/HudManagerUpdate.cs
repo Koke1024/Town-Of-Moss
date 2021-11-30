@@ -17,20 +17,17 @@ namespace TownOfUs.ImpostorRoles.PuppeteerMod {
             if (!PlayerControl.LocalPlayer.Is(RoleEnum.Puppeteer)) return;
             var role = Role.GetRole<Puppeteer>(PlayerControl.LocalPlayer);
             if (role.PossessButton == null) {
-                role.PossessButton = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);
+                role.PossessButton = Object.Instantiate(__instance.KillButton, __instance.KillButton.transform.parent);
                 role.PossessButton.graphic.enabled = true;
                 role.PossessButton.graphic.sprite = Puppeteer.PossessSprite;
+                role.PossessButton.GetComponent<AspectPosition>().DistanceFromEdge = TownOfUs.ButtonPosition;
+                role.PossessButton.gameObject.SetActive(false);
             }
+            role.PossessButton.GetComponent<AspectPosition>().Update();
 
             if (role.PossessButton.graphic.sprite != Puppeteer.PossessSprite &&
                 role.PossessButton.graphic.sprite != Puppeteer.UnPossessSprite)
                 role.PossessButton.graphic.sprite = Puppeteer.PossessSprite;
-
-            role.PossessButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
-            var position = __instance.KillButton.transform.localPosition;
-
-            role.PossessButton.transform.localPosition = new Vector3(position.x,
-                __instance.ReportButton.transform.localPosition.y, position.z);
 
             if (role.PossessButton.graphic.sprite == Puppeteer.PossessSprite) {
                 if ((role.lastPossess - DateTime.UtcNow).TotalMilliseconds / 1000.0f + PlayerControl.GameOptions.KillCooldown > 0) {
