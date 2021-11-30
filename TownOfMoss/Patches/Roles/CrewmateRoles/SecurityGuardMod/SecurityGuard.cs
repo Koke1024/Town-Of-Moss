@@ -113,21 +113,21 @@ namespace TownOfUs.Roles
                            Mathf.Min(ventPrice, camPrice);
                 },
                 () => {
-                    SecurityGuardButton.actionButton.graphic.color = Palette.EnabledColor;
-                    SecurityGuardButton.actionButton.graphic.material.SetFloat("_Desat", 0f);
+                    SecurityGuardButton.killButton.graphic.color = Palette.EnabledColor;
+                    SecurityGuardButton.killButton.graphic.material.SetFloat("_Desat", 0f);
                     if (ventTarget == null) {
                         if (PlayerControl.GameOptions.MapId == (byte)ShipStatus.MapType.Pb ||
                             PlayerControl.GameOptions.MapId == (byte)ShipStatus.MapType.Ship) {
-                            SecurityGuardButton.actionButton.graphic.sprite = getPlaceCameraButtonSprite();                            
+                            SecurityGuardButton.killButton.graphic.sprite = getPlaceCameraButtonSprite();                            
                         }
                         else {
-                            SecurityGuardButton.actionButton.graphic.sprite = getCloseVentButtonSprite();
-                            SecurityGuardButton.actionButton.graphic.color = Palette.DisabledClear;
-                            SecurityGuardButton.actionButton.graphic.material.SetFloat("_Desat", 1f);                            
+                            SecurityGuardButton.killButton.graphic.sprite = getCloseVentButtonSprite();
+                            SecurityGuardButton.killButton.graphic.color = Palette.DisabledClear;
+                            SecurityGuardButton.killButton.graphic.material.SetFloat("_Desat", 1f);                            
                         }
                     }
                     else {
-                        SecurityGuardButton.actionButton.graphic.sprite = getCloseVentButtonSprite();
+                        SecurityGuardButton.killButton.graphic.sprite = getCloseVentButtonSprite();
                     }
                     if (SecurityGuardButtonScrewsText != null)
                         SecurityGuardButtonScrewsText.text =
@@ -148,8 +148,8 @@ namespace TownOfUs.Roles
             );
 
             SecurityGuardButton.MaxTimer = cooldown;
-            SecurityGuardButtonScrewsText = GameObject.Instantiate(SecurityGuardButton.actionButton.cooldownTimerText,
-                SecurityGuardButton.actionButton.cooldownTimerText.transform.parent);
+            SecurityGuardButtonScrewsText = GameObject.Instantiate(SecurityGuardButton.killButton.cooldownTimerText,
+                SecurityGuardButton.killButton.cooldownTimerText.transform.parent);
             SecurityGuardButtonScrewsText.text = "";
             SecurityGuardButtonScrewsText.enableWordWrapping = false;
             SecurityGuardButtonScrewsText.transform.localScale = Vector3.one * 0.5f;

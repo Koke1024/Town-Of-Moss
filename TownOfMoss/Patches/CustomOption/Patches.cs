@@ -176,7 +176,7 @@ namespace TownOfUs.CustomOption {
                 if (title != null)
                 {
                     title.GetComponent<TextTranslatorTMP>().Destroy();
-                    title.GetComponent<TMPro.TextMeshPro>().m_text = "Town Of Us Settings";
+                    title.GetComponent<TMPro.TextMeshPro>().m_text = "Town Of Moss Settings";
                 }
                 var sliderInner = gameGroup?.FindChild("SliderInner");
                 if (sliderInner != null)
@@ -226,82 +226,31 @@ namespace TownOfUs.CustomOption {
 
         [HarmonyPatch(typeof(GameOptionsMenu), nameof(GameOptionsMenu.Start))]
         private class GameOptionsMenu_Start {
-            public static void Postfix(GameOptionsMenu __instance) {
-                if (GameObject.Find("TOMSettings") != null) {
-                    // Settings setup has already been performed, fixing the title of the tab and returning
-                    GameObject.Find("TOMSettings").transform.FindChild("GameGroup").FindChild("Text")
-                        .GetComponent<TMPro.TextMeshPro>().SetText("Town of Moss Settings");
-                    return;
-                }
-
+            public static bool Prefix(GameOptionsMenu __instance) {
+                if (__instance.name != "TouGameOptionsMenu")
+                    return true;
+                togglePrefab = Object.FindObjectOfType<ToggleOption>();
                 inited = false;
+                
+                __instance.Children = new Il2CppReferenceArray<OptionBehaviour>(new OptionBehaviour[0]);
+                var children = new Transform[__instance.gameObject.transform.childCount];
+                for (int k = 0; k < children.Length; k++)
+                {
+                    children[k] = __instance.gameObject.transform.GetChild(k); //TODO: Make a better fix for this for example caching the options or creating it ourself.
+                }
+                
                 var customOptions = CreateOptions(__instance);
 
-                // var gameSettings = GameObject.Find("Game Settings");
-                // var gameSettingMenu = UnityEngine.Object.FindObjectsOfType<GameSettingMenu>().FirstOrDefault();
-                // var tomSettings = UnityEngine.Object.Instantiate(gameSettings, gameSettings.transform.parent);
-                // var tomMenu = tomSettings.transform.FindChild("GameGroup").FindChild("SliderInner")
-                //     .GetComponent<GameOptionsMenu>();
-                // tomSettings.name = "TOMSettings";
-                //
-                // var roleTab = GameObject.Find("RoleTab");
-                // var gameTab = GameObject.Find("GameTab");
-                //
-                // var tomTab = UnityEngine.Object.Instantiate(roleTab, roleTab.transform.parent);
-                // var tomTabHighlight = tomTab.transform.FindChild("Hat Button").FindChild("Tab Background")
-                //     .GetComponent<SpriteRenderer>();
-                // tomTab.transform.FindChild("Hat Button").FindChild("Icon").GetComponent<SpriteRenderer>().sprite =
-                //     ModManager.Instance.ModStamp.sprite;
-                //
-                // gameTab.transform.position += Vector3.left * 0.5f;
-                // tomTab.transform.position += Vector3.right * 0.5f;
-                // roleTab.transform.position += Vector3.left * 0.5f;
-                //
-                // var tabs = new GameObject[] { gameTab, roleTab, tomTab };
-                // for (int menuIndex = 0; menuIndex < tabs.Length; menuIndex++) {
-                //     var button = tabs[menuIndex].GetComponentInChildren<PassiveButton>();
-                //     if (button == null) continue;
-                //     int copiedIndex = menuIndex;
-                //     button.OnClick = new UnityEngine.UI.Button.ButtonClickedEvent();
-                //     button.OnClick.AddListener((Action)(() => {
-                //         gameSettingMenu.RegularGameSettings.SetActive(false);
-                //         gameSettingMenu.RolesSettings.gameObject.SetActive(false);
-                //         tomSettings.gameObject.SetActive(false);
-                //         gameSettingMenu.GameSettingsHightlight.enabled = false;
-                //         gameSettingMenu.RolesSettingsHightlight.enabled = false;
-                //         tomTabHighlight.enabled = false;
-                //         if (copiedIndex == 0) {
-                //             gameSettingMenu.RegularGameSettings.SetActive(true);
-                //             gameSettingMenu.GameSettingsHightlight.enabled = true;
-                //         }
-                //         else if (copiedIndex == 1) {
-                //             gameSettingMenu.RolesSettings.gameObject.SetActive(true);
-                //             gameSettingMenu.RolesSettingsHightlight.enabled = true;
-                //         }
-                //         else if (copiedIndex == 2) {
-                //             tomSettings.gameObject.SetActive(true);
-                //             tomTabHighlight.enabled = true;
-                //         }
-                //     }));
-                // }
-                // tomSettings.gameObject.SetActive(false);
-                //
-                // foreach (OptionBehaviour option in tomMenu.GetComponentsInChildren<OptionBehaviour>())
-                //     UnityEngine.Object.Destroy(option.gameObject);
-                // List<OptionBehaviour> torOptions = new List<OptionBehaviour>();
-
                 if (__instance.Children.Count > 0) {
-                    contentY = __instance.GetComponentsInChildren<OptionBehaviour>()
-                        .Max(option => option.transform.localPosition.y);
-                    contentX = __instance.Children[1].transform.localPosition.x;
-                    contentZ = __instance.Children[1].transform.localPosition.z;
+                    var startOption = __instance.gameObject.transform.GetChild(0);
+                    contentY = startOption.localPosition.y;;
+                    contentX = startOption.localPosition.x;;
+                    contentZ = startOption.localPosition.z;;
                 }
-                else {
-                    contentX = 0;
-                    contentY = 0;
-                    contentZ = -1;
+                for (int k = 0; k < children.Length; k++)
+                {
+                    children[k].gameObject.Destroy();
                 }
-
                 var i = 0;
 
                 foreach (var option in customOptions) {
@@ -309,10 +258,7 @@ namespace TownOfUs.CustomOption {
                 }
 
                 __instance.Children = new Il2CppReferenceArray<OptionBehaviour>(customOptions.ToArray());
-            }
-
-            public static void Prefix(GameOptionsMenu __instance) {
-                togglePrefab = Object.FindObjectOfType<ToggleOption>();
+                return false;
             }
         }
 

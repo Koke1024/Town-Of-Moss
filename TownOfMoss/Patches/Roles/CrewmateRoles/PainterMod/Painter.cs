@@ -17,7 +17,7 @@ namespace TownOfUs.Roles
         PaintNone,
     }
     public class Painter : Role {
-        public List<ActionButton> _paintButtons = new List<ActionButton>();
+        public List<KillButton> _paintButtons = new List<KillButton>();
         public Vent closeVent;
         public static readonly Color[] PaintColors = {
             new Color(1, 0, 0),
@@ -34,7 +34,7 @@ namespace TownOfUs.Roles
         public static List<GameObject> InkList = new List<GameObject>();
         
         public static Sprite InkSprite => TownOfUs.InkSprite;
-        public static Sprite PourSprite => TownOfUs.PourSprite;
+        // public static Sprite PourSprite => TownOfUs.PourSprite;
 
         public Painter(PlayerControl player) : base(player) {
             Name = "Painter";

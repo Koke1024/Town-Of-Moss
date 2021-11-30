@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace TownOfUs
 {
-    [HarmonyPatch(typeof(ActionButton), nameof(ActionButton.Start))]
+    [HarmonyPatch(typeof(KillButton), nameof(KillButton.Start))]
     public static class KillButtonAwake
     {
-        public static void Prefix(ActionButton __instance)
+        public static void Prefix(KillButton __instance)
         {
-            // __instance.transform.Find("Text_TMP").gameObject.SetActive(false);
+            __instance.transform.Find("Text_TMP").gameObject.SetActive(false);
         }
     }
     

@@ -26,7 +26,7 @@ namespace TownOfUs.CrewmateRoles.PainterMod
                     return;
                 }
                 for (int i = 0; i < CustomGameOptions.PaintColorMax; ++i) {
-                    ActionButton btn = Object.Instantiate(__instance.KillButton, __instance.KillButton.transform.parent);
+                    KillButton btn = Object.Instantiate(__instance.KillButton, __instance.KillButton.transform.parent);
                     btn.graphic.enabled = true;
                     btn.graphic.sprite = PaintSprite[i];
                     

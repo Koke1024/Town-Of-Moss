@@ -1,8 +1,6 @@
 using System;
 using TownOfUs.Extensions;
-using TownOfUs.Patches;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace TownOfUs.Roles
 {
@@ -55,25 +53,21 @@ namespace TownOfUs.Roles
             Enabled = true;
             TimeRemaining -= Time.deltaTime;
             var color = Color.clear;
-            if (PlayerControl.LocalPlayer.Data.IsImpostor() || (PlayerControl.LocalPlayer.Data.IsDead && !CanMove.CanMovePatch.GetMyBody())) {
-                color.a = 0.1f;
+            if (PlayerControl.LocalPlayer.Data.IsImpostor() || PlayerControl.LocalPlayer.Data.IsDead) color.a = 0.1f;
+
+            if (Player.GetCustomOutfitType() != CustomPlayerOutfitType.Swooper)
+            {
+                Player.SetOutfit(CustomPlayerOutfitType.Swooper, new GameData.PlayerOutfit()
+                {
+                    ColorId = Player.CurrentOutfit.ColorId,
+                    HatId = "",
+                    SkinId = "",
+                    VisorId = "",
+                    _playerName = " "
+                });
+            Player.MyRend.color = color;
             }
 
-
-            Player.MyRend.color = color;
-
-            Player.HatRenderer.SetHat("", 0);
-            Player.nameText.text = "";
-            if (Player.MyPhysics.Skin.skin.ProdId != DestroyableSingleton<HatManager>.Instance
-                .AllSkins.ToArray()[0].ProdId)
-                Player.MyPhysics.SetSkin("");
-            if (Player.CurrentPet != null) Object.Destroy(Player.CurrentPet.gameObject);
-            Player.CurrentPet =
-                Object.Instantiate(
-                    DestroyableSingleton<HatManager>.Instance.AllPets.ToArray()[0].PetPrefab);
-            Player.CurrentPet.transform.position = Player.transform.position;
-            Player.CurrentPet.Source = Player;
-            Player.CurrentPet.Visible = Player.Visible;
         }
 
 

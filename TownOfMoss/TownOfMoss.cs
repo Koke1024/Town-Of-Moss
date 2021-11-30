@@ -66,7 +66,6 @@ namespace TownOfUs
         public static Sprite WaxSprite;
         public static readonly Sprite[] PaintSprite = new Sprite[3];
         public static Sprite InkSprite;
-        public static Sprite PourSprite;
         
         public static Vector3 ButtonPosition { get; private set; } = new Vector3(2.6f, 0.7f, -9f);
 
@@ -78,8 +77,6 @@ namespace TownOfUs
         public ConfigEntry<string> Ip { get; set; }
 
         public ConfigEntry<ushort> Port { get; set; }
-        //public static Sprite BirthdayVoteSprite;
-
 
         public override void Load()
         {
@@ -125,7 +122,6 @@ namespace TownOfUs
             PaintSprite[1] = CreateSprite("TownOfMoss.Resources.PaintBlue.png");
             PaintSprite[2] = CreateSprite("TownOfMoss.Resources.PaintYellow.png");
             InkSprite = CreateSprite("TownOfMoss.Resources.Ink.png");
-            PourSprite = CreateSprite("TownOfMoss.Resources.Pour.png");
             CloseVentButtonSprite = CreateSprite("TownOfMoss.Resources.CloseVentButton.png");
             PlaceCameraSprite = CreateSprite("TownOfMoss.Resources.PlaceCameraButton.png");
             AnimatedVentSprite = CreateSprite("TownOfMoss.Resources.AnimatedVentSealed.png");
@@ -186,37 +182,37 @@ namespace TownOfUs
         private delegate bool DLoadImage(IntPtr tex, IntPtr data, bool markNonReadable);
     }
 
-    [HarmonyPatch]
-    public static class CredentialsPatch {
-        [HarmonyPriority(Priority.VeryLow)]
-        [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.LateUpdate))]
-        private static class LogoPatchUpd {
-            
-            static void Postfix(MainMenuManager __instance) {
-                
-                var ToRLogo = GameObject.Find("bannerLogo_TOR");
-                
-                if (ToRLogo != null) {
-                    var vShower = GameObject.FindObjectOfType<VersionShower>();
-                    if (vShower != null) {
-                        vShower.text.text = " <color=#FF0000FF>ERROR!!異なるMODが混在しています！</color>";
-                    }
-
-                    var pingTracker = GameObject.FindObjectOfType<PingTracker>();
-                    if (pingTracker != null) {
-                        pingTracker.text.text = " <color=#FF0000FF>ERROR!!異なるMODが混在しています！</color>";
-                    }
-                    var _onlineButton = GameObject.Find("PlayOnlineButton");
-                    if (_onlineButton) {
-                        ButtonRolloverHandler component = _onlineButton.GetComponent<ButtonRolloverHandler>();
-                        if (component != null) {
-                            component.SetDisabledColors();
-                        }
-
-                        _onlineButton.GetComponent<PassiveButton>().enabled = false;
-                    }
-                }
-            }
-        }
-    }
+    // [HarmonyPatch]
+    // public static class CredentialsPatch {
+    //     [HarmonyPriority(Priority.VeryLow)]
+    //     [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.LateUpdate))]
+    //     private static class LogoPatchUpd {
+    //         
+    //         static void Postfix(MainMenuManager __instance) {
+    //             
+    //             var ToRLogo = GameObject.Find("bannerLogo_TOR");
+    //             
+    //             if (ToRLogo != null) {
+    //                 var vShower = GameObject.FindObjectOfType<VersionShower>();
+    //                 if (vShower != null) {
+    //                     vShower.text.text = " <color=#FF0000FF>ERROR!!異なるMODが混在しています！</color>";
+    //                 }
+    //
+    //                 var pingTracker = GameObject.FindObjectOfType<PingTracker>();
+    //                 if (pingTracker != null) {
+    //                     pingTracker.text.text = " <color=#FF0000FF>ERROR!!異なるMODが混在しています！</color>";
+    //                 }
+    //                 var _onlineButton = GameObject.Find("PlayOnlineButton");
+    //                 if (_onlineButton) {
+    //                     ButtonRolloverHandler component = _onlineButton.GetComponent<ButtonRolloverHandler>();
+    //                     if (component != null) {
+    //                         component.SetDisabledColors();
+    //                     }
+    //
+    //                     _onlineButton.GetComponent<PassiveButton>().enabled = false;
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 }

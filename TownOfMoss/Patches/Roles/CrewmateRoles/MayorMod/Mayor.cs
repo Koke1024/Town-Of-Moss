@@ -6,7 +6,7 @@ namespace TownOfUs.Roles
     public class Mayor : Role
     {
         public List<byte> ExtraVotes = new List<byte>();
-        public ActionButton ButtonButton;
+        public KillButton ButtonButton;
         public bool ButtonUsed;
 
         public float reportDelay;

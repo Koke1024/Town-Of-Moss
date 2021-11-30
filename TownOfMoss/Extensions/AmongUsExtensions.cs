@@ -45,17 +45,10 @@ namespace TownOfUs.Extensions {
 
         public static bool TryGetAppearance(this PlayerControl player, IVisualAlteration modifier,
             out VisualAppearance appearance) {
-            if (modifier != null) {
+            if (modifier != null)
                 return modifier.TryGetModifiedAppearance(out appearance);
-            }
 
-            if (player != null) {
                 appearance = player.GetDefaultAppearance();
-            }
-            else {
-                appearance = null;
-            }
-
             return false;
         }
 
