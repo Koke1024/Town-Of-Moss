@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using BepInEx.Logging;
 using Il2CppSystem;
+using Il2CppSystem.Text.RegularExpressions;
 using Reactor;
 using TownOfUs.Roles;
 using TownOfUs.Roles.Modifiers;
@@ -61,13 +63,14 @@ namespace TownOfUs.Extensions {
                 return player.GetDefaultAppearance();
         }
 
-        public static void Log(object message, LogLevel level = LogLevel.Message) {
+        public static void Log(object message = null, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "",
+            [CallerLineNumber] int lineNumber = 0) {
             if (!useLog) {
                 return;
             }
 
             PluginSingleton<TownOfUs>.Instance.Log.Log(
-                level, $"[{System.DateTime.Now}] {message}");
+                LogLevel.Message, $"[{Regex.Replace(filePath, ".*\\\\", "\\")}:{lineNumber}]{memberName}[{System.DateTime.Now}] {message}");
         }
 
         public static bool IsImpostor(this GameData.PlayerInfo playerinfo) {

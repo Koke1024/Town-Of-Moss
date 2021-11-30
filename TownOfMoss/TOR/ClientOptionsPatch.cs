@@ -89,11 +89,11 @@ namespace TheOtherRoles.Patches {
                 return;
             }
 
-            var fullScreenButton = GameObject.Find("FullScreenButton").GetComponent<ToggleButtonBehaviour>();
-
             if (GameObject.Find("FullScreenButton") == null || GameObject.Find("VSyncButton") == null) {
                 return;
             }
+
+            var fullScreenButton = GameObject.Find("FullScreenButton").GetComponent<ToggleButtonBehaviour>();
 
             if (streamButton == null || streamButton.gameObject == null) {
                 streamButton = createCustomToggle("Hide Room Code: ", Utils.IsStreamMode, fullScreenButton, (UnityEngine.Events.UnityAction)SetStreamMode, __instance);

@@ -25,7 +25,6 @@ namespace TownOfUs.Patches {
         public class GameStartManagerUpdatePatch {
             public static bool startable = false;
             public static void Prefix(GameStartManager __instance) {
-                AmongUsExtensions.Log($"GameStartManager.Update pre");
                 if (StartPanel == null) {
                     return;
                 }
@@ -53,7 +52,6 @@ namespace TownOfUs.Patches {
             }
 
             public static void Postfix(GameStartManager __instance) {
-                AmongUsExtensions.Log($"GameStartManager.Start post");
                 if (__instance && __instance.GameRoomName != null) {
                     if (Utils.IsStreamMode) {
                         __instance.GameRoomName.text = "******";
@@ -78,7 +76,6 @@ namespace TownOfUs.Patches {
                 if (!GameStartManagerUpdatePatch.startable) {
                     return false;
                 }
-                AmongUsExtensions.Log($"GameStartManager.BeginGame pre");
                 
                 if (__instance.startState != GameStartManager.StartingStates.NotStarting)
                 {

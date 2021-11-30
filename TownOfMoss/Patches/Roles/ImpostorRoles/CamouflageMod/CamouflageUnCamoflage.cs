@@ -1,37 +1,31 @@
 using HarmonyLib;
+using TownOfUs.Extensions;
 using TownOfUs.Roles;
 
-namespace TownOfUs.ImpostorRoles.CamouflageMod
-{
+namespace TownOfUs.ImpostorRoles.CamouflageMod {
     [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
-    public class CamouflageUnCamouflage
-    {
+    public class CamouflageUnCamouflage {
         public static bool CommsEnabled;
         public static bool CamouflagerEnabled;
 
         public static bool IsCamoed => CommsEnabled | CamouflagerEnabled;
 
-        public static void Postfix(HudManager __instance)
-        {
+        public static void Postfix(HudManager __instance) {
             CamouflagerEnabled = false;
-            foreach (var role in Role.GetRoles(RoleEnum.Camouflager))
-            {
-                var camouflager = (Camouflager) role;
-                if (camouflager.Camouflaged)
-                {
+            foreach (var role in Role.GetRoles(RoleEnum.Camouflager)) {
+                var camouflager = (Camouflager)role;
+                if (camouflager.Camouflaged) {
                     CamouflagerEnabled = true;
                     camouflager.Camouflage();
                 }
-                else if (camouflager.Enabled)
-                {
+                else if (camouflager.Enabled) {
                     CamouflagerEnabled = false;
                     camouflager.UnCamouflage();
                 }
             }
 
-            if (CustomGameOptions.ColourblindComms)
-            {
-                if (ShipStatus.Instance != null && ShipStatus.Instance.Systems.ContainsKey(SystemTypes.Comms)) {
+            if (CustomGameOptions.ColourblindComms) {
+                if (ShipStatus.Instance != null)
                     switch (PlayerControl.GameOptions.MapId) {
                         case 0:
                         case 2:
@@ -55,10 +49,8 @@ namespace TownOfUs.ImpostorRoles.CamouflageMod
 
                             break;
                     }
-                }
 
-                if (CommsEnabled)
-                {
+                if (CommsEnabled) {
                     CommsEnabled = false;
                     Utils.UnCamouflage();
                 }

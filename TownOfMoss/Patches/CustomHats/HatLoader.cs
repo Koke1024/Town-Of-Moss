@@ -7,13 +7,14 @@ using BepInEx.Logging;
 using Newtonsoft.Json;
 using Reactor;
 using Reactor.Extensions;
+using TownOfUs.Extensions;
 using UnityEngine;
 
 namespace TownOfUs.Patches.CustomHats
 {
     internal static class HatLoader
     {
-        private const string HAT_RESOURCE_NAMESPACE = "TownOfUs.Resources.Hats";
+        private const string HAT_RESOURCE_NAMESPACE = "TownOfMoss.Resources.Hats";
         private const string HAT_METADATA_JSON = "metadata.json";
         private const int HAT_ORDER_BASELINE = 99;
 
@@ -30,9 +31,8 @@ namespace TownOfUs.Patches.CustomHats
             Coroutines.Start(LoadHats());
         }
 
-        internal static IEnumerator LoadHats()
-        {
-          
+        internal static IEnumerator LoadHats() {
+            yield break;
             try
             {
                 var hatJson = LoadJson();
@@ -56,10 +56,28 @@ namespace TownOfUs.Patches.CustomHats
             yield return null;
         }
 
-        private static HatMetadataJson LoadJson()
-        {
+        private static HatMetadataJson LoadJson() {
+            // HatMetadataJson temp = new HatMetadataJson {
+            //     Credits = new[] { new HatMetadataElement {
+            //         Id = "standard0038",
+            //         Name = "_hat",
+            //         Artist = "TheLastShaymin"
+            //     },new HatMetadataElement {
+            //         Id = "standard0038",
+            //         Name = "_hat",
+            //         Artist = "TheLastShaymin"
+            //     }, }
+            // };
+            // AmongUsExtensions.Log($"{JsonConvert.SerializeObject(temp)}");
+            
+            
+            AmongUsExtensions.Log($"{HAT_RESOURCE_NAMESPACE}.{HAT_METADATA_JSON}");
             var stream = Assembly.GetManifestResourceStream($"{HAT_RESOURCE_NAMESPACE}.{HAT_METADATA_JSON}");
-            return JsonConvert.DeserializeObject<HatMetadataJson>(Encoding.UTF8.GetString(stream.ReadFully()));
+            AmongUsExtensions.Log($"{stream.Length}");
+            var str = Encoding.UTF8.GetString(stream.ReadFully());
+            // AmongUsExtensions.Log($"{str}");
+            var objects = JsonConvert.DeserializeObject<HatMetadataJson>(str);
+            return objects;
         }
 
         private static List<HatBehaviour> DiscoverHatBehaviours(HatMetadataJson metadata)
@@ -112,3 +130,4 @@ namespace TownOfUs.Patches.CustomHats
         }
     }
 }
+
