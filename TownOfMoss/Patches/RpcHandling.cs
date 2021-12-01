@@ -103,6 +103,7 @@ namespace TownOfUs
             var crewmates = Utils.GetCrewmates(impostors);
             crewmates.Shuffle();
             impostors.Shuffle();
+            PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"RPC SET ROLE {impostors.Count} -> {crewmates.Count}");
             
             SortRoles(CrewmateRoles);
             var maxNeutral = Il2CppSystem.Math.Min(PlayerControl.AllPlayerControls.Count - impostors.Count - 1, CustomGameOptions.MaxNeutralRoles);
@@ -818,11 +819,14 @@ namespace TownOfUs
             }
         }
 
-        [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.RpcSetRole))]
+        [HarmonyPatch(typeof(RoleManager), nameof(RoleManager.SelectRoles))]
         public static class RpcSetRole
         {
-            public static void Prefix([HarmonyArgument(0)] ref Il2CppReferenceArray<GameData.PlayerInfo> infected)
+            public static void Postfix()
             {
+                PluginSingleton<TownOfUs>.Instance.Log.LogMessage("RPC SET ROLE");
+                var infected = GameData.Instance.AllPlayers.ToArray().Where(o => o.IsImpostor());
+
                 Utils.ShowDeadBodies = false;
                 Role.NobodyWins = false;
                 CrewmateRoles.Clear();

@@ -21,8 +21,8 @@ namespace TownOfUs.Patches {
         }
         [HarmonyPatch(typeof(Object), nameof(Object.Destroy), typeof(Object))]
         public static class AdminTimeReset {
-            public static void Postfix(Object obj) {
-                if (ExileController.Instance == null || obj != ExileController.Instance.gameObject) return;
+            public static void Postfix(Object __instance) {
+                if (ExileController.Instance == null || __instance != ExileController.Instance.gameObject) return;
 
                 if (CustomGameOptions.AdminTimeLimitTime > 0) {
                     TimeLimit = CustomGameOptions.AdminTimeLimitTime;

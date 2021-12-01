@@ -50,7 +50,7 @@ namespace TownOfUs.Extensions {
             if (modifier != null)
                 return modifier.TryGetModifiedAppearance(out appearance);
 
-                appearance = player.GetDefaultAppearance();
+            appearance = player.GetDefaultAppearance();
             return false;
         }
 
@@ -70,7 +70,7 @@ namespace TownOfUs.Extensions {
             }
 
             PluginSingleton<TownOfUs>.Instance.Log.Log(
-                LogLevel.Message, $"[{Regex.Replace(filePath, ".*\\\\", "\\")}:{lineNumber}]{memberName}[{System.DateTime.Now}] {message}");
+                LogLevel.Message, $"[{System.DateTime.Now}][{Regex.Replace(filePath, ".*\\\\", "\\")}:{lineNumber}]{memberName} {message}");
         }
 
         public static bool IsImpostor(this GameData.PlayerInfo playerinfo) {

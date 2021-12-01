@@ -52,7 +52,7 @@ namespace TheOtherRoles.Objects {
             button.OnClick = new Button.ButtonClickedEvent();
             button.OnClick.AddListener((UnityEngine.Events.UnityAction)onClickEvent);
 
-            setActive(false);
+            SetActive(false);
         }
 
         public CustomButton(Action OnClick, Func<bool> HasButton, Func<bool> CouldUse, Action OnMeetingEnds, Sprite Sprite, Vector3 PositionOffset, HudManager hudManager, KeyCode? hotkey, bool mirror = false)
@@ -120,7 +120,7 @@ namespace TheOtherRoles.Objects {
             }
         }
 
-        public void setActive(bool isActive) {
+        public void SetActive(bool isActive) {
             if (isActive) {
                 killButton.gameObject.SetActive(true);
                 killButton.graphic.enabled = true;
@@ -133,10 +133,10 @@ namespace TheOtherRoles.Objects {
         private void Update()
         {
             if (PlayerControl.LocalPlayer.Data == null || MeetingHud.Instance || ExileController.Instance || !HasButton()) {
-                setActive(false);
+                SetActive(false);
                 return;
             }
-            setActive(hudManager.UseButton.isActiveAndEnabled);
+            SetActive(hudManager.UseButton.isActiveAndEnabled);
 
             killButton.graphic.sprite = Sprite;
             if (hudManager.UseButton != null) {

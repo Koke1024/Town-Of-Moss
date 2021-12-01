@@ -1,5 +1,4 @@
 using HarmonyLib;
-using TownOfUs.Extensions;
 using TownOfUs.Roles;
 
 namespace TownOfUs.ImpostorRoles.CamouflageMod {
@@ -40,12 +39,13 @@ namespace TownOfUs.ImpostorRoles.CamouflageMod {
 
                             break;
                         case 1:
-                            var comms2 = ShipStatus.Instance.Systems[SystemTypes.Comms].Cast<HqHudSystemType>();
-                            if (comms2.IsActive) {
-                                CommsEnabled = true;
-                                Utils.Camouflage();
-                                return;
-                            }
+                            // var comms2 = ShipStatus.Instance.Systems[SystemTypes.Comms].Cast<HqHudSystemType>();
+                            // if (comms2.IsActive) {
+                            //     CommsEnabled = true;
+                            //     Utils.Camouflage();
+                            //     return;
+                            // }
+                            //todo
 
                             break;
                     }
