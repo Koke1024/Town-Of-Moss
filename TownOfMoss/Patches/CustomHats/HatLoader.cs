@@ -32,7 +32,6 @@ namespace TownOfUs.Patches.CustomHats
         }
 
         internal static IEnumerator LoadHats() {
-            yield break;
             try
             {
                 var hatJson = LoadJson();
@@ -57,17 +56,18 @@ namespace TownOfUs.Patches.CustomHats
         }
 
         private static HatMetadataJson LoadJson() {
-            // HatMetadataJson temp = new HatMetadataJson {
-            //     Credits = new[] { new HatMetadataElement {
-            //         Id = "standard0038",
-            //         Name = "_hat",
-            //         Artist = "TheLastShaymin"
-            //     },new HatMetadataElement {
-            //         Id = "standard0038",
-            //         Name = "_hat",
-            //         Artist = "TheLastShaymin"
-            //     }, }
-            // };
+            HatMetadataJson temp = new HatMetadataJson {
+                Credits = new[] { new HatMetadataElement {
+                    Id = "standard0038",
+                    Name = "_hat",
+                    Artist = "TheLastShaymin"
+                },new HatMetadataElement {
+                    Id = "standard0038",
+                    Name = "_hat",
+                    Artist = "TheLastShaymin"
+                }, }
+            };
+            return temp;
             // AmongUsExtensions.Log($"{JsonConvert.SerializeObject(temp)}");
             
             

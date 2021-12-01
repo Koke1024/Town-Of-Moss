@@ -13,54 +13,6 @@ namespace TownOfUs {
     public static class GameSettings {
         public static bool AllOptions;
 
-        /*public static string StringBuild()
-        {
-            var builder = new StringBuilder("Roles:\n");
-            foreach (var option in TownOfUs.Roles)
-            {
-                builder.AppendLine($"     {option.Name}: {option}");
-            }
-
-            builder.AppendLine("Modifiers:");
-            foreach (var option in TownOfUs.Modifiers)
-            {
-                builder.AppendLine($"     {option.Name}: {option}");
-            }
-            
-            
-            foreach (var option in TownOfUs.AllOptions)
-            {
-                builder.AppendLine($"{option.Name}: {option}");
-            }
-            
-
-            return builder.ToString();
-        }
-
-        [HarmonyPatch(typeof(LobbyBehaviour), nameof(LobbyBehaviour.FixedUpdate))]
-        public static class LobbyFix
-        {
-
-            public static bool Prefix()
-            {
-                
-                DestroyableSingleton<HudManager>.Instance.GameSettings.text = StringBuild();
-                DestroyableSingleton<HudManager>.Instance.GameSettings.gameObject.SetActive(true);
-                return false;
-            }
-        }
-
-
-        [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
-        [HarmonyAfter("com.comando.essentials")]
-        public static class FixScale
-        {
-            public static void Prefix(HudManager __instance)
-            {
-//                __instance.GameSettings.scale = 0.3f;
-            }
-        }*/
-
         [HarmonyPatch] //ToHudString
         private static class GameOptionsDataPatch {
             public static IEnumerable<MethodBase> TargetMethods() {
@@ -164,6 +116,18 @@ namespace TownOfUs {
         public static class Update {
             public static void Postfix(ref GameOptionsMenu __instance) {
                 __instance.GetComponentInParent<Scroller>().YBounds.max = 90f;
+            }
+        }
+    }
+
+    [HarmonyPatch(typeof(GameOptionsData), nameof(GameOptionsData.SetRecommendations), typeof(int), typeof(GameModes))]
+    public static class ImpostorNumPatch {
+        public static void Postfix(GameOptionsData __instance) {
+            if (__instance.NumImpostors > 3) {
+                __instance.NumImpostors = 3;
+            }
+            else if(__instance.NumImpostors == 0){
+                __instance.NumImpostors = 1;
             }
         }
     }

@@ -9,16 +9,6 @@ using TownOfUs.Roles;
 using UnityEngine.UI;
 
 namespace TheOtherRoles.Patches {
-    [HarmonyPatch(typeof(OptionsMenuBehaviour), nameof(OptionsMenuBehaviour.Open))]
-    public static class TabPatch {
-        public static void Prefix(OptionsMenuBehaviour __instance) {
-            
-        }
-
-        public static void Postfix(OptionsMenuBehaviour __instance) {
-            AmongUsExtensions.Log($"open");
-        }
-    }
     
     [HarmonyPatch(typeof(OptionsMenuBehaviour), nameof(OptionsMenuBehaviour.Update))]
     public class OptionsMenuBehaviourStartPatch {

@@ -81,6 +81,8 @@ namespace TheOtherRoles.Objects {
                 try
                 {
                     buttons[i].Update();
+            
+                    buttons[i].killButton.GetComponent<AspectPosition>().Update();
                 }
                 catch (NullReferenceException)
                 {

@@ -61,7 +61,7 @@ namespace TownOfUs.CrewmateRoles.SheriffMod
                 else
                 {
                     __instance.KillButton.gameObject.SetActive(!MeetingHud.Instance);
-                    __instance.KillButton.graphic.enabled = !MeetingHud.Instance;
+                 //   __instance.KillButton.isActive = !MeetingHud.Instance;
                 }
             }
         }

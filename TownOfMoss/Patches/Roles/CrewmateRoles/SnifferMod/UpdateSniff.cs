@@ -36,6 +36,7 @@ namespace TownOfUs.CrewmateRoles.SnifferMod
 
             if (bodies.Count == 0) {
                 role.sniffInterval = 1.0f;
+                DestroyableSingleton<HudManager>.Instance.ShadowQuad.material.color = Color.black;
                 return;
             }
             float closestDistance = CustomGameOptions.SnifferMaxRange * CustomGameOptions.SnifferMaxRange;

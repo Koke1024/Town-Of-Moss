@@ -430,7 +430,6 @@ namespace TownOfUs.Roles
             {
                 //System.Console.WriteLine("EABBNOODFGL");
                 if (!AmongUsClient.Instance.AmHost) return false;
-                AmongUsExtensions.Log();
                 if (__instance.Systems.ContainsKey(SystemTypes.LifeSupp))
                 {
                     var lifeSuppSystemType = __instance.Systems[SystemTypes.LifeSupp].Cast<LifeSuppSystemType>();

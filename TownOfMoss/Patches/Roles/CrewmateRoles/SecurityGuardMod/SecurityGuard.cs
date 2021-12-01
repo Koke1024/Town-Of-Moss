@@ -77,10 +77,8 @@ namespace TownOfUs.Roles
             }
             SecurityGuardButton = new CustomButton(
                 () => {
-                    if (ventTarget != null) {
-                        // Seal vent
-                        MessageWriter writer = AmongUsClient.Instance.StartRpc(PlayerControl.LocalPlayer.NetId,
-                            (byte)CustomRPC.SealVent, Hazel.SendOption.Reliable);
+                    if (ventTarget != null) { // Seal vent
+                        MessageWriter writer = AmongUsClient.Instance.StartRpc(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SealVent, Hazel.SendOption.Reliable);
                         writer.WritePacked(ventTarget.Id);
                         writer.EndMessage();
                         SGAction.sealVent(ventTarget.Id);
@@ -91,11 +89,10 @@ namespace TownOfUs.Roles
                         // Place camera if there's no vent and it's not MiraHQ
                         var pos = PlayerControl.LocalPlayer.transform.position;
                         byte[] buff = new byte[sizeof(float) * 2];
-                        Buffer.BlockCopy(GetBytes(pos.x), 0, buff, 0 * sizeof(float), sizeof(float));
-                        Buffer.BlockCopy(GetBytes(pos.y), 0, buff, 1 * sizeof(float), sizeof(float));
+                        Buffer.BlockCopy(GetBytes(pos.x), 0, buff, 0*sizeof(float), sizeof(float));
+                        Buffer.BlockCopy(GetBytes(pos.y), 0, buff, 1*sizeof(float), sizeof(float));
 
-                        MessageWriter writer = AmongUsClient.Instance.StartRpc(PlayerControl.LocalPlayer.NetId,
-                            (byte)CustomRPC.PlaceCamera, Hazel.SendOption.Reliable);
+                        MessageWriter writer = AmongUsClient.Instance.StartRpc(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.PlaceCamera, Hazel.SendOption.Reliable);
                         writer.WriteBytesAndSize(buff);
                         writer.EndMessage();
                         SGAction.placeCamera(buff);
@@ -103,7 +100,6 @@ namespace TownOfUs.Roles
                     else {
                         return;
                     }
-
                     SecurityGuardButton.Timer = SecurityGuardButton.MaxTimer;
                 },
                 () => {
@@ -154,6 +150,9 @@ namespace TownOfUs.Roles
             SecurityGuardButtonScrewsText.enableWordWrapping = false;
             SecurityGuardButtonScrewsText.transform.localScale = Vector3.one * 0.5f;
             SecurityGuardButtonScrewsText.transform.localPosition += new Vector3(-0.05f, 0.7f, 0);
+            
+            SecurityGuardButton.killButton.GetComponent<AspectPosition>().DistanceFromEdge = TownOfUs.ButtonPosition;
+            SecurityGuardButton.killButton.gameObject.SetActive(false);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
 using Reactor.Extensions;
+using TownOfUs.Extensions;
 using UnhollowerBaseLib;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -11,7 +12,7 @@ namespace TownOfUs.CustomOption {
     public static class Patches {
         public static Export ExportButton;
         public static Import ImportButton;
-        public static List<OptionBehaviour> DefaultOptions;
+        // public static List<OptionBehaviour> DefaultOptions;
         public static float LobbyTextRowHeight { get; set; } = 0.081F;
         public static bool inited = false;
         public static float contentX, contentY, contentZ;
@@ -52,7 +53,7 @@ namespace TownOfUs.CustomOption {
                 options.Add(toggle);
             }
 
-            DefaultOptions = __instance.Children.ToList();
+            // DefaultOptions = __instance.Children.ToList();
             foreach (var defaultOption in __instance.Children) {
                 defaultOption.gameObject.SetActive(true);
 
@@ -229,7 +230,10 @@ namespace TownOfUs.CustomOption {
             public static bool Prefix(GameOptionsMenu __instance) {
                 if (__instance.name != "TouGameOptionsMenu")
                     return true;
-                togglePrefab = Object.FindObjectOfType<ToggleOption>();
+                togglePrefab = GameObject.Instantiate(Object.FindObjectOfType<ToggleOption>());
+                // togglePrefab.gameObject.SetActive(false);
+                AmongUsExtensions.Log($"togglePrefab set");
+                AmongUsExtensions.Log($"{togglePrefab.name}");
                 inited = false;
                 
                 __instance.Children = new Il2CppReferenceArray<OptionBehaviour>(new OptionBehaviour[0]);
@@ -243,9 +247,9 @@ namespace TownOfUs.CustomOption {
 
                 if (__instance.Children.Count > 0) {
                     var startOption = __instance.gameObject.transform.GetChild(0);
-                    contentY = startOption.localPosition.y;;
-                    contentX = startOption.localPosition.x;;
-                    contentZ = startOption.localPosition.z;;
+                    contentY = startOption.localPosition.y;
+                    contentX = startOption.localPosition.x;
+                    contentZ = startOption.localPosition.z;
                 }
                 for (int k = 0; k < children.Length; k++)
                 {
