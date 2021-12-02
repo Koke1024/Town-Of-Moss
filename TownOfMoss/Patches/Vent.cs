@@ -70,76 +70,35 @@ namespace TownOfUs
             return playerInfo.IsImpostor();
         }
 
-        public static bool Prefix(Vent __instance,
-            [HarmonyArgument(0)] GameData.PlayerInfo playerInfo,
-            [HarmonyArgument(1)] ref bool canUse,
-            [HarmonyArgument(2)] ref bool couldUse,
-            ref float __result)
-        {
-            __result = float.MaxValue;
-            canUse = couldUse = false;
-
-            var player = playerInfo.Object;
-
-            if (__instance.name.StartsWith("SealedVent_")) {
-                canUse = couldUse = false;
-                return false;
-            }
-            
-            if (player.inVent)
-            {
-                __result = Vector2.Distance(player.Collider.bounds.center, __instance.transform.position);
-                if (__result > 0.3f) {
-                    __result = float.MaxValue;
-                    canUse = couldUse = false;
-                    return false;
-                }
-                else {
-                    canUse = couldUse = true;
-                    return false;                    
-                }
-            }
-                
-            // if (player.closest != null) {
-            //     return false;
-            // }
-
-            if (player.Is(RoleEnum.Kirby)
-                || (player.CanDrag() && Role.GetRole<Undertaker>(player).CurrentlyDragging != null))
-                return false;
-            if (player.Is(RoleEnum.Morphling)) {
-                if (CustomGameOptions.MorphCanVent == MorphVentOptions.None) {
-                    return false;
-                }
-                if (Role.GetRole<Morphling>(player).Morphed && CustomGameOptions.MorphCanVent == MorphVentOptions.OnNotMorph) {
-                    return false;
-                }
-            }
-            if (player.Is(RoleEnum.Swooper)) {
-                if (CustomGameOptions.SwooperCanVent == MorphVentOptions.None) {
-                    return false;
-                }
-                if (Role.GetRole<Swooper>(player).IsSwooped && CustomGameOptions.SwooperCanVent == MorphVentOptions.OnNotMorph) {
-                    return false;
-                }
-            }
-
-
-            if (player.Is(RoleEnum.Engineer))
-                playerInfo.Role.CanVent = true;
-            if (player.Is(RoleEnum.Glitch))
-                playerInfo.Role.CanVent = true;
-            if (player.Is(RoleEnum.Jester) && CustomGameOptions.JesterUseVent)
-                playerInfo.Role.CanVent = true;
-            if (player.Is(RoleEnum.Charger))
-                playerInfo.Role.CanVent = true;
-            // if (player.Is(RoleEnum.Defect))
-            //     playerInfo.Role.CanVent = true;
-            // if (player.Is(RoleEnum.Assassin) && CustomGameOptions.MadMateOn)
-            //     playerInfo.Role.CanVent = false;
-            
-            return true;
-        }
+        // public static bool Prefix(Vent __instance,
+        //     [HarmonyArgument(0)] GameData.PlayerInfo playerInfo,
+        //     [HarmonyArgument(1)] ref bool canUse,
+        //     [HarmonyArgument(2)] ref bool couldUse,
+        //     ref float __result)
+        // {
+        //     __result = float.MaxValue;
+        //     canUse = couldUse = false;
+        //
+        //     var player = playerInfo.Object;
+        //
+        //     if (__instance.name.StartsWith("SealedVent_")) {
+        //         canUse = couldUse = false;
+        //         return false;
+        //     }
+        //     
+        //     if (player.inVent)
+        //     {
+        //         __result = Vector2.Distance(player.Collider.bounds.center, __instance.transform.position);
+        //         if (__result > 0.3f) {
+        //             __result = float.MaxValue;
+        //             canUse = couldUse = false;
+        //             return false;
+        //         }
+        //         else {
+        //             canUse = couldUse = true;
+        //             return false;                    
+        //         }
+        //     }
 
         public static void Postfix(Vent __instance,
             [HarmonyArgument(0)] GameData.PlayerInfo playerInfo,
@@ -147,6 +106,11 @@ namespace TownOfUs
             [HarmonyArgument(2)] ref bool couldUse,
             ref float __result)
         {
+            if (__instance.name.StartsWith("SealedVent_")) {
+                canUse = couldUse = false;
+                return;
+            }
+            
             float num = float.MaxValue;
             PlayerControl playerControl = playerInfo.Object;
             couldUse = CanVent(playerControl, playerInfo) && !playerControl.MustCleanVent(__instance.Id) && (!playerInfo.IsDead || playerControl.inVent) && (playerControl.CanMove || playerControl.inVent);
@@ -167,8 +131,10 @@ namespace TownOfUs
                 Vector3 center = playerControl.Collider.bounds.center;
                 Vector3 position = __instance.transform.position;
                 num = Vector2.Distance((Vector2)center, (Vector2)position);
-                canUse = ((canUse ? 1 : 0) & ((double)num > (double)__instance.UsableDistance ? 0 : (!PhysicsHelpers.AnythingBetween(playerControl.Collider, (Vector2)center, (Vector2)position, Constants.ShipOnlyMask, false) ? 1 : 0))) != 0;
+                var usableDistance = playerInfo._object.inVent ? 0.3: (double)__instance.UsableDistance; 
+                canUse = ((canUse ? 1 : 0) & ((double)num > usableDistance ? 0 : (!PhysicsHelpers.AnythingBetween(playerControl.Collider, (Vector2)center, (Vector2)position, Constants.ShipOnlyMask, false) ? 1 : 0))) != 0;
             }
+            
             __result = num;
 
         }
