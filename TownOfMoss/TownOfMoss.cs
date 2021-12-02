@@ -182,37 +182,37 @@ namespace TownOfUs
         private delegate bool DLoadImage(IntPtr tex, IntPtr data, bool markNonReadable);
     }
 
-    // [HarmonyPatch]
-    // public static class CredentialsPatch {
-    //     [HarmonyPriority(Priority.VeryLow)]
-    //     [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.LateUpdate))]
-    //     private static class LogoPatchUpd {
-    //         
-    //         static void Postfix(MainMenuManager __instance) {
-    //             
-    //             var ToRLogo = GameObject.Find("bannerLogo_TOR");
-    //             
-    //             if (ToRLogo != null) {
-    //                 var vShower = GameObject.FindObjectOfType<VersionShower>();
-    //                 if (vShower != null) {
-    //                     vShower.text.text = " <color=#FF0000FF>ERROR!!異なるMODが混在しています！</color>";
-    //                 }
-    //
-    //                 var pingTracker = GameObject.FindObjectOfType<PingTracker>();
-    //                 if (pingTracker != null) {
-    //                     pingTracker.text.text = " <color=#FF0000FF>ERROR!!異なるMODが混在しています！</color>";
-    //                 }
-    //                 var _onlineButton = GameObject.Find("PlayOnlineButton");
-    //                 if (_onlineButton) {
-    //                     ButtonRolloverHandler component = _onlineButton.GetComponent<ButtonRolloverHandler>();
-    //                     if (component != null) {
-    //                         component.SetDisabledColors();
-    //                     }
-    //
-    //                     _onlineButton.GetComponent<PassiveButton>().enabled = false;
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
+    [HarmonyPatch]
+    public static class CredentialsPatch {
+        [HarmonyPriority(Priority.VeryLow)]
+        [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.LateUpdate))]
+        private static class LogoPatchUpd {
+            
+            static void Postfix(MainMenuManager __instance) {
+                
+                var ToRLogo = GameObject.Find("bannerLogo_TOR");
+                
+                if (ToRLogo != null) {
+                    var vShower = GameObject.FindObjectOfType<VersionShower>();
+                    if (vShower != null) {
+                        vShower.text.text = " <color=#FF0000FF>ERROR!!異なるMODが混在しています！</color>";
+                    }
+    
+                    var pingTracker = GameObject.FindObjectOfType<PingTracker>();
+                    if (pingTracker != null) {
+                        pingTracker.text.text = " <color=#FF0000FF>ERROR!!異なるMODが混在しています！</color>";
+                    }
+                    var _onlineButton = GameObject.Find("PlayOnlineButton");
+                    if (_onlineButton) {
+                        ButtonRolloverHandler component = _onlineButton.GetComponent<ButtonRolloverHandler>();
+                        if (component != null) {
+                            component.SetDisabledColors();
+                        }
+    
+                        _onlineButton.GetComponent<PassiveButton>().enabled = false;
+                    }
+                }
+            }
+        }
+    }
 }
