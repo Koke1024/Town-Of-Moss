@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
+using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine;
 
@@ -37,16 +38,14 @@ namespace TheOtherRoles {
             MapOptions.camerasToAdd = new List<SurvCamera>();
             
             if (MapOptions.ventsToSeal == null) {
+                
                 return;
             }
             foreach (Vent vent in MapOptions.ventsToSeal) {
                 if (vent == null) {
-                    return;
+                    continue;
                 }
                 PowerTools.SpriteAnim animator = vent.GetComponent<PowerTools.SpriteAnim>();
-                if (animator == null) {
-                    return;
-                }
                 animator?.Stop();
                 vent.EnterVentAnim = vent.ExitVentAnim = null;
                 vent.myRend.sprite = animator == null ? SecurityGuard.getStaticVentSealedSprite() : SecurityGuard.getAnimatedVentSealedSprite();

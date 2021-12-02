@@ -6,11 +6,12 @@ using TownOfUs.Roles;
 using Il2CppSystem.Collections;
 using Il2CppSystem.Collections.Generic;
 using Reactor;
+using TownOfUs.Extensions;
 using UnityEngine;
 
 namespace TownOfUs.ImpostorRoles.CrackerMod {
     [HarmonyPatch(typeof(RoomTracker), nameof(RoomTracker.SlideOut))]
-    class RoomSlideOut {
+    class CrackingRoom {
         public static void Prefix(RoomTracker __instance) {
             var localPlayer = PlayerControl.LocalPlayer;
             if (localPlayer.Is(RoleEnum.Cracker)) {
@@ -39,7 +40,7 @@ namespace TownOfUs.ImpostorRoles.CrackerMod {
                             AmongUsClient.Instance.FinishRpcImmediately(writer);
 
                             cracker.RoomDetected = DateTime.UtcNow;
-                            cracker.blackOutRoomId = __instance.LastRoom.RoomId;
+                            cracker.BlackOutRoomId = __instance.LastRoom.RoomId;
                         }
                     }
                 }
@@ -48,7 +49,7 @@ namespace TownOfUs.ImpostorRoles.CrackerMod {
 
 
         [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
-        public static class blackoutRoom {
+        public static class BlackoutRoom {
             public static void Prefix(PlayerControl __instance) {
                 if (LobbyBehaviour.Instance || MeetingHud.Instance) {
                     return;
@@ -59,43 +60,20 @@ namespace TownOfUs.ImpostorRoles.CrackerMod {
                 }
 
                 Cracker role = Role.GetRole<Cracker>(__instance);
-                if (role.blackOutRoomId == null) {
+                if (role.BlackOutRoomId == null || role.RoomDetected == null) {
                     return;
                 }
-
-                if (HudManager.Instance == null || HudManager.Instance.ReportButton == null) {
-                    role.HackingRoom = null;
-                    role.RoomDetected = null;
-                    role.blackOutRoomId = null;
-                    return;
-                }
-
-                if (HudManager.Instance.ReportButton) {
-                    HudManager.Instance.ReportButton.enabled = true;
-                }
-
                 if ((DateTime.UtcNow - role.RoomDetected).Value.Seconds > CustomGameOptions.CrackDur) {
                     role.HackingRoom = null;
                     role.RoomDetected = null;
-                    role.blackOutRoomId = null;
+                    role.BlackOutRoomId = null;
+
+                    Cracker.InCrackedRoom = false;
                     return;
                 }
 
-                if (role.blackOutRoomId != role.HackingRoom) {
-                    //another room hacked
-                    role.blackOutRoomId = null;
-                    return;
-                }
-
-                if (Cracker.MyLastRoom != role.blackOutRoomId) {
-                    return;
-                }
-
-                if (HudManager.Instance.ReportButton) {
-                    HudManager.Instance.ReportButton.enabled = false;
-                    HudManager.Instance.ReportButton.SetActive(false);
-                }
-
+                if (Cracker.MyLastRoom == role.BlackOutRoomId) {
+                    if (role.Player.PlayerId != PlayerControl.LocalPlayer.PlayerId) {
                 if (Minigame.Instance) {
                     if (Minigame.Instance.TaskType != TaskTypes.ResetReactor &&
                         Minigame.Instance.TaskType != TaskTypes.RestoreOxy &&
@@ -103,16 +81,19 @@ namespace TownOfUs.ImpostorRoles.CrackerMod {
                         Minigame.Instance.TaskType != TaskTypes.FixComms
                     ) {
                         Minigame.Instance.Close();
-                        Minigame.Instance.Close();
                     }
                 }
+                    }
 
                 if (MapBehaviour.Instance && !PlayerControl.LocalPlayer.Is(Faction.Impostors)) {
                     MapBehaviour.Instance.Close();
-                    MapBehaviour.Instance.Close();
                 }
 
-                role.blackOutRoomId = null;
+                    Cracker.InCrackedRoom = true;
+                }
+                else {
+                    Cracker.InCrackedRoom = false;
+                }
             }
         }
     }

@@ -632,7 +632,7 @@ namespace TownOfUs
                         var roomId = (SystemTypes)reader.ReadByte();
                         var cracker2 = Utils.PlayerById(reader.ReadByte());
                         Role.GetRole<Cracker>(cracker2).RoomDetected = DateTime.UtcNow;
-                        Role.GetRole<Cracker>(cracker2).blackOutRoomId = roomId;
+                        Role.GetRole<Cracker>(cracker2).BlackOutRoomId = roomId;
                         if (PlayerControl.LocalPlayer.Is(RoleEnum.Cracker)) {
                             Coroutines.Start(Utils.FlashCoroutine(new Color(0f, 0f, 0f, 1f), CustomGameOptions.CrackDur));
                         }

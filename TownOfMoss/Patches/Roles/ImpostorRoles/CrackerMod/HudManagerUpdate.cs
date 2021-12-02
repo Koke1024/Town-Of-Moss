@@ -31,7 +31,7 @@ namespace TownOfUs.ImpostorRoles.CrackerMod
             role.CrackButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
             role.CrackButton.SetCoolDown(role.CrackTimer(), CustomGameOptions.CrackCd);
 
-            bool available = role.TargetRoom != null;
+            bool available = role.TargetRoom != null && role.Player.CanMove;
             if (available)
             {
                 role.CrackButton.graphic.color = Palette.EnabledColor;

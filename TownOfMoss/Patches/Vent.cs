@@ -89,7 +89,7 @@ namespace TownOfUs
             if (player.inVent)
             {
                 __result = Vector2.Distance(player.Collider.bounds.center, __instance.transform.position);
-                if (__result > 0.2f) {
+                if (__result > 0.3f) {
                     __result = float.MaxValue;
                     canUse = couldUse = false;
                     return false;
