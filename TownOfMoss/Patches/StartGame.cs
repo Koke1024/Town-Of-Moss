@@ -82,4 +82,17 @@ namespace TownOfUs.OnStartGame
             }
         }
     }
+
+
+    [HarmonyPatch(typeof(ShipStatus), nameof(ShipStatus.Start))]
+    public static class SkeldShield {
+        public static void Postfix(ShipStatus __instance) {
+            if (__instance.Type != ShipStatus.MapType.Ship) {
+                return;
+            }
+
+            var shield = GameObject.FindObjectsOfType<MonoBehaviour>().First(x => x.name == "ShieldConsole");
+            shield.GetComponent<Console>().onlyFromBelow = true;
+        }
+    }
 }

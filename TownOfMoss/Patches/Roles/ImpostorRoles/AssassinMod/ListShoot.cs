@@ -22,8 +22,7 @@ namespace TownOfUs.Patches.ImpostorRoles.AssassinMod {
             if (guesserUI != null || !(__instance.state == MeetingHud.VoteStates.Voted || __instance.state == MeetingHud.VoteStates.NotVoted)) return;
             __instance.playerStates.ToList().ForEach(x => x.gameObject.SetActive(false));
 
-            Transform container = UnityEngine.Object.Instantiate(__instance.transform.FindChild("Background"), __instance.transform);
-            container.FindChild("BlackBG").gameObject.SetActive(false);
+            Transform container = UnityEngine.Object.Instantiate(__instance.transform.FindChild("PhoneUI"), __instance.transform);
             container.transform.localPosition = new Vector3(0, 0, -5f);
             guesserUI = container.gameObject;
 
@@ -38,10 +37,8 @@ namespace TownOfUs.Patches.ImpostorRoles.AssassinMod {
             Transform exitButton = UnityEngine.Object.Instantiate(buttonTemplate.transform, exitButtonParent);
             Transform exitButtonMask = UnityEngine.Object.Instantiate(maskTemplate, exitButtonParent);
             exitButton.gameObject.GetComponent<SpriteRenderer>().sprite = smallButtonTemplate.GetComponent<SpriteRenderer>().sprite;
-            var transform = exitButtonParent.transform;
-            transform.localPosition = new Vector3(2.725f, 2.1f, -5);
-            transform.localScale = new Vector3(0.25f, 0.9f, 1);
-            PassiveButtonManager.Instance.RemoveOne(exitButton.GetComponent<PassiveButton>());
+            exitButtonParent.transform.localPosition = new Vector3(2.725f, 2.1f, -5);
+            exitButtonParent.transform.localScale = new Vector3(0.25f, 0.9f, 1);
             exitButton.GetComponent<PassiveButton>().OnClick = new Button.ButtonClickedEvent();
             exitButton.GetComponent<PassiveButton>().OnClick.AddListener((Action)(() => {
                 __instance.playerStates.ToList().ForEach(x => x.gameObject.SetActive(true));

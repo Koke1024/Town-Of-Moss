@@ -138,7 +138,7 @@ namespace TownOfUs.Roles
                 },
                 () => { SecurityGuardButton.Timer = SecurityGuardButton.MaxTimer; },
                 getPlaceCameraButtonSprite(),
-                new Vector3(-1.3f, 0f, 0f),
+                Vector3.zero, 
                 HudManager.Instance,
                 KeyCode.Q
             );

@@ -56,26 +56,8 @@ namespace TownOfUs.Patches.CustomHats
         }
 
         private static HatMetadataJson LoadJson() {
-            HatMetadataJson temp = new HatMetadataJson {
-                Credits = new[] { new HatMetadataElement {
-                    Id = "standard0038",
-                    Name = "_hat",
-                    Artist = "TheLastShaymin"
-                },new HatMetadataElement {
-                    Id = "standard0038",
-                    Name = "_hat",
-                    Artist = "TheLastShaymin"
-                }, }
-            };
-            return temp;
-            // AmongUsExtensions.Log($"{JsonConvert.SerializeObject(temp)}");
-            
-            
-            AmongUsExtensions.Log($"{HAT_RESOURCE_NAMESPACE}.{HAT_METADATA_JSON}");
             var stream = Assembly.GetManifestResourceStream($"{HAT_RESOURCE_NAMESPACE}.{HAT_METADATA_JSON}");
-            AmongUsExtensions.Log($"{stream.Length}");
             var str = Encoding.UTF8.GetString(stream.ReadFully());
-            // AmongUsExtensions.Log($"{str}");
             var objects = JsonConvert.DeserializeObject<HatMetadataJson>(str);
             return objects;
         }

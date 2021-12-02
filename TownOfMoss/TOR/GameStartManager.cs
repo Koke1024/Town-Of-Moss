@@ -30,13 +30,18 @@ namespace TownOfUs.Patches {
 
                 startable = true;
                 var color = Color.white;
-                foreach (var player in PlayerControl.AllPlayerControls) {
-                    if (!player.Collider.IsTouching(StartPanel.GetComponent<PolygonCollider2D>())) {
-                        startable = false;
-                        if (player == PlayerControl.LocalPlayer) {
-                            color = Color.gray;
+                if (PlayerControl.AllPlayerControls.Count < 3) {
+                    startable = false;
+                } else {
+                    foreach (var player in PlayerControl.AllPlayerControls) {
+                        if (!player.Collider.IsTouching(StartPanel.GetComponent<PolygonCollider2D>())) {
+                            startable = false;
+                            if (player == PlayerControl.LocalPlayer) {
+                                color = Color.gray;
+                            }
                         }
                     }
+
                 }
 
                 if (AmongUsClient.Instance.AmHost) {

@@ -68,7 +68,7 @@ namespace TownOfUs
                 // __instance.KillButton.graphic.sprite = Paint;
                 flag = true;
             }
-            else
+            else if (PlayerControl.LocalPlayer.Is(RoleEnum.Sheriff))
             {
                 __instance.KillButton.graphic.sprite = TranslationController.Instance.GetImage(ImageNames.KillButton);
                 flag = PlayerControl.LocalPlayer.Is(RoleEnum.Sheriff);

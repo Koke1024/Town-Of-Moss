@@ -81,8 +81,6 @@ namespace TheOtherRoles.Objects {
                 try
                 {
                     buttons[i].Update();
-            
-                    buttons[i].killButton.GetComponent<AspectPosition>().Update();
                 }
                 catch (NullReferenceException)
                 {
@@ -142,10 +140,9 @@ namespace TheOtherRoles.Objects {
 
             killButton.graphic.sprite = Sprite;
             if (hudManager.UseButton != null) {
-                Vector3 pos = hudManager.UseButton.transform.localPosition;
-                if (mirror) pos = new Vector3(-pos.x, pos.y, pos.z);
-                killButton.transform.localPosition = pos + PositionOffset;
-                if (hudManager.KillButton != null) hudManager.KillButton.transform.localPosition = hudManager.UseButton.transform.localPosition - new Vector3(1.3f, 0, 0); // Align the kill button (because it's on another position depending on the screen resolution)
+                if (hudManager.KillButton != null){
+                    hudManager.KillButton.GetComponent<AspectPosition>().Update();
+                }
             }
             if (CouldUse()) {
                 killButton.graphic.color = Palette.EnabledColor;

@@ -103,7 +103,7 @@ namespace TownOfUs
             var crewmates = Utils.GetCrewmates(impostors);
             crewmates.Shuffle();
             impostors.Shuffle();
-            PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"RPC SET ROLE {impostors.Count} -> {crewmates.Count}");
+            PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"RPC SET ROLE IMP{impostors.Count} -> CREW{crewmates.Count}");
             
             SortRoles(CrewmateRoles);
             var maxNeutral = Il2CppSystem.Math.Min(PlayerControl.AllPlayerControls.Count - impostors.Count - 1, CustomGameOptions.MaxNeutralRoles);
@@ -168,7 +168,7 @@ namespace TownOfUs
             if (LoversOn)
                 Lover.Gen(crewmates, impostors);
 
-            while (impostors.Count > 0)
+            while (impostors.Any() && ImpostorRoles.Any())
             {
                 var (type, rpc, _) = ImpostorRoles.TakeFirst();
                 if (type == null) break;
@@ -216,7 +216,7 @@ namespace TownOfUs
             canHaveModifier.RemoveAll(player => !player.Data.IsImpostor());
             canHaveModifier.Shuffle();
 
-            while (canHaveModifier.Count > 0)
+            while (canHaveModifier.Any() && CrewmateModifiers.Any())
             {
                 var (type, rpc, _) = CrewmateModifiers.TakeFirst();
                 Role.Gen<Modifier>(type, canHaveModifier.TakeFirst(), rpc);
@@ -266,7 +266,6 @@ namespace TownOfUs
                             case RoleEnum.Mayor: new Mayor(Utils.PlayerById(readByte)); break;
                             case RoleEnum.Jester: new Jester(Utils.PlayerById(readByte)); break;
                             case RoleEnum.Sheriff: new Sheriff(Utils.PlayerById(readByte)); break;
-                            case RoleEnum.Police: new Police(Utils.PlayerById(readByte)); break;
                             case RoleEnum.Engineer: new Engineer(Utils.PlayerById(readByte)); break;
                             case RoleEnum.Janitor: new Janitor(Utils.PlayerById(readByte)); break;
                             case RoleEnum.Kirby: new Kirby(Utils.PlayerById(readByte)); break;
@@ -855,9 +854,6 @@ namespace TownOfUs
 
                 if (Check(CustomGameOptions.SheriffOn))
                     CrewmateRoles.Add((typeof(Sheriff), (byte)RoleEnum.Sheriff, CustomGameOptions.SheriffOn));
-
-                if (Check(CustomGameOptions.PoliceOn))
-                    CrewmateRoles.Add((typeof(Police), (byte)RoleEnum.Police, CustomGameOptions.PoliceOn));
 
                 if (Check(CustomGameOptions.EngineerOn))
                     CrewmateRoles.Add((typeof(Engineer), (byte)RoleEnum.Engineer, CustomGameOptions.EngineerOn));

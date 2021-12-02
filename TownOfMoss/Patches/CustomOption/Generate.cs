@@ -29,7 +29,6 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption MayorOn;
         public static CustomNumberOption LoversOn;
         public static CustomNumberOption SheriffOn;
-        public static CustomNumberOption PoliceOn;
         public static CustomNumberOption EngineerOn;
         public static CustomNumberOption SwapperOn;
         public static CustomNumberOption InvestigatorOn;
@@ -315,7 +314,7 @@ namespace TownOfUs.CustomOption
             //     PercentFormat);
             // SheriffOn = new CustomNumberOption(true, num++, "<color=#FFFF00FF>Sheriff</color>", 100.0f, 0f, 100f, 10f,
             //     PercentFormat);
-            PoliceOn = new CustomNumberOption(true, num++, "<color=#FFFF00FF>Sheriff</color>", 100.0f, 0f, 100f, 10f,
+            SheriffOn = new CustomNumberOption(true, num++, "<color=#FFFF00FF>Sheriff</color>", 100.0f, 0f, 100f, 10f,
                 PercentFormat);
             EngineerOn = new CustomNumberOption(true, num++, "<color=#FFA60AFF>Engineer</color>", 100.0f, 0f, 100f, 10f,
                 PercentFormat);

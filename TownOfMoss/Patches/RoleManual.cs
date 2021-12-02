@@ -13,18 +13,12 @@ namespace TownOfUs.Roles {
                                $"Madmateもキル対象に含まれる {(CustomGameOptions.SheriffKillsMadmate? "On": "Off")}\n" +
                                $"キルのクールダウン時間	 {CustomGameOptions.SheriffKillCd}s\n" +
                                $"自身でキルした相手をReportできる {(CustomGameOptions.SheriffBodyReport? "On": "Off")}"},
-            {RoleEnum.Police, $"Sheriff\nキルボタンを持っており、第三陣営、インポスターをキルすることができますが、対象がクルーメイトだった場合は自身が死亡します。\n" +
-                              $"自身の役職が全員に公開される {(CustomGameOptions.ShowSheriff? "On": "Off")}\n" +
-                              $"対象がクルーメイトでもキルする {(CustomGameOptions.SheriffKillOther? "On": "Off")}\n" +
-                              $"Madmateもキル対象に含まれる {(CustomGameOptions.SheriffKillsMadmate? "On": "Off")}\n" +
-                              $"キルのクールダウン時間	 {CustomGameOptions.SheriffKillCd}s\n" +
-                              $"自身でキルした相手をReportできる {(CustomGameOptions.SheriffBodyReport? "On": "Off")}"},
             {RoleEnum.Engineer, $"Engineer\nベントを利用でき、サボタージュを即座に修理できるFixボタンを持っています。\nFixボタンはベントの中でのみ使用できます。\n" +
                                 $"Fixボタンが会議を挟むごとに使用できる	{(CustomGameOptions.EngineerFixPer == EngineerFixPer.Round? "On": "Off")}\n" +
                                 $"ベントの中でのみFixボタン使用できる   {(CustomGameOptions.EngineerCanFixOnlyInVent? "On": "Off")}"},
             {RoleEnum.Jester, $"Jester\n会議により追放されると勝利します。 ベントの使用、死体の移動、変身の能力を持ちます。\n" +
-                              $"ベントを使用できる	{(CustomGameOptions.JesterUseVent? "On": "Off")}" +
-                              $"死体を移動できる	{(CustomGameOptions.JesterDragBody? "On": "Off")}" +
+                              $"ベントを使用できる	{(CustomGameOptions.JesterUseVent? "On": "Off")}\n" +
+                              $"死体を移動できる	{(CustomGameOptions.JesterDragBody? "On": "Off")}\n" +
                               $"変身できる	{(CustomGameOptions.JesterCanMorph? "On": "Off")}"},
             {RoleEnum.LoverImpostor, $"LoverImpostor\n"},
             {RoleEnum.Lover, $"Lover\n"},
@@ -43,7 +37,7 @@ namespace TownOfUs.Roles {
                               $"巻き戻される時間の秒数	        {CustomGameOptions.RewindDuration}s\n" +
                               $"巻き戻すボタンのクールダウン時間	{CustomGameOptions.RewindCooldown}s"},
             {RoleEnum.Painter, $"Painter\n床にペンキを塗ります。塗ったペンキは会議を挟んだ後全プレイヤーに視認されるようになり、その上を通過したクルーのバイザーの色を変化させます。\nこの色は次の会議後まで全てのプレイヤーが視認でき、会議が終わると元に戻ります。\n" +
-                              $"塗れるペンキの色の数	{CustomGameOptions.PaintColorMax}" +
+                              $"塗れるペンキの色の数	{CustomGameOptions.PaintColorMax}\n" +
                               $"ペイントのクールダウン時間	{CustomGameOptions.PaintCd}s"},
             {RoleEnum.Shifter, $"Shifter\n\n" +
                               $""},

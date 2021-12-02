@@ -79,7 +79,7 @@ namespace TownOfUs.Roles
             Dictionary<string, int> onList = new Dictionary<string, int> {
                 { "Mayor", CustomGameOptions.MayorOn },
                 // { "Sheriff", CustomGameOptions.SheriffOn },
-                { "Sheriff", CustomGameOptions.PoliceOn },
+                { "Sheriff", CustomGameOptions.SheriffOn },
                 { "Engineer", CustomGameOptions.EngineerOn },
                 { "Swapper", CustomGameOptions.SwapperOn },
                 { "Investigator", CustomGameOptions.InvestigatorOn },

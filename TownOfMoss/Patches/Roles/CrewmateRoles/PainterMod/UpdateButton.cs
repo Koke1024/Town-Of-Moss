@@ -4,6 +4,7 @@ using HarmonyLib;
 using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine;
+using UnityEngine.UIElements.Experimental;
 
 namespace TownOfUs.CrewmateRoles.PainterMod
 {
@@ -25,16 +26,21 @@ namespace TownOfUs.CrewmateRoles.PainterMod
                 if (__instance.KillButton == null) {
                     return;
                 }
+
+                float offset = __instance.UseButton.position.x - __instance.ReportButton.position.x;
+                Vector3 fromPos = new Vector3(__instance.UseButton.position.x, __instance.UseButton.position.y - offset, __instance.UseButton.position.z);
+                Vector3 toPos = new Vector3(TownOfUs.ButtonPosition.x, fromPos.y, fromPos.z);
                 for (int i = 0; i < CustomGameOptions.PaintColorMax; ++i) {
                     KillButton btn = Object.Instantiate(__instance.KillButton, __instance.KillButton.transform.parent);
                     btn.graphic.enabled = true;
                     btn.graphic.sprite = PaintSprite[i];
                     
                     role._paintButtons.Add(btn);
+                    btn.GetComponent<AspectPosition>().DistanceFromEdge = Vector3.Lerp(fromPos, toPos, i / 2.0f);
+                    btn.gameObject.SetActive(false);
                 }
             }
 
-            var t = 0; 
             // role.closeVent = ClosestVent();
 
             bool onInk = false;
@@ -55,7 +61,7 @@ namespace TownOfUs.CrewmateRoles.PainterMod
                     }
                 }
             }
-            
+
             foreach(var btn in role._paintButtons) {
                 btn.SetCoolDown(role.PaintTimer(), CustomGameOptions.PaintCd);
                 if (!onInk) {
@@ -69,18 +75,6 @@ namespace TownOfUs.CrewmateRoles.PainterMod
                     btn.enabled = false;
                 }
                 btn.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
-                // if (role.closeVent == null) {
-                //     btn.renderer.sprite = TownOfUs.PaintSprite[t];
-                // }else{
-                //     btn.renderer.sprite = TownOfUs.PourSprite;
-                // }
-                var offset = __instance.UseButton.transform.localPosition.y - __instance.ReportButton.transform.localPosition.y;
-                // var position = __instance.KillButton.transform.localPosition;
-                // btn.transform.localPosition = new Vector3(position.x + offset,
-                //     position.y - offset * t, position.z);
-                btn.GetComponent<AspectPosition>().DistanceFromEdge = TownOfUs.ButtonPosition + new Vector3(offset, - offset * t, 0);
-                ++t;
-                btn.gameObject.SetActive(false);
                 btn.GetComponent<AspectPosition>().Update();
             }
         }

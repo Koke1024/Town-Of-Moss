@@ -49,6 +49,8 @@ namespace TownOfUs.ImpostorRoles.PuppeteerMod {
                         role.PossessButton.SetCoolDown(role.Player.killTimer, PlayerControl.GameOptions.KillCooldown);
                     }
                 }
+                role.PossessButton.gameObject.SetActive(!MeetingHud.Instance && !LobbyBehaviour.Instance);
+                role.PossessButton.graphic.enabled = !MeetingHud.Instance && !LobbyBehaviour.Instance;
                 Utils.SetTarget(ref role.ClosestPlayer, role.PossessButton);
                 if (role.ClosestPlayer) {
                     role.PossessButton.graphic.color = Palette.EnabledColor;
