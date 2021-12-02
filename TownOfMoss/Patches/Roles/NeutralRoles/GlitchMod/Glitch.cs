@@ -448,7 +448,7 @@ namespace TownOfUs.Roles
                     __instance.KillButton.DoClick();
 
                 __instance.KillButton.gameObject.SetActive(__instance.UseButton.isActiveAndEnabled &&
-                                                           !__gInstance.Player.Data.IsDead);
+                                                           !__gInstance.Player.Data.IsDead && !MeetingHud.Instance);
                 __instance.KillButton.SetCoolDown(
                     CustomGameOptions.GlitchKillCooldown -
                     (float)(DateTime.UtcNow - __gInstance.LastKill).TotalSeconds,
@@ -508,7 +508,7 @@ namespace TownOfUs.Roles
                 __gInstance.HackButton.graphic.sprite = HackSprite;
 
                 __gInstance.HackButton.gameObject.SetActive(__instance.UseButton.isActiveAndEnabled &&
-                                                            !__gInstance.Player.Data.IsDead);
+                                                            !__gInstance.Player.Data.IsDead && !MeetingHud.Instance);
                 __gInstance.HackButton.transform.position = new Vector3(__gInstance.MimicButton.transform.position.x,
                     __gInstance.MimicButton.transform.position.y + 0.8f, __gInstance.MimicButton.transform.position.z);
                 __gInstance.HackButton.SetCoolDown(
@@ -574,7 +574,7 @@ namespace TownOfUs.Roles
                 __gInstance.MimicButton.graphic.sprite = MimicSprite;
 
                 __gInstance.MimicButton.gameObject.SetActive(__instance.UseButton.isActiveAndEnabled &&
-                                                             !__gInstance.Player.Data.IsDead);
+                                                             !__gInstance.Player.Data.IsDead && !MeetingHud.Instance);
                 __gInstance.MimicButton.transform.position = new Vector3(
                     Camera.main.ScreenToWorldPoint(new Vector3(0, 0)).x + 0.75f,
                     __instance.UseButton.transform.position.y, __instance.UseButton.transform.position.z);

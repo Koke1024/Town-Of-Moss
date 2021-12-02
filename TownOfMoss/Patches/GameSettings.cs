@@ -116,8 +116,16 @@ namespace TownOfUs {
         public static class Update {
             public static void Postfix(ref GameOptionsMenu __instance) {
                 var scroller = __instance.GetComponentInParent<Scroller>();
-                if (scroller) {
+                if (!scroller) {
+                    return;
+                }
+
+                AmongUsExtensions.Log($"{__instance.transform.parent.parent}");
+                if (__instance.transform.parent.parent.name == "TOUSettings") {
                     scroller.YBounds.max = 90f;                    
+                }
+                else {
+                    scroller.YBounds.max = 0f;
                 }
             }
         }
