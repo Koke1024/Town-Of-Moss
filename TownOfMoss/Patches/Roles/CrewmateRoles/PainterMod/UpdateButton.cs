@@ -33,7 +33,8 @@ namespace TownOfUs.CrewmateRoles.PainterMod
                     btn.graphic.sprite = PaintSprite[i];
                     
                     role._paintButtons.Add(btn);
-                    btn.GetComponent<AspectPosition>().DistanceFromEdge = new Vector3(TownOfUs.ButtonPosition.x - 1.8f + i * 0.9f, TownOfUs.ButtonPosition.y + 0.8f, TownOfUs.ButtonPosition.z);
+                    btn.GetComponent<AspectPosition>().DistanceFromEdge = 
+                        new Vector3(TownOfUs.ButtonPosition.x - 1.8f + i * TownOfUs.ButtonOffset.x, TownOfUs.ButtonPosition.y + TownOfUs.ButtonOffset.y, TownOfUs.ButtonPosition.z);
                     btn.gameObject.SetActive(false);
                 }
             }

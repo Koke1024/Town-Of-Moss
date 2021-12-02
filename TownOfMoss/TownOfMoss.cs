@@ -68,6 +68,7 @@ namespace TownOfUs
         public static Sprite InkSprite;
         
         public static Vector3 ButtonPosition { get; private set; } = new Vector3(2.6f, 0.7f, -9f);
+        public static Vector3 ButtonOffset { get; private set; } = new Vector3(0.9f, 0.8f, 0);
 
         private static DLoadImage _iCallLoadImage;
 

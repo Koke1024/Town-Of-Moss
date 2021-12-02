@@ -52,6 +52,11 @@ namespace TownOfUs
                     return false;
                 }
             }
+            if (player.Is(RoleEnum.Jester)) {
+                if (CustomGameOptions.JesterUseVent) {
+                    return true;
+                }
+            }
             if (player.Is(RoleEnum.Swooper)) {
                 if (CustomGameOptions.SwooperCanVent == MorphVentOptions.None) {
                     return false;
@@ -65,6 +70,10 @@ namespace TownOfUs
                 player.Is(RoleEnum.Glitch)) {
                 
                 return true;
+            }
+
+            if (player.Is(RoleEnum.Assassin) && CustomGameOptions.MadMateOn) {
+                return false;
             }
 
             return playerInfo.IsImpostor();
@@ -123,7 +132,6 @@ namespace TownOfUs
                     if (item == __instance.Id)
                         couldUse = false;
                 }
-
             }
             canUse = couldUse;
             if (canUse)

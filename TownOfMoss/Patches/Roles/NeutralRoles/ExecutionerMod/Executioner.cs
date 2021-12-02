@@ -1,4 +1,5 @@
 using Il2CppSystem.Collections.Generic;
+using TownOfUs.Extensions;
 using UnityEngine;
 
 namespace TownOfUs.Roles
@@ -55,6 +56,7 @@ namespace TownOfUs.Roles
 
         public void SetExecutionTarget()
         {
+            AmongUsExtensions.Log($"create arrow");
             var gameObj = new GameObject();
             Arrow = gameObj.AddComponent<ArrowBehaviour>();
             gameObj.transform.parent = PlayerControl.LocalPlayer.gameObject.transform;

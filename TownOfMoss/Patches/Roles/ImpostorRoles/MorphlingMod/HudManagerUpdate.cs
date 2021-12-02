@@ -20,6 +20,10 @@ namespace TownOfUs.ImpostorRoles.MorphlingMod {
                 role.MorphButton.graphic.sprite = Morphling.SampleSprite;
                 role.MorphButton.GetComponent<AspectPosition>().DistanceFromEdge = TownOfUs.ButtonPosition;
                 role.MorphButton.gameObject.SetActive(false);
+                
+                if (role.Player.Is(RoleEnum.Jester)) {
+                    role.MorphButton.GetComponent<AspectPosition>().DistanceFromEdge = new Vector3(TownOfUs.ButtonPosition.x + TownOfUs.ButtonOffset.x, TownOfUs.ButtonPosition.y, TownOfUs.ButtonPosition.z);
+                }
             }
             role.MorphButton.GetComponent<AspectPosition>().Update();
 
@@ -30,15 +34,6 @@ namespace TownOfUs.ImpostorRoles.MorphlingMod {
             role.MorphButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
             
 
-            // if (role.Player.Is(RoleEnum.Jester)) {
-            //     var size = __instance.UseButton.transform.localPosition.y - __instance.ReportButton.transform.localPosition.y;
-            //     role.MorphButton.transform.localPosition = new Vector3(position.x + size,
-            //         __instance.ReportButton.transform.localPosition.y, position.z);
-            // }
-            // else {
-            //     role.MorphButton.transform.localPosition = new Vector3(position.x,
-            //         __instance.ReportButton.transform.localPosition.y, position.z);
-            // }
 
             if (role.MorphButton.graphic.sprite == Morphling.SampleSprite) {
                 role.MorphButton.SetCoolDown(0f, 1f);

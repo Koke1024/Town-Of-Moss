@@ -293,7 +293,7 @@ namespace TownOfUs.CustomOption {
                     inited = true;
 
                     int i = 0;
-                    if (__instance.Children != null) {
+                    if (__instance.Children != null && __instance.Children.Any()) {
                         foreach (var option in __instance.Children) {
                             var opt =
                                 CustomOption.AllOptions.FirstOrDefault(o =>
@@ -323,7 +323,7 @@ namespace TownOfUs.CustomOption {
                 }
 
                 // var tomSetting = GameObject.Find("TOMSettings");
-
+        
 
                 var position = __instance.transform.position;
                 if (BepInEx.IL2CPP.UnityEngine.Input.GetKeyInt(BepInEx.IL2CPP.UnityEngine.KeyCode.W)) {
@@ -351,7 +351,10 @@ namespace TownOfUs.CustomOption {
         public static void JumpToElement(CustomOption option) {
             var menu = Object.FindObjectOfType<GameOptionsMenu>();
             var target = menu.Children
-                .First(x => x == option.Setting);
+                .FirstOrDefault(x => x == option.Setting);
+            if (target == null) {
+                return;
+            }
             menu.transform.position =
                 new Vector3(menu.transform.position.x, GameOptionsMenu_Update.topY - target.transform.localPosition.y,
                     menu.transform.position.z);
