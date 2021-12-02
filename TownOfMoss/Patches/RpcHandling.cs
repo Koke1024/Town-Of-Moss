@@ -822,7 +822,6 @@ namespace TownOfUs
         {
             public static void Postfix()
             {
-                PluginSingleton<TownOfUs>.Instance.Log.LogMessage("RPC SET ROLE");
                 var infected = GameData.Instance.AllPlayers.ToArray().Where(o => o.IsImpostor());
 
                 Utils.ShowDeadBodies = false;

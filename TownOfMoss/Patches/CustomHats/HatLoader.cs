@@ -1,14 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using BepInEx.Logging;
-using Newtonsoft.Json;
 using Reactor;
 using Reactor.Extensions;
 using TownOfUs.Extensions;
 using UnityEngine;
+using System.Text.Json;
+using HarmonyLib;
+using Il2CppSystem.Text.RegularExpressions;
 
 namespace TownOfUs.Patches.CustomHats
 {
@@ -46,7 +50,6 @@ namespace TownOfUs.Patches.CustomHats
                     hatBehaviours[i].Order = originalCount + i;
                     HatManager.Instance.AllHats.Add(hatBehaviours[i]);
                 }
-
             }
             catch (Exception e)
             {
@@ -58,8 +61,9 @@ namespace TownOfUs.Patches.CustomHats
         private static HatMetadataJson LoadJson() {
             var stream = Assembly.GetManifestResourceStream($"{HAT_RESOURCE_NAMESPACE}.{HAT_METADATA_JSON}");
             var str = Encoding.UTF8.GetString(stream.ReadFully());
-            var objects = JsonConvert.DeserializeObject<HatMetadataJson>(str);
-            return objects;
+            string trimmed = String.Concat(str.Where(c => !Char.IsWhiteSpace(c)));
+            var obj = JsonSerializer.Deserialize<HatMetadataJson>(trimmed);
+            return obj;
         }
 
         private static List<HatBehaviour> DiscoverHatBehaviours(HatMetadataJson metadata)
@@ -88,7 +92,6 @@ namespace TownOfUs.Patches.CustomHats
                      Log.LogError($"{e.Message}\nStack:{e.StackTrace}");
                 }
             }
-
             return hatBehaviours;
         }
 
