@@ -27,16 +27,13 @@ namespace TownOfUs.CrewmateRoles.PainterMod
                     return;
                 }
 
-                float offset = __instance.UseButton.position.x - __instance.ReportButton.position.x;
-                Vector3 fromPos = new Vector3(__instance.UseButton.position.x, __instance.UseButton.position.y - offset, __instance.UseButton.position.z);
-                Vector3 toPos = new Vector3(TownOfUs.ButtonPosition.x, fromPos.y, fromPos.z);
                 for (int i = 0; i < CustomGameOptions.PaintColorMax; ++i) {
                     KillButton btn = Object.Instantiate(__instance.KillButton, __instance.KillButton.transform.parent);
                     btn.graphic.enabled = true;
                     btn.graphic.sprite = PaintSprite[i];
                     
                     role._paintButtons.Add(btn);
-                    btn.GetComponent<AspectPosition>().DistanceFromEdge = Vector3.Lerp(fromPos, toPos, i / 2.0f);
+                    btn.GetComponent<AspectPosition>().DistanceFromEdge = new Vector3(TownOfUs.ButtonPosition.x - 1.8f + i * 0.9f, TownOfUs.ButtonPosition.y + 0.8f, TownOfUs.ButtonPosition.z);
                     btn.gameObject.SetActive(false);
                 }
             }
