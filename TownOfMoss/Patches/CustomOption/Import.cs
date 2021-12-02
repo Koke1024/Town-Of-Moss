@@ -29,19 +29,16 @@ namespace TownOfUs.CustomOption
         {
             var options = new List<OptionBehaviour>();
 
-            var togglePrefab = Object.FindObjectOfType<ToggleOption>();
-            var numberPrefab = Object.FindObjectOfType<NumberOption>();
-            var stringPrefab = Object.FindObjectOfType<StringOption>();
+            ToggleOption togglePrefab = GameObject.Find("Save Custom Settings").GetComponent<ToggleOption>();
+            AmongUsExtensions.Log($"{togglePrefab}");
 
-
+            
             foreach (var button in SlotButtons)
-                if (button.Setting != null)
-                {
+                if (button.Setting != null) {
                     button.Setting.gameObject.SetActive(true);
                     options.Add(button.Setting);
                 }
-                else
-                {
+                else {
                     var toggle = Object.Instantiate(togglePrefab, togglePrefab.transform.parent).DontDestroy();
                     toggle.transform.GetChild(2).gameObject.SetActive(false);
                     toggle.transform.GetChild(0).localPosition += new Vector3(1f, 0f, 0f);
@@ -49,7 +46,7 @@ namespace TownOfUs.CustomOption
                     button.Setting = toggle;
                     button.OptionCreated();
                     options.Add(toggle);
-            }
+                }
 
             return options;
         }
@@ -110,14 +107,16 @@ namespace TownOfUs.CustomOption
 
             var y = __instance.GetComponentsInChildren<OptionBehaviour>()
                 .Max(option => option.transform.localPosition.y);
-            var x = __instance.Children[1].transform.localPosition.x;
-            var z = __instance.Children[1].transform.localPosition.z;
+            var x = __instance.Children[0].transform.localPosition.x;
+            var z = __instance.Children[0].transform.localPosition.z;
             var i = 0;
 
             OldButtons = __instance.Children.ToList();
             foreach (var option in __instance.Children) option.gameObject.SetActive(false);
 
-            foreach (var option in options) option.transform.localPosition = new Vector3(x, y - i++ * 0.5f, z);
+            foreach (var option in options) {
+                option.transform.localPosition = new Vector3(x, y - i++ * 0.25f, z);
+            }
 
             __instance.Children = new Il2CppReferenceArray<OptionBehaviour>(options.ToArray());
         }

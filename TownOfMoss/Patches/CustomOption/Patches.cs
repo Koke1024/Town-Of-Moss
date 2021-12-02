@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
 using Reactor.Extensions;
-using TownOfUs.Extensions;
 using UnhollowerBaseLib;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -12,7 +11,7 @@ namespace TownOfUs.CustomOption {
     public static class Patches {
         public static Export ExportButton;
         public static Import ImportButton;
-        // public static List<OptionBehaviour> DefaultOptions;
+        public static List<OptionBehaviour> DefaultOptions;
         public static float LobbyTextRowHeight { get; set; } = 0.081F;
         public static bool inited = false;
         public static float contentX, contentY, contentZ;
@@ -53,7 +52,7 @@ namespace TownOfUs.CustomOption {
                 options.Add(toggle);
             }
 
-            // DefaultOptions = __instance.Children.ToList();
+            DefaultOptions = __instance.Children.ToList();
             foreach (var defaultOption in __instance.Children) {
                 defaultOption.gameObject.SetActive(true);
 
@@ -230,10 +229,7 @@ namespace TownOfUs.CustomOption {
             public static bool Prefix(GameOptionsMenu __instance) {
                 if (__instance.name != "TouGameOptionsMenu")
                     return true;
-                togglePrefab = GameObject.Instantiate(Object.FindObjectOfType<ToggleOption>());
-                // togglePrefab.gameObject.SetActive(false);
-                AmongUsExtensions.Log($"togglePrefab set");
-                AmongUsExtensions.Log($"{togglePrefab.name}");
+                togglePrefab = Object.FindObjectOfType<ToggleOption>();
                 inited = false;
                 
                 __instance.Children = new Il2CppReferenceArray<OptionBehaviour>(new OptionBehaviour[0]);
@@ -245,7 +241,7 @@ namespace TownOfUs.CustomOption {
                 
                 var customOptions = CreateOptions(__instance);
 
-                if (__instance.Children.Count > 0) {
+                if (__instance.Children.Any()) {
                     var startOption = __instance.gameObject.transform.GetChild(0);
                     contentY = startOption.localPosition.y;
                     contentX = startOption.localPosition.x;
@@ -273,9 +269,19 @@ namespace TownOfUs.CustomOption {
 
             public static void Postfix(GameOptionsMenu __instance) {
                 if (!inited) {
-                    contentY = __instance.GetComponentsInChildren<OptionBehaviour>()
-                        .Max(option => option.transform.localPosition.y);
-                    if (__instance.Children.Length == 1) {
+                    var children = __instance.GetComponentsInChildren<OptionBehaviour>();
+                    if (children.Any()) {
+                        contentY = children.Max(option => option.transform.localPosition.y);                        
+                    }
+                    else {
+                        contentY = 0;
+                    }
+
+                    if (__instance.Children == null || !__instance.Children.Any()) {
+                        contentX = 0;
+                        contentZ = -1;                        
+                    }
+                    else if (__instance.Children.Length == 1) {
                         contentX = __instance.Children[0].transform.localPosition.x;
                         contentZ = __instance.Children[0].transform.localPosition.z;
                     }
@@ -283,39 +289,37 @@ namespace TownOfUs.CustomOption {
                         contentX = __instance.Children[1].transform.localPosition.x;
                         contentZ = __instance.Children[1].transform.localPosition.z;
                     }
-                    else {
-                        contentX = 0;
-                        contentZ = -1;
-                    }
 
                     inited = true;
 
                     int i = 0;
-                    foreach (var option in __instance.Children) {
-                        var opt =
-                            CustomOption.AllOptions.FirstOrDefault(o =>
-                                o.Setting == option);
-                        if (opt is CustomHeaderOption header) {
-                            if (i % 2 == 1) {
-                                ++i;
+                    if (__instance.Children != null) {
+                        foreach (var option in __instance.Children) {
+                            var opt =
+                                CustomOption.AllOptions.FirstOrDefault(o =>
+                                    o.Setting == option);
+                            if (opt is CustomHeaderOption header) {
+                                if (i % 2 == 1) {
+                                    ++i;
+                                }
+                            }
+
+                            option.transform.localPosition = new Vector3(contentX - 1.25f + 2.5f * (i % 2),
+                                contentY - (i / 2) * 0.25f, contentZ);
+                            option.transform.localScale = Vector3.one * 0.5f;
+                            ++i;
+                            if (opt is CustomHeaderOption header2) {
+                                if (i % 2 == 1) {
+                                    ++i;
+                                }
                             }
                         }
 
-                        option.transform.localPosition = new Vector3(contentX - 1.25f + 2.5f * (i % 2),
-                            contentY - (i / 2) * 0.25f, contentZ);
-                        option.transform.localScale = Vector3.one * 0.5f;
-                        ++i;
-                        if (opt is CustomHeaderOption header2) {
-                            if (i % 2 == 1) {
-                                ++i;
-                            }
-                        }
+                        float myY = PlayerControl.LocalPlayer.transform.position.y;
+                        bottomY = -3 + myY + 1.34f - __instance.Children
+                            .Min(option => option.transform.localPosition.y);
+                        topY = myY - 0.9227f;
                     }
-
-                    float myY = PlayerControl.LocalPlayer.transform.position.y;
-                    bottomY = -3 + myY + 1.34f - __instance.Children
-                        .Min(option => option.transform.localPosition.y);
-                    topY = myY - 0.9227f;
                 }
 
                 // var tomSetting = GameObject.Find("TOMSettings");

@@ -49,7 +49,7 @@ namespace TownOfUs.ImpostorRoles.UndertakerMod
                 false
             ))
             {
-                body.transform.position = new Vector3(currentPosition.x, currentPosition.y, currentPosition.y / 1000.0f);;
+                body.transform.position = new Vector3(currentPosition.x, currentPosition.y, currentPosition.y / 1000.0f);
             }
             else
             {
