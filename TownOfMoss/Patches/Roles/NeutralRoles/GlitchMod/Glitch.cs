@@ -138,7 +138,7 @@ namespace TownOfUs.Roles
 
             MimicButtonHandler.MimicButtonUpdate(this, __instance);
 
-            // HackButtonHandler.HackButtonUpdate(this, __instance);
+            HackButtonHandler.HackButtonUpdate(this, __instance);
 
             if (__instance.KillButton != null && Player.Data.IsDead)
                 __instance.KillButton.SetTarget(null);
@@ -510,7 +510,7 @@ namespace TownOfUs.Roles
                 __gInstance.HackButton.gameObject.SetActive(__instance.UseButton.isActiveAndEnabled &&
                                                             !__gInstance.Player.Data.IsDead);
                 __gInstance.HackButton.transform.position = new Vector3(__gInstance.MimicButton.transform.position.x,
-                    __gInstance.MimicButton.transform.position.y, __gInstance.MimicButton.transform.position.z);
+                    __gInstance.MimicButton.transform.position.y + 0.8f, __gInstance.MimicButton.transform.position.z);
                 __gInstance.HackButton.SetCoolDown(
                     CustomGameOptions.HackCooldown - (float)(DateTime.UtcNow - __gInstance.LastHack).TotalSeconds,
                     CustomGameOptions.HackCooldown);
@@ -577,7 +577,7 @@ namespace TownOfUs.Roles
                                                              !__gInstance.Player.Data.IsDead);
                 __gInstance.MimicButton.transform.position = new Vector3(
                     Camera.main.ScreenToWorldPoint(new Vector3(0, 0)).x + 0.75f,
-                    __instance.UseButton.transform.position.y + 0.8f, __instance.UseButton.transform.position.z);
+                    __instance.UseButton.transform.position.y, __instance.UseButton.transform.position.z);
 
                 if (!__gInstance.MimicButton.isCoolingDown && !__gInstance.IsUsingMimic)
                 {

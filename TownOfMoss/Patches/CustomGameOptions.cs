@@ -117,6 +117,7 @@ namespace TownOfUs
         public static SeerInfo SeerInfo => (SeerInfo) Generate.SeerInfo.Get();
         public static SeeReveal SeeReveal => (SeeReveal) Generate.SeeReveal.Get();
         public static bool NeutralRed => Generate.NeutralRed.Get();
+        public static bool GlitchAdmin => Generate.GlitchAdmin.Get();
         public static float MimicCooldown => Generate.MimicCooldownOption.Get();
         public static float MimicDuration => Generate.MimicDurationOption.Get();
         public static float HackCooldown => Generate.HackCooldownOption.Get();

@@ -344,7 +344,7 @@ namespace TownOfUs.Roles
                     if (role != null && !role.Hidden)
                     {
                         __instance.__4__this.TeamTitle.text = role.Faction == Faction.Neutral ? "Neutral" : __instance.__4__this.TeamTitle.text;
-                        __instance.__4__this.TeamTitle.color = role.Faction == Faction.Neutral ? Color.white : __instance.__4__this.TeamTitle.color;
+                        __instance.__4__this.TeamTitle.color = role.Faction == Faction.Neutral ? new Color(1, 0, 1) : __instance.__4__this.TeamTitle.color;
                         __instance.__4__this.RoleText.text = role.Name;
                         __instance.__4__this.RoleText.color = role.Color;
                         __instance.__4__this.RoleBlurbText.text = role.ImpostorText();

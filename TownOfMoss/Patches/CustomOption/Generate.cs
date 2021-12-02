@@ -222,6 +222,7 @@ namespace TownOfUs.CustomOption
         public static CustomHeaderOption NeutralRolesSetting;
 
         public static CustomHeaderOption TheGlitch;
+        public static CustomToggleOption GlitchAdmin;
         public static CustomNumberOption MimicCooldownOption;
         public static CustomNumberOption MimicDurationOption;
         public static CustomNumberOption HackCooldownOption;
@@ -549,6 +550,7 @@ namespace TownOfUs.CustomOption
             
             TheGlitch =
                 new CustomHeaderOption(num++, "<color=#00FF00FF>The Glitch</color>");
+            GlitchAdmin = new CustomToggleOption(num++, "Glitch Has Portable Admin");
             MimicCooldownOption = new CustomNumberOption(num++, "Mimic Cooldown", 10, 10, 120, 2.5f, CooldownFormat);
             MimicDurationOption = new CustomNumberOption(num++, "Mimic Duration", 15, 1, 30, 1f, CooldownFormat);
             HackCooldownOption = new CustomNumberOption(num++, "Hack Cooldown", 10, 10, 120, 2.5f, CooldownFormat);
