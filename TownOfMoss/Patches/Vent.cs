@@ -154,7 +154,7 @@ namespace TownOfUs
             var ventitaltionSystem = ShipStatus.Instance.Systems[SystemTypes.Ventilation].Cast<VentilationSystem>();
             if (ventitaltionSystem != null && ventitaltionSystem.PlayersCleaningVents != null)
             {
-                foreach (var item in ventitaltionSystem.PlayersCleaningVents.values)
+                foreach (var item in ventitaltionSystem.PlayersCleaningVents.Values)
                 {
                     if (item == __instance.Id)
                         couldUse = false;

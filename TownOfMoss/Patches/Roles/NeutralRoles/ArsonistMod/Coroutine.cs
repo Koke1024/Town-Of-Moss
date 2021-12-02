@@ -24,7 +24,7 @@ namespace TownOfUs.NeutralRoles.ArsonistMod
             while (true) {
                 var distBetweenPlayers = Utils.getDistBetweenPlayers(PlayerControl.LocalPlayer, target);
                 var flag3 = distBetweenPlayers <
-                            GameOptionsData.KillDistances[PlayerControl.GameOptions.KillDistance];
+                            GameOptionsData.KillDistances[0];
                 if (!flag3) {
                     arso.LastDoused = DateTime.UtcNow;
                     yield break;

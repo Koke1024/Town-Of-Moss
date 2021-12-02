@@ -112,12 +112,15 @@ namespace TownOfUs {
             }
         }
 
-        [HarmonyPatch(typeof(GameOptionsMenu), nameof(GameOptionsMenu.Update))]
-        public static class Update {
-            public static void Postfix(ref GameOptionsMenu __instance) {
-                __instance.GetComponentInParent<Scroller>().YBounds.max = 90f;
-            }
-        }
+        // [HarmonyPatch(typeof(GameOptionsMenu), nameof(GameOptionsMenu.Update))]
+        // public static class Update {
+        //     public static void Postfix(ref GameOptionsMenu __instance) {
+        //         var scroller = __instance.GetComponentInParent<Scroller>();
+        //         if (scroller) {
+        //             scroller.YBounds.max = 90f;                    
+        //         }
+        //     }
+        // }
     }
 
     [HarmonyPatch(typeof(GameOptionsData), nameof(GameOptionsData.SetRecommendations), typeof(int), typeof(GameModes))]

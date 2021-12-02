@@ -36,7 +36,7 @@ namespace TownOfUs.ImpostorRoles.KirbyMod
                 var flag2 = __instance.isCoolingDown;
                 if (flag2) return false;
                 if (!__instance.enabled) return false;
-                var maxDistance = GameOptionsData.KillDistances[PlayerControl.GameOptions.KillDistance];
+                var maxDistance = GameOptionsData.KillDistances[0];
                 if (Vector2.Distance(role.CurrentTarget.TruePosition,
                     PlayerControl.LocalPlayer.GetTruePosition()) > maxDistance) return false;
                 var playerId = role.CurrentTarget.ParentId;

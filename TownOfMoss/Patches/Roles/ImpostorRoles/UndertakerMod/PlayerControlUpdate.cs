@@ -50,7 +50,7 @@ namespace TownOfUs.ImpostorRoles.UndertakerMod
                 var data = PlayerControl.LocalPlayer.Data;
                 var isDead = data.IsDead;
                 var truePosition = PlayerControl.LocalPlayer.GetTruePosition();
-                var maxDistance = GameOptionsData.KillDistances[PlayerControl.GameOptions.KillDistance];
+                var maxDistance = GameOptionsData.KillDistances[0];
                 var flag = (PlayerControl.GameOptions.GhostsDoTasks || !data.IsDead) &&
                            (!AmongUsClient.Instance || !AmongUsClient.Instance.IsGameOver) &&
                            PlayerControl.LocalPlayer.CanMove;

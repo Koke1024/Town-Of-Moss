@@ -332,7 +332,6 @@ namespace TownOfUs.Roles
 
                 public static void Prefix(IntroCutscene._CoBegin_d__18 __instance)
                 {
-                    AmongUsExtensions.Log();
                     var role = GetRole(PlayerControl.LocalPlayer);
 
                     if (role != null) role.IntroPrefix(__instance);
@@ -340,7 +339,6 @@ namespace TownOfUs.Roles
 
                 public static void Postfix(IntroCutscene._CoBegin_d__18 __instance)
                 {
-                    AmongUsExtensions.Log();
                     var role = GetRole(PlayerControl.LocalPlayer);
                     var alpha = __instance.__4__this.RoleText.color.a;
                     if (role != null && !role.Hidden)
@@ -362,7 +360,6 @@ namespace TownOfUs.Roles
 
                     if (ModifierText != null)
                     {
-                        AmongUsExtensions.Log();
                         var modifier = Modifier.GetModifier(PlayerControl.LocalPlayer);
                         ModifierText.text = "<size=4>Modifier: " + modifier.Name + "</size>";
                         ModifierText.color = modifier.Color;
@@ -382,7 +379,6 @@ namespace TownOfUs.Roles
             public static void Postfix(PlayerControl._CoSetTasks_d__102 __instance)
             {
                 if (__instance == null) return;
-                AmongUsExtensions.Log();
                 var player = __instance.__4__this;
                 var role = GetRole(player);
                 var modifier = Modifier.GetModifier(player);

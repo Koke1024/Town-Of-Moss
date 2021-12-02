@@ -23,7 +23,7 @@ namespace TownOfUs.NeutralRoles.SeerMod
             while (true) {
                 var distBetweenPlayers = Utils.getDistBetweenPlayers(PlayerControl.LocalPlayer, target);
                 var flag3 = distBetweenPlayers <
-                            GameOptionsData.KillDistances[PlayerControl.GameOptions.KillDistance];
+                            GameOptionsData.KillDistances[0];
                 if (!flag3) {
                     seer.LastInvestigated = DateTime.UtcNow.AddSeconds(-CustomGameOptions.SeerInvestigateTime / 2.0f);
                     seer.Player.moveable = true;
