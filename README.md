@@ -439,7 +439,7 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 全プレイヤーの時間を数秒間巻き戻すことができます。その時間内に死亡していたクルーは蘇生されます。\
 また、バイタル情報を見ることができません。
 巻き戻している間、Time Lordには以下のように青いアウトラインがつきます。\
-![Rewind](md_resource/Rewind.png)
+![Rewind](TownOfMoss/md_resource/Rewind.png)
 
 ### Game Options
 
@@ -948,10 +948,10 @@ Madmateが存在するとき、Assassinがインポスター陣営に採用さ�
 # Additive Menu Button
 
 右上の歯車マークから開くメニュー画面に、以下のボタンが追加されています。\
-![メニュー](md_resource/menuButton.png)\
+![メニュー](TownOfMoss\md_resource/menuButton.png)\
 ゲーム中に自身のロールの情報とゲームルール、ロールの割り当て確率設定を確認することができます。\
-![ロール情報](md_resource/role_info.png)![ルール情報](md_resource/game_info.png)
-![割り当て情報](md_resource/role_assign_rate.png)
+![ロール情報](TownOfMoss\md_resource/role_info.png)![ルール情報](TownOfMoss\md_resource/game_info.png)
+![割り当て情報](TownOfMoss\md_resource/role_assign_rate.png)
 
 | Name | Description |
 |----------|:-------------:|
