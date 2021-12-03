@@ -56,7 +56,6 @@ namespace TownOfUs.Roles
 
         public void SetExecutionTarget()
         {
-            AmongUsExtensions.Log($"create arrow");
             var gameObj = new GameObject();
             Arrow = gameObj.AddComponent<ArrowBehaviour>();
             gameObj.transform.parent = PlayerControl.LocalPlayer.gameObject.transform;

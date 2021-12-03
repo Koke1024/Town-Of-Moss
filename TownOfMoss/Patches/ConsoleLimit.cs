@@ -208,7 +208,7 @@ namespace TownOfUs.Patches {
             // DestroyableSingleton<HudManager>.Instance.SetHudActive(false);
             
             if (!AdminWatcher.Contains(PlayerControl.LocalPlayer.PlayerId) &&
-                !PlayerControl.LocalPlayer.Data.IsDead) {
+                !PlayerControl.LocalPlayer.Data.IsDead && (!PlayerControl.LocalPlayer.Is(RoleEnum.Glitch) || !CustomGameOptions.GlitchAdmin || !__instance.name.Contains("Map"))) {
                 var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                     (byte)CustomRPC.StartWatchAdmin, SendOption.Reliable, -1);
                 writer.Write(PlayerControl.LocalPlayer.PlayerId);

@@ -31,8 +31,6 @@ namespace TownOfUs.CustomOption
             var options = new List<OptionBehaviour>();
 
             ToggleOption togglePrefab = GameObject.Find("Save Custom Settings").GetComponent<ToggleOption>();
-            AmongUsExtensions.Log($"{togglePrefab}");
-
 
             foreach (var button in SlotButtons)
                 if (button.Setting != null)

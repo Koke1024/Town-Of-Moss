@@ -14,7 +14,6 @@
 //         public static void Postfix(VitalsMinigame __instance) {
 //             // var vital = GameObject.FindObjectsOfType<SystemConsole>().First(x => x.GetType() == typeof(VitalsPanel));
 //             //
-//             // AmongUsExtensions.Log($"{vital.name}");
 //             // var position = vital.transform.position;
 //             // AmongUsExtensions.Log($"{position.ToString()}");
 //             // position = new Vector3(position.x + 0.5f, position.y + 0.5f, position.z);

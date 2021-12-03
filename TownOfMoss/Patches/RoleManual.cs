@@ -136,7 +136,7 @@ namespace TownOfUs.Roles {
                                  $"蝋人形になったクルーは行動できなくなり、一定時間が経過するか、他のプレイヤーに触れられるか、ミーティングが始まると死亡します。\n" +
                               $"蝋人形にされたクルーが自動で死亡するまでの時間	{CustomGameOptions.DollBreakTime}s"},
             {RoleEnum.Glitch, $"Glitch\n誰でもキルすることができ、自分以外のクルーが全員死亡したときのみ勝利となります。" +
-                              $"任意の対象に変身するMimic、対象の能力やタスクを一定時間行えなくするHack、ベントが使用できます。\n" +
+                              $"変身、対象の能力やタスクを一定時間行えなくするHack、ベント、どこでもAdminが使用できます。\n" +
                               $"Mimic能力のクールダウン時間	{CustomGameOptions.MimicCooldown}s\n" +
                               $"Mimic能力の効果時間	{CustomGameOptions.MimicDuration}s\n" +
                               $"Hack能力のクールダウン時間	{CustomGameOptions.HackCooldown}s\n" +

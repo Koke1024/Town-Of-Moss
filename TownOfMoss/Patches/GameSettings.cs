@@ -120,12 +120,11 @@ namespace TownOfUs {
                     return;
                 }
 
-                AmongUsExtensions.Log($"{__instance.transform.parent.parent}");
                 if (__instance.transform.parent.parent.name == "TOUSettings") {
                     scroller.YBounds.max = 90f;                    
                 }
                 else {
-                    scroller.YBounds.max = 0f;
+                    scroller.YBounds.max = 20f;
                 }
             }
         }

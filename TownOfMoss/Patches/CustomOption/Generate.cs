@@ -677,20 +677,20 @@ namespace TownOfUs.CustomOption
             // AllImpostorCanGuess = new CustomToggleOption(num++, "All of Impostors can snipe while meeting", false);
 #endregion
 
-            Modifiers = new CustomHeaderOption(num++, "Modifiers");
-            TorchOn = new CustomNumberOption(true, num++, "<color=#FFFF99FF>Torch</color>", 0f, 0f, 100f, 10f,
-                PercentFormat);
-            DiseasedOn =
-                new CustomNumberOption(true, num++, "<color=#808080FF>Diseased</color>", 0f, 0f, 100f, 10f,
-                    PercentFormat);
-            FlashOn = new CustomNumberOption(true, num++, "<color=#FF8080FF>Flash</color>", 0f, 0f, 100f, 10f,
-                PercentFormat);
+            // Modifiers = new CustomHeaderOption(num++, "Modifiers");
+            // TorchOn = new CustomNumberOption(true, num++, "<color=#FFFF99FF>Torch</color>", 0f, 0f, 100f, 10f,
+            //     PercentFormat);
+            // DiseasedOn =
+            //     new CustomNumberOption(true, num++, "<color=#808080FF>Diseased</color>", 0f, 0f, 100f, 10f,
+            //         PercentFormat);
+            // FlashOn = new CustomNumberOption(true, num++, "<color=#FF8080FF>Flash</color>", 0f, 0f, 100f, 10f,
+            //     PercentFormat);
             // TiebreakerOn = new CustomNumberOption(true, num++, "<color=#99E699FF>Tiebreaker</color>", 0f, 0f, 100f, 10f,
             //     PercentFormat);
             // DrunkOn = new CustomNumberOption(true, num++, "<color=#758000FF>Drunk</color>", 0f, 0f, 100f, 10f,
             //     PercentFormat);
-            BigBoiOn = new CustomNumberOption(true, num++, "<color=#FF8080FF>Giant</color>", 0f, 0f, 100f, 10f,
-                PercentFormat);
+            // BigBoiOn = new CustomNumberOption(true, num++, "<color=#FF8080FF>Giant</color>", 0f, 0f, 100f, 10f,
+            //     PercentFormat);
             // ButtonBarryOn =
             //     new CustomNumberOption(true, num++, "<color=#E600FFFF>Button Barry</color>", 0f, 0f, 100f, 10f,
             //         PercentFormat);

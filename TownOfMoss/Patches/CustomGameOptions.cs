@@ -58,12 +58,12 @@ namespace TownOfUs
         public static int MultiKillerOn => (int) Generate.MultiKillerOn.Get();
         public static int CrackerOn => (int) Generate.CrackerOn.Get();
         public static int PhantomOn => (int) Generate.PhantomOn.Get();
-        public static int TorchOn => (int) Generate.TorchOn.Get();
-        public static int DiseasedOn => (int) Generate.DiseasedOn.Get();
-        public static int FlashOn => (int) Generate.FlashOn.Get();
+        public static int TorchOn => 0;
+        public static int DiseasedOn => 0;
+        public static int FlashOn => (int) 0;
         public static int TiebreakerOn => 0;
-        public static int DrunkOn => (int) Generate.DrunkOn.Get();
-        public static int BigBoiOn => (int) Generate.BigBoiOn.Get();
+        public static int DrunkOn => 0;
+        public static int BigBoiOn => 0;
         public static int ButtonBarryOn => 0;
         public static int VanillaGame => 0;
         // public static int VanillaGame => (int) Generate.VanillaGame.Get();
