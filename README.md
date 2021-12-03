@@ -6,27 +6,24 @@
 蘇生に対応したAutoMuteUsのCaptureツールも公開しています。
 
 ### 本MODの特徴
-必ずいずれかのインポスターがAssassin能力を持つ設定により、クルーメイトは無闇に役職を他クルーに知られないよう行動、発言する必要があります。\
+必ずいずれかのインポスターがアサシン（役職を知った相手を会議中にキルできる）能力を持つ設定により、クルーメイトは無闇に役職を他クルーに知られないよう行動、発言する必要があります。\
 会議を挟んでもインポスターのキルクールダウンがリセットされないため、開始直後やキルクールダウンリセットのための会議を行う必要がありません。
 
 ### 注意
-最新版のAmong Us 2021.11.9には対応していません。\
-MODの導入されていない2021.6.30のAmong Usディレクトリに展開してください。\
+MODの導入されていない2021.11.9のAmong Usディレクトリに展開してください。\
 異なるMODの導入されたディレクトリに展開すると正常に動作しません。\
 開発途中のため、ゲーム途中で切断されたり予期しない動作が起こる場合がありますが、\
 その場合は次のゲーム開始前に全てのプレイヤーが一度ゲームを終了して起動し直すことをおすすめします。\
 バイザー部分の隠れる帽子の場合Painterによる着色が全く見えないため、Painter導入の際はバイザーの見える帽子の着用をお願いします。
-
-### 既知の不具合
-結果画面で第三陣営の勝利判定の表示が正しくない場合がある
 
 ## Releases
 ### Town of Moss
 
 | Date | Among Us - Version| Mod Version | Link |
 |---|----------|-------------|-----------------|
+| 21-12-03 | 2021.11.9.5s | v1.0 | [Download](https://spiel.jp/mod/Moss10.zip) |
 | 21-11-30 | 2021.6.30s | v0.6 | [Download](https://spiel.jp/mod/Moss06.zip) |
-| 21-11-27 | 2021.6.30s | v0.5 | [Download](https://spiel.jp/mod/Moss05.zip) |
+| 21-11-30 | 2021.6.30s | v0.5 | [Download](https://spiel.jp/mod/Moss05.zip) |
 | 21-11-27 | 2021.6.30s | v0.442 | [Download](https://spiel.jp/mod/Moss0442.zip) |
 | 21-11-24 | 2021.6.30s | v0.441 | [Download](https://spiel.jp/mod/Moss0441.zip) |
 | 21-11-22 | 2021.6.30s | v0.44 | [Download](https://spiel.jp/mod/Moss044.zip) |
@@ -43,6 +40,13 @@ MODの導入されていない2021.6.30のAmong Usディレクトリに展開し
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v1.0 </summary>
+        <ul>
+            <li>11.9バージョンに対応</li>
+            <li>全然サポートしてなかったmodifierを削除</li>
+        </ul>
+    </details>
     <details>
         <summary> v0.6 </summary>
         <ul>
@@ -333,22 +337,22 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 
 # Roles
 
-|**Crewmate Roles**|**Impostor Roles**|**Neutral Roles**|**Modifiers**|
-|----------|-------------|----------|-----|
-|[Mayor](#Mayor)|[Janitor](#Janitor)|[Glitch](#Glitch)|[Torch](#Torch)|
-|[Sheriff](#Sheriff)|[Morphling](#Morphling)|[Jester](#Jester)|[Diseased](#Diseased)|
-|[Engineer](#Engineer)|[Camouflager](#Camouflager)|[Executioner](#Executioner)|[Flash](#Flash)|
-|[Swapper](#Swapper)|[Miner](#Miner)|[Arsonist](#Arsonist)|[Giant](#Giant)|
-|[Investigator](#Investigator)|[Swooper](#Swooper)|[Phantom](#Phantom)||
-|[Time Lord](#TimeLord)|[Assassin](#Assassin)|[Sniper](#Sniper)||
-|[Medic](#Medic)|[Undertaker](#Undertaker)|[Zombie](#Zombie)||
-|[Seer](#Seer)|[Popopo](#Popopo)|||
-|[SecurityGuard](#SecurityGuard)|[Cracker](#Cracker)|||
-|[Snitch](#Snitch)|[MultiKiller](#MultiKiller)|||
-|[Altruist](#Altruist)|[Puppeteer](#Puppeteer)|||
-|[Charger](#Charger)|[DollMaker](#DollMaker)|||
-|[Druid](#Druid)||||
-|[Sniffer](#Sniffer)||||
+|**Crewmate Roles**|**Impostor Roles**|**Neutral Roles**|
+|----------|-------------|----------|
+|[Mayor](#Mayor)|[Janitor](#Janitor)|[Glitch](#Glitch)|
+|[Sheriff](#Sheriff)|[Morphling](#Morphling)|[Jester](#Jester)|
+|[Engineer](#Engineer)|[Camouflager](#Camouflager)|[Executioner](#Executioner)|
+|[Swapper](#Swapper)|[Miner](#Miner)|[Arsonist](#Arsonist)|
+|[Investigator](#Investigator)|[Swooper](#Swooper)|[Phantom](#Phantom)|
+|[Time Lord](#TimeLord)|[Assassin](#Assassin)|[Sniper](#Sniper)|
+|[Medic](#Medic)|[Undertaker](#Undertaker)|[Zombie](#Zombie)|
+|[Seer](#Seer)|[Popopo](#Popopo)||
+|[SecurityGuard](#SecurityGuard)|[Cracker](#Cracker)||
+|[Snitch](#Snitch)|[MultiKiller](#MultiKiller)||
+|[Altruist](#Altruist)|[Puppeteer](#Puppeteer)||
+|[Charger](#Charger)|[DollMaker](#DollMaker)||
+|[Druid](#Druid)|||
+|[Sniffer](#Sniffer)|||
 
 -----------------------
 
@@ -830,13 +834,14 @@ Madmateが存在するとき、Assassinがインポスター陣営に採用さ�
 ### **Team: Neutral**
 
 誰でもキルすることができ、自分以外のクルーが全員死亡したときのみ勝利となります。\
-任意の対象に変身するMimic、対象の能力やタスクを一定時間行えなくするHackが使用できます。
+任意の対象に変身するMimic、対象の能力やタスクを一定時間行えなくするHack、どこでもAdminが使用できます。
 
 ### Game Options
 
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
 | Add Glitch | チェックを入れた場合、Neutral Rolesの数と関係なく、必ずGlitchが誰かに割り当てられます。 | Toggle | Off |
+| Glitch Has Portable Admin | どこでもMapからAdmin情報を得られます。 | Toggle | On |
 | Mimic Cooldown | Mimic能力のクールダウン時間 | Time | 10s |
 | Mimic Duration | Mimic能力の効果時間 | Time | 15s |
 | Hack Cooldown | Hack能力のクールダウン時間 | Time | 10s |
@@ -866,7 +871,8 @@ Madmateが存在するとき、Assassinがインポスター陣営に採用さ�
 
 ### **Team: Neutral**
 
-ゲーム開始時に指定されるターゲットが会議で追放されると勝利します。\
+ゲーム開始時にクルーメイトひとりがターゲットとして指定されます。\
+ターゲットを指す矢印が常時表示され、対象が会議で追放されると勝利します。\
 ターゲットが追放以外で死亡した場合、役職がJesterになります。
 
 ### Game Options
@@ -933,42 +939,6 @@ Madmateが存在するとき、Assassinがインポスター陣営に採用さ�
 
 -----------------------
 
-# Modifiers
-
-ロールとは別に追加される能力です。
-
-## Torch
-
-### **Applied to: Crewmates**
-
-停電中も視界が広くなります。
-
------------------------
-
-## Diseased
-
-### **Applied to: Crewmates**
-
-キルされた相手のクールダウンを三倍にします。
-
------------------------
-
-## Flash
-
-### **Applied to: All**
-
-足が速くなります。
-
------------------------
-
-## Giant
-
-### **Applied to: All**
-
-大きくなります。
-
------------------------
-
 # Lobby Setting
 
 ロビーでのゲーム設定では、W、Sで上下スクロール、A、Dでトップとボトムに移動、Shiftを押しながらの数値設定で1/10単位での変更ができます。
@@ -1002,7 +972,8 @@ Madmateが存在するとき、Assassinがインポスター陣営に採用さ�
 
 # Credits & Resources
 
-[Town of Us](https://github.com/polusgg/Town-Of-Us) - The base of this MOD.\
+[Town of Us](https://github.com/polusgg/Town-Of-Us) - The base of this mod.\
+[Town of Us R](https://github.com/eDonnes124/Town-Of-Us-R) - Reference mod.\
 [Reactor](https://github.com/NuclearPowered/Reactor) - The framework of the mod\
 [BepInEx](https://github.com/BepInEx) - For hooking game functions\
 [Among-Us-Sheriff-Mod](https://github.com/Woodi-dev/Among-Us-Sheriff-Mod) - For the Sheriff role.\
