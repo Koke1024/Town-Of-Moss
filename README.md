@@ -21,7 +21,7 @@ MODの導入されていない2021.11.9のAmong Usディレクトリに展開し
 
 | Date | Among Us - Version| Mod Version | Link |
 |---|----------|-------------|-----------------|
-| 21-12-03 | 2021.11.9.5s | v1.0 | [Download](https://spiel.jp/mod/Moss10.zip) |
+| 21-12-03 | 2021.11.9.5s | v1.0(動作未保証) | [Download](https://spiel.jp/mod/Moss10.zip) |
 | 21-11-30 | 2021.6.30s | v0.6 | [Download](https://spiel.jp/mod/Moss06.zip) |
 | 21-11-30 | 2021.6.30s | v0.5 | [Download](https://spiel.jp/mod/Moss05.zip) |
 | 21-11-27 | 2021.6.30s | v0.442 | [Download](https://spiel.jp/mod/Moss0442.zip) |
