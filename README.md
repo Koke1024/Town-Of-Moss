@@ -3,7 +3,7 @@
 
 当MODは [Town of Us](https://github.com/polusgg/Town-Of-Us)
 を個人的に改変した、[Among Us](https://www.innersloth.com/games/among-us/) の非公式MODです。\
-蘇生に対応したAutoMuteUsのCaptureツールも公開しています。
+蘇生に対応した[AutoMuteUs](#AUCapture-for-MOD)のCaptureツールも公開しています。
 
 ### 本MODの特徴
 必ずいずれかのインポスターがアサシン（役職を知った相手を会議中にキルできる）能力を持つ設定により、クルーメイトは無闇に役職を他クルーに知られないよう行動、発言する必要があります。\
