@@ -579,10 +579,8 @@ namespace TownOfUs.CustomOption
             JesterDragBody = new CustomToggleOption(num++, "Jester Can Drag Body", true);
             JesterCanMorph = new CustomToggleOption(num++, "Jester Can Morph", true);
             
-            Executioner =
-                new CustomHeaderOption(num++, "<color=#8C4005FF>Executioner</color>");
-            OnTargetDead = new CustomStringOption(num++, "Becomes on Target Dead",
-                new[] {"Jester", "Crew"});
+            // Executioner =
+            //     new CustomHeaderOption(num++, "<color=#8C4005FF>Executioner</color>");
 
             Arsonist = new CustomHeaderOption(num++, "<color=#FF4D00FF>Arsonist</color>");
 

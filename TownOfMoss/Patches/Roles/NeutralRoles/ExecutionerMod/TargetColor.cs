@@ -7,11 +7,11 @@ using UnityEngine;
 
 namespace TownOfUs.NeutralRoles.ExecutionerMod
 {
-    public enum OnTargetDead
-    {
-        Jester,
-        Crew
-    }
+    // public enum OnTargetDead
+    // {
+    //     Jester,
+    //     Crew
+    // }
 
     [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
     public class TargetColor
@@ -74,19 +74,12 @@ namespace TownOfUs.NeutralRoles.ExecutionerMod
             }
             Role.RoleDictionary.Remove(player.PlayerId);
 
-            if (CustomGameOptions.OnTargetDead == OnTargetDead.Jester)
-            {
-                var jester = new Jester(player);
-                var task = new GameObject("JesterTask").AddComponent<ImportantTextTask>();
-                task.transform.SetParent(player.transform, false);
-                task.Text =
-                    $"{jester.ColorString}Role: {jester.Name}\nYour target was killed. Now you get voted out!\nFake Tasks:[]";
-                player.myTasks.Insert(0, task);
-            }
-            else
-            {
-                new Crewmate(player);
-            }
+            var jester = new Jester(player);
+            var task = new GameObject("JesterTask").AddComponent<ImportantTextTask>();
+            task.transform.SetParent(player.transform, false);
+            task.Text =
+                $"{jester.ColorString}Role: {jester.Name}\nYour target was killed. Now you get voted out!\nFake Tasks:[]";
+            player.myTasks.Insert(0, task);
         }
     }
 }

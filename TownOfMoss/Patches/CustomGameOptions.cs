@@ -135,7 +135,7 @@ namespace TownOfUs
         public static bool ColourblindComms => Generate.ColourblindComms.Get();
         public static bool MeetingColourblind => false;
         // public static bool MeetingColourblind => Generate.MeetingColourblind.Get();
-        public static OnTargetDead OnTargetDead => (OnTargetDead) Generate.OnTargetDead.Get();
+        // public static OnTargetDead OnTargetDead => (OnTargetDead) Generate.OnTargetDead.Get();
         public static bool SnitchOnLaunch => true;
         // public static bool SnitchOnLaunch => Generate.SnitchOnLaunch.Get();
         public static bool SnitchSeesNeutrals => Generate.SnitchSeesNeutrals.Get();

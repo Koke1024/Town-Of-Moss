@@ -141,7 +141,7 @@ namespace TownOfUs
                 Vector3 position = __instance.transform.position;
                 num = Vector2.Distance((Vector2)center, (Vector2)position);
                 AmongUsExtensions.Log($"vent distance: {num}");    
-                var usableDistance = playerInfo._object.inVent ? 0.3: (double)__instance.UsableDistance; 
+                var usableDistance = playerInfo._object.inVent ? 0.35: (double)__instance.UsableDistance; 
                 canUse = ((canUse ? 1 : 0) & ((double)num > usableDistance ? 0 : (!PhysicsHelpers.AnythingBetween(playerControl.Collider, (Vector2)center, (Vector2)position, Constants.ShipOnlyMask, false) ? 1 : 0))) != 0;
             }
             

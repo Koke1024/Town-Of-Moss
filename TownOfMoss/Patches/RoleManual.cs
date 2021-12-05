@@ -54,17 +54,17 @@ namespace TownOfUs.Roles {
                               $"占いで得られる情報	{new[] {"陣営", "役職"}[(int)CustomGameOptions.SeerInfo]}\n" +
                               $"占われたことを知るプレイヤー	{new[] {"Nobody", "Imps+Neut", "Crew", "All"}[(int)CustomGameOptions.SeeReveal]}\n" +
                               $"第三陣営の占い結果をインポスターと同じにする	{(CustomGameOptions.NeutralRed? "On": "Off")}"},
-            {RoleEnum.Executioner, $"Executioner\nゲーム開始時に指定されるターゲットが会議で追放されると勝利します。ターゲットが追放以外で死亡した場合、役職がJesterまたはCrewmateになります。\n" +
-                              $"ターゲットが追放以外で死亡した場合に変更される自身の役職	{new[] {"Jester", "Crewmate"}[(int)CustomGameOptions.OnTargetDead]}"},
+            {RoleEnum.Executioner, $"Executioner\nゲーム開始時に指定されるターゲットが会議で追放されると勝利します。ターゲットが追放以外で死亡した場合、役職がJesterになります。"},
             {RoleEnum.Spy, $"Spy\n\n" +
                               $""},
             {RoleEnum.Sniffer, $"Sniffer\n死体が近くにあるほど周辺が赤く変化します。\nAdmin情報を見ることと、死体の通報を行うことができません。\n" +
-                              $"死体を通報できるか	{(CustomGameOptions.SheriffKillOther? "On": "Off")}\n" +
-                              $"死体を察知できる範囲	{CustomGameOptions.SnifferMaxRange}m\n"},
+                              $"死体を通報できるか	{(CustomGameOptions.SnifferCanReport? "On": "Off")}\n" +
+                              $"死体を感知できる範囲	{CustomGameOptions.SnifferMaxRange}m\n"},
             {RoleEnum.Snitch, $"Snitch\nPolus、Airshipでは、閉じられたドアに触れるだけでドアを開くことができます。\n" +
                               $"自身のタスクを完了させることによって誰がインポスターかを知ることができます。\n" +
-                              $"残りのタスクが1個以下になると、インポスターから自身の役職と場所が知られます。\n" +
+                              $"残りのタスクが１個以下になると、インポスターから自身の役職と場所が知られます。\n" +
                               $"第三陣営の情報も得る	{(CustomGameOptions.SnitchSeesNeutrals? "On": "Off")}\n" +
+                              $"会議中に撃たれなくなる条件	{new[] {"残りタスクが１個以下", "タスク完了"}[(int)CustomGameOptions.SnitchShotTiming]}\n" +
                               $"ドアを即座に開ける	{new[] {"常時", "残りタスクが１個以下のときのみ", "Off"}[(int)CustomGameOptions.SnitchOpenDoorImmediately]}"},
             {RoleEnum.Charger, $"Charger\n電力を消費して視界とAdmin情報をパワーアップさせます。\n" +
                                $"電力はベントに入ることで充電できますが、他のベントへの移動はできません。\n" +
@@ -117,7 +117,8 @@ namespace TownOfUs.Roles {
             {RoleEnum.Kirby, $"Popopo\n死体を吸い込んだり吐き出したりします。吸い込んでいる間は対象の姿をコピーします。\nベントは使用できません。"},
             {RoleEnum.Undertaker, $"Undertaker\n死体を移動させることができます。\n" +
                               $"死体を置いてから次に移動させられるまでのクールダウン時間	{CustomGameOptions.DragCd}s\n" +
-                              $"死体移動時の通常時に対する移動速度の割合	{CustomGameOptions.DragVel}%"},
+                              $"死体移動時の通常時に対する移動速度の割合	{CustomGameOptions.DragVel}%\n" +
+                              $"死体移動中のベント移動	{(CustomGameOptions.VentWithBody? "On": "Off")}"},
             {RoleEnum.Assassin, $"AssassinまたはMadmate\n会議中にクルーの役職を当てることで狙撃し、キルすることができます。\n" +
                                 $"Madmateの場合、クルーメイトとして数えられ、味方インポスターが誰かを知らず、通常キルとベントの使用ができません。\n" +
                               $"会議中にキルできる最大人数	\n" +
@@ -137,12 +138,12 @@ namespace TownOfUs.Roles {
                               $"蝋人形にされたクルーが自動で死亡するまでの時間	{CustomGameOptions.DollBreakTime}s"},
             {RoleEnum.Glitch, $"Glitch\n誰でもキルすることができ、自分以外のクルーが全員死亡したときのみ勝利となります。" +
                               $"変身、対象の能力やタスクを一定時間行えなくするHack、ベント、どこでもAdminが使用できます。\n" +
+                              $"どこでもAdminの利用	{(CustomGameOptions.GlitchAdmin? "On": "Off")}\n" +
                               $"Mimic能力のクールダウン時間	{CustomGameOptions.MimicCooldown}s\n" +
                               $"Mimic能力の効果時間	{CustomGameOptions.MimicDuration}s\n" +
                               $"Hack能力のクールダウン時間	{CustomGameOptions.HackCooldown}s\n" +
                               $"Mimic能力の効果時間	{CustomGameOptions.HackDuration}s\n" +
-                              $"キルクールダウン時間	{CustomGameOptions.GlitchKillCooldown}s\n" +
-                              $"Hack能力の射程範囲	{(new[] {"Short", "Normal", "Long"}[CustomGameOptions.GlitchHackDistance])}"},
+                              $"キルクールダウン時間	{CustomGameOptions.GlitchKillCooldown}s"},
             {RoleEnum.Crewmate, $"Crewmate\n特別な能力を持たないクルーメイトです。"},
             {RoleEnum.Impostor, $"Impostor\n特別な能力を持たないインポスターです。"},
         };
