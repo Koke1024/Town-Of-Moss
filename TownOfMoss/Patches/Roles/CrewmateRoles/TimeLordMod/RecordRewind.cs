@@ -141,8 +141,6 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
         public static void ReviveBody(PlayerControl player)
         {
             player.Revive();
-            Murder.KilledPlayers.Remove(
-                Murder.KilledPlayers.FirstOrDefault(x => x.PlayerId == player.PlayerId));
             var body = Object.FindObjectsOfType<DeadBody>()
                 .FirstOrDefault(b => b.ParentId == player.PlayerId);
 

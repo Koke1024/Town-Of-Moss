@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using HarmonyLib;
+using TownOfUs.Extensions;
 
 namespace TownOfUs.CrewmateRoles.MedicMod
 {
@@ -11,14 +12,13 @@ namespace TownOfUs.CrewmateRoles.MedicMod
         {
             //System.Console.WriteLine("Report Body!");
             if (info == null) return;
-            var matches = Murder.KilledPlayers.Where(x => x.PlayerId == info.PlayerId).ToArray();
-            DeadPlayer killer = null;
+            var match = Utils.KilledPlayers.FirstOrDefault(x => x.Value.PlayerId == info.PlayerId);
+            if (match.IsNullOrDestroyed()) {
+                return;
+            }
+            DeadPlayer body = match.Value;
 
-            if (matches.Length > 0)
-                //System.Console.WriteLine("RBOOF");
-                killer = matches[0];
-
-            if (killer == null)
+            if (body == null)
                 //System.Console.WriteLine("RBTWOOF");
                 return;
 
@@ -34,10 +34,10 @@ namespace TownOfUs.CrewmateRoles.MedicMod
             //System.Console.WriteLine("RBTHREEF");
             var br = new BodyReport
             {
-                Killer = Utils.PlayerById(killer.KillerId),
+                Killer = Utils.PlayerById(body.KillerId),
                 Reporter = __instance,
-                Body = Utils.PlayerById(killer.PlayerId),
-                KillAge = (float) (DateTime.UtcNow - killer.KillTime).TotalMilliseconds
+                Body = Utils.PlayerById(body.PlayerId),
+                KillAge = (float) (DateTime.UtcNow - body.KillTime).TotalMilliseconds
             };
 
             //System.Console.WriteLine("FIVEF");

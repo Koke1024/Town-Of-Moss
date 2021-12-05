@@ -18,8 +18,6 @@ namespace TownOfUs.Patches.NeutralRoles.ZombieMod {
             }
             
             player.Revive();
-            Murder.KilledPlayers.Remove(
-                Murder.KilledPlayers.FirstOrDefault(x => x.PlayerId == player.PlayerId));
             foreach (var p in PlayerControl.AllPlayerControls.ToArray().Where(x => x.Is(RoleEnum.Kirby))) {
                 Kirby kirby = Role.GetRole<Kirby>(p);
                 if(kirby._aten && kirby._aten.ParentId == player.PlayerId) {

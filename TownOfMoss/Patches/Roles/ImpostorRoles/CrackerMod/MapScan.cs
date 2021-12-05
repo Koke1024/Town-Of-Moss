@@ -74,20 +74,20 @@ namespace TownOfUs.ImpostorRoles.CrackerMod {
 
                 if (Cracker.MyLastRoom == role.BlackOutRoomId) {
                     if (role.Player.PlayerId != PlayerControl.LocalPlayer.PlayerId) {
-                if (Minigame.Instance) {
-                    if (Minigame.Instance.TaskType != TaskTypes.ResetReactor &&
-                        Minigame.Instance.TaskType != TaskTypes.RestoreOxy &&
-                        Minigame.Instance.TaskType != TaskTypes.FixLights &&
-                        Minigame.Instance.TaskType != TaskTypes.FixComms
-                    ) {
-                        Minigame.Instance.Close();
-                    }
-                }
+                        if (Minigame.Instance) {
+                            if (Minigame.Instance.TaskType != TaskTypes.ResetReactor &&
+                                Minigame.Instance.TaskType != TaskTypes.RestoreOxy &&
+                                Minigame.Instance.TaskType != TaskTypes.FixLights &&
+                                Minigame.Instance.TaskType != TaskTypes.FixComms
+                            ) {
+                                Minigame.Instance.Close();
+                            }
+                        }
                     }
 
-                if (MapBehaviour.Instance && !PlayerControl.LocalPlayer.Is(Faction.Impostors)) {
-                    MapBehaviour.Instance.Close();
-                }
+                    if (MapBehaviour.Instance && !PlayerControl.LocalPlayer.Is(Faction.Impostors)) {
+                        MapBehaviour.Instance.Close();
+                    }
 
                     Cracker.InCrackedRoom = true;
                 }

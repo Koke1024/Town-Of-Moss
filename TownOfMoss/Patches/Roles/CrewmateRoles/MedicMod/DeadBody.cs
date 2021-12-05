@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using HarmonyLib;
+using TownOfUs.Roles;
 
 namespace TownOfUs.CrewmateRoles.MedicMod
 {
@@ -8,6 +10,7 @@ namespace TownOfUs.CrewmateRoles.MedicMod
         public byte KillerId { get; set; }
         public byte PlayerId { get; set; }
         public DateTime KillTime { get; set; }
+        public DeadBody Body { get; set; }
     }
 
     //body report class for when medic reports a body

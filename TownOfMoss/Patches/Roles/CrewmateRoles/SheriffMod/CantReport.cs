@@ -1,6 +1,8 @@
 using System.Linq;
 using HarmonyLib;
+using Il2CppSystem.Collections.Generic;
 using TownOfUs.CrewmateRoles.MedicMod;
+using TownOfUs.Extensions;
 using UnityEngine;
 
 namespace TownOfUs.CrewmateRoles.SheriffMod
@@ -23,14 +25,17 @@ namespace TownOfUs.CrewmateRoles.SheriffMod
             var flag2 = false;
 
             foreach (var collider2D in stuff)
-                if (flag && !data.IsDead && !flag2 && collider2D.tag == "DeadBody")
+                if (flag && !data.IsDead && !flag2 && collider2D.CompareTag("DeadBody"))
                 {
                     var component = collider2D.GetComponent<DeadBody>();
 
                     if (Vector2.Distance(truePosition, component.TruePosition) <= __instance.MaxReportDistance)
                     {
-                        var matches = Murder.KilledPlayers.FirstOrDefault(x => x.PlayerId == component.ParentId);
-                        if (matches != null && matches.KillerId != PlayerControl.LocalPlayer.PlayerId) flag2 = true;
+                        if (Utils.KilledPlayers.Any(x =>
+                            x.Value.PlayerId == component.ParentId &&
+                            x.Value.KillerId != PlayerControl.LocalPlayer.PlayerId)) {
+                            flag2 = true;
+                        }
                     }
                 }
 
@@ -50,14 +55,16 @@ namespace TownOfUs.CrewmateRoles.SheriffMod
             if (PlayerControl.LocalPlayer.Data.IsDead) return false;
             foreach (var collider2D in Physics2D.OverlapCircleAll(__instance.GetTruePosition(),
                 __instance.MaxReportDistance, Constants.PlayersOnlyMask))
-                if (!(collider2D.tag != "DeadBody"))
+                if (collider2D.CompareTag("DeadBody"))
                 {
                     var component = collider2D.GetComponent<DeadBody>();
                     if (component && !component.Reported)
                     {
-                        var matches = Murder.KilledPlayers.FirstOrDefault(x => x.PlayerId == component.ParentId);
-                        if (matches != null && matches.KillerId != PlayerControl.LocalPlayer.PlayerId)
+                        if (Utils.KilledPlayers.Any(x =>
+                            x.Value.PlayerId == component.ParentId &&
+                            x.Value.KillerId != PlayerControl.LocalPlayer.PlayerId)) {
                             component.OnClick();
+                        }
                         if (component.Reported) break;
                     }
                 }

@@ -1,5 +1,8 @@
 using System.Linq;
 using HarmonyLib;
+using TownOfUs.CrewmateRoles.MedicMod;
+using TownOfUs.Extensions;
+using TownOfUs.Roles;
 using UnityEngine;
 
 namespace TownOfUs.Patches
@@ -23,14 +26,8 @@ namespace TownOfUs.Patches
                            && !PlayerCustomizationMenu.Instance
                            && !ExileController.Instance
                            && !IntroCutscene.Instance
-                           && (!GetMyBody() || !CustomGameOptions.GhostCantMove);
-
+                           && (!__instance.Data.IsDead || !CustomGameOptions.GhostCantMove || !Utils.ExistBody(__instance.PlayerId));
                 return false;
-            }
-            public static DeadBody GetMyBody() {
-                DeadBody body = Object.FindObjectsOfType<DeadBody>()
-                    .FirstOrDefault(b => b.ParentId == PlayerControl.LocalPlayer.PlayerId);
-                return body;
             }
         }
     }

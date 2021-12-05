@@ -11,6 +11,11 @@ namespace TownOfUs.Roles
         OneTask,
         None
     }
+    public enum SnitchNoShotTiming
+    {
+        Revealed,
+        Complete
+    }
     public class Snitch : Role
     {
         public List<ArrowBehaviour> ImpArrows = new List<ArrowBehaviour>();

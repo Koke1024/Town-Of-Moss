@@ -93,8 +93,6 @@ namespace TownOfUs.Roles
             }
 
             player.Revive();
-            Murder.KilledPlayers.Remove(
-                Murder.KilledPlayers.FirstOrDefault(x => x.PlayerId == player.PlayerId));
             revived.Add(player);
             player.NetTransform.SnapTo(position);
 

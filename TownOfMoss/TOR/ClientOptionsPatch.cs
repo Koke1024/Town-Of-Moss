@@ -192,9 +192,10 @@ namespace TheOtherRoles.Patches {
             var index = 0;
             var parent = GameObject.Find("GraphicsTab").transform;
             foreach (var button in buttons) {
-                button.transform.SetParent(parent);
-                button.transform.localScale = Vector3.one * 1f / 2f;
-                button.transform.localPosition = (origin ?? Vector3.zero) + new Vector3((index % 3 - 1) * xOffset, ((int)index / 3) * yOffset);
+                Transform transform;
+                (transform = button.transform).SetParent(parent);
+                transform.localScale = Vector3.one * 1f / 2f;
+                transform.localPosition = (origin ?? Vector3.zero) + new Vector3((index % 3 - 1) * xOffset, ((int)index / 3) * yOffset);
                 ++index;
             }
 

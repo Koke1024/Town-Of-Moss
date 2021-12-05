@@ -41,9 +41,11 @@ namespace TownOfUs.Patches {
                             }
                         }
                     }
-
                 }
 
+                if (AmongUsClient.Instance.GameMode == GameModes.LocalGame) {
+                    startable = true;
+                }
                 if (AmongUsClient.Instance.AmHost) {
                     if (startable) {
                         __instance.StartButton.color = new Color(1, 1, 1, 1);

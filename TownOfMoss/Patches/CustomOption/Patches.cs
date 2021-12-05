@@ -232,7 +232,7 @@ namespace TownOfUs.CustomOption {
                 togglePrefab = Object.FindObjectOfType<ToggleOption>();
                 inited = false;
                 
-                __instance.Children = new Il2CppReferenceArray<OptionBehaviour>(new OptionBehaviour[0]);
+                __instance.Children = new Il2CppReferenceArray<OptionBehaviour>(Array.Empty<OptionBehaviour>());
                 var children = new Transform[__instance.gameObject.transform.childCount];
                 for (int k = 0; k < children.Length; k++)
                 {
@@ -577,12 +577,12 @@ namespace TownOfUs.CustomOption {
         }
     }
 
-    [HarmonyPatch(typeof(LobbyBehaviour), nameof(LobbyBehaviour.Start))]
-    public static class ButtonReset {
-        public static void Postfix(LobbyBehaviour __instance) {
-            foreach (var button in GameObject.FindObjectsOfType<MonoBehaviour>().Where(x => x.name == "KillButton")) {
-                button.gameObject.Destroy();
-            }
-        }
-    }
+    // [HarmonyPatch(typeof(LobbyBehaviour), nameof(LobbyBehaviour.Start))]
+    // public static class ButtonReset {
+    //     public static void Postfix(LobbyBehaviour __instance) {
+    //         foreach (var button in GameObject.FindObjectsOfType<MonoBehaviour>().Where(x => x.name == "KillButton")) {
+    //             button.gameObject.Destroy();
+    //         }
+    //     }
+    // }
 }

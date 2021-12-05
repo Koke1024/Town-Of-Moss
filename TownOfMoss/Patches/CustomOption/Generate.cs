@@ -50,7 +50,7 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption ShifterOn;
         public static CustomNumberOption ExecutionerOn;
         public static CustomNumberOption ArsonistOn;
-        public static CustomNumberOption PhantomOn;
+        // public static CustomNumberOption PhantomOn;
         public static CustomNumberOption SniperOn;
         public static CustomNumberOption ScavengerOn;
         #endregion
@@ -122,7 +122,7 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption MedicReportNameDuration;
         public static CustomNumberOption MedicReportColorDuration;
         public static CustomStringOption WhoGetsNotification;
-        public static CustomToggleOption ShieldBreaks;
+        // public static CustomToggleOption ShieldBreaks;
 
         public static CustomHeaderOption Seer;
         public static CustomNumberOption SeerCooldown;
@@ -141,6 +141,7 @@ namespace TownOfUs.CustomOption
         public static CustomToggleOption SnitchOnLaunch;
         public static CustomToggleOption SnitchSeesNeutrals;
         public static CustomStringOption SnitchOpenDoorImmediately;
+        public static CustomStringOption SnitchNoShotTiming;
 
         public static CustomHeaderOption Altruist;
         public static CustomNumberOption ReviveDuration;
@@ -190,6 +191,7 @@ namespace TownOfUs.CustomOption
         public static CustomHeaderOption Undertaker;
         public static CustomNumberOption DragCooldown;
         public static CustomNumberOption DragVelocity;
+        public static CustomToggleOption VentWithBody;
         
         public static CustomHeaderOption Cracker;
         public static CustomNumberOption CrackCd;
@@ -245,6 +247,7 @@ namespace TownOfUs.CustomOption
         
         public static CustomHeaderOption Sniper;
         public static CustomNumberOption SniperWinCnt;
+        public static CustomStringOption SniperPerGame;
         
         public static CustomHeaderOption Scavenger;
         public static CustomNumberOption ScavengerWinCnt;
@@ -356,8 +359,8 @@ namespace TownOfUs.CustomOption
                 10f, PercentFormat);
             ArsonistOn = new CustomNumberOption(true, num++, "<color=#FF4D00FF>Arsonist</color>", 100.0f, 0f, 100f, 10f,
                 PercentFormat);
-            PhantomOn = new CustomNumberOption(true, num++, "<color=#662962>Phantom</color>", 100.0f, 0f, 100f, 10f,
-                PercentFormat);
+            // PhantomOn = new CustomNumberOption(true, num++, "<color=#662962>Phantom</color>", 100.0f, 0f, 100f, 10f,
+            //     PercentFormat);
             SniperOn = new CustomNumberOption(true, num++, "<color=#545459>Sniper</color>", 100.0f, 0f, 100f, 10f,
                 PercentFormat);
             ZombieOn = new CustomNumberOption(true, num++, "<color=#773800>Zombie</color>", 100.0f, 0f, 100f, 10f,
@@ -486,7 +489,7 @@ namespace TownOfUs.CustomOption
                 new CustomStringOption(num++, "Who gets murder attempt indicator",
                     new[] {"Medic", "Shielded", "Everyone", "Nobody"});
 
-            ShieldBreaks = new CustomToggleOption(num++, "Shield breaks on murder attempt", true);
+            // ShieldBreaks = new CustomToggleOption(num++, "Shield breaks on murder attempt", true);
 
             Seer =
                 new CustomHeaderOption(num++, "<color=#FFCC80FF>Seer</color>");
@@ -518,6 +521,7 @@ namespace TownOfUs.CustomOption
             //     new CustomToggleOption(num++, "Knows who they are on Game Start", true);
             SnitchSeesNeutrals = new CustomToggleOption(num++, "sees neutral roles", false);
             SnitchOpenDoorImmediately = new CustomStringOption(num++, "Open door immediately", new[] {"Always", "One Task Left", "None"});
+            SnitchNoShotTiming = new CustomStringOption(num++, "Conditions for not being shot", new[] {"Revealed", "Completed"});
 
             Altruist = new CustomHeaderOption(num++, "<color=#660000FF>Altruist</color>");
             ReviveDuration =
@@ -594,6 +598,7 @@ namespace TownOfUs.CustomOption
 
             SniperWinCnt =
                 new CustomNumberOption(num++, "Number of Sniper Kills to Win", 2, 1, 4, 1);
+            SniperPerGame = new CustomStringOption(num++, "Shoot to Shoot Per", new[] {"Round", "Game"});
             
             Zombie = new CustomHeaderOption(num++, "<color=#773800>Zombie</color>");
 
@@ -650,6 +655,7 @@ namespace TownOfUs.CustomOption
             Undertaker = new CustomHeaderOption(num++, "<color=#FF0000FF>Undertaker</color>");
             DragCooldown = new CustomNumberOption(num++, "Drag Cooldown", 1f, 1f, 40, 1f, CooldownFormat);
             DragVelocity = new CustomNumberOption(num++, "Drag Velocity", 100.0f, 50.0f, 150.0f, 25.0f, PercentFormat);
+            VentWithBody = new CustomToggleOption(num++, "Can Vent on Dragging", false);
 
             Cracker = new CustomHeaderOption(num++, "<color=#FF0000FF>Cracker</color>");
             CrackCd = new CustomNumberOption(num++, "Crack Cooldown", 25f, 10f, 50f, 5f, CooldownFormat);

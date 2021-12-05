@@ -13,7 +13,7 @@ namespace TownOfUs
         public static bool Prefix(ShipStatus __instance, [HarmonyArgument(0)] GameData.PlayerInfo player,
             ref float __result)
         {
-            if (player == null || player.Role == null || (player.IsDead && !CanMove.CanMovePatch.GetMyBody()))
+            if (player == null || player.Role == null || (player.IsDead && !Utils.ExistBody(PlayerControl.LocalPlayer.PlayerId)))
             {
                 __result = __instance.MaxLightRadius;
                 return false;
@@ -58,9 +58,9 @@ namespace TownOfUs
             if (player._object.Is(RoleEnum.Charger)) {
                 __result *= (0.75f + Role.GetRole<Charger>(player._object).Charge * 0.75f);
             }
-            if (player.Object.Is(ModifierEnum.ButtonBarry))
-                if (Modifier.GetModifier<ButtonBarry>(PlayerControl.LocalPlayer).ButtonUsed)
-                    __result *= 0.5f;
+            // if (player.Object.Is(ModifierEnum.ButtonBarry))
+            //     if (Modifier.GetModifier<ButtonBarry>(PlayerControl.LocalPlayer).ButtonUsed)
+            //         __result *= 0.5f;
 
             return false;
         }
@@ -73,7 +73,7 @@ namespace TownOfUs
                 return;
             }
 
-            if (PlayerControl.LocalPlayer.Data.IsDead && CanMove.CanMovePatch.GetMyBody()) {
+            if (PlayerControl.LocalPlayer.Data.IsDead && Utils.ExistBody(__instance.PlayerId)) {
                 DestroyableSingleton<HudManager>.Instance.ShadowQuad.gameObject.SetActive(true);
             }
         }

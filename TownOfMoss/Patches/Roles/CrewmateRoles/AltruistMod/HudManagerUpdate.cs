@@ -31,7 +31,7 @@ namespace TownOfUs.CrewmateRoles.AltruistMod
 
             foreach (var collider2D in allocs)
             {
-                if (!flag || isDead || collider2D.tag != "DeadBody") continue;
+                if (!flag || isDead || !collider2D.CompareTag("DeadBody")) continue;
                 var component = collider2D.GetComponent<DeadBody>();
 
 

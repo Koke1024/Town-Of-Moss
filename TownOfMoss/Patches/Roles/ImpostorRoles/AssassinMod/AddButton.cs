@@ -31,6 +31,11 @@ namespace TownOfUs.ImpostorRoles.AssassinMod
                 return false;
             }
             var role = Role.GetRole(player);
+            if (role.Player.Is(RoleEnum.Snitch)) {
+                if (CustomGameOptions.SnitchShotTiming == SnitchNoShotTiming.Complete) {
+                    return ((Snitch)role).TasksDone;
+                }
+            }
             return role != null && role.Criteria();
         }
         

@@ -1,23 +1,28 @@
-﻿using HarmonyLib;
+﻿using System.Linq;
+using HarmonyLib;
+using TownOfUs.CrewmateRoles.MedicMod;
 using TownOfUs.Patches;
 using TownOfUs.Roles;
+using UnityEngine;
 
 namespace TownOfUs
 {
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
-    public class SetDeadAtBody
-    {
+    public class SetDeadAtBody {
         public static void Postfix(PlayerControl __instance)
         {
             if (!CustomGameOptions.GhostCantMove) {
                 return;
             }
-            if (PlayerControl.LocalPlayer == __instance) {
-                DeadBody body = CanMove.CanMovePatch.GetMyBody();
-                if (body) {
-                    __instance.transform.position = body.TruePosition;
-                }
+
+            if (PlayerControl.LocalPlayer != __instance) {
+                return;
             }
+            
+            if (Utils.myBody == null && Utils.ExistBody(__instance.PlayerId)) {
+                Utils.myBody = Utils.GetBody(__instance.PlayerId);
+            }
+            __instance.transform.position = Utils.myBody.TruePosition;
         }
     }
 }

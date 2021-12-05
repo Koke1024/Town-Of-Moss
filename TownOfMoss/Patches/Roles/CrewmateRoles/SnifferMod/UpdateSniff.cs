@@ -4,6 +4,7 @@ using HarmonyLib;
 using Il2CppSystem.Runtime.Serialization.Formatters.Binary;
 using Reactor;
 using Reactor.Extensions;
+using TownOfUs.CrewmateRoles.MedicMod;
 using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine;
@@ -16,10 +17,9 @@ namespace TownOfUs.CrewmateRoles.SnifferMod
     public class UpdateArrows {
         public static void Postfix(PlayerControl __instance)
         {
-            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Sniffer)) {
+            if (__instance != PlayerControl.LocalPlayer) {
                 return;
             }
-
             if (!__instance.Is(RoleEnum.Sniffer)) {
                 return;
             }
@@ -31,17 +31,15 @@ namespace TownOfUs.CrewmateRoles.SnifferMod
             if (role.sniffInterval > 0) {
                 return;
             }
-            
-            var bodies = Object.FindObjectsOfType<DeadBody>();
 
-            if (bodies.Count == 0) {
+            if (!Utils.KilledPlayers.Any()) {
                 role.sniffInterval = 1.0f;
                 DestroyableSingleton<HudManager>.Instance.ShadowQuad.material.color = new Color(0.27451f, 0.27451f, 0.27451f);
                 return;
             }
             float closestDistance = CustomGameOptions.SnifferMaxRange * CustomGameOptions.SnifferMaxRange;
-            foreach (var body in bodies) {
-                closestDistance = Mathf.Min(closestDistance, Vector2.SqrMagnitude(role.Player.GetTruePosition() - body.TruePosition));
+            foreach (var killed in Utils.KilledPlayers) { 
+                closestDistance = Mathf.Min(closestDistance, Vector2.SqrMagnitude(role.Player.GetTruePosition() - killed.Value.Body.TruePosition));
             }
 
             closestDistance = Mathf.Sqrt(closestDistance);

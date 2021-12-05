@@ -42,6 +42,7 @@ namespace TownOfUs
         public static int ArsonistOn => (int) Generate.ArsonistOn.Get();
         public static int SniperOn => (int) Generate.SniperOn.Get();
         public static int SniperWinCnt => (int) Generate.SniperWinCnt.Get();
+        public static EngineerFixPer SniperPerGame => (EngineerFixPer) Generate.SniperPerGame.Get();
         // public static int ScavengerOn => (int) Generate.ScavengerOn.Get();
         public static int ScavengerOn => 0;
         public static int ScavengerWinCount => (int) Generate.ScavengerWinCnt.Get();
@@ -57,7 +58,7 @@ namespace TownOfUs
         // public static int UnderdogOn => (int) Generate.UnderdogOn.Get();
         public static int MultiKillerOn => (int) Generate.MultiKillerOn.Get();
         public static int CrackerOn => (int) Generate.CrackerOn.Get();
-        public static int PhantomOn => (int) Generate.PhantomOn.Get();
+        public static int PhantomOn => 0;
         public static int TorchOn => 0;
         public static int DiseasedOn => 0;
         public static int FlashOn => (int) 0;
@@ -139,6 +140,7 @@ namespace TownOfUs
         // public static bool SnitchOnLaunch => Generate.SnitchOnLaunch.Get();
         public static bool SnitchSeesNeutrals => Generate.SnitchSeesNeutrals.Get();
         public static OpenDoorImmediate SnitchOpenDoorImmediately => (OpenDoorImmediate)Generate.SnitchOpenDoorImmediately.Get();
+        public static SnitchNoShotTiming SnitchShotTiming => (SnitchNoShotTiming)Generate.SnitchNoShotTiming.Get();
         public static float MineCd => Generate.MineCooldown.Get();
         public static int MaxVentNum => (int)Generate.MaxVentNum.Get();
         public static float SwoopCd => Generate.SwoopCooldown.Get();
@@ -183,6 +185,7 @@ namespace TownOfUs
         public static float CleanDuration => Generate.CleanDuration.Get();
         public static float DragCd => Generate.DragCooldown.Get();
         public static float DragVel => Generate.DragVelocity.Get();
+        public static bool VentWithBody => Generate.VentWithBody.Get();
         // public static bool AssassinGuessNeutrals => Generate.AssassinGuessNeutrals.Get();
         // public static bool AssassinCrewmateGuess => Generate.AssassinCrewmateGuess.Get();
         // public static bool AssassinGuessImpostors => Generate.AssassinGuessImpostors.Get();

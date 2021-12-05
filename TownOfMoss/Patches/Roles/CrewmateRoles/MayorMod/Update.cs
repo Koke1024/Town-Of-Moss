@@ -30,6 +30,11 @@ namespace TownOfUs.CrewmateRoles.MayorMod {
                 role.ButtonButton = Object.Instantiate(__instance.KillButton, __instance.KillButton.transform.parent);
                 role.ButtonButton.graphic.enabled = true;
                 role.ButtonButton.graphic.sprite = Button;
+
+                var position1 = __instance.UseButton.transform.position;
+                role.ButtonButton.transform.position = new Vector3(
+                    Camera.main.ScreenToWorldPoint(new Vector3(0, 0)).x + 0.75f, position1.y,
+                    position1.z);
             }
 
             role.ButtonButton.graphic.sprite = Button;
@@ -39,11 +44,6 @@ namespace TownOfUs.CrewmateRoles.MayorMod {
 
             role.ButtonButton.SetCoolDown(0f, 1f);
             var renderer = role.ButtonButton.graphic;
-
-            var position1 = __instance.UseButton.transform.position;
-            role.ButtonButton.transform.position = new Vector3(
-                Camera.main.ScreenToWorldPoint(new Vector3(0, 0)).x + 0.75f, position1.y,
-                position1.z);
 
             if (!role.ButtonUsed && PlayerControl.LocalPlayer.RemainingEmergencies > 0){
                 renderer.color = Palette.EnabledColor;

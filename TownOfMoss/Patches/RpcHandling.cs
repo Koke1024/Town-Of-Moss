@@ -388,7 +388,7 @@ namespace TownOfUs
                         EngineerMod.DoClick.SabotageTime = DateTime.UtcNow.AddSeconds(-100);
                         */
                         Utils.ShowDeadBodies = false;
-                        Murder.KilledPlayers.Clear();
+                        Utils.KilledPlayers.Clear();
                         Role.NobodyWins = false;
                         RecordRewind.points.Clear();
                         AltruistKillButtonTarget.DontRevive = byte.MaxValue;
@@ -835,7 +835,7 @@ namespace TownOfUs
                 TheOtherRoles.MapOptions.clearAndReloadMapOptions();
 
                 RecordRewind.points.Clear();
-                Murder.KilledPlayers.Clear();
+                Utils.KilledPlayers.Clear();
                 AltruistKillButtonTarget.DontRevive = byte.MaxValue;
 
                 var startWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,

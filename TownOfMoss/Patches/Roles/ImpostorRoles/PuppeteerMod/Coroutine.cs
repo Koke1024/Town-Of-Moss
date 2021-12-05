@@ -28,7 +28,7 @@ namespace TownOfUs.ImpostorRoles.PuppeteerMod
                     puppeteer.possessStarting = false;
                     yield break;
                 }
-                yield return new WaitForSeconds(0.016f);
+                yield return null;
                 
                 if ((DateTime.UtcNow - start).TotalMilliseconds >= CustomGameOptions.PossessTime * 1000.0f) {
                     break;

@@ -63,6 +63,7 @@ namespace TownOfUs.ImpostorRoles.PuppeteerMod {
                 if (Utils.SetClosestPlayer(ref closestPlayer,
                     GameOptionsData.KillDistances[PlayerControl.GameOptions.KillDistance] * 0.75f, targets
                 )) {
+                    
                     var writer2 = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                         (byte) CustomRPC.PossessKill,
                         SendOption.Reliable, -1);

@@ -96,14 +96,7 @@ namespace TownOfUs.ImpostorRoles.AssassinMod
             {
                 meetingHud.SetForegroundForDead();
             }
-            var deadPlayer = new DeadPlayer
-            {
-                PlayerId = player.PlayerId,
-                KillerId = player.PlayerId,
-                KillTime = System.DateTime.UtcNow,
-            };
 
-            Murder.KilledPlayers.Add(deadPlayer);
             if (voteArea == null) return;
             if (voteArea.DidVote) voteArea.UnsetVote();
             voteArea.AmDead = true;

@@ -24,6 +24,7 @@ namespace TownOfUs
     public static class Utils
     {
         internal static bool ShowDeadBodies = false;
+        public static DeadBody myBody = null;
 
         public static Dictionary<byte, Color> oldColors = new Dictionary<byte, Color>();
 
@@ -34,6 +35,7 @@ namespace TownOfUs
         public static string crewRateString = "";
         public static string impRateString = "";
         public static string neutralRateString = "";
+        public static readonly Dictionary<byte, DeadPlayer> KilledPlayers = new Dictionary<byte, DeadPlayer>();
 
         public static void Morph(PlayerControl player, PlayerControl MorphedPlayer, bool resetAnim = false)
         {
@@ -362,14 +364,7 @@ namespace TownOfUs
                 }
 
                 killer.MyPhysics.StartCoroutine(killer.KillAnimations.Random().CoPerformKill(killer, target));
-                var deadBody = new DeadPlayer
-                {
-                    PlayerId = target.PlayerId,
-                    KillerId = killer.PlayerId,
-                    KillTime = DateTime.UtcNow
-                };
-
-                Murder.KilledPlayers.Add(deadBody);
+                AddDeadBody(killer, target);
                 
                 if (!killer.AmOwner) return;
 
@@ -411,6 +406,22 @@ namespace TownOfUs
                     killer.SetKillTimer(PlayerControl.GameOptions.KillCooldown);
                 }
             }
+        }
+
+        public static void AddDeadBody(PlayerControl killer, PlayerControl target)
+        {
+            var body = Object.FindObjectsOfType<DeadBody>().ToArray().FirstOrDefault(x => x.ParentId == target.PlayerId);
+            //System.Console.WriteLine("FOURF");
+            var deadBody = new DeadPlayer
+            {
+                PlayerId = target.PlayerId,
+                KillerId = killer.PlayerId,
+                KillTime = DateTime.UtcNow,
+                Body = body
+            };
+
+            KilledPlayers.Add(target.PlayerId, deadBody);
+            AmongUsExtensions.Log($"add dead body {body.name}");
         }
 
         public static void StartFlash(Color color, float alpha = 0.3f) {
@@ -527,6 +538,17 @@ namespace TownOfUs
         public static float getZfromY(float y){
             return y / 1000f;
         }
+        
+        public static bool ExistBody(byte id) {
+            return Utils.KilledPlayers.TryGetValue(id, out var body);
+        }
+
+        public static DeadBody GetBody(byte id) {
+            if (!Utils.KilledPlayers.ContainsKey(id)) {
+                return null;
+            }
+            return Utils.KilledPlayers[id].Body;
+        }
     }
     
     [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Start))]
@@ -563,11 +585,16 @@ namespace TownOfUs
         }
     }
 
-    // [HarmonyPatch(typeof(HatParent), nameof(HatParent.SetHat))]
-    // public static class GetHatId {
-    //     public static void Prefix(HatParent __instance, [HarmonyArgument(0)] string hatId, [HarmonyArgument(1)] int color) {
-    //         AmongUsExtensions.Log($"set Hat Id: {hatId}");
-    //     }
-    // }
+    [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.Revive))]
+    public static class DeadBodyRemove {
+        public static void Postfix(PlayerControl __instance) {
+            Utils.KilledPlayers.Remove(__instance.PlayerId);
+            if (Utils.myBody) {
+                if (Utils.myBody.ParentId == __instance.PlayerId) {
+                    Utils.myBody = null;
+                }
+            }
+        }
+    }
     
 }

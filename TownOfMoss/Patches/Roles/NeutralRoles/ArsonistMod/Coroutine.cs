@@ -29,7 +29,7 @@ namespace TownOfUs.NeutralRoles.ArsonistMod
                     arso.LastDoused = DateTime.UtcNow;
                     yield break;
                 }
-                yield return new WaitForSeconds(0.016f);
+                yield return null;
                 
                 if ((DateTime.UtcNow - start).TotalMilliseconds >= CustomGameOptions.ArsonistDouseTime * 1000.0f) {
                     // arso.LastDoused = DateTime.UtcNow.AddSeconds(-CustomGameOptions.DouseCd);

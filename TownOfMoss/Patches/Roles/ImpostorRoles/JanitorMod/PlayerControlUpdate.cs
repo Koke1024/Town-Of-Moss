@@ -43,7 +43,7 @@ namespace TownOfUs.ImpostorRoles.JanitorMod
 
             foreach (var collider2D in allocs)
             {
-                if (!flag || isDead || collider2D.tag != "DeadBody") continue;
+                if (!flag || isDead || !collider2D.CompareTag("DeadBody")) continue;
                 var component = collider2D.GetComponent<DeadBody>();
                 if (!(Vector2.Distance(truePosition, component.TruePosition) <=
                       maxDistance)) continue;

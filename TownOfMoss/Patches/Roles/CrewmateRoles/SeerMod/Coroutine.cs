@@ -30,7 +30,7 @@ namespace TownOfUs.NeutralRoles.SeerMod
                     seer.LastInvestigated = DateTime.UtcNow;
                     yield break;
                 }
-                yield return new WaitForSeconds(0.016f);
+                yield return null;
                 
                 if ((DateTime.UtcNow - start).TotalMilliseconds >= CustomGameOptions.SeerInvestigateTime * 1000.0f) {
                     break;

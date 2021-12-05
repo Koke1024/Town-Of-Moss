@@ -31,10 +31,6 @@ namespace TownOfUs.Roles
             if (!PlayerControl.LocalPlayer.Is(RoleEnum.MultiKiller)) {
                 return;
             }
-
-            MultiKiller mk = Role.GetRole<MultiKiller>(PlayerControl.LocalPlayer);
-            mk.Player.killTimer = mk.MaxTimer() - 10.0f;
-            DestroyableSingleton<HudManager>.Instance.KillButton.SetCoolDown(mk.Player.killTimer, mk.MaxTimer());
         }
     }
     

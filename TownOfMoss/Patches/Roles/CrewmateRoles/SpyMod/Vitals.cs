@@ -30,7 +30,7 @@
 //                 var panel = __instance.vitals[i];
 //                 var info = GameData.Instance.AllPlayers.ToArray()[i];
 //                 if (!panel.IsDead) continue;
-//                 var deadBody = Murder.KilledPlayers.First(x => x.PlayerId == info.PlayerId);
+//                 var deadBody = Utils.KilledPlayers.First(x => x.PlayerId == info.PlayerId);
 //                 var num = (float) (DateTime.UtcNow - deadBody.KillTime).TotalMilliseconds;
 //                 // panel. = Math.Round(num/1000f) + "s";
 //             }

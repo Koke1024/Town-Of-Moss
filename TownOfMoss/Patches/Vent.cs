@@ -27,11 +27,6 @@ namespace TownOfUs
     [HarmonyPatch(typeof(Vent), nameof(Vent.CanUse))]
     public static class VentPatches
     {
-        private static bool CheckUndertaker(PlayerControl player)
-        {
-            var role = Role.GetRole<Undertaker>(player);
-            return player.Data.IsDead || role.CurrentlyDragging != null;
-        }
 
         public static bool CanVent(PlayerControl player, GameData.PlayerInfo playerInfo)
         { 
@@ -41,9 +36,15 @@ namespace TownOfUs
             if (playerInfo.IsDead)
                 return false;
             
-            if (player.Is(RoleEnum.Kirby)
-                || (player.CanDrag() && Role.GetRole<Undertaker>(player).CurrentlyDragging != null))
+            if (player.Is(RoleEnum.Kirby))
+            {
                 return false;
+            }
+
+            if (!CustomGameOptions.VentWithBody && player.CanDrag() && Role.GetRole<Undertaker>(player).CurrentlyDragging != null) {
+                return false;
+            }
+
             if (player.Is(RoleEnum.Morphling)) {
                 if (CustomGameOptions.MorphCanVent == MorphVentOptions.None) {
                     return false;
@@ -139,6 +140,7 @@ namespace TownOfUs
                 Vector3 center = playerControl.Collider.bounds.center;
                 Vector3 position = __instance.transform.position;
                 num = Vector2.Distance((Vector2)center, (Vector2)position);
+                AmongUsExtensions.Log($"vent distance: {num}");    
                 var usableDistance = playerInfo._object.inVent ? 0.3: (double)__instance.UsableDistance; 
                 canUse = ((canUse ? 1 : 0) & ((double)num > usableDistance ? 0 : (!PhysicsHelpers.AnythingBetween(playerControl.Collider, (Vector2)center, (Vector2)position, Constants.ShipOnlyMask, false) ? 1 : 0))) != 0;
             }

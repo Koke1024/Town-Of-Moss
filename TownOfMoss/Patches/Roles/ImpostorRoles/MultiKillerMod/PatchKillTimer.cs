@@ -11,6 +11,9 @@ namespace TownOfUs.ImpostorRoles.MultiKillerMod
     {
         public static bool Prefix(PlayerControl __instance, [HarmonyArgument(0)] float time)
         {
+            if (__instance != PlayerControl.LocalPlayer) {
+                return true;
+            }
             var role = Role.GetRole(__instance);
             if (role?.RoleType != RoleEnum.MultiKiller) return true;
             var maxTimer = PlayerControl.GameOptions.KillCooldown * CustomGameOptions.MultiKillerCdRate / 100.0f;

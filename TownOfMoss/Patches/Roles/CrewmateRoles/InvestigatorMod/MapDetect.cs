@@ -2,6 +2,7 @@ using Il2CppSystem.Collections.Generic;
 using HarmonyLib;
 using Il2CppSystem;
 using Rewired;
+using TownOfUs.CrewmateRoles.MedicMod;
 using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine;
@@ -40,11 +41,11 @@ namespace TownOfUs.CrewmateRoles.InvestigatorMod
                 }
 
                 var positions = new System.Collections.Generic.Dictionary<byte, Vector2>();
-                foreach (DeadBody body in GameObject.FindObjectsOfType<DeadBody>()){
-                    if (body.Reported) {
+                foreach (var body in Utils.KilledPlayers){
+                    if (body.Value.Body.Reported) {
                         continue;
                     }
-                    positions.Add(body.ParentId, body.TruePosition);
+                    positions.Add(body.Value.Body.ParentId, body.Value.Body.TruePosition);
                 }
 
                 role.lastUpdated = DateTime.UtcNow;
