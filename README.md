@@ -24,6 +24,7 @@ Phantomがかなり不具合が出るので使用しないようお願いしま�
 
 | Date | Among Us - Version| Mod Version | Link |
 |---|----------|-------------|-----------------|
+| 21-12-05 | 2021.11.9.5s | v1.0.1 | [Download](https://spiel.jp/mod/Moss101.zip) |
 | 21-12-03 | 2021.11.9.5s | v1.0 | [Download](https://spiel.jp/mod/Moss10.zip) |
 | 21-11-30 | 2021.6.30s | v0.6 | [Download](https://spiel.jp/mod/Moss06.zip) |
 | 21-11-30 | 2021.6.30s | v0.5 | [Download](https://spiel.jp/mod/Moss05.zip) |
@@ -43,6 +44,18 @@ Phantomがかなり不具合が出るので使用しないようお願いしま�
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v1.0.1 </summary>
+        <ul>
+            <li>CDの長い能力のCDが更に伸びる不具合を修正</li>
+            <li>Sniperの勝利条件設定項目を追加</li>
+            <li>Snitchの設定項目を追加</li>
+            <li>Undertaker、Jesterの死体移動中のVent可能設定追加</li>
+            <li>Snitchがタスク完了まで狙撃可能とする設定を追加</li>
+            <li>Phantom削除</li>
+            <li>動作を全体的に軽量化（多分）</li>
+        </ul>
+    </details>
     <details>
         <summary> v1.0 </summary>
         <ul>

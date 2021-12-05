@@ -596,7 +596,7 @@ namespace TownOfUs.CustomOption
 
             SniperWinCnt =
                 new CustomNumberOption(num++, "Number of Sniper Kills to Win", 2, 1, 4, 1);
-            SniperPerGame = new CustomStringOption(num++, "Shoot to Shoot Per", new[] {"Round", "Game"});
+            SniperPerGame = new CustomStringOption(num++, "Kills to Win Per", new[] {"Round", "Game"});
             
             Zombie = new CustomHeaderOption(num++, "<color=#773800>Zombie</color>");
 
