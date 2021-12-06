@@ -1,6 +1,4 @@
-
 using System.Collections.Generic;
-using Discord;
 using HarmonyLib;
 using UnityEngine;
 using TownOfUs;
@@ -20,7 +18,7 @@ namespace TheOtherRoles.Patches {
         public static ToggleButtonBehaviour crewOnButton;
         public static ToggleButtonBehaviour ImpostorOnButton;
         public static ToggleButtonBehaviour NeutralOnButton;
-        private static List<ToggleButtonBehaviour> buttons = null;
+        public static List<ToggleButtonBehaviour> buttons = null;
 
         public static float xOffset = 1.75f;
         public static float yOffset = -0.3f;
@@ -78,10 +76,12 @@ namespace TheOtherRoles.Patches {
         public static void Postfix(OptionsMenuBehaviour __instance) {
 
             if (buttons != null) {
+                AmongUsExtensions.Log($"button exists");
                 return;
             }
 
             if (GameObject.Find("FullScreenButton") == null || GameObject.Find("VSyncButton") == null) {
+                AmongUsExtensions.Log($"null");
                 return;
             }
 
@@ -228,6 +228,13 @@ namespace TheOtherRoles.Patches {
 			if (flag) __instance.outputText.text = new string('*', __instance.text.Length);
 		}
 	}
+
+    [HarmonyPatch(typeof(OptionsMenuBehaviour), nameof(OptionsMenuBehaviour.Open))]
+    public static class OnDisable {
+        public static void Postfix(OptionsMenuBehaviour __instance) {
+            OptionsMenuBehaviourStartPatch.buttons = null;
+        }
+    }
 
     // [HarmonyPatch(typeof(OptionsMenuBehaviour), nameof(OptionsMenuBehaviour.Update))]
     // public class ButtonUpdate {
