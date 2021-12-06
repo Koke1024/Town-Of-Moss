@@ -972,7 +972,7 @@ Madmateが存在するとき、Assassinがインポスター陣営に採用さ�
 
 # Additive Menu Button
 
-右上の歯車マークから開くメニュー画面に、以下のボタンが追加されています。\
+右上の歯車マークから開くメニュー画面のGraphicタブ内に、以下のボタンが追加されています。\
 ![メニュー](TownOfMoss/md_resource/menuButton.png)\
 ゲーム中に自身のロールの情報とゲームルール、ロールの割り当て確率設定を確認することができます。\
 ![ロール情報](TownOfMoss/md_resource/role_info.png)![ルール情報](TownOfMoss/md_resource/game_info.png)
