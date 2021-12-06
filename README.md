@@ -385,20 +385,20 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 
 |**Crewmate Roles**|**Impostor Roles**|**Neutral Roles**|
 |----------|-------------|----------|
-|[Mayor](#Mayor)|[Janitor](#Janitor)|[Glitch](#Glitch)|
-|[Sheriff](#Sheriff)|[Morphling](#Morphling)|[Jester](#Jester)|
-|[Engineer](#Engineer)|[Camouflager](#Camouflager)|[Executioner](#Executioner)|
-|[Swapper](#Swapper)|[Miner](#Miner)|[Arsonist](#Arsonist)|
-|[Investigator](#Investigator)|[Swooper](#Swooper)|[Phantom](#Phantom)|
-|[Time Lord](#TimeLord)|[Assassin](#Assassin)|[Sniper](#Sniper)|
-|[Medic](#Medic)|[Undertaker](#Undertaker)|[Zombie](#Zombie)|
+|[Altruist](#Altruist)|[Assassin](#Assassin)|[Glitch](#Glitch)|
+|[Charger](#Charger)|[Camouflager](#Camouflager)|[Arsonist](#Arsonist)|
+|[Druid](#Druid)|[Cracker](#Cracker)|[Executioner](#Executioner)|
+|[Engineer](#Engineer)|[DollMaker](#DollMaker)|[Jester](#Jester)|
+|[Investigator](#Investigator)|[Janitor](#Janitor)|[Sniper](#Sniper)|
+|[Mayor](#Mayor)|[Miner](#Miner)|[Zombie](#Zombie)|
+|[Medic](#Medic)|[Morphling](#Morphling)||
+|[SecurityGuard](#SecurityGuard)|[MultiKiller](#MultiKiller)||
 |[Seer](#Seer)|[Popopo](#Popopo)||
-|[SecurityGuard](#SecurityGuard)|[Cracker](#Cracker)||
-|[Snitch](#Snitch)|[MultiKiller](#MultiKiller)||
-|[Altruist](#Altruist)|[Puppeteer](#Puppeteer)||
-|[Charger](#Charger)|[DollMaker](#DollMaker)||
-|[Druid](#Druid)|||
-|[Sniffer](#Sniffer)|||
+|[Sheriff](#Sheriff)|[Puppeteer](#Puppeteer)||
+|[Sniffer](#Sniffer)|[Swooper](#Swooper)||
+|[Snitch](#Snitch)|[Undertaker](#Undertaker)||
+|[Swapper](#Swapper)|||
+|[Time Lord](#TimeLord)|||
 
 -----------------------
 
