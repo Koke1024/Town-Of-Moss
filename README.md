@@ -16,8 +16,8 @@ MODの導入されていない2021.11.9のAmong Usディレクトリに展開し
 その場合は次のゲーム開始前に全てのプレイヤーが一度ゲームを終了して起動し直すことをおすすめします。\
 バイザー部分の隠れる帽子の場合Painterによる着色が全く見えないため、Painter導入の際はバイザーの見える帽子の着用をお願いします。
 
-### v1.0.3 既知の不具合
-MultiKillerが連続でKillできない可能性が高いらしいです。
+### v1.0.5 既知の不具合
+Executionerが最初からjesterになっている場合があるかもしれません。
 
 ## Releases
 ### Town of Moss
@@ -56,6 +56,7 @@ MultiKillerが連続でKillできない可能性が高いらしいです。
             <li>AdminとSecurity Cameraの使用制限が会議を挟んでも回復しない不具合を修正</li>
             <li>偽装タスクによってベントから出れなくなる場合がある不具合を修正</li>
             <li>ExecutionerがAirshipで対象への矢印が表示されない不具合を修正</li>
+            <li>MultiKillerがダブルキルできない場合がある不具合を修正</li>
         </ul>
     </details>
     <details>
