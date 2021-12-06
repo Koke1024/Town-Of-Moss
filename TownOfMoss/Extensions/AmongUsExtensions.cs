@@ -107,6 +107,7 @@ namespace TownOfUs.Extensions {
             playerControl.RawSetPet(newOutfit.PetId, newOutfit.ColorId);
             if (playerControl?.MyPhysics?.Skin?.skin?.ProdId != newOutfit.SkinId)
                 playerControl.RawSetSkin(newOutfit.SkinId);
+            PlayerControl.LocalPlayer.NetTransform.Halt();
         }
 
 

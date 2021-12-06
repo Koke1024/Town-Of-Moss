@@ -77,6 +77,7 @@ namespace TownOfUs.Roles
             LastSwooped = DateTime.UtcNow;
             Utils.Unmorph(Player);
             Player.MyRend.color = Color.white;
+            PlayerControl.LocalPlayer.NetTransform.Halt();
         }
     }
 }

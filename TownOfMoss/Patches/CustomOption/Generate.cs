@@ -312,93 +312,93 @@ namespace TownOfUs.CustomOption
 #endregion
 #region Crewmate Roles
             CrewmateRoles = new CustomHeaderOption(num++, "<color=#00FF00FF>Crewmate Roles</color>");
-            MayorOn = new CustomNumberOption(true, num++, "<color=#704FA8FF>Mayor</color>", 100.0f, 0f, 100f, 10f,
+            MayorOn = new CustomNumberOption(true, num++, "<color=#704FA8FF>Mayor</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
-            // LoversOn = new CustomNumberOption(true, num++, "<color=#FF66CCFF>Lovers</color>", 100.0f, 0f, 100f, 10f,
+            // LoversOn = new CustomNumberOption(true, num++, "<color=#FF66CCFF>Lovers</color>", 90.0f, 0f, 100f, 10f,
             //     PercentFormat);
-            // SheriffOn = new CustomNumberOption(true, num++, "<color=#FFFF00FF>Sheriff</color>", 100.0f, 0f, 100f, 10f,
+            // SheriffOn = new CustomNumberOption(true, num++, "<color=#FFFF00FF>Sheriff</color>", 90.0f, 0f, 100f, 10f,
             //     PercentFormat);
-            SheriffOn = new CustomNumberOption(true, num++, "<color=#FFFF00FF>Sheriff</color>", 100.0f, 0f, 100f, 10f,
+            SheriffOn = new CustomNumberOption(true, num++, "<color=#FFFF00FF>Sheriff</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
-            EngineerOn = new CustomNumberOption(true, num++, "<color=#FFA60AFF>Engineer</color>", 100.0f, 0f, 100f, 10f,
+            EngineerOn = new CustomNumberOption(true, num++, "<color=#FFA60AFF>Engineer</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
-            SwapperOn = new CustomNumberOption(true, num++, "<color=#66E666FF>Swapper</color>", 100.0f, 0f, 100f, 10f,
+            SwapperOn = new CustomNumberOption(true, num++, "<color=#66E666FF>Swapper</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
-            InvestigatorOn = new CustomNumberOption(true, num++, "<color=#00B3B3FF>Investigator</color>", 100.0f, 0f, 100f,
+            InvestigatorOn = new CustomNumberOption(true, num++, "<color=#00B3B3FF>Investigator</color>", 90.0f, 0f, 100f,
                 10f, PercentFormat);
-            TimeLordOn = new CustomNumberOption(true, num++, "<color=#0000FFFF>Time Lord</color>", 100.0f, 0f, 100f, 10f,
+            TimeLordOn = new CustomNumberOption(true, num++, "<color=#0000FFFF>Time Lord</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
-            MedicOn = new CustomNumberOption(true, num++, "<color=#006600FF>Medic</color>", 100.0f, 0f, 100f, 10f,
+            MedicOn = new CustomNumberOption(true, num++, "<color=#006600FF>Medic</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
-            SeerOn = new CustomNumberOption(true, num++, "<color=#FFCC80FF>Seer</color>", 100.0f, 0f, 100f, 10f,
+            SeerOn = new CustomNumberOption(true, num++, "<color=#FFCC80FF>Seer</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
-            SecurityGuardOn = new CustomNumberOption(true, num++, "<color=#AAAAFFFF>SecurityGuard</color>", 100.0f, 0f, 100f, 10f,
+            SecurityGuardOn = new CustomNumberOption(true, num++, "<color=#AAAAFFFF>SecurityGuard</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
-            // SpyOn = new CustomNumberOption(true, num++, "<color=#CCA3CCFF>Spy</color>", 100.0f, 0f, 100f, 10f,
+            // SpyOn = new CustomNumberOption(true, num++, "<color=#CCA3CCFF>Spy</color>", 90.0f, 0f, 100f, 10f,
             //     PercentFormat);
-            SnitchOn = new CustomNumberOption(true, num++, "<color=#D4AF37FF>Snitch</color>", 100.0f, 0f, 100f, 10f,
+            SnitchOn = new CustomNumberOption(true, num++, "<color=#D4AF37FF>Snitch</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
-            AltruistOn = new CustomNumberOption(true, num++, "<color=#660000FF>Altruist</color>", 100.0f, 0f, 100f, 10f,
+            AltruistOn = new CustomNumberOption(true, num++, "<color=#660000FF>Altruist</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
-            ChargerOn = new CustomNumberOption(true, num++, "<color=#FCFF33FF>Charger</color>", 100.0f, 0f, 100f, 10f,
+            ChargerOn = new CustomNumberOption(true, num++, "<color=#FCFF33FF>Charger</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
-            DruidOn = new CustomNumberOption(true, num++, "<color=#66008EFF>Druid</color>", 100.0f, 0f, 100f, 10f,
+            DruidOn = new CustomNumberOption(true, num++, "<color=#66008EFF>Druid</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
-            PainterOn = new CustomNumberOption(true, num++, "<color=#CECECEFF>Painter</color>", 100.0f, 0f, 100f, 10f,
+            PainterOn = new CustomNumberOption(true, num++, "<color=#CECECEFF>Painter</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
-            SnifferOn = new CustomNumberOption(true, num++, "<color=#A500D3FF>Sniffer</color>", 100.0f, 0f, 100f, 10f,
+            SnifferOn = new CustomNumberOption(true, num++, "<color=#A500D3FF>Sniffer</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
 #endregion
 #region Neutral Roles
             NeutralRoles = new CustomHeaderOption(num++, "<color=#FF00FFFF>Neutral Roles</color>");
-            JesterOn = new CustomNumberOption(true, num++, "<color=#FFBFCCFF>Jester</color>", 100.0f, 0f, 100f, 10f,
+            JesterOn = new CustomNumberOption(true, num++, "<color=#FFBFCCFF>Jester</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
             // ShifterOn = new CustomNumberOption(true, num++, "<color=#999999FF>Shifter</color>", 0.0f, 0f, 100f, 10f,
             //     PercentFormat);
-            ExecutionerOn = new CustomNumberOption(true, num++, "<color=#8C4005FF>Executioner</color>", 100.0f, 0f, 100f,
+            ExecutionerOn = new CustomNumberOption(true, num++, "<color=#8C4005FF>Executioner</color>", 90.0f, 0f, 100f,
                 10f, PercentFormat);
-            ArsonistOn = new CustomNumberOption(true, num++, "<color=#FF4D00FF>Arsonist</color>", 100.0f, 0f, 100f, 10f,
+            ArsonistOn = new CustomNumberOption(true, num++, "<color=#FF4D00FF>Arsonist</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
-            // PhantomOn = new CustomNumberOption(true, num++, "<color=#662962>Phantom</color>", 100.0f, 0f, 100f, 10f,
+            // PhantomOn = new CustomNumberOption(true, num++, "<color=#662962>Phantom</color>", 90.0f, 0f, 100f, 10f,
             //     PercentFormat);
-            SniperOn = new CustomNumberOption(true, num++, "<color=#545459>Sniper</color>", 100.0f, 0f, 100f, 10f,
+            SniperOn = new CustomNumberOption(true, num++, "<color=#545459>Sniper</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
-            ZombieOn = new CustomNumberOption(true, num++, "<color=#773800>Zombie</color>", 100.0f, 0f, 100f, 10f,
+            ZombieOn = new CustomNumberOption(true, num++, "<color=#773800>Zombie</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
-            // ScavengerOn = new CustomNumberOption(true, num++, "<color=#773800>Scavenger</color>", 100.0f, 0f, 100f, 10f,
+            // ScavengerOn = new CustomNumberOption(true, num++, "<color=#773800>Scavenger</color>", 90.0f, 0f, 100f, 10f,
             //     PercentFormat);
 #endregion
 #region Impostor Roles
             ImpostorRoles = new CustomHeaderOption(num++, "<color=#FF0000FF>Impostor Roles</color>");
-            AssassinOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Assassin</color>", 100.0f, 0f, 100f, 10f,
+            AssassinOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Assassin</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
-            JanitorOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Janitor</color>", 100.0f, 0f, 100f, 10f,
+            JanitorOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Janitor</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
-            MorphlingOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Morphling</color>", 100.0f, 0f, 100f, 10f,
+            MorphlingOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Morphling</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
-            CamouflagerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Camouflager</color>", 100.0f, 0f, 100f,
+            CamouflagerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Camouflager</color>", 90.0f, 0f, 100f,
                 10f, PercentFormat);
-            MinerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Miner</color>", 100.0f, 0f, 100f, 10f,
+            MinerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Miner</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
-            SwooperOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Swooper</color>", 100.0f, 0f, 100f, 10f,
+            SwooperOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Swooper</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
-            UndertakerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Undertaker</color>", 100.0f, 0f, 100f, 10f,
+            UndertakerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Undertaker</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
-            KirbyOn = new CustomNumberOption(true, num++, "<color=#A86BA3FF>Popopo</color>", 100.0f, 0f, 100f, 10f,
+            KirbyOn = new CustomNumberOption(true, num++, "<color=#A86BA3FF>Popopo</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
             
             // UnderdogOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Underdog</color>", 0.0f, 0f, 100f, 10f,
             //     PercentFormat);
 
-            CrackerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Cracker</color>", 100.0f, 0f, 100f, 10f,
+            CrackerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Cracker</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
 
-            MultiKillerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>MultiKiller</color>", 100.0f, 0f, 100f, 10f,
+            MultiKillerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>MultiKiller</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
 
-            PuppeteerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Puppeteer</color>", 100.0f, 0f, 100f, 10f,
+            PuppeteerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Puppeteer</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
-            DollMakerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>DollMaker</color>", 100.0f, 0f, 100f, 10f,
+            DollMakerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>DollMaker</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
 
 #endregion
