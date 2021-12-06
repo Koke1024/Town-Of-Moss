@@ -76,12 +76,10 @@ namespace TheOtherRoles.Patches {
         public static void Postfix(OptionsMenuBehaviour __instance) {
 
             if (buttons != null) {
-                AmongUsExtensions.Log($"button exists");
                 return;
             }
 
             if (GameObject.Find("FullScreenButton") == null || GameObject.Find("VSyncButton") == null) {
-                AmongUsExtensions.Log($"null");
                 return;
             }
 

@@ -22,7 +22,10 @@ namespace TownOfUs
             if (Utils.myBody == null && Utils.ExistBody(__instance.PlayerId)) {
                 Utils.myBody = Utils.GetBody(__instance.PlayerId);
             }
-            __instance.transform.position = Utils.myBody.TruePosition;
+
+            if (Utils.myBody != null) {
+                __instance.transform.position = Utils.myBody.TruePosition;                
+            }
         }
     }
 }
