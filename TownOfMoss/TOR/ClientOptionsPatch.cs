@@ -25,10 +25,10 @@ namespace TheOtherRoles.Patches {
         public static float xOffset = 1.75f;
         public static float yOffset = -0.3f;
 
-        private static void updateToggle(ToggleButtonBehaviour button, string text, bool on) {
+        private static void updateToggle(ToggleButtonBehaviour button, string text, bool on, Color bgColor) {
             if (button == null || button.gameObject == null) return;
 
-            Color color = on ? new Color(0f, 1f, 0.16470589f, 1f) : Color.white;
+            Color color = on ? new Color(0f, 1f, 0.16470589f, 1f) : bgColor;
             button.Background.color = color;
             button.Text.text = $"{text}{(on ? "On" : "Off")}";
             if (button.Rollover) button.Rollover.ChangeOutColor(color);
@@ -40,22 +40,24 @@ namespace TheOtherRoles.Patches {
                 PassiveButton passiveButton = button.GetComponent<PassiveButton>();
                 passiveButton.OnClick = new Button.ButtonClickedEvent();
                 passiveButton.OnClick.AddListener(onClick);
-                updateToggle(button, text, on);
+                updateToggle(button, text, on, Color.white);
                 
                 return button;
             }
             return null;
         }
 
-        private static ToggleButtonBehaviour createCustomButton(string text, ToggleButtonBehaviour model, UnityEngine.Events.UnityAction onClick, OptionsMenuBehaviour __instance) {
+        private static ToggleButtonBehaviour createCustomButton(string text, ToggleButtonBehaviour model, UnityEngine.Events.UnityAction onClick, OptionsMenuBehaviour __instance, Color bgColor) {
             if (__instance.CensorChatButton != null) {
                 var button = UnityEngine.Object.Instantiate(model);
                 PassiveButton passiveButton = button.GetComponent<PassiveButton>();
                 passiveButton.OnClick = new Button.ButtonClickedEvent();
                 passiveButton.OnClick.AddListener(onClick);
                 button.Text.text = text;
-                button.Background.color = Color.yellow;
+                button.Background.color = bgColor;
                 button.name = text + " Button";
+                button.Rollover.OverColor = bgColor;
+                button.Rollover.OutColor = bgColor;
                 
                 return button;
             }
@@ -83,6 +85,11 @@ namespace TheOtherRoles.Patches {
                 return;
             }
 
+            var transform1 = DestroyableSingleton<HudManager>.Instance.Dialogue.transform;
+            var dialogPosition = transform1.position;
+            transform1.position =
+                new Vector3(dialogPosition.x, dialogPosition.y, __instance.transform.position.z - 10);
+
             var fullScreenButton = GameObject.Find("FullScreenButton").GetComponent<ToggleButtonBehaviour>();
 
             if (streamButton == null || streamButton.gameObject == null) {
@@ -91,13 +98,13 @@ namespace TheOtherRoles.Patches {
                 void SetStreamMode() {
                     if (LobbyBehaviour.Instance != null) {
                         Utils.IsStreamMode = !Utils.IsStreamMode;
-                        updateToggle(streamButton, "Hide Room Code: ", Utils.IsStreamMode);
+                        updateToggle(streamButton, "Hide Room Code: ", Utils.IsStreamMode, Color.white);
                     }
                 }
             }
 
             if (settingCheckButton == null || settingCheckButton.gameObject == null) {
-                settingCheckButton = createCustomButton("Game Setting Check", fullScreenButton, (UnityEngine.Events.UnityAction)SettingCheck, __instance);
+                settingCheckButton = createCustomButton("Game Settings", fullScreenButton, (UnityEngine.Events.UnityAction)SettingCheck, __instance, Color.white);
                 // settingCheckButton.UpdateText(false);
 
                 void SettingCheck() {
@@ -113,7 +120,6 @@ namespace TheOtherRoles.Patches {
                             }
 
                             // DestroyableSingleton<HudManager>.Instance.Chat.AddChat(PlayerControl.LocalPlayer, settingString);
-                            __instance.Close();
                             DestroyableSingleton<HudManager>.Instance.ShowPopUp(settingString);
                         }
                     // }
@@ -121,7 +127,7 @@ namespace TheOtherRoles.Patches {
             }
 
             if (roleManualButton == null || roleManualButton.gameObject == null) {
-                roleManualButton = createCustomButton("About My Role", fullScreenButton, (UnityEngine.Events.UnityAction)ShowRoleInfo, __instance);
+                roleManualButton = createCustomButton("About My Role", fullScreenButton, (UnityEngine.Events.UnityAction)ShowRoleInfo, __instance, Color.white);
                 // roleManualButton.UpdateText(false);
 
                 void ShowRoleInfo() {
@@ -132,46 +138,42 @@ namespace TheOtherRoles.Patches {
                         }
                         var settingString = RoleManual.roleManual[role.RoleType];
 
-                        __instance.Close();
                         DestroyableSingleton<HudManager>.Instance.ShowPopUp(settingString);
                     }
                 }
             }
 
             if (crewOnButton == null || crewOnButton.gameObject == null) {
-                crewOnButton = createCustomButton("Crewmates Assign", fullScreenButton, (UnityEngine.Events.UnityAction)ShowCrewRoleInfo, __instance);
+                crewOnButton = createCustomButton("Crewmates Assign", fullScreenButton, (UnityEngine.Events.UnityAction)ShowCrewRoleInfo, __instance, Color.green);
                 // roleManualButton.UpdateText(false);
 
                 void ShowCrewRoleInfo() {
                     if (DestroyableSingleton<HudManager>.Instance) {
                         var settingString = Utils.crewRateString;
-                        __instance.Close();
                         DestroyableSingleton<HudManager>.Instance.ShowPopUp(settingString);
                     }
                 }
             }
 
             if (ImpostorOnButton == null || ImpostorOnButton.gameObject == null) {
-                ImpostorOnButton = createCustomButton("Impostor Assign", fullScreenButton, (UnityEngine.Events.UnityAction)ShowImpRoleInfo, __instance);
+                ImpostorOnButton = createCustomButton("Impostor Assign", fullScreenButton, (UnityEngine.Events.UnityAction)ShowImpRoleInfo, __instance, Color.red);
                 // roleManualButton.UpdateText(false);
 
                 void ShowImpRoleInfo() {
                     if (DestroyableSingleton<HudManager>.Instance) {
                         var settingString = Utils.impRateString;
-                        __instance.Close();
                         DestroyableSingleton<HudManager>.Instance.ShowPopUp(settingString);
                     }
                 }
             }
 
             if (NeutralOnButton == null || NeutralOnButton.gameObject == null) {
-                NeutralOnButton = createCustomButton("Neutral Assign", fullScreenButton, (UnityEngine.Events.UnityAction)ShowNeutralRoleInfo, __instance);
+                NeutralOnButton = createCustomButton("Neutral Assign", fullScreenButton, (UnityEngine.Events.UnityAction)ShowNeutralRoleInfo, __instance, Color.magenta);
                 // roleManualButton.UpdateText(false);
 
                 void ShowNeutralRoleInfo() {
                     if (DestroyableSingleton<HudManager>.Instance) {
                         var settingString = Utils.neutralRateString;
-                        __instance.Close();
                         DestroyableSingleton<HudManager>.Instance.ShowPopUp(settingString);
                     }
                 }
@@ -181,11 +183,11 @@ namespace TheOtherRoles.Patches {
                 fullScreenButton,
                 GameObject.Find("VSyncButton").GetComponent<ToggleButtonBehaviour>(),
                 streamButton,
-                settingCheckButton,
-                roleManualButton,
                 crewOnButton,
                 ImpostorOnButton,
                 NeutralOnButton,
+                settingCheckButton,
+                roleManualButton,
             };
             
             if (origin == null) origin = fullScreenButton.transform.localPosition + Vector3.up * 0.25f;
