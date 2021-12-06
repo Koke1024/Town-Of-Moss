@@ -103,11 +103,13 @@ namespace TownOfUs.Roles {
                               $"変身のクールダウン	{CustomGameOptions.MorphlingCd}s\n" +
                               $"変身の継続時間		{CustomGameOptions.MorphlingDuration}s\n" + 
                               $"ベント使用         {(new[] {"変身中は不可", "常時可能", "不可"}[(int)CustomGameOptions.MorphCanVent])}"},
-            {RoleEnum.Puppeteer, $"Puppeteer\n数秒かけて接触している相手に憑依します。\n憑依されたクルーは、次に近付いた他のクルーをキルします。\n" +
-                                 $"キルが発生するかReleaseボタンにより憑依は解除されます。\n憑依解除後一定時間移動できなくなります。\n" +
+            {RoleEnum.Puppeteer, $"Puppeteer\n一定時間かけて接触している相手に憑依し、次に近付いた他のクルーをキルさせます。\n" + 
+                                 "キルが発生するかReleaseボタンにより憑依は解除され、その後数秒間は行動が行えません。\n" +
+                                 "憑依によりキルしたクルーは、自身がキルした対象をReportできません。\n" +
                               $"憑依に必要な接触時間	{CustomGameOptions.PossessTime}s\n" +
                                  $"憑依し続けられる最大時間	{CustomGameOptions.PossessMaxTime}s\n" +
-                                 $"憑依解除後の行動不能時間	{CustomGameOptions.ReleaseWaitTime}s"},
+                                 $"憑依解除後の行動不能時間	{CustomGameOptions.ReleaseWaitTime}s\n" +
+                                $"憑依キルした対象をReportできる	{(CustomGameOptions.PossessBodyReport? "On": "Off")}\n"},
             {RoleEnum.Camouflager, $"Camouflager\n互いのクルーを識別できなくなるカモフラージュ状態を発生させることができます。\n" +
                               $"カモフラージュ能力のクールダウン時間	{CustomGameOptions.CamouflagerCd}s" +
                               $"カモフラージュ状態の継続時間	{CustomGameOptions.CamouflagerDuration}s"},

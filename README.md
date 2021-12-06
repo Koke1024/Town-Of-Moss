@@ -24,6 +24,7 @@ MultiKillerが連続でKillできない可能性が高いらしいです。
 
 | Date | Among Us - Version| Mod Version | Link |
 |---|----------|-------------|-----------------|
+| 21-12-07 | 2021.11.9.5s | v1.0.5 | [Download](https://spiel.jp/mod/Moss105.zip) |
 | 21-12-07 | 2021.11.9.5s | v1.0.3 | [Download](https://spiel.jp/mod/Moss103.zip) |
 | 21-12-06 | 2021.11.9.5s | v1.0.2 | [Download](https://spiel.jp/mod/Moss102.zip) |
 | 21-12-05 | 2021.11.9.5s | v1.0.1 | [Download](https://spiel.jp/mod/Moss101.zip) |
@@ -46,6 +47,17 @@ MultiKillerが連続でKillできない可能性が高いらしいです。
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v1.0.5 </summary>
+        <ul>
+            <li>Puppeteerの憑依によってキルした対象をReportできないよう変更</li>
+            <li>設定タブで追加されたボタンが表示されない場合がある不具合を修正</li>
+            <li>第三陣営通知が正しく表示されない不具合を修正</li>
+            <li>AdminとSecurity Cameraの使用制限が会議を挟んでも回復しない不具合を修正</li>
+            <li>偽装タスクによってベントから出れなくなる場合がある不具合を修正</li>
+            <li>ExecutionerがAirshipで対象への矢印が表示されない不具合を修正</li>
+        </ul>
+    </details>
     <details>
         <summary> v1.0.3 </summary>
         <ul>
@@ -818,10 +830,9 @@ Skeldの廊下に仕掛けた場合、すべての廊下が停電状態になり
 
 ### **Team: Impostors**
 
-一定時間かけて接触している相手に憑依します。\
-憑依されたクルーは、次に近付いた他のクルーをキルします。\
-キルが発生するかReleaseボタンにより憑依は解除されます。\
-憑依解除後数秒は行動が行えません。
+一定時間かけて接触している相手に憑依し、次に近付いた他のクルーをキルさせます。\
+キルが発生するかReleaseボタンにより憑依は解除され、その後数秒間は行動が行えません。\
+憑依によりキルしたクルーは、自身がキルした対象をReportできません。
 
 ### Game Options
 
@@ -830,6 +841,7 @@ Skeldの廊下に仕掛けた場合、すべての廊下が停電状態になり
 | Possess Time | 憑依に必要な接触時間 | Time | 3s
 | Possess Max Time | 憑依し続けられる最大時間  | Time | 15s
 | Wait Time After Release | 憑依解除後の行動不能時間  | Time | 3s
+| Perpetrator Can Report | 憑依によってキルした対象をReportできる  | Toggle | Off
 
 ## DollMaker
 

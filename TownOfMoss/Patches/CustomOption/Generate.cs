@@ -345,7 +345,7 @@ namespace TownOfUs.CustomOption
                 PercentFormat);
             DruidOn = new CustomNumberOption(true, num++, "<color=#66008EFF>Druid</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
-            PainterOn = new CustomNumberOption(true, num++, "<color=#CECECEFF>Painter</color>", 90.0f, 0f, 100f, 10f,
+            PainterOn = new CustomNumberOption(true, num++, "<color=#CECECEFF>Painter</color>", 0.0f, 0f, 100f, 10f,
                 PercentFormat);
             SnifferOn = new CustomNumberOption(true, num++, "<color=#A500D3FF>Sniffer</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
