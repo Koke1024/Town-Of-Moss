@@ -80,36 +80,6 @@ namespace TownOfUs
             return playerInfo.IsImpostor();
         }
 
-        // public static bool Prefix(Vent __instance,
-        //     [HarmonyArgument(0)] GameData.PlayerInfo playerInfo,
-        //     [HarmonyArgument(1)] ref bool canUse,
-        //     [HarmonyArgument(2)] ref bool couldUse,
-        //     ref float __result)
-        // {
-        //     __result = float.MaxValue;
-        //     canUse = couldUse = false;
-        //
-        //     var player = playerInfo.Object;
-        //
-        //     if (__instance.name.StartsWith("SealedVent_")) {
-        //         canUse = couldUse = false;
-        //         return false;
-        //     }
-        //     
-        //     if (player.inVent)
-        //     {
-        //         __result = Vector2.Distance(player.Collider.bounds.center, __instance.transform.position);
-        //         if (__result > 0.3f) {
-        //             __result = float.MaxValue;
-        //             canUse = couldUse = false;
-        //             return false;
-        //         }
-        //         else {
-        //             canUse = couldUse = true;
-        //             return false;                    
-        //         }
-        //     }
-
         public static void Postfix(Vent __instance,
             [HarmonyArgument(0)] GameData.PlayerInfo playerInfo,
             [HarmonyArgument(1)] ref bool canUse,
@@ -126,7 +96,7 @@ namespace TownOfUs
             couldUse = CanVent(playerControl, playerInfo) && !playerControl.MustCleanVent(__instance.Id) && (!playerInfo.IsDead || playerControl.inVent) && (playerControl.CanMove || playerControl.inVent);
 
             var ventilationSystem = ShipStatus.Instance.Systems[SystemTypes.Ventilation].Cast<VentilationSystem>();
-            if (ventilationSystem != null && ventilationSystem.PlayersCleaningVents != null)
+            if (ventilationSystem != null && ventilationSystem.PlayersCleaningVents != null && !playerControl.Data.IsImpostor())
             {
                 foreach (var item in ventilationSystem.PlayersCleaningVents)
                 {
@@ -146,6 +116,20 @@ namespace TownOfUs
             
             __result = num;
 
+        }
+
+        [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.MustCleanVent))]
+        public static class MustCleanVentPatch {
+            public static bool Prefix(PlayerControl __instance, ref bool __result) {
+                if (__instance.Data.IsImpostor()) {
+                    __result = false;
+                    return false;
+                }
+                return true;
+            }
+
+            public static void Postfix(PlayerControl __instance) {
+            }
         }
     }
 }

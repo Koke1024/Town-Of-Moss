@@ -24,13 +24,34 @@ namespace TownOfUs.Roles
         public float MaxTimer() => PlayerControl.GameOptions.KillCooldown * CustomGameOptions.MultiKillerCdRate / 100.0f;
     }
     
+    
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.SetRole))]
-    public class multiKillerCd2
+    public class MultiKillerCd
     {
-        public static void Postfix() {
+        public static void Postfix()
+        {
             if (!PlayerControl.LocalPlayer.Is(RoleEnum.MultiKiller)) {
                 return;
             }
+
+            MultiKiller mk = Role.GetRole<MultiKiller>(PlayerControl.LocalPlayer);
+            mk.Player.killTimer = mk.MaxTimer() - 10.0f;
+            DestroyableSingleton<HudManager>.Instance.KillButton.SetCoolDown(mk.Player.killTimer, mk.MaxTimer());
+        }
+    }
+
+    [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.Start))]
+    public class MultiKillerCdHost
+    {
+        public static void Postfix()
+        {
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.MultiKiller)) {
+                return;
+            }
+
+            MultiKiller mk = Role.GetRole<MultiKiller>(PlayerControl.LocalPlayer);
+            mk.Player.killTimer = mk.MaxTimer() - 10.0f;
+            DestroyableSingleton<HudManager>.Instance.KillButton.SetCoolDown(mk.Player.killTimer, mk.MaxTimer());
         }
     }
     
