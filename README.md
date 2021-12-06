@@ -49,6 +49,7 @@ MultiKillerが連続でKillできない可能性が高いらしいです。
         <summary> v1.0.1 </summary>
         <ul>
             <li>MiraHQでCamouflaged Commsが無効になっていたのを修正</li>
+            <li>変身などの解除時にズボンが脱げかける問題を修正</li>
         </ul>
     </details>
     <details>
