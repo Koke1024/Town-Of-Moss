@@ -421,7 +421,6 @@ namespace TownOfUs
             };
 
             KilledPlayers.Add(target.PlayerId, deadBody);
-            AmongUsExtensions.Log($"add dead body {body.name}");
         }
 
         public static void StartFlash(Color color, float alpha = 0.3f) {

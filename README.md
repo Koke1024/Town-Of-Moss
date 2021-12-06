@@ -24,6 +24,7 @@ MultiKillerが連続でKillできない可能性が高いらしいです。
 
 | Date | Among Us - Version| Mod Version | Link |
 |---|----------|-------------|-----------------|
+| 21-12-06 | 2021.11.9.5s | v1.0.2 | [Download](https://spiel.jp/mod/Moss102.zip) |
 | 21-12-05 | 2021.11.9.5s | v1.0.1 | [Download](https://spiel.jp/mod/Moss101.zip) |
 | 21-12-03 | 2021.11.9.5s | v1.0 | [Download](https://spiel.jp/mod/Moss10.zip) |
 | 21-11-30 | 2021.6.30s | v0.6 | [Download](https://spiel.jp/mod/Moss06.zip) |
@@ -44,6 +45,12 @@ MultiKillerが連続でKillできない可能性が高いらしいです。
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v1.0.1 </summary>
+        <ul>
+            <li>MiraHQでCamouflaged Commsが無効になっていたのを修正</li>
+        </ul>
+    </details>
     <details>
         <summary> v1.0.1 </summary>
         <ul>

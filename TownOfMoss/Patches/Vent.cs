@@ -125,12 +125,12 @@ namespace TownOfUs
             PlayerControl playerControl = playerInfo.Object;
             couldUse = CanVent(playerControl, playerInfo) && !playerControl.MustCleanVent(__instance.Id) && (!playerInfo.IsDead || playerControl.inVent) && (playerControl.CanMove || playerControl.inVent);
 
-            var ventitaltionSystem = ShipStatus.Instance.Systems[SystemTypes.Ventilation].Cast<VentilationSystem>();
-            if (ventitaltionSystem != null && ventitaltionSystem.PlayersCleaningVents != null)
+            var ventilationSystem = ShipStatus.Instance.Systems[SystemTypes.Ventilation].Cast<VentilationSystem>();
+            if (ventilationSystem != null && ventilationSystem.PlayersCleaningVents != null)
             {
-                foreach (var item in ventitaltionSystem.PlayersCleaningVents.Values)
+                foreach (var item in ventilationSystem.PlayersCleaningVents)
                 {
-                    if (item == __instance.Id)
+                    if (item.value == __instance.Id)
                         couldUse = false;
                 }
             }
@@ -140,7 +140,6 @@ namespace TownOfUs
                 Vector3 center = playerControl.Collider.bounds.center;
                 Vector3 position = __instance.transform.position;
                 num = Vector2.Distance((Vector2)center, (Vector2)position);
-                AmongUsExtensions.Log($"vent distance: {num}");    
                 var usableDistance = playerInfo._object.inVent ? 0.35: (double)__instance.UsableDistance; 
                 canUse = ((canUse ? 1 : 0) & ((double)num > usableDistance ? 0 : (!PhysicsHelpers.AnythingBetween(playerControl.Collider, (Vector2)center, (Vector2)position, Constants.ShipOnlyMask, false) ? 1 : 0))) != 0;
             }
