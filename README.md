@@ -981,11 +981,11 @@ Madmateが存在するとき、Assassinがインポスター陣営に採用さ�
 | Name | Description |
 |----------|:-------------:|
 | Hide Room Code | ONのとき、ロビーでルームコードが非表示になります。 |
-| Game Setting Check | 現在のゲーム設定情報の概要が表示されます。 |
-| About My Role | 現在の自分のロールの情報を表示します。 |
 | Crewmates Assign | 現在のクルーメイトのロールの割り当て確率設定を表示します。 |
 | Impostor Assign | 現在のインポスターのロールの割り当て確率設定を表示します。 |
 | Neutral Assign | 現在の第三陣営のロールの割り当て確率設定を表示します。 |
+| Game Setting | 現在のゲーム設定情報の概要が表示されます。 |
+| About My Role | 現在の自分のロールの情報を表示します。 |
 
 -----------------------
 

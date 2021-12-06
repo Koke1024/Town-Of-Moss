@@ -87,6 +87,9 @@ namespace TownOfUs.OnStartGame
     [HarmonyPatch(typeof(ShipStatus), nameof(ShipStatus.Start))]
     public static class SkeldShield {
         public static void Postfix(ShipStatus __instance) {
+            if (AirshipStatus.Instance != null) {
+                return;
+            }
             if (__instance.Type != ShipStatus.MapType.Ship) {
                 return;
             }
