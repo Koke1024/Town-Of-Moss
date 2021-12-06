@@ -24,7 +24,7 @@ Executionerが最初からjesterになっている場合があるかもしれま
 
 | Date | Among Us - Version| Mod Version | Link |
 |---|----------|-------------|-----------------|
-| 21-12-07 | 2021.11.9.5s | v1.0.6 | [Download](https://spiel.jp/mod/Moss105.zip) |
+| 21-12-07 | 2021.11.9.5s | v1.0.6 | [Download](https://spiel.jp/mod/Moss106.zip) |
 | 21-12-07 | 2021.11.9.5s | v1.0.3 | [Download](https://spiel.jp/mod/Moss103.zip) |
 | 21-12-06 | 2021.11.9.5s | v1.0.2 | [Download](https://spiel.jp/mod/Moss102.zip) |
 | 21-12-05 | 2021.11.9.5s | v1.0.1 | [Download](https://spiel.jp/mod/Moss101.zip) |
