@@ -60,6 +60,7 @@ MultiKillerが連続でKillできない可能性が高いらしいです。
             <li>Snitchの設定項目を追加</li>
             <li>Undertaker、Jesterの死体移動中のVent可能設定追加</li>
             <li>Snitchがタスク完了まで狙撃可能とする設定を追加</li>
+            <li>GlitchがMapからAdmin情報を得られる</li>
             <li>Phantom削除</li>
             <li>動作を全体的に軽量化（多分）</li>
         </ul>
