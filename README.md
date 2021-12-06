@@ -24,7 +24,7 @@ Executionerが最初からjesterになっている場合があるかもしれま
 
 | Date | Among Us - Version| Mod Version | Link |
 |---|----------|-------------|-----------------|
-| 21-12-07 | 2021.11.9.5s | v1.0.5 | [Download](https://spiel.jp/mod/Moss105.zip) |
+| 21-12-07 | 2021.11.9.5s | v1.0.6 | [Download](https://spiel.jp/mod/Moss105.zip) |
 | 21-12-07 | 2021.11.9.5s | v1.0.3 | [Download](https://spiel.jp/mod/Moss103.zip) |
 | 21-12-06 | 2021.11.9.5s | v1.0.2 | [Download](https://spiel.jp/mod/Moss102.zip) |
 | 21-12-05 | 2021.11.9.5s | v1.0.1 | [Download](https://spiel.jp/mod/Moss101.zip) |
@@ -48,7 +48,7 @@ Executionerが最初からjesterになっている場合があるかもしれま
 <details>
     <summary> Changelog </summary>
     <details>
-        <summary> v1.0.5 </summary>
+        <summary> v1.0.6 </summary>
         <ul>
             <li>Puppeteerの憑依によってキルした対象をReportできないよう変更</li>
             <li>設定タブで追加されたボタンが表示されない場合がある不具合を修正</li>
@@ -57,6 +57,7 @@ Executionerが最初からjesterになっている場合があるかもしれま
             <li>偽装タスクによってベントから出れなくなる場合がある不具合を修正</li>
             <li>ExecutionerがAirshipで対象への矢印が表示されない不具合を修正</li>
             <li>MultiKillerがダブルキルできない場合がある不具合を修正</li>
+            <li>設定画面の役職の並び順をアルファベット順に</li>
         </ul>
     </details>
     <details>
