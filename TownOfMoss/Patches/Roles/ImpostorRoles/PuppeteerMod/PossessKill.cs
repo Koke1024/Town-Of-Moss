@@ -71,6 +71,7 @@ namespace TownOfUs.ImpostorRoles.PuppeteerMod {
                     AmongUsClient.Instance.FinishRpcImmediately(writer2);
                     Utils.RpcMurderPlayer(PlayerControl.LocalPlayer, closestPlayer);
                     role.KillUnPossess();
+                    Puppeteer.CantReportPlayer.Add(closestPlayer.PlayerId);
                 }
             }
         }

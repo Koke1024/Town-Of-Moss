@@ -216,6 +216,7 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption PossessCd;
         public static CustomNumberOption PossessMaxTime;
         public static CustomNumberOption ReleaseWaitTime;
+        public static CustomToggleOption PossessBodyReport;
 
         public static CustomHeaderOption DollMaker;
         public static CustomNumberOption DollBreakTime;
@@ -668,6 +669,7 @@ namespace TownOfUs.CustomOption
             PossessTime = new CustomNumberOption(num++, "Possess Time", 3.0f, 1f, 5f, 0.5f, CooldownFormat);
             PossessMaxTime = new CustomNumberOption(num++, "Possess Max Time", 15.0f, 5f, 30f, 2.5f, CooldownFormat);
             ReleaseWaitTime = new CustomNumberOption(num++, "Wait Time After Release", 3.0f, 1f, 10f, 0.5f, CooldownFormat);
+            PossessBodyReport = new CustomToggleOption(num++, "Perpetrator Can Report", false);
             
             DollMaker = new CustomHeaderOption(num++, "<color=#FF0000FF>DollMaker</color>");
             DollBreakTime = new CustomNumberOption(num++, "Doll Self Broken Time", 20.0f, 5f, 60f, 5f, CooldownFormat);

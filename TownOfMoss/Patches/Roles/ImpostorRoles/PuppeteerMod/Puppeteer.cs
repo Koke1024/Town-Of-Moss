@@ -1,4 +1,5 @@
 using Il2CppSystem;
+using Il2CppSystem.Collections.Generic;
 using UnityEngine;
 
 namespace TownOfUs.Roles
@@ -13,7 +14,8 @@ namespace TownOfUs.Roles
         public float PossessTime;
         public float duration;
         public DateTime lastPossess;
-        public bool possessStarting = false; 
+        public bool possessStarting = false;
+        public static List<byte> CantReportPlayer = new List<byte>();
         
         public static Sprite PossessSprite => TownOfUs.PossessSprite;
         public static Sprite UnPossessSprite => TownOfUs.ReleaseSprite;

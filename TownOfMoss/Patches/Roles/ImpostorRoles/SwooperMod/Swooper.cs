@@ -78,6 +78,9 @@ namespace TownOfUs.Roles
             Utils.Unmorph(Player);
             Player.MyRend.color = Color.white;
             PlayerControl.LocalPlayer.NetTransform.Halt();
+            if (Player == PlayerControl.LocalPlayer) {
+                PlayerControl.LocalPlayer.NetTransform.Halt();                
+            }
         }
     }
 }

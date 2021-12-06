@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Assets.CoreScripts;
 using HarmonyLib;
 using TownOfUs;
 using TownOfUs.Roles;
@@ -27,7 +28,7 @@ namespace TownOfUs.NeutralReport {
             }
         }
 
-        [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.SetRole))]
+        [HarmonyPatch(typeof(Telemetry), nameof(Telemetry.StartGame))]
         public class StartGame {
             public static void Postfix() {
                 if (!CustomGameOptions.NoticeNeutral) {
