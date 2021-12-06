@@ -121,7 +121,7 @@ namespace TheOtherRoles.Patches {
             }
 
             if (roleManualButton == null || roleManualButton.gameObject == null) {
-                roleManualButton = createCustomButton("Show Role Manual", fullScreenButton, (UnityEngine.Events.UnityAction)ShowRoleInfo, __instance);
+                roleManualButton = createCustomButton("About My Role", fullScreenButton, (UnityEngine.Events.UnityAction)ShowRoleInfo, __instance);
                 // roleManualButton.UpdateText(false);
 
                 void ShowRoleInfo() {
@@ -139,7 +139,7 @@ namespace TheOtherRoles.Patches {
             }
 
             if (crewOnButton == null || crewOnButton.gameObject == null) {
-                crewOnButton = createCustomButton("Show Crewmates Role ", fullScreenButton, (UnityEngine.Events.UnityAction)ShowCrewRoleInfo, __instance);
+                crewOnButton = createCustomButton("Crewmates Assign", fullScreenButton, (UnityEngine.Events.UnityAction)ShowCrewRoleInfo, __instance);
                 // roleManualButton.UpdateText(false);
 
                 void ShowCrewRoleInfo() {
@@ -152,7 +152,7 @@ namespace TheOtherRoles.Patches {
             }
 
             if (ImpostorOnButton == null || ImpostorOnButton.gameObject == null) {
-                ImpostorOnButton = createCustomButton("Show Impostor Role ", fullScreenButton, (UnityEngine.Events.UnityAction)ShowImpRoleInfo, __instance);
+                ImpostorOnButton = createCustomButton("Impostor Assign", fullScreenButton, (UnityEngine.Events.UnityAction)ShowImpRoleInfo, __instance);
                 // roleManualButton.UpdateText(false);
 
                 void ShowImpRoleInfo() {
@@ -165,7 +165,7 @@ namespace TheOtherRoles.Patches {
             }
 
             if (NeutralOnButton == null || NeutralOnButton.gameObject == null) {
-                NeutralOnButton = createCustomButton("Show Neutral Role ", fullScreenButton, (UnityEngine.Events.UnityAction)ShowNeutralRoleInfo, __instance);
+                NeutralOnButton = createCustomButton("Neutral Assign", fullScreenButton, (UnityEngine.Events.UnityAction)ShowNeutralRoleInfo, __instance);
                 // roleManualButton.UpdateText(false);
 
                 void ShowNeutralRoleInfo() {
