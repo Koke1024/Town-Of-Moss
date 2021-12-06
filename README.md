@@ -16,7 +16,7 @@ MODの導入されていない2021.11.9のAmong Usディレクトリに展開し
 その場合は次のゲーム開始前に全てのプレイヤーが一度ゲームを終了して起動し直すことをおすすめします。\
 バイザー部分の隠れる帽子の場合Painterによる着色が全く見えないため、Painter導入の際はバイザーの見える帽子の着用をお願いします。
 
-### v1.0.1 既知の不具合
+### v1.0.2 既知の不具合
 MultiKillerが連続でKillできない可能性が高いらしいです。
 
 ## Releases
@@ -46,7 +46,7 @@ MultiKillerが連続でKillできない可能性が高いらしいです。
 <details>
     <summary> Changelog </summary>
     <details>
-        <summary> v1.0.1 </summary>
+        <summary> v1.0.2 </summary>
         <ul>
             <li>MiraHQでCamouflaged Commsが無効になっていたのを修正</li>
             <li>変身などの解除時にズボンが脱げかける問題を修正</li>
