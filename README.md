@@ -6,44 +6,18 @@
 蘇生に対応した[AutoMuteUs](#AUCapture-for-MOD)のCaptureツールも公開しています。
 
 ### 本MODの特徴
-必ずいずれかのインポスターがアサシン（役職を知った相手を会議中にキルできる）能力を持つ設定により、クルーメイトは無闇に役職を他クルーに知られないよう行動、発言する必要があります。\
-会議を挟んでもインポスターのキルクールダウンがリセットされないため、開始直後やキルクールダウンリセットのための会議を行う必要がありません。
+役職のカミングアウトによるインポスターの特定を避けるため、最終的に必ずいずれかのインポスターにアサシン（役職を知った相手を会議中にキルできる）能力を無制限で持たせることができます。\
+会議を挟んでもインポスターのキルクールダウンをリセットしない設定により、開始直後やキルクールダウンのリセットのための会議を行う必要がありません。
 
-### 注意
-MODの導入されていない2021.11.9のAmong Usディレクトリに展開してください。\
-異なるMODの導入されたディレクトリに展開すると正常に動作しません。\
-開発途中のため、ゲーム途中で切断されたり予期しない動作が起こる場合がありますが、\
-その場合は次のゲーム開始前に全てのプレイヤーが一度ゲームを終了して起動し直すことをおすすめします。\
-バイザー部分の隠れる帽子の場合Painterによる着色が全く見えないため、Painter導入の際はバイザーの見える帽子の着用をお願いします。
+## 最新リリース
 
-### v1.0.5 既知の不具合
-Executionerが最初からjesterになっている場合があるかもしれません。
-
-## Releases
-### Town of Moss
-
-| Date | Among Us - Version| Mod Version | Link |
+| Among Us - Version| Date | Mod Version | Link |
 |---|----------|-------------|-----------------|
-| 21-12-07 | 2021.11.9.5s | v1.0.6 | [Download](https://spiel.jp/mod/Moss106.zip) |
-| 21-12-07 | 2021.11.9.5s | v1.0.3 | [Download](https://spiel.jp/mod/Moss103.zip) |
-| 21-12-06 | 2021.11.9.5s | v1.0.2 | [Download](https://spiel.jp/mod/Moss102.zip) |
-| 21-12-05 | 2021.11.9.5s | v1.0.1 | [Download](https://spiel.jp/mod/Moss101.zip) |
-| 21-12-03 | 2021.11.9.5s | v1.0 | [Download](https://spiel.jp/mod/Moss10.zip) |
-| 21-11-30 | 2021.6.30s | v0.6 | [Download](https://spiel.jp/mod/Moss06.zip) |
-| 21-11-30 | 2021.6.30s | v0.5 | [Download](https://spiel.jp/mod/Moss05.zip) |
-| 21-11-27 | 2021.6.30s | v0.442 | [Download](https://spiel.jp/mod/Moss0442.zip) |
-| 21-11-24 | 2021.6.30s | v0.441 | [Download](https://spiel.jp/mod/Moss0441.zip) |
-| 21-11-22 | 2021.6.30s | v0.44 | [Download](https://spiel.jp/mod/Moss044.zip) |
-| 21-11-19 | 2021.6.30s | v0.43 | [Download](https://spiel.jp/mod/Moss043.zip) |
-| 21-11-19 | 2021.6.30s | v0.42 | [Download](https://spiel.jp/mod/Moss042.zip) |
-| 21-11-18 | 2021.6.30s | v0.41 | [Download](https://spiel.jp/mod/Moss041.zip) |
-| 21-11-17 | 2021.6.30s | v0.407 | [Download](https://spiel.jp/mod/Moss0407.zip) |
-| 21-11-16 | 2021.6.30s | v0.406 | [Download](https://spiel.jp/mod/Moss0406.zip) |
-| 21-11-15 | 2021.6.30s | v0.405 | [Download](https://spiel.jp/mod/Moss0405.zip) |
-| 21-11-13 | 2021.6.30s | v0.403 | [Download](https://spiel.jp/mod/Moss0403.zip) |
-| 21-11-10 | 2021.6.30s | v0.402 | [Download](https://spiel.jp/mod/Moss0402.zip) |
-| 21-11-09 | 2021.6.30s | v0.401 | [Download](https://spiel.jp/mod/Moss0401.zip) |
-| 21-11-05 | 2021.6.30s | v0.4 | [Download](https://spiel.jp/mod/Moss04.zip) |
+| 2021.11.9.5s | 21-12-07 | v1.0.6 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v1.0.6) |
+| 2021.6.30s | 21-11-30 | v0.6 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v0.6) |
+
+### v1.0.6 既知の不具合
+Executionerが最初からJesterになっている場合があるかもしれません。
 
 <details>
     <summary> Changelog </summary>
@@ -348,7 +322,14 @@ Executionerが最初からjesterになっている場合があるかもしれま
     </details>
 </details>
 
-### AUCapture for MOD
+### 注意
+MODの導入されていない2021.11.9のAmong Usディレクトリに展開してください。\
+異なるMODの導入されたディレクトリに展開すると正常に動作しません。\
+開発途中のため、ゲーム途中で切断されたり予期しない動作が起こる場合がありますが、\
+その場合は次のゲーム開始前に全てのプレイヤーが一度ゲームを終了して起動し直すことをおすすめします。\
+バイザー部分の隠れる帽子の場合Painterによる着色が全く見えないため、Painter導入の際はバイザーの見える帽子の着用をお願いします。
+
+## AUCapture for MOD
 
 | Version | Link |
 |----------|-----------------|
@@ -368,7 +349,7 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 | Number of Neutral Roles | 割り当てられる第三陣営の数 | Number | 0 |
 | Kill Cooldown Reset on Meeting | 会議の後にインポスターのキルクールダウンを初期化する | Toggle | Off |
 | Camouflaged Comms | コミュニケーションサボタージュ中、カモフラージュ状態になる | Toggle | On |
-| Last Impostor Can Snipe  | 最後の一人となったインポスターは狙撃能力を得る | Toggle | On |
+| Last Impostor Can Snipe  | 最後の一人となったインポスターは次の会議から狙撃能力を得る | Toggle | On |
 | Impostors can see the roles of their team | インポスター同士が互いの役職を知っている | Toggle | On |
 | Polus Reactor Time Limit | PolusのMelt Downサボタージュの制限時間 | Time | 45.0s |
 | AirShip Reactor Time Limit | AirShipのMelt Downサボタージュの制限時間 | Time | 75.0s |
