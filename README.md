@@ -13,14 +13,22 @@
 
 | Among Us - Version| Date | Mod Version | Link |
 |---|----------|-------------|-----------------|
-| 2021.11.9.5s | 21-12-07 | v1.0.6 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v1.0.6) |
+| 2021.11.9.5s | 21-12-07 | v1.0.7 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v1.0.7) |
 | 2021.6.30s | 21-11-30 | v0.6 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v0.6) |
 
-### v1.0.6 既知の不具合
+### v1.0.7 既知の不具合
 Executionerが最初からJesterになっている場合があるかもしれません。
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v1.0.7 </summary>
+        <ul>
+            <li>役職BodyGuardを追加</li>
+            <li>Medicの能力を変更</li>
+            <li>Puppeteer、DollMakerのキルにもシールドが発動するように</li>
+        </ul>
+    </details>
     <details>
         <summary> v1.0.6 </summary>
         <ul>
@@ -380,6 +388,7 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 |[Snitch](#Snitch)|[Undertaker](#Undertaker)||
 |[Swapper](#Swapper)|||
 |[Time Lord](#TimeLord)|||
+|[BodyGuard](#BodyGuard)|||
 
 -----------------------
 
@@ -398,6 +407,25 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
 | Call Meeting On Dead | キルされた際に緊急会議を開く | Toggle | On |
+
+-----------------------
+
+## BodyGuard
+
+### **Team: Crewmates**
+
+他のクルーを一定時間護衛します。近くにいる間、護衛されているプレイヤーに対するキルを防ぎます。\
+護衛範囲内にいる間、対象への矢印が表示されます。対象に行われたキルを防ぎ、自身の画面が緑色に点灯します。\
+一度護衛に成功すると、インポスターから自身がBodyGuardであることがわかるようになり、狙撃されなくなります。
+
+### Game Options
+
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Guard Cooldown | 護衛のクールダウン時間 | Time | 25s |
+| Guard Duration | 護衛の継続時間 | Time | 25s |
+| Guard Range | 護衛可能範囲 | Time | 25s |
+| Who gets murder attempt indicator | キル通知の表示されるプレイヤー | BodyGuard / Shielded / Everyone / Nobody | BodyGuard |
 
 -----------------------
 
@@ -483,30 +511,8 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 
 ### **Team: Crewmates**
 
-ゲーム中一回、他のクルーに対してキルを一度だけ防ぐシールドを張ることができます。 シールドを張られたクルーメイトにキルが行われると、Medicの画面が緑色に点灯します。\
-死体のReport時、キルから発見までの経過時間に応じてチャットから以下の追加情報を得られます。
-
-- キルしたクルーの名前
-- キルしたクルーの色が暗いか明るいか
-
-| 暗い|明るい|
-|----|:-----:|
-|<span style="color:Red">Red</span>|<span style="color:Pink">Pink</span>|
-|<span style="color:Blue">Blue</span>|<span style="color:Orange">Orange</span>|
-|<span style="color:Green">Green</span>|<span style="color:Yellow">Yellow</span>|
-|<span style="color:Black">Black</span>|<span style="color:White">White</span>|
-|<span style="color:Purple">Purple</span>|<span style="color:Cyan">Cyan</span>|
-|<span style="color:Brown">Brown</span>|<span style="color:Lime">Lime</span>|
-|<span style="color:Maroon">Maroon</span>|<span style="color:Rose">Rose</span>|
-|<span style="color:Tan">Tan</span>|<span style="color:Banana">Banana</span>|
-|<span style="color:Watermelon">Watermelon</span>|<span style="color:Gray">Gray</span>|
-|<span style="color:Chocolate">Chocolate</span>|<span style="color:Coral">Coral</span>|
-|<span style="color:Beige">Beige</span>|<span style="color:Sky Blue">Sky Blue</span>|
-| |<span style="color:Hot Pink">Hot Pink</span>|
-| |<span style="color:Turquoise">Turquoise</span>|
-| |<span style="color:Lilac">Lilac</span>|
-| |<span style="color:Rainbow">Rainbow</span>|
-| |<span style="color:Azure">Azure</span>|
+自身が死体をReportした時、キルを行った可能性のあるクルーの名前が会議中グレーで表示されます。\
+容疑者候補の数はキルからレポートまでの時間が短いほど少なくなり、最短でランダムで2人まで絞り込まれます。
 
 ------------------------
 
@@ -514,12 +520,7 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
-| Show Shielded Player | 誰にシールドが見えるか | Self / Medic / Self + Medic / Everyone | Medic |
-| Show Medic Reports | 死体発見時に追加情報を得る | Toggle | On |
-| Time Where Medic Reports Will Have Name | 追加情報でキルしたクルーの名前が見られるまでの発見時間 | Time | 0s |
-| Time Where Medic Reports Will Have Color Type | 追加情報でキルしたクルーの色の濃さがわかるまでの発見時間 | Time | 15s |
-| Who gets murder attempt indicator | シールドを張られたクルーにキルが試みられた際の点灯が見えるプレイヤー | Medic / Shielded / Everyone / Nobody | Medic |
-| Shield breaks on murder attempt | シールドが一度のキルにより破壊されるかどうか | Toggle | On |
+| Report Degradation Duration | 容疑者候補の数が増える間隔 | Time | 3s |
 
 -----------------------
 

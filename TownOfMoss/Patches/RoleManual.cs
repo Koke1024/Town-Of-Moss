@@ -47,7 +47,7 @@ namespace TownOfUs.Roles {
             {RoleEnum.Shifter, $"Shifter\n\n" +
                               $""},
             {RoleEnum.Medic, $"Medic\n自身が死体をReportした時、会議時に容疑者候補の名前がグレーで表示されます。\n" +
-                             $"容疑者候補の数はキルからレポートまでが早いほど少なくなります。\n" + 
+                             $"容疑者候補の数はキルからレポートまでの時間が短いほど少なくなり、最短でランダムで2人まで絞り込まれます。\n" + 
                              $"容疑者候補が増える間隔	{CustomGameOptions.MedicReportDegradation}s"},
             {RoleEnum.Seer, $"Seer\n占いによってクルーメイトの陣営を知ります。占うためには一定時間移動せずに触れている必要があります。\n" +
                             $"占われた場合、クルーメイトは緑、インポスターは赤く名前が表示されます。Zombieを占った場合、Zombieが死亡します。\n" +

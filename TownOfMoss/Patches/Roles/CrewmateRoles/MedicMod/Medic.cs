@@ -9,7 +9,7 @@ namespace TownOfUs.Roles
         {
             Name = "Medic";
             ImpostorText = () => "Find victims to find killer";
-            TaskText = () => "You have information when you report.";
+            TaskText = () => "You will get more information when you report.";
             Color = new Color(0f, 0.4f, 0f, 1f);
             RoleType = RoleEnum.Medic;
         }

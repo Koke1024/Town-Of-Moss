@@ -31,16 +31,6 @@ namespace TownOfUs.CrewmateRoles.BodyGuardMod
             {
                 var bodyGuard = (BodyGuard) role;
 
-                var exPlayer = bodyGuard.exShielded;
-                if (exPlayer != null)
-                {
-                    System.Console.WriteLine(exPlayer.name + " is ex-Shielded and unvisored");
-                    exPlayer.myRend.material.SetColor("_VisorColor", Palette.VisorColor);
-                    exPlayer.myRend.material.SetFloat("_Outline", 0f);
-                    bodyGuard.exShielded = null;
-                    continue;
-                }
-
                 var player = bodyGuard.ShieldedPlayer;
                 if (player == null) continue;
 

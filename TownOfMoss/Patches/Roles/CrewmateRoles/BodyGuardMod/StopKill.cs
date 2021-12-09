@@ -15,30 +15,27 @@ namespace TownOfUs.CrewmateRoles.BodyGuardMod
         {
             if (PlayerControl.LocalPlayer.PlayerId == playerId &&
                 CustomGameOptions.NotificationShield == NotificationOptions.Shielded)
-                Coroutines.Start(Utils.FlashCoroutine(new Color(0f, 0.5f, 0f, 1f)));
+                Coroutines.Start(Utils.FlashCoroutine(new Color(0f, 0.47f, 0.23f)));
 
             if (PlayerControl.LocalPlayer.PlayerId == bodyGuardId &&
                 CustomGameOptions.NotificationShield == NotificationOptions.BodyGuard)
-                Coroutines.Start(Utils.FlashCoroutine(new Color(0f, 0.5f, 0f, 1f)));
+                Coroutines.Start(Utils.FlashCoroutine(new Color(0f, 0.47f, 0.23f)));
 
             if (CustomGameOptions.NotificationShield == NotificationOptions.Everyone)
-                Coroutines.Start(Utils.FlashCoroutine(new Color(0f, 0.5f, 0f, 1f)));
+                Coroutines.Start(Utils.FlashCoroutine(new Color(0f, 0.47f, 0.23f)));
 
             if (!flag)
                 return;
 
-            var player = Utils.PlayerById(playerId);
-            foreach (var role in Role.GetRoles(RoleEnum.BodyGuard))
-                if (((BodyGuard) role).ShieldedPlayer.PlayerId == playerId)
-                {
-                    ((BodyGuard) role).ShieldedPlayer = null;
-                    ((BodyGuard) role).defended = true;
+            foreach (var role in Role.GetRoles(RoleEnum.BodyGuard)) {
+                if (((BodyGuard)role).ShieldedPlayer.PlayerId == playerId) {
+                    ((BodyGuard)role).ShieldedPlayer = null;
+                    ((BodyGuard)role).Defended = true;
                     if (role.Player.AmOwner) {
-                        ((BodyGuard) role).Arrow.gameObject.Destroy();
+                        ((BodyGuard)role).Arrow.gameObject.Destroy();
                     }
-                    ((BodyGuard) role).exShielded = player;
-                    System.Console.WriteLine(player.name + " Is Ex-Shielded");
                 }
+            }
         }
 
         [HarmonyPriority(Priority.First)]

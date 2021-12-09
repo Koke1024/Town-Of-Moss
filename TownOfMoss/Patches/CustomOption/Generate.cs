@@ -455,7 +455,7 @@ namespace TownOfUs.CustomOption
             Medic =
                 new CustomHeaderOption(num++, "<color=#006600FF>Medic</color>");
             MedicReportDegradation =
-                new CustomNumberOption(num++, "Time Report Degradation Duration", 3, 0, 10, 3f,
+                new CustomNumberOption(num++, "Report Degradation Duration", 3, 1, 10, 3f,
                     CooldownFormat);
 
             // ShieldBreaks = new CustomToggleOption(num++, "Shield breaks on murder attempt", true);
