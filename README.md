@@ -422,9 +422,9 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
-| Guard Cooldown | 護衛のクールダウン時間 | Time | 25s |
-| Guard Duration | 護衛の継続時間 | Time | 25s |
-| Guard Range | 護衛可能範囲 | Time | 25s |
+| Guard Cooldown | 護衛のクールダウン時間 | Time | 15s |
+| Guard Duration | 護衛の継続時間 | Time | 15s |
+| Guard Range | 護衛可能範囲 | Number | 15m |
 | Who gets murder attempt indicator | キル通知の表示されるプレイヤー | BodyGuard / Shielded / Everyone / Nobody | BodyGuard |
 
 -----------------------
