@@ -538,21 +538,21 @@ namespace TownOfUs.Roles
             {
                 if (__gInstance.HackTarget != null)
                 {
-                    if (__gInstance.HackTarget.isShielded())
-                    {
-                        var medic = __gInstance.HackTarget.getBodyGuard().Player.PlayerId;
-                        var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
-                            (byte)CustomRPC.AttemptSound, SendOption.Reliable, -1);
-                        writer.Write(medic);
-                        writer.Write(__gInstance.HackTarget.PlayerId);
-                        AmongUsClient.Instance.FinishRpcImmediately(writer);
-                        if (CustomGameOptions.ShieldBreaks) __gInstance.LastHack = DateTime.UtcNow;
-
-                        StopKill.BreakShield(medic, __gInstance.HackTarget.PlayerId,
-                            CustomGameOptions.ShieldBreaks);
-
-                        return;
-                    }
+                    // if (__gInstance.HackTarget.isShielded())
+                    // {
+                    //     var medic = __gInstance.HackTarget.getBodyGuard().Player.PlayerId;
+                    //     var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
+                    //         (byte)CustomRPC.AttemptSound, SendOption.Reliable, -1);
+                    //     writer.Write(medic);
+                    //     writer.Write(__gInstance.HackTarget.PlayerId);
+                    //     AmongUsClient.Instance.FinishRpcImmediately(writer);
+                    //     if (CustomGameOptions.ShieldBreaks) __gInstance.LastHack = DateTime.UtcNow;
+                    //
+                    //     StopKill.BreakShield(medic, __gInstance.HackTarget.PlayerId,
+                    //         CustomGameOptions.ShieldBreaks);
+                    //
+                    //     return;
+                    // }
 
                     __gInstance.LastHack = DateTime.UtcNow;
                     //System.Console.WriteLine("Hacking " + __gInstance.HackTarget.Data.PlayerName + "...");

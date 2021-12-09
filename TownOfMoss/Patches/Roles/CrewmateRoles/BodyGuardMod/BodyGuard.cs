@@ -20,7 +20,7 @@ namespace TownOfUs.Roles
         public PlayerControl ClosestPlayer;
         public PlayerControl ShieldedPlayer { get; set; }
         public DateTime ShieldedTime;
-        public bool Defended = false;
+        // public bool Defended = false;
         
         public float ShieldTimer()
         {
@@ -46,10 +46,10 @@ namespace TownOfUs.Roles
             gameObj.layer = 5;
         }
         
-        internal override bool Criteria()
-        {
-            return Defended && PlayerControl.LocalPlayer.Data.IsImpostor() ||
-                   base.Criteria();
-        }
+        // internal override bool Criteria()
+        // {
+        //     return Defended && PlayerControl.LocalPlayer.Data.IsImpostor() ||
+        //            base.Criteria();
+        // }
     }
 }

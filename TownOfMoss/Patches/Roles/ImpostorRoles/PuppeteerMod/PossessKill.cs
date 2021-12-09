@@ -31,11 +31,9 @@ namespace TownOfUs.ImpostorRoles.PuppeteerMod {
             }
 
             if (role.PossessPlayer != null) {
-                // __instance.moveable = false;
-                // __instance.NetTransform.Halt();
                 if (PlayerControl.LocalPlayer == __instance) {
                     role.PossessTime += Time.fixedDeltaTime;
-                    if (role.PossessTime > CustomGameOptions.PossessMaxTime) {
+                    if (role.PossessTime > CustomGameOptions.PossessMaxTime || role.PossessPlayer.Data.IsDead) {
                         var writer2 = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                             (byte) CustomRPC.UnPossess,
                             SendOption.Reliable, -1);

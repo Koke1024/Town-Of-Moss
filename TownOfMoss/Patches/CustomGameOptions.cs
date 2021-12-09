@@ -94,11 +94,12 @@ namespace TownOfUs
         // public static bool TimeLordVitals => Generate.TimeLordVitals.Get();
         // public static ShieldOptions ShowShielded => (ShieldOptions) Generate.ShowShielded.Get();
 
-        public static NotificationOptions NotificationShield =>
-            (NotificationOptions) Generate.WhoGetsNotification.Get();
+        // public static NotificationOptions NotificationShield =>
+        //     (NotificationOptions) Generate.WhoGetsNotification.Get();
         public static float GuardRange => Generate.GuardRange.Get();
         public static float GuardDuration => Generate.GuardDuration.Get();
         public static float GuardCoolDown => Generate.GuardCoolDown.Get();
+        public static bool DieOnGuard => Generate.DieOnGuard.Get();
         public static bool ShieldBreaks => true;
         public static float MedicReportDegradation => Generate.MedicReportDegradation.Get();
         public static float SeerCd => Generate.SeerCooldown.Get();
@@ -176,6 +177,7 @@ namespace TownOfUs
         // public static int MayorExtendTime => (int) Generate.MayorExtendTime.Get();
         public static int MayorExtendTime => 0;
         public static bool AltruistTargetBody => Generate.AltruistTargetBody.Get();
+        public static bool AltruistLendBody => Generate.AltruistLendBody.Get();
         public static bool SheriffBodyReport => Generate.SheriffBodyReport.Get();
         public static float CleanCd => Generate.CleanCd.Get();
         public static float CleanDuration => Generate.CleanDuration.Get();

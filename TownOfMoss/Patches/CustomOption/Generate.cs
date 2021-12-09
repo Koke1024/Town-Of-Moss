@@ -136,13 +136,15 @@ namespace TownOfUs.CustomOption
         public static CustomHeaderOption Altruist;
         public static CustomNumberOption ReviveDuration;
         public static CustomToggleOption AltruistTargetBody;
+        public static CustomToggleOption AltruistLendBody;
         
         public static CustomHeaderOption BodyGuard;
         public static CustomNumberOption GuardRange;
         public static CustomNumberOption GuardDuration;
         public static CustomNumberOption GuardCoolDown;
+        public static CustomToggleOption DieOnGuard;
         // public static CustomStringOption ShowShielded;
-        public static CustomStringOption WhoGetsNotification;
+        // public static CustomStringOption WhoGetsNotification;
 
         public static CustomHeaderOption Charger;
         public static CustomNumberOption MaxChargeTime;
@@ -401,6 +403,8 @@ namespace TownOfUs.CustomOption
                 new CustomNumberOption(num++, "Revive Duration", 1, 1, 30, 1f, CooldownFormat);
             AltruistTargetBody =
                 new CustomToggleOption(num++, "Target's body disappears", false);
+            AltruistLendBody =
+                new CustomToggleOption(num++, "Lend Body to Victim", false);
             
             BodyGuard = new CustomHeaderOption(num++, "<color=#00773AFF>BodyGuard</color>");
             GuardCoolDown =
@@ -409,12 +413,14 @@ namespace TownOfUs.CustomOption
                 new CustomNumberOption(num++, "Guard Duration", 15, 10, 60, 1f, CooldownFormat);
             GuardRange =
                 new CustomNumberOption(num++, "Guard Range", 15, 10, 60, 1f, DistanceFormat);
+            DieOnGuard =
+                new CustomToggleOption(num++, "Dies on Guard", true);
             // ShowShielded =
             //     new CustomStringOption(num++, "Show Shielded Player",
             //         new[] {"BodyGuard", "Self", "Self+Medic", "Everyone"});
-            WhoGetsNotification =
-                new CustomStringOption(num++, "Who gets murder attempt indicator",
-                    new[] {"BodyGuard", "Shielded", "Everyone", "Nobody"});
+            // WhoGetsNotification =
+            //     new CustomStringOption(num++, "Who gets murder attempt indicator",
+            //         new[] {"BodyGuard", "Shielded", "Everyone", "Nobody"});
             
             Charger =
                 new CustomHeaderOption(num++, "<color=#FCFF33FF>Charger</color>");

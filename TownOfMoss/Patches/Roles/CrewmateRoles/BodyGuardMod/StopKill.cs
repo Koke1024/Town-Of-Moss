@@ -2,6 +2,7 @@ using HarmonyLib;
 using Hazel;
 using Reactor;
 using Reactor.Extensions;
+using TownOfUs.CustomOption;
 using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine;
@@ -13,16 +14,13 @@ namespace TownOfUs.CrewmateRoles.BodyGuardMod
     {
         public static void BreakShield(byte bodyGuardId, byte playerId, bool flag)
         {
-            if (PlayerControl.LocalPlayer.PlayerId == playerId &&
-                CustomGameOptions.NotificationShield == NotificationOptions.Shielded)
+            if (PlayerControl.LocalPlayer.PlayerId == playerId) {
                 Coroutines.Start(Utils.FlashCoroutine(new Color(0f, 0.47f, 0.23f)));
+            }
 
-            if (PlayerControl.LocalPlayer.PlayerId == bodyGuardId &&
-                CustomGameOptions.NotificationShield == NotificationOptions.BodyGuard)
+            if (PlayerControl.LocalPlayer.PlayerId == bodyGuardId) {
                 Coroutines.Start(Utils.FlashCoroutine(new Color(0f, 0.47f, 0.23f)));
-
-            if (CustomGameOptions.NotificationShield == NotificationOptions.Everyone)
-                Coroutines.Start(Utils.FlashCoroutine(new Color(0f, 0.47f, 0.23f)));
+            }
 
             if (!flag)
                 return;
@@ -30,9 +28,13 @@ namespace TownOfUs.CrewmateRoles.BodyGuardMod
             foreach (var role in Role.GetRoles(RoleEnum.BodyGuard)) {
                 if (((BodyGuard)role).ShieldedPlayer.PlayerId == playerId) {
                     ((BodyGuard)role).ShieldedPlayer = null;
-                    ((BodyGuard)role).Defended = true;
+                    // ((BodyGuard)role).Defended = true;
                     if (role.Player.AmOwner) {
                         ((BodyGuard)role).Arrow.gameObject.Destroy();
+                    }
+
+                    if (CustomGameOptions.DieOnGuard) {
+                        Utils.RpcMurderPlayer(role.Player, role.Player);                        
                     }
                 }
             }

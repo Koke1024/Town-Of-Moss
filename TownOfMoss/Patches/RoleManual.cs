@@ -87,7 +87,7 @@ namespace TownOfUs.Roles {
             {RoleEnum.Arsonist, $"Arsonist\n生存している自分以外のすべてのクルーに油を塗った後にIgniteすると勝利します。 油を塗るためには一定時間接触している必要があります。\n" +
                               $"油を塗るのに必要な接触時間	{CustomGameOptions.ArsonistDouseTime}s\n" +
                               $"油を塗るクールダウン時間	{CustomGameOptions.DouseCd}s"},
-            {RoleEnum.Altruist, $"Altruist\n自身の命と引換えに、クルーの死体を蘇生させます。蘇生には一定時間が必要になり、成功すると自分自身は死体を残さず消えます。\n" +
+            {RoleEnum.Altruist, $"Altruist\n次の会議が終わるまで死んだクルーに自分の体を貸します。\n" +
                               $"蘇生に必要な時間	{CustomGameOptions.ReviveDuration}s\n" +
                               $"蘇生中、蘇生対象の死体を見えなくする	{(CustomGameOptions.AltruistTargetBody? "On": "Off")}"},
             {RoleEnum.Phantom, $"Phantom\n死亡したインポスター以外のプレイヤーがPhantomとなる可能性があります。Phantomは会議後にランダムなベントから発生し、すべてのタスクを完了させると勝利します。\n" +
