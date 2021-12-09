@@ -46,9 +46,9 @@ namespace TownOfUs.Roles {
                               $"ペイントのクールダウン時間	{CustomGameOptions.PaintCd}s"},
             {RoleEnum.Shifter, $"Shifter\n\n" +
                               $""},
-            {RoleEnum.Medic, $"Medic\n自身がキル直後の死体をReportした時、会議時に容疑者候補の名前がグレーで表示されます。\n" +
-                             $"容疑者の数はキルからレポートまでが早いほど少なくなります。\n" + 
-                             $"情報の劣化する時間	{CustomGameOptions.MedicReportDegradation}s"},
+            {RoleEnum.Medic, $"Medic\n自身が死体をReportした時、会議時に容疑者候補の名前がグレーで表示されます。\n" +
+                             $"容疑者候補の数はキルからレポートまでが早いほど少なくなります。\n" + 
+                             $"容疑者候補が増える間隔	{CustomGameOptions.MedicReportDegradation}s"},
             {RoleEnum.Seer, $"Seer\n占いによってクルーメイトの陣営を知ります。占うためには一定時間移動せずに触れている必要があります。\n" +
                             $"占われた場合、クルーメイトは緑、インポスターは赤く名前が表示されます。Zombieを占った場合、Zombieが死亡します。\n" +
                               $"占いのクールダウン時間	{CustomGameOptions.SeerCd}s\n" +

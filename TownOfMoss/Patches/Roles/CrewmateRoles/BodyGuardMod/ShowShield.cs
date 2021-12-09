@@ -49,30 +49,6 @@ namespace TownOfUs.CrewmateRoles.BodyGuardMod
                     StopKill.BreakShield(bodyGuard.Player.PlayerId, player.PlayerId, true);
                     continue;
                 }
-
-
-                var showShielded = CustomGameOptions.ShowShielded;
-                if (showShielded == ShieldOptions.Everyone)
-                {
-                    // player.myRend.material.SetColor("_VisorColor", ProtectedColor);
-                    player.myRend.material.SetFloat("_Outline", 1f);
-                    player.myRend.material.SetColor("_OutlineColor", ProtectedColor);
-                }
-                else if (PlayerControl.LocalPlayer.PlayerId == player.PlayerId && (showShielded == ShieldOptions.Self ||
-                    showShielded == ShieldOptions.SelfAndBodyGuard))
-                {
-                    //System.Console.WriteLine("Setting " + PlayerControl.LocalPlayer.name + "'s shield");
-                    // player.myRend.material.SetColor("_VisorColor", ProtectedColor);
-                    player.myRend.material.SetFloat("_Outline", 1f);
-                    player.myRend.material.SetColor("_OutlineColor", ProtectedColor);
-                }
-                else if (PlayerControl.LocalPlayer.Is(RoleEnum.BodyGuard) &&
-                         (showShielded == ShieldOptions.BodyGuard || showShielded == ShieldOptions.SelfAndBodyGuard))
-                {
-                    // player.myRend.material.SetColor("_VisorColor", ProtectedColor);
-                    player.myRend.material.SetFloat("_Outline", 1f);
-                    player.myRend.material.SetColor("_OutlineColor", ProtectedColor);
-                }
             }
         }
     }

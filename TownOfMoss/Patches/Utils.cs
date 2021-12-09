@@ -170,7 +170,15 @@ namespace TownOfUs
             return Role.GetRoles(RoleEnum.BodyGuard).Any(role =>
             {
                 var shieldedPlayer = ((BodyGuard)role).ShieldedPlayer;
-                return shieldedPlayer != null && player.PlayerId == shieldedPlayer.PlayerId;
+                if (shieldedPlayer == null || player.PlayerId != shieldedPlayer.PlayerId) {
+                    return false;
+                }
+
+                if (Vector2.Distance(player.GetTruePosition(), role.Player.GetTruePosition()) <=
+                    CustomGameOptions.GuardRange / 2.0f) {
+                    return true;
+                }
+                return false;
             });
         }
 

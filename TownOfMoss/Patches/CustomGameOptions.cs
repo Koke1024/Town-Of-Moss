@@ -92,7 +92,7 @@ namespace TownOfUs
         public static float RewindCooldown => Generate.RewindCooldown.Get();
         public static bool TimeLordVitals => false;
         // public static bool TimeLordVitals => Generate.TimeLordVitals.Get();
-        public static ShieldOptions ShowShielded => (ShieldOptions) Generate.ShowShielded.Get();
+        // public static ShieldOptions ShowShielded => (ShieldOptions) Generate.ShowShielded.Get();
 
         public static NotificationOptions NotificationShield =>
             (NotificationOptions) Generate.WhoGetsNotification.Get();

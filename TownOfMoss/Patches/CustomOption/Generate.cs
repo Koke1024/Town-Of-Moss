@@ -141,7 +141,7 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption GuardRange;
         public static CustomNumberOption GuardDuration;
         public static CustomNumberOption GuardCoolDown;
-        public static CustomStringOption ShowShielded;
+        // public static CustomStringOption ShowShielded;
         public static CustomStringOption WhoGetsNotification;
 
         public static CustomHeaderOption Charger;
@@ -409,12 +409,12 @@ namespace TownOfUs.CustomOption
                 new CustomNumberOption(num++, "Guard Duration", 15, 10, 60, 1f, CooldownFormat);
             GuardRange =
                 new CustomNumberOption(num++, "Guard Range", 15, 10, 60, 1f, DistanceFormat);
-            ShowShielded =
-                new CustomStringOption(num++, "Show Shielded Player",
-                    new[] {"Medic", "Self", "Self+Medic", "Everyone"});
+            // ShowShielded =
+            //     new CustomStringOption(num++, "Show Shielded Player",
+            //         new[] {"BodyGuard", "Self", "Self+Medic", "Everyone"});
             WhoGetsNotification =
                 new CustomStringOption(num++, "Who gets murder attempt indicator",
-                    new[] {"Medic", "Shielded", "Everyone", "Nobody"});
+                    new[] {"BodyGuard", "Shielded", "Everyone", "Nobody"});
             
             Charger =
                 new CustomHeaderOption(num++, "<color=#FCFF33FF>Charger</color>");
