@@ -8,6 +8,7 @@ using System.Reflection;
 using Reactor;
 using TownOfUs.CrewmateRoles.MedicMod;
 using Reactor.Extensions;
+using TownOfUs.CrewmateRoles.BodyGuardMod;
 using TownOfUs.Extensions;
 using TownOfUs.Roles.Modifiers;
 using UnityEngine;
@@ -473,7 +474,7 @@ namespace TownOfUs.Roles
                 {
                     if (__gInstance.KillTarget.isShielded())
                     {
-                        var medic = __gInstance.HackTarget.getMedic().Player.PlayerId;
+                        var medic = __gInstance.HackTarget.getBodyGuard().Player.PlayerId;
                         var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                             (byte)CustomRPC.AttemptSound, SendOption.Reliable, -1);
                         writer.Write(medic);
@@ -539,7 +540,7 @@ namespace TownOfUs.Roles
                 {
                     if (__gInstance.HackTarget.isShielded())
                     {
-                        var medic = __gInstance.HackTarget.getMedic().Player.PlayerId;
+                        var medic = __gInstance.HackTarget.getBodyGuard().Player.PlayerId;
                         var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                             (byte)CustomRPC.AttemptSound, SendOption.Reliable, -1);
                         writer.Write(medic);

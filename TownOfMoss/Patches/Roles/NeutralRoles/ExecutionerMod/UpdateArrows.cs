@@ -3,7 +3,7 @@ using Reactor.Extensions;
 using TownOfUs.Extensions;
 using TownOfUs.Roles;
 
-namespace TownOfUs.CrewmateRoles.ExecutionerMod
+namespace TownOfUs.NeutralRoles.ExecutionerMod
 {
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
     public class UpdateArrows

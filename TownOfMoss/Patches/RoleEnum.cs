@@ -3,6 +3,7 @@ namespace TownOfUs
     public enum RoleEnum
     {
         Altruist,
+        BodyGuard,
         Charger,
         Druid,
         Engineer,

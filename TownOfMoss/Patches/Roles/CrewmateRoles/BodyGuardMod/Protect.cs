@@ -1,8 +1,11 @@
-﻿using HarmonyLib;
+﻿using System;
+using HarmonyLib;
 using Hazel;
 using TownOfUs.Roles;
+using Il2CppSystem;
+using DateTime = Il2CppSystem.DateTime;
 
-namespace TownOfUs.CrewmateRoles.MedicMod
+namespace TownOfUs.CrewmateRoles.BodyGuardMod
 {
     [HarmonyPatch(typeof(KillButton), nameof(KillButton.DoClick))]
     public class Protect
@@ -10,12 +13,14 @@ namespace TownOfUs.CrewmateRoles.MedicMod
         public static bool Prefix(KillButton __instance)
         {
             if (__instance != DestroyableSingleton<HudManager>.Instance.KillButton) return true;
-            var flag = PlayerControl.LocalPlayer.Is(RoleEnum.Medic);
+            var flag = PlayerControl.LocalPlayer.Is(RoleEnum.BodyGuard);
             if (!flag) return true;
-            var role = Role.GetRole<Medic>(PlayerControl.LocalPlayer);
+            var role = Role.GetRole<BodyGuard>(PlayerControl.LocalPlayer);
             if (!PlayerControl.LocalPlayer.CanMove) return false;
             if (PlayerControl.LocalPlayer.Data.IsDead) return false;
-            if (role.UsedAbility || role.ClosestPlayer == null) return false;
+            if (role.ClosestPlayer == null) return false;
+            var flag2 = role.ShieldTimer() == 0f;
+            if (!flag2) return false;
 
             var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                 (byte) CustomRPC.Protect, SendOption.Reliable, -1);
@@ -24,7 +29,8 @@ namespace TownOfUs.CrewmateRoles.MedicMod
             AmongUsClient.Instance.FinishRpcImmediately(writer);
 
             role.ShieldedPlayer = role.ClosestPlayer;
-            role.UsedAbility = true;
+            role.ShieldedTime = DateTime.UtcNow;
+            role.SetProtectionTarget();
             return false;
         }
     }

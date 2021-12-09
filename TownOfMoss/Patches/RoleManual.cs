@@ -8,6 +8,11 @@ namespace TownOfUs.Roles {
         public static readonly Dictionary<RoleEnum, string> roleManual = new Dictionary<RoleEnum, string> {
             {RoleEnum.Mayor, $"Mayor\n最多得票者が複数いた場合、Mayorに投票されたクルーが追放されます。\nどこにいても緊急会議を開けるボタンを持っています。\n緊急会議ボタンが未使用のときにキルされると、即座に緊急会議が開かれます。\n" +
                              $"ボタンを未使用でキルされた際に即座に緊急会議が開かれる {(CustomGameOptions.MayorMeetingOnDead? "On": "Off")}"},
+            {RoleEnum.BodyGuard, $"BodyGuard\n他のプレイヤーを一定時間護衛します。近くにいる間、護衛されているプレイヤーに対するキルを防ぎます。\n" +
+                               $"護衛のクールダウン時間	 {CustomGameOptions.GuardCoolDown}s\n" +
+                               $"護衛の継続時間	 {CustomGameOptions.GuardDuration}s\n" +
+                               $"護衛の有効距離	 {CustomGameOptions.GuardRange}s\n" +
+                               $"自身でキルした相手をReportできる {(CustomGameOptions.SheriffBodyReport? "On": "Off")}"},
             {RoleEnum.Sheriff, $"Sheriff\nキルボタンを持っており、第三陣営、インポスターをキルすることができますが、対象がクルーメイトだった場合は自身が死亡します。\n" +
                                $"対象がクルーメイトでもキルする {(CustomGameOptions.SheriffKillOther? "On": "Off")}\n" +
                                $"Madmateもキル対象に含まれる {(CustomGameOptions.SheriffKillsMadmate? "On": "Off")}\n" +
@@ -41,12 +46,9 @@ namespace TownOfUs.Roles {
                               $"ペイントのクールダウン時間	{CustomGameOptions.PaintCd}s"},
             {RoleEnum.Shifter, $"Shifter\n\n" +
                               $""},
-            {RoleEnum.Medic, $"Medic\nゲーム中一回、他のクルーに対して一度だけキルを防ぐシールドを張り、そのクルーにキルが行われると、設定されたプレイヤーに通知されます。" +
-                             "また、自身がキル直後の死体をReportした時、チャット欄に追加情報を得られます。\n" +
-                             $"死体発見時の追加情報	{(CustomGameOptions.ShowReports? "On": "Off")}\n" +
-                             $"キルしたクルーの名前通知	{CustomGameOptions.MedicReportNameDuration}s\n" +
-                             $"キルしたクルーの色タイプ通知	{CustomGameOptions.MedicReportColorDuration}s\n" + 
-                             $"キル通知が見えるプレイヤー	{new[] {"Medic", "Shielded", "Everyone", "Nobody"}[(int)CustomGameOptions.NotificationShield]}\n"},
+            {RoleEnum.Medic, $"Medic\n自身がキル直後の死体をReportした時、会議時に容疑者候補の名前がグレーで表示されます。\n" +
+                             $"容疑者の数はキルからレポートまでが早いほど少なくなります。\n" + 
+                             $"情報の劣化する時間	{CustomGameOptions.MedicReportDegradation}s"},
             {RoleEnum.Seer, $"Seer\n占いによってクルーメイトの陣営を知ります。占うためには一定時間移動せずに触れている必要があります。\n" +
                             $"占われた場合、クルーメイトは緑、インポスターは赤く名前が表示されます。Zombieを占った場合、Zombieが死亡します。\n" +
                               $"占いのクールダウン時間	{CustomGameOptions.SeerCd}s\n" +

@@ -7,6 +7,7 @@ using Hazel;
 using Reactor;
 using Reactor.Extensions;
 using TownOfUs.CrewmateRoles.AltruistMod;
+using TownOfUs.CrewmateRoles.BodyGuardMod;
 using TownOfUs.CrewmateRoles.ChargerMod;
 using TownOfUs.CrewmateRoles.MedicMod;
 using TownOfUs.CrewmateRoles.SwapperMod;
@@ -103,7 +104,6 @@ namespace TownOfUs
             var crewmates = Utils.GetCrewmates(impostors);
             crewmates.Shuffle();
             impostors.Shuffle();
-            PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"RPC SET ROLE IMP{impostors.Count} -> CREW{crewmates.Count}");
             
             SortRoles(CrewmateRoles);
             var maxNeutral = Il2CppSystem.Math.Min(PlayerControl.AllPlayerControls.Count - impostors.Count - 1, CustomGameOptions.MaxNeutralRoles);
@@ -290,6 +290,7 @@ namespace TownOfUs
                             case RoleEnum.Impostor: new Impostor(Utils.PlayerById(readByte)); break;
                             case RoleEnum.Crewmate: new Crewmate(Utils.PlayerById(readByte)); break;
                             case RoleEnum.Altruist: new Altruist(Utils.PlayerById(readByte)); break;
+                            case RoleEnum.BodyGuard: new BodyGuard(Utils.PlayerById(readByte)); break;
                             case RoleEnum.Charger: new Charger(Utils.PlayerById(readByte)); break;
                             case RoleEnum.Druid: new Druid(Utils.PlayerById(readByte)); break;
                             case RoleEnum.SecurityGuard: new SecurityGuard(Utils.PlayerById(readByte)); break;
@@ -514,10 +515,10 @@ namespace TownOfUs
                         readByte1 = reader.ReadByte();
                         readByte2 = reader.ReadByte();
 
-                        var medic = Utils.PlayerById(readByte1);
+                        var bodyGuard = Utils.PlayerById(readByte1);
                         var shield = Utils.PlayerById(readByte2);
-                        Role.GetRole<Medic>(medic).ShieldedPlayer = shield;
-                        Role.GetRole<Medic>(medic).UsedAbility = true;
+                        Role.GetRole<BodyGuard>(bodyGuard).ShieldedPlayer = shield;
+                        Role.GetRole<BodyGuard>(bodyGuard).ShieldedTime = Il2CppSystem.DateTime.UtcNow;
                         break;
                     case CustomRPC.RewindRevive:
                         readByte = reader.ReadByte();
@@ -528,9 +529,9 @@ namespace TownOfUs
                         ReviveSelf.ReviveBody(Utils.PlayerById(readByte));
                         break;
                     case CustomRPC.AttemptSound:
-                        var medicId = reader.ReadByte();
+                        var bodyGuardId = reader.ReadByte();
                         readByte = reader.ReadByte();
-                        StopKill.BreakShield(medicId, readByte, CustomGameOptions.ShieldBreaks);
+                        StopKill.BreakShield(bodyGuardId, readByte, CustomGameOptions.ShieldBreaks);
                         break;
                     case CustomRPC.BypassKill:
                         var killer = Utils.PlayerById(reader.ReadByte());
@@ -868,6 +869,9 @@ namespace TownOfUs
 
                 if (Check(CustomGameOptions.MedicOn))
                     CrewmateRoles.Add((typeof(Medic), (byte)RoleEnum.Medic, CustomGameOptions.MedicOn));
+
+                if (Check(CustomGameOptions.BodyGuardOn))
+                    CrewmateRoles.Add((typeof(BodyGuard), (byte)RoleEnum.BodyGuard, CustomGameOptions.BodyGuardOn));
 
                 if (Check(CustomGameOptions.SeerOn))
                     CrewmateRoles.Add((typeof(Seer), (byte)RoleEnum.Seer, CustomGameOptions.SeerOn));

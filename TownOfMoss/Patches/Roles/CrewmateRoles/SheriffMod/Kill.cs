@@ -1,6 +1,7 @@
 ﻿using System;
 using HarmonyLib;
 using Hazel;
+using TownOfUs.CrewmateRoles.BodyGuardMod;
 using TownOfUs.CrewmateRoles.MedicMod;
 using TownOfUs.Extensions;
 using TownOfUs.Roles;
@@ -28,7 +29,7 @@ namespace TownOfUs.CrewmateRoles.SheriffMod
             role.bulletCount = 0;
             if (role.ClosestPlayer.isShielded())
             {
-                var medic = role.ClosestPlayer.getMedic().Player.PlayerId;
+                var medic = role.ClosestPlayer.getBodyGuard().Player.PlayerId;
                 var writer1 = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                     (byte) CustomRPC.AttemptSound, SendOption.Reliable, -1);
                 writer1.Write(medic);

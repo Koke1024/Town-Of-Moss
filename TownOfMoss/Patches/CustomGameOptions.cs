@@ -1,5 +1,5 @@
 using TownOfUs.CrewmateRoles.EngineerMod;
-using TownOfUs.CrewmateRoles.MedicMod;
+using TownOfUs.CrewmateRoles.BodyGuardMod;
 using TownOfUs.CrewmateRoles.SeerMod;
 using TownOfUs.CustomOption;
 using TownOfUs.ImpostorRoles.MorphlingMod;
@@ -13,6 +13,7 @@ namespace TownOfUs
     public static class CustomGameOptions
     {
         public static int MayorOn => (int) Generate.MayorOn.Get();
+        public static int BodyGuardOn => (int) Generate.BodyGuardOn.Get();
         public static int JesterOn => (int) Generate.JesterOn.Get();
         public static int LoversOn => 0;
         // public static int LoversOn => (int) Generate.LoversOn.Get();
@@ -81,11 +82,6 @@ namespace TownOfUs
         // public static bool MayorAnonymous => Generate.MayorAnonymous.Get();
         public static float ShifterCd => Generate.ShifterCd.Get();
         public static ShiftEnum WhoShifts => (ShiftEnum) Generate.WhoShifts.Get();
-        public static float FootprintSize => Generate.FootprintSize.Get();
-        public static float FootprintInterval => Generate.FootprintInterval.Get();
-        public static float FootprintDuration => Generate.FootprintDuration.Get();
-        public static bool AnonymousFootPrint => Generate.AnonymousFootPrint.Get();
-        public static bool VentFootprintVisible => Generate.VentFootprintVisible.Get();
         public static float InvestigatorSeeColorRange => Generate.InvestigatorSeeColorRange.Get();
         public static float InvestigatorSeeRange => Generate.InvestigatorSeeRange.Get();
         public static float InvestigatorMapUpdate => Generate.InvestigatorMapUpdate.Get();
@@ -100,12 +96,11 @@ namespace TownOfUs
 
         public static NotificationOptions NotificationShield =>
             (NotificationOptions) Generate.WhoGetsNotification.Get();
-
+        public static float GuardRange => Generate.GuardRange.Get();
+        public static float GuardDuration => Generate.GuardDuration.Get();
+        public static float GuardCoolDown => Generate.GuardCoolDown.Get();
         public static bool ShieldBreaks => true;
-        // public static bool ShieldBreaks => Generate.ShieldBreaks.Get();
-        public static float MedicReportNameDuration => Generate.MedicReportNameDuration.Get();
-        public static float MedicReportColorDuration => Generate.MedicReportColorDuration.Get();
-        public static bool ShowReports => Generate.MedicReportSwitch.Get();
+        public static float MedicReportDegradation => Generate.MedicReportDegradation.Get();
         public static float SeerCd => Generate.SeerCooldown.Get();
         public static float MaxChargeTime => Generate.MaxChargeTime.Get();
         public static float DruidReviveRange => Generate.DruidReviveRange.Get();

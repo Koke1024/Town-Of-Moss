@@ -2,19 +2,19 @@ using HarmonyLib;
 using TownOfUs.Roles;
 using UnityEngine;
 
-namespace TownOfUs.CrewmateRoles.MedicMod
+namespace TownOfUs.CrewmateRoles.BodyGuardMod
 {
     public enum ShieldOptions
     {
-        Medic = 0,
+        BodyGuard = 0,
         Self = 1,
-        SelfAndMedic = 2,
+        SelfAndBodyGuard = 2,
         Everyone = 3
     }
 
     public enum NotificationOptions
     {
-        Medic = 0,
+        BodyGuard = 0,
         Shielded = 1,
         Everyone = 2,
         Nobody = 3
@@ -27,26 +27,26 @@ namespace TownOfUs.CrewmateRoles.MedicMod
 
         public static void Postfix(HudManager __instance)
         {
-            foreach (var role in Role.GetRoles(RoleEnum.Medic))
+            foreach (var role in Role.GetRoles(RoleEnum.BodyGuard))
             {
-                var medic = (Medic) role;
+                var bodyGuard = (BodyGuard) role;
 
-                var exPlayer = medic.exShielded;
+                var exPlayer = bodyGuard.exShielded;
                 if (exPlayer != null)
                 {
                     System.Console.WriteLine(exPlayer.name + " is ex-Shielded and unvisored");
                     exPlayer.myRend.material.SetColor("_VisorColor", Palette.VisorColor);
                     exPlayer.myRend.material.SetFloat("_Outline", 0f);
-                    medic.exShielded = null;
+                    bodyGuard.exShielded = null;
                     continue;
                 }
 
-                var player = medic.ShieldedPlayer;
+                var player = bodyGuard.ShieldedPlayer;
                 if (player == null) continue;
 
-                if (player.Data.IsDead || medic.Player.Data.IsDead)
+                if (player.Data.IsDead || bodyGuard.Player.Data.IsDead)
                 {
-                    StopKill.BreakShield(medic.Player.PlayerId, player.PlayerId, true);
+                    StopKill.BreakShield(bodyGuard.Player.PlayerId, player.PlayerId, true);
                     continue;
                 }
 
@@ -59,15 +59,15 @@ namespace TownOfUs.CrewmateRoles.MedicMod
                     player.myRend.material.SetColor("_OutlineColor", ProtectedColor);
                 }
                 else if (PlayerControl.LocalPlayer.PlayerId == player.PlayerId && (showShielded == ShieldOptions.Self ||
-                    showShielded == ShieldOptions.SelfAndMedic))
+                    showShielded == ShieldOptions.SelfAndBodyGuard))
                 {
                     //System.Console.WriteLine("Setting " + PlayerControl.LocalPlayer.name + "'s shield");
                     // player.myRend.material.SetColor("_VisorColor", ProtectedColor);
                     player.myRend.material.SetFloat("_Outline", 1f);
                     player.myRend.material.SetColor("_OutlineColor", ProtectedColor);
                 }
-                else if (PlayerControl.LocalPlayer.Is(RoleEnum.Medic) &&
-                         (showShielded == ShieldOptions.Medic || showShielded == ShieldOptions.SelfAndMedic))
+                else if (PlayerControl.LocalPlayer.Is(RoleEnum.BodyGuard) &&
+                         (showShielded == ShieldOptions.BodyGuard || showShielded == ShieldOptions.SelfAndBodyGuard))
                 {
                     // player.myRend.material.SetColor("_VisorColor", ProtectedColor);
                     player.myRend.material.SetFloat("_Outline", 1f);

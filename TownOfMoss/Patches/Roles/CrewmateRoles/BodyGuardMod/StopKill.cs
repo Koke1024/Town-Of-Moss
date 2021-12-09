@@ -1,23 +1,24 @@
 using HarmonyLib;
 using Hazel;
 using Reactor;
+using Reactor.Extensions;
 using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine;
 
-namespace TownOfUs.CrewmateRoles.MedicMod
+namespace TownOfUs.CrewmateRoles.BodyGuardMod
 {
     [HarmonyPatch(typeof(KillButton), nameof(KillButton.DoClick))]
     public class StopKill
     {
-        public static void BreakShield(byte medicId, byte playerId, bool flag)
+        public static void BreakShield(byte bodyGuardId, byte playerId, bool flag)
         {
             if (PlayerControl.LocalPlayer.PlayerId == playerId &&
                 CustomGameOptions.NotificationShield == NotificationOptions.Shielded)
                 Coroutines.Start(Utils.FlashCoroutine(new Color(0f, 0.5f, 0f, 1f)));
 
-            if (PlayerControl.LocalPlayer.PlayerId == medicId &&
-                CustomGameOptions.NotificationShield == NotificationOptions.Medic)
+            if (PlayerControl.LocalPlayer.PlayerId == bodyGuardId &&
+                CustomGameOptions.NotificationShield == NotificationOptions.BodyGuard)
                 Coroutines.Start(Utils.FlashCoroutine(new Color(0f, 0.5f, 0f, 1f)));
 
             if (CustomGameOptions.NotificationShield == NotificationOptions.Everyone)
@@ -27,17 +28,17 @@ namespace TownOfUs.CrewmateRoles.MedicMod
                 return;
 
             var player = Utils.PlayerById(playerId);
-            foreach (var role in Role.GetRoles(RoleEnum.Medic))
-                if (((Medic) role).ShieldedPlayer.PlayerId == playerId)
+            foreach (var role in Role.GetRoles(RoleEnum.BodyGuard))
+                if (((BodyGuard) role).ShieldedPlayer.PlayerId == playerId)
                 {
-                    ((Medic) role).ShieldedPlayer = null;
-                    ((Medic) role).exShielded = player;
+                    ((BodyGuard) role).ShieldedPlayer = null;
+                    ((BodyGuard) role).defended = true;
+                    if (role.Player.AmOwner) {
+                        ((BodyGuard) role).Arrow.gameObject.Destroy();
+                    }
+                    ((BodyGuard) role).exShielded = player;
                     System.Console.WriteLine(player.name + " Is Ex-Shielded");
                 }
-
-            player.myRend.material.SetColor("_VisorColor", Palette.VisorColor);
-            player.myRend.material.SetFloat("_Outline", 0f);
-            //System.Console.WriteLine("Broke " + player.name + "'s shield");
         }
 
         [HarmonyPriority(Priority.First)]
@@ -54,7 +55,7 @@ namespace TownOfUs.CrewmateRoles.MedicMod
                 {
                     var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                         (byte) CustomRPC.AttemptSound, SendOption.Reliable, -1);
-                    writer.Write(target.getMedic().Player.PlayerId);
+                    writer.Write(target.getBodyGuard().Player.PlayerId);
                     writer.Write(target.PlayerId);
                     AmongUsClient.Instance.FinishRpcImmediately(writer);
 
@@ -76,7 +77,7 @@ namespace TownOfUs.CrewmateRoles.MedicMod
                         }
                     }
 
-                    BreakShield(target.getMedic().Player.PlayerId, target.PlayerId, CustomGameOptions.ShieldBreaks);
+                    BreakShield(target.getBodyGuard().Player.PlayerId, target.PlayerId, CustomGameOptions.ShieldBreaks);
                 }
 
 

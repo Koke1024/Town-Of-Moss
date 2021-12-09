@@ -17,7 +17,7 @@ namespace TownOfUs
     {
         private static Sprite Shift => TownOfUs.Shift;
         private static Sprite Rewind => TownOfUs.Rewind;
-        private static Sprite Medic => TownOfUs.MedicSprite;
+        private static Sprite Shield => TownOfUs.MedicSprite;
         private static Sprite Seer => TownOfUs.SeerSprite;
         private static Sprite Douse => TownOfUs.DouseSprite;
         private static Sprite Revive => TownOfUs.ReviveSprite;
@@ -46,9 +46,9 @@ namespace TownOfUs
                 __instance.KillButton.graphic.sprite = Seer;
                 flag = true;
             }
-            else if (PlayerControl.LocalPlayer.Is(RoleEnum.Medic))
+            else if (PlayerControl.LocalPlayer.Is(RoleEnum.BodyGuard))
             {
-                __instance.KillButton.graphic.sprite = Medic;
+                __instance.KillButton.graphic.sprite = Shield;
                 flag = true;
             }
             else if (PlayerControl.LocalPlayer.Is(RoleEnum.Arsonist))

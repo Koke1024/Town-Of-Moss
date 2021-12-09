@@ -167,20 +167,20 @@ namespace TownOfUs
 
         public static bool isShielded(this PlayerControl player)
         {
-            return Role.GetRoles(RoleEnum.Medic).Any(role =>
+            return Role.GetRoles(RoleEnum.BodyGuard).Any(role =>
             {
-                var shieldedPlayer = ((Medic)role).ShieldedPlayer;
+                var shieldedPlayer = ((BodyGuard)role).ShieldedPlayer;
                 return shieldedPlayer != null && player.PlayerId == shieldedPlayer.PlayerId;
             });
         }
 
-        public static Medic getMedic(this PlayerControl player)
+        public static BodyGuard getBodyGuard(this PlayerControl player)
         {
-            return Role.GetRoles(RoleEnum.Medic).FirstOrDefault(role =>
+            return Role.GetRoles(RoleEnum.BodyGuard).FirstOrDefault(role =>
             {
-                var shieldedPlayer = ((Medic)role).ShieldedPlayer;
+                var shieldedPlayer = ((BodyGuard)role).ShieldedPlayer;
                 return shieldedPlayer != null && player.PlayerId == shieldedPlayer.PlayerId;
-            }) as Medic;
+            }) as BodyGuard;
         }
 
         public static PlayerControl getClosestPlayer(PlayerControl refPlayer, List<PlayerControl> AllPlayers)

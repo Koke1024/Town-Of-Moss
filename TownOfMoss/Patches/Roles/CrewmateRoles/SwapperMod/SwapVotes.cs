@@ -36,9 +36,6 @@ namespace TownOfUs.CrewmateRoles.SwapperMod
         {
             public static void Postfix(MeetingHud __instance)
             {
-                PluginSingleton<TownOfUs>.Instance.Log.LogMessage(Swap1 == null ? "null" : Swap1.ToString());
-                PluginSingleton<TownOfUs>.Instance.Log.LogMessage(Swap2 == null ? "null" : Swap2.ToString());
-
                 if (!((Swap1 != null) & (Swap2 != null))) return;
 
                 if (PlayerControl.LocalPlayer.Is(RoleEnum.Swapper))

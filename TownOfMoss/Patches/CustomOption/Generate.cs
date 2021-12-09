@@ -27,6 +27,7 @@ namespace TownOfUs.CustomOption
         #region Crewmate Roles
         public static CustomHeaderOption CrewmateRoles;
         public static CustomNumberOption MayorOn;
+        public static CustomNumberOption BodyGuardOn;
         public static CustomNumberOption LoversOn;
         public static CustomNumberOption SheriffOn;
         public static CustomNumberOption EngineerOn;
@@ -100,11 +101,6 @@ namespace TownOfUs.CustomOption
         public static CustomToggleOption EngineerCanFixOnlyInVent;
 
         public static CustomHeaderOption Investigator;
-        public static CustomNumberOption FootprintSize;
-        public static CustomNumberOption FootprintInterval;
-        public static CustomNumberOption FootprintDuration;
-        public static CustomToggleOption AnonymousFootPrint;
-        public static CustomToggleOption VentFootprintVisible;
         public static CustomNumberOption InvestigatorSeeColorRange;
         public static CustomNumberOption InvestigatorSeeRange;
         public static CustomNumberOption InvestigatorMapUpdate;
@@ -114,15 +110,9 @@ namespace TownOfUs.CustomOption
         public static CustomToggleOption RewindFlash;
         public static CustomNumberOption RewindDuration;
         public static CustomNumberOption RewindCooldown;
-        // public static CustomToggleOption TimeLordVitals;
 
         public static CustomHeaderOption Medic;
-        public static CustomStringOption ShowShielded;
-        public static CustomToggleOption MedicReportSwitch;
-        public static CustomNumberOption MedicReportNameDuration;
-        public static CustomNumberOption MedicReportColorDuration;
-        public static CustomStringOption WhoGetsNotification;
-        // public static CustomToggleOption ShieldBreaks;
+        public static CustomNumberOption MedicReportDegradation;
 
         public static CustomHeaderOption Seer;
         public static CustomNumberOption SeerCooldown;
@@ -146,6 +136,13 @@ namespace TownOfUs.CustomOption
         public static CustomHeaderOption Altruist;
         public static CustomNumberOption ReviveDuration;
         public static CustomToggleOption AltruistTargetBody;
+        
+        public static CustomHeaderOption BodyGuard;
+        public static CustomNumberOption GuardRange;
+        public static CustomNumberOption GuardDuration;
+        public static CustomNumberOption GuardCoolDown;
+        public static CustomStringOption ShowShielded;
+        public static CustomStringOption WhoGetsNotification;
 
         public static CustomHeaderOption Charger;
         public static CustomNumberOption MaxChargeTime;
@@ -315,6 +312,8 @@ namespace TownOfUs.CustomOption
             CrewmateRoles = new CustomHeaderOption(num++, "<color=#00FF00FF>Crewmate Roles</color>");
             AltruistOn = new CustomNumberOption(true, num++, "<color=#660000FF>Altruist</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
+            BodyGuardOn = new CustomNumberOption(true, num++, "<color=#00773AFF>BodyGuard</color>", 90.0f, 0f, 100f, 10f,
+                PercentFormat);
             ChargerOn = new CustomNumberOption(true, num++, "<color=#FCFF33FF>Charger</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
             DruidOn = new CustomNumberOption(true, num++, "<color=#66008EFF>Druid</color>", 90.0f, 0f, 100f, 10f,
@@ -403,6 +402,20 @@ namespace TownOfUs.CustomOption
             AltruistTargetBody =
                 new CustomToggleOption(num++, "Target's body disappears", false);
             
+            BodyGuard = new CustomHeaderOption(num++, "<color=#00773AFF>BodyGuard</color>");
+            GuardCoolDown =
+                new CustomNumberOption(num++, "Guard Cooldown", 15, 10, 30, 1f, CooldownFormat);
+            GuardDuration =
+                new CustomNumberOption(num++, "Guard Duration", 15, 10, 60, 1f, CooldownFormat);
+            GuardRange =
+                new CustomNumberOption(num++, "Guard Range", 15, 10, 60, 1f, DistanceFormat);
+            ShowShielded =
+                new CustomStringOption(num++, "Show Shielded Player",
+                    new[] {"Medic", "Self", "Self+Medic", "Everyone"});
+            WhoGetsNotification =
+                new CustomStringOption(num++, "Who gets murder attempt indicator",
+                    new[] {"Medic", "Shielded", "Everyone", "Nobody"});
+            
             Charger =
                 new CustomHeaderOption(num++, "<color=#FCFF33FF>Charger</color>");
             MaxChargeTime = new CustomNumberOption(num++, "Time to Charge Maximum", 2f, 1f, 5f, 0.5f, CooldownFormat);
@@ -441,24 +454,9 @@ namespace TownOfUs.CustomOption
             
             Medic =
                 new CustomHeaderOption(num++, "<color=#006600FF>Medic</color>");
-
-            ShowShielded =
-                new CustomStringOption(num++, "Show Shielded Player",
-                    new[] {"Medic", "Self", "Self+Medic", "Everyone"});
-
-            MedicReportSwitch = new CustomToggleOption(num++, "Show Medic Reports");
-
-            MedicReportNameDuration =
-                new CustomNumberOption(num++, "Time Report Shows Name", 0, 0, 60, 2.5f,
+            MedicReportDegradation =
+                new CustomNumberOption(num++, "Time Report Degradation Duration", 3, 0, 10, 3f,
                     CooldownFormat);
-
-            MedicReportColorDuration =
-                new CustomNumberOption(num++, "Time Report Shows Color Type", 15, 0, 120, 2.5f,
-                    CooldownFormat);
-
-            WhoGetsNotification =
-                new CustomStringOption(num++, "Who gets murder attempt indicator",
-                    new[] {"Medic", "Shielded", "Everyone", "Nobody"});
 
             // ShieldBreaks = new CustomToggleOption(num++, "Shield breaks on murder attempt", true);
 

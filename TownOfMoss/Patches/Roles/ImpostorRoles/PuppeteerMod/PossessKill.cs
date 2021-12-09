@@ -2,6 +2,7 @@ using HarmonyLib;
 using System.Collections.Generic;
 using System.Linq;
 using Hazel;
+using TownOfUs.CrewmateRoles.BodyGuardMod;
 using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine;
@@ -47,6 +48,7 @@ namespace TownOfUs.ImpostorRoles.PuppeteerMod {
             if (role.duration > 0) {
                 if (role.PossessPlayer == null) {
                     __instance.moveable = false;
+                    role.Player.NetTransform.Halt();
                     role.duration -= Time.fixedDeltaTime;
                 }
 
@@ -63,6 +65,22 @@ namespace TownOfUs.ImpostorRoles.PuppeteerMod {
                 if (Utils.SetClosestPlayer(ref closestPlayer,
                     GameOptionsData.KillDistances[PlayerControl.GameOptions.KillDistance] * 0.75f, targets
                 )) {
+                    if (closestPlayer.isShielded())
+                    {
+                        var bodyGuard = closestPlayer.getBodyGuard().Player.PlayerId;
+                        var writer1 = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
+                            (byte) CustomRPC.AttemptSound, SendOption.Reliable, -1);
+                        writer1.Write(bodyGuard);
+                        writer1.Write(closestPlayer.PlayerId);
+                        AmongUsClient.Instance.FinishRpcImmediately(writer1);
+
+                        if (CustomGameOptions.ShieldBreaks) {
+                            role.KillUnPossess();
+                        }
+
+                        StopKill.BreakShield(bodyGuard, closestPlayer.PlayerId, CustomGameOptions.ShieldBreaks);
+                        return;
+                    }
                     
                     var writer2 = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                         (byte) CustomRPC.PossessKill,

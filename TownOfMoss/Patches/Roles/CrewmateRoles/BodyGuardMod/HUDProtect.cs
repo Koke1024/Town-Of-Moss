@@ -1,10 +1,11 @@
-﻿using HarmonyLib;
+﻿using System;
+using HarmonyLib;
 using TownOfUs.Roles;
 
-namespace TownOfUs.CrewmateRoles.MedicMod
+namespace TownOfUs.CrewmateRoles.BodyGuardMod
 {
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
-    public class HUDRewind
+    public class HUDProtect
     {
         public static void Postfix(PlayerControl __instance)
         {
@@ -16,25 +17,23 @@ namespace TownOfUs.CrewmateRoles.MedicMod
             if (PlayerControl.AllPlayerControls.Count <= 1) return;
             if (PlayerControl.LocalPlayer == null) return;
             if (PlayerControl.LocalPlayer.Data == null) return;
-            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Medic)) return;
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.BodyGuard)) return;
+            
             var data = PlayerControl.LocalPlayer.Data;
             var isDead = data.IsDead;
             var protectButton = DestroyableSingleton<HudManager>.Instance.KillButton;
 
-            var role = Role.GetRole<Medic>(PlayerControl.LocalPlayer);
+            var role = Role.GetRole<BodyGuard>(PlayerControl.LocalPlayer);
 
 
             if (isDead)
             {
                 protectButton.gameObject.SetActive(false);
-             //   protectButton.isActive = false;
             }
             else
             {
                 protectButton.gameObject.SetActive(!MeetingHud.Instance);
-                //protectButton.isActive = !MeetingHud.Instance;
-                protectButton.SetCoolDown(0f, 1f);
-                if (role.UsedAbility) return;
+                protectButton.SetCoolDown(role.ShieldTimer(), CustomGameOptions.GuardCoolDown);
                 Utils.SetTarget(ref role.ClosestPlayer, protectButton);
             }
         }

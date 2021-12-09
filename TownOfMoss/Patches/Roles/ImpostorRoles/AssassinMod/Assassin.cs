@@ -86,6 +86,7 @@ namespace TownOfUs.Roles
                 { "Time Lord", CustomGameOptions.TimeLordOn },
                 { "Lover", CustomGameOptions.LoversOn },
                 { "Medic", CustomGameOptions.MedicOn },
+                { "BodyGuard", CustomGameOptions.BodyGuardOn },
                 { "Seer", CustomGameOptions.SeerOn },
                 { "SecurityGuard", CustomGameOptions.SecurityGuardOn },
                 { "Spy", CustomGameOptions.SpyOn },

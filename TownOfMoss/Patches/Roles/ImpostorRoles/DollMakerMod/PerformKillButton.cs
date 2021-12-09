@@ -2,9 +2,11 @@ using HarmonyLib;
 using Hazel;
 using Il2CppSystem;
 using Reactor;
+using TownOfUs.CrewmateRoles.BodyGuardMod;
 using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine;
+using DateTime = System.DateTime;
 
 namespace TownOfUs.ImpostorRoles.DollMakerMod
 {
@@ -32,6 +34,24 @@ namespace TownOfUs.ImpostorRoles.DollMakerMod
                 PlayerControl.LocalPlayer.GetTruePosition()) > maxDistance) return false;
             
             if (role.DollList.ContainsKey(role.ClosestPlayer.PlayerId)) {
+                return false;
+            }
+            
+            if (role.ClosestPlayer.isShielded())
+            {
+                var medic = role.ClosestPlayer.getBodyGuard().Player.PlayerId;
+                var writer1 = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
+                    (byte) CustomRPC.AttemptSound, SendOption.Reliable, -1);
+                writer1.Write(medic);
+                writer1.Write(role.ClosestPlayer.PlayerId);
+                AmongUsClient.Instance.FinishRpcImmediately(writer1);
+
+                if (CustomGameOptions.ShieldBreaks) {
+                    PlayerControl.LocalPlayer.SetKillTimer(PlayerControl.GameOptions.KillCooldown);
+                }
+
+                StopKill.BreakShield(medic, role.ClosestPlayer.PlayerId, CustomGameOptions.ShieldBreaks);
+
                 return false;
             }
 

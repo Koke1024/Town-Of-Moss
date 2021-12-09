@@ -6,6 +6,7 @@ using Hazel;
 using Il2CppSystem.Collections.Generic;
 using Reactor;
 using Reactor.Extensions;
+using TownOfUs.CrewmateRoles.BodyGuardMod;
 using TownOfUs.CrewmateRoles.InvestigatorMod;
 using TownOfUs.CrewmateRoles.MedicMod;
 using TownOfUs.CrewmateRoles.SnitchMod;
@@ -46,7 +47,7 @@ namespace TownOfUs.NeutralRoles.ShifterMod
             var playerId = role.ClosestPlayer.PlayerId;
             if (role.ClosestPlayer.isShielded())
             {
-                var medic = role.ClosestPlayer.getMedic().Player.PlayerId;
+                var medic = role.ClosestPlayer.getBodyGuard().Player.PlayerId;
 
                 var writer1 = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                     (byte) CustomRPC.AttemptSound, SendOption.Reliable, -1);
