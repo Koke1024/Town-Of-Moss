@@ -8,11 +8,12 @@ namespace TownOfUs.Roles {
         public static readonly Dictionary<RoleEnum, string> roleManual = new Dictionary<RoleEnum, string> {
             {RoleEnum.Mayor, $"Mayor\n最多得票者が複数いた場合、Mayorに投票されたクルーが追放されます。\nどこにいても緊急会議を開けるボタンを持っています。\n緊急会議ボタンが未使用のときにキルされると、即座に緊急会議が開かれます。\n" +
                              $"ボタンを未使用でキルされた際に即座に緊急会議が開かれる {(CustomGameOptions.MayorMeetingOnDead? "On": "Off")}"},
-            {RoleEnum.BodyGuard, $"BodyGuard\n他のプレイヤーを一定時間護衛します。近くにいる間、護衛されているプレイヤーに対するキルを防ぎます。\n" +
+            {RoleEnum.BodyGuard, $"BodyGuard\n他のプレイヤーを一定時間護衛します。矢印が表示される距離以内にいる間、護衛されているプレイヤーに行われたキルを防ぎ。代わりに死亡します。\n" +
+                               $"そのとき、護衛されたプレイヤーの画面が緑色に点灯します。\n" +
                                $"護衛のクールダウン時間	 {CustomGameOptions.GuardCoolDown}s\n" +
                                $"護衛の継続時間	 {CustomGameOptions.GuardDuration}s\n" +
                                $"護衛の有効距離	 {CustomGameOptions.GuardRange}s\n" +
-                               $"自身でキルした相手をReportできる {(CustomGameOptions.SheriffBodyReport? "On": "Off")}"},
+                               $"護衛成功時に自身が死亡する {(CustomGameOptions.DieOnGuard? "On": "Off")}"},
             {RoleEnum.Sheriff, $"Sheriff\nキルボタンを持っており、第三陣営、インポスターをキルすることができますが、対象がクルーメイトだった場合は自身が死亡します。\n" +
                                $"対象がクルーメイトでもキルする {(CustomGameOptions.SheriffKillOther? "On": "Off")}\n" +
                                $"Madmateもキル対象に含まれる {(CustomGameOptions.SheriffKillsMadmate? "On": "Off")}\n" +
@@ -87,9 +88,7 @@ namespace TownOfUs.Roles {
             {RoleEnum.Arsonist, $"Arsonist\n生存している自分以外のすべてのクルーに油を塗った後にIgniteすると勝利します。 油を塗るためには一定時間接触している必要があります。\n" +
                               $"油を塗るのに必要な接触時間	{CustomGameOptions.ArsonistDouseTime}s\n" +
                               $"油を塗るクールダウン時間	{CustomGameOptions.DouseCd}s"},
-            {RoleEnum.Altruist, $"Altruist\n次の会議が終わるまで死んだクルーに自分の体を貸します。\n" +
-                              $"蘇生に必要な時間	{CustomGameOptions.ReviveDuration}s\n" +
-                              $"蘇生中、蘇生対象の死体を見えなくする	{(CustomGameOptions.AltruistTargetBody? "On": "Off")}"},
+            {RoleEnum.Altruist, $"Altruist\n次の会議が終わるまで、死んだクルーに自分の体を貸します。"},
             {RoleEnum.Phantom, $"Phantom\n死亡したインポスター以外のプレイヤーがPhantomとなる可能性があります。Phantomは会議後にランダムなベントから発生し、すべてのタスクを完了させると勝利します。\n" +
                                $"生存しているクルーによってクリックされると死亡します。"},
             {RoleEnum.Sniper, $"Sniper\n一度の会議で二人の役職を当てて狙撃すると勝利します。\n役職を間違った場合、自身が死亡します。\n広い視界を持ちます。\n" +
