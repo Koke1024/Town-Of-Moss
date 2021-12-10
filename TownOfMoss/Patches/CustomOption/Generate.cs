@@ -397,14 +397,14 @@ namespace TownOfUs.CustomOption
 #region Role Options
             RoleOptions = new CustomHeaderOption(num++, "Custom Role Settings");
             CrewmateRolesSetting = new CustomHeaderOption(num++, "<color=#00FF00FF>Crewmate Roles</color>");
-            
-            Altruist = new CustomHeaderOption(num++, "<color=#660000FF>Altruist</color>");
-            ReviveDuration =
-                new CustomNumberOption(num++, "Revive Duration", 1, 1, 30, 1f, CooldownFormat);
-            AltruistTargetBody =
-                new CustomToggleOption(num++, "Target's body disappears", false);
-            AltruistLendBody =
-                new CustomToggleOption(num++, "Lend Body to Victim", false);
+            //
+            // Altruist = new CustomHeaderOption(num++, "<color=#660000FF>Altruist</color>");
+            // ReviveDuration =
+            //     new CustomNumberOption(num++, "Revive Duration", 1, 1, 30, 1f, CooldownFormat);
+            // AltruistTargetBody =
+            //     new CustomToggleOption(num++, "Target's body disappears", false);
+            // AltruistLendBody =
+            //     new CustomToggleOption(num++, "Lend Body to Victim", false);
             
             BodyGuard = new CustomHeaderOption(num++, "<color=#00773AFF>BodyGuard</color>");
             GuardCoolDown =
