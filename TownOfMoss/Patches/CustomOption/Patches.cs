@@ -227,8 +227,10 @@ namespace TownOfUs.CustomOption {
         [HarmonyPatch(typeof(GameOptionsMenu), nameof(GameOptionsMenu.Start))]
         private class GameOptionsMenu_Start {
             public static bool Prefix(GameOptionsMenu __instance) {
-                if (__instance.name != "TouGameOptionsMenu")
+                if (__instance.name != "TouGameOptionsMenu") {
                     return true;
+                }
+
                 togglePrefab = Object.FindObjectOfType<ToggleOption>();
                 inited = false;
                 
@@ -239,17 +241,17 @@ namespace TownOfUs.CustomOption {
                     children[k] = __instance.gameObject.transform.GetChild(k); //TODO: Make a better fix for this for example caching the options or creating it ourself.
                 }
                 
-                var customOptions = CreateOptions(__instance);
 
                 if (__instance.Children.Any()) {
                     var startOption = __instance.gameObject.transform.GetChild(0);
-                    contentY = startOption.localPosition.y;
-                    contentX = startOption.localPosition.x;
-                    contentZ = startOption.localPosition.z;
+                    var localPosition = startOption.localPosition;
+                    contentY = localPosition.y;
+                    contentX = localPosition.x;
+                    contentZ = localPosition.z;
                 }
-                for (int k = 0; k < children.Length; k++)
-                {
-                    children[k].gameObject.Destroy();
+                var customOptions = CreateOptions(__instance);
+                foreach (var row in children) {
+                    row.gameObject.Destroy();
                 }
                 var i = 0;
 

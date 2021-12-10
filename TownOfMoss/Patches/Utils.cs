@@ -341,6 +341,9 @@ namespace TownOfUs
                         }
                     }
 
+                    if (target.Is(RoleEnum.Zombie)) {
+                        Role.GetRole<Zombie>(target).deadTime = Il2CppSystem.DateTime.UtcNow;
+                    }
                     DestroyableSingleton<HudManager>.Instance.KillOverlay.ShowKillAnimation(killerData, data);
                     DestroyableSingleton<HudManager>.Instance.ShadowQuad.gameObject.SetActive(false);
                     target.nameText.GetComponent<MeshRenderer>().material.SetInt("_Mask", 0);

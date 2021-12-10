@@ -1,8 +1,9 @@
 ﻿using System.Linq;
 using HarmonyLib;
+using Il2CppSystem;
 using TownOfUs.CrewmateRoles.MedicMod;
 using TownOfUs.Roles;
-using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace TownOfUs.Patches.NeutralRoles.ZombieMod {
     public class ReviveSelf {
@@ -13,7 +14,7 @@ namespace TownOfUs.Patches.NeutralRoles.ZombieMod {
             Zombie role = Role.GetRole<Zombie>(player);
             if (role.KilledBySeer || LobbyBehaviour.Instance || MeetingHud.Instance) {
                 role.KilledBySeer = true;
-                role.deadTime = null;
+                role.deadTime = DateTime.MaxValue;
                 return;
             }
             

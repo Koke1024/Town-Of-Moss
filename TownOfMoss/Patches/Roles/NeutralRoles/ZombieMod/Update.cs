@@ -15,26 +15,28 @@ namespace TownOfUs.NeutralRoles.ZombieMod {
     static class ZombieUpdate {
 
         public static void Postfix(PlayerControl __instance) {
+            if (!__instance.AmOwner) {
+                return;
+            }
             if (!PlayerControl.LocalPlayer.Is(RoleEnum.Zombie)) return;
-            Zombie zombie = Role.GetRole<Zombie>(PlayerControl.LocalPlayer);
+            Zombie zombie = Role.GetRole<Zombie>(PlayerControl.LocalPlayer);  
             if (LobbyBehaviour.Instance || MeetingHud.Instance) {
                 zombie.KilledBySeer = true;
-                zombie.deadTime = null;
+                zombie.deadTime = DateTime.MaxValue;
                 return;
             }
             if (!PlayerControl.LocalPlayer.Data.IsDead || zombie.KilledBySeer) {
-                zombie.deadTime = null;
+                zombie.deadTime = DateTime.MaxValue;
                 return;
             }
-            
-            if (zombie.deadTime != null && (DateTime.UtcNow - zombie.deadTime).Value.TotalMilliseconds >= CustomGameOptions.ZombieReviveTime * 1000.0f) {
+            if (zombie.deadTime != DateTime.MaxValue && (DateTime.UtcNow - zombie.deadTime).TotalSeconds >= CustomGameOptions.ZombieReviveTime) {
                 var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                     (byte) CustomRPC.ZombieRevive, SendOption.Reliable, -1);
                 writer.Write(PlayerControl.LocalPlayer.PlayerId);
                 AmongUsClient.Instance.FinishRpcImmediately(writer);
 
                 ReviveSelf.ReviveBody(PlayerControl.LocalPlayer);
-                zombie.deadTime = null;
+                zombie.deadTime = DateTime.MaxValue;
             }
         }
     }

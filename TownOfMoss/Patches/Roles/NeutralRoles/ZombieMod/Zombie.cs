@@ -8,7 +8,7 @@ namespace TownOfUs.Roles
     {
         public float dieDelay;
         public bool CompleteZombieTasks;
-        public DateTime? deadTime = null;
+        public DateTime deadTime = DateTime.MaxValue;
         public bool KilledBySeer = false;
 
         public Zombie(PlayerControl player) : base(player)

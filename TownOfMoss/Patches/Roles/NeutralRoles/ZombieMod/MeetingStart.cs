@@ -1,7 +1,6 @@
-using System;
 using HarmonyLib;
+using Il2CppSystem;
 using TownOfUs.Roles;
-using Object = UnityEngine.Object;
 
 namespace TownOfUs.NeutralRoles.ZombieMod {
     [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Start))]
@@ -9,7 +8,7 @@ namespace TownOfUs.NeutralRoles.ZombieMod {
         public static void Postfix(MeetingHud __instance) {
             foreach (var role in Role.GetRoles(RoleEnum.Zombie)) {
                 var zombie = (Zombie)role;
-                zombie.deadTime = null;
+                zombie.deadTime = DateTime.MaxValue;
             }
         }
     }
