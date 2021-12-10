@@ -43,15 +43,15 @@ namespace TownOfUs.CrewmateRoles.AltruistMod {
 
             player.Revive();
             revived.Add(player);
-            if (CustomGameOptions.AltruistLendBody) {
+            // if (CustomGameOptions.AltruistLendBody) {
                 player.myRend.flipX = role.Player.myRend.flipX;
                 player.myRend.flipY = role.Player.myRend.flipY;
                 player.NetTransform.SnapTo(role.Player.GetTruePosition() - role.Player.Collider.offset);
                 role.Player.myRend.enabled = false;
-            }
-            else {
-                player.NetTransform.SnapTo(position);
-            }
+            // }
+            // else {
+            //     player.NetTransform.SnapTo(position);
+            // }
 
             role.revivedPlayer = player;
 

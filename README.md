@@ -13,7 +13,7 @@
 
 | Among Us - Version| Date | Mod Version | Link |
 |---|----------|-------------|-----------------|
-| 2021.11.9.5s | 21-12-09 | v1.0.7 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v1.0.7) |
+| 2021.11.9.5s | 21-12-10 | v1.0.8 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v1.0.8) |
 | 2021.6.30s | 21-11-30 | v0.6 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v0.6) |
 
 ### v1.0.7 既知の不具合
@@ -21,6 +21,14 @@ Executionerが最初からJesterになっている場合があるかもしれま
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v1.0.8 </summary>
+        <ul>
+            <li>役職BodyGuardを追加</li>
+            <li>BodyGuardの能力を調整</li>
+            <li>Altruistの能力を変更</li>
+        </ul>
+    </details>
     <details>
         <summary> v1.0.7 </summary>
         <ul>
@@ -414,9 +422,8 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 
 ### **Team: Crewmates**
 
-他のクルーを一定時間護衛します。近くにいる間、護衛されているプレイヤーに対するキルを防ぎます。\
-護衛範囲内にいる間、対象への矢印が表示されます。対象に行われたキルを防ぎ、自身の画面が緑色に点灯します。\
-一度護衛に成功すると、インポスターから自身がBodyGuardであることがわかるようになり、狙撃されなくなります。
+他のプレイヤーを一定時間護衛します。矢印が表示される距離以内にいる間、護衛されているプレイヤーに行われたキルを防ぎ、代わりに死亡します。\
+そのとき、護衛されたプレイヤーの画面が緑色に点灯します。\
 
 ### Game Options
 
@@ -425,7 +432,7 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 | Guard Cooldown | 護衛のクールダウン時間 | Time | 15s |
 | Guard Duration | 護衛の継続時間 | Time | 15s |
 | Guard Range | 護衛可能範囲 | Number | 15m |
-| Who gets murder attempt indicator | キル通知の表示されるプレイヤー | BodyGuard / Shielded / Everyone / Nobody | BodyGuard |
+| Dies on Guard | 護衛成功時に自身が死亡する | Toggle | On |
 
 -----------------------
 
@@ -577,14 +584,7 @@ Polus、Airshipでは、閉じられたドアに触れるだけでドアを開�
 
 ### **Team: Crewmates**
 
-自身の命と引換えに、クルーの死体を蘇生させます。蘇生には一定時間が必要になります。
-
-### Game Options
-
-| Name | Description | Type | Default |
-|----------|:-------------:|:------:|:------:|
-| Revive Duration | 蘇生に必要な時間 | Time | 1.0s |
-| Target's body disappears | 蘇生中、蘇生対象の死体を見えなくする | Toggle | Off |
+死んだクルーを次の会議が終わるまで自分の代わりに生存させます。
 
 -----------------------
 
@@ -923,15 +923,6 @@ Madmateが存在するとき、Assassinがインポスター陣営に採用さ�
 |----------|:-------------:|:------:|:------:|
 | Douse Duration | 油を塗るのに必要な接触時間 | Time | 3.0s |
 | Douse Cooldown | 油を塗るクールダウン時間 | Time | 15s |
-
------------------------
-
-## Phantom
-
-### **Team: Neutral**
-
-インポスターでないクルーが死亡すると、次の会議後からPhantomとなる可能性があります。Phantomは会議後にランダムなベントから発生し、すべてのタスクを完了させると勝利します。\
-半透明ですが、歩いている間は見えやすくなってしまいます。生存しているクルーによってクリックされると死亡します。
 
 -----------------------
 

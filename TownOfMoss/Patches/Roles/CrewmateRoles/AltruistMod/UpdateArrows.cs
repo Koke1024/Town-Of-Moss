@@ -25,29 +25,11 @@ namespace TownOfUs.CrewmateRoles.AltruistMod {
         }
     }
 
-    [HarmonyPriority(Priority.First)]
-    [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
-    public class UpdateMorph {
-        public static void Postfix(PlayerControl __instance) {
-            if (!CustomGameOptions.AltruistLendBody) {
-                return;
-            }
-
-            if (__instance.Data.IsDead && __instance.Is(RoleEnum.Altruist)) {
-                var role = Role.GetRole<Altruist>(__instance);
-                if (role.revivedPlayer != null) {
-                    Utils.Morph(role.revivedPlayer, __instance);
-                }
-            }
-        }
-    }
-
     [HarmonyPatch(typeof(ExileController), nameof(ExileController.WrapUp))]
     public class MeetingHud_Start {
-        public static void Postfix(MeetingHud __instance) {
+        public static void Prefix(MeetingHud __instance) {
             foreach (Altruist role in Role.GetRoles(RoleEnum.Altruist)) {
-                if (role.revivedPlayer != null) {
-                    Utils.Unmorph(role.revivedPlayer);
+                if (role.revivedPlayer != null && !role.revivedPlayer.Data.IsDead) {
                     Utils.MurderPlayer(role.revivedPlayer, role.revivedPlayer);
 
                     Utils.GetBody(role.revivedPlayer.PlayerId).gameObject.Destroy();
