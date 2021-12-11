@@ -10,24 +10,39 @@ using TownOfUs.Roles;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace TownOfUs.CrewmateRoles.AltruistMod {
+namespace TownOfUs.CrewmateRoles.NecromancerMod {
     public class Coroutine {
         public static ArrowBehaviour Arrow;
         public static PlayerControl Target;
         public static Sprite Sprite => TownOfUs.Arrow;
 
-        public static IEnumerator AltruistRevive(DeadBody target, Altruist role) {
+        public static IEnumerator NecromancerRevive(DeadBody target, Necromancer role) {
             var myPosition = role.Player.GetTruePosition();
             var parentId = target.ParentId;
             var position = target.TruePosition;
 
             var revived = new List<PlayerControl>();
-            
-            Utils.MurderPlayer(role.Player, role.Player);
-            
-            if (target != null && Utils.KilledPlayers.ContainsKey(target.ParentId)) {
-                Utils.KilledPlayers[target.ParentId].Body.gameObject.Destroy();
-                Utils.KilledPlayers.Remove(target.ParentId);
+
+            // Utils.MurderPlayer(role.Player, role.Player);
+            //
+            // if (AmongUsClient.Instance.AmHost) Utils.RpcMurderPlayer(role.Player, role.Player);
+
+            // if (CustomGameOptions.NecromancerTargetBody) {
+            //     if (target != null && Utils.KilledPlayers.ContainsKey(target.ParentId)) {
+            //         Utils.KilledPlayers[target.ParentId].Body.gameObject.Destroy();
+            //         Utils.KilledPlayers.Remove(target.ParentId);
+            //     }
+            // }
+
+            var startTime = DateTime.UtcNow;
+            while (true) {
+                var now = DateTime.UtcNow;
+                var seconds = (now - startTime).TotalSeconds;
+                if (seconds < CustomGameOptions.ReviveDuration)
+                    yield return null;
+                else break;
+
+                if (MeetingHud.Instance) yield break;
             }
 
             var body = Utils.GetBody(role.Player.PlayerId);
@@ -43,15 +58,7 @@ namespace TownOfUs.CrewmateRoles.AltruistMod {
 
             player.Revive();
             revived.Add(player);
-            // if (CustomGameOptions.AltruistLendBody) {
-                player.myRend.flipX = role.Player.myRend.flipX;
-                player.myRend.flipY = role.Player.myRend.flipY;
-                player.NetTransform.SnapTo(role.Player.GetTruePosition() - role.Player.Collider.offset);
-                role.Player.myRend.enabled = false;
-            // }
-            // else {
-            //     player.NetTransform.SnapTo(position);
-            // }
+            player.NetTransform.SnapTo(position);
 
             role.revivedPlayer = player;
 
@@ -77,6 +84,19 @@ namespace TownOfUs.CrewmateRoles.AltruistMod {
                 }
                 catch {
                 }
+
+
+            if (PlayerControl.LocalPlayer.Data.IsImpostor() || PlayerControl.LocalPlayer.Is(RoleEnum.Glitch)) {
+                var gameObj = new GameObject();
+                Arrow = gameObj.AddComponent<ArrowBehaviour>();
+                gameObj.transform.parent = PlayerControl.LocalPlayer.gameObject.transform;
+                var renderer = gameObj.AddComponent<SpriteRenderer>();
+                renderer.sprite = Sprite;
+                Arrow.image = renderer;
+                gameObj.layer = 5;
+                Target = player;
+                yield return Utils.FlashCoroutine(role.Color, 1f, 0.5f);
+            }
 
             yield return new WaitForSeconds(1.0f);
             role.Player.myRend.enabled = true;

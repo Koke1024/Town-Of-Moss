@@ -56,7 +56,7 @@ namespace TownOfUs
                 __instance.KillButton.graphic.sprite = Douse;
                 flag = true;
             }
-            else if (PlayerControl.LocalPlayer.Is(RoleEnum.Altruist))
+            else if (PlayerControl.LocalPlayer.Is(RoleEnum.Necromancer))
             {
                 __instance.KillButton.graphic.sprite = Revive;
                 flag = true;

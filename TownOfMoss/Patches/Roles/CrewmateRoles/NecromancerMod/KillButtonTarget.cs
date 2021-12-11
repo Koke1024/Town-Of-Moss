@@ -2,19 +2,19 @@ using HarmonyLib;
 using TownOfUs.Roles;
 using UnityEngine;
 
-namespace TownOfUs.CrewmateRoles.AltruistMod
+namespace TownOfUs.CrewmateRoles.NecromancerMod
 {
     [HarmonyPatch(typeof(KillButton), nameof(KillButton.SetTarget))]
-    public class AltruistKillButtonTarget
+    public class NecromancerKillButtonTarget
     {
         public static byte DontRevive = byte.MaxValue;
 
         public static bool Prefix(KillButton __instance)
         {
-            return !PlayerControl.LocalPlayer.Is(RoleEnum.Altruist);
+            return !PlayerControl.LocalPlayer.Is(RoleEnum.Necromancer);
         }
 
-        public static void SetTarget(KillButton __instance, DeadBody target, Altruist role)
+        public static void SetTarget(KillButton __instance, DeadBody target, Necromancer role)
         {
             if (role.CurrentTarget && role.CurrentTarget != target)
                 role.CurrentTarget.bodyRenderer.material.SetFloat("_Outline", 0f);

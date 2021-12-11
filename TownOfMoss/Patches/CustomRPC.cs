@@ -39,7 +39,7 @@ namespace TownOfUs
         Unswoop,
         Douse,
         Ignite,
-        AltruistRevive,
+        NecromancerRevive,
         DruidRevive,
         BarryButton,
         Drag,

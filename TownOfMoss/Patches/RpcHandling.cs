@@ -6,7 +6,7 @@ using HarmonyLib;
 using Hazel;
 using Reactor;
 using Reactor.Extensions;
-using TownOfUs.CrewmateRoles.AltruistMod;
+using TownOfUs.CrewmateRoles.NecromancerMod;
 using TownOfUs.CrewmateRoles.BodyGuardMod;
 using TownOfUs.CrewmateRoles.ChargerMod;
 using TownOfUs.CrewmateRoles.MedicMod;
@@ -289,7 +289,7 @@ namespace TownOfUs
                             case RoleEnum.Executioner: new Executioner(Utils.PlayerById(readByte)); break;
                             case RoleEnum.Impostor: new Impostor(Utils.PlayerById(readByte)); break;
                             case RoleEnum.Crewmate: new Crewmate(Utils.PlayerById(readByte)); break;
-                            case RoleEnum.Altruist: new Altruist(Utils.PlayerById(readByte)); break;
+                            case RoleEnum.Necromancer: new Necromancer(Utils.PlayerById(readByte)); break;
                             case RoleEnum.BodyGuard: new BodyGuard(Utils.PlayerById(readByte)); break;
                             case RoleEnum.Charger: new Charger(Utils.PlayerById(readByte)); break;
                             case RoleEnum.Druid: new Druid(Utils.PlayerById(readByte)); break;
@@ -392,7 +392,7 @@ namespace TownOfUs
                         Utils.KilledPlayers.Clear();
                         Role.NobodyWins = false;
                         RecordRewind.points.Clear();
-                        AltruistKillButtonTarget.DontRevive = byte.MaxValue;
+                        NecromancerKillButtonTarget.DontRevive = byte.MaxValue;
                         break;
 
                     case CustomRPC.JanitorClean:
@@ -661,22 +661,22 @@ namespace TownOfUs
                         }
                         AmongUsClient.Instance.HostId = hostId;
                         break;
-                    case CustomRPC.AltruistRevive:
+                    case CustomRPC.NecromancerRevive:
                         readByte1 = reader.ReadByte();
-                        var altruistPlayer = Utils.PlayerById(readByte1);
-                        var altruistRole = Role.GetRole<Altruist>(altruistPlayer);
+                        var necromancerPlayer = Utils.PlayerById(readByte1);
+                        var necromancerRole = Role.GetRole<Necromancer>(necromancerPlayer);
                         readByte = reader.ReadByte();
                         var theDeadBodies = Object.FindObjectsOfType<DeadBody>();
                         foreach (var body in theDeadBodies)
                             if (body.ParentId == readByte)
                             {
                                 if (body.ParentId == PlayerControl.LocalPlayer.PlayerId)
-                                    Coroutines.Start(Utils.FlashCoroutine(altruistRole.Color,
+                                    Coroutines.Start(Utils.FlashCoroutine(necromancerRole.Color,
                                         CustomGameOptions.ReviveDuration, 0.5f));
 
                                 Coroutines.Start(
-                                    global::TownOfUs.CrewmateRoles.AltruistMod.Coroutine.AltruistRevive(body,
-                                        altruistRole));
+                                    global::TownOfUs.CrewmateRoles.NecromancerMod.Coroutine.NecromancerRevive(body,
+                                        necromancerRole));
                             }
 
                         break;
@@ -837,7 +837,7 @@ namespace TownOfUs
 
                 RecordRewind.points.Clear();
                 Utils.KilledPlayers.Clear();
-                AltruistKillButtonTarget.DontRevive = byte.MaxValue;
+                NecromancerKillButtonTarget.DontRevive = byte.MaxValue;
 
                 var startWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                     (byte) CustomRPC.Start, SendOption.Reliable, -1);
@@ -882,8 +882,8 @@ namespace TownOfUs
                 if (Check(CustomGameOptions.SnitchOn))
                     CrewmateRoles.Add((typeof(Snitch), (byte)RoleEnum.Snitch, CustomGameOptions.SnitchOn));
 
-                if (Check(CustomGameOptions.AltruistOn))
-                    CrewmateRoles.Add((typeof(Altruist), (byte)RoleEnum.Altruist, CustomGameOptions.AltruistOn));
+                if (Check(CustomGameOptions.NecromancerOn))
+                    CrewmateRoles.Add((typeof(Necromancer), (byte)RoleEnum.Necromancer, CustomGameOptions.NecromancerOn));
 
                 if (Check(CustomGameOptions.ChargerOn))
                     CrewmateRoles.Add((typeof(Charger), (byte)RoleEnum.Charger, CustomGameOptions.ChargerOn));

@@ -88,7 +88,7 @@ namespace TownOfUs.Roles {
             {RoleEnum.Arsonist, $"Arsonist\n生存している自分以外のすべてのクルーに油を塗った後にIgniteすると勝利します。 油を塗るためには一定時間接触している必要があります。\n" +
                               $"油を塗るのに必要な接触時間	{CustomGameOptions.ArsonistDouseTime}s\n" +
                               $"油を塗るクールダウン時間	{CustomGameOptions.DouseCd}s"},
-            {RoleEnum.Altruist, $"Altruist\n死んだクルーを次の会議が終わるまで自分の代わりに生存させます。"},
+            {RoleEnum.Necromancer, $"Necromancer\n死んだクルーを次の会議が終わるまで生きた状態にします。"},
             {RoleEnum.Phantom, $"Phantom\n死亡したインポスター以外のプレイヤーがPhantomとなる可能性があります。Phantomは会議後にランダムなベントから発生し、すべてのタスクを完了させると勝利します。\n" +
                                $"生存しているクルーによってクリックされると死亡します。"},
             {RoleEnum.Sniper, $"Sniper\n一度の会議で二人の役職を当てて狙撃すると勝利します。\n役職を間違った場合、自身が死亡します。\n広い視界を持ちます。\n" +

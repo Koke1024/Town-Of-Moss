@@ -2,7 +2,7 @@ using HarmonyLib;
 using TownOfUs.Roles;
 using UnityEngine;
 
-namespace TownOfUs.CrewmateRoles.AltruistMod
+namespace TownOfUs.CrewmateRoles.NecromancerMod
 {
     [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
     public class HudManagerUpdate
@@ -12,9 +12,9 @@ namespace TownOfUs.CrewmateRoles.AltruistMod
             if (PlayerControl.AllPlayerControls.Count <= 1) return;
             if (PlayerControl.LocalPlayer == null) return;
             if (PlayerControl.LocalPlayer.Data == null) return;
-            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Altruist)) return;
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Necromancer)) return;
 
-            var role = Role.GetRole<Altruist>(PlayerControl.LocalPlayer);
+            var role = Role.GetRole<Necromancer>(PlayerControl.LocalPlayer);
 
             var data = PlayerControl.LocalPlayer.Data;
             var isDead = data.IsDead;
@@ -55,7 +55,7 @@ namespace TownOfUs.CrewmateRoles.AltruistMod
           //      killButton.isActive = !MeetingHud.Instance;
             }
 
-            AltruistKillButtonTarget.SetTarget(killButton, closestBody, role);
+            NecromancerKillButtonTarget.SetTarget(killButton, closestBody, role);
             __instance.KillButton.SetCoolDown(0f, 1f);
         }
     }

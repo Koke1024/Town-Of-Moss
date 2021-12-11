@@ -2,7 +2,7 @@ namespace TownOfUs
 {
     public enum RoleEnum
     {
-        Altruist,
+        Necromancer,
         BodyGuard,
         Charger,
         Druid,

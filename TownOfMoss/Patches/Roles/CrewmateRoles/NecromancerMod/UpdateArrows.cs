@@ -4,11 +4,11 @@ using Reactor.Extensions;
 using TownOfUs.Extensions;
 using TownOfUs.Roles;
 
-namespace TownOfUs.CrewmateRoles.AltruistMod {
+namespace TownOfUs.CrewmateRoles.NecromancerMod {
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
     public class UpdateArrows {
         public static void Postfix(PlayerControl __instance) {
-            if (!__instance.Is(RoleEnum.Altruist)) {
+            if (!__instance.Is(RoleEnum.Necromancer)) {
                 return;
             }
 
@@ -28,7 +28,7 @@ namespace TownOfUs.CrewmateRoles.AltruistMod {
     [HarmonyPatch(typeof(ExileController), nameof(ExileController.WrapUp))]
     public class MeetingHud_Start {
         public static void Prefix(MeetingHud __instance) {
-            foreach (Altruist role in Role.GetRoles(RoleEnum.Altruist)) {
+            foreach (Necromancer role in Role.GetRoles(RoleEnum.Necromancer)) {
                 if (role.revivedPlayer != null && !role.revivedPlayer.Data.IsDead) {
                     Utils.MurderPlayer(role.revivedPlayer, role.revivedPlayer);
 

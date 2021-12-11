@@ -19,7 +19,7 @@ namespace TownOfUs.Roles
 
         public Dictionary<string, Color> ColorMapping = new Dictionary<string, Color>
         {
-            { "Altruist", new Color(0.4f, 0f, 0f, 1f) },
+            { "Necromancer", new Color(0.4f, 0f, 0f, 1f) },
             { "BodyGuard", new Color(0f, 0.47f, 0.23f) },
             { "Charger", new Color(0.99f, 1f, 0.2f) },
             { "Druid", new Color(0.4f, 0f, 0.56f) },
@@ -91,7 +91,7 @@ namespace TownOfUs.Roles
                 { "Spy", CustomGameOptions.SpyOn },
                 { "Snitch", CustomGameOptions.SnitchOn },
                 { "Sniffer", CustomGameOptions.SnifferOn },
-                { "Altruist", CustomGameOptions.AltruistOn },
+                { "Necromancer", CustomGameOptions.NecromancerOn },
                 { "Charger", CustomGameOptions.ChargerOn },
                 { "Druid", CustomGameOptions.DruidOn },
                 { "Painter", CustomGameOptions.PainterOn },

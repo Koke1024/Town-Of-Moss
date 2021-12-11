@@ -52,7 +52,7 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
             {
                 isDead = true;
                 deadTime = TempData.LastDeathReason == DeathReason.Exile ||
-                           PlayerControl.LocalPlayer.Is(RoleEnum.Altruist)
+                           PlayerControl.LocalPlayer.Is(RoleEnum.Necromancer)
                     ? 0
                     : Time.time;
             }

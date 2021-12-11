@@ -26,7 +26,7 @@ Executionerが最初からJesterになっている場合があるかもしれま
         <ul>
             <li>役職BodyGuardを追加</li>
             <li>BodyGuardの能力を調整</li>
-            <li>Altruistの能力を変更</li>
+            <li>Necromancerの能力を変更</li>
         </ul>
     </details>
     <details>
@@ -382,21 +382,21 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 
 |**Crewmate Roles**|**Impostor Roles**|**Neutral Roles**|
 |----------|-------------|----------|
-|[Altruist](#Altruist)|[Assassin](#Assassin)|[Glitch](#Glitch)|
+|[BodyGuard](#BodyGuard)|[Assassin](#Assassin)|[Glitch](#Glitch)|
 |[Charger](#Charger)|[Camouflager](#Camouflager)|[Arsonist](#Arsonist)|
 |[Druid](#Druid)|[Cracker](#Cracker)|[Executioner](#Executioner)|
 |[Engineer](#Engineer)|[DollMaker](#DollMaker)|[Jester](#Jester)|
 |[Investigator](#Investigator)|[Janitor](#Janitor)|[Sniper](#Sniper)|
 |[Mayor](#Mayor)|[Miner](#Miner)|[Zombie](#Zombie)|
 |[Medic](#Medic)|[Morphling](#Morphling)||
-|[SecurityGuard](#SecurityGuard)|[MultiKiller](#MultiKiller)||
-|[Seer](#Seer)|[Popopo](#Popopo)||
-|[Sheriff](#Sheriff)|[Puppeteer](#Puppeteer)||
-|[Sniffer](#Sniffer)|[Swooper](#Swooper)||
-|[Snitch](#Snitch)|[Undertaker](#Undertaker)||
+|[Necromancer](#Necromancer)|[MultiKiller](#MultiKiller)||
+|[SecurityGuard](#SecurityGuard)|[Popopo](#Popopo)||
+|[Seer](#Seer)|[Puppeteer](#Puppeteer)||
+|[Sheriff](#Sheriff)|[Swooper](#Swooper)||
+|[Sniffer](#Sniffer)|[Undertaker](#Undertaker)||
+|[Snitch](#Snitch)|||
 |[Swapper](#Swapper)|||
 |[Time Lord](#TimeLord)|||
-|[BodyGuard](#BodyGuard)|||
 
 -----------------------
 
@@ -580,7 +580,7 @@ Polus、Airshipでは、閉じられたドアに触れるだけでドアを開�
 
 -----------------------
 
-## Altruist
+## Necromancer
 
 ### **Team: Crewmates**
 

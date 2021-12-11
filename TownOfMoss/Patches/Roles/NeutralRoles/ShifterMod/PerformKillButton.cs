@@ -127,7 +127,7 @@ namespace TownOfUs.NeutralRoles.ShifterMod
                 case RoleEnum.Snitch:
                 case RoleEnum.Arsonist:
                 case RoleEnum.Crewmate:
-                case RoleEnum.Altruist:
+                case RoleEnum.Necromancer:
                 case RoleEnum.Charger:
                 case RoleEnum.Druid:
 

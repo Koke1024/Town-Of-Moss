@@ -38,7 +38,7 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption SeerOn;
         public static CustomNumberOption SecurityGuardOn;
         public static CustomNumberOption SnitchOn;
-        public static CustomNumberOption AltruistOn;
+        public static CustomNumberOption NecromancerOn;
         public static CustomNumberOption ChargerOn;
         public static CustomNumberOption DruidOn;
         public static CustomNumberOption PainterOn;
@@ -133,10 +133,10 @@ namespace TownOfUs.CustomOption
         public static CustomStringOption SnitchOpenDoorImmediately;
         public static CustomStringOption SnitchNoShotTiming;
 
-        public static CustomHeaderOption Altruist;
+        public static CustomHeaderOption Necromancer;
         public static CustomNumberOption ReviveDuration;
-        public static CustomToggleOption AltruistTargetBody;
-        public static CustomToggleOption AltruistLendBody;
+        public static CustomToggleOption NecromancerTargetBody;
+        public static CustomToggleOption NecromancerLendBody;
         
         public static CustomHeaderOption BodyGuard;
         public static CustomNumberOption GuardRange;
@@ -312,8 +312,6 @@ namespace TownOfUs.CustomOption
 #endregion
 #region Crewmate Roles
             CrewmateRoles = new CustomHeaderOption(num++, "<color=#00FF00FF>Crewmate Roles</color>");
-            AltruistOn = new CustomNumberOption(true, num++, "<color=#660000FF>Altruist</color>", 90.0f, 0f, 100f, 10f,
-                PercentFormat);
             BodyGuardOn = new CustomNumberOption(true, num++, "<color=#00773AFF>BodyGuard</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
             ChargerOn = new CustomNumberOption(true, num++, "<color=#FCFF33FF>Charger</color>", 90.0f, 0f, 100f, 10f,
@@ -327,6 +325,8 @@ namespace TownOfUs.CustomOption
             MayorOn = new CustomNumberOption(true, num++, "<color=#704FA8FF>Mayor</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
             MedicOn = new CustomNumberOption(true, num++, "<color=#006600FF>Medic</color>", 90.0f, 0f, 100f, 10f,
+                PercentFormat);
+            NecromancerOn = new CustomNumberOption(true, num++, "<color=#660000FF>Necromancer</color>", 90.0f, 0f, 100f, 10f,
                 PercentFormat);
             PainterOn = new CustomNumberOption(true, num++, "<color=#CECECEFF>Painter</color>", 0.0f, 0f, 100f, 10f,
                 PercentFormat);
@@ -397,14 +397,6 @@ namespace TownOfUs.CustomOption
 #region Role Options
             RoleOptions = new CustomHeaderOption(num++, "Custom Role Settings");
             CrewmateRolesSetting = new CustomHeaderOption(num++, "<color=#00FF00FF>Crewmate Roles</color>");
-            //
-            // Altruist = new CustomHeaderOption(num++, "<color=#660000FF>Altruist</color>");
-            // ReviveDuration =
-            //     new CustomNumberOption(num++, "Revive Duration", 1, 1, 30, 1f, CooldownFormat);
-            // AltruistTargetBody =
-            //     new CustomToggleOption(num++, "Target's body disappears", false);
-            // AltruistLendBody =
-            //     new CustomToggleOption(num++, "Lend Body to Victim", false);
             
             BodyGuard = new CustomHeaderOption(num++, "<color=#00773AFF>BodyGuard</color>");
             GuardCoolDown =
@@ -463,6 +455,14 @@ namespace TownOfUs.CustomOption
             MedicReportDegradation =
                 new CustomNumberOption(num++, "Report Degradation Duration", 3, 1, 10, 3f,
                     CooldownFormat);
+            
+            Necromancer = new CustomHeaderOption(num++, "<color=#660000FF>Necromancer</color>");
+            ReviveDuration =
+                new CustomNumberOption(num++, "Revive Duration", 1, 1, 30, 1f, CooldownFormat);
+            // NecromancerTargetBody =
+            //     new CustomToggleOption(num++, "Target's body disappears", false);
+            // NecromancerLendBody =
+            //     new CustomToggleOption(num++, "Lend Body to Victim", false);
 
             // ShieldBreaks = new CustomToggleOption(num++, "Shield breaks on murder attempt", true);
 

@@ -47,7 +47,7 @@ namespace TownOfUs
         // public static int ScavengerOn => (int) Generate.ScavengerOn.Get();
         public static int ScavengerOn => 0;
         public static int ScavengerWinCount => (int) Generate.ScavengerWinCnt.Get();
-        public static int AltruistOn => (int) Generate.AltruistOn.Get();
+        public static int NecromancerOn => (int) Generate.NecromancerOn.Get();
         public static int ZombieOn => (int) Generate.ZombieOn.Get();
         public static int ChargerOn => (int) Generate.ChargerOn.Get();
         public static int DruidOn => (int) Generate.DruidOn.Get();
@@ -176,8 +176,8 @@ namespace TownOfUs
         public static float ReviveDuration => Generate.ReviveDuration.Get();
         // public static int MayorExtendTime => (int) Generate.MayorExtendTime.Get();
         public static int MayorExtendTime => 0;
-        public static bool AltruistTargetBody => Generate.AltruistTargetBody.Get();
-        public static bool AltruistLendBody => Generate.AltruistLendBody.Get();
+        public static bool NecromancerTargetBody => Generate.NecromancerTargetBody.Get();
+        public static bool NecromancerLendBody => Generate.NecromancerLendBody.Get();
         public static bool SheriffBodyReport => Generate.SheriffBodyReport.Get();
         public static float CleanCd => Generate.CleanCd.Get();
         public static float CleanDuration => Generate.CleanDuration.Get();
