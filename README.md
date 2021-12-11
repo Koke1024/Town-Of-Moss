@@ -13,14 +13,21 @@
 
 | Among Us - Version| Date | Mod Version | Link |
 |---|----------|-------------|-----------------|
-| 2021.11.9.5s | 21-12-10 | v1.0.8 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v1.0.8) |
+| 2021.11.9.5s | 21-12-11 | v1.0.9 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v1.0.9) |
 | 2021.6.30s | 21-11-30 | v0.6 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v0.6) |
 
-### v1.0.7 既知の不具合
+### v1.0.8 既知の不具合
 Executionerが最初からJesterになっている場合があるかもしれません。
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v1.0.9 </summary>
+        <ul>
+            <li>AltruistをNecromancerに</li>
+            <li>タスク上限の増加</li>
+        </ul>
+    </details>
     <details>
         <summary> v1.0.8 </summary>
         <ul>
