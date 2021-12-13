@@ -61,7 +61,6 @@ namespace TownOfUs.CrewmateRoles.NecromancerMod {
             player.NetTransform.SnapTo(position);
 
             role.RevivedPlayer.Enqueue(player);
-            AmongUsExtensions.Log($"{role.RevivedPlayer.Count}");
 
             if (target != null) Object.Destroy(target.gameObject);
 
@@ -88,6 +87,10 @@ namespace TownOfUs.CrewmateRoles.NecromancerMod {
 
 
             if (PlayerControl.LocalPlayer.Data.IsImpostor() || PlayerControl.LocalPlayer.Is(RoleEnum.Glitch)) {
+                if (Arrow != null) {
+                    Arrow.gameObject.SetActive(false);
+                    Arrow.Destroy();
+                }
                 var gameObj = new GameObject();
                 Arrow = gameObj.AddComponent<ArrowBehaviour>();
                 gameObj.transform.parent = PlayerControl.LocalPlayer.gameObject.transform;
