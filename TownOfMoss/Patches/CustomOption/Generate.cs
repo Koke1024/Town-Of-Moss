@@ -201,6 +201,9 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption MultiKillerCdRate;
         public static CustomNumberOption MultiKillEnableTime;
 
+        public static CustomHeaderOption Madmate;
+        public static CustomToggleOption MadmateCanVent;
+
         public static CustomHeaderOption Assassin;
         public static CustomNumberOption AssassinKills;
         public static CustomToggleOption AssassinGuessNeutrals;
@@ -610,6 +613,9 @@ namespace TownOfUs.CustomOption
             // ImpostorRolesSetting = new CustomHeaderOption(num++, "<color=#FF0000FF>Impostor Roles</color>");
 
             ImpostorRolesSetting = new CustomHeaderOption(num++, "<color=#FF0000FF>Impostor Roles</color>");
+            
+            Madmate = new CustomHeaderOption(num++, "<color=#FF0000FF>Madmate</color>");
+            MadmateCanVent = new CustomToggleOption(num++, "Madmate Can Vent", false);
             
             Assassin = new CustomHeaderOption(num++, "<color=#FF0000FF>Assassin</color>");
             AssassinKills = new CustomNumberOption(num++, "Number of Assassin Kills", 10, 1, 10, 1);

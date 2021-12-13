@@ -73,7 +73,7 @@ namespace TownOfUs
                 return true;
             }
 
-            if (player.Is(RoleEnum.Assassin) && CustomGameOptions.MadMateOn) {
+            if (player.Is(RoleEnum.Assassin) && CustomGameOptions.MadMateOn && !CustomGameOptions.MadmateCanVent ) {
                 return false;
             }
 

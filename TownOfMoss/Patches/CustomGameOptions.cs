@@ -203,5 +203,6 @@ namespace TownOfUs
         public static float PaintCd => Generate.PaintCd.Get();
         public static bool SnifferCanReport => Generate.SnifferCanReport.Get();
         public static float SnifferMaxRange => Generate.SnifferMaxRange.Get();
+        public static bool MadmateCanVent => Generate.MadmateCanVent.Get();
     }
 }
