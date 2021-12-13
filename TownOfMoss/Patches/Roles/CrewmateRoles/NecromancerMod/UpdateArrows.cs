@@ -26,16 +26,14 @@ namespace TownOfUs.CrewmateRoles.NecromancerMod {
     }
 
     [HarmonyPatch(typeof(ExileController), nameof(ExileController.WrapUp))]
-    public class MeetingHud_Start {
-        public static void Prefix(MeetingHud __instance) {
+    public class NecroClean {
+        public static void Prefix(ExileController __instance) {
             foreach (Necromancer role in Role.GetRoles(RoleEnum.Necromancer)) {
-                if (role.revivedPlayer != null && !role.revivedPlayer.Data.IsDead) {
-                    Utils.MurderPlayer(role.revivedPlayer, role.revivedPlayer);
-
-                    Utils.GetBody(role.revivedPlayer.PlayerId).gameObject.Destroy();
-                    role.revivedPlayer = null;
-                    role.Player.Revive();
+                foreach (var revived in role.RevivedPlayer) {
+                    Utils.MurderPlayer(revived, revived);
+                    Utils.GetBody(revived.PlayerId).gameObject.Destroy();
                 }
+                role.RevivedPlayer.Clear();
             }
         }
     }

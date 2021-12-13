@@ -1,3 +1,5 @@
+using Il2CppSystem;
+using Il2CppSystem.Collections.Generic;
 using UnityEngine;
 
 namespace TownOfUs.Roles
@@ -5,7 +7,8 @@ namespace TownOfUs.Roles
     public class Necromancer : Role
     {
         public DeadBody CurrentTarget;
-        public PlayerControl revivedPlayer;
+        public readonly Queue<PlayerControl> RevivedPlayer = new();
+        public DateTime RevivedTime;
 
         public Necromancer(PlayerControl player) : base(player)
         {
@@ -14,6 +17,16 @@ namespace TownOfUs.Roles
             TaskText = () => "Revive a dead body until one meeting.";
             Color = new Color(0.4f, 0f, 0f, 1f);
             RoleType = RoleEnum.Necromancer;
+        }
+        
+        public float ReviveTimer()
+        {
+            var utcNow = DateTime.UtcNow;
+            var timeSpan = utcNow - RevivedTime;
+            var num = CustomGameOptions.NecroCoolDown * 1000f;
+            var flag2 = num - (float) timeSpan.TotalMilliseconds < 0f;
+            if (flag2) return 0;
+            return (num - (float) timeSpan.TotalMilliseconds) / 1000f;
         }
     }
 }

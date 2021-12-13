@@ -56,7 +56,7 @@ namespace TownOfUs.CrewmateRoles.NecromancerMod
             }
 
             NecromancerKillButtonTarget.SetTarget(killButton, closestBody, role);
-            __instance.KillButton.SetCoolDown(0f, 1f);
+            __instance.KillButton.SetCoolDown(role.ReviveTimer(), CustomGameOptions.NecroCoolDown);
         }
     }
 }

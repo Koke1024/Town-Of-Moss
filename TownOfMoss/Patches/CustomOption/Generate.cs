@@ -135,6 +135,7 @@ namespace TownOfUs.CustomOption
 
         public static CustomHeaderOption Necromancer;
         public static CustomNumberOption ReviveDuration;
+        public static CustomNumberOption NecroCoolDown;
         public static CustomToggleOption NecromancerTargetBody;
         public static CustomToggleOption NecromancerLendBody;
         
@@ -144,7 +145,7 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption GuardCoolDown;
         public static CustomToggleOption DieOnGuard;
         // public static CustomStringOption ShowShielded;
-        // public static CustomStringOption WhoGetsNotification;
+        public static CustomStringOption WhoGetsNotification;
 
         public static CustomHeaderOption Charger;
         public static CustomNumberOption MaxChargeTime;
@@ -410,9 +411,9 @@ namespace TownOfUs.CustomOption
             // ShowShielded =
             //     new CustomStringOption(num++, "Show Shielded Player",
             //         new[] {"BodyGuard", "Self", "Self+Medic", "Everyone"});
-            // WhoGetsNotification =
-            //     new CustomStringOption(num++, "Who gets murder attempt indicator",
-            //         new[] {"BodyGuard", "Shielded", "Everyone", "Nobody"});
+            WhoGetsNotification =
+                new CustomStringOption(num++, "Who gets murder attempt indicator",
+                    new[] {"BodyGuard", "Shielded", "Everyone", "Nobody"});
             
             Charger =
                 new CustomHeaderOption(num++, "<color=#FCFF33FF>Charger</color>");
@@ -459,6 +460,7 @@ namespace TownOfUs.CustomOption
             Necromancer = new CustomHeaderOption(num++, "<color=#660000FF>Necromancer</color>");
             ReviveDuration =
                 new CustomNumberOption(num++, "Revive Duration", 1, 1, 30, 1f, CooldownFormat);
+            NecroCoolDown = new CustomNumberOption(num++, "Necromancy Cooldown", 30f, 10f, 60f, 2.5f, CooldownFormat);
             // NecromancerTargetBody =
             //     new CustomToggleOption(num++, "Target's body disappears", false);
             // NecromancerLendBody =

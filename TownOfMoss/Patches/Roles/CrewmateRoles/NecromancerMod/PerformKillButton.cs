@@ -1,5 +1,6 @@
 using HarmonyLib;
 using Hazel;
+using Il2CppSystem;
 using Reactor;
 using TownOfUs.Roles;
 using UnityEngine;
@@ -20,6 +21,10 @@ namespace TownOfUs.CrewmateRoles.NecromancerMod
 
             var flag2 = __instance.isCoolingDown;
             if (flag2) return false;
+            
+            var flag3 = role.ReviveTimer() == 0f;
+            if (!flag3) return false;
+            
             if (!__instance.enabled) return false;
             var maxDistance = GameOptionsData.KillDistances[PlayerControl.GameOptions.KillDistance];
             if (role == null)
@@ -36,6 +41,8 @@ namespace TownOfUs.CrewmateRoles.NecromancerMod
             writer.Write(playerId);
             AmongUsClient.Instance.FinishRpcImmediately(writer);
 
+
+            role.RevivedTime = DateTime.UtcNow;            
             Coroutines.Start(Coroutine.NecromancerRevive(role.CurrentTarget, role));
             return false;
         }

@@ -6,6 +6,7 @@ using TownOfUs.Roles;
 using Il2CppSystem.Collections;
 using Il2CppSystem.Collections.Generic;
 using Reactor;
+using Reactor.Extensions;
 using TownOfUs.Extensions;
 using UnityEngine;
 
@@ -64,6 +65,9 @@ namespace TownOfUs.ImpostorRoles.CrackerMod {
                     return;
                 }
                 if ((DateTime.UtcNow - role.RoomDetected).Value.Seconds > CustomGameOptions.CrackDur) {
+                    // var room = ShipStatus.Instance.AllRooms[(int)role.BlackOutRoomId];
+                    // room.gameObject.GetComponent<OneWayShadows>().Destroy();
+                    
                     role.HackingRoom = null;
                     role.RoomDetected = null;
                     role.BlackOutRoomId = null;

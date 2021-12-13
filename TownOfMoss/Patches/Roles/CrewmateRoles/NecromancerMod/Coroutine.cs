@@ -60,7 +60,8 @@ namespace TownOfUs.CrewmateRoles.NecromancerMod {
             revived.Add(player);
             player.NetTransform.SnapTo(position);
 
-            role.revivedPlayer = player;
+            role.RevivedPlayer.Enqueue(player);
+            AmongUsExtensions.Log($"{role.RevivedPlayer.Count}");
 
             if (target != null) Object.Destroy(target.gameObject);
 
@@ -98,8 +99,6 @@ namespace TownOfUs.CrewmateRoles.NecromancerMod {
                 yield return Utils.FlashCoroutine(role.Color, 1f, 0.5f);
             }
 
-            yield return new WaitForSeconds(1.0f);
-            role.Player.myRend.enabled = true;
             yield break;
         }
     }
