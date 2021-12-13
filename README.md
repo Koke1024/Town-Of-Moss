@@ -430,7 +430,7 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 ### **Team: Crewmates**
 
 他のプレイヤーを一定時間護衛します。矢印が表示される距離以内にいる間、護衛されているプレイヤーに行われたキルを防ぎ、代わりに死亡します。\
-そのとき、護衛されたプレイヤーの画面が緑色に点灯します。\
+そのとき、護衛されたプレイヤーの画面が緑色に点灯します。
 
 ### Game Options
 
