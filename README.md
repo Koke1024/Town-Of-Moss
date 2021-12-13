@@ -606,6 +606,8 @@ Polus、Airshipでは、閉じられたドアに触れるだけでドアを開�
 | Revive Duration | 蘇生までの時間 | Time | 1s |
 | Necromancy Cooldown | 蘇生のクールダウン | Time | 30s |
 
+-----------------------
+
 ## Charger
 
 ### **Team: Crewmates**
