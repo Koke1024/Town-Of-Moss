@@ -590,12 +590,23 @@ namespace TownOfUs.CustomOption {
         }
     }
 
-    // [HarmonyPatch(typeof(LobbyBehaviour), nameof(LobbyBehaviour.Start))]
-    // public static class ButtonReset {
-    //     public static void Postfix(LobbyBehaviour __instance) {
-    //         foreach (var button in GameObject.FindObjectsOfType<MonoBehaviour>().Where(x => x.name == "KillButton")) {
-    //             button.gameObject.Destroy();
-    //         }
-    //     }
-    // }
+    [HarmonyPatch(typeof(Console), nameof(Console.CanUse))]
+    public class MedBayDuplicate
+    {
+        public static bool Prefix(ref float __result, Console __instance, [HarmonyArgument(0)] GameData.PlayerInfo pc, [HarmonyArgument(1)] out bool canUse, [HarmonyArgument(2)] out bool couldUse)
+        {
+            canUse = couldUse = false;
+            if (__instance.gameObject.GetComponent<MedScannerBehaviour>() == null) {
+                return true;
+            }
+            
+            foreach(var live in PlayerControl.AllPlayerControls.ToArray().Where(x => !x.Data.IsDead && x != PlayerControl.LocalPlayer)){
+                if (__instance.gameObject.GetComponent<CircleCollider2D>().IsTouching(live.Collider)) {
+                    __result = float.MaxValue;
+                    return false;
+                }               
+            }
+            return true;
+        }
+    }
 }
