@@ -227,12 +227,12 @@ namespace TownOfUs.CustomOption {
         [HarmonyPatch(typeof(GameOptionsMenu), nameof(GameOptionsMenu.Start))]
         private class GameOptionsMenu_Start {
             public static bool Prefix(GameOptionsMenu __instance) {
+                inited = false;
                 if (__instance.name != "TouGameOptionsMenu") {
                     return true;
                 }
 
                 togglePrefab = Object.FindObjectOfType<ToggleOption>();
-                inited = false;
                 
                 __instance.Children = new Il2CppReferenceArray<OptionBehaviour>(Array.Empty<OptionBehaviour>());
                 var children = new Transform[__instance.gameObject.transform.childCount];
@@ -553,7 +553,7 @@ namespace TownOfUs.CustomOption {
                 var rows = __instance.GameSettings.text.Count(c => c == '\n');
                 var maxY = Mathf.Max(MinY, rows * LobbyTextRowHeight + (rows - 38) * LobbyTextRowHeight);
 
-                Scroller.YBounds = new FloatRange(MinY, maxY);
+                // Scroller.YBounds = new FloatRange(MinY, maxY);
 
                 // Prevent scrolling when the player is interacting with a menu
                 if (PlayerControl.LocalPlayer?.CanMove != true) {
@@ -580,8 +580,8 @@ namespace TownOfUs.CustomOption {
                 Scroller.allowY = true;
                 Scroller.active = true;
                 Scroller.velocity = new Vector2(0, 0);
-                Scroller.ScrollerYRange = new FloatRange(0, 0);
-                Scroller.XBounds = new FloatRange(MinX, MinX);
+                // Scroller.ScrollerYRange = new FloatRange(0, 0);
+                // Scroller.XBounds = new FloatRange(MinX, MinX);
                 Scroller.enabled = true;
 
                 Scroller.Inner = __instance.GameSettings.transform;
