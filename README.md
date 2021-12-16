@@ -13,6 +13,7 @@
 
 | Among Us - Version| Date | Mod Version | Link |
 |---|----------|-------------|-----------------|
+| 2021.12.14s | 21-12-16 | v1.2.0 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v1.2.0) |
 | 2021.11.9.5s | 21-12-15 | v1.1.1 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v1.1.1) |
 | 2021.6.30s | 21-11-30 | v0.6 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v0.6) |
 
@@ -21,6 +22,12 @@ Executionerが最初からJesterになっている場合があるかもしれま
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v1.2.0 </summary>
+        <ul>
+            <li>12.14に対応</li>
+        </ul>
+    </details>
     <details>
         <summary> v1.1.1 </summary>
         <ul>
@@ -359,7 +366,7 @@ Executionerが最初からJesterになっている場合があるかもしれま
 </details>
 
 ### 注意
-MODの導入されていない2021.11.9のAmong Usディレクトリに展開してください。\
+MODの導入されていない2021.12.14のAmong Usディレクトリに展開してください。\
 異なるMODの導入されたディレクトリに展開すると正常に動作しません。\
 開発途中のため、ゲーム途中で切断されたり予期しない動作が起こる場合がありますが、\
 その場合は次のゲーム開始前に全てのプレイヤーが一度ゲームを終了して起動し直すことをおすすめします。\
