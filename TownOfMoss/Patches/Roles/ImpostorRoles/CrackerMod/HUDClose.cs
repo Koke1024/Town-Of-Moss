@@ -19,4 +19,16 @@ namespace TownOfUs.ImpostorRoles.CrackerMod
             }
         }
     }
+    
+    
+    [HarmonyPatch(typeof(ExileController), nameof(ExileController.WrapUp))]
+    public static class CrackRoomReset {
+        public static void Postfix(ExileController __instance) {
+            if (PlayerControl.LocalPlayer.Is(RoleEnum.Cracker))
+            {
+                var role = Role.GetRole<Cracker>(PlayerControl.LocalPlayer);
+                role.HackingRoom = null;
+            }
+        }
+    }
 }

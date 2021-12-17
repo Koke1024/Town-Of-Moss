@@ -18,6 +18,7 @@
 | 2021.6.30s | 21-11-30 | v0.6 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v0.6) |
 
 ### v1.1.1 既知の不具合
+Madmateに重大な不具合あり
 Executionerが最初からJesterになっている場合があるかもしれません。
 
 <details>
