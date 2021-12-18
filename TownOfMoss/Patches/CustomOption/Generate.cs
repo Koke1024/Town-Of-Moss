@@ -416,7 +416,7 @@ namespace TownOfUs.CustomOption
             //         new[] {"BodyGuard", "Self", "Self+Medic", "Everyone"});
             WhoGetsNotification =
                 new CustomStringOption(num++, "Who gets murder attempt indicator",
-                    new[] {"BodyGuard", "Shielded", "Everyone", "Nobody"});
+                    new[] {"Everyone", "Shielded", "BodyGuard", "Nobody"});
             
             Charger =
                 new CustomHeaderOption(num++, "<color=#FCFF33FF>Charger</color>");

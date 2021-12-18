@@ -15,6 +15,7 @@ namespace TownOfUs.CrewmateRoles.BodyGuardMod
             {
                 var bodyGuard = (BodyGuard) role;
                 bodyGuard.ShieldedTime = DateTime.UtcNow;
+                bodyGuard.ShieldedPlayer = null;
             }
         }
     }

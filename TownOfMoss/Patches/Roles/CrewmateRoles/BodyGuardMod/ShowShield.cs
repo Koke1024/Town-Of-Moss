@@ -14,9 +14,9 @@ namespace TownOfUs.CrewmateRoles.BodyGuardMod
 
     public enum NotificationOptions
     {
-        BodyGuard = 0,
+        Everyone = 0,
         Shielded = 1,
-        Everyone = 2,
+        BodyGuard = 2,
         Nobody = 3
     }
 

@@ -15,7 +15,7 @@ namespace TownOfUs.CrewmateRoles.BodyGuardMod
         public static void BreakShield(byte bodyGuardId, byte playerId, bool flag)
         {
             if (CustomGameOptions.NotificationShield == NotificationOptions.Everyone) {
-                Coroutines.Start(Utils.FlashCoroutine(new Color(0f, 0.47f, 0.23f)));                
+                Coroutines.Start(Utils.FlashCoroutine(new Color(0f, 0.47f, 0.23f)));
             } else if (CustomGameOptions.NotificationShield == NotificationOptions.Shielded && PlayerControl.LocalPlayer.PlayerId == playerId) {
                 Coroutines.Start(Utils.FlashCoroutine(new Color(0f, 0.47f, 0.23f)));
             } else if (CustomGameOptions.NotificationShield == NotificationOptions.BodyGuard && PlayerControl.LocalPlayer.PlayerId == bodyGuardId) {
