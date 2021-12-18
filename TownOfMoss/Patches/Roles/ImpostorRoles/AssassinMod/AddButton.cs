@@ -134,6 +134,7 @@ namespace TownOfUs.ImpostorRoles.AssassinMod
             }
             
             if (role.Player.Is(RoleEnum.Sniper) && toDie.PlayerId != role.Player.PlayerId) {
+                AmongUsExtensions.Log($"sniper shoot");
                 ((Sniper)role).KilledCount++;
                 
                 if (((Sniper)role).KilledCount >= CustomGameOptions.SniperWinCnt) {

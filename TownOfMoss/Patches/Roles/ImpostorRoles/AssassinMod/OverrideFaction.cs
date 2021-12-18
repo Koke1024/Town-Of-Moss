@@ -10,7 +10,9 @@ namespace TownOfUs.ImpostorRoles.AssassinMod
     public class MadMateCantKill
     {
         public static bool Prefix(PlayerControl __instance) {
-            if(HudManager.Instance )
+            if (!HudManager.Instance) {
+                return true;
+            }
             // if ((CustomGameOptions.MadMateOn && PlayerControl.LocalPlayer.Is(RoleEnum.Assassin))) return false;
             if (CustomGameOptions.MadMateOn) {
                 foreach(var role in Role.GetRoles(RoleEnum.Assassin))

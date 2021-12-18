@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace TownOfUs.CustomOption
 {
@@ -11,6 +12,7 @@ namespace TownOfUs.CustomOption
             Min = min;
             Max = max;
             Increment = increment;
+            onChange = null;
         }
 
         protected internal CustomNumberOption(bool indent, int id, string name, float value, float min, float max,
@@ -24,6 +26,8 @@ namespace TownOfUs.CustomOption
         protected float Max { get; set; }
         protected float Increment { get; set; }
 
+        public Action<float> onChange;
+
         protected internal float Get()
         {
             return (float) Value;
@@ -36,9 +40,11 @@ namespace TownOfUs.CustomOption
                 : Increment;
             if ((int)Get() == (int)Max) {
                 Set(Min);
-                return;
             }
-            Set(Mathf.Clamp(Get() + increment, Min, Max));
+            else {
+                Set(Mathf.Clamp(Get() + increment, Min, Max));
+            }
+            onChange?.Invoke(Get());
         }
 
         protected internal void Decrease()
@@ -47,9 +53,11 @@ namespace TownOfUs.CustomOption
                 : Increment;
             if ((int)Get() == (int)Min) {
                 Set(Max);
-                return;
             }
-            Set(Mathf.Clamp(Get() - increment, Min, Max));
+            else {
+                Set(Mathf.Clamp(Get() - increment, Min, Max));
+            }
+            onChange?.Invoke(Get());
         }
 
         public override void OptionCreated()

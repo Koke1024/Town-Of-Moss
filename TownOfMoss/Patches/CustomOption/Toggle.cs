@@ -1,3 +1,5 @@
+using System;
+
 namespace TownOfUs.CustomOption
 {
     public class CustomToggleOption : CustomOption
@@ -7,6 +9,7 @@ namespace TownOfUs.CustomOption
             value)
         {
             Format = val => (bool) val ? "On" : "Off";
+            onChange = null;
         }
 
         protected internal bool Get()
@@ -17,6 +20,7 @@ namespace TownOfUs.CustomOption
         protected internal void Toggle()
         {
             Set(!Get());
+            onChange?.Invoke(Get());
         }
 
         public override void OptionCreated()
@@ -25,5 +29,7 @@ namespace TownOfUs.CustomOption
             Setting.Cast<ToggleOption>().TitleText.text = Name;
             Setting.Cast<ToggleOption>().CheckMark.enabled = Get();
         }
+        
+        public Action<bool> onChange;
     }
 }

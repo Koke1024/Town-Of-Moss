@@ -28,35 +28,18 @@ namespace TownOfUs.Roles
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.SetRole))]
     public class MultiKillerCd
     {
-        public static void Postfix()
+        public static void Postfix(PlayerControl __instance)
         {
-            if (!PlayerControl.LocalPlayer.Is(RoleEnum.MultiKiller)) {
+            if (!__instance.AmOwner) {
+                return;
+            }
+            if (!__instance.Is(RoleEnum.MultiKiller)) {
                 return;
             }
 
-            MultiKiller mk = Role.GetRole<MultiKiller>(PlayerControl.LocalPlayer);
+            MultiKiller mk = Role.GetRole<MultiKiller>(__instance);
             mk.Player.killTimer = mk.MaxTimer() - 10.0f;
             DestroyableSingleton<HudManager>.Instance.KillButton.SetCoolDown(mk.Player.killTimer, mk.MaxTimer());
         }
     }
-
-    [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.Start))]
-    public class MultiKillerCdHost
-    {
-        public static void Postfix()
-        {
-            if (!PlayerControl.LocalPlayer.Is(RoleEnum.MultiKiller)) {
-                return;
-            }
-
-            MultiKiller mk = Role.GetRole<MultiKiller>(PlayerControl.LocalPlayer);
-            mk.Player.killTimer = mk.MaxTimer() - 10.0f;
-            DestroyableSingleton<HudManager>.Instance.KillButton.SetCoolDown(mk.Player.killTimer, mk.MaxTimer());
-        }
-    }
-    
-    
-    
-    
-    
 }
