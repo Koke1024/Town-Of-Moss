@@ -17,9 +17,9 @@
 | 2021.11.9.5s | 21-12-15 | v1.1.1 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v1.1.1) |
 | 2021.6.30s | 21-11-30 | v0.6 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v0.6) |
 
-### v1.1.1 既知の不具合
-Madmateに重大な不具合あり
-Executionerが最初からJesterになっている場合があるかもしれません。
+### 既知の不具合
+<font color="red">Madmateに重大な不具合があるため使用しないようお願いします。</font>\
+勝利画面で第三陣営の判定が正しくない場合があります
 
 <details>
     <summary> Changelog </summary>
