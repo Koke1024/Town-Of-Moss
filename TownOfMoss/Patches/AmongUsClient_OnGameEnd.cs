@@ -14,7 +14,7 @@ namespace TownOfUs {
     [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.OnGameEnd))]
     public class AmongUsClient_OnGameEnd {
         public static void Postfix(AmongUsClient __instance, [HarmonyArgument(0)] EndGameResult endGameResult) {
-            // AmongUsExtensions.Log($"endGameResult.GameOverReason {endGameResult.GameOverReason}");
+            AmongUsExtensions.Log($"endGameResult.GameOverReason {endGameResult.GameOverReason}");
             Utils.potentialWinners.Clear();
 
             foreach (var row in PlayerControl.AllPlayerControls) {

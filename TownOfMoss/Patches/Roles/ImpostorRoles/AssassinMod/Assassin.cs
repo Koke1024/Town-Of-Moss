@@ -5,8 +5,11 @@ using Il2CppSystem.Globalization;
 using MonoMod.Utils;
 using Rewired;
 using TMPro;
+using TownOfUs.Extensions;
 using TownOfUs.ImpostorRoles.AssassinMod;
+using UnhollowerBaseLib;
 using UnityEngine;
+using Object = Il2CppSystem.Object;
 
 namespace TownOfUs.Roles
 {
@@ -40,21 +43,6 @@ namespace TownOfUs.Roles
 
         public Assassin(PlayerControl player) : base(player)
         {
-            Name = "Assassin";
-            ImpostorText = () => "Kill during meetings if you can guess their roles";
-            TaskText = () => "Guess the roles of the people and kill them mid-meeting";
-            Color = Palette.ImpostorRed;
-            RoleType = RoleEnum.Assassin;
-            Faction = Faction.Impostors;
-
-            if (CustomGameOptions.MadMateOn) {
-                Name = "Madmate";
-                Faction = Faction.Crewmates;
-                Player.Data.Role.TeamType = RoleTeamTypes.Crewmate;
-                ImpostorText = () => "Support Impostors and shoot crewmates";
-                TaskText = () => "Support Impostors and shoot crewmates";
-            }
-
             RemainingKills = CustomGameOptions.AssassinKills;
 
             if (CustomGameOptions.AssassinGuessNeutrals && CustomGameOptions.MaxNeutralRoles > 0) {
@@ -72,6 +60,25 @@ namespace TownOfUs.Roles
             if (CustomGameOptions.AssassinGuessImpostors) ColorMapping.Add("Impostor", Color.red);
 
             CleanUpMapping();
+            
+            if (GetType() != typeof(Assassin)) {
+                return;
+            }
+            Name = "Assassin";
+            ImpostorText = () => "Kill during meetings if you can guess their roles";
+            TaskText = () => "Guess the roles of the people and kill them mid-meeting";
+            Color = Palette.ImpostorRed;
+            RoleType = RoleEnum.Assassin;
+            Faction = Faction.Impostors;
+            Player.Data.Role.TeamType = RoleTeamTypes.Impostor;
+
+            if (CustomGameOptions.MadMateOn) {
+                Name = "Madmate";
+                Faction = Faction.Crewmates;
+                Player.Data.Role.TeamType = RoleTeamTypes.Crewmate;
+                ImpostorText = () => "Support Impostors and shoot crewmates";
+                TaskText = () => "Support Impostors and shoot crewmates";
+            }
         }
 
         protected void CleanUpMapping() {

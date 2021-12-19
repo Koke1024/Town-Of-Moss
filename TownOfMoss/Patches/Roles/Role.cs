@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Reactor.Extensions;
 using TMPro;
+using TownOfUs.CustomOption;
 using TownOfUs.ImpostorRoles.CamouflageMod;
 using TownOfUs.Roles.Modifiers;
 using UnhollowerBaseLib;
@@ -304,6 +305,23 @@ namespace TownOfUs.Roles
                         ModifierText = null;
 
                     Lights.SetLights();
+                    
+                    if (!CustomGameOptions.MadMateOn) {
+                        return;
+                    }
+
+                    if (PlayerControl.LocalPlayer.Is(RoleEnum.Assassin)) {
+                        var role = Role.GetRole(PlayerControl.LocalPlayer);
+                        var intro = new IntroCutscene._CoBegin_d__18(0);
+                        role.IntroPrefix(intro);
+                        
+                        __instance.TeamTitle.text = DestroyableSingleton<TranslationController>.Instance.GetString((StringNames)StringNames.Impostor, new Il2CppReferenceArray<Il2CppSystem.Object>(0));
+                        __instance.TeamTitle.color = intro.__4__this.TeamTitle.color;
+                        __instance.RoleText.text = role.Name;
+                        __instance.RoleText.color = role.Color;
+                        __instance.RoleBlurbText.text = role.ImpostorText();
+                        __instance.BackgroundBar.material.color = role.Color;
+                    }
                 }
             }
 
@@ -328,8 +346,6 @@ namespace TownOfUs.Roles
             [HarmonyPatch(typeof(IntroCutscene._CoBegin_d__18), nameof(IntroCutscene._CoBegin_d__18.MoveNext))]
             public static class IntroCutscene_CoBegin__d_MoveNext
             {
-                public static float TestScale;
-
                 public static void Prefix(IntroCutscene._CoBegin_d__18 __instance)
                 {
                     var role = GetRole(PlayerControl.LocalPlayer);
@@ -348,15 +364,8 @@ namespace TownOfUs.Roles
                         __instance.__4__this.RoleText.text = role.Name;
                         __instance.__4__this.RoleText.color = role.Color;
                         __instance.__4__this.RoleBlurbText.text = role.ImpostorText();
-                        //    __instance.__4__this.ImpostorText.gameObject.SetActive(true);
                         __instance.__4__this.BackgroundBar.material.color = role.Color;
-                        //                        TestScale = Mathf.Max(__instance.__this.Title.scale, TestScale);
-                        //                        __instance.__this.Title.scale = TestScale / role.Scale;
                     }
-                    /*else if (!__instance.isImpostor)
-                    {
-                        __instance.__this.ImpostorText.text = "Haha imagine being a boring old crewmate";
-                    }*/
 
                     if (ModifierText != null)
                     {

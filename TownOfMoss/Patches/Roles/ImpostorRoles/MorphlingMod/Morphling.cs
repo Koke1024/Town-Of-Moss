@@ -23,14 +23,16 @@ namespace TownOfUs.Roles
 
         public Morphling(PlayerControl player) : base(player)
         {
+            LastMorphed = DateTime.UtcNow;
+            if (GetType() != typeof(Morphling)) {
+                return;
+            }
             Name = "Morphling";
             ImpostorText = () => "Transform into crewmates";
             TaskText = () => "Morph into crewmates to be disguised";
             Color = Palette.ImpostorRed;
             RoleType = RoleEnum.Morphling;
             Faction = Faction.Impostors;
-            
-            LastMorphed = DateTime.UtcNow;
         }
 
         public KillButton MorphButton

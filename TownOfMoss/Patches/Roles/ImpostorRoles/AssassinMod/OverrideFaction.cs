@@ -13,7 +13,6 @@ namespace TownOfUs.ImpostorRoles.AssassinMod
             if (!HudManager.Instance) {
                 return true;
             }
-            // if ((CustomGameOptions.MadMateOn && PlayerControl.LocalPlayer.Is(RoleEnum.Assassin))) return false;
             if (CustomGameOptions.MadMateOn) {
                 foreach(var role in Role.GetRoles(RoleEnum.Assassin))
                 {
@@ -22,13 +21,28 @@ namespace TownOfUs.ImpostorRoles.AssassinMod
             }
             return true;
         }
-        // public static void Postfix(PlayerControl __instance) {
-        //     if (CustomGameOptions.MadMateOn) {
-        //         foreach(var role in Role.GetRoles(RoleEnum.Assassin))
-        //         {
-        //             role.Player.Data.Role.TeamType = RoleTeamTypes.Impostor;
-        //         }
-        //     }
-        // }
+        public static void Postfix(PlayerControl __instance) {
+            if (CustomGameOptions.MadMateOn) {
+                foreach(var role in Role.GetRoles(RoleEnum.Assassin))
+                {
+                    role.Player.Data.Role.TeamType = RoleTeamTypes.Crewmate;
+                }
+            }
+        }
+    }
+
+    [HarmonyPatch(typeof(MapBehaviour), nameof(MapBehaviour.ShowNormalMap))]
+    public static class ShowSabotageMapPatch {
+        public static void Prefix(MapBehaviour __instance) {
+            if (CustomGameOptions.MadMateOn && PlayerControl.LocalPlayer.Is(RoleEnum.Assassin)) {
+                PlayerControl.LocalPlayer.Data.Role.TeamType = RoleTeamTypes.Impostor;                
+            }
+        }
+
+        public static void Postfix(MapBehaviour __instance) {
+            if (CustomGameOptions.MadMateOn && PlayerControl.LocalPlayer.Is(RoleEnum.Assassin)) {
+                PlayerControl.LocalPlayer.Data.Role.TeamType = RoleTeamTypes.Crewmate;
+            }
+        }
     }
 }

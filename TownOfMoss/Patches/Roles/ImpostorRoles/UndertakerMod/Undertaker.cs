@@ -11,6 +11,9 @@ namespace TownOfUs.Roles
 
         public Undertaker(PlayerControl player) : base(player)
         {
+            if (GetType() != typeof(Undertaker)) {
+                return;
+            }
             Name = "Undertaker";
             ImpostorText = () => "Drag bodies and hide them";
             TaskText = () => "Drag bodies around to hide them from being reported";
