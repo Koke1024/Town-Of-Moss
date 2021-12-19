@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Linq;
 using Hazel;
+using TownOfUs.NeutralRoles.ScavengerMod;
 using TownOfUs.Roles;
 using UnityEngine;
 using DateTime = System.DateTime;

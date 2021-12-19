@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using HarmonyLib;
 using Reactor;
 using TownOfUs.CrewmateRoles.MedicMod;
 using Reactor.Extensions;
@@ -663,4 +664,18 @@ namespace TownOfUs.Roles
             }
         }
     }
+
+    // [HarmonyPatch(typeof(RoleBehaviour), nameof(RoleBehaviour.DidWin), typeof(GameOverReason))]
+    // public static class WinPatchGlitch {
+    //     public static bool Prefix(RoleBehaviour __instance, out bool __result) {
+    //         if (!__instance.Player.Is(RoleEnum.Glitch)) {
+    //             __result = true;
+    //             return true;
+    //         }
+    //
+    //         Glitch role = Role.GetRole<Glitch>(__instance.Player);
+    //         __result = role.GlitchWins;
+    //         return false;
+    //     }
+    // }
 }

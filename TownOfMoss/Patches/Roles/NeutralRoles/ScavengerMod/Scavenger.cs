@@ -1,6 +1,8 @@
+using HarmonyLib;
+using TownOfUs.Roles;
 using UnityEngine;
 
-namespace TownOfUs.Roles
+namespace TownOfUs.NeutralRoles.ScavengerMod
 {
     public class Scavenger : Role {
         public int eatCount;  
@@ -68,4 +70,18 @@ namespace TownOfUs.Roles
             return false;
         }
     }
+
+    // [HarmonyPatch(typeof(RoleBehaviour), nameof(RoleBehaviour.DidWin), typeof(GameOverReason))]
+    // public static class WinPatch {
+    //     public static bool Prefix(RoleBehaviour __instance, out bool __result) {
+    //         if (!__instance.Player.Is(RoleEnum.Scavenger)) {
+    //             __result = true;
+    //             return true;
+    //         }
+    //
+    //         Scavenger role = Role.GetRole<Scavenger>(__instance.Player);
+    //         __result = role.eatCount >= CustomGameOptions.ScavengerWinCount;
+    //         return false;
+    //     }
+    // }
 }

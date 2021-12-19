@@ -2,10 +2,11 @@
 using HarmonyLib;
 using Il2CppSystem;
 using TownOfUs.CrewmateRoles.MedicMod;
+using TownOfUs.NeutralRoles.ZombieMod;
 using TownOfUs.Roles;
 using Object = UnityEngine.Object;
 
-namespace TownOfUs.Patches.NeutralRoles.ZombieMod {
+namespace TownOfUs.NeutralRoles.ZombieMod {
     public class ReviveSelf {
         public static void ReviveBody(PlayerControl player) {
             if (!player.Is(RoleEnum.Zombie)) {

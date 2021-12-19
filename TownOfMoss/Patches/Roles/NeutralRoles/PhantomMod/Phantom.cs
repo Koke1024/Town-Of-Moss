@@ -1,3 +1,4 @@
+using HarmonyLib;
 using UnityEngine;
 
 namespace TownOfUs.Roles
@@ -65,4 +66,18 @@ namespace TownOfUs.Roles
             Player.CurrentPet.Visible = Player.Visible;
         }
     }
+
+    // [HarmonyPatch(typeof(RoleBehaviour), nameof(RoleBehaviour.DidWin), typeof(GameOverReason))]
+    // public static class WinPatchPhantom {
+    //     public static bool Prefix(RoleBehaviour __instance, out bool __result) {
+    //         if (!__instance.Player.Is(RoleEnum.Phantom)) {
+    //             __result = true;
+    //             return true;
+    //         }
+    //
+    //         Phantom role = Role.GetRole<Phantom>(__instance.Player);
+    //         __result = role.CompletePhantomTasks;
+    //         return false;
+    //     }
+    // }
 }

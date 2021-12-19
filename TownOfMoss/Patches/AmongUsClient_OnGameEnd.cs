@@ -7,6 +7,9 @@ using Il2CppSystem.Collections.Generic;
 using Reactor.Extensions;
 using TMPro;
 using TownOfUs.Extensions;
+using TownOfUs.NeutralRoles.ScavengerMod;
+using TownOfUs.NeutralRoles.SniperMod;
+using TownOfUs.NeutralRoles.ZombieMod;
 using TownOfUs.Roles;
 using UnityEngine;
 
@@ -14,7 +17,6 @@ namespace TownOfUs {
     [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.OnGameEnd))]
     public class AmongUsClient_OnGameEnd {
         public static void Postfix(AmongUsClient __instance, [HarmonyArgument(0)] EndGameResult endGameResult) {
-            AmongUsExtensions.Log($"endGameResult.GameOverReason {endGameResult.GameOverReason}");
             Utils.potentialWinners.Clear();
 
             foreach (var row in PlayerControl.AllPlayerControls) {

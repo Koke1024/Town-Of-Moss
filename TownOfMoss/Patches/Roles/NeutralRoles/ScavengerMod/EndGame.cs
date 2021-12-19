@@ -1,5 +1,6 @@
 using HarmonyLib;
 using Hazel;
+using TownOfUs.NeutralRoles.ZombieMod;
 using TownOfUs.Roles;
 
 namespace TownOfUs.NeutralRoles.ScavengerMod

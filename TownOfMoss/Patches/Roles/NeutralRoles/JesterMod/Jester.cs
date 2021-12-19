@@ -1,4 +1,6 @@
+using HarmonyLib;
 using Il2CppSystem.Collections.Generic;
+using TownOfUs.Extensions;
 using UnityEngine;
 
 namespace TownOfUs.Roles
@@ -40,6 +42,11 @@ namespace TownOfUs.Roles
         public void Loses()
         {
             Player.Data.Role.TeamType = RoleTeamTypes.Impostor;
+        }
+
+        public new bool DidWin(GameOverReason gameOverReason) {
+            AmongUsExtensions.Log($"Jester did win {VotedOut}");
+            return VotedOut;
         }
     }
 }

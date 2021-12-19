@@ -597,5 +597,35 @@ namespace TownOfUs.Roles
                 }
             }
         }
+
+        public bool DidWin(GameOverReason gameOverReason) {
+            AmongUsExtensions.Log($"general did win {this.RoleType}");
+            if (gameOverReason == GameOverReason.HumansByTask || gameOverReason == GameOverReason.HumansByVote) {
+                return !Player.Data.Role.IsImpostor;
+            }
+            if (gameOverReason == GameOverReason.ImpostorByKill || gameOverReason == GameOverReason.ImpostorBySabotage || gameOverReason == GameOverReason.ImpostorDisconnect || gameOverReason == GameOverReason.ImpostorByVote) {
+                return !Player.Data.Role.IsImpostor;
+            }
+            return false;
+        }
+    }
+
+    [HarmonyPatch(typeof(CrewmateRole), nameof(CrewmateRole.DidWin), typeof(GameOverReason))]
+    public static class CrewWinPatch {
+        public static bool Prefix(CrewmateRole __instance, [HarmonyArgument(0)]GameOverReason reason, out bool __result) {
+            __result = Role.GetRole(__instance.Player).DidWin(reason);
+            AmongUsExtensions.Log($"{reason}");
+            AmongUsExtensions.Log($"{__result}");
+            return false;
+        }
+    }
+    [HarmonyPatch(typeof(ImpostorRole), nameof(ImpostorRole.DidWin), typeof(GameOverReason))]
+    public static class ImpWinPatch {
+        public static bool Prefix(ImpostorRole __instance, [HarmonyArgument(0)]GameOverReason reason, out bool __result) {
+            __result = Role.GetRole(__instance.Player).DidWin(reason);
+            AmongUsExtensions.Log($"{reason}");
+            AmongUsExtensions.Log($"{__result}");
+            return false;
+        }
     }
 }

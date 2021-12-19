@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
+using HarmonyLib;
+using TownOfUs.NeutralRoles.ZombieMod;
+using TownOfUs.Roles;
 using UnityEngine;
 
-namespace TownOfUs.Roles
+namespace TownOfUs.NeutralRoles.SniperMod
 {
     public class Sniper : Assassin {
         public int KilledCount = 0;
@@ -83,4 +86,18 @@ namespace TownOfUs.Roles
             Player.Data.Role.TeamType = RoleTeamTypes.Impostor;
         }
     }
+
+    // [HarmonyPatch(typeof(RoleBehaviour), nameof(RoleBehaviour.DidWin), typeof(GameOverReason))]
+    // public static class WinPatch {
+    //     public static bool Prefix(RoleBehaviour __instance, out bool __result) {
+    //         if (!__instance.Player.Is(RoleEnum.Sniper)) {
+    //             __result = true;
+    //             return true;
+    //         }
+    //
+    //         Sniper role = Role.GetRole<Sniper>(__instance.Player);
+    //         __result = role.KilledCount >= CustomGameOptions.SniperWinCnt;
+    //         return false;
+    //     }
+    // }
 }

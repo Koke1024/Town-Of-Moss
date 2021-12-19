@@ -1,3 +1,4 @@
+using HarmonyLib;
 using Il2CppSystem.Collections.Generic;
 using TownOfUs.Extensions;
 using UnityEngine;
@@ -65,4 +66,22 @@ namespace TownOfUs.Roles
             gameObj.layer = 5;
         }
     }
+
+    // [HarmonyPatch(typeof(RoleBehaviour), nameof(RoleBehaviour.DidWin), typeof(GameOverReason))]
+    // public static class WinPatchExec {
+    //     public static bool Prefix(RoleBehaviour __instance, out bool __result) {
+    //         if (!__instance.Player.Is(RoleEnum.Executioner)) {
+    //             __result = true;
+    //             return true;
+    //         }
+    //
+    //         if (__instance.Player.Data.IsDead || __instance.Player.Data.Disconnected) {
+    //             __result = false;
+    //             return false;
+    //         }
+    //         Executioner role = Role.GetRole<Executioner>(__instance.Player);
+    //         __result = role.TargetVotedOut;
+    //         return false;
+    //     }
+    // }
 }

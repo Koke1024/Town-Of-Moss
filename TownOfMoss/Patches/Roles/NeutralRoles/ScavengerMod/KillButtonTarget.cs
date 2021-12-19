@@ -1,5 +1,6 @@
 using HarmonyLib;
 using Hazel;
+using TownOfUs.NeutralRoles.ScavengerMod;
 using TownOfUs.Roles;
 using UnityEngine;
 

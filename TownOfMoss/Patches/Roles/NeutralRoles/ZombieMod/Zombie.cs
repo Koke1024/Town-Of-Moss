@@ -1,8 +1,10 @@
 using System.Collections.Generic;
+using HarmonyLib;
 using Il2CppSystem;
+using TownOfUs.Roles;
 using UnityEngine;
 
-namespace TownOfUs.Roles
+namespace TownOfUs.NeutralRoles.ZombieMod
 {
     public class Zombie : Role
     {
@@ -37,4 +39,18 @@ namespace TownOfUs.Roles
             Player.Data.Role.TeamType = RoleTeamTypes.Impostor;
         }
     }
+
+    // [HarmonyPatch(typeof(RoleBehaviour), nameof(RoleBehaviour.DidWin), typeof(GameOverReason))]
+    // public static class WinPatch {
+    //     public static bool Prefix(RoleBehaviour __instance, out bool __result) {
+    //         if (!__instance.Player.Is(RoleEnum.Zombie)) {
+    //             __result = true;
+    //             return true;
+    //         }
+    //
+    //         Zombie role = Role.GetRole<Zombie>(__instance.Player);
+    //         __result = role.CompleteZombieTasks;
+    //         return false;
+    //     }
+    // }
 }

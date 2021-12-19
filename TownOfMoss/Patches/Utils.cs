@@ -11,6 +11,7 @@ using TownOfUs.CrewmateRoles.MedicMod;
 using TownOfUs.CustomOption;
 using TownOfUs.Extensions;
 using TownOfUs.ImpostorRoles.CamouflageMod;
+using TownOfUs.NeutralRoles.ZombieMod;
 using TownOfUs.Roles;
 using TownOfUs.Roles.Modifiers;
 using UnhollowerBaseLib;

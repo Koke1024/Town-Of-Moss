@@ -1,4 +1,5 @@
 using HarmonyLib;
+using TownOfUs.NeutralRoles.ScavengerMod;
 using TownOfUs.Roles;
 using UnityEngine;
 
