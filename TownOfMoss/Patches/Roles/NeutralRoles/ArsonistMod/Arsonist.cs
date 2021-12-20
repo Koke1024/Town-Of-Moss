@@ -106,23 +106,9 @@ namespace TownOfUs.Roles
             if (flag2) return 0;
             return (num - (float) timeSpan.TotalMilliseconds) / 1000f;
         }
+        
+        public override bool DidWin(GameOverReason gameOverReason) {
+            return IgniteUsed;
+        }
     }
-
-    // [HarmonyPatch(typeof(RoleBehaviour), nameof(RoleBehaviour.DidWin), typeof(GameOverReason))]
-    // public static class WinPatchArso {
-    //     public static bool Prefix(RoleBehaviour __instance, out bool __result) {
-    //         if (!__instance.Player.Is(RoleEnum.Arsonist)) {
-    //             __result = true;
-    //             return true;
-    //         }
-    //
-    //         if (__instance.Player.Data.IsDead || __instance.Player.Data.Disconnected) {
-    //             __result = false;
-    //             return false;
-    //         }
-    //         Arsonist role = Role.GetRole<Arsonist>(__instance.Player);
-    //         __result = role.IgniteUsed;
-    //         return false;
-    //     }
-    // }
 }

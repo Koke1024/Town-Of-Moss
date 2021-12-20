@@ -663,19 +663,9 @@ namespace TownOfUs.Roles
                 }
             }
         }
+        
+        public override bool DidWin(GameOverReason gameOverReason) {
+            return GlitchWins;
+        }
     }
-
-    // [HarmonyPatch(typeof(RoleBehaviour), nameof(RoleBehaviour.DidWin), typeof(GameOverReason))]
-    // public static class WinPatchGlitch {
-    //     public static bool Prefix(RoleBehaviour __instance, out bool __result) {
-    //         if (!__instance.Player.Is(RoleEnum.Glitch)) {
-    //             __result = true;
-    //             return true;
-    //         }
-    //
-    //         Glitch role = Role.GetRole<Glitch>(__instance.Player);
-    //         __result = role.GlitchWins;
-    //         return false;
-    //     }
-    // }
 }

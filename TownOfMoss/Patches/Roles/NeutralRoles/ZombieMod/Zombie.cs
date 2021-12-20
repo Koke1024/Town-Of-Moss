@@ -38,19 +38,9 @@ namespace TownOfUs.NeutralRoles.ZombieMod
         {
             Player.Data.Role.TeamType = RoleTeamTypes.Impostor;
         }
+        
+        public override bool DidWin(GameOverReason gameOverReason) {
+            return CompleteZombieTasks;
+        }
     }
-
-    // [HarmonyPatch(typeof(RoleBehaviour), nameof(RoleBehaviour.DidWin), typeof(GameOverReason))]
-    // public static class WinPatch {
-    //     public static bool Prefix(RoleBehaviour __instance, out bool __result) {
-    //         if (!__instance.Player.Is(RoleEnum.Zombie)) {
-    //             __result = true;
-    //             return true;
-    //         }
-    //
-    //         Zombie role = Role.GetRole<Zombie>(__instance.Player);
-    //         __result = role.CompleteZombieTasks;
-    //         return false;
-    //     }
-    // }
 }

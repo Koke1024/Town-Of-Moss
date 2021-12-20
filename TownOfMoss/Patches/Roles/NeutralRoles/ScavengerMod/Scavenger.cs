@@ -69,19 +69,9 @@ namespace TownOfUs.NeutralRoles.ScavengerMod
             Utils.EndGame();
             return false;
         }
+        
+        public override bool DidWin(GameOverReason gameOverReason) {
+            return eatCount >= CustomGameOptions.ScavengerWinCount;
+        }
     }
-
-    // [HarmonyPatch(typeof(RoleBehaviour), nameof(RoleBehaviour.DidWin), typeof(GameOverReason))]
-    // public static class WinPatch {
-    //     public static bool Prefix(RoleBehaviour __instance, out bool __result) {
-    //         if (!__instance.Player.Is(RoleEnum.Scavenger)) {
-    //             __result = true;
-    //             return true;
-    //         }
-    //
-    //         Scavenger role = Role.GetRole<Scavenger>(__instance.Player);
-    //         __result = role.eatCount >= CustomGameOptions.ScavengerWinCount;
-    //         return false;
-    //     }
-    // }
 }

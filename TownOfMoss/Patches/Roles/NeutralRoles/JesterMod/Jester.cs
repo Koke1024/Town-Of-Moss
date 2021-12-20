@@ -44,8 +44,7 @@ namespace TownOfUs.Roles
             Player.Data.Role.TeamType = RoleTeamTypes.Impostor;
         }
 
-        public new bool DidWin(GameOverReason gameOverReason) {
-            AmongUsExtensions.Log($"Jester did win {VotedOut}");
+        public override bool DidWin(GameOverReason gameOverReason) {
             return VotedOut;
         }
     }

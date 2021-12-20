@@ -598,13 +598,12 @@ namespace TownOfUs.Roles
             }
         }
 
-        public bool DidWin(GameOverReason gameOverReason) {
-            AmongUsExtensions.Log($"general did win {this.RoleType}");
-            if (gameOverReason == GameOverReason.HumansByTask || gameOverReason == GameOverReason.HumansByVote) {
+        public virtual bool DidWin(GameOverReason gameOverReason) {
+            if (gameOverReason is GameOverReason.HumansByTask or GameOverReason.HumansByVote) {
                 return !Player.Data.Role.IsImpostor;
             }
-            if (gameOverReason == GameOverReason.ImpostorByKill || gameOverReason == GameOverReason.ImpostorBySabotage || gameOverReason == GameOverReason.ImpostorDisconnect || gameOverReason == GameOverReason.ImpostorByVote) {
-                return !Player.Data.Role.IsImpostor;
+            if (gameOverReason is GameOverReason.ImpostorByKill or GameOverReason.ImpostorBySabotage or GameOverReason.ImpostorDisconnect or GameOverReason.ImpostorByVote) {
+                return Player.Data.Role.IsImpostor;
             }
             return false;
         }
@@ -614,8 +613,6 @@ namespace TownOfUs.Roles
     public static class CrewWinPatch {
         public static bool Prefix(CrewmateRole __instance, [HarmonyArgument(0)]GameOverReason reason, out bool __result) {
             __result = Role.GetRole(__instance.Player).DidWin(reason);
-            AmongUsExtensions.Log($"{reason}");
-            AmongUsExtensions.Log($"{__result}");
             return false;
         }
     }
@@ -623,8 +620,6 @@ namespace TownOfUs.Roles
     public static class ImpWinPatch {
         public static bool Prefix(ImpostorRole __instance, [HarmonyArgument(0)]GameOverReason reason, out bool __result) {
             __result = Role.GetRole(__instance.Player).DidWin(reason);
-            AmongUsExtensions.Log($"{reason}");
-            AmongUsExtensions.Log($"{__result}");
             return false;
         }
     }

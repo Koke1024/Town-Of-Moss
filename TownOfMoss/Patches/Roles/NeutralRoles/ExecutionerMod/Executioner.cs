@@ -65,23 +65,9 @@ namespace TownOfUs.Roles
             Arrow.image = renderer;
             gameObj.layer = 5;
         }
+        
+        public override bool DidWin(GameOverReason gameOverReason) {
+            return TargetVotedOut;
+        }
     }
-
-    // [HarmonyPatch(typeof(RoleBehaviour), nameof(RoleBehaviour.DidWin), typeof(GameOverReason))]
-    // public static class WinPatchExec {
-    //     public static bool Prefix(RoleBehaviour __instance, out bool __result) {
-    //         if (!__instance.Player.Is(RoleEnum.Executioner)) {
-    //             __result = true;
-    //             return true;
-    //         }
-    //
-    //         if (__instance.Player.Data.IsDead || __instance.Player.Data.Disconnected) {
-    //             __result = false;
-    //             return false;
-    //         }
-    //         Executioner role = Role.GetRole<Executioner>(__instance.Player);
-    //         __result = role.TargetVotedOut;
-    //         return false;
-    //     }
-    // }
 }
