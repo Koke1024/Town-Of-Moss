@@ -10,19 +10,26 @@
 会議を挟んでもインポスターのキルクールダウンをリセットしない設定により、開始直後やキルクールダウンのリセットのための会議を行う必要がありません。
 
 ## 最新リリース
+現在は11.9.5までのみの対応となっています。
 
 | Among Us - Version| Date | Mod Version | Link |
 |---|----------|-------------|-----------------|
-| 2021.12.14s | 21-12-16 | v1.2.0 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v1.2.0) |
 | 2021.11.9.5s | 21-12-15 | v1.1.1 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v1.1.1) |
 | 2021.6.30s | 21-11-30 | v0.6 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v0.6) |
 
+[comment]: <> (| 2021.12.14s | 21-12-20 | v1.2.1 | [Download]&#40;https://github.com/Koke1024/Town-Of-Moss/releases/tag/v1.2.1&#41; |)
+
 ### 既知の不具合
-<font color="red">Madmateに重大な不具合があるため使用しないようお願いします。</font>\
-勝利画面で第三陣営の判定が正しくない場合があります
+不具合を発見された場合 [Twitter](https://twitter.com/Koke1024) に連絡をお願いします。
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v1.2.1 </summary>
+        <ul>
+            <li>Madmate、第三陣営の勝利判定の不具合を修正</li>
+        </ul>
+    </details>
     <details>
         <summary> v1.2.0 </summary>
         <ul>
