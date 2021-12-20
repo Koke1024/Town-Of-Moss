@@ -10,20 +10,27 @@
 会議を挟んでもインポスターのキルクールダウンをリセットしない設定により、開始直後やキルクールダウンのリセットのための会議を行う必要がありません。
 
 ## 最新リリース
-現在は11.9.5までのみの対応となっています。
+12.15版は、デフォルトのサーバではオンラインで部屋が立てられませんが、プライベートサーバでIP:139.162.111.196,Port:22023などを指定すると繋がるみたいです。\
+設定ファイル生成、配置については [Impostor](https://impostor.github.io/Impostor/) 参照 \
+理屈はまだわかっていません。
 
 | Among Us - Version| Date | Mod Version | Link |
 |---|----------|-------------|-----------------|
+| 2021.12.15s | 21-12-21 | v1.2.2 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v1.2.2) |
 | 2021.11.9.5s | 21-12-15 | v1.1.1 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v1.1.1) |
 | 2021.6.30s | 21-11-30 | v0.6 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v0.6) |
-
-[comment]: <> (| 2021.12.14s | 21-12-20 | v1.2.1 | [Download]&#40;https://github.com/Koke1024/Town-Of-Moss/releases/tag/v1.2.1&#41; |)
 
 ### 既知の不具合
 不具合を発見された場合 [Twitter](https://twitter.com/Koke1024) に連絡をお願いします。
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v1.2.2 </summary>
+        <ul>
+            <li>カスタムサーバ上では動くようになった</li>
+        </ul>
+    </details>
     <details>
         <summary> v1.2.1 </summary>
         <ul>
