@@ -2,7 +2,6 @@
 using System.Linq;
 using HarmonyLib;
 using Reactor;
-using TownOfUs.Extensions;
 using UnityEngine;
 using UnhollowerBaseLib;
 

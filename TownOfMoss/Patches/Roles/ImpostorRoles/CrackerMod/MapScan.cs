@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Linq;
 using HarmonyLib;
 using Hazel;
 using TownOfUs.Roles;
-using Il2CppSystem.Collections;
-using Il2CppSystem.Collections.Generic;
-using Reactor;
-using Reactor.Extensions;
-using TownOfUs.Extensions;
-using UnityEngine;
 
 namespace TownOfUs.ImpostorRoles.CrackerMod {
     [HarmonyPatch(typeof(RoomTracker), nameof(RoomTracker.SlideOut))]

@@ -1,15 +1,7 @@
-using System;
 using System.Linq;
 using HarmonyLib;
-using Il2CppSystem.Runtime.Serialization.Formatters.Binary;
-using Reactor;
-using Reactor.Extensions;
-using TownOfUs.CrewmateRoles.MedicMod;
-using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine;
-using DateTime = Il2CppSystem.DateTime;
-using Object = UnityEngine.Object;
 
 namespace TownOfUs.CrewmateRoles.SnifferMod
 {

@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Diagnostics.Tracing;
 using HarmonyLib;
 using Hazel;
 using Reactor.Extensions;
-using Rewired;
-using TMPro;
-using TownOfUs.Extensions;
 using TownOfUs.NeutralRoles.SniperMod;
 using TownOfUs.Patches.ImpostorRoles.AssassinMod;
 using TownOfUs.Roles;

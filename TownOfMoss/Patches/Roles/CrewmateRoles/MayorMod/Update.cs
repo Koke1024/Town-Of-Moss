@@ -1,9 +1,5 @@
 using HarmonyLib;
-using Hazel;
-using Il2CppSystem.Web.Util;
-using TownOfUs.CrewmateRoles.MedicMod;
 using TownOfUs.Roles;
-using TownOfUs.Roles.Modifiers;
 using UnityEngine;
 
 namespace TownOfUs.CrewmateRoles.MayorMod {

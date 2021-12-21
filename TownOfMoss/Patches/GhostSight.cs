@@ -1,7 +1,4 @@
 using HarmonyLib;
-using Reactor.Extensions;
-using TownOfUs.Patches;
-using UnityEngine;
 
 namespace TownOfUs
 {

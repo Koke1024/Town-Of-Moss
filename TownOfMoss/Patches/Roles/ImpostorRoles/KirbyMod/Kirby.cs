@@ -1,6 +1,4 @@
-using Hazel;
 using Il2CppSystem;
-using TownOfUs.Extensions;
 using UnityEngine;
 
 namespace TownOfUs.Roles

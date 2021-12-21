@@ -1,10 +1,8 @@
 using System;
 using HarmonyLib;
-using TownOfUs.Patches;
 using TownOfUs.Roles;
 using TownOfUs.Roles.Modifiers;
 using UnityEngine;
-using UnityEngine.UIElements.Experimental;
 
 namespace TownOfUs
 {

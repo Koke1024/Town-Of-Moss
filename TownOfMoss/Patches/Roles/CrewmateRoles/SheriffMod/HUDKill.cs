@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using HarmonyLib;
+﻿using HarmonyLib;
 using TownOfUs.Extensions;
 using TownOfUs.Roles;
 

@@ -1,5 +1,4 @@
 using HarmonyLib;
-using TownOfUs.Extensions;
 using TownOfUs.Roles;
 
 namespace TownOfUs.ImpostorRoles.KirbyMod

@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using HarmonyLib;
-using TownOfUs.NeutralRoles.ZombieMod;
 using TownOfUs.Roles;
 using UnityEngine;
 

@@ -1,15 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Il2CppSystem;
-using Il2CppSystem.Globalization;
 using MonoMod.Utils;
-using Rewired;
-using TMPro;
-using TownOfUs.Extensions;
-using TownOfUs.ImpostorRoles.AssassinMod;
-using UnhollowerBaseLib;
 using UnityEngine;
-using Object = Il2CppSystem.Object;
 
 namespace TownOfUs.Roles
 {

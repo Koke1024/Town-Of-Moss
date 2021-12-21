@@ -1,8 +1,6 @@
 using System;
 using System.Linq;
 using HarmonyLib;
-using Il2CppSystem.Collections.Generic;
-using Reactor.Extensions;
 using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine;

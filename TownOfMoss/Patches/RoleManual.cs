@@ -1,7 +1,6 @@
 ﻿
 using System.Collections.Generic;
 using TownOfUs.CrewmateRoles.EngineerMod;
-using TownOfUs.CrewmateRoles.MedicMod;
 
 namespace TownOfUs.Roles {
     public class RoleManual {

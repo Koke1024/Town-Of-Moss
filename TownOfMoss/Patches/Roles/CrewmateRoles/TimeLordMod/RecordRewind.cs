@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
 using Hazel;
-using TownOfUs.CrewmateRoles.MedicMod;
-using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine;
 using Object = UnityEngine.Object;

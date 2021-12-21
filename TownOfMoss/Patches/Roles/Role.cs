@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Reactor.Extensions;
 using TMPro;
-using TownOfUs.CustomOption;
 using TownOfUs.ImpostorRoles.CamouflageMod;
 using TownOfUs.Roles.Modifiers;
 using UnhollowerBaseLib;

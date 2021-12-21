@@ -1,6 +1,4 @@
 using HarmonyLib;
-using Rewired;
-using TownOfUs.Roles;
 
 namespace TownOfUs.ImpostorRoles.AssassinMod
 {

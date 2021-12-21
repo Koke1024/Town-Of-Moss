@@ -1,10 +1,4 @@
 ﻿using HarmonyLib;
-using Hazel;
-using Il2CppSystem.Collections.Generic;
-using Reactor.Extensions;
-using TMPro;
-using TownOfUs;
-using UnityEngine;
 
 namespace TownOfUs.CrewmateRoles.SniffMod {
 

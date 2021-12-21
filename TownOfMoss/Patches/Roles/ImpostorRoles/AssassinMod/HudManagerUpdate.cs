@@ -1,9 +1,4 @@
-﻿using System.Linq;
-using System.Runtime.CompilerServices;
-using HarmonyLib;
-using TownOfUs.Extensions;
-using TownOfUs.Roles;
-using UnityEngine;
+﻿using HarmonyLib;
 
 namespace TownOfUs.NeutralRoles.AssassinMod
 {

@@ -1,10 +1,5 @@
-using System.Collections.Generic;
-using System.Linq;
 using HarmonyLib;
-using Rewired;
-using TownOfUs.Extensions;
 using TownOfUs.Roles;
-using UnityEngine;
 
 namespace TownOfUs.CrewmateRoles.PainterMod {
     [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]

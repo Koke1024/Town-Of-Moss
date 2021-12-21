@@ -1,12 +1,5 @@
 ﻿using HarmonyLib;
-using Hazel;
-using Il2CppSystem.Collections.Generic;
-using Reactor.Extensions;
-using TMPro;
 using TownOfUs;
-using TownOfUs.Extensions;
-using TownOfUs.Roles;
-using UnityEngine;
 
 namespace GameCustomize {
 //

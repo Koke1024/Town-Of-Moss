@@ -1,11 +1,8 @@
 using System;
 using HarmonyLib;
-using Il2CppSystem.Linq;
 using TownOfUs.Roles;
 using Object = UnityEngine.Object;
-using System.Collections.Generic;
 using System.Linq;
-using TownOfUs.Extensions;
 
 namespace TownOfUs.ImpostorRoles.KirbyMod
 {

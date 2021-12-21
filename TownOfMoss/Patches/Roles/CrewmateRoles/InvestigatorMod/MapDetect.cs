@@ -1,12 +1,7 @@
-using Il2CppSystem.Collections.Generic;
 using HarmonyLib;
 using Il2CppSystem;
-using Rewired;
-using TownOfUs.CrewmateRoles.MedicMod;
-using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace TownOfUs.CrewmateRoles.InvestigatorMod
 {

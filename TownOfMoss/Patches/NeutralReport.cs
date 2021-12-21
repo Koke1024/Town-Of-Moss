@@ -1,8 +1,6 @@
-using System;
 using System.Linq;
 using Assets.CoreScripts;
 using HarmonyLib;
-using TownOfUs;
 using TownOfUs.Roles;
 
 namespace TownOfUs.NeutralReport {

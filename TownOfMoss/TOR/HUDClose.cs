@@ -1,7 +1,5 @@
-using System;
 using HarmonyLib;
 using TheOtherRoles.Objects;
-using TownOfUs.Roles;
 using Object = UnityEngine.Object;
 
 namespace TownOfUs.CrewmateRoles.SeerMod

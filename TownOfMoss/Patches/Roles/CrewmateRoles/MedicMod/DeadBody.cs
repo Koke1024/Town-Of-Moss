@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using HarmonyLib;
-using TownOfUs.Roles;
 
 namespace TownOfUs.CrewmateRoles.MedicMod
 {

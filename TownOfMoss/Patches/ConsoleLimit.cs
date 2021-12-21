@@ -1,10 +1,8 @@
-﻿using System.Linq;
-using HarmonyLib;
+﻿using HarmonyLib;
 using Hazel;
 using Il2CppSystem.Collections.Generic;
 using Reactor.Extensions;
 using TMPro;
-using TownOfUs.Extensions;
 using UnityEngine;
 
 namespace TownOfUs.Patches {

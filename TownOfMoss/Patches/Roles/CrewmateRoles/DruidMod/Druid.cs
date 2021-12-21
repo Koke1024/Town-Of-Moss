@@ -1,15 +1,8 @@
 using System;
-using HarmonyLib;
 using Hazel;
-using Reactor;
 using UnityEngine;
-using System.Collections.Generic;
 using System.Linq;
 using InnerNet;
-using Reactor.Extensions;
-using TownOfUs.CrewmateRoles.MedicMod;
-using Il2CppSystem.Collections.Generic;
-using TownOfUs.Extensions;
 using Object = UnityEngine.Object;
 
 namespace TownOfUs.Roles

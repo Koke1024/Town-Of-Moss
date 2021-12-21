@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
 using HarmonyLib;
 using Reactor;
 using TownOfUs.Roles;
-using UnityEngine;
 
 namespace TownOfUs.CrewmateRoles.ChargerMod
 {

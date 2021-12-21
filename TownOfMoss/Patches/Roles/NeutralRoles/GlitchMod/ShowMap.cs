@@ -1,6 +1,4 @@
-﻿using HarmonyLib;
-
-namespace TownOfUs.NeutralRoles.GlitchMod
+﻿namespace TownOfUs.NeutralRoles.GlitchMod
 {
     //todo
     // [HarmonyPatch(typeof(MapBehaviour), nameof(MapBehaviour.ShowInfectedMap))]

@@ -1,9 +1,6 @@
 using System.Linq;
-using HarmonyLib;
 using Hazel;
-using Il2CppSystem;
 using TheOtherRoles.Objects;
-using TownOfUs.Extensions;
 using TownOfUs.Patches.CrewmateRoles.SecurityGuardMod;
 using UnityEngine;
 using static Il2CppSystem.BitConverter;

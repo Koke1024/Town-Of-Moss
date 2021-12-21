@@ -10,20 +10,18 @@ using HarmonyLib;
 using Reactor;
 using Reactor.Extensions;
 using TownOfUs.CustomOption;
-using TownOfUs.Extensions;
 using TownOfUs.RainbowMod;
 using UnhollowerBaseLib;
 using UnhollowerRuntimeLib;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace TownOfUs
 {
-    [BepInPlugin(Id, "Town Of Moss", "1.2.2")]
+    [BepInPlugin(Id, "Town Of Moss", "1.2.3")]
     [BepInDependency(ReactorPlugin.Id)]
     public class TownOfUs : BasePlugin
     {
-        public static string Version = "1.2.2";
+        public static string Version = "1.2.3";
         public const string Id = "jp.spiel.koke";
 
         public static Sprite JanitorClean;
@@ -83,7 +81,7 @@ namespace TownOfUs
         {
             System.Console.WriteLine("000.000.000.000/000000000000000000");
 
-            _harmony = new Harmony("jp.spiel.Koke");
+            _harmony = new Harmony(Id);
 
             Generate.GenerateAll();
 

@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Il2CppSystem.Text;
 using Reactor.Extensions;
-using TMPro;
 using TownOfUs.CrewmateRoles.MedicMod;
 using TownOfUs.CustomOption;
 using TownOfUs.Extensions;

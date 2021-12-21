@@ -1,7 +1,5 @@
-using System.Collections;
 using HarmonyLib;
 using Reactor.Extensions;
-using TownOfUs.Extensions;
 using TownOfUs.Roles;
 
 namespace TownOfUs.CrewmateRoles.NecromancerMod {

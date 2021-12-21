@@ -1,5 +1,4 @@
 using HarmonyLib;
-using TownOfUs.Extensions;
 
 namespace TownOfUs.CrewmateRoles.SwapperMod
 {

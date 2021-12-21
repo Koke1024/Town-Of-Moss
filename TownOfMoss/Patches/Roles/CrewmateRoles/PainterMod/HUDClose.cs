@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using HarmonyLib;
+﻿using HarmonyLib;
 using Il2CppSystem;
 using MonoMod.Utils;
-using Rewired;
-using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine;
 using Object = UnityEngine.Object;

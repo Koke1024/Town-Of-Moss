@@ -1,8 +1,5 @@
-using System;
 using System.Linq;
-using Epic.OnlineServices.AntiCheatCommon;
 using HarmonyLib;
-using TownOfUs.Extensions;
 using TownOfUs.ImpostorRoles.MinerMod;
 using UnityEngine;
 using Object = UnityEngine.Object;

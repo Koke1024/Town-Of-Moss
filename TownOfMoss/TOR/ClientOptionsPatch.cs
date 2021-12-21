@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using HarmonyLib;
 using UnityEngine;
 using TownOfUs;
-using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine.UI;
 

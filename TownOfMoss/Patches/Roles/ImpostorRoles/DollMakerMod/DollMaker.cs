@@ -1,5 +1,3 @@
-using Il2CppSystem;
-using Il2CppSystem.Collections.Generic;
 using UnityEngine;
 
 namespace TownOfUs.Roles

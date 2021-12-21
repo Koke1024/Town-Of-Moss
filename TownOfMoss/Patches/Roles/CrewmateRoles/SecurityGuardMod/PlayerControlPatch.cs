@@ -1,11 +1,4 @@
 using HarmonyLib;
-using Hazel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TheOtherRoles.Objects;
 using TownOfUs;
 using TownOfUs.Roles;
 using UnityEngine;

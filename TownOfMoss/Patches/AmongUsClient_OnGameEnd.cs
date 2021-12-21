@@ -1,12 +1,8 @@
-using System;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using HarmonyLib;
 using Il2CppSystem.Collections.Generic;
 using Reactor.Extensions;
-using TMPro;
-using TownOfUs.Extensions;
 using TownOfUs.NeutralRoles.ScavengerMod;
 using TownOfUs.NeutralRoles.SniperMod;
 using TownOfUs.NeutralRoles.ZombieMod;

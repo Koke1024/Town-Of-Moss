@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using Reactor;
 using Reactor.Extensions;
-using TownOfUs.Extensions;
 using UnhollowerBaseLib;
 using UnityEngine;
 using Object = UnityEngine.Object;

@@ -1,7 +1,4 @@
 using System;
-using System.Numerics;
-using UnityEngine;
-using Vector2 = UnityEngine.Vector2;
 
 namespace TownOfUs.Roles
 {

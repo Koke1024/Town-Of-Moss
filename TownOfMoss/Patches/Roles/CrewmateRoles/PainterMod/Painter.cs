@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Hazel;
 using Il2CppSystem;
 using Reactor.Extensions;
-using TownOfUs.Extensions;
 using UnityEngine;
 
 namespace TownOfUs.Roles

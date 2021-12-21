@@ -1,10 +1,7 @@
-﻿using System;
-using HarmonyLib;
+﻿using HarmonyLib;
 using Hazel;
 using Reactor;
-using TownOfUs.Extensions;
 using TownOfUs.Roles;
-using UnityEngine;
 using DateTime = Il2CppSystem.DateTime;
 
 namespace TownOfUs.ImpostorRoles.PuppeteerMod

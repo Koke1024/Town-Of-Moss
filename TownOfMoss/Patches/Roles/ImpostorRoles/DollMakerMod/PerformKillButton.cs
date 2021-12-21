@@ -1,12 +1,8 @@
 using HarmonyLib;
 using Hazel;
-using Il2CppSystem;
-using Reactor;
 using TownOfUs.CrewmateRoles.BodyGuardMod;
-using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine;
-using DateTime = System.DateTime;
 
 namespace TownOfUs.ImpostorRoles.DollMakerMod
 {

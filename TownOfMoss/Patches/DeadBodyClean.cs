@@ -1,6 +1,4 @@
 using HarmonyLib;
-using TownOfUs.CrewmateRoles.MedicMod;
-using TownOfUs.Roles;
 using UnityEngine;
 
 namespace TownOfUs

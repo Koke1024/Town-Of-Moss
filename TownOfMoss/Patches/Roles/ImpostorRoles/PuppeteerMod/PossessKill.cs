@@ -1,12 +1,9 @@
 using HarmonyLib;
-using System.Collections.Generic;
 using System.Linq;
 using Hazel;
 using TownOfUs.CrewmateRoles.BodyGuardMod;
-using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine;
-using UnityEngineInternal;
 
 namespace TownOfUs.ImpostorRoles.PuppeteerMod {
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]

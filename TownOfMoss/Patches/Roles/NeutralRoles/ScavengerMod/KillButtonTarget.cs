@@ -1,7 +1,5 @@
 using HarmonyLib;
-using Hazel;
 using TownOfUs.NeutralRoles.ScavengerMod;
-using TownOfUs.Roles;
 using UnityEngine;
 
 namespace TownOfUs.ImpostorRoles.ScavengerMod

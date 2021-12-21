@@ -1,8 +1,5 @@
 using HarmonyLib;
-using TownOfUs.Extensions;
 using TownOfUs.Roles;
-using UnityEngine;
-using UnityEngine.SocialPlatforms;
 
 namespace TownOfUs.ImpostorRoles.AssassinMod
 {

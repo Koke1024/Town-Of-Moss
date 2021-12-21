@@ -1,12 +1,5 @@
-﻿using System;
-using HarmonyLib;
-using Hazel;
-using Reactor;
-using TownOfUs.Extensions;
-using TownOfUs.NeutralRoles.ArsonistMod;
-using TownOfUs.NeutralRoles.SeerMod;
+﻿using HarmonyLib;
 using TownOfUs.Roles;
-using UnityEngine;
 using DateTime = Il2CppSystem.DateTime;
 
 namespace TownOfUs.CrewmateRoles.PainterMod

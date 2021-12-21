@@ -3,7 +3,6 @@ using TownOfUs.CrewmateRoles.BodyGuardMod;
 using TownOfUs.CrewmateRoles.SeerMod;
 using TownOfUs.CustomOption;
 using TownOfUs.ImpostorRoles.MorphlingMod;
-using TownOfUs.NeutralRoles.ExecutionerMod;
 using TownOfUs.NeutralRoles.ShifterMod;
 using TownOfUs.OnStartGame;
 using TownOfUs.Roles;

@@ -1,8 +1,6 @@
 ﻿using System.Linq;
 using HarmonyLib;
 using Il2CppSystem;
-using TownOfUs.CrewmateRoles.MedicMod;
-using TownOfUs.NeutralRoles.ZombieMod;
 using TownOfUs.Roles;
 using Object = UnityEngine.Object;
 

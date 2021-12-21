@@ -1,12 +1,8 @@
 using HarmonyLib;
 using System.Collections.Generic;
 using System.Linq;
-using Hazel;
-using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine;
-using UnityEngine.Animations;
-using UnityEngineInternal;
 
 namespace TownOfUs.ImpostorRoles.DollMakerMod {
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]

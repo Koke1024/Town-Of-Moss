@@ -1,8 +1,5 @@
-﻿using System;
-using HarmonyLib;
+﻿using HarmonyLib;
 using UnityEngine;
-using UnityEngine.Events;
-using Object = UnityEngine.Object;
 
 namespace TownOfUs.RainbowMod
 {

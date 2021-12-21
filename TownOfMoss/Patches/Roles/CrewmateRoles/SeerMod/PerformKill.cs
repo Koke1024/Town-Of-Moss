@@ -1,8 +1,5 @@
-﻿using System;
-using HarmonyLib;
-using Hazel;
+﻿using HarmonyLib;
 using Reactor;
-using TownOfUs.NeutralRoles.ArsonistMod;
 using TownOfUs.NeutralRoles.SeerMod;
 using TownOfUs.Roles;
 using UnityEngine;

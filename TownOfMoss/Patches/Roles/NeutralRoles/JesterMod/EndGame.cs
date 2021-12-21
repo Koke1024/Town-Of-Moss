@@ -1,6 +1,5 @@
 using HarmonyLib;
 using Hazel;
-using TownOfUs.Extensions;
 using TownOfUs.Roles;
 
 namespace TownOfUs.NeutralRoles.JesterMod

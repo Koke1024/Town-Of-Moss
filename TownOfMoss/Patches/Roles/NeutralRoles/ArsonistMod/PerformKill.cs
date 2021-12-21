@@ -1,8 +1,6 @@
-﻿using System;
-using HarmonyLib;
+﻿using HarmonyLib;
 using Hazel;
 using Reactor;
-using TownOfUs.NeutralRoles.ArsonistMod;
 using TownOfUs.Roles;
 
 namespace TownOfUs.NeutralRoles.ArsonistMod

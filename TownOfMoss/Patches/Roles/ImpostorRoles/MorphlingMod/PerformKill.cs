@@ -1,9 +1,7 @@
 ﻿using System;
 using HarmonyLib;
 using Hazel;
-using TownOfUs.Extensions;
 using TownOfUs.Roles;
-using UnityEngine;
 
 namespace TownOfUs.ImpostorRoles.MorphlingMod
 {

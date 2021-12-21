@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using BepInEx.Logging;
-using Il2CppSystem;
 using Il2CppSystem.Text.RegularExpressions;
 using Reactor;
 using TownOfUs.Roles;

@@ -2,7 +2,6 @@
 using HarmonyLib;
 using Hazel;
 using TownOfUs.CrewmateRoles.BodyGuardMod;
-using TownOfUs.CrewmateRoles.MedicMod;
 using TownOfUs.Extensions;
 using TownOfUs.Roles;
 

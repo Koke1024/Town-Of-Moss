@@ -1,13 +1,9 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using Hazel;
-using InnerNet;
 using Reactor;
 using TownOfUs.Roles;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace TownOfUs.NeutralRoles.ArsonistMod
 {

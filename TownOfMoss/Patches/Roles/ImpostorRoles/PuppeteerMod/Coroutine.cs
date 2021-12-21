@@ -2,7 +2,6 @@ using System.Collections;
 using Hazel;
 using Il2CppSystem;
 using TownOfUs.Roles;
-using UnityEngine;
 
 namespace TownOfUs.ImpostorRoles.PuppeteerMod
 {

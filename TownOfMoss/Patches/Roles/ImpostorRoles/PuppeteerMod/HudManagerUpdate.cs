@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using Il2CppSystem;
-using Reactor;
 using TownOfUs.Roles;
 using UnityEngine;
 using Object = UnityEngine.Object;

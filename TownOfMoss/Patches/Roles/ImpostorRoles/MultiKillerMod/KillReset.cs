@@ -1,6 +1,4 @@
 using HarmonyLib;
-using Il2CppSystem;
-using TownOfUs.Extensions;
 using TownOfUs.Roles;
 
 namespace TownOfUs.ImpostorRoles.MultiKillerMod

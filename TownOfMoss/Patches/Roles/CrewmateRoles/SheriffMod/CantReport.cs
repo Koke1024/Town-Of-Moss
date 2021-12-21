@@ -1,8 +1,5 @@
 using System.Linq;
 using HarmonyLib;
-using Il2CppSystem.Collections.Generic;
-using TownOfUs.CrewmateRoles.MedicMod;
-using TownOfUs.Extensions;
 using UnityEngine;
 
 namespace TownOfUs.CrewmateRoles.SheriffMod

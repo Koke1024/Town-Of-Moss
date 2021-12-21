@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using HarmonyLib;
-using TownOfUs.Extensions;
 using TownOfUs.Patches;
 using TownOfUs.Roles;
 using UnityEngine;

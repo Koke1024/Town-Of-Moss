@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using TownOfUs;
-using TownOfUs.Patches;
 
 namespace TownOfMoss.Patches.Roles.NeutralRoles.GlitchMod {
     public class AnywhereMap {

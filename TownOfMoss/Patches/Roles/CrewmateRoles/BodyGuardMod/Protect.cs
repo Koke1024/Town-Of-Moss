@@ -1,8 +1,6 @@
-﻿using System;
-using HarmonyLib;
+﻿using HarmonyLib;
 using Hazel;
 using TownOfUs.Roles;
-using Il2CppSystem;
 using DateTime = Il2CppSystem.DateTime;
 
 namespace TownOfUs.CrewmateRoles.BodyGuardMod

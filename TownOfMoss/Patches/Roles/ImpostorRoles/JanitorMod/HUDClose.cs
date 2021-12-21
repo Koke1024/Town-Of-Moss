@@ -1,6 +1,4 @@
-using System;
 using HarmonyLib;
-using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using DateTime = Il2CppSystem.DateTime;
 using Object = UnityEngine.Object;

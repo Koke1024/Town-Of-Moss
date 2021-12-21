@@ -1,7 +1,6 @@
 using HarmonyLib;
 using Il2CppSystem;
 using Reactor.Extensions;
-using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine;
 

@@ -1,9 +1,4 @@
-﻿using System.Linq;
-using HarmonyLib;
-using TownOfUs.CrewmateRoles.MedicMod;
-using TownOfUs.Patches;
-using TownOfUs.Roles;
-using UnityEngine;
+﻿using HarmonyLib;
 
 namespace TownOfUs
 {

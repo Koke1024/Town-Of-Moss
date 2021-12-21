@@ -1,6 +1,5 @@
 using System;
 using TownOfUs.CrewmateRoles.TimeLordMod;
-using TownOfUs.Extensions;
 using UnityEngine;
 
 namespace TownOfUs.Roles

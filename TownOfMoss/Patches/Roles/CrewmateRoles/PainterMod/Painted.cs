@@ -1,6 +1,4 @@
-using System.Linq;
 using HarmonyLib;
-using TownOfUs.ImpostorRoles.CamouflageMod;
 using TownOfUs.Roles;
 using UnityEngine;
 

@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Hazel;
-using Il2CppSystem.Web.Util;
 using Reactor.Extensions;
-using TownOfUs.CrewmateRoles.SwapperMod;
-using TownOfUs.Extensions;
 using TownOfUs.ImpostorRoles.AssassinMod;
 using TownOfUs.Roles;
 using UnityEngine;

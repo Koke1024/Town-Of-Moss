@@ -1,14 +1,8 @@
 using System.Collections;
 using System.Linq;
-using Hazel;
-using Il2CppSystem;
-using Reactor.Extensions;
-using TownOfUs.Extensions;
-using TownOfUs.ImpostorRoles.MorphlingMod;
 using TownOfUs.Roles;
 using UnityEngine;
 using DateTime = System.DateTime;
-using Object = UnityEngine.Object;
 
 namespace TownOfUs.ImpostorRoles.KirbyMod
 {

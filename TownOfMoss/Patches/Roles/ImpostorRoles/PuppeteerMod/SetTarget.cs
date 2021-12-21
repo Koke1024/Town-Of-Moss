@@ -1,6 +1,4 @@
 using HarmonyLib;
-using TownOfUs;
-using TownOfUs.Extensions;
 using TownOfUs.Roles;
 
 namespace TownOfUs.ImpostorRoles.PuppeteerMod

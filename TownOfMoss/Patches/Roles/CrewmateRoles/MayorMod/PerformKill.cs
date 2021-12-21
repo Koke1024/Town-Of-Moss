@@ -2,7 +2,6 @@ using HarmonyLib;
 using Hazel;
 using TownOfUs.CrewmateRoles.TimeLordMod;
 using TownOfUs.Roles;
-using TownOfUs.Roles.Modifiers;
 
 namespace TownOfUs.CrewmateRoles.MayorMod
 {

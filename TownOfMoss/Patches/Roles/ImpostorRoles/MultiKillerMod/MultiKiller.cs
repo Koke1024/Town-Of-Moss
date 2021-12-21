@@ -1,6 +1,4 @@
-﻿using System;
-using HarmonyLib;
-using TownOfUs.Extensions;
+﻿using HarmonyLib;
 
 namespace TownOfUs.Roles
 {

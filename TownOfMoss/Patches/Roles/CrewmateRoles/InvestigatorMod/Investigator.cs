@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Il2CppSystem;
-using TownOfUs.CrewmateRoles.InvestigatorMod;
 using UnityEngine;
 
 namespace TownOfUs.Roles
