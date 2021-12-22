@@ -81,7 +81,7 @@ namespace TownOfUs
         {
             System.Console.WriteLine("000.000.000.000/000000000000000000");
 
-            _harmony = new Harmony(Id);
+            _harmony = new Harmony("jp.spiel.koke");
 
             Generate.GenerateAll();
 
