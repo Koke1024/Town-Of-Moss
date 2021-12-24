@@ -19,6 +19,7 @@
 
 ### 既知の不具合
 BodyGuardで護衛中に会議を挟んだ場合に護衛が解除されない
+MultiKillerが一人しかキルできない
 
 不具合を発見された場合 [Twitter](https://twitter.com/Koke1024) に連絡をお願いします。
 
