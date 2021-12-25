@@ -383,12 +383,12 @@ MODの導入されていない2021.12.14のAmong Usディレクトリに展開�
 
 ## AUCapture for MOD v1.0
 
-| Version | Link |
-|----------|-----------------|
-| v1.00 | [Download](https://spiel.jp/mod/AUCapture_MOD.zip) |
+| Among Us Version | Version | Link |
+|---------|----------|-----------------|
+| 2021.11.15 | [Download](https://spiel.jp/mod/AUCapture_MOD1195.zip) |
+| 2021.6.15 | [Download](https://spiel.jp/mod/AUCapture_MOD.zip) |
 
-AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscapture) を元に非公式に作成しています。\
-ゲーム中の蘇生に対応していますが、追放直後の一度だけミュート解除されないことがあるようです。
+AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscapture) を元に非公式に作成しています。
 
 -----------------------
 
