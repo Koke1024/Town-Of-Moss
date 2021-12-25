@@ -383,8 +383,8 @@ MODの導入されていない2021.12.14のAmong Usディレクトリに展開�
 
 ## AUCapture for MOD v1.0
 
-| Among Us Version | Version | Link |
-|---------|----------|-----------------|
+| Among Us Version | Link |
+|---------|-----------------|
 | 2021.11.15 | [Download](https://spiel.jp/mod/AUCapture_MOD1195.zip) |
 | 2021.6.15 | [Download](https://spiel.jp/mod/AUCapture_MOD.zip) |
 
