@@ -71,7 +71,7 @@ namespace TownOfUs.ImpostorRoles.UndertakerMod
                     __instance.graphic.sprite = TownOfUs.DragSprite;
                     role.LastDragged = DateTime.UtcNow;
 
-                    //body.transform.position = position;
+                    body.transform.position = position;
 
 
                     return false;

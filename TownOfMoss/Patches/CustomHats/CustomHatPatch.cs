@@ -65,7 +65,8 @@ namespace TownOfUs.Patches.CustomHats
 
             }
 
-            __instance.scroller.ScrollbarYBounds.max = -(__instance.YStart - (hatIdx + 1) / __instance.NumPerRow * __instance.YOffset) - 3f;
+            __instance.scroller.YBounds.max = -(__instance.YStart - (hatIdx + 1) / __instance.NumPerRow * __instance.YOffset) - 3f;
+            // __instance.scroller.ScrollbarYBounds.max = -(__instance.YStart - (hatIdx + 1) / __instance.NumPerRow * __instance.YOffset) - 3f;
             __instance.currentHatIsEquipped = true;
 
             return false;

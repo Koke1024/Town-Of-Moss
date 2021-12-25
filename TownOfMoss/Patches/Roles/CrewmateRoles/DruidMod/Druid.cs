@@ -87,7 +87,6 @@ namespace TownOfUs.Roles
 
             player.Revive();
             revived.Add(player);
-            player.NetTransform.SnapTo(position);
 
             if (target != null) Object.Destroy(target.gameObject);
 

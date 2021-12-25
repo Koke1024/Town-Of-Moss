@@ -12,13 +12,16 @@ namespace TownOfUs.NeutralRoles.ZombieMod {
                 return;
             }
             if (!PlayerControl.LocalPlayer.Is(RoleEnum.Zombie)) return;
-            Zombie zombie = Role.GetRole<Zombie>(PlayerControl.LocalPlayer);  
-            if (LobbyBehaviour.Instance || MeetingHud.Instance) {
-                zombie.KilledBySeer = true;
+            if (!__instance.Data.IsDead) {
+                return;
+            }
+            Zombie zombie = Role.GetRole<Zombie>(PlayerControl.LocalPlayer);
+            if (zombie.KilledBySeer) {
                 zombie.deadTime = DateTime.MaxValue;
                 return;
             }
-            if (!PlayerControl.LocalPlayer.Data.IsDead || zombie.KilledBySeer) {
+            if (LobbyBehaviour.Instance || MeetingHud.Instance) {
+                zombie.KilledBySeer = true;
                 zombie.deadTime = DateTime.MaxValue;
                 return;
             }

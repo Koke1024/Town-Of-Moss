@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace TownOfUs.CrewmateRoles.MedicMod
 {

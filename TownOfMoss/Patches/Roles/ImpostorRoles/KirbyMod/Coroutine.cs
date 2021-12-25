@@ -12,9 +12,8 @@ namespace TownOfUs.ImpostorRoles.KirbyMod
         {
             InhaleButtonTarget.SetTarget(DestroyableSingleton<HudManager>.Instance.KillButton, null, role);
             role.Player.NetTransform.Halt();
-            var renderer = body.bodyRenderer;
             // float maxFrame = CustomGameOptions.CleanDuration * 60;
-            Vector3 startPosition = renderer.transform.position;
+            Vector3 startPosition = body.transform.position;
             float maxFrame = 1.0f * 60;
             for (var i = 0; i < maxFrame; i++)
             {
@@ -22,8 +21,8 @@ namespace TownOfUs.ImpostorRoles.KirbyMod
                     role.Player.moveable = true;
                     yield break;
                 }
-                renderer.transform.localScale = Vector3.Lerp(new Vector3(0.5f, 0.5f, 0.5f), Vector3.zero, (float)i / (maxFrame * 2.0f));
-                renderer.transform.position = Vector3.Lerp(startPosition, role.Player.GetTruePosition(), (float)i / maxFrame);
+                body.bodyRenderer.transform.localScale = Vector3.Lerp(new Vector3(0.5f, 0.5f, 0.5f), Vector3.zero, (float)i / (maxFrame * 2.0f));
+                body.transform.position = Vector3.Lerp(startPosition, role.Player.transform.position, (float)i / maxFrame);
                 role.Player.moveable = false;
                 yield return null;
             }

@@ -56,7 +56,6 @@ namespace TownOfUs.CrewmateRoles.NecromancerMod {
 
             player.Revive();
             revived.Add(player);
-            player.NetTransform.SnapTo(position);
 
             role.RevivedPlayer.Enqueue(player);
 

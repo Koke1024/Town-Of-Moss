@@ -29,7 +29,6 @@ namespace TownOfUs.NeutralRoles.ZombieMod {
             if (body == null) {
                 return;
             }
-            player.NetTransform.SnapTo(body.transform.position);
 
             Object.Destroy(body.gameObject);
 

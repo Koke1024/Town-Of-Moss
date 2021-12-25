@@ -1,4 +1,5 @@
 using Il2CppSystem;
+using Rewired;
 using UnityEngine;
 
 namespace TownOfUs.Roles
@@ -42,7 +43,7 @@ namespace TownOfUs.Roles
             eatTime = DateTime.Now;
             _aten = body;
             body.Reported = true;
-            body.gameObject.SetActive(false);
+            body.bodyRenderer.enabled = false;
         }
         
         public void Spit() {
@@ -50,7 +51,7 @@ namespace TownOfUs.Roles
                 return;
             }
             _aten.bodyRenderer.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-            _aten.gameObject.SetActive(true);
+            _aten.bodyRenderer.enabled = true;
             _aten.Reported = false;
             _aten.transform.position = Player.transform.position;
             

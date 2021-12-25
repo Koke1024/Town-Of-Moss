@@ -28,7 +28,7 @@ namespace TownOfUs.ImpostorRoles.UndertakerMod
                     var position = PlayerControl.LocalPlayer.GetTruePosition();
                     writer.Write(position);
                     AmongUsClient.Instance.FinishRpcImmediately(writer);
-                    // body.transform.position = position;
+                    body.transform.position = position;
 
                     role.CurrentlyDragging = null;
                     body.bodyRenderer.material.SetFloat("_Outline", 0f);

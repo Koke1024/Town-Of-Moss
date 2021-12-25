@@ -12,7 +12,7 @@
 
     <ItemGroup>
         <PackageReference Include="BepInEx.IL2CPP" Version="6.0.0-be.521" />
-        <PackageReference Include="AmongUs.GameLibs.Steam" Version="2021.12.15">
+        <PackageReference Include="AmongUs.GameLibs.Steam" Version="2021.11.9">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
 
