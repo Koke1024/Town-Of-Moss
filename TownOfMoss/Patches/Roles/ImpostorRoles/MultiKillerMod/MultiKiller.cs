@@ -5,7 +5,7 @@ namespace TownOfUs.Roles
     public class MultiKiller : Assassin {
         public bool killedOnce = false;
         public System.DateTime? firstKillTime = null;
-        public bool isFirstTime = true;
+        public bool firstInitialize = false;
         public MultiKiller(PlayerControl player) : base(player)
         {
             Name = "MultiKiller";
@@ -16,7 +16,8 @@ namespace TownOfUs.Roles
             Faction = Faction.Impostors;
             
             killedOnce = false;
-            firstKillTime = System.DateTime.UtcNow.AddSeconds(5.0f);
+            firstInitialize = false;
+            // firstKillTime = System.DateTime.UtcNow.AddSeconds(5.0f);
         }
 
         public float MaxTimer() => PlayerControl.GameOptions.KillCooldown * CustomGameOptions.MultiKillerCdRate / 100.0f;
