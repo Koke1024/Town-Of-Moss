@@ -600,7 +600,7 @@ namespace TownOfUs.CustomOption
             Zombie = new CustomHeaderOption(num++, "<color=#773800>Zombie</color>");
 
             ZombieReviveTime =
-                new CustomNumberOption(num++, "Zombie Revive Time", 15, 1, 60, 2.5f, CooldownFormat);
+                new CustomNumberOption(num++, "Zombie Revive Time", 15, 2.5f, 60, 2.5f, CooldownFormat);
             ZombieKilledBySeer = new CustomToggleOption(num++, "Killed By Seer", true);
 
             // Scavenger = new CustomHeaderOption(num++, "<color=#545459>Scavenger</color>");
