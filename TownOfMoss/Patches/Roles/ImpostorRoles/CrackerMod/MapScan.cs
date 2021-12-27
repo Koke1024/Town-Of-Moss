@@ -1,44 +1,22 @@
 ﻿using System;
+using System.Linq;
 using HarmonyLib;
 using Hazel;
+using TownOfUs.Extensions;
 using TownOfUs.Roles;
 
 namespace TownOfUs.ImpostorRoles.CrackerMod {
-    [HarmonyPatch(typeof(RoomTracker), nameof(RoomTracker.SlideOut))]
+    [HarmonyPatch(typeof(RoomTracker), nameof(RoomTracker.FixedUpdate))]
     class CrackingRoom {
         public static void Prefix(RoomTracker __instance) {
-            var localPlayer = PlayerControl.LocalPlayer;
-            if (localPlayer.Is(RoleEnum.Cracker)) {
-                var cracker = Role.GetRole<Cracker>(localPlayer);
-                if (__instance.LastRoom == null) {
-                    cracker.TargetRoom = null;
-                    return;
-                }
-
-                cracker.TargetRoom = __instance.LastRoom.RoomId;
+            if (!__instance.gameObject.active) {
+                return;
             }
-            else {
-                foreach (Cracker cracker in Role.GetRoles(RoleEnum.Cracker)) {
-                    if (__instance.LastRoom == null) {
-                        Cracker.MyLastRoom = null;
-                        return;
-                    }
-
-                    Cracker.MyLastRoom = __instance.LastRoom.RoomId;
-                    if (cracker.HackingRoom == __instance.LastRoom.RoomId) {
-                        if (cracker.RoomDetected == null) {
-                            var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
-                                (byte)CustomRPC.DetectCrackRoom, SendOption.Reliable, -1);
-                            writer.Write((byte)__instance.LastRoom.RoomId);
-                            writer.Write((byte)cracker.Player.PlayerId);
-                            AmongUsClient.Instance.FinishRpcImmediately(writer);
-
-                            cracker.RoomDetected = DateTime.UtcNow;
-                            cracker.BlackOutRoomId = __instance.LastRoom.RoomId;
-                        }
-                    }
-                }
+            if (__instance.LastRoom == null) {
+                Cracker.MyLastRoom = null;
+                return;
             }
+            Cracker.MyLastRoom = __instance.LastRoom.RoomId;
         }
 
 
@@ -54,22 +32,9 @@ namespace TownOfUs.ImpostorRoles.CrackerMod {
                 }
 
                 Cracker role = Role.GetRole<Cracker>(__instance);
-                if (role.BlackOutRoomId == null || role.RoomDetected == null) {
-                    return;
-                }
-                if ((DateTime.UtcNow - role.RoomDetected).Value.Seconds > CustomGameOptions.CrackDur) {
-                    // var room = ShipStatus.Instance.AllRooms[(int)role.BlackOutRoomId];
-                    // room.gameObject.GetComponent<OneWayShadows>().Destroy();
-                    
-                    role.HackingRoom = null;
-                    role.RoomDetected = null;
-                    role.BlackOutRoomId = null;
 
-                    Cracker.InCrackedRoom = false;
-                    return;
-                }
-
-                if (Cracker.MyLastRoom == role.BlackOutRoomId) {
+                if (Cracker.IsCracked(Cracker.MyLastRoom)) {
+                    // AmongUsExtensions.Log($"CloseDoorsOfType {Cracker.MyLastRoom} == {type}");
                     if (role.Player.PlayerId != PlayerControl.LocalPlayer.PlayerId) {
                         if (Minigame.Instance) {
                             if (Minigame.Instance.TaskType != TaskTypes.ResetReactor &&
@@ -81,17 +46,53 @@ namespace TownOfUs.ImpostorRoles.CrackerMod {
                             }
                         }
                     }
-
-                    if (MapBehaviour.Instance && !PlayerControl.LocalPlayer.Is(Faction.Impostors)) {
-                        MapBehaviour.Instance.Close();
-                    }
-
-                    Cracker.InCrackedRoom = true;
                 }
-                else {
-                    Cracker.InCrackedRoom = false;
+
+                if (Cracker.BlackoutRooms.Any()) {
+                    if (Cracker.BlackoutRooms.First().Item1.AddSeconds(28f) < DateTime.UtcNow) {
+                        Cracker.BlackoutRooms.Dequeue();
+                    }
                 }
             }
+        }
+    }
+
+    [HarmonyPatch(typeof(PlainDoor), nameof(PlainDoor.DoorDynamics))]
+    public static class Door2 {
+        public static void Postfix(PlainDoor __instance) {
+            if (__instance.Open) {
+                return;
+            }
+            if (Cracker.IsBlackout(__instance.Room)) return;
+            Cracker.BlackoutRooms.Enqueue((DateTime.UtcNow, __instance.Room));
+        }
+    }
+    
+    [HarmonyPatch(typeof(HudManager), nameof(HudManager.OpenMap))]
+    public static class MapBlock {
+        public static bool Prefix(HudManager __instance) {
+            if (PlayerControl.LocalPlayer.Data.IsImpostor()) {
+                return true;
+            }
+            if (Cracker.IsCracked(Cracker.MyLastRoom)) {
+                return false;
+            }
+
+            return true;
+        }
+    }
+    
+        
+    [HarmonyPatch(typeof(HudManager), nameof(HudManager.ShowMap))]
+    public static class MapOpen {
+        public static bool Prefix(MapBehaviour __instance) {
+            if (PlayerControl.LocalPlayer.Data.IsImpostor()) {
+                return true;
+            }
+            if (Cracker.IsCracked(Cracker.MyLastRoom)) {
+                return false;
+            }
+            return true;
         }
     }
 }

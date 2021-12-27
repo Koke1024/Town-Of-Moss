@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TownOfUs.CrewmateRoles.EngineerMod;
 
 namespace TownOfUs.Roles {
-    public class RoleManual {
+    public static class RoleManual {
         public static readonly Dictionary<RoleEnum, string> roleManual = new Dictionary<RoleEnum, string> {
             {RoleEnum.Mayor, $"Mayor\n最多得票者が複数いた場合、Mayorに投票されたクルーが追放されます。\nどこにいても緊急会議を開けるボタンを持っています。\n緊急会議ボタンが未使用のときにキルされると、即座に緊急会議が開かれます。\n" +
                              $"ボタンを未使用でキルされた際に即座に緊急会議が開かれる {(CustomGameOptions.MayorMeetingOnDead? "On": "Off")}"},
@@ -131,10 +131,11 @@ namespace TownOfUs.Roles {
             {RoleEnum.MultiKiller, $"MultiKiller\nキルクールが二倍になる代わりに、5秒以内であれば二人目を連続でキルできます。\n" +
                               $"通常のクールダウンに対するキルクールダウン時間の倍率	{CustomGameOptions.MultiKillerCdRate}%\n" +
                               $"二人目を連続でキルできる秒数	{CustomGameOptions.MultiKillEnableTime}s\n"},
-            {RoleEnum.Cracker, $"Cracker\n次に他の誰かが入ったときに停電する罠を部屋全体に仕掛けます。停電中の部屋ではタスク、マップ、通報が使用不可になります。" +
-                               $"罠が設置された部屋は、解除されるまでAdmin情報に人数が映らなくなります。Skeldの廊下に仕掛けた場合、すべての廊下が停電状態になります。別の部屋でCrackを使用した場合、すでに設置されていたCrackは解除されます。\n" +
-                              $"クラック能力のクールダウン時間	{CustomGameOptions.CrackCd}s\n" +
-                               $"クラック発動時の停電の継続時間	{CustomGameOptions.CrackDur}s"},
+            {RoleEnum.Cracker, $"Cracker\nサボタージュでドアを閉めた部屋を停電させます。\n" +
+                               $"同時に、一定時間タスク、マップ、通報が使用不可になり、Admin情報に人数が映らなくなります。\n" +
+                               $"これらの効果はCracker以外のImpostorがドアを閉めた場合も発生します。\n" +
+                               $"停電の継続時間	{CustomGameOptions.BlackoutDur}s\n" +
+                               $"クラック効果の継続時間	{CustomGameOptions.CrackDur}s"},
             {RoleEnum.DollMaker, $"DollMaker\nキルの代わりにクルーを蝋人形状態にします。\n" +
                                  $"蝋人形になったクルーは行動できなくなり、一定時間が経過するか、他のプレイヤーに触れられるか、ミーティングが始まると死亡します。\n" +
                               $"蝋人形にされたクルーが自動で死亡するまでの時間	{CustomGameOptions.DollBreakTime}s"},

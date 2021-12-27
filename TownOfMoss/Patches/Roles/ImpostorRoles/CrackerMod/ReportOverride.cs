@@ -5,7 +5,7 @@ namespace TownOfUs.ImpostorRoles.CrackerMod {
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
     public static class ReportOverride {
         public static void Postfix(PlayerControl __instance) {
-            if (Cracker.InCrackedRoom) {
+            if (Cracker.IsCracked(Cracker.MyLastRoom)) {
                 DestroyableSingleton<HudManager>.Instance.ReportButton.SetActive(false);
             }
         }
@@ -14,7 +14,7 @@ namespace TownOfUs.ImpostorRoles.CrackerMod {
     [HarmonyPatch(typeof(DeadBody), nameof(DeadBody.OnClick))]
     public static class ReportBody {
         public static bool Prefix(DeadBody __instance) {
-            return !Cracker.InCrackedRoom;
+            return !Cracker.IsCracked(Cracker.MyLastRoom);
         }
     }
 }

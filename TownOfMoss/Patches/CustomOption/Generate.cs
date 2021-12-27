@@ -193,7 +193,7 @@ namespace TownOfUs.CustomOption
         public static CustomToggleOption VentWithBody;
         
         public static CustomHeaderOption Cracker;
-        public static CustomNumberOption CrackCd;
+        public static CustomNumberOption BlackoutDur;
         public static CustomNumberOption CrackDur;
         
         public static CustomHeaderOption MultiKiller;
@@ -632,8 +632,9 @@ namespace TownOfUs.CustomOption
                 new CustomNumberOption(num++, "Camouflager Duration", 5, 3, 15, 1f, CooldownFormat);
 
             Cracker = new CustomHeaderOption(num++, "<color=#FF0000FF>Cracker</color>");
-            CrackCd = new CustomNumberOption(num++, "Crack Cooldown", 25f, 10f, 50f, 5f, CooldownFormat);
-            CrackDur = new CustomNumberOption(num++, "Crack Duration", 10f, 5, 40, 2.5f, CooldownFormat);
+            // CrackCd = new CustomNumberOption(num++, "Crack Cooldown", 25f, 10f, 50f, 5f, CooldownFormat);
+            BlackoutDur = new CustomNumberOption(num++, "Blackout Duration", 10f, 2.5f, 20, 1f, CooldownFormat);
+            CrackDur = new CustomNumberOption(num++, "Crack Duration", 10f, 2.5f, 20, 1f, CooldownFormat);
             
             
             DollMaker = new CustomHeaderOption(num++, "<color=#FF0000FF>DollMaker</color>");

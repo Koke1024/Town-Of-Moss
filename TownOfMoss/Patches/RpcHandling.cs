@@ -619,21 +619,21 @@ namespace TownOfUs
                         var swooperRole2 = Role.GetRole<Swooper>(swooper2);
                         swooperRole2.TimeRemaining = 0;
                         break;
-                    case CustomRPC.CrackRoom:
-                        var cracker = Utils.PlayerById(reader.ReadByte());
-                        var crackerRole = Role.GetRole<Cracker>(cracker);
-                        var targetRoom = reader.ReadByte();
-                        crackerRole.CrackRoom((SystemTypes)targetRoom);
-                        break;
-                    case CustomRPC.DetectCrackRoom:
-                        var roomId = (SystemTypes)reader.ReadByte();
-                        var cracker2 = Utils.PlayerById(reader.ReadByte());
-                        Role.GetRole<Cracker>(cracker2).RoomDetected = DateTime.UtcNow;
-                        Role.GetRole<Cracker>(cracker2).BlackOutRoomId = roomId;
-                        if (PlayerControl.LocalPlayer.Is(RoleEnum.Cracker)) {
-                            Coroutines.Start(Utils.FlashCoroutine(new Color(0f, 0f, 0f, 1f), CustomGameOptions.CrackDur));
-                        }
-                        break;
+                    // case CustomRPC.CrackRoom:
+                    //     var cracker = Utils.PlayerById(reader.ReadByte());
+                    //     var crackerRole = Role.GetRole<Cracker>(cracker);
+                    //     var targetRoom = reader.ReadByte();
+                    //     crackerRole.CrackRoom((SystemTypes)targetRoom);
+                    //     break;
+                    // case CustomRPC.DetectCrackRoom:
+                    //     var roomId = (SystemTypes)reader.ReadByte();
+                    //     var cracker2 = Utils.PlayerById(reader.ReadByte());
+                    //     Role.GetRole<Cracker>(cracker2).RoomDetected = DateTime.UtcNow;
+                    //     Role.GetRole<Cracker>(cracker2).BlackOutRoomId = roomId;
+                    //     if (PlayerControl.LocalPlayer.Is(RoleEnum.Cracker)) {
+                    //         Coroutines.Start(Utils.FlashCoroutine(new Color(0f, 0f, 0f, 1f), CustomGameOptions.CrackDur));
+                    //     }
+                    //     break;
                     case CustomRPC.Douse:
                         var arsonist = Utils.PlayerById(reader.ReadByte());
                         var douseTarget = Utils.PlayerById(reader.ReadByte());

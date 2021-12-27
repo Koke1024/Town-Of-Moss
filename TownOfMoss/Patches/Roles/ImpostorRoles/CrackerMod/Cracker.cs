@@ -1,20 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using TownOfUs.Extensions;
 
 namespace TownOfUs.Roles
 {
     public class Cracker : Assassin
     {
         public KillButton _crackButton;
-        public DateTime LastCracked;
-        public SystemTypes? TargetRoom;
-
-        public SystemTypes? HackingRoom;
-        public DateTime? RoomDetected;
         
         public static SystemTypes? MyLastRoom;
-        public static bool InCrackedRoom;
 
-        public SystemTypes? BlackOutRoomId;
+        public static Queue<(DateTime, SystemTypes)> BlackoutRooms = new Queue<(DateTime, SystemTypes)>();
 
         public Cracker(PlayerControl player) : base(player)
         {
@@ -26,8 +22,7 @@ namespace TownOfUs.Roles
             Faction = Faction.Impostors;
             
             MyLastRoom = null;  //local player's current room
-            LastCracked = DateTime.UtcNow;
-            HackingRoom = null;
+            BlackoutRooms.Clear();
         }
 
         public KillButton CrackButton
@@ -41,20 +36,32 @@ namespace TownOfUs.Roles
             }
         }
 
-        public float CrackTimer()
-        {
-            var utcNow = DateTime.UtcNow;
-            var timeSpan = utcNow - LastCracked;
-            var num = CustomGameOptions.CrackCd * 1000f;
-            var flag2 = num - (float) timeSpan.TotalMilliseconds < 0f;
-            if (flag2) return 0;
-            return (num - (float) timeSpan.TotalMilliseconds) / 1000f;
+        public static bool IsBlackout(SystemTypes? roomId) {
+            if (roomId == null) {
+                return false;
+            }
+            foreach (var row in BlackoutRooms) {
+                if (row.Item2 == roomId) {
+                    if (DateTime.UtcNow < row.Item1.AddSeconds(CustomGameOptions.BlackoutDur)) {
+                        return true;                        
+                    }
+                }
+            }
+            return false;
         }
-        
-        public void CrackRoom(SystemTypes? targetRoom) {
-            HackingRoom = targetRoom;
-            RoomDetected = null;
-            LastCracked = DateTime.UtcNow;
+
+        public static bool IsCracked(SystemTypes? roomId) {
+            if (roomId == null) {
+                return false;
+            }
+            foreach (var row in BlackoutRooms) {
+                if (row.Item2 == roomId) {
+                    if (DateTime.UtcNow < row.Item1.AddSeconds(CustomGameOptions.CrackDur)) {
+                        return true;                        
+                    }
+                }
+            }
+            return false;
         }
     }
 }

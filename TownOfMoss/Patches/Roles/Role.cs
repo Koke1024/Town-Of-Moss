@@ -267,10 +267,15 @@ namespace TownOfUs.Roles
             return player == null ? null : GetRole(player);
         }
 
-        public static IEnumerable<Role> GetRoles(RoleEnum roletype)
+        public static IEnumerable<Role> GetRoles(RoleEnum roleType)
         {
-            return AllRoles.Where(x => x.RoleType == roletype);
+            return AllRoles.Where(x => x.RoleType == roleType);
         }
+
+        // public static IEnumerable<T> GetRolesT<T>(RoleEnum roleType) where T : Role
+        // {
+        //     return AllRoles.Where(x => x.RoleType == roleType).Cast<T>();
+        // }
 
         public static IEnumerable<Role> GetMorphRoles()
         {

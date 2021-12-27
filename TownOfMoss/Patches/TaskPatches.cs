@@ -10,6 +10,9 @@ namespace TownOfUs {
                 }
                 __instance.TotalTasks = 0;
                 __instance.CompletedTasks = 0;
+                if (__instance.AllPlayers == null) {
+                    return false;
+                }
                 for (var i = 0; i < __instance.AllPlayers.Count; i++) {
                     var playerInfo = __instance.AllPlayers.ToArray()[i];
                     if (playerInfo == null) {

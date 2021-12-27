@@ -161,7 +161,8 @@ namespace TownOfUs
         public static int MaxImpostorRoles => 10;
         // public static int MaxImpostorRoles => (int) Generate.MaxImpostorRoles.Get();
         public static int MaxNeutralRoles => (int) Generate.MaxNeutralRoles.Get();
-        public static int CrackCd => (int) Generate.CrackCd.Get();
+        // public static int CrackCd => (int) Generate.CrackCd.Get();
+        public static int BlackoutDur => (int) Generate.BlackoutDur.Get();
         public static int CrackDur => (int) Generate.CrackDur.Get();
         public static int MultiKillerCdRate => (int) Generate.MultiKillerCdRate.Get();
         public static float MultiKillEnableTime => (float) Generate.MultiKillEnableTime.Get();

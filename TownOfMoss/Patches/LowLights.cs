@@ -1,5 +1,6 @@
 using System;
 using HarmonyLib;
+using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using TownOfUs.Roles.Modifiers;
 using UnityEngine;
@@ -33,9 +34,13 @@ namespace TownOfUs
             }
 
             var t = switchSystem.Value / 255f;
-            foreach (Cracker cracker in Role.GetRoles(RoleEnum.Cracker)) {
-                if (Cracker.MyLastRoom == cracker.HackingRoom &&
-                    cracker.RoomDetected > DateTime.UtcNow.AddSeconds(-CustomGameOptions.CrackDur)) {
+
+            if (Cracker.IsBlackout(Cracker.MyLastRoom)) {
+                if (player.Role.IsImpostor || player._object.Is(RoleEnum.Glitch) ||
+                    player._object.Is(RoleEnum.Sniper)) {
+                    Utils.StartFlash(new Color(0, 0, 0, 1.0f));
+                }
+                else {
                     t = 0;
                 }
             }
