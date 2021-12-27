@@ -133,7 +133,7 @@ namespace TownOfUs.Roles {
                               $"二人目を連続でキルできる秒数	{CustomGameOptions.MultiKillEnableTime}s\n"},
             {RoleEnum.Cracker, $"Cracker\nサボタージュでドアを閉めた部屋を停電させます。\n" +
                                $"同時に、一定時間タスク、マップ、通報が使用不可になり、Admin情報に人数が映らなくなります。\n" +
-                               $"これらの効果はCracker以外のImpostorがドアを閉めた場合も発生します。\n" +
+                               $"これらの効果はCrackerが生存していれば別のImpostorがドアを閉めた場合も発生します。\n" +
                                $"停電の継続時間	{CustomGameOptions.BlackoutDur}s\n" +
                                $"クラック効果の継続時間	{CustomGameOptions.CrackDur}s"},
             {RoleEnum.DollMaker, $"DollMaker\nキルの代わりにクルーを蝋人形状態にします。\n" +

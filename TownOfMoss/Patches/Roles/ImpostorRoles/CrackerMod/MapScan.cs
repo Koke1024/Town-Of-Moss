@@ -60,6 +60,9 @@ namespace TownOfUs.ImpostorRoles.CrackerMod {
     [HarmonyPatch(typeof(PlainDoor), nameof(PlainDoor.DoorDynamics))]
     public static class Door2 {
         public static void Postfix(PlainDoor __instance) {
+            if (Role.GetRoles(RoleEnum.Cracker).All(x => x.Player.Data.IsDead)) {
+                return;
+            }
             if (__instance.Open) {
                 return;
             }
