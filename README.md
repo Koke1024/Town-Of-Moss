@@ -26,6 +26,12 @@ MultiKillerが一人しかキルできない
 <details>
     <summary> Changelog </summary>
     <details>
+        <summary> v1.3.2 </summary>
+        <ul>
+            <li>Swooperの能力発動中に移動速度上昇効果を付与</li>
+        </ul>
+    </details>
+    <details>
         <summary> v1.3.1 </summary>
         <ul>
             <li>Crackerの能力の調整</li>
@@ -788,8 +794,8 @@ Last Impostor Can SnipeがOnの場合、インポスター役職として割り�
 
 ### **Team: Impostors**
 
-一定時間姿を消します。その間に再度使用することで姿を表すこともできます。\
-ベントは使用できません。
+一定時間姿を消し、移動速度を増加させます。その間に再度使用することで能力を中断できます。\
+能力使用中はベントを使用できません。
 
 ### Game Options
 
@@ -797,6 +803,8 @@ Last Impostor Can SnipeがOnの場合、インポスター役職として割り�
 |----------|:-------------:|:------:|:------:|
 | Swooper Cooldown | 姿を消すクールダウン時間 | Time | 30s |
 | Swooper Duration | 姿を消す最大継続時間 | Time | 5s |
+| Swooper Can Use Vent | ベント利用可能設定 | 能力使用中は禁止 / 常時使用可能 / 使用不可能 | 能力使用中は禁止 |
+| Move Speed On Swoop | 移動速度上昇効果割合 | Number | 150% |
 
 -----------------------
 
