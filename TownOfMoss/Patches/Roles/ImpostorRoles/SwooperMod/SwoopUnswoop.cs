@@ -1,8 +1,28 @@
+using System;
 using HarmonyLib;
+using Hazel;
+using Reactor.Extensions;
 using TownOfUs.Roles;
+using UnityEngine;
 
 namespace TownOfUs.ImpostorRoles.SwooperMod
 {
+    [HarmonyPatch(typeof(PlayerPhysics), nameof(PlayerPhysics.FixedUpdate))]
+    public static class SwoopDash
+    {
+        public static void Postfix(PlayerPhysics __instance)
+        {
+            if(!__instance.myPlayer.Is(RoleEnum.Swooper)) {
+                return;
+            }
+            var role = Role.GetRole<Swooper>(__instance.myPlayer);
+
+            if (role.IsSwooped) {
+                __instance.body.velocity *= CustomGameOptions.SwooperVelocity / 100.0f;                
+            }
+        }
+    }
+    
     [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
     [HarmonyPriority(Priority.Last)]
     public class SwoopUnswoop

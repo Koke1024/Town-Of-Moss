@@ -121,6 +121,7 @@ namespace TownOfUs
         public static float GlitchKillCooldown => Generate.GlitchKillCooldownOption.Get();
         public static int GlitchHackDistance => Generate.GlitchHackDistanceOption.Get();
         public static float MorphlingCd => Generate.MorphlingCooldown.Get();
+        public static float SwooperVelocity => Generate.SwooperVelocity.Get();
         public static MorphVentOptions SwooperCanVent => (MorphVentOptions)Generate.SwooperCanVent.Get();
         public static float MorphlingDuration => Generate.MorphlingDuration.Get();
         public static MorphVentOptions MorphCanVent => (MorphVentOptions)Generate.MorphCanVent.Get();

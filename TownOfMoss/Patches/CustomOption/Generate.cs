@@ -186,6 +186,7 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption SwoopCooldown;
         public static CustomNumberOption SwoopDuration;
         public static CustomStringOption SwooperCanVent;
+        public static CustomNumberOption SwooperVelocity;
 
         public static CustomHeaderOption Undertaker;
         public static CustomNumberOption DragCooldown;
@@ -680,6 +681,8 @@ namespace TownOfUs.CustomOption
                 new CustomNumberOption(num++, "Swoop Duration", 5, 5, 15, 1f, CooldownFormat);
             SwooperCanVent =
                 new CustomStringOption(num++, "Swooper Can Use Vent", new[] {"On not Swooping", "Always", "None"});
+            SwooperVelocity =
+                new CustomNumberOption(num++, "Move Speed On Swoop", 150, 80, 200, 10f, PercentFormat);
 
             Undertaker = new CustomHeaderOption(num++, "<color=#FF0000FF>Undertaker</color>");
             DragCooldown = new CustomNumberOption(num++, "Drag Cooldown", 1f, 1f, 40, 1f, CooldownFormat);

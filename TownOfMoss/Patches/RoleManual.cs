@@ -95,9 +95,10 @@ namespace TownOfUs.Roles {
             {RoleEnum.Miner, $"Miner\n一定個数のベントを作ることができます。新たなベントと直前に作成したベントがそれぞれ接続されます。\n" +
                               $"ベント作成のクールダウン時間	{CustomGameOptions.MineCd}s\n" +
                               $"作成できる最大ベント数	{CustomGameOptions.MaxVentNum}"},
-            {RoleEnum.Swooper, $"Swooper\n一定時間姿を消します。その間に再度使用することで姿を表すことができます。\n" +
+            {RoleEnum.Swooper, $"Swooper\n一定時間姿を消し、移動速度を上げます。その間に再度使用することで中断できます。\n" +
                               $"姿を消す最大継続時間	{CustomGameOptions.SwoopDuration}s\n" +
                               $"姿を消すクールダウン時間	{CustomGameOptions.SwoopCd}s\n" +
+                              $"姿を消している間の移動速度	{CustomGameOptions.SwooperVelocity}%\n" +
                               $"ベント使用         {(new[] {"能力使用中は不可", "常時可能", "不可"}[(int)CustomGameOptions.SwooperCanVent])}"},
             {RoleEnum.Morphling, $"Morphling\nサンプルを取得した対象の姿に変身することができます。\n変身中に再度ボタンを押すことで変身を解除できます。\n変身中はベントを使用できません。\n" +
                               $"変身のクールダウン	{CustomGameOptions.MorphlingCd}s\n" +
