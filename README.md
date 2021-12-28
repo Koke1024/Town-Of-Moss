@@ -14,13 +14,11 @@
 
 | Among Us - Version| Date | Mod Version | Link |
 |---|----------|-------------|-----------------|
-| 2021.11.9.5s | 21-12-26 | v1.3.1 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/latest) |
+| 2021.11.9.5s | 21-12-28 | v1.3.1 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/latest) |
 | 2021.6.30s | 21-11-30 | v0.6 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v0.6) |
 
 ### 既知の不具合
-BodyGuardで護衛中に会議を挟んだ場合に護衛が解除されない
-MultiKillerが一人しかキルできない
-
+なし\
 不具合を発見された場合 [Twitter](https://twitter.com/Koke1024) に連絡をお願いします。
 
 <details>
@@ -387,7 +385,7 @@ MultiKillerが一人しかキルできない
 </details>
 
 ### 注意
-MODの導入されていない2021.12.14のAmong Usディレクトリに展開してください。\
+MODの導入されていない2021.11.9.5のAmong Usディレクトリに展開してください。\
 異なるMODの導入されたディレクトリに展開すると正常に動作しません。\
 開発途中のため、ゲーム途中で切断されたり予期しない動作が起こる場合がありますが、\
 その場合は次のゲーム開始前に全てのプレイヤーが一度ゲームを終了して起動し直すことをおすすめします。\
