@@ -1,4 +1,5 @@
 using HarmonyLib;
+using Il2CppSystem;
 using TownOfUs.Roles;
 
 namespace TownOfUs.ImpostorRoles.MultiKillerMod
@@ -13,15 +14,14 @@ namespace TownOfUs.ImpostorRoles.MultiKillerMod
             
             MultiKiller mk = Role.GetRole<MultiKiller>(PlayerControl.LocalPlayer);
 
-            if (mk.firstKillTime == null) {
+            if (mk.FirstKillTime == null) {
                 return;
             }
 
-            if ((System.DateTime.UtcNow - mk.firstKillTime).Value.TotalMilliseconds >
-                CustomGameOptions.MultiKillEnableTime * 1000.0f) {
-                mk.killedOnce = false;
-                mk.firstKillTime = null;
-                mk.Player.SetKillTimer(mk.MaxTimer());
+            if (mk.FirstKillTime.Value.AddSeconds(CustomGameOptions.MultiKillEnableTime) < DateTime.UtcNow) {
+                mk.KilledOnce = false;
+                mk.FirstKillTime = null;
+                mk.Player.SetKillTimer(mk.MaxTimer);
             }
         }
     }

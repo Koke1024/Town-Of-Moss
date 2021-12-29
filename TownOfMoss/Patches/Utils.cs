@@ -1,9 +1,9 @@
 ﻿using HarmonyLib;
 using Hazel;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Il2CppSystem;
 using Il2CppSystem.Text;
 using Reactor.Extensions;
 using TownOfUs.CrewmateRoles.MedicMod;
@@ -327,7 +327,7 @@ namespace TownOfUs
                         killerData = data;
                     }
                     else {
-                        if (Utils.CanMorph(killer) || killer.Is(RoleEnum.Kirby)) {
+                        if (killer.CanMorph() || killer.Is(RoleEnum.Kirby)) {
                             var morph = Role.GetRole<Morphling>(killer);
                             if (morph.MorphedPlayer != null) {
                                 killerData = morph.MorphedPlayer.Data;
@@ -341,9 +341,6 @@ namespace TownOfUs
                         }
                     }
 
-                    if (target.Is(RoleEnum.Zombie)) {
-                        Role.GetRole<Zombie>(target).deadTime = Il2CppSystem.DateTime.UtcNow;
-                    }
                     DestroyableSingleton<HudManager>.Instance.KillOverlay.ShowKillAnimation(killerData, data);
                     DestroyableSingleton<HudManager>.Instance.ShadowQuad.gameObject.SetActive(false);
                     target.nameText.GetComponent<MeshRenderer>().material.SetInt("_Mask", 0);
@@ -378,43 +375,16 @@ namespace TownOfUs
                 AddDeadBody(killer, target);
                 
                 if (!killer.AmOwner) return;
-
-                if (target.Is(ModifierEnum.Diseased) && killer.Is(RoleEnum.Glitch))
+                
+                if (killer.Data.IsImpostor())
                 {
-                    var glitch = Role.GetRole<Glitch>(killer);
-                    glitch.LastKill = DateTime.UtcNow.AddSeconds(2 * CustomGameOptions.GlitchKillCooldown);
-                    glitch.Player.SetKillTimer(CustomGameOptions.GlitchKillCooldown * 3);
-                    return;
+                    killer.SetKillTimer(PlayerControl.GameOptions.KillCooldown);
                 }
+                Role.GetRole(killer).PostKill(target);
 
                 if (target.Is(ModifierEnum.Diseased) && killer.Data.IsImpostor())
                 {
                     killer.SetKillTimer(PlayerControl.GameOptions.KillCooldown * 3);
-                    return;
-                }
-
-                if (killer.Is(RoleEnum.Underdog))
-                {
-                    killer.SetKillTimer(PlayerControl.GameOptions.KillCooldown * (DoClick.LastImp() ? 0.5f : 1.5f));
-                    return;
-                }
-
-                if (killer.Is(RoleEnum.MultiKiller)) {
-                    MultiKiller mk = Role.GetRole<MultiKiller>(killer);
-                    if (!mk.killedOnce) {
-                        killer.SetKillTimer(0);
-                        mk.firstKillTime = DateTime.UtcNow;
-                    }
-                    else {
-                        killer.SetKillTimer(mk.MaxTimer());
-                    }
-                    mk.killedOnce = !mk.killedOnce;
-                    return;
-                }
-
-                if (killer.Data.IsImpostor())
-                {
-                    killer.SetKillTimer(PlayerControl.GameOptions.KillCooldown);
                 }
             }
         }
@@ -604,6 +574,24 @@ namespace TownOfUs
                     Utils.myBody = null;
                 }
             }
+        }
+    }
+
+    [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
+    public static class PlayerUpdate {
+        public static bool Prefix(PlayerControl __instance) {
+            if (__instance.AmOwner) {
+                if (!__instance.GetRole().PreFixedUpdateLocal()) {
+                    return false;
+                }
+            }
+            return __instance.GetRole().PreFixedUpdate();
+        }
+        public static void Postfix(PlayerControl __instance) {
+            if (__instance.AmOwner) {
+                __instance.GetRole().PostFixedUpdateLocal();
+            }
+            __instance.GetRole().PostFixedUpdate();
         }
     }
     

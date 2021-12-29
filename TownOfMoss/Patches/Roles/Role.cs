@@ -12,6 +12,7 @@ using UnityEngine;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 using TownOfUs.Extensions;
+using TownOfUs.Patches;
 
 namespace TownOfUs.Roles
 {
@@ -20,6 +21,8 @@ namespace TownOfUs.Roles
         public static readonly Dictionary<byte, Role> RoleDictionary = new Dictionary<byte, Role>();
 
         public static bool NobodyWins;
+
+        public bool firstInitialize = false;
 
         public List<KillButton> ExtraButtons = new List<KillButton>();
 
@@ -611,6 +614,25 @@ namespace TownOfUs.Roles
             }
             return false;
         }
+
+        public virtual void InitializeLocal() {}
+        public virtual void Initialize() {}
+
+        public virtual void PostKill(PlayerControl target) {}
+
+        public virtual bool PreFixedUpdateLocal() {
+            return true;
+        }
+
+        public virtual bool PreFixedUpdate() {
+            return true;
+        }
+        public virtual void PostFixedUpdateLocal() {}
+        public virtual void PostFixedUpdate() {}
+        
+        public virtual void OnEndMeeting(){}
+        public virtual void OnStartMeeting(){}
+        public virtual void Outro(){}
     }
 
     [HarmonyPatch(typeof(CrewmateRole), nameof(CrewmateRole.DidWin), typeof(GameOverReason))]
@@ -625,6 +647,20 @@ namespace TownOfUs.Roles
         public static bool Prefix(ImpostorRole __instance, [HarmonyArgument(0)]GameOverReason reason, out bool __result) {
             __result = Role.GetRole(__instance.Player).DidWin(reason);
             return false;
+        }
+    }
+
+    [HarmonyPatch(typeof(ExileController), nameof(ExileController.WrapUp))]
+    public static class OnEndMeeting{
+        public static void Postfix(ExileController __instance) {
+            if (CustomGameOptions.AdminTimeLimitTime > 0) {
+                ConsoleLimit.TimeLimit = CustomGameOptions.AdminTimeLimitTime;
+                ConsoleLimit.AdminWatcher = new Il2CppSystem.Collections.Generic.List<byte>();
+            }
+            
+            foreach (var player in PlayerControl.AllPlayerControls) {
+                player.GetRole().OnEndMeeting();
+            }
         }
     }
 }

@@ -14,5 +14,10 @@ namespace TownOfUs.Roles
         }
 
         public System.Collections.Generic.IEnumerable<PlayerControl> SusList;
+
+        public override void OnEndMeeting() {
+            base.OnEndMeeting();
+            SusList = null;
+        }
     }
 }

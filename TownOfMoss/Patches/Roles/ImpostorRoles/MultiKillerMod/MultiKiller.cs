@@ -1,11 +1,13 @@
 ﻿using HarmonyLib;
+using Il2CppSystem;
+using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 namespace TownOfUs.Roles
 {
     public class MultiKiller : Assassin {
-        public bool killedOnce = false;
-        public System.DateTime? firstKillTime = null;
-        public bool firstInitialize = false;
+        public bool KilledOnce = false;
+        public DateTime? FirstKillTime = null;
         public MultiKiller(PlayerControl player) : base(player)
         {
             Name = "MultiKiller";
@@ -14,31 +16,35 @@ namespace TownOfUs.Roles
             Color = Palette.ImpostorRed;
             RoleType = RoleEnum.MultiKiller;
             Faction = Faction.Impostors;
-            
-            killedOnce = false;
-            firstInitialize = false;
-            // firstKillTime = System.DateTime.UtcNow.AddSeconds(5.0f);
         }
 
-        public float MaxTimer() => PlayerControl.GameOptions.KillCooldown * CustomGameOptions.MultiKillerCdRate / 100.0f;
-    }
-    
-    
-    [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.SetRole))]
-    public class MultiKillerCd
-    {
-        public static void Postfix(PlayerControl __instance)
-        {
-            if (!__instance.AmOwner) {
-                return;
-            }
-            if (!__instance.Is(RoleEnum.MultiKiller)) {
-                return;
-            }
+        public float MaxTimer => PlayerControl.GameOptions.KillCooldown * CustomGameOptions.MultiKillerCdRate / 100.0f;
 
-            MultiKiller mk = Role.GetRole<MultiKiller>(__instance);
-            mk.Player.killTimer = mk.MaxTimer() - 10.0f;
-            DestroyableSingleton<HudManager>.Instance.KillButton.SetCoolDown(mk.Player.killTimer, mk.MaxTimer());
+        public override void InitializeLocal() {
+            Player.SetKillTimer(Mathf.Max(MaxTimer - 10.0f, 10.0f));
+            KilledOnce = false;
+            firstInitialize = false;
+        }
+
+        public override void PostKill(PlayerControl target) {
+            if (!KilledOnce) {
+                Player.SetKillTimer(0);
+                FirstKillTime = DateTime.UtcNow;
+            }
+            else {
+                Player.SetKillTimer(MaxTimer);
+            }
+            KilledOnce = !KilledOnce;
+        }
+
+        public override void OnEndMeeting() {
+            base.OnEndMeeting();
+            if (KilledOnce) {
+                KilledOnce = false;
+                var maxTimer = PlayerControl.GameOptions.KillCooldown * CustomGameOptions.MultiKillerCdRate / 100.0f;
+                Player.SetKillTimer(maxTimer);
+                HudManager.Instance.KillButton.SetCoolDown(maxTimer, maxTimer);
+            }
         }
     }
 }

@@ -22,5 +22,14 @@ namespace TownOfUs.Roles
         {
             Player.SetKillTimer(MaxTimer());
         }
+
+        public override void PostKill(PlayerControl target) {
+            SetKillTimer();
+        }
+
+        public override void OnEndMeeting() {
+            base.OnEndMeeting();
+            SetKillTimer();
+        }
     }
 }

@@ -69,8 +69,7 @@ namespace TownOfUs.Roles
             }
 
         }
-
-
+        
         public void UnSwoop()
         {
             Enabled = false;
@@ -81,6 +80,11 @@ namespace TownOfUs.Roles
             if (Player == PlayerControl.LocalPlayer) {
                 PlayerControl.LocalPlayer.NetTransform.Halt();                
             }
+        }
+
+        public override void OnEndMeeting() {
+            base.OnEndMeeting();
+            LastSwooped = DateTime.UtcNow;
         }
     }
 }

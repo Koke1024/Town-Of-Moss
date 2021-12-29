@@ -39,5 +39,10 @@ namespace TownOfUs.Roles
         {
             return CustomGameOptions.ShowSheriff || base.Criteria();
         }
+
+        public override void OnEndMeeting() {
+            base.OnEndMeeting();
+            LastKilled = DateTime.UtcNow;
+        }
     }
 }

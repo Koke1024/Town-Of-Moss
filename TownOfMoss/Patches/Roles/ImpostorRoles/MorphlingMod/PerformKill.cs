@@ -1,6 +1,6 @@
-﻿using System;
-using HarmonyLib;
+﻿using HarmonyLib;
 using Hazel;
+using Il2CppSystem;
 using TownOfUs.Roles;
 
 namespace TownOfUs.ImpostorRoles.MorphlingMod

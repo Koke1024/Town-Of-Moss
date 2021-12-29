@@ -24,19 +24,14 @@ namespace TownOfUs.ImpostorRoles.MultiKillerMod
     }
 
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
-    public static class MultiKillerInit {
+    public static class Initialize {
         public static bool Prefix(PlayerControl __instance) {
-            if (__instance != PlayerControl.LocalPlayer) {
-                return true;
-            }
-            if (!__instance.Is(RoleEnum.MultiKiller)) return true;
-            var role = Role.GetRole<MultiKiller>(__instance);
+            var role = Role.GetRole(__instance);
             if (HudManager._instance.isIntroDisplayed) {
                 role.firstInitialize = false;
             }
             if (!role.firstInitialize && !HudManager._instance.isIntroDisplayed) {
-                var maxTimer = PlayerControl.GameOptions.KillCooldown * CustomGameOptions.MultiKillerCdRate / 100.0f;
-                __instance.SetKillTimer(Mathf.Max(maxTimer - 10.0f, 10.0f));
+                role.InitializeLocal();
                 role.firstInitialize = true;
             }
             return true;

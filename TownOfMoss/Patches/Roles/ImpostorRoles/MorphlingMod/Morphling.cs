@@ -1,4 +1,4 @@
-using System;
+using Il2CppSystem;
 using TownOfUs.Extensions;
 using TownOfUs.Roles.Modifiers;
 using UnityEngine;
@@ -85,6 +85,13 @@ namespace TownOfUs.Roles
 
             appearance = Player.GetDefaultAppearance();
             return false;
+        }
+
+        public override void OnEndMeeting() {
+            base.OnEndMeeting();
+            MorphButton.graphic.sprite = TownOfUs.SampleSprite;
+            SampledPlayer = null;
+            LastMorphed = DateTime.UtcNow;
         }
     }
 }

@@ -1,5 +1,6 @@
 using Il2CppSystem;
 using Il2CppSystem.Collections.Generic;
+using Reactor.Extensions;
 using UnityEngine;
 
 namespace TownOfUs.Roles
@@ -27,6 +28,15 @@ namespace TownOfUs.Roles
             var flag2 = num - (float) timeSpan.TotalMilliseconds < 0f;
             if (flag2) return 0;
             return (num - (float) timeSpan.TotalMilliseconds) / 1000f;
+        }
+
+        public override void OnEndMeeting() {
+            base.OnEndMeeting();
+            foreach (var revived in RevivedPlayer) {
+                Utils.MurderPlayer(revived, revived);
+                Utils.GetBody(revived.PlayerId).gameObject.Destroy();
+            }
+            RevivedPlayer.Clear();
         }
     }
 }

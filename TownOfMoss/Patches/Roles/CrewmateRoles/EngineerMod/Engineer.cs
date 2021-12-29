@@ -1,7 +1,13 @@
+using TownOfUs.CrewmateRoles.EngineerMod;
 using UnityEngine;
 
 namespace TownOfUs.Roles
 {
+    public enum EngineerFixPer
+    {
+        Round,
+        Game
+    }
     public class Engineer : Role
     {
         public Engineer(PlayerControl player) : base(player)
@@ -14,5 +20,10 @@ namespace TownOfUs.Roles
         }
 
         public bool UsedThisRound { get; set; } = false;
+
+        public override void OnEndMeeting() {
+            base.OnEndMeeting();
+            if (CustomGameOptions.EngineerFixPer == EngineerFixPer.Round) UsedThisRound = false;
+        }
     }
 }

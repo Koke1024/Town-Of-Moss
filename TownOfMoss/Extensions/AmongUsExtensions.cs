@@ -124,5 +124,9 @@ namespace TownOfUs.Extensions {
 
             return false;
         }
+        
+        public static Role GetRole(this PlayerControl player) {
+            return Role.GetRole(player);
+        }
     }
 }

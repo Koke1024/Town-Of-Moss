@@ -1,5 +1,6 @@
 using HarmonyLib;
 using Hazel;
+using Il2CppSystem;
 using Reactor;
 using Reactor.Extensions;
 using TownOfUs.Extensions;
@@ -61,14 +62,14 @@ namespace TownOfUs.CrewmateRoles.BodyGuardMod
                     if (CustomGameOptions.ShieldBreaks) {
                         if (killer.Is(RoleEnum.MultiKiller)) {
                             MultiKiller mk = Role.GetRole<MultiKiller>(killer);
-                            if (!mk.killedOnce) {
+                            if (!mk.KilledOnce) {
                                 killer.SetKillTimer(0);
                             }
                             else {
-                                killer.SetKillTimer(mk.MaxTimer());
+                                killer.SetKillTimer(mk.MaxTimer);
                             }
-                            mk.killedOnce = !mk.killedOnce;
-                            mk.firstKillTime = System.DateTime.UtcNow;
+                            mk.KilledOnce = !mk.KilledOnce;
+                            mk.FirstKillTime = DateTime.UtcNow;
                         }
                         else {
                             PlayerControl.LocalPlayer.SetKillTimer(PlayerControl.GameOptions.KillCooldown);

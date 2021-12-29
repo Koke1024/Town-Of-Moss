@@ -1,10 +1,10 @@
 ﻿using Hazel;
 using InnerNet;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Il2CppSystem;
 using Reactor;
 using Reactor.Extensions;
 using TownOfUs.CrewmateRoles.BodyGuardMod;
@@ -664,6 +664,14 @@ namespace TownOfUs.Roles
         
         public override bool DidWin(GameOverReason gameOverReason) {
             return GlitchWins;
+        }
+
+        public override void PostKill(PlayerControl target) {
+            if (target.Is(ModifierEnum.Diseased))
+            {
+                LastKill = DateTime.UtcNow.AddSeconds(2 * CustomGameOptions.GlitchKillCooldown);
+                Player.SetKillTimer(CustomGameOptions.GlitchKillCooldown * 3);
+            }
         }
     }
 }

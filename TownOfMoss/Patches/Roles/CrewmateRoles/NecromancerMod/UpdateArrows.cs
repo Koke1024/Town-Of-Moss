@@ -22,17 +22,4 @@ namespace TownOfUs.CrewmateRoles.NecromancerMod {
             }
         }
     }
-
-    [HarmonyPatch(typeof(ExileController), nameof(ExileController.WrapUp))]
-    public class NecroClean {
-        public static void Prefix(ExileController __instance) {
-            foreach (Necromancer role in Role.GetRoles(RoleEnum.Necromancer)) {
-                foreach (var revived in role.RevivedPlayer) {
-                    Utils.MurderPlayer(revived, revived);
-                    Utils.GetBody(revived.PlayerId).gameObject.Destroy();
-                }
-                role.RevivedPlayer.Clear();
-            }
-        }
-    }
 }

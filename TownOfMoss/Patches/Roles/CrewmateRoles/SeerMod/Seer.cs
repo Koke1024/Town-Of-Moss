@@ -51,5 +51,11 @@ namespace TownOfUs.Roles
 
             return false;
         }
+
+        public override void OnEndMeeting() {
+            base.OnEndMeeting();
+            LastInvestigated = DateTime.UtcNow;
+            LastInvestigated = LastInvestigated.AddSeconds(-10.0);
+        }
     }
 }

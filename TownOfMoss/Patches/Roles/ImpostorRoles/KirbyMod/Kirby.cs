@@ -60,5 +60,13 @@ namespace TownOfUs.Roles
             TimeRemaining = 0;
             Unmorph();
         }
+
+        public override void OnEndMeeting() {
+            base.OnEndMeeting();
+            SampledPlayer = null;
+            _aten = null;
+            Unmorph();
+            LastMorphed = DateTime.UtcNow;
+        }
     }
 }

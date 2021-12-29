@@ -44,11 +44,14 @@ namespace TownOfUs.Roles
             Arrow.image = renderer;
             gameObj.layer = 5;
         }
-        
-        // internal override bool Criteria()
-        // {
-        //     return Defended && PlayerControl.LocalPlayer.Data.IsImpostor() ||
-        //            base.Criteria();
-        // }
+
+        public override void OnEndMeeting() {
+            base.OnEndMeeting();
+            foreach (var role in GetRoles(RoleEnum.BodyGuard))
+            {
+                ShieldedTime = DateTime.UtcNow;
+                ShieldedPlayer = null;
+            }
+        }
     }
 }

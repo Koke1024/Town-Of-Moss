@@ -1,6 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using HarmonyLib;
+using Il2CppSystem;
 using TownOfUs.Roles;
 using Object = UnityEngine.Object;
 

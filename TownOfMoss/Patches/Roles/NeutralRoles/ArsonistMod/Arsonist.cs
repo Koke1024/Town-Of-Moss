@@ -109,5 +109,10 @@ namespace TownOfUs.Roles
         public override bool DidWin(GameOverReason gameOverReason) {
             return IgniteUsed;
         }
+
+        public override void OnEndMeeting() {
+            base.OnEndMeeting();
+            LastDoused = DateTime.UtcNow;
+        }
     }
 }

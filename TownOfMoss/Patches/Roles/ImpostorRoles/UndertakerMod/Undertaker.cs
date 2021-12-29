@@ -43,5 +43,15 @@ namespace TownOfUs.Roles
             if (flag2) return 0;
             return (num - (float) timeSpan.TotalMilliseconds) / 1000f;
         }
+
+        public override void OnEndMeeting() {
+            base.OnEndMeeting();
+            if (PlayerControl.LocalPlayer.CanDrag())
+            {
+                DragDropButton.graphic.sprite = TownOfUs.DragSprite;
+                CurrentlyDragging = null;
+                LastDragged = DateTime.UtcNow;
+            }
+        }
     }
 }

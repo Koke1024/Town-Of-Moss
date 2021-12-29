@@ -1,6 +1,6 @@
-using System;
 using System.Linq;
 using HarmonyLib;
+using Il2CppSystem;
 using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine;
@@ -57,17 +57,6 @@ namespace TownOfUs.CrewmateRoles.MedicMod
                 x.PlayerId == report.Killer.PlayerId ? -10 : new Random().NextDouble() +
                 (x.AmOwner ? 5 : 0));
             return susList.Take(Mathf.Clamp(susNum, 1, PlayerControl.AllPlayerControls.ToArray().Count(x => !x.Data.IsDead) - 2)).ToArray();
-        }
-    }
-    
-    [HarmonyPatch(typeof(ExileController), nameof(ExileController.WrapUp))]
-    public static class AdminTimeReset {
-        public static void Postfix(ExileController __instance) {
-            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Medic)) {
-                return;
-            }
-            var role = Role.GetRole<Medic>(PlayerControl.LocalPlayer);
-            role.SusList = null;
         }
     }
 }

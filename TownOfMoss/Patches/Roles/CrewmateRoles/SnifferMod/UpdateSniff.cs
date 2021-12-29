@@ -46,21 +46,4 @@ namespace TownOfUs.CrewmateRoles.SnifferMod
             role.sniffInterval = 1.0f;
         }
     }
-
-    namespace TownOfUs.CrewmateRoles.SnifferMod
-    {
-        [HarmonyPatch(typeof(ExileController), nameof(ExileController.Begin))]
-        internal class DeadBodyClean
-        {
-            private static void Postfix(ExileController __instance)
-            {
-                if (!PlayerControl.LocalPlayer.Is(RoleEnum.Sniffer)) {
-                    return;
-                }
-                
-                DestroyableSingleton<HudManager>.Instance.ShadowQuad.material.color =
-                    new Color(0.27451f, 0.27451f, 0.27451f);
-            }
-        }
-    }
 }

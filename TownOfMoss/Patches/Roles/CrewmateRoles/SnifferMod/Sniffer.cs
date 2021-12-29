@@ -16,5 +16,11 @@ namespace TownOfUs.Roles
 
             sniffInterval = 5.0f;
         }
+
+        public override void OnEndMeeting() {
+            base.OnEndMeeting();
+            DestroyableSingleton<HudManager>.Instance.ShadowQuad.material.color =
+                new Color(0.27451f, 0.27451f, 0.27451f);
+        }
     }
 }

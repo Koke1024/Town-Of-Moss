@@ -53,5 +53,11 @@ namespace TownOfUs.Roles
         {
             return RecordRewind.rewinding ? CustomGameOptions.RewindDuration : CustomGameOptions.RewindCooldown;
         }
+
+        public override void OnEndMeeting() {
+            base.OnEndMeeting();
+            FinishRewind = DateTime.UtcNow;
+            StartRewind = FinishRewind.AddSeconds(CustomGameOptions.RewindDuration);
+        }
     }
 }

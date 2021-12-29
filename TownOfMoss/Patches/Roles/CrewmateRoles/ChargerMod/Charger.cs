@@ -14,9 +14,16 @@ namespace TownOfUs.Roles
             TaskText = () => "Charge energy to see around";
             Color = new Color(0.99f, 1f, 0.2f);
             RoleType = RoleEnum.Charger;
-            
+        }
+
+        public override void InitializeLocal() {
             Charge = 1.0f;
             flashed = false;
+        }
+
+        public override void OnEndMeeting() {
+            base.OnEndMeeting();
+            Charge = 1.0f;
         }
     }
     

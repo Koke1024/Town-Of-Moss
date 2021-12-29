@@ -3,6 +3,7 @@
 using System.Collections.Generic;
 using Hazel;
 using Il2CppSystem;
+using MonoMod.Utils;
 using Reactor.Extensions;
 using UnityEngine;
 
@@ -137,7 +138,43 @@ namespace TownOfUs.Roles
             }
             color = PaintedVent[id];
         }
-        
-        
+
+        public override void OnEndMeeting() {
+            base.OnEndMeeting();
+            
+            foreach (var (id, c) in PaintedPlayers) {
+                var player = GameData.Instance.GetPlayerById(id);
+                player._object.myRend.material.SetColor("_VisorColor", Palette.VisorColor);
+            }
+
+            if (PlayerControl.LocalPlayer.Is(RoleEnum.Painter)) {
+                lastPainted = DateTime.UtcNow;
+                InkListBefore.Clear();
+            }
+
+            foreach (var (point, color) in PaintedPointBefore) {
+                var ink = new GameObject("Ink");
+                Vector3 position = new Vector3(point.x, point.y,
+                    Utils.getZfromY(point.y) + 0.001f); // just behind player
+                ink.transform.position = position;
+                ink.transform.localPosition = position;
+
+                var inkRenderer = ink.AddComponent<SpriteRenderer>();
+                inkRenderer.sprite = InkSprite;
+                inkRenderer.color = PaintColors[(int)color];
+                inkRenderer.color = Color.Lerp(PaintColors[(int)color], new Color(1,1,1,0), 0.2f);
+
+                ink.SetActive(true);
+                InkList.Add(ink);
+            }
+
+            PaintedPoint.AddRange(PaintedPointBefore);
+            PaintedPointBefore.Clear();
+            
+            PaintedVent.AddRange(PaintedVentBefore);
+            PaintedVentBefore.Clear();
+            
+            PaintedPlayers.Clear();
+        }
     }
 }

@@ -17,15 +17,6 @@ namespace TownOfUs.Patches {
                 TimeLimit = CustomGameOptions.AdminTimeLimitTime;
             }
         }
-        [HarmonyPatch(typeof(ExileController), nameof(ExileController.WrapUp))]
-        public static class AdminTimeReset {
-            public static void Postfix(ExileController __instance) {
-                if (CustomGameOptions.AdminTimeLimitTime > 0) {
-                    TimeLimit = CustomGameOptions.AdminTimeLimitTime;
-                    AdminWatcher = new List<byte>();
-                }
-            }
-        }
         [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
         public class ConsumeAdmin {
             public static void Prefix(PlayerControl __instance) {

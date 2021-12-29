@@ -42,5 +42,10 @@ namespace TownOfUs.Roles
                 ExtraButtons.Add(value);
             }
         }
+
+        public override void OnEndMeeting() {
+            base.OnEndMeeting();
+            lastCleaned = DateTime.UtcNow;
+        }
     }
 }

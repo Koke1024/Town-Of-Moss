@@ -87,5 +87,13 @@ namespace TownOfUs.NeutralRoles.SniperMod
         public override bool DidWin(GameOverReason gameOverReason) {
             return KilledCount >= CustomGameOptions.SniperWinCnt;
         }
+
+        public override void OnEndMeeting() {
+            base.OnEndMeeting();
+            if (CustomGameOptions.SniperPerGame == EngineerFixPer.Game) {
+                return;
+            }
+            KilledCount = 0;
+        }
     }
 }
