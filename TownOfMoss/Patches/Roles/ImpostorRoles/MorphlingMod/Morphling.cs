@@ -2,6 +2,7 @@ using Il2CppSystem;
 using TownOfUs.Extensions;
 using TownOfUs.Roles.Modifiers;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace TownOfUs.Roles
 {
@@ -92,6 +93,55 @@ namespace TownOfUs.Roles
             MorphButton.graphic.sprite = TownOfUs.SampleSprite;
             SampledPlayer = null;
             LastMorphed = DateTime.UtcNow;
+        }
+
+        private static readonly int Desat = Shader.PropertyToID("_Desat");
+        
+        public override void PostHudUpdate(HudManager __instance) {
+            base.PostHudUpdate(__instance);
+            
+            if (MorphButton == null) {
+                MorphButton = Object.Instantiate(__instance.KillButton, __instance.KillButton.transform.parent);
+                MorphButton.graphic.enabled = true;
+                MorphButton.graphic.sprite = Morphling.SampleSprite;
+                MorphButton.GetComponent<AspectPosition>().DistanceFromEdge = TownOfUs.ButtonPosition;
+                MorphButton.gameObject.SetActive(false);
+                
+                if (Player.Is(RoleEnum.Jester)) {
+                    MorphButton.GetComponent<AspectPosition>().DistanceFromEdge = new Vector3(TownOfUs.ButtonPosition.x + TownOfUs.ButtonOffset.x, TownOfUs.ButtonPosition.y, TownOfUs.ButtonPosition.z);
+                }
+            }
+            MorphButton.GetComponent<AspectPosition>().Update();
+
+            if (MorphButton.graphic.sprite != Morphling.SampleSprite &&
+                MorphButton.graphic.sprite != Morphling.MorphSprite)
+                MorphButton.graphic.sprite = Morphling.SampleSprite;
+
+            MorphButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
+            
+
+
+            if (MorphButton.graphic.sprite == Morphling.SampleSprite) {
+                MorphButton.SetCoolDown(0f, 1f);
+                Utils.SetTarget(ref ClosestPlayer, MorphButton);
+                if (ClosestPlayer) {
+                    MorphButton.graphic.color = Palette.EnabledColor;
+                    MorphButton.graphic.material.SetFloat(Desat, 0f);
+                }
+                else {
+                    MorphButton.graphic.color = Palette.DisabledClear;
+                    MorphButton.graphic.material.SetFloat(Desat, 1.0f);
+                }
+            }
+            else {
+                if (Morphed) {
+                    MorphButton.SetCoolDown(TimeRemaining, CustomGameOptions.MorphlingDuration);
+                    return;
+                }
+                MorphButton.SetCoolDown(MorphTimer(), CustomGameOptions.MorphlingCd);
+                MorphButton.graphic.color = sampledColor;
+                MorphButton.graphic.material.SetFloat(Desat, 0f);
+            }
         }
     }
 }

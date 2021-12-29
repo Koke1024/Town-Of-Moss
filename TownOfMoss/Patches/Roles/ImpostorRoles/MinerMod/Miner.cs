@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace TownOfUs.Roles
 {
@@ -54,6 +56,60 @@ namespace TownOfUs.Roles
         public override void OnEndMeeting() {
             base.OnEndMeeting();
             LastMined = DateTime.UtcNow;
+        }
+
+        public static Sprite MineSprite => TownOfUs.MineSprite;
+        
+        public override void PostHudUpdate(HudManager __instance) {
+            base.PostHudUpdate(__instance);
+            if (ventModel == null) {
+                ventModel = Object.FindObjectOfType<Vent>(); 
+            }
+            if (CustomGameOptions.MaxVentNum <= Vents.Count) {
+                MineButton.graphic.color = Palette.DisabledClear;
+                MineButton.graphic.material.SetFloat("_Desat", 1f);
+                CanPlace = false;
+                return;
+            }
+            if (MineButton == null)
+            {
+                MineButton = Object.Instantiate(__instance.KillButton, __instance.KillButton.transform.parent);
+                MineButton.graphic.enabled = true;
+                MineButton.GetComponent<AspectPosition>().DistanceFromEdge = TownOfUs.ButtonPosition;
+                MineButton.gameObject.SetActive(false);
+            }
+
+            MineButton.GetComponent<AspectPosition>().Update();
+            MineButton.graphic.sprite = MineSprite;
+            MineButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
+
+            MineButton.SetCoolDown(MineTimer(), CustomGameOptions.MineCd);
+
+            if (VentSize == Vector2.zero) {
+                var vent = Object.FindObjectOfType<Vent>();
+                if (vent == null) {
+                    return;
+                }
+                VentSize =
+                    Vector2.Scale(vent.GetComponent<BoxCollider2D>().size, vent.transform.localScale) * 0.75f;
+            }
+
+            var hits = Physics2D.OverlapBoxAll(PlayerControl.LocalPlayer.transform.position, VentSize, 0);
+            hits = hits.ToArray().Where(c =>
+                    (c.name.Contains("Vent") || !c.isTrigger) && c.gameObject.layer != 8 && c.gameObject.layer != 5)
+                .ToArray();
+            if (hits.Count == 0)
+            {
+                MineButton.graphic.color = Palette.EnabledColor;
+                MineButton.graphic.material.SetFloat("_Desat", 0f);
+                CanPlace = true;
+            }
+            else
+            {
+                MineButton.graphic.color = Palette.DisabledClear;
+                MineButton.graphic.material.SetFloat("_Desat", 1f);
+                CanPlace = false;
+            }
         }
     }
 }

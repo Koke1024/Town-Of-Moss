@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using TownOfUs.Roles;
 using UnityEngine;
 
@@ -94,6 +95,11 @@ namespace TownOfUs.NeutralRoles.SniperMod
                 return;
             }
             KilledCount = 0;
+        }
+
+        public override void Outro(EndGameManager __instance) {
+            base.Outro(__instance);
+            NeutralOutro(__instance);
         }
     }
 }

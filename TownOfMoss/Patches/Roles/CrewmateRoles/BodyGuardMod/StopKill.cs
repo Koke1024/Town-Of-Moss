@@ -60,6 +60,7 @@ namespace TownOfUs.CrewmateRoles.BodyGuardMod
 
                     System.Console.WriteLine(CustomGameOptions.ShieldBreaks + "- shield break");
                     if (CustomGameOptions.ShieldBreaks) {
+                        killer.GetRole().PostKill(target);
                         if (killer.Is(RoleEnum.MultiKiller)) {
                             MultiKiller mk = Role.GetRole<MultiKiller>(killer);
                             if (!mk.KilledOnce) {

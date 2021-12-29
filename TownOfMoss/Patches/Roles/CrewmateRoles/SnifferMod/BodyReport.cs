@@ -17,10 +17,6 @@ namespace TownOfUs.CrewmateRoles.SniffMod
     [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
     public class Update {
         public static void Postfix(HudManager __instance) {
-            if(PlayerControl.LocalPlayer.Is(RoleEnum.Sniffer) && !CustomGameOptions.SnifferCanReport) {
-                __instance.ReportButton.enabled = false;
-                __instance.ReportButton.SetActive(false);
-            }
         }
     }
 }

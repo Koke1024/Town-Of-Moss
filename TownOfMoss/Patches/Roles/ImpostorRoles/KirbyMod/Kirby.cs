@@ -1,6 +1,8 @@
 using Il2CppSystem;
 using Rewired;
+using TownOfUs.ImpostorRoles.KirbyMod;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace TownOfUs.Roles
 {
@@ -67,6 +69,60 @@ namespace TownOfUs.Roles
             _aten = null;
             Unmorph();
             LastMorphed = DateTime.UtcNow;
+        }
+
+        public override void PostFixedUpdateLocal() {
+            base.PostFixedUpdateLocal();
+            if (Morphed) {
+                Player.killTimer += Time.fixedDeltaTime;                
+            }
+        }
+
+        public override void PostHudUpdate(HudManager __instance) {
+            base.PostHudUpdate(__instance);
+            
+            if (InhaleButton == null)
+            {
+                InhaleButton = Object.Instantiate(__instance.KillButton, __instance.KillButton.transform.parent);
+                InhaleButton.graphic.enabled = true;
+                InhaleButton.GetComponent<AspectPosition>().DistanceFromEdge = TownOfUs.ButtonPosition;
+                InhaleButton.gameObject.SetActive(false);
+                InhaleButton.graphic.sprite = TownOfUs.Inhale;
+            }
+            InhaleButton.GetComponent<AspectPosition>().Update();
+            InhaleButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance && !LobbyBehaviour.Instance);
+
+
+            var data = PlayerControl.LocalPlayer.Data;
+            var isDead = data.IsDead;
+            var truePosition = PlayerControl.LocalPlayer.GetTruePosition();
+            var maxDistance = GameOptionsData.KillDistances[0];
+            var flag = (PlayerControl.GameOptions.GhostsDoTasks || !data.IsDead) &&
+                       (!AmongUsClient.Instance || !AmongUsClient.Instance.IsGameOver) &&
+                       PlayerControl.LocalPlayer.CanMove;
+            var allocs = Physics2D.OverlapCircleAll(truePosition, maxDistance,
+                LayerMask.GetMask(new[] {"Players", "Ghost"}));
+            var killButton = InhaleButton;
+            DeadBody closestBody = null;
+            var closestDistance = float.MaxValue;
+
+            foreach (var collider2D in allocs)
+            {
+                if (!flag || isDead || !collider2D.CompareTag("DeadBody")) continue;
+                var component = collider2D.GetComponent<DeadBody>();
+                if (!(Vector2.Distance(truePosition, component.TruePosition) <=
+                      maxDistance)) continue;
+
+                var distance = Vector2.Distance(truePosition, component.TruePosition);
+                if (!(distance < closestDistance)) continue;
+                closestBody = component;
+                closestDistance = distance;
+            }
+
+
+            InhaleButtonTarget.SetTarget(killButton, closestBody, this);
+            InhaleButton.SetCoolDown(0, 1.0f);
+            
         }
     }
 }

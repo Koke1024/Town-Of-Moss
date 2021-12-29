@@ -22,28 +22,7 @@ namespace TownOfUs.CrewmateRoles.SheriffMod
             if (PlayerControl.LocalPlayer.Data == null) return;
             var flag7 = PlayerControl.AllPlayerControls.Count > 1;
             if (!flag7) return;
-            var flag8 = PlayerControl.LocalPlayer.Is(RoleEnum.Sheriff);
-            if (flag8)
-            {
-                var role = Role.GetRole<Sheriff>(PlayerControl.LocalPlayer);
-                var isDead = PlayerControl.LocalPlayer.Data.IsDead;
-                if (isDead)
-                {
-                    killButton.gameObject.SetActive(false);
-                    // killButton.graphic.enabled = false;
-                }
-                else
-                {
-                    killButton.gameObject.SetActive(!MeetingHud.Instance);
-                    // killButton.graphic.enabled = !MeetingHud.Instance;
-                    killButton.SetCoolDown(role.SheriffKillTimer(), PlayerControl.GameOptions.KillCooldown + 15f);
-
-                    // if (role.bulletCount < role.Player.myTasks.ToArray().Count(x => x.IsComplete)) {
-                        Utils.SetTarget(ref role.ClosestPlayer, killButton);                        
-                    // }
-                }
-            }
-            else
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Sheriff))
             {
                 var isImpostor = PlayerControl.LocalPlayer.Data.IsImpostor();
                 if (!isImpostor) return;

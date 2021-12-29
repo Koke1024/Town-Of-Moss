@@ -22,19 +22,4 @@ namespace TownOfUs.ImpostorRoles.MultiKillerMod
             return false;
         }
     }
-
-    [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
-    public static class Initialize {
-        public static bool Prefix(PlayerControl __instance) {
-            var role = Role.GetRole(__instance);
-            if (HudManager._instance.isIntroDisplayed) {
-                role.firstInitialize = false;
-            }
-            if (!role.firstInitialize && !HudManager._instance.isIntroDisplayed) {
-                role.InitializeLocal();
-                role.firstInitialize = true;
-            }
-            return true;
-        }
-    }
 }

@@ -19,7 +19,7 @@ namespace TownOfUs.CrewmateRoles.SwapperMod
 
         public static void GenButton(Swapper role, int index, bool isDead)
         {
-            if (isDead || role.swappedPlayerIds.Contains(MeetingHud.Instance.playerStates[index].TargetPlayerId))
+            if (isDead || role.SwappedPlayerIds.Contains(MeetingHud.Instance.playerStates[index].TargetPlayerId))
             {
                 role.Buttons.Add(null);
                 role.ListOfActives.Add(false);
@@ -89,8 +89,8 @@ namespace TownOfUs.CrewmateRoles.SwapperMod
                     return;
                 }
                 
-                role.swappedPlayerIds.Add(SwapVotes.Swap1.TargetPlayerId);
-                role.swappedPlayerIds.Add(SwapVotes.Swap2.TargetPlayerId);
+                role.SwappedPlayerIds.Add(SwapVotes.Swap1.TargetPlayerId);
+                role.SwappedPlayerIds.Add(SwapVotes.Swap2.TargetPlayerId);
                 var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                     (byte) CustomRPC.SetSwaps, SendOption.Reliable, -1);
                 writer.Write(SwapVotes.Swap1.TargetPlayerId);

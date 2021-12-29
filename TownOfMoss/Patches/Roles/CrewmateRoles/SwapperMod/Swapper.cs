@@ -8,9 +8,8 @@ namespace TownOfUs.Roles
         public readonly List<GameObject> Buttons = new List<GameObject>();
 
         public readonly List<bool> ListOfActives = new List<bool>();
-        public readonly List<byte> swappedPlayerIds = new List<byte>();
-
-
+        public List<byte> SwappedPlayerIds = new List<byte>();
+        
         public Swapper(PlayerControl player) : base(player)
         {
             Name = "Swapper";
@@ -19,7 +18,13 @@ namespace TownOfUs.Roles
             Color = new Color(0.4f, 0.9f, 0.4f, 1f);
             RoleType = RoleEnum.Swapper;
             
-            swappedPlayerIds = new List<byte>();
+        }
+
+        public override void InitializeLocal() {
+            base.InitializeLocal();
+            
+            SwappedPlayerIds = new List<byte>();
+            PlayerControl.LocalPlayer.RemainingEmergencies = 0;
         }
     }
 }

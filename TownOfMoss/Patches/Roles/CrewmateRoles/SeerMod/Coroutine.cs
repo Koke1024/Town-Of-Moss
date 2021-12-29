@@ -9,10 +9,6 @@ namespace TownOfUs.NeutralRoles.SeerMod
 {
     public class SeerCoroutine
     {
-        public static ArrowBehaviour Arrow;
-        public static PlayerControl Target;
-        public static Sprite Sprite => TownOfUs.Arrow;
-
         public static IEnumerator Investigating(PlayerControl target, Seer seer) {
             seer.Player.moveable = false;
             seer.Player.NetTransform.Halt();

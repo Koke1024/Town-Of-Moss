@@ -1,3 +1,5 @@
+using System.Linq;
+using TownOfUs.NeutralRoles.SniperMod;
 using UnityEngine;
 
 namespace TownOfUs.Roles
@@ -67,6 +69,11 @@ namespace TownOfUs.Roles
         
         public override bool DidWin(GameOverReason gameOverReason) {
             return CompletePhantomTasks;
+        }
+
+        public override void Outro(EndGameManager __instance) {
+            base.Outro(__instance);
+            NeutralOutro(__instance);
         }
     }
 }

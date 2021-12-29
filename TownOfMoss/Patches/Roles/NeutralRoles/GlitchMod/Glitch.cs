@@ -673,5 +673,10 @@ namespace TownOfUs.Roles
                 Player.SetKillTimer(CustomGameOptions.GlitchKillCooldown * 3);
             }
         }
+
+        public override void Outro(EndGameManager __instance) {
+            base.Outro(__instance);
+            NeutralOutro(__instance);
+        }
     }
 }

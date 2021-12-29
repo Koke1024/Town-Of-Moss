@@ -1,11 +1,13 @@
 
 
 using System.Collections.Generic;
+using System.Linq;
 using Hazel;
 using Il2CppSystem;
 using MonoMod.Utils;
 using Reactor.Extensions;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace TownOfUs.Roles
 {
@@ -175,6 +177,65 @@ namespace TownOfUs.Roles
             PaintedVentBefore.Clear();
             
             PaintedPlayers.Clear();
+        }
+        
+        public static Sprite[] PaintSprite => TownOfUs.PaintSprite;
+
+        public override void PostHudUpdate(HudManager __instance) {
+            base.PostHudUpdate(__instance);
+            if (!_paintButtons.Any()) {
+                if (__instance.KillButton == null) {
+                    return;
+                }
+
+                for (int i = 0; i < CustomGameOptions.PaintColorMax; ++i) {
+                    KillButton btn = Object.Instantiate(__instance.KillButton, __instance.KillButton.transform.parent);
+                    btn.graphic.enabled = true;
+                    btn.graphic.sprite = PaintSprite[i];
+                    
+                    _paintButtons.Add(btn);
+                    btn.GetComponent<AspectPosition>().DistanceFromEdge = 
+                        new Vector3(TownOfUs.ButtonPosition.x - 1.8f + i * TownOfUs.ButtonOffset.x, TownOfUs.ButtonPosition.y + TownOfUs.ButtonOffset.y, TownOfUs.ButtonPosition.z);
+                    btn.gameObject.SetActive(false);
+                }
+            }
+
+            // closeVent = ClosestVent();
+
+            bool onInk = false;
+            foreach (var (pos, color) in Painter.PaintedPoint) {
+                var dist = Vector2.Distance(pos, PlayerControl.LocalPlayer.GetTruePosition());
+                if (dist < 2.5f) {
+                    onInk = true;
+                    break;
+                }
+            }
+
+            if (!onInk) {
+                foreach (var (pos, color) in Painter.PaintedPointBefore) {
+                    var dist = Vector2.Distance(pos, PlayerControl.LocalPlayer.GetTruePosition());
+                    if (dist < 2.5f) {
+                        onInk = true;
+                        break;
+                    }
+                }
+            }
+
+            foreach(var btn in _paintButtons) {
+                btn.SetCoolDown(PaintTimer(), CustomGameOptions.PaintCd);
+                if (!onInk) {
+                    btn.graphic.color = Palette.EnabledColor;
+                    btn.graphic.material.SetFloat("_Desat", 0f);
+                    btn.enabled = true;
+                }
+                else {
+                    btn.graphic.color = Palette.DisabledClear;
+                    btn.graphic.material.SetFloat("_Desat", 1f);
+                    btn.enabled = false;
+                }
+                btn.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
+                btn.GetComponent<AspectPosition>().Update();
+            }
         }
     }
 }

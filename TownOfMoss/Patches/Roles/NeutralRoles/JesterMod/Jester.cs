@@ -1,3 +1,4 @@
+using System.Linq;
 using Il2CppSystem.Collections.Generic;
 using UnityEngine;
 
@@ -44,6 +45,11 @@ namespace TownOfUs.Roles
 
         public override bool DidWin(GameOverReason gameOverReason) {
             return VotedOut;
+        }
+
+        public override void Outro(EndGameManager __instance) {
+            base.Outro(__instance);
+            NeutralOutro(__instance);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Hazel;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace TownOfUs.Roles
 {
@@ -113,6 +114,60 @@ namespace TownOfUs.Roles
         public override void OnEndMeeting() {
             base.OnEndMeeting();
             LastDoused = DateTime.UtcNow;
+        }
+        public static Sprite IgniteSprite => TownOfUs.IgniteSprite;
+
+        public override void PostHudUpdate(HudManager __instance) {
+            base.PostHudUpdate(__instance);
+            
+            foreach (var playerId in DousedPlayers)
+            {
+                var player = Utils.PlayerById(playerId);
+                var data = player?.Data;
+                if (data == null || data.Disconnected || data.IsDead)
+                    continue;
+
+                // player.myRend.material.SetColor("_VisorColor", Color);
+                player.nameText.color = Color.black;
+            }
+
+            if (IgniteButton == null)
+            {
+                IgniteButton = Object.Instantiate(__instance.KillButton, __instance.KillButton.transform.parent);
+                IgniteButton.graphic.enabled = true;
+                IgniteButton.GetComponent<AspectPosition>().DistanceFromEdge = TownOfUs.ButtonPosition;
+                IgniteButton.gameObject.SetActive(false);
+                IgniteButton.graphic.sprite = IgniteSprite;
+            }
+            IgniteButton.GetComponent<AspectPosition>().Update();
+
+            IgniteButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
+            __instance.KillButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
+            IgniteButton.SetCoolDown(0f, 1f);
+            __instance.KillButton.SetCoolDown(DouseTimer(), CustomGameOptions.DouseCd);
+
+            var notDoused = PlayerControl.AllPlayerControls.ToArray().Where(
+                player => !DousedPlayers.Contains(player.PlayerId)
+            ).ToList();
+
+            Utils.SetTarget(ref ClosestPlayer, __instance.KillButton, float.NaN, notDoused);
+
+
+            if (!IgniteButton.isCoolingDown & IgniteButton.isActiveAndEnabled & !IgniteUsed &
+                CheckEveryoneDoused())
+            {
+                IgniteButton.graphic.color = Palette.EnabledColor;
+                IgniteButton.graphic.material.SetFloat("_Desat", 0f);
+                return;
+            }
+
+            IgniteButton.graphic.color = Palette.DisabledClear;
+            IgniteButton.graphic.material.SetFloat("_Desat", 1f);
+        }
+
+        public override void Outro(EndGameManager __instance) {
+            base.Outro(__instance);
+            NeutralOutro(__instance);
         }
     }
 }

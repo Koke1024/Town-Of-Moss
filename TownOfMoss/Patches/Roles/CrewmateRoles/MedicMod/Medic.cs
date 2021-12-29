@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Linq;
 
 namespace TownOfUs.Roles
 {
@@ -18,6 +19,20 @@ namespace TownOfUs.Roles
         public override void OnEndMeeting() {
             base.OnEndMeeting();
             SusList = null;
+        }
+
+        public override void PostHudUpdate(HudManager __instance) {
+            base.PostHudUpdate(__instance);
+            
+            if (MeetingHud.Instance == null || SusList == null) {
+                return;
+            }
+
+            foreach (var player in MeetingHud.Instance.playerStates) {
+                if (SusList.Any(x => x.PlayerId == player.TargetPlayerId)) {
+                    player.NameText.color = Color.gray;
+                }
+            }
         }
     }
 }

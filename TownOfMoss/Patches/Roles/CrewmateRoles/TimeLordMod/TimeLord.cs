@@ -59,5 +59,35 @@ namespace TownOfUs.Roles
             FinishRewind = DateTime.UtcNow;
             StartRewind = FinishRewind.AddSeconds(CustomGameOptions.RewindDuration);
         }
+
+        public override void PostFixedUpdateLocal() {
+            base.PostFixedUpdateLocal();
+            
+            var isDead = Player.Data.IsDead;
+            var rewindButton = DestroyableSingleton<HudManager>.Instance.KillButton;
+
+            if (isDead)
+            {
+                rewindButton.gameObject.SetActive(false);
+                //  rewindButton.isActive = false;
+            }
+            else
+            {
+                rewindButton.gameObject.SetActive(!MeetingHud.Instance && !LobbyBehaviour.Instance);
+                //  rewindButton.isActive = !MeetingHud.Instance;
+                rewindButton.SetCoolDown(TimeLordRewindTimer(), GetCooldown());
+            }
+
+            var renderer = rewindButton.graphic;
+            if (!rewindButton.isCoolingDown & !RecordRewind.rewinding & rewindButton.enabled)
+            {
+                renderer.color = Palette.EnabledColor;
+                renderer.material.SetFloat("_Desat", 0f);
+                return;
+            }
+
+            renderer.color = Palette.DisabledClear;
+            renderer.material.SetFloat("_Desat", 1f);
+        }
     }
 }

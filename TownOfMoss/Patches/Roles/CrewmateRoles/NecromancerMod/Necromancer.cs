@@ -1,7 +1,9 @@
 using Il2CppSystem;
 using Il2CppSystem.Collections.Generic;
 using Reactor.Extensions;
+using TownOfUs.CrewmateRoles.NecromancerMod;
 using UnityEngine;
+using Coroutine = TownOfUs.CrewmateRoles.NecromancerMod.Coroutine;
 
 namespace TownOfUs.Roles
 {
@@ -37,6 +39,67 @@ namespace TownOfUs.Roles
                 Utils.GetBody(revived.PlayerId).gameObject.Destroy();
             }
             RevivedPlayer.Clear();
+        }
+
+        public override void PostFixedUpdate() {
+            base.PostFixedUpdate();
+
+            if (Coroutine.Arrow != null) {
+                if (LobbyBehaviour.Instance || MeetingHud.Instance || PlayerControl.LocalPlayer.Data.IsDead ||
+                    Coroutine.Target.Data.IsDead) {
+                    Coroutine.Arrow.gameObject.Destroy();
+                    Coroutine.Target = null;
+                    return;
+                }
+
+                Coroutine.Arrow.target = Coroutine.Target.transform.position;
+            }
+        }
+
+        public override void PostHudUpdate(HudManager __instance) {
+            base.PostHudUpdate(__instance);
+
+            var data = PlayerControl.LocalPlayer.Data;
+            var isDead = data.IsDead;
+            var truePosition = PlayerControl.LocalPlayer.GetTruePosition();
+            var maxDistance = GameOptionsData.KillDistances[0];
+            var flag = (PlayerControl.GameOptions.GhostsDoTasks || !data.IsDead) &&
+                       (!AmongUsClient.Instance || !AmongUsClient.Instance.IsGameOver) &&
+                       PlayerControl.LocalPlayer.CanMove;
+            var allocs = Physics2D.OverlapCircleAll(truePosition, maxDistance,
+                LayerMask.GetMask(new[] {"Players", "Ghost"}));
+            var killButton = __instance.KillButton;
+            DeadBody closestBody = null;
+            var closestDistance = float.MaxValue;
+
+            foreach (var collider2D in allocs)
+            {
+                if (!flag || isDead || !collider2D.CompareTag("DeadBody")) continue;
+                var component = collider2D.GetComponent<DeadBody>();
+
+
+                if (!(Vector2.Distance(truePosition, component.TruePosition) <=
+                      maxDistance)) continue;
+
+                var distance = Vector2.Distance(truePosition, component.TruePosition);
+                if (!(distance < closestDistance)) continue;
+                closestBody = component;
+                closestDistance = distance;
+            }
+
+            if (isDead)
+            {
+                killButton.gameObject.SetActive(false);
+                //   killButton.isActive = false;
+            }
+            else
+            {
+                killButton.gameObject.SetActive(!MeetingHud.Instance);
+                //      killButton.isActive = !MeetingHud.Instance;
+            }
+
+            NecromancerKillButtonTarget.SetTarget(killButton, closestBody, this);
+            __instance.KillButton.SetCoolDown(ReviveTimer(), CustomGameOptions.NecroCoolDown);
         }
     }
 }

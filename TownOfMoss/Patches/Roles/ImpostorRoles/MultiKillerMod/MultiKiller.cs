@@ -21,6 +21,7 @@ namespace TownOfUs.Roles
         public float MaxTimer => PlayerControl.GameOptions.KillCooldown * CustomGameOptions.MultiKillerCdRate / 100.0f;
 
         public override void InitializeLocal() {
+            base.InitializeLocal();
             Player.SetKillTimer(Mathf.Max(MaxTimer - 10.0f, 10.0f));
             KilledOnce = false;
             firstInitialize = false;
@@ -44,6 +45,20 @@ namespace TownOfUs.Roles
                 var maxTimer = PlayerControl.GameOptions.KillCooldown * CustomGameOptions.MultiKillerCdRate / 100.0f;
                 Player.SetKillTimer(maxTimer);
                 HudManager.Instance.KillButton.SetCoolDown(maxTimer, maxTimer);
+            }
+        }
+
+        public override void PostFixedUpdateLocal() {
+            base.PostFixedUpdateLocal();
+            
+            if (FirstKillTime == null) {
+                return;
+            }
+
+            if (FirstKillTime.Value.AddSeconds(CustomGameOptions.MultiKillEnableTime) < DateTime.UtcNow) {
+                KilledOnce = false;
+                FirstKillTime = null;
+                Player.SetKillTimer(MaxTimer);
             }
         }
     }

@@ -1,4 +1,5 @@
 using System;
+using TownOfUs.Extensions;
 using UnityEngine;
 
 namespace TownOfUs.Roles
@@ -43,6 +44,30 @@ namespace TownOfUs.Roles
         public override void OnEndMeeting() {
             base.OnEndMeeting();
             LastKilled = DateTime.UtcNow;
+        }
+
+        private static KillButton killButton;
+        
+        public override void PostHudUpdate(HudManager __instance) {
+            base.PostHudUpdate(__instance);
+            
+            killButton = __instance.KillButton;
+            var isDead = PlayerControl.LocalPlayer.Data.IsDead;
+            if (isDead)
+            {
+                killButton.gameObject.SetActive(false);
+                // killButton.graphic.enabled = false;
+            }
+            else
+            {
+                killButton.gameObject.SetActive(!MeetingHud.Instance);
+                // killButton.graphic.enabled = !MeetingHud.Instance;
+                killButton.SetCoolDown(SheriffKillTimer(), PlayerControl.GameOptions.KillCooldown + 15f);
+
+                // if (role.bulletCount < role.Player.myTasks.ToArray().Count(x => x.IsComplete)) {
+                    Utils.SetTarget(ref ClosestPlayer, killButton);                        
+                // }
+            }
         }
     }
 }

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Reactor.Extensions;
+using TheOtherRoles.Objects;
 using TMPro;
 using TownOfUs.ImpostorRoles.CamouflageMod;
 using TownOfUs.Roles.Modifiers;
@@ -629,10 +630,33 @@ namespace TownOfUs.Roles
         }
         public virtual void PostFixedUpdateLocal() {}
         public virtual void PostFixedUpdate() {}
-        
+
+        public virtual bool PreHudUpdate(HudManager __instance) {
+            return true;
+            
+        }
+        public virtual void PostHudUpdate(HudManager __instance) {}
+
         public virtual void OnEndMeeting(){}
         public virtual void OnStartMeeting(){}
-        public virtual void Outro(){}
+
+        public virtual void Outro(EndGameManager __instance) {}
+
+        protected void NeutralOutro(EndGameManager __instance) {
+            if (!DidWin(GameOverReason.HumansByVote)) {
+                return;
+            }
+            PoolablePlayer[] array = Object.FindObjectsOfType<PoolablePlayer>();
+            array[0].NameText.text = ColorString + array[0].NameText.text + "</color>";
+            __instance.BackgroundBar.material.color = Color;
+            var text = Object.Instantiate(__instance.WinText);
+            text.text = $"{Name} wins";
+            text.color = Color;
+            var pos = __instance.WinText.transform.localPosition;
+            pos.y = 1.5f;
+            text.transform.position = pos;
+            text.text = $"<size=4>{text.text}</size>";
+        }
     }
 
     [HarmonyPatch(typeof(CrewmateRole), nameof(CrewmateRole.DidWin), typeof(GameOverReason))]
@@ -657,9 +681,20 @@ namespace TownOfUs.Roles
                 ConsoleLimit.TimeLimit = CustomGameOptions.AdminTimeLimitTime;
                 ConsoleLimit.AdminWatcher = new Il2CppSystem.Collections.Generic.List<byte>();
             }
+
+            CustomButton.MeetingEndedUpdate();
             
             foreach (var player in PlayerControl.AllPlayerControls) {
                 player.GetRole().OnEndMeeting();
+            }
+        }
+    }
+
+    [HarmonyPatch(typeof(EndGameManager), nameof(EndGameManager.Start))]
+    public class EndGame {
+        public static void Postfix(EndGameManager __instance) {
+            foreach (var role in Role.AllRoles) {
+                role.Outro(__instance);
             }
         }
     }

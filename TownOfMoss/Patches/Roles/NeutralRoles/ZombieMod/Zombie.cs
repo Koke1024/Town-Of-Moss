@@ -38,11 +38,12 @@ namespace TownOfUs.NeutralRoles.ZombieMod
         }
         
         public override bool DidWin(GameOverReason gameOverReason) {
-            return CompleteZombieTasks;
+            return CompleteZombieTasks && !Player.Data.IsDead;
         }
 
-        public override void PostKill(PlayerControl target) {
-            GetRole<Zombie>(target).deadTime = DateTime.UtcNow;
+        public override void Outro(EndGameManager __instance) {
+            base.Outro(__instance);
+            NeutralOutro(__instance);
         }
     }
 }

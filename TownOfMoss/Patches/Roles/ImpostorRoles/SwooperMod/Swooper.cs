@@ -1,6 +1,7 @@
 using System;
 using TownOfUs.Extensions;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace TownOfUs.Roles
 {
@@ -85,6 +86,35 @@ namespace TownOfUs.Roles
         public override void OnEndMeeting() {
             base.OnEndMeeting();
             LastSwooped = DateTime.UtcNow;
+        }
+        
+        public static Sprite SwoopSprite => TownOfUs.SwoopSprite;
+
+        public override void PostHudUpdate(HudManager __instance) {
+            base.PostHudUpdate(__instance);
+
+            if (SwoopButton == null)
+            {
+                SwoopButton = Object.Instantiate(__instance.KillButton, __instance.KillButton.transform.parent);
+                SwoopButton.graphic.enabled = true;
+                SwoopButton.GetComponent<AspectPosition>().DistanceFromEdge = TownOfUs.ButtonPosition;
+                SwoopButton.gameObject.SetActive(false);
+            }
+            SwoopButton.GetComponent<AspectPosition>().Update();
+            SwoopButton.graphic.sprite = SwoopSprite;
+            SwoopButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
+
+            if (IsSwooped)
+            {
+                SwoopButton.SetCoolDown(TimeRemaining, CustomGameOptions.SwoopDuration);
+                return;
+            }
+
+            SwoopButton.SetCoolDown(SwoopTimer(), CustomGameOptions.SwoopCd);
+
+
+            SwoopButton.graphic.color = Palette.EnabledColor;
+            SwoopButton.graphic.material.SetFloat("_Desat", 0f);
         }
     }
 }

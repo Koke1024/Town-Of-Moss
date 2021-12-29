@@ -1,4 +1,5 @@
 using HarmonyLib;
+using Reactor;
 using UnityEngine;
 
 namespace TownOfUs.Roles
@@ -17,6 +18,7 @@ namespace TownOfUs.Roles
         }
 
         public override void InitializeLocal() {
+            base.InitializeLocal();
             Charge = 1.0f;
             flashed = false;
         }
@@ -25,15 +27,42 @@ namespace TownOfUs.Roles
             base.OnEndMeeting();
             Charge = 1.0f;
         }
+
+        public override void PostFixedUpdateLocal() {
+            base.PostFixedUpdateLocal();
+            
+            if (Player.inVent) {
+                if (Charge > 1.0f) {
+                    if (!flashed) {
+                        Coroutines.Start(Utils.FlashCoroutine(Color));
+                        flashed = true;
+                    }
+                    return;
+                }
+                Charge += 1 / (60.0f * CustomGameOptions.MaxChargeTime);
+            }
+            else {
+                flashed = false;
+                if (Charge < 0) {
+                    Charge = 0;
+                    return;
+                }
+                Charge -= 1 / (60.0f * CustomGameOptions.ConsumeChargeTime);
+            }
+        }
     }
     
     [HarmonyPatch(typeof(Vent), nameof(Vent.MoveToVent))]
     public static class DisableVentMove{
         public static bool Prefix(Vent __instance, Vent otherVent) {
-            if (PlayerControl.LocalPlayer.Is(RoleEnum.Charger)) {
-                return false;
-            }
-            return true;
+            return !PlayerControl.LocalPlayer.Is(RoleEnum.Charger);
+        }
+    }
+    
+    [HarmonyPatch(typeof(Vent), nameof(Vent.SetButtons))]
+    public class NoButton {
+        public static bool Prefix(PlayerControl __instance) {
+            return !PlayerControl.LocalPlayer.Is(RoleEnum.Charger);
         }
     }
 }

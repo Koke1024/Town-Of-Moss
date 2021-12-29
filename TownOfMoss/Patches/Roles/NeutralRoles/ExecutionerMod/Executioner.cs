@@ -1,3 +1,4 @@
+using System.Linq;
 using Il2CppSystem.Collections.Generic;
 using UnityEngine;
 
@@ -66,6 +67,26 @@ namespace TownOfUs.Roles
         
         public override bool DidWin(GameOverReason gameOverReason) {
             return TargetVotedOut;
+        }
+
+        public override void PostFixedUpdateLocal() {
+            base.PostFixedUpdateLocal();
+            
+            if (Arrow != null)
+            {
+                if (LobbyBehaviour.Instance || MeetingHud.Instance || PlayerControl.LocalPlayer.Data.IsDead ||
+                    target.Data.IsDead)
+                {
+                    return;
+                }
+
+                Arrow.target = target.transform.position;
+            }
+        }
+
+        public override void Outro(EndGameManager __instance) {
+            base.Outro(__instance);
+            NeutralOutro(__instance);
         }
     }
 }

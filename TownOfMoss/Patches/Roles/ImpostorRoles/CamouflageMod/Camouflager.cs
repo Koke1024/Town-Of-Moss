@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace TownOfUs.Roles
 {
@@ -64,6 +65,35 @@ namespace TownOfUs.Roles
             base.OnEndMeeting();
             LastCamouflaged = DateTime.UtcNow;
             LastCamouflaged = LastCamouflaged.AddSeconds(-10f);
+        }
+
+        public static Sprite CamouflageSprite => TownOfUs.Camouflage;
+        
+        public override void PostHudUpdate(HudManager __instance) {
+            base.PostHudUpdate(__instance);
+            
+            if (CamouflageButton == null)
+            {
+                CamouflageButton = Object.Instantiate(__instance.KillButton, __instance.UseButton.transform.parent);
+                CamouflageButton.name = "CamouflageButton";
+                CamouflageButton.graphic.enabled = true;
+                CamouflageButton.graphic.sprite = CamouflageSprite;
+                CamouflageButton.GetComponent<AspectPosition>().DistanceFromEdge = TownOfUs.ButtonPosition;
+                CamouflageButton.gameObject.SetActive(false);
+            }
+            CamouflageButton.GetComponent<AspectPosition>().Update();
+            CamouflageButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
+
+
+            if (Enabled)
+            {
+                CamouflageButton.SetCoolDown(TimeRemaining, CustomGameOptions.CamouflagerDuration);
+                return;
+            }
+
+            CamouflageButton.SetCoolDown(CamouflageTimer(), CustomGameOptions.CamouflagerCd);
+            CamouflageButton.graphic.color = Palette.EnabledColor;
+            CamouflageButton.graphic.material.SetFloat("_Desat", 0f);
         }
     }
 }

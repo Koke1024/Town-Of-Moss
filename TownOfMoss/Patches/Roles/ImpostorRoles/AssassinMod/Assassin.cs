@@ -154,5 +154,9 @@ namespace TownOfUs.Roles
         public int RemainingKills { get; set; }
 
         public List<string> PossibleGuesses => ColorMapping.Keys.ToList();
+
+        public override void PostHudUpdate(HudManager __instance) {
+            base.PostHudUpdate(__instance);
+        }
     }
 }

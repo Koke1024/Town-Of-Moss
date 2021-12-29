@@ -382,6 +382,10 @@ namespace TownOfUs
                 }
                 Role.GetRole(killer).PostKill(target);
 
+                if (target.Is(RoleEnum.Zombie)) {
+                    target.GetRole<Zombie>().deadTime = DateTime.UtcNow;                    
+                }
+
                 if (target.Is(ModifierEnum.Diseased) && killer.Data.IsImpostor())
                 {
                     killer.SetKillTimer(PlayerControl.GameOptions.KillCooldown * 3);
@@ -580,6 +584,10 @@ namespace TownOfUs
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
     public static class PlayerUpdate {
         public static bool Prefix(PlayerControl __instance) {
+            if (PlayerControl.AllPlayerControls.Count <= 1) return false;
+            if (__instance.GetRole() == null) {
+                return true;
+            }
             if (__instance.AmOwner) {
                 if (!__instance.GetRole().PreFixedUpdateLocal()) {
                     return false;
@@ -588,10 +596,50 @@ namespace TownOfUs
             return __instance.GetRole().PreFixedUpdate();
         }
         public static void Postfix(PlayerControl __instance) {
+            if (PlayerControl.AllPlayerControls.Count <= 1) return;
+            if (__instance.GetRole() == null) {
+                return;
+            }
             if (__instance.AmOwner) {
                 __instance.GetRole().PostFixedUpdateLocal();
             }
             __instance.GetRole().PostFixedUpdate();
+        }
+    }
+
+    [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
+    public static class HudUpdate {
+        public static bool Prefix(HudManager __instance) {
+            if (PlayerControl.AllPlayerControls.Count <= 1 || ShipStatus.Instance == null ||
+                PlayerControl.LocalPlayer == null || PlayerControl.LocalPlayer.Data == null) {
+                return false;
+            }
+            if (PlayerControl.LocalPlayer.GetRole() == null) {
+                return true;
+            }
+            
+            return PlayerControl.LocalPlayer.GetRole().PreHudUpdate(__instance);
+        }
+        public static void Postfix(HudManager __instance) {
+            if (PlayerControl.AllPlayerControls.Count <= 1) return;
+            if (PlayerControl.LocalPlayer.GetRole() == null) {
+                return;
+            }
+            PlayerControl.LocalPlayer.GetRole().PostHudUpdate(__instance);
+        }
+    }
+
+    [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
+    public static class Initialize {
+        public static bool Prefix(PlayerControl __instance) {
+            var role = __instance.GetRole();
+            if (role == null || role.firstInitialize || HudManager._instance.isIntroDisplayed) return true;
+            role.Initialize();
+            if (role.Player.AmOwner) {
+                role.InitializeLocal();                
+            }
+            role.firstInitialize = true;
+            return true;
         }
     }
     

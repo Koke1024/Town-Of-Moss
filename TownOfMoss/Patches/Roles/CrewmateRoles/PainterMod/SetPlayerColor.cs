@@ -19,12 +19,6 @@ namespace TownOfUs.CrewmateRoles.PainterMod {
                     player._object.myRend.material.SetColor("_VisorColor", Painter.PaintColors[(int)c]);                    
                 }
             }
-
-            // foreach (var (id, c) in Painter.PaintedVent) {
-            //     Vent vent = ShipStatus.Instance.AllVents[id];
-            //     vent.myRend.color = Painter.PaintColors[(int)c];
-            //     vent.myRend.material.SetColor("_OutlineColor", Painter.PaintColors[(int)c]);
-            // }
         }
 
         static void UpdateMeeting(MeetingHud __instance) {
