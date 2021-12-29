@@ -61,13 +61,10 @@ namespace TownOfUs.Roles
 
         public override void OnEndMeeting() {
             base.OnEndMeeting();
-            foreach (var role in GetRoles(RoleEnum.BodyGuard))
-            {
-                ShieldedTime = DateTime.UtcNow;
-                ShieldedPlayer = null;
-                if (Arrow) {
-                    Arrow.gameObject.Destroy();
-                }
+            ShieldedTime = DateTime.UtcNow;
+            ShieldedPlayer = null;
+            if (Arrow) {
+                Arrow.gameObject.Destroy();
             }
         }
 

@@ -45,15 +45,6 @@ namespace TownOfUs
                 }
             }
 
-            // foreach (Vent vent in ShipStatus.Instance.AllVents) {
-            //     float distance = Vector2.Distance(vent.transform.position, player._object.GetTruePosition());
-            //     if (distance <= vent.UsableDistance) {
-            //         if (player._object.Is(RoleEnum.Charger)) {
-            //             t = 1;
-            //             break;
-            //         }
-            //     }
-            // }
             if (player._object.Is(ModifierEnum.Torch)) t = 1;
             __result = Mathf.Lerp(__instance.MinLightRadius, __instance.MaxLightRadius, t) *
                        PlayerControl.GameOptions.CrewLightMod;
@@ -61,9 +52,6 @@ namespace TownOfUs
             if (player._object.Is(RoleEnum.Charger)) {
                 __result *= (0.75f + Role.GetRole<Charger>(player._object).Charge * 0.75f);
             }
-            // if (player.Object.Is(ModifierEnum.ButtonBarry))
-            //     if (Modifier.GetModifier<ButtonBarry>(PlayerControl.LocalPlayer).ButtonUsed)
-            //         __result *= 0.5f;
 
             return false;
         }
@@ -72,7 +60,7 @@ namespace TownOfUs
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
     public static class deadLowSight {
         public static void Prefix(PlayerControl __instance) {
-            if (LobbyBehaviour.Instance || MeetingHud.Instance || !CustomGameOptions.GhostCantMove) {
+            if (LobbyBehaviour.Instance || MeetingHud.Instance) {
                 return;
             }
 

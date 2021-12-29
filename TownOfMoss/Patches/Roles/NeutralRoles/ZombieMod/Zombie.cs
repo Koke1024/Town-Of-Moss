@@ -1,4 +1,6 @@
+using Hazel;
 using Il2CppSystem;
+using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine;
 
@@ -44,6 +46,34 @@ namespace TownOfUs.NeutralRoles.ZombieMod
         public override void Outro(EndGameManager __instance) {
             base.Outro(__instance);
             NeutralOutro(__instance);
+        }
+
+        public override void PostFixedUpdateLocal() {
+            base.PostFixedUpdateLocal();
+            
+            if (!Player.Data.IsDead) {
+                return;
+            }
+            
+            if (KilledBySeer) {
+                deadTime = DateTime.MaxValue;
+                return;
+            }
+            if (LobbyBehaviour.Instance || MeetingHud.Instance) {
+                KilledBySeer = true;
+                deadTime = DateTime.MaxValue;
+                return;
+            }
+            
+            if (deadTime != DateTime.MaxValue && deadTime.AddSeconds(CustomGameOptions.ZombieReviveTime) < DateTime.UtcNow) {
+                var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
+                    (byte) CustomRPC.ZombieRevive, SendOption.Reliable, -1);
+                writer.Write(PlayerControl.LocalPlayer.PlayerId);
+                AmongUsClient.Instance.FinishRpcImmediately(writer);
+
+                ReviveSelf.ReviveBody(PlayerControl.LocalPlayer);
+                deadTime = DateTime.MaxValue;
+            }
         }
     }
 }

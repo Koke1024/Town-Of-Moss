@@ -22,11 +22,15 @@ namespace TownOfUs.Roles
             RoleType = RoleEnum.Kirby;
             Faction = Faction.Impostors;
             Color = new Color(0.66f, 0.42f, 0.64f);
-            
+        }
+
+        public override void Initialize() {
+            base.Initialize();
+
             eatTime = DateTime.UtcNow;
             _aten = null;
         }
-        
+
         public KillButton InhaleButton
         {
             get => _inhaleButton;
@@ -79,8 +83,6 @@ namespace TownOfUs.Roles
         }
 
         public override void PostHudUpdate(HudManager __instance) {
-            base.PostHudUpdate(__instance);
-            
             if (InhaleButton == null)
             {
                 InhaleButton = Object.Instantiate(__instance.KillButton, __instance.KillButton.transform.parent);
