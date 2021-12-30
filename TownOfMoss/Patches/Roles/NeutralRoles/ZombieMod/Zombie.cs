@@ -1,6 +1,5 @@
 using Hazel;
 using Il2CppSystem;
-using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using UnityEngine;
 

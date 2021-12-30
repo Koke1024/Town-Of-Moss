@@ -1,6 +1,5 @@
 using HarmonyLib;
 using Hazel;
-using Il2CppSystem;
 using Reactor;
 using Reactor.Extensions;
 using TownOfUs.Extensions;

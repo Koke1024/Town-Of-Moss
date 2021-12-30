@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using TownOfUs.Extensions;
 
 namespace TownOfUs.Roles
 {

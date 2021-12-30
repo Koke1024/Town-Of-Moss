@@ -1,6 +1,5 @@
 ﻿
 using System.Collections.Generic;
-using TownOfUs.CrewmateRoles.EngineerMod;
 
 namespace TownOfUs.Roles {
     public static class RoleManual {

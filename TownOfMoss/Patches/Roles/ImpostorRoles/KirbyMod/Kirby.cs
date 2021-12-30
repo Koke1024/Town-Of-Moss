@@ -1,5 +1,4 @@
 using Il2CppSystem;
-using Rewired;
 using TownOfUs.ImpostorRoles.KirbyMod;
 using UnityEngine;
 using Object = UnityEngine.Object;

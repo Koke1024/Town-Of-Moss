@@ -3,7 +3,6 @@ using System.Collections;
 using Hazel;
 using TownOfUs.NeutralRoles.ZombieMod;
 using TownOfUs.Roles;
-using UnityEngine;
 
 namespace TownOfUs.NeutralRoles.SeerMod
 {

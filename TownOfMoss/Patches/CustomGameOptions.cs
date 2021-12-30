@@ -1,5 +1,3 @@
-using TownOfUs.CrewmateRoles.EngineerMod;
-using TownOfUs.CrewmateRoles.BodyGuardMod;
 using TownOfUs.CrewmateRoles.SeerMod;
 using TownOfUs.CustomOption;
 using TownOfUs.ImpostorRoles.MorphlingMod;

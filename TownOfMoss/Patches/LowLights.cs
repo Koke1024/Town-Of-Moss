@@ -1,6 +1,4 @@
-using System;
 using HarmonyLib;
-using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using TownOfUs.Roles.Modifiers;
 using UnityEngine;

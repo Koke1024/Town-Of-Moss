@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using HarmonyLib;
-using Hazel;
 using TownOfUs.Extensions;
 using TownOfUs.Roles;
 

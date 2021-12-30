@@ -16,7 +16,6 @@ using TownOfUs.Roles.Modifiers;
 using UnhollowerBaseLib;
 using UnityEngine;
 using Object = UnityEngine.Object;
-using DoClick = TownOfUs.ImpostorRoles.UnderdogMod.DoClick;
 
 namespace TownOfUs
 {

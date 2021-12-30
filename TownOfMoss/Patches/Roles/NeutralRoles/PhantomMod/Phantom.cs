@@ -1,5 +1,3 @@
-using System.Linq;
-using TownOfUs.NeutralRoles.SniperMod;
 using UnityEngine;
 
 namespace TownOfUs.Roles

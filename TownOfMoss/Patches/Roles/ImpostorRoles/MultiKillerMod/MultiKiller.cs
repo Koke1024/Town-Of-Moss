@@ -1,7 +1,5 @@
-﻿using HarmonyLib;
-using Il2CppSystem;
+﻿using Il2CppSystem;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 namespace TownOfUs.Roles
 {

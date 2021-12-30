@@ -1,4 +1,3 @@
-using System.Linq;
 using TownOfUs.ImpostorRoles.ScavengerMod;
 using TownOfUs.Roles;
 using UnityEngine;
