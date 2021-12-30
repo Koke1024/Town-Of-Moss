@@ -631,15 +631,20 @@ namespace TownOfUs
 
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
     public static class Initialize {
-        public static bool Prefix(PlayerControl __instance) {
+        public static void Prefix(PlayerControl __instance) {
             var role = __instance.GetRole();
-            if (role == null || role.firstInitialize || HudManager._instance.isIntroDisplayed) return true;
+            if (role == null) return;
+            if (HudManager._instance.isIntroDisplayed) {
+                role.firstInitialize = false;
+            }
+            if (role.firstInitialize) {
+                return;
+            }
             role.Initialize();
             if (role.Player.AmOwner) {
                 role.InitializeLocal();                
             }
             role.firstInitialize = true;
-            return true;
         }
     }
     

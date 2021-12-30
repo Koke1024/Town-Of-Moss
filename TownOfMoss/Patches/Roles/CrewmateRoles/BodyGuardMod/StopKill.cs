@@ -60,21 +60,8 @@ namespace TownOfUs.CrewmateRoles.BodyGuardMod
 
                     System.Console.WriteLine(CustomGameOptions.ShieldBreaks + "- shield break");
                     if (CustomGameOptions.ShieldBreaks) {
+                        PlayerControl.LocalPlayer.SetKillTimer(PlayerControl.GameOptions.KillCooldown);
                         killer.GetRole().PostKill(target);
-                        if (killer.Is(RoleEnum.MultiKiller)) {
-                            MultiKiller mk = Role.GetRole<MultiKiller>(killer);
-                            if (!mk.KilledOnce) {
-                                killer.SetKillTimer(0);
-                            }
-                            else {
-                                killer.SetKillTimer(mk.MaxTimer);
-                            }
-                            mk.KilledOnce = !mk.KilledOnce;
-                            mk.FirstKillTime = DateTime.UtcNow;
-                        }
-                        else {
-                            PlayerControl.LocalPlayer.SetKillTimer(PlayerControl.GameOptions.KillCooldown);
-                        }
                     }
 
                     BreakShield(target.getBodyGuard().Player.PlayerId, target.PlayerId, CustomGameOptions.ShieldBreaks);

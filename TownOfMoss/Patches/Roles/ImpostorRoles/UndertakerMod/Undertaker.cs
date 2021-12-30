@@ -53,7 +53,9 @@ namespace TownOfUs.Roles
             base.OnEndMeeting();
             if (PlayerControl.LocalPlayer.CanDrag())
             {
-                DragDropButton.graphic.sprite = TownOfUs.DragSprite;
+                if (Player.AmOwner) {
+                    DragDropButton.graphic.sprite = TownOfUs.DragSprite;
+                }
                 CurrentlyDragging = null;
                 LastDragged = DateTime.UtcNow;
             }

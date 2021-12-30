@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using TownOfUs.Extensions;
 using UnityEngine;
 
 namespace TownOfUs.Roles
@@ -40,8 +41,9 @@ namespace TownOfUs.Roles
             }
             
             var breakList = new Queue<byte>();
-            foreach (var doll in DollList) {
+            foreach (var doll in DollList.ToList()) {
                 if (GameData.Instance.GetPlayerById(doll.Key).IsDead) {
+                    breakList.Enqueue(doll.Key);
                     continue;
                 }
                 PlayerControl closestPlayer = null;
@@ -70,7 +72,10 @@ namespace TownOfUs.Roles
             }
             
             foreach (var breakQueue in breakList) {
-                Utils.RpcMurderPlayer(GameData.Instance.GetPlayerById(breakQueue)._object, GameData.Instance.GetPlayerById(breakQueue)._object);
+                var target = GameData.Instance.GetPlayerById(breakQueue);
+                if (!target.IsDead) {
+                    Utils.RpcMurderPlayer(target._object, target._object);
+                }
                 DollList.Remove(breakQueue);
             }
         }

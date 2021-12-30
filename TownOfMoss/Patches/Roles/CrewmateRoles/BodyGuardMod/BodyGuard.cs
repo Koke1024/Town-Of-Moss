@@ -48,8 +48,7 @@ namespace TownOfUs.Roles
         public ArrowBehaviour Arrow;
         public static Sprite Sprite => TownOfUs.Arrow;
 
-        public void SetProtectionTarget()
-        {
+        public void SetProtectionTarget() {
             var gameObj = new GameObject();
             Arrow = gameObj.AddComponent<ArrowBehaviour>();
             gameObj.transform.parent = PlayerControl.LocalPlayer.gameObject.transform;
@@ -64,7 +63,8 @@ namespace TownOfUs.Roles
             ShieldedTime = DateTime.UtcNow;
             ShieldedPlayer = null;
             if (Arrow) {
-                Arrow.gameObject.Destroy();
+                Arrow.gameObject.SetActive(false);
+                Arrow.Destroy();                
             }
         }
 
@@ -96,11 +96,12 @@ namespace TownOfUs.Roles
             Arrow.target = ShieldedPlayer.transform.position;
             Arrow.gameObject.SetActive(!(Vector2.Distance(Player.GetTruePosition(), ShieldedPlayer.GetTruePosition()) >
                                          CustomGameOptions.GuardRange / 2.0f));
-            if (ShieldedTime.AddSeconds(CustomGameOptions.GuardDuration) > DateTime.UtcNow) return;
-            ShieldedTime = DateTime.UtcNow;
-            ShieldedPlayer = null;
-            Arrow.gameObject.SetActive(false);
-            Arrow.Destroy();
+            if (ShieldedTime.AddSeconds(CustomGameOptions.GuardDuration) < DateTime.UtcNow) {
+                ShieldedTime = DateTime.UtcNow;
+                ShieldedPlayer = null;
+                Arrow.gameObject.SetActive(false);
+                Arrow.Destroy();                
+            }
         }
 
         public static Color ProtectedColor = Color.cyan;

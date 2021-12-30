@@ -109,7 +109,9 @@ namespace TownOfUs.Roles
         public override void OnEndMeeting() {
             base.OnEndMeeting();
             revivedCount = 0;
-            _dragDropButton.graphic.color = new Color(1, 1, 1, 1);
+            if (Player.AmOwner) {
+                _dragDropButton.graphic.color = new Color(1, 1, 1, 1);                
+            }
         }
     }
 }
