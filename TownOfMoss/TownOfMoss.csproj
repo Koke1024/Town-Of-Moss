@@ -11,7 +11,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="BepInEx.IL2CPP" Version="6.0.0-be.521" />
+        <PackageReference Include="BepInEx.IL2CPP" Version="6.0.0-be.530" />
         <PackageReference Include="AmongUs.GameLibs.Steam" Version="2021.11.9">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
@@ -20,7 +20,7 @@
         <PackageReference Include="BepInEx.IL2CPP.MSBuild" Version="1.0.2" PrivateAssets="all" />
         <PackageReference Include="Reactor" Version="1.2.0-ci.123" />
 <!--        <PackageReference Include="Reactor" Version="1.2.0-dev" />-->
-        <PackageReference Include="System.Text.Json" Version="6.0.0" />
+        <PackageReference Include="System.Text.Json" Version="6.0.1" />
     </ItemGroup>
 
     <Target Name="Copy" AfterTargets="Build" Condition="'$(AmongUs)' != ''">

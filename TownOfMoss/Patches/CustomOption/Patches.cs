@@ -1,8 +1,11 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using BepInEx.IL2CPP.Utils;
 using HarmonyLib;
 using Reactor.Extensions;
+using TownOfUs.Extensions;
 using UnhollowerBaseLib;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -161,29 +164,29 @@ namespace TownOfUs.CustomOption {
         }
 
         [HarmonyPatch(typeof(GameSettingMenu), nameof(GameSettingMenu.Start))]
-        private class OptionsMenuBehaviour_Start
-        {
-            public static void Postfix(GameSettingMenu __instance)
-            {
+        private class OptionsMenuBehaviour_Start {
+            public static void Postfix(GameSettingMenu __instance) {
                 var obj = __instance.RolesSettingsHightlight.gameObject.transform.parent.parent;
-                var touSettings = Object.Instantiate(__instance.RegularGameSettings, __instance.RegularGameSettings.transform.parent);
+                var touSettings = Object.Instantiate(__instance.RegularGameSettings,
+                    __instance.RegularGameSettings.transform.parent);
                 touSettings.SetActive(false);
                 touSettings.name = "TOUSettings";
 
                 var gameGroup = touSettings.transform.FindChild("GameGroup");
                 var title = gameGroup?.FindChild("Text");
 
-                if (title != null)
-                {
+                if (title != null) {
                     title.GetComponent<TextTranslatorTMP>().Destroy();
                     title.GetComponent<TMPro.TextMeshPro>().m_text = "Town Of Moss Settings";
                 }
+
                 var sliderInner = gameGroup?.FindChild("SliderInner");
                 if (sliderInner != null)
                     sliderInner.GetComponent<GameOptionsMenu>().name = "TouGameOptionsMenu";
 
                 var ourSettingsButton = Object.Instantiate(obj.gameObject, obj.transform.parent);
-                ourSettingsButton.transform.localPosition = new Vector3(obj.localPosition.x + 0.906f, obj.localPosition.y, obj.localPosition.z);
+                ourSettingsButton.transform.localPosition = new Vector3(obj.localPosition.x + 0.906f,
+                    obj.localPosition.y, obj.localPosition.z);
                 ourSettingsButton.name = "TOUtab";
                 var hatButton = ourSettingsButton.transform.GetChild(0); //TODO:  change to FindChild I guess to be sure
                 var hatIcon = hatButton.GetChild(0);
@@ -204,17 +207,16 @@ namespace TownOfUs.CustomOption {
 
                 //fix for scrollbar (bug in among us)
                 touSettings.GetComponentInChildren<Scrollbar>().parent = touSettings.GetComponentInChildren<Scroller>();
-                __instance.RegularGameSettings.GetComponentInChildren<Scrollbar>().parent = __instance.RegularGameSettings.GetComponentInChildren<Scroller>();
-                __instance.RolesSettings.GetComponentInChildren<Scrollbar>().parent = __instance.RolesSettings.GetComponentInChildren<Scroller>();
-
-
+                __instance.RegularGameSettings.GetComponentInChildren<Scrollbar>().parent =
+                    __instance.RegularGameSettings.GetComponentInChildren<Scroller>();
+                __instance.RolesSettings.GetComponentInChildren<Scrollbar>().parent =
+                    __instance.RolesSettings.GetComponentInChildren<Scroller>();
             }
         }
 
-        public static System.Action ToggleButton(GameSettingMenu settingMenu, GameObject TouSettings, SpriteRenderer highlight, int id)
-        {
-            return new System.Action(() =>
-            {
+        public static System.Action ToggleButton(GameSettingMenu settingMenu, GameObject TouSettings,
+            SpriteRenderer highlight, int id) {
+            return new System.Action(() => {
                 settingMenu.RegularGameSettings.SetActive(id == 0);
                 settingMenu.GameSettingsHightlight.enabled = id == 0;
                 settingMenu.RolesSettings.gameObject.SetActive(id == 1);
@@ -233,14 +235,15 @@ namespace TownOfUs.CustomOption {
                 }
 
                 togglePrefab = Object.FindObjectOfType<ToggleOption>();
-                
+
                 __instance.Children = new Il2CppReferenceArray<OptionBehaviour>(Array.Empty<OptionBehaviour>());
                 var children = new Transform[__instance.gameObject.transform.childCount];
-                for (int k = 0; k < children.Length; k++)
-                {
-                    children[k] = __instance.gameObject.transform.GetChild(k); //TODO: Make a better fix for this for example caching the options or creating it ourself.
+                for (int k = 0; k < children.Length; k++) {
+                    children[k] =
+                        __instance.gameObject.transform
+                            .GetChild(k); //TODO: Make a better fix for this for example caching the options or creating it ourself.
                 }
-                
+
 
                 if (__instance.Children.Any()) {
                     var startOption = __instance.gameObject.transform.GetChild(0);
@@ -249,10 +252,12 @@ namespace TownOfUs.CustomOption {
                     contentX = localPosition.x;
                     contentZ = localPosition.z;
                 }
+
                 var customOptions = CreateOptions(__instance);
                 foreach (var row in children) {
                     row.gameObject.Destroy();
                 }
+
                 var i = 0;
 
                 foreach (var option in customOptions) {
@@ -264,14 +269,17 @@ namespace TownOfUs.CustomOption {
             }
 
             public static void Postfix(GameOptionsMenu __instance) {
-                var commonTasksOption = __instance.Children.FirstOrDefault(x => x.name == "NumCommonTasks").TryCast<NumberOption>();
-                if(commonTasksOption != null) commonTasksOption.ValidRange = new FloatRange(0f, 4f);
+                var commonTasksOption = __instance.Children.FirstOrDefault(x => x.name == "NumCommonTasks")
+                    .TryCast<NumberOption>();
+                if (commonTasksOption != null) commonTasksOption.ValidRange = new FloatRange(0f, 4f);
 
-                var shortTasksOption = __instance.Children.FirstOrDefault(x => x.name == "NumShortTasks").TryCast<NumberOption>();
-                if(shortTasksOption != null) shortTasksOption.ValidRange = new FloatRange(0f, 23f);
+                var shortTasksOption = __instance.Children.FirstOrDefault(x => x.name == "NumShortTasks")
+                    .TryCast<NumberOption>();
+                if (shortTasksOption != null) shortTasksOption.ValidRange = new FloatRange(0f, 23f);
 
-                var longTasksOption = __instance.Children.FirstOrDefault(x => x.name == "NumLongTasks").TryCast<NumberOption>();
-                if(longTasksOption != null) longTasksOption.ValidRange = new FloatRange(0f, 15f);
+                var longTasksOption = __instance.Children.FirstOrDefault(x => x.name == "NumLongTasks")
+                    .TryCast<NumberOption>();
+                if (longTasksOption != null) longTasksOption.ValidRange = new FloatRange(0f, 15f);
             }
         }
 
@@ -284,7 +292,7 @@ namespace TownOfUs.CustomOption {
                 if (!inited) {
                     var children = __instance.GetComponentsInChildren<OptionBehaviour>();
                     if (children.Any()) {
-                        contentY = children.Max(option => option.transform.localPosition.y);                        
+                        contentY = children.Max(option => option.transform.localPosition.y);
                     }
                     else {
                         contentY = 0;
@@ -292,13 +300,13 @@ namespace TownOfUs.CustomOption {
 
                     if (__instance.Children == null || !__instance.Children.Any()) {
                         contentX = 0;
-                        contentZ = -1;                        
+                        contentZ = -1;
                     }
                     else if (__instance.Children.Length == 1) {
                         contentX = __instance.Children[0].transform.localPosition.x;
                         contentZ = __instance.Children[0].transform.localPosition.z;
                     }
-                    else if (__instance.Children.Length > 1){
+                    else if (__instance.Children.Length > 1) {
                         contentX = __instance.Children[1].transform.localPosition.x;
                         contentZ = __instance.Children[1].transform.localPosition.z;
                     }
@@ -336,7 +344,7 @@ namespace TownOfUs.CustomOption {
                 }
 
                 // var tomSetting = GameObject.Find("TOMSettings");
-        
+
 
                 var position = __instance.transform.position;
                 if (BepInEx.IL2CPP.UnityEngine.Input.GetKeyInt(BepInEx.IL2CPP.UnityEngine.KeyCode.W)) {
@@ -368,6 +376,7 @@ namespace TownOfUs.CustomOption {
             if (target == null) {
                 return;
             }
+
             menu.transform.position =
                 new Vector3(menu.transform.position.x, GameOptionsMenu_Update.topY - target.transform.localPosition.y,
                     menu.transform.position.z);
@@ -591,22 +600,39 @@ namespace TownOfUs.CustomOption {
     }
 
     [HarmonyPatch(typeof(Console), nameof(Console.CanUse))]
-    public class MedBayDuplicate
-    {
-        public static bool Prefix(ref float __result, Console __instance, [HarmonyArgument(0)] GameData.PlayerInfo pc, [HarmonyArgument(1)] out bool canUse, [HarmonyArgument(2)] out bool couldUse)
-        {
+    public class MedBayDuplicate {
+        public static bool Prefix(ref float __result, Console __instance, [HarmonyArgument(0)] GameData.PlayerInfo pc,
+            [HarmonyArgument(1)] out bool canUse, [HarmonyArgument(2)] out bool couldUse) {
             canUse = couldUse = false;
             if (__instance.gameObject.GetComponent<MedScannerBehaviour>() == null) {
                 return true;
             }
-            
-            foreach(var live in PlayerControl.AllPlayerControls.ToArray().Where(x => !x.Data.IsDead && x != PlayerControl.LocalPlayer)){
+
+            foreach (var live in PlayerControl.AllPlayerControls.ToArray()
+                .Where(x => !x.Data.IsDead && x != PlayerControl.LocalPlayer)) {
                 if (__instance.gameObject.GetComponent<CircleCollider2D>().IsTouching(live.Collider)) {
                     __result = float.MaxValue;
                     return false;
-                }               
+                }
             }
+
             return true;
+        }
+    }
+    
+    [HarmonyPatch(typeof(EmergencyMinigame), nameof(EmergencyMinigame.CallMeeting))]
+    public static class ExamplePatch {
+        public static bool Prefix(EmergencyMinigame __instance) {
+            __instance.Close();
+            __instance.Close();
+            HudManager.Instance.StartCoroutine(WaitMap());
+            return false;
+        }
+
+        private static IEnumerator WaitMap(){
+            yield return new WaitForSeconds(1f);
+            AmongUsExtensions.Log($"openMap");
+            HudManager.Instance.OpenMap();
         }
     }
 }

@@ -33,7 +33,7 @@ using Random = UnityEngine.Random; //using Il2CppSystem;
 
 namespace TownOfUs
 {
-    public static class RpcHandling
+public static class RpcHandling
     {
         private static readonly List<(Type, byte, int)> CrewmateRoles = new List<(Type, byte, int)>();
         private static readonly List<(Type, byte, int)> GlitchRoles = new List<(Type, byte, int)>();
@@ -247,15 +247,15 @@ namespace TownOfUs
 
 
         [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.HandleRpc))]
-        public static class HandleRpc
+    public static class HandleRpc
+    {
+        public static void Postfix([HarmonyArgument(0)] byte callId, [HarmonyArgument(1)] MessageReader reader)
         {
-            public static void Postfix([HarmonyArgument(0)] byte callId, [HarmonyArgument(1)] MessageReader reader)
+            //if (callId >= 43) //System.Console.WriteLine("Received " + callId);
+            byte readByte, readByte1, readByte2;
+            sbyte readSByte, readSByte2;
+            switch ((CustomRPC) callId)
             {
-                //if (callId >= 43) //System.Console.WriteLine("Received " + callId);
-                byte readByte, readByte1, readByte2;
-                sbyte readSByte, readSByte2;
-                switch ((CustomRPC) callId)
-                {
                     case CustomRPC.SetRole:
                         readByte = reader.ReadByte();
                         readByte1 = reader.ReadByte();
@@ -700,21 +700,21 @@ namespace TownOfUs
                         player.moveable = true;
                         player.NetTransform.enabled = true;
                         break;
-                    case CustomRPC.BarryButton:
-                        var buttonBarry = Utils.PlayerById(reader.ReadByte());
-                        if (AmongUsClient.Instance.AmHost)
-                        {
-                            MeetingRoomManager.Instance.reporter = buttonBarry;
-                            MeetingRoomManager.Instance.target = null;
-                            AmongUsClient.Instance.DisconnectHandlers.AddUnique(MeetingRoomManager.Instance
-                                .Cast<IDisconnectHandler>());
-                            if (ShipStatus.Instance.CheckTaskCompletion()) return;
+                case CustomRPC.BarryButton:
+                    var buttonBarry = Utils.PlayerById(reader.ReadByte());
+                    if (AmongUsClient.Instance.AmHost)
+                    {
+                        MeetingRoomManager.Instance.reporter = buttonBarry;
+                        MeetingRoomManager.Instance.target = null;
+                        AmongUsClient.Instance.DisconnectHandlers.AddUnique(MeetingRoomManager.Instance
+                            .Cast<IDisconnectHandler>());
+                        if (ShipStatus.Instance.CheckTaskCompletion()) return;
 
-                            DestroyableSingleton<HudManager>.Instance.OpenMeetingRoom(buttonBarry);
-                            buttonBarry.RpcStartMeeting(null);
-                        }
+                        DestroyableSingleton<HudManager>.Instance.OpenMeetingRoom(buttonBarry);
+                        buttonBarry.RpcStartMeeting(null);
+                    }
 
-                        break;
+                    break;
                     case CustomRPC.Drag:
                         readByte1 = reader.ReadByte();
                         var dienerPlayer = Utils.PlayerById(readByte1);
@@ -798,7 +798,7 @@ namespace TownOfUs
                     case CustomRPC.EndWatchAdmin:
                         var watcherId2 = reader.ReadByte();
                         if (ConsoleLimit.AdminWatcher.Contains(watcherId2)) {
-                            ConsoleLimit.AdminWatcher.Remove(watcherId2);                
+                            ConsoleLimit.AdminWatcher.Remove(watcherId2);
                         }
                         break;
                     case CustomRPC.SetPaintPoint:
@@ -811,9 +811,9 @@ namespace TownOfUs
                     case CustomRPC.SetPaintPlayer:
                         Painter.SetPaintPlayer(reader.ReadByte(), (PaintColor)reader.ReadByte());
                         break;
-                }
-            }
         }
+    }
+}
 
         [HarmonyPatch(typeof(RoleManager), nameof(RoleManager.SelectRoles))]
         public static class RpcSetRole

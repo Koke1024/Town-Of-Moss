@@ -55,14 +55,14 @@ namespace TownOfUs
         }
     }
 
-    [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
-    public static class deadLowSight {
-        public static void Prefix(PlayerControl __instance) {
+    [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
+    public static class DeadLowSight {
+        public static void Prefix(HudManager __instance) {
             if (LobbyBehaviour.Instance || MeetingHud.Instance) {
                 return;
             }
 
-            if (PlayerControl.LocalPlayer.Data.IsDead && Utils.ExistBody(__instance.PlayerId)) {
+            if (PlayerControl.LocalPlayer.Data.IsDead && Utils.ExistBody(PlayerControl.LocalPlayer.PlayerId)) {
                 DestroyableSingleton<HudManager>.Instance.ShadowQuad.gameObject.SetActive(true);
             }
         }

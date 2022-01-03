@@ -42,9 +42,9 @@ namespace TownOfUs.Patches.CustomHats
                 text.fontSize = 3f;
                 text.fontSizeMax = 3f;
                 text.fontSizeMin = 0f;
-
+            
                 hatIdx = (hatIdx + 4) / 5 * 5;
-
+            
                 float xLerp = __instance.XRange.Lerp(0.5f);
                 float yLerp = __instance.YStart - (hatIdx / __instance.NumPerRow) * __instance.YOffset;
                 text.transform.localPosition = new Vector3(xLerp, yLerp, -1f);
@@ -62,7 +62,7 @@ namespace TownOfUs.Patches.CustomHats
                     __instance.ColorChips.Add(colorChip);
                     hatIdx += 1;
                 }
-
+            
             }
 
             __instance.scroller.YBounds.max = -(__instance.YStart - (hatIdx + 1) / __instance.NumPerRow * __instance.YOffset) - 3f;
