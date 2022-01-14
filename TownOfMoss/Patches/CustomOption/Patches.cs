@@ -619,20 +619,4 @@ namespace TownOfUs.CustomOption {
             return true;
         }
     }
-    
-    [HarmonyPatch(typeof(EmergencyMinigame), nameof(EmergencyMinigame.CallMeeting))]
-    public static class ExamplePatch {
-        public static bool Prefix(EmergencyMinigame __instance) {
-            __instance.Close();
-            __instance.Close();
-            HudManager.Instance.StartCoroutine(WaitMap());
-            return false;
-        }
-
-        private static IEnumerator WaitMap(){
-            yield return new WaitForSeconds(1f);
-            AmongUsExtensions.Log($"openMap");
-            HudManager.Instance.OpenMap();
-        }
-    }
 }
