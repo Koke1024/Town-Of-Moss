@@ -14,7 +14,7 @@
 
 | Among Us - Version| Date | Mod Version | Link |
 |---|----------|-------------|-----------------|
-| 2021.11.9.5s | 21-12-30 | v1.3.3 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/latest) |
+| 2021.11.9.5s | 21-01-16 | v1.3.3 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/latest) |
 | 2021.6.30s | 21-11-30 | v0.6 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v0.6) |
 
 ### 既知の不具合
@@ -23,6 +23,13 @@
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v1.3.4 </summary>
+        <ul>
+            <li>会議後の能力クールダウンリセットの不具合を修正</li>
+            <li>キルスプライトが別のアイコンになる場合がある不具合を修正</li>
+        </ul>
+    </details>
     <details>
         <summary> v1.3.3 </summary>
         <ul>
@@ -401,8 +408,8 @@ MODの導入されていない2021.11.9.5のAmong Usディレクトリに展開�
 
 | Among Us Version | Link |
 |---------|-----------------|
-| 2021.11.15 | [Download](https://spiel.jp/mod/AUCapture_MOD1195.zip) |
-| 2021.6.15 | [Download](https://spiel.jp/mod/AUCapture_MOD.zip) |
+| 2021.11.9.5s | [Download](https://spiel.jp/mod/AUCapture_MOD1195.zip) |
+| 2021.6.15s | [Download](https://spiel.jp/mod/AUCapture_MOD.zip) |
 
 AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscapture) を元に非公式に作成しています。
 
