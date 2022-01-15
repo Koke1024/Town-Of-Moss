@@ -542,7 +542,7 @@ namespace TownOfUs.Roles
                         //     var newScale = Vector3.one * 1.8f;
                         //
                         //     // TODO: scale
-                        //     var trueScale = player.NameText.transform.localScale / 2;
+                        //     var trueScale = player.NameText.transform.localScale / 2; 
                         //
                         //
                         //     if (trueScale != newScale) oldScale = trueScale;
@@ -685,7 +685,7 @@ namespace TownOfUs.Roles
             CustomButton.MeetingEndedUpdate();
             
             foreach (var player in PlayerControl.AllPlayerControls) {
-                player.GetRole().OnEndMeeting();
+                player.GetRole()?.OnEndMeeting();
             }
         }
     }
