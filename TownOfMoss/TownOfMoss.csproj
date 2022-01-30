@@ -7,12 +7,12 @@
 
     <PropertyGroup>
         <GamePlatform Condition="'$(GamePlatform)' == ''">Steam</GamePlatform>
-        <GameVersion Condition="'$(GamePlatform)' == 'Steam'">2021.12.14</GameVersion>
+        <GameVersion Condition="'$(GamePlatform)' == 'Steam'">2021.12.15</GameVersion>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="BepInEx.IL2CPP" Version="6.0.0-be.538" />
-        <PackageReference Include="AmongUs.GameLibs.Steam" Version="2021.11.9">
+        <PackageReference Include="AmongUs.GameLibs.Steam" Version="2021.12.15">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
 
