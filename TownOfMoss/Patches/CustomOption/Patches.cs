@@ -206,11 +206,11 @@ namespace TownOfUs.CustomOption {
                 passiveButton.OnClick.AddListener(ToggleButton(__instance, touSettings, touSettingsHighlight, 2));
 
                 //fix for scrollbar (bug in among us)
-                touSettings.GetComponentInChildren<Scrollbar>().parent = touSettings.GetComponentInChildren<Scroller>();
-                __instance.RegularGameSettings.GetComponentInChildren<Scrollbar>().parent =
-                    __instance.RegularGameSettings.GetComponentInChildren<Scroller>();
-                __instance.RolesSettings.GetComponentInChildren<Scrollbar>().parent =
-                    __instance.RolesSettings.GetComponentInChildren<Scroller>();
+                // touSettings.GetComponentInChildren<Scrollbar>().parent = touSettings.GetComponentInChildren<Scroller>();
+                // __instance.RegularGameSettings.GetComponentInChildren<Scrollbar>().parent =
+                //     __instance.RegularGameSettings.GetComponentInChildren<Scroller>();
+                // __instance.RolesSettings.GetComponentInChildren<Scrollbar>().parent =
+                //     __instance.RolesSettings.GetComponentInChildren<Scroller>();
             }
         }
 
