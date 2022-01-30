@@ -6,6 +6,7 @@ using System.Linq;
 using Il2CppSystem;
 using Il2CppSystem.Text;
 using Reactor.Extensions;
+using Rewired;
 using TownOfUs.CrewmateRoles.MedicMod;
 using TownOfUs.CustomOption;
 using TownOfUs.Extensions;
@@ -583,7 +584,10 @@ namespace TownOfUs
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
     public static class PlayerUpdate {
         public static bool Prefix(PlayerControl __instance) {
-            if (PlayerControl.AllPlayerControls.Count <= 1) return false;
+            if (LobbyBehaviour.Instance) {
+                return true;
+            }
+            if (PlayerControl.AllPlayerControls.Count <= 1) return true;
             if (__instance.GetRole() == null) {
                 return true;
             }
