@@ -119,13 +119,7 @@ namespace TownOfUs {
                 if (!scroller) {
                     return;
                 }
-
-                if (__instance.transform.parent.parent.name == "TOUSettings") {
-                    scroller.ContentYBounds.max = 90f;
-                }
-                else {
-                    scroller.ContentYBounds.max = 25;
-                }
+                scroller.ContentYBounds.max = 90f;
             }
         }
     }
