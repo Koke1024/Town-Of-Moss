@@ -25,7 +25,8 @@
 | 2021.6.30s | 21-11-30 | v0.6 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v0.6) |
 
 ### 既知の不具合
-なし\
+Swooperの能力使用とコミュニケーションサボタージュが同時に発生していると、移動がガクガクになる\
+Popopoで死体を吸い込んでから吐き出すまでの間、元々死体のあった場所で通報ボタンが有効になり、押しても通報できない\
 不具合を発見された場合 [Twitter](https://twitter.com/Koke1024) に連絡をお願いします。
 
 <details>
