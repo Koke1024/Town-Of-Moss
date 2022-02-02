@@ -108,7 +108,9 @@ namespace TownOfUs.Extensions {
                 playerControl.RawSetSkin(newOutfit.SkinId);
             }
             if (playerControl == PlayerControl.LocalPlayer) {
-                PlayerControl.LocalPlayer.NetTransform.Halt();                
+                if (!playerControl.Is(RoleEnum.Swooper) || !playerControl.GetRole<Swooper>().IsSwooped) {
+                    PlayerControl.LocalPlayer.NetTransform.Halt();
+                }
             }
         }
 
