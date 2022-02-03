@@ -59,11 +59,7 @@ namespace TownOfUs.Roles
             if (player != null && (MeetingHud.Instance.state == MeetingHud.VoteStates.Proceeding ||
                                    MeetingHud.Instance.state == MeetingHud.VoteStates.Results)) return Player.name;
             if (!CustomGameOptions.RoleUnderName && player == null) return Player.name;
-            Player.nameText.transform.localPosition = new Vector3(
-                0f,
-                Player.CurrentOutfit.HatId == "hat_NoHat" ? 1.5f : 2.0f,
-                -0.5f
-            );
+            Player.nameText.transform.localPosition = Player.GetNameTextPosition();
             return Player.name + "\n" + "Crewmate";
         }
     }

@@ -5,12 +5,9 @@ using TownOfUs.Extensions;
 using TownOfUs.ImpostorRoles.CamouflageMod;
 using UnityEngine;
 
-namespace TownOfUs.Roles
-{
-    public class Lover : Role
-    {
-        public Lover(PlayerControl player, int num, bool loverImpostor) : base(player)
-        {
+namespace TownOfUs.Roles {
+    public class Lover : Role {
+        public Lover(PlayerControl player, int num, bool loverImpostor) : base(player) {
             var imp = num == 2 && loverImpostor;
             Name = imp ? "Loving Impostor" : "Lover";
             Color = new Color(1f, 0.4f, 0.8f, 1f);
@@ -29,51 +26,40 @@ namespace TownOfUs.Roles
         public int Num { get; set; }
         public bool LoverImpostor { get; set; }
 
-        protected override void IntroPrefix(IntroCutscene._CoBegin_d__18 __instance)
-        {
+        protected override void IntroPrefix(IntroCutscene._CoBegin_d__18 __instance) {
             var loverTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
             loverTeam.Add(PlayerControl.LocalPlayer);
             loverTeam.Add(OtherLover.Player);
             __instance.yourTeam = loverTeam;
         }
 
-        internal override bool Criteria()
-        {
+        internal override bool Criteria() {
             return base.Criteria() || GetRole(PlayerControl.LocalPlayer) == OtherLover;
         }
 
-        protected override string NameText(PlayerVoteArea player = null)
-        {
+        protected override string NameText(PlayerVoteArea player = null) {
             if (CamouflageUnCamouflage.IsCamoed && player == null) return "";
             if (PlayerControl.LocalPlayer.Data.IsDead || PlayerControl.LocalPlayer == Player)
                 return base.NameText(player);
-            if (!CustomGameOptions.RoleUnderName && player == null) 
-            Player.nameText.transform.localPosition = new Vector3(
-                0f,
-                Player.CurrentOutfit.HatId == "hat_NoHat" ? 1.5f : 2f,
-                -0.5f
-            );
-            if (PlayerControl.LocalPlayer.Data.IsImpostor() && RoleType == RoleEnum.LoverImpostor)
-            {
+            if (!CustomGameOptions.RoleUnderName && player == null)
+                Player.nameText.transform.localPosition = Player.GetNameTextPosition();
+            if (PlayerControl.LocalPlayer.Data.IsImpostor() && RoleType == RoleEnum.LoverImpostor) {
                 Player.nameText.color = Palette.ImpostorRed;
                 if (player != null) player.NameText.color = Palette.ImpostorRed;
                 if (MeetingHud.Instance.state == MeetingHud.VoteStates.Proceeding ||
-                                   MeetingHud.Instance.state == MeetingHud.VoteStates.Results)
-                {
+                    MeetingHud.Instance.state == MeetingHud.VoteStates.Results) {
                     return Player.name;
                 }
-                else
-                {
-                return Player.name + "\n" + "Impostor";
-            }
+                else {
+                    return Player.name + "\n" + "Impostor";
+                }
             }
 
 
             return Player.name + "\n" + "Lover";
         }
 
-        public static void Gen(List<PlayerControl> crewmates, List<PlayerControl> impostors)
-        {
+        public static void Gen(List<PlayerControl> crewmates, List<PlayerControl> impostors) {
             //System.Console.WriteLine("LOVER2");
             if (crewmates.Count <= 0) return;
             if (crewmates.Count <= 1 && impostors.Count < 1) return;
@@ -91,21 +77,19 @@ namespace TownOfUs.Roles
             var player1 = crewmates[num];
             crewmates.Remove(player1);
             PlayerControl player2;
-            if (flag2)
-            {
+            if (flag2) {
                 var num2 = Random.RandomRangeInt(0, impostors.Count);
                 player2 = impostors[num2];
                 impostors.Remove(player2);
             }
-            else
-            {
+            else {
                 var num2 = Random.RandomRangeInt(0, crewmates.Count);
                 player2 = crewmates[num2];
                 crewmates.Remove(player2);
             }
 
             var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
-                (byte) CustomRPC.SetCouple, SendOption.Reliable, -1);
+                (byte)CustomRPC.SetCouple, SendOption.Reliable, -1);
             writer.Write(player1.PlayerId);
             writer.Write(player2.PlayerId);
             writer.Write(b);
@@ -118,15 +102,13 @@ namespace TownOfUs.Roles
             AmongUsClient.Instance.FinishRpcImmediately(writer);
         }
 
-        internal override bool EABBNOODFGL(ShipStatus __instance)
-        {
+        internal override bool EABBNOODFGL(ShipStatus __instance) {
             if (FourPeopleLeft()) return false;
 
-            if (CheckLoversWin())
-            {
+            if (CheckLoversWin()) {
                 //System.Console.WriteLine("LOVERS WIN");
                 var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
-                    (byte) CustomRPC.LoveWin, SendOption.Reliable, -1);
+                    (byte)CustomRPC.LoveWin, SendOption.Reliable, -1);
                 writer.Write(Player.PlayerId);
                 AmongUsClient.Instance.FinishRpcImmediately(writer);
                 Win();
@@ -138,33 +120,32 @@ namespace TownOfUs.Roles
         }
 
 
-        private bool FourPeopleLeft()
-        {
+        private bool FourPeopleLeft() {
             var players = PlayerControl.AllPlayerControls.ToArray();
             var alives = players.Where(x => !x.Data.IsDead).ToList();
             var lover1 = Player;
             var lover2 = OtherLover.Player;
             {
-                return !(lover1.Data.IsDead || lover1.Data.Disconnected) && !(lover2.Data.IsDead || lover2.Data.Disconnected) &&
+                return !(lover1.Data.IsDead || lover1.Data.Disconnected) &&
+                       !(lover2.Data.IsDead || lover2.Data.Disconnected) &&
                        alives.Count() == 4 && LoverImpostor;
             }
         }
 
-        private bool CheckLoversWin()
-        {
+        private bool CheckLoversWin() {
             //System.Console.WriteLine("CHECKWIN");
             var players = PlayerControl.AllPlayerControls.ToArray();
             var alives = players.Where(x => !x.Data.IsDead).ToList();
             var lover1 = Player;
             var lover2 = OtherLover.Player;
 
-            return !(lover1.Data.IsDead || lover1.Data.Disconnected) && !(lover2.Data.IsDead || lover2.Data.Disconnected) &&
+            return !(lover1.Data.IsDead || lover1.Data.Disconnected) &&
+                   !(lover2.Data.IsDead || lover2.Data.Disconnected) &&
                    (alives.Count == 3) | (alives.Count == 2);
         }
 
-        public void Win()
-        {
-            if (AllRoles.Where(x => x.RoleType == RoleEnum.Jester).Any(x => ((Jester) x).VotedOut)) return;
+        public void Win() {
+            if (AllRoles.Where(x => x.RoleType == RoleEnum.Jester).Any(x => ((Jester)x).VotedOut)) return;
             /*var lover1 = Player;
             var lover2 = OtherLover.Player;
             //System.Console.WriteLine("reached révoila");

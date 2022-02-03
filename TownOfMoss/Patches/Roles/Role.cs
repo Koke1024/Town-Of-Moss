@@ -104,11 +104,7 @@ namespace TownOfUs.Roles
         internal virtual bool Criteria()
         {
             if (Player.nameText != null) {
-                Player.nameText.transform.localPosition = new Vector3(
-                    0f,
-                Player.Data.DefaultOutfit.HatId == "hat_NoHat" ? 1.5f : 2.0f,
-                    -0.5f
-                );
+                Player.nameText.transform.localPosition = Player.GetNameTextPosition();
             }
 
             if (PlayerControl.LocalPlayer.Data.IsDead && CustomGameOptions.DeadSeeRoles) return Utils.ShowDeadBodies;
@@ -183,11 +179,7 @@ namespace TownOfUs.Roles
 
             if (!CustomGameOptions.RoleUnderName && player == null) return Player.name;
 
-            Player.nameText.transform.localPosition = new Vector3(
-                0f,
-                Player.CurrentOutfit.HatId == "hat_NoHat" ? 1.5f : 2.0f,
-                -0.5f
-            );
+            Player.nameText.transform.localPosition = Player.GetNameTextPosition();
             return Player.GetDefaultOutfit()._playerName + "\n" + Name;
         }
 

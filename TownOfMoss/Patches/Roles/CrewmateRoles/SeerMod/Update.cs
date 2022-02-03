@@ -101,7 +101,7 @@ namespace TownOfUs.CrewmateRoles.SeerMod
             {
                 if (!seer.Investigated.Contains(player.PlayerId)) continue;
                 var roleType = Utils.GetRole(player);
-                player.nameText.transform.localPosition = new Vector3(0f, 2f, -0.5f);
+                player.nameText.transform.localPosition = player.GetNameTextPosition();
                 switch (roleType)
                 {
                     case RoleEnum.Crewmate:

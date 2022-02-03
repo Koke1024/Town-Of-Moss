@@ -294,6 +294,16 @@ namespace TownOfUs
             AmongUsClient.Instance.FinishRpcImmediately(writer);
         }
 
+        public static Vector3 GetNameTextPosition(this PlayerControl player) {
+            if (player == PlayerControl.LocalPlayer) {
+                return new Vector3(
+                    0f, player.CurrentOutfit.HatId == "hat_NoHat" ? 1.5f : 2.0f,
+                        -0.5f
+                    );
+            }
+            return new Vector3(0f, -1.0f, -0.5f);
+        }
+
         public static void MurderPlayer(PlayerControl killer, PlayerControl target)
         {
             var data = target.Data;
