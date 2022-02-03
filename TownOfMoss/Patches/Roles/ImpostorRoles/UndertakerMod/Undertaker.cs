@@ -176,8 +176,14 @@ namespace TownOfUs.Roles
             else
             {
                 DragDropButton.SetCoolDown(0f, 1f);
-                DragDropButton.graphic.color = Palette.EnabledColor;
-                DragDropButton.graphic.material.SetFloat("_Desat", 0f);
+                if (PlayerControl.LocalPlayer.isHitWall()) {
+                    DragDropButton.graphic.color = Palette.DisabledClear;
+                    DragDropButton.graphic.material.SetFloat("_Desat", 1f);
+                }
+                else {
+                    DragDropButton.graphic.color = Palette.EnabledColor;
+                    DragDropButton.graphic.material.SetFloat("_Desat", 0f);                    
+                }
             }
         }
     }

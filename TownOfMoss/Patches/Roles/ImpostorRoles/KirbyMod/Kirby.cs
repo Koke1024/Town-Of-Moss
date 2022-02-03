@@ -48,6 +48,7 @@ namespace TownOfUs.Roles
             eatTime = DateTime.Now;
             _aten = body;
             body.Reported = true;
+            body.myCollider.tag = "Untagged";
             body.bodyRenderer.enabled = false;
         }
         
@@ -58,6 +59,7 @@ namespace TownOfUs.Roles
             _aten.bodyRenderer.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             _aten.bodyRenderer.enabled = true;
             _aten.Reported = false;
+            _aten.myCollider.tag = "DeadBody";
             _aten.transform.position = Player.transform.position;
             
             _aten = null;

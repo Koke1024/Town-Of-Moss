@@ -93,6 +93,15 @@ namespace TownOfUs
             return player.Is(RoleEnum.Lover) || player.Is(RoleEnum.LoverImpostor);
         }
 
+        public static bool isHitWall(this PlayerControl player)
+        {
+            var hits = Physics2D.OverlapBoxAll(player.transform.position, new Vector2(0.6f, 0.5f), 0);
+            hits = hits.ToArray().Where(c =>
+                    (c.name.Contains("Vent") || !c.isTrigger) && c.gameObject.layer != 8 && c.gameObject.layer != 5)
+                .ToArray();
+            return hits.Count != 0;
+        }
+
         public static bool Is(this PlayerControl player, RoleEnum roleType)
         {
             return Role.GetRole(player)?.RoleType == roleType;

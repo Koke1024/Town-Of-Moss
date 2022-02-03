@@ -16,8 +16,14 @@ namespace TownOfUs.ImpostorRoles.KirbyMod
         public static void SetTarget(KillButton __instance, DeadBody target, Kirby role)
         {
             if (role.Morphed) {
-                __instance.graphic.color = Palette.EnabledColor;
-                __instance.graphic.material.SetFloat("_Desat", 0f);
+                if (role.Player.isHitWall()) {
+                    __instance.graphic.color = Palette.DisabledClear;
+                    __instance.graphic.material.SetFloat("_Desat", 1f);
+                }
+                else {
+                    __instance.graphic.color = Palette.EnabledColor;
+                    __instance.graphic.material.SetFloat("_Desat", 0f);
+                }
                 return;
             }
             if (role.CurrentTarget && role.CurrentTarget != target)

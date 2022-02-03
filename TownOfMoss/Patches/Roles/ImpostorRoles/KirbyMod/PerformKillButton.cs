@@ -21,6 +21,9 @@ namespace TownOfUs.ImpostorRoles.KirbyMod
             if (__instance == role.InhaleButton)
             {
                 if (role.Morphed) {
+                    if (PlayerControl.LocalPlayer.isHitWall()) {
+                        return false;
+                    }
                     var writer2 = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                         (byte) CustomRPC.Spit,
                         SendOption.Reliable, -1);
