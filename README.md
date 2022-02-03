@@ -21,7 +21,7 @@
 
 | Among Us - Version| Date | Mod Version | Link |
 |---|----------|-------------|-----------------|
-| 2021.11.9.5s | 21-02-02 | v1.3.5 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/latest) |
+| 2021.11.9.5s | 21-02-03 | v1.3.6 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/latest) |
 | 2021.6.30s | 21-11-30 | v0.6 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v0.6) |
 
 ### 既知の不具合
@@ -31,6 +31,15 @@ Popopoで死体を吸い込んでから吐き出すまでの間、元々死体�
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v1.3.6 </summary>
+        <ul>
+            <li>壁際で死体を置いたり吐き出したり出来ないように（死体移動時に壁に死体がめり込む問題の改善）</li>
+            <li>プレイヤー名の表示位置の変更</li>
+            <li>コミュサボとSwooper能力を同時に使用したときの不具合の修正</li>
+            <li>Popopoで死体を吸い込んだ後もその場で通報ボタンが有効になる不具合の修正</li>
+        </ul>
+    </details>
     <details>
         <summary> v1.3.5 </summary>
         <ul>
