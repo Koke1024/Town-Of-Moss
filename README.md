@@ -13,6 +13,8 @@
             <li>ゲーム開始時、暗転が明けるまで行動不可</li>
             <li>スキャンタスク周辺に他クルーがいる場合、タスク中かどうかによらずスキャンタスク使用が無効になる</li>
             <li>Skeldのシールドのタスクを右上から実行できない</li>
+            <li>緊急サボタージュの残時間をタスクゲージに表示</li>
+            <li>プレイヤーの名前を足元に表示</li>
         </ul>
 
 
@@ -21,7 +23,7 @@
 
 | Among Us - Version| Date | Mod Version | Link |
 |---|----------|-------------|-----------------|
-| 2021.11.9.5s | 21-02-03 | v1.3.6 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/latest) |
+| 2021.11.9.5s | 21-02-03 | v1.3.7 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/latest) |
 | 2021.6.30s | 21-11-30 | v0.6 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v0.6) |
 
 ### 既知の不具合
@@ -34,10 +36,17 @@ Popopoで死体を吸い込んでから吐き出すまでの間、元々死体�
     <details>
         <summary> v1.3.6 </summary>
         <ul>
+            <li>緊急サボタージュの残時間をタスクゲージに表示</li>
+        </ul>
+    </details>
+    <details>
+        <summary> v1.3.6 </summary>
+        <ul>
             <li>壁際で死体を置いたり吐き出したり出来ないように（死体移動時に壁に死体がめり込む問題の改善）</li>
             <li>プレイヤー名の表示位置の変更</li>
             <li>コミュサボとSwooper能力を同時に使用したときの不具合の修正</li>
             <li>Popopoで死体を吸い込んだ後もその場で通報ボタンが有効になる不具合の修正</li>
+            <li>プレイヤーの名前を足元に表示</li>
         </ul>
     </details>
     <details>
