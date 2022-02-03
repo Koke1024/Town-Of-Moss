@@ -62,8 +62,8 @@ namespace TownOfUs
                 return;
             }
 
-            if (PlayerControl.LocalPlayer.Data.IsDead && Utils.ExistBody(PlayerControl.LocalPlayer.PlayerId)) {
-                DestroyableSingleton<HudManager>.Instance.ShadowQuad.gameObject.SetActive(true);
+            if (PlayerControl.LocalPlayer.Data is { IsDead: true } && Utils.ExistBody(PlayerControl.LocalPlayer.PlayerId) && __instance.ShadowQuad != null) {
+                __instance.ShadowQuad.gameObject.SetActive(true);
             }
         }
     }

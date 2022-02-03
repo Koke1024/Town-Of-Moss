@@ -633,7 +633,7 @@ namespace TownOfUs
         public static bool Prefix(HudManager __instance) {
             if (PlayerControl.AllPlayerControls.Count <= 1 || ShipStatus.Instance == null ||
                 PlayerControl.LocalPlayer == null || PlayerControl.LocalPlayer.Data == null) {
-                return false;
+                return true;
             }
             if (PlayerControl.LocalPlayer.GetRole() == null) {
                 return true;
