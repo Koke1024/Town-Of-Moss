@@ -23,7 +23,7 @@
 
 | Among Us - Version| Date | Mod Version | Link |
 |---|----------|-------------|-----------------|
-| 2021.11.9.5s | 21-02-03 | v1.3.7 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/latest) |
+| 2021.11.9.5s | 21-02-03 | v1.3.8 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/latest) |
 | 2021.6.30s | 21-11-30 | v0.6 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v0.6) |
 
 ### 既知の不具合
@@ -33,6 +33,12 @@ Popopoで死体を吸い込んでから吐き出すまでの間、元々死体�
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v1.3.8 </summary>
+        <ul>
+            <li>Popopoバグ修正</li>
+        </ul>
+    </details>
     <details>
         <summary> v1.3.6 </summary>
         <ul>
