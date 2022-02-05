@@ -58,11 +58,11 @@ namespace TownOfUs
     [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
     public static class DeadLowSight {
         public static void Prefix(HudManager __instance) {
-            if (LobbyBehaviour.Instance || MeetingHud.Instance) {
+            if (LobbyBehaviour.Instance || MeetingHud.Instance || !PlayerControl.LocalPlayer) {
                 return;
             }
 
-            if (PlayerControl.LocalPlayer.Data is { IsDead: true } && Utils.ExistBody(PlayerControl.LocalPlayer.PlayerId) && __instance.ShadowQuad != null) {
+            if (PlayerControl.LocalPlayer.Data.IsDead && Utils.ExistBody(PlayerControl.LocalPlayer.PlayerId) && __instance.ShadowQuad != null) {
                 __instance.ShadowQuad.gameObject.SetActive(true);
             }
         }

@@ -38,13 +38,14 @@ namespace TownOfUs.ImpostorRoles.MinerMod
                 SpawnVent(id, role, position, PlayerControl.LocalPlayer.transform.position.z + 0.000001f);
                 return false;
             }
-
             return true;
         }
-
-
+        
         public static void SpawnVent(int ventId, Miner role, Vector2 position, float zAxis)
         {
+            if (Miner.ventModel == null) {
+                Miner.ventModel = Object.FindObjectOfType<Vent>(); 
+            }
             var vent = Object.Instantiate(Miner.ventModel, Miner.ventModel.transform.parent);
             vent.Id = ventId;
             vent.transform.position = new Vector3(position.x, position.y, zAxis);

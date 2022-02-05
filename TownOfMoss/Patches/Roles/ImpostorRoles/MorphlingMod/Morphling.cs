@@ -90,7 +90,7 @@ namespace TownOfUs.Roles
 
         public override void OnEndMeeting() {
             base.OnEndMeeting();
-            if (MorphButton.graphic) {
+            if (MorphButton && MorphButton.graphic) {
                 MorphButton.graphic.sprite = TownOfUs.SampleSprite;
             }
             SampledPlayer = null;

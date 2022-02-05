@@ -14,6 +14,10 @@ namespace TownOfUs {
             if (text == null) {
                 text = __instance.GetComponentInChildren<TextMeshPro>();
             }
+
+            if (!ShipStatus.Instance) {
+                return true;
+            }
             var system = ShipStatus.Instance.Systems;
             float countDown = 0;
 

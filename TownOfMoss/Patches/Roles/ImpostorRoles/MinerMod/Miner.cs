@@ -63,9 +63,6 @@ namespace TownOfUs.Roles
         
         public override void PostHudUpdate(HudManager __instance) {
             base.PostHudUpdate(__instance);
-            if (ventModel == null) {
-                ventModel = Object.FindObjectOfType<Vent>(); 
-            }
             if (CustomGameOptions.MaxVentNum <= Vents.Count) {
                 MineButton.graphic.color = Palette.DisabledClear;
                 MineButton.graphic.material.SetFloat("_Desat", 1f);
