@@ -310,7 +310,7 @@ namespace TownOfUs.CustomOption
 
             RoleUnderName = new CustomToggleOption(num++, "Role Appears Under Name");
             NoticeNeutral = new CustomToggleOption(num++, "Notice Assigned Neutral Roles", true);
-            GhostCantMove = new CustomToggleOption(num++, "Dead Player Can't Move Before Report", false);
+            GhostCantMove = new CustomToggleOption(num++, "Dead Player Can't Move Before Report", true);
             // VanillaGame = new CustomNumberOption(num++, "Probability of a completely vanilla game", 0f, 0f, 100f, 5f,
             //     PercentFormat);
 #endregion
