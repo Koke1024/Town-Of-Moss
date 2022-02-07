@@ -8,8 +8,7 @@ using UnityEngine;
 namespace TownOfUs {
     [HarmonyPatch(typeof(ProgressTracker), nameof(ProgressTracker.FixedUpdate))]
     public static class EmergencyGaugePatch {
-        public static ProgressTracker tracker; 
-        public static TextMeshPro text = null; 
+        public static TextMeshPro text; 
         public static bool Prefix(ProgressTracker __instance) {
             if (text == null) {
                 text = __instance.GetComponentInChildren<TextMeshPro>();
