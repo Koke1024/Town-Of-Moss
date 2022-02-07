@@ -7,16 +7,9 @@ using Object = UnityEngine.Object;
 
 namespace TownOfUs.Roles
 {
-    public enum ReviveLimit
-    {
-        NoLimit = 0,
-        One = 1,
-        Two = 2,
-        Three = 3
-    }
     public class Druid : Undertaker {
         private static Vector2 _dragStartPosition;
-        public int revivedCount = 0;
+        private int _revivedCount;
         
         public Druid(PlayerControl player) : base(player)
         {
@@ -26,7 +19,7 @@ namespace TownOfUs.Roles
             Color = new Color(0.4f, 0f, 0.56f);
             RoleType = RoleEnum.Druid;
             Faction = Faction.Crewmates;
-            revivedCount = 0;
+            _revivedCount = 0;
         }
         
         public void DragStart(Vector2 startPos) {
@@ -40,10 +33,7 @@ namespace TownOfUs.Roles
         }
 
         public bool CanRevive() {
-            if (CustomGameOptions.DruidReviveLimit == ReviveLimit.NoLimit) {
-                return true;
-            }
-            return revivedCount < (int)CustomGameOptions.DruidReviveLimit;
+            return _revivedCount < (int)CustomGameOptions.DruidReviveLimit;
         }
 
         public bool Revive() {
@@ -98,7 +88,7 @@ namespace TownOfUs.Roles
                 catch {
                 }
             }
-            revivedCount += 1;
+            _revivedCount += 1;
             if (!CanRevive()) {
                 if (_dragDropButton) {
                     _dragDropButton.graphic.color = new Color(0, 0, 0, 0);
@@ -108,7 +98,7 @@ namespace TownOfUs.Roles
 
         public override void OnEndMeeting() {
             base.OnEndMeeting();
-            revivedCount = 0;
+            _revivedCount = 0;
             if (Player.AmOwner) {
                 _dragDropButton.graphic.color = new Color(1, 1, 1, 1);                
             }

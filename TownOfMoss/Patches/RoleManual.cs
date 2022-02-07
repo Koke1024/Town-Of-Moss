@@ -11,7 +11,8 @@ namespace TownOfUs.Roles {
                                $"護衛のクールダウン時間	 {CustomGameOptions.GuardCoolDown}s\n" +
                                $"護衛の継続時間	 {CustomGameOptions.GuardDuration}s\n" +
                                $"護衛の有効距離	 {CustomGameOptions.GuardRange}m\n" +
-                               $"護衛成功時に自身が死亡する {(CustomGameOptions.DieOnGuard? "On": "Off")}"},
+                               $"護衛成功時に自身が死亡する {(CustomGameOptions.DieOnGuard? "On": "Off")}\n" +
+                               $"護衛通知が表示されるプレイヤー {new[] {"Everyone", "Shielded", "Nobody"}[(int)CustomGameOptions.NotificationShield]}"},
             {RoleEnum.Sheriff, $"Sheriff\nキルボタンを持っており、第三陣営、インポスターをキルすることができますが、対象がクルーメイトだった場合は自身が死亡します。\n" +
                                $"対象がクルーメイトでもキルする {(CustomGameOptions.SheriffKillOther? "On": "Off")}\n" +
                                $"Madmateもキル対象に含まれる {(CustomGameOptions.SheriffKillsMadmate? "On": "Off")}\n" +
@@ -75,7 +76,7 @@ namespace TownOfUs.Roles {
                                $"電力をすべて消費するのにかかる時間	{CustomGameOptions.ConsumeChargeTime}s"},
             {RoleEnum.Druid, $"Druid\n死体を一定距離遠くまで移動させることで蘇生させます。\n" +
                               $"蘇生に必要な距離	{CustomGameOptions.DruidReviveRange}m\n" +
-                              $"ラウンドごとの蘇生可能回数		{new[] {"Unlimited", "1", "2", "3"}[(int)CustomGameOptions.DruidReviveLimit]}"},
+                              $"ラウンドごとの蘇生可能回数		{CustomGameOptions.DruidReviveLimit}"},
             {RoleEnum.SecurityGuard, $"SecurityGuard\nゲーム開始時に所持しているネジを使用し、新しいカメラの設置、ベントの封鎖ができます。\n" +
                                      $"設置されたオブジェクトは次の会議が開けてから視認され、有効になります。\n" +
                                      $"Skeld、MiraHQではカメラを設置することはできません。\n" +

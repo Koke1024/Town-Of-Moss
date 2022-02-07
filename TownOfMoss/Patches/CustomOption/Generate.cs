@@ -152,7 +152,7 @@ namespace TownOfUs.CustomOption
 
         public static CustomHeaderOption Druid;
         public static CustomNumberOption DruidReviveRange;
-        public static CustomStringOption DruidReviveLimit;
+        public static CustomNumberOption DruidReviveLimit;
 
         public static CustomHeaderOption Painter;
         public static CustomNumberOption PaintColorMax;
@@ -426,8 +426,9 @@ namespace TownOfUs.CustomOption
             Druid =
                 new CustomHeaderOption(num++, "<color=#66008EFF>Druid</color>");
             DruidReviveRange = new CustomNumberOption(num++, "Distance to revive dead", 20f, 2f, 40f, 1f, DistanceFormat);
-            DruidReviveLimit =
-                new CustomStringOption(num++, "Revive Limit Per Round", new[] {"No Limit", "1", "2", "3"});
+            DruidReviveLimit = new CustomNumberOption(num++, "Revive Limit Per Round", 1, 1, 5, 1);
+            ;
+                // new CustomStringOption(num++, "Revive Limit Per Round", new[] {"1", "2", "3", "No Limit"});
             
             Engineer =
                 new CustomHeaderOption(num++, "<color=#FFA60AFF>Engineer</color>");
