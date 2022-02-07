@@ -123,6 +123,7 @@ namespace TownOfUs
         public static MorphVentOptions SwooperCanVent => (MorphVentOptions)Generate.SwooperCanVent.Get();
         public static float MorphlingDuration => Generate.MorphlingDuration.Get();
         public static MorphVentOptions MorphCanVent => (MorphVentOptions)Generate.MorphCanVent.Get();
+        public static MorphVentOptions KirbyCanVent => (MorphVentOptions)Generate.KirbyCanVent.Get();
         public static float CamouflagerCd => Generate.CamouflagerCooldown.Get();
         public static float CamouflagerDuration => Generate.CamouflagerDuration.Get();
         public static bool KillCoolResetOnMeeting => Generate.KillCoolResetOnMeeting.Get();

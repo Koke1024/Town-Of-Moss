@@ -38,11 +38,19 @@ namespace TownOfUs
                 return false;
             }
 
-            if (player.Is(RoleEnum.Morphling) || player.Is(RoleEnum.Kirby)) {
+            if (player.Is(RoleEnum.Morphling)) {
                 if (CustomGameOptions.MorphCanVent == MorphVentOptions.None) {
                     return false;
                 }
                 if (Role.GetRole<Morphling>(player).Morphed && CustomGameOptions.MorphCanVent == MorphVentOptions.OnNotMorph) {
+                    return false;
+                }
+            }
+            if (player.Is(RoleEnum.Kirby)) {
+                if (CustomGameOptions.KirbyCanVent == MorphVentOptions.None) {
+                    return false;
+                }
+                if (Role.GetRole<Morphling>(player).Morphed && CustomGameOptions.KirbyCanVent == MorphVentOptions.OnNotMorph) {
                     return false;
                 }
             }

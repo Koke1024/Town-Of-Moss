@@ -203,6 +203,7 @@ namespace TownOfUs.CustomOption
         
         public static CustomHeaderOption Kirby;
         public static CustomNumberOption CopyDuration;
+        public static CustomStringOption KirbyCanVent;
 
         public static CustomHeaderOption Madmate;
         public static CustomToggleOption MadmateCanVent;
@@ -674,6 +675,7 @@ namespace TownOfUs.CustomOption
             
             Kirby = new CustomHeaderOption(num++, "<color=#A86BA3FF>Popopo</color>");
             CopyDuration = new CustomNumberOption(num++, "Copy Duration", 25.0f, 10f, 60f, 5.0f, CooldownFormat);
+            KirbyCanVent = new CustomStringOption(num++, "Popopo Can Use Vent", new[] {"On not Copy", "Always", "None"});
             
             Puppeteer = new CustomHeaderOption(num++, "<color=#FF0000FF>Puppeteer</color>");
             PossessTime = new CustomNumberOption(num++, "Possess Time", 3.0f, 1f, 5f, 0.5f, CooldownFormat);
