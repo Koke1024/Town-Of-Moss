@@ -144,6 +144,7 @@ namespace TownOfUs
         public static float PossessCd => Generate.PossessCd.Get();
         public static bool PossessBodyReport => Generate.PossessBodyReport.Get();
         public static float PossessMaxTime => Generate.PossessMaxTime.Get();
+        public static float CopyDuration => Generate.CopyDuration.Get();
         public static float ReleaseWaitTime => Generate.ReleaseWaitTime.Get();
         public static float DollBreakTime => Generate.DollBreakTime.Get();
         public static bool ImpostorSeeRoles => Generate.ImpostorSeeRoles.Get();

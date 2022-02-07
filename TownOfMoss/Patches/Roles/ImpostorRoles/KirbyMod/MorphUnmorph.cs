@@ -18,7 +18,9 @@ namespace TownOfUs.ImpostorRoles.KirbyMod
                     }
                     kirby.Morph();
                 }
-                else if (kirby.MorphedPlayer) kirby.Unmorph();
+                else if (kirby.MorphedPlayer) {
+                    kirby.Spit();
+                }
             }
         }
     }

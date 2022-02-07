@@ -200,6 +200,9 @@ namespace TownOfUs.CustomOption
         public static CustomHeaderOption MultiKiller;
         public static CustomNumberOption MultiKillerCdRate;
         public static CustomNumberOption MultiKillEnableTime;
+        
+        public static CustomHeaderOption Kirby;
+        public static CustomNumberOption CopyDuration;
 
         public static CustomHeaderOption Madmate;
         public static CustomToggleOption MadmateCanVent;
@@ -668,6 +671,9 @@ namespace TownOfUs.CustomOption
             MultiKillEnableTime = new CustomNumberOption(num++, "MultiKill Enable Time", 5.0f, 1f, 20f, 1f, CooldownFormat);
 
             
+            
+            Kirby = new CustomHeaderOption(num++, "<color=#A86BA3FF>Popopo</color>");
+            CopyDuration = new CustomNumberOption(num++, "Copy Duration", 25.0f, 10f, 60f, 5.0f, CooldownFormat);
             
             Puppeteer = new CustomHeaderOption(num++, "<color=#FF0000FF>Puppeteer</color>");
             PossessTime = new CustomNumberOption(num++, "Possess Time", 3.0f, 1f, 5f, 0.5f, CooldownFormat);

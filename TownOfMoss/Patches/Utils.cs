@@ -48,7 +48,7 @@ namespace TownOfUs
         }
 
         public static void Unmorph(PlayerControl player)
-            {
+        {
            player.SetOutfit(CustomPlayerOutfitType.Default);
         }
 

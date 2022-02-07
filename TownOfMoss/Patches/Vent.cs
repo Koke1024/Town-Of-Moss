@@ -34,16 +34,11 @@ namespace TownOfUs
             if (playerInfo.IsDead)
                 return false;
             
-            if (player.Is(RoleEnum.Kirby))
-            {
-                return false;
-            }
-
             if (!CustomGameOptions.VentWithBody && player.CanDrag() && Role.GetRole<Undertaker>(player).CurrentlyDragging != null) {
                 return false;
             }
 
-            if (player.Is(RoleEnum.Morphling)) {
+            if (player.Is(RoleEnum.Morphling) || player.Is(RoleEnum.Kirby)) {
                 if (CustomGameOptions.MorphCanVent == MorphVentOptions.None) {
                     return false;
                 }

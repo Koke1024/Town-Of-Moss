@@ -42,7 +42,7 @@ namespace TownOfUs.Roles
         }
 
         public void CopyCrew(DeadBody body) {
-            TimeRemaining = float.MaxValue;
+            TimeRemaining = CustomGameOptions.CopyDuration;
             MorphedPlayer = SampledPlayer;
             Utils.Morph(Player, SampledPlayer, true);
             eatTime = DateTime.Now;
@@ -122,6 +122,13 @@ namespace TownOfUs.Roles
                 closestDistance = distance;
             }
 
+            if (Morphed) {
+                InhaleButton.SetCoolDown(TimeRemaining, CustomGameOptions.CopyDuration);
+                
+                InhaleButton.graphic.color = Palette.EnabledColor;
+                InhaleButton.graphic.material.SetFloat("_Desat", 0f);
+                return;
+            }
 
             InhaleButtonTarget.SetTarget(killButton, closestBody, this);
             InhaleButton.SetCoolDown(0, 1.0f);
