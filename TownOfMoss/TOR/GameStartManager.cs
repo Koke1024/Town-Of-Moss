@@ -7,6 +7,7 @@ using UnhollowerBaseLib;
 
 namespace TownOfUs.Patches {
     public class GameStartManagerPatch {
+        private static float timer = 600f;
         private static string lobbyCodeText = "";
         public static GameObject StartPanel;
         
@@ -16,13 +17,20 @@ namespace TownOfUs.Patches {
                 if (__instance && __instance.GameRoomName != null) {
                     lobbyCodeText = __instance.GameRoomName.text;
                 }
+                timer = 600f; 
             }
         }
 
         [HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.Update))]
         public class GameStartManagerUpdatePatch {
+            private static bool update = false;
             public static bool startable = false;
+            private static string currentText = "";
             public static void Prefix(GameStartManager __instance) {
+                if (AmongUsClient.Instance.AmHost && GameData.Instance) {
+                    update = GameData.Instance.PlayerCount != __instance.LastPlayerCount;
+                }
+
                 if (StartPanel == null) {
                     return;
                 }
@@ -65,6 +73,18 @@ namespace TownOfUs.Patches {
                         __instance.GameRoomName.text = lobbyCodeText;
                     }
                 }
+                // Lobby timer
+                if (!AmongUsClient.Instance.AmHost || !GameData.Instance) return; // Not host or no instance
+
+                if (update) currentText = __instance.PlayerCounter.text;
+
+                timer = Mathf.Max(0f, timer -= Time.deltaTime);
+                int minutes = (int)timer / 60;
+                int seconds = (int)timer % 60;
+                string suffix = $" ({minutes:00}:{seconds:00})";
+
+                __instance.PlayerCounter.text = currentText + suffix;
+                __instance.PlayerCounter.autoSizeTextContainer = true;
             }
         }
 
