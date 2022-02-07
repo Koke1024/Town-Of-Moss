@@ -117,14 +117,16 @@ namespace TownOfUs.Roles {
             {RoleEnum.Janitor, $"Janitor\n数秒間死体に隣接することで死体を消し、発見されなくします。\n" +
                               $"死体を消せるクールダウン時間	{CustomGameOptions.CleanCd}s\n" +
                               $"死体を消すのにかかる時間	{CustomGameOptions.CleanDuration}s"},
-            {RoleEnum.Kirby, $"Popopo\n死体を吸い込んだり吐き出したりします。吸い込んでいる間は対象の姿をコピーします。\nベントは使用できません。"},
+            {RoleEnum.Kirby, $"Popopo\n死体を吸い込んだり吐き出したりします。吸い込んでいる間は対象の姿をコピーします。\n" +
+                             $"連続コピー可能時間	{CustomGameOptions.CopyDuration}\n" +
+                             $"ベント使用         {(new[] {"能力使用中は不可", "常時可能", "不可"}[(int)CustomGameOptions.KirbyCanVent])}"},
             {RoleEnum.Undertaker, $"Undertaker\n死体を移動させることができます。\n" +
                               $"死体を置いてから次に移動させられるまでのクールダウン時間	{CustomGameOptions.DragCd}s\n" +
                               $"死体移動時の通常時に対する移動速度の割合	{CustomGameOptions.DragVel}%\n" +
                               $"死体移動中のベント移動	{(CustomGameOptions.VentWithBody? "On": "Off")}"},
             {RoleEnum.Assassin, $"AssassinまたはMadmate\n会議中にクルーの役職を当てることで狙撃し、キルすることができます。\n" +
                                 $"Madmateの場合、クルーメイトとして数えられ、味方インポスターが誰かを知らず、通常キルとベントの使用ができません。\n" +
-                              $"会議中にキルできる最大人数	\n" +
+                              $"会議中にキルできる最大人数  {CustomGameOptions.AssassinKills}\n" +
                                 $"一度の会議中に二人以上狙撃できる	{(CustomGameOptions.AssassinMultiKill? "On": "Off")}\n" +
                                 $"最後の一人となったインポスターは狙撃能力を得る   {(CustomGameOptions.LastImpCanGuess? "On": "Off")}"},
             {RoleEnum.Underdog, $"Underdog\n\n" +
@@ -146,7 +148,7 @@ namespace TownOfUs.Roles {
                               $"Mimic能力のクールダウン時間	{CustomGameOptions.MimicCooldown}s\n" +
                               $"Mimic能力の効果時間	{CustomGameOptions.MimicDuration}s\n" +
                               $"Hack能力のクールダウン時間	{CustomGameOptions.HackCooldown}s\n" +
-                              $"Mimic能力の効果時間	{CustomGameOptions.HackDuration}s\n" +
+                              $"Hack能力の効果時間	{CustomGameOptions.HackDuration}s\n" +
                               $"キルクールダウン時間	{CustomGameOptions.GlitchKillCooldown}s"},
             {RoleEnum.Crewmate, $"Crewmate\n特別な能力を持たないクルーメイトです。"},
             {RoleEnum.Impostor, $"Impostor\n特別な能力を持たないインポスターです。"},
