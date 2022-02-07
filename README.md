@@ -1,4 +1,5 @@
 
+
 # Town of Moss
 
 当MODは [Town of Us](https://github.com/polusgg/Town-Of-Us)
@@ -819,7 +820,7 @@ Last Impostor Can SnipeがOnの場合、インポスター役職として割り�
 |----------|:-------------:|:------:|:------:|
 | Morph Cooldown | 変身のクールダウン | Time | 15s |
 | Morph Duration | 変身の継続時間 | Time | 10s |
-| Morphling Can Use Vent | ベント使用 | 能力使用中は禁止 / 常時使用可能 / 使用不可能 |
+| Morphling Can Use Vent | ベント使用 | 能力使用中は禁止 / 常時使用可能 / 使用不可能 | 能力使用中は禁止 |
 
 -----------------------
 
@@ -866,7 +867,7 @@ Last Impostor Can SnipeがOnの場合、インポスター役職として割り�
 |----------|:-------------:|:------:|:------:|
 | Swooper Cooldown | 姿を消すクールダウン時間 | Time | 30s |
 | Swooper Duration | 姿を消す最大継続時間 | Time | 5s |
-| Swooper Can Use Vent | ベント使用 | 能力使用中は禁止 / 常時使用可能 / 使用不可能 |
+| Swooper Can Use Vent | ベント使用 | 能力使用中は禁止 / 常時使用可能 / 使用不可能 | 能力使用中は禁止 |
 | Move Speed On Swoop | 移動速度上昇効果割合 | Number | 150% |
 
 -----------------------
@@ -929,7 +930,7 @@ Last Impostor Can SnipeがOnの場合、インポスター役職として割り�
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
 | Copy Duration | コピー可能連続時間 | Time | 25s
-| Popopo Can Use Vent | ベント使用 | 能力使用中は禁止 / 常時使用可能 / 使用不可能 |
+| Popopo Can Use Vent | ベント使用 | 能力使用中は禁止 / 常時使用可能 / 使用不可能 | 能力使用中は禁止 |
 
 -----------------------
 
