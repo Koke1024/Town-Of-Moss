@@ -23,7 +23,7 @@
 
 | Among Us - Version| Date | Mod Version | Link |
 |---|----------|-------------|-----------------|
-| 2021.11.9.5s | 21-02-04 | v1.3.9 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/latest) |
+| 2021.11.9.5s | 21-02-08 | v1.4.0 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/latest) |
 | 2021.6.30s | 21-11-30 | v0.6 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v0.6) |
 
 ### 既知の不具合
@@ -33,6 +33,14 @@ Popopoで死体を吸い込んでから吐き出すまでの間、元々死体�
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v1.3.8 </summary>
+        <ul>
+            <li>ロビーに10分タイマーを表示</li>
+            <li>幽霊が動けない設定をデフォルト化</li>
+            <li>Popopoのコピーに上限時間を設定、ベント使用設定追加</li>
+        </ul>
+    </details>
     <details>
         <summary> v1.3.8 </summary>
         <ul>
