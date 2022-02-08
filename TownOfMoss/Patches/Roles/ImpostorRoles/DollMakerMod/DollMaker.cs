@@ -45,21 +45,21 @@ namespace TownOfUs.Roles
                     breakList.Enqueue(doll.Key);
                     continue;
                 }
-                PlayerControl closestPlayer = null;
-                var targets = PlayerControl.AllPlayerControls.ToArray()
-                    .ToList().FindAll(x =>
-                        x.PlayerId != Player.PlayerId && x.PlayerId != doll.Key);
-                if (Utils.SetClosestPlayerToPlayer(GameData.Instance.GetPlayerById(doll.Key)._object, ref closestPlayer,
-                    0.8f, targets
-                )) {
-                    breakList.Enqueue(doll.Key);
-                    continue;
+
+                if (CustomGameOptions.DollBreakOnTouch) {
+                    PlayerControl closestPlayer = null;
+                    var targets = PlayerControl.AllPlayerControls.ToArray()
+                        .ToList().FindAll(x =>
+                            x.PlayerId != Player.PlayerId && x.PlayerId != doll.Key);
+                    if (Utils.SetClosestPlayerToPlayer(GameData.Instance.GetPlayerById(doll.Key)._object,
+                        ref closestPlayer,
+                        0.8f, targets
+                    )) {
+                        breakList.Enqueue(doll.Key);
+                        continue;
+                    }
                 }
-                
-                if (GameData.Instance.GetPlayerById(doll.Key).IsDead) {
-                    breakList.Enqueue(doll.Key);
-                    continue;
-                }
+
                 if (doll.Key == PlayerControl.LocalPlayer.PlayerId) {
                     DollList[doll.Key] += Time.fixedDeltaTime;
                     PlayerControl.LocalPlayer.moveable = false;

@@ -141,7 +141,8 @@ namespace TownOfUs.Roles {
                                $"クラック効果の継続時間	{CustomGameOptions.CrackDur}s"},
             {RoleEnum.DollMaker, $"DollMaker\nキルの代わりにクルーを蝋人形状態にします。\n" +
                                  $"蝋人形になったクルーは行動できなくなり、一定時間が経過するか、他のプレイヤーに触れられるか、ミーティングが始まると死亡します。\n" +
-                              $"蝋人形にされたクルーが自動で死亡するまでの時間	{CustomGameOptions.DollBreakTime}s"},
+                              $"蝋人形にされたクルーが自動で死亡するまでの時間	{CustomGameOptions.DollBreakTime}s\n" +
+                                 $"他のクルーが触れると藁人形が死亡する   {(CustomGameOptions.DollBreakOnTouch? "On": "Off")}"},
             {RoleEnum.Glitch, $"Glitch\n誰でもキルすることができ、自分以外のクルーが全員死亡したときのみ勝利となります。" +
                               $"変身、対象の能力やタスクを一定時間行えなくするHack、ベント、どこでもAdminが使用できます。\n" +
                               $"どこでもAdminの利用	{(CustomGameOptions.GlitchAdmin? "On": "Off")}\n" +

@@ -227,6 +227,7 @@ namespace TownOfUs.CustomOption
 
         public static CustomHeaderOption DollMaker;
         public static CustomNumberOption DollBreakTime;
+        public static CustomToggleOption DollBreakOnTouch;
 
         //-------------------------------------NEUTRAL ROLES-------------------------------------------------------
         public static CustomHeaderOption NeutralRolesSetting;
@@ -645,6 +646,7 @@ namespace TownOfUs.CustomOption
             
             DollMaker = new CustomHeaderOption(num++, "<color=#FF0000FF>DollMaker</color>");
             DollBreakTime = new CustomNumberOption(num++, "Doll Self Broken Time", 20.0f, 5f, 60f, 5f, CooldownFormat);
+            DollBreakOnTouch = new CustomToggleOption(num++, "Doll Broken On Touch", false);
             
             Janitor = new CustomHeaderOption(num++, "<color=#FF0000FF>Janitor</color>");
             CleanCd =

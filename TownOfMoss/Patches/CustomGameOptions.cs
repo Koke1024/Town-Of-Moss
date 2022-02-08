@@ -148,6 +148,7 @@ namespace TownOfUs
         public static float CopyDuration => Generate.CopyDuration.Get();
         public static float ReleaseWaitTime => Generate.ReleaseWaitTime.Get();
         public static float DollBreakTime => Generate.DollBreakTime.Get();
+        public static bool DollBreakOnTouch => Generate.DollBreakOnTouch.Get();
         public static bool ImpostorSeeRoles => Generate.ImpostorSeeRoles.Get();
         public static bool DeadSeeRoles => Generate.DeadSeeRoles.Get();
         public static float ArsonistDouseTime => Generate.ArsonistDouseTime.Get();
