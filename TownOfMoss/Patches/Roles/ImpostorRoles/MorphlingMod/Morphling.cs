@@ -138,8 +138,13 @@ namespace TownOfUs.Roles
             else {
                 if (Morphed) {
                     MorphButton.SetCoolDown(TimeRemaining, CustomGameOptions.MorphlingDuration);
+                
+                    MorphButton.graphic.material.SetFloat("_Percent", 0);
+                    MorphButton.cooldownTimerText.color = Palette.AcceptedGreen;
                     return;
                 }
+                MorphButton.cooldownTimerText.color = Palette.EnabledColor;
+                
                 MorphButton.SetCoolDown(MorphTimer(), CustomGameOptions.MorphlingCd);
                 MorphButton.graphic.color = sampledColor;
                 MorphButton.graphic.material.SetFloat(Desat, 0f);

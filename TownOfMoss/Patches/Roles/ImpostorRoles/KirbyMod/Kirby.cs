@@ -127,8 +127,11 @@ namespace TownOfUs.Roles
                 
                 InhaleButton.graphic.color = Palette.EnabledColor;
                 InhaleButton.graphic.material.SetFloat("_Desat", 0f);
+                InhaleButton.graphic.material.SetFloat("_Percent", 0);
+                InhaleButton.cooldownTimerText.color = Palette.AcceptedGreen;
                 return;
             }
+            InhaleButton.cooldownTimerText.color = Palette.EnabledColor;
 
             InhaleButtonTarget.SetTarget(killButton, closestBody, this);
             InhaleButton.SetCoolDown(0, 1.0f);

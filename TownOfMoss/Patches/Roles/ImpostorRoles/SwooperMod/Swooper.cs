@@ -107,8 +107,11 @@ namespace TownOfUs.Roles
             if (IsSwooped)
             {
                 SwoopButton.SetCoolDown(TimeRemaining, CustomGameOptions.SwoopDuration);
+                SwoopButton.graphic.material.SetFloat("_Percent", 0);
+                SwoopButton.cooldownTimerText.color = Palette.AcceptedGreen;
                 return;
             }
+            SwoopButton.cooldownTimerText.color = Palette.EnabledColor;
 
             SwoopButton.SetCoolDown(SwoopTimer(), CustomGameOptions.SwoopCd);
 

@@ -63,9 +63,12 @@ namespace TownOfUs.ImpostorRoles.MinerMod
             }
             vent.Right = null;
             vent.Center = null;
-            if (role.Vents.Count == CustomGameOptions.MaxVentNum - 1) {
+            if (role.Vents.Count > 1) {
+                role.Vents[^1].Right = vent;
                 vent.Right = role.Vents[0];
                 role.Vents[0].Left = vent;
+                if (role.Vents.Count == CustomGameOptions.MaxVentNum - 1) {
+                }
             }
 
             var allVents = ShipStatus.Instance.AllVents.ToList();
