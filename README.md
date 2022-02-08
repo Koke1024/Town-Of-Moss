@@ -38,7 +38,15 @@
 <details>
     <summary> Changelog </summary>
     <details>
-        <summary> v1.3.8 </summary>
+        <summary> v1.4.1 </summary>
+        <ul>
+            <li>DollMakerによる蝋人形が接触によって死亡しないよう変更（設定で変更可能）</li>
+            <li>変身解除可能なときのクールダウン表示をわかりやすく</li>
+            <li>Minerの穴が常に循環で連結されるように改良</li>
+        </ul>
+    </details>
+    <details>
+        <summary> v1.3.9 </summary>
         <ul>
             <li>ロビーに10分タイマーを表示</li>
             <li>幽霊が動けない設定をデフォルト化</li>
