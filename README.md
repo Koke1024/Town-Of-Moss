@@ -736,7 +736,7 @@ Admin閲覧中は消費電力が3倍になります。
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
 | Distance to revive dead | 蘇生に必要な距離 | Time | 20.0m |
-| Revive Limit Per Limit | ラウンドごとの蘇生可能回数 | No Limit / 1 / 2 / 3 | No Limit |
+| Revive Limit Per Limit | ラウンドごとの蘇生可能回数 | Number | 1 |
 
 -----------------------
 
