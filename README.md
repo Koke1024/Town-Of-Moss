@@ -28,8 +28,8 @@
 
 | Among Us - Version| Date | Mod Version | Link |
 |---|----------|-------------|-----------------|
-| 2021.11.9.5s | 21-02-08 | v1.4.0 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/latest) |
-| 2021.6.30s | 21-11-30 | v0.6 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v0.6) |
+| 2021.11.9.5s | 2022-02-09 | v1.4.1 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/latest) |
+| 2021.6.30s | 2021-11-30 | v0.6 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v0.6) |
 
 ### 既知の不具合
 なし\
@@ -38,7 +38,15 @@
 <details>
     <summary> Changelog </summary>
     <details>
-        <summary> v1.3.8 </summary>
+        <summary> v1.4.1 </summary>
+        <ul>
+            <li>DollMakerによる蝋人形が接触によって死亡しないよう変更（設定で変更可能）</li>
+            <li>変身解除可能なときのクールダウン表示をわかりやすく</li>
+            <li>Minerの穴が常に循環で連結されるように改良</li>
+        </ul>
+    </details>
+    <details>
+        <summary> v1.3.9 </summary>
         <ul>
             <li>ロビーに10分タイマーを表示</li>
             <li>幽霊が動けない設定をデフォルト化</li>
@@ -455,7 +463,8 @@ MODの更新の場合に必要なのはTownOfMoss.dllのみなので、DLL～.zi
 ### 注意
 ゲーム途中で切断されたり予期しない動作が起こる場合がありますが、\
 その場合は次のゲーム開始前に全てのプレイヤーが一度ゲームを終了して起動し直すことをおすすめします。\
-バイザー部分の隠れる帽子の場合Painterによる着色が見えないため、Painter導入の際はバイザーの見える帽子の着用をお願いします。
+バイザー部分の隠れる帽子の場合Painterによる着色が見えないため、Painter導入の際はバイザーの見える帽子の着用をお願いします。\
+追加役職を使用する場合、本来のAmong Usの役職（Engineer、Scientist、Guardian Angel、Shape Shifter）がオンになっていると正常に動作しません。
 
 ## AUCapture for MOD
 
