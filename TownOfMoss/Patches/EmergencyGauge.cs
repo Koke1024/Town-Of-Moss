@@ -44,7 +44,13 @@ namespace TownOfUs {
                 }
             }
 
-            if (countDown != 0) {
+            var switchSystem = system[SystemTypes.Electrical].Cast<SwitchSystem>();
+            if (switchSystem.Value < 255)
+            {
+                countDown = 60.0f * (switchSystem.Value / 255f);
+            }
+
+            if (countDown != 0 || switchSystem.Value < 255) {
                 float curValue = countDown / 60.0f;
                 __instance.TileParent.material.SetFloat("_Buckets", 1);
                 __instance.TileParent.material.SetFloat("_FullBuckets", Mathf.Clamp(curValue, 0, 1));

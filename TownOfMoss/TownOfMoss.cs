@@ -17,11 +17,11 @@ using UnityEngine;
 
 namespace TownOfUs
 {
-    [BepInPlugin(Id, "Town Of Moss", "1.4.1")]
+    [BepInPlugin(Id, "Town Of Moss", "1.4.2")]
     [BepInDependency(ReactorPlugin.Id)]
     public class TownOfUs : BasePlugin
     {
-        public static string Version = "1.4.1";
+        public static string Version = "1.4.2";
         public const string Id = "jp.spiel.koke";
 
         public static Sprite JanitorClean;
