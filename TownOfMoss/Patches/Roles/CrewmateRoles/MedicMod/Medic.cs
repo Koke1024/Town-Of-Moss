@@ -30,7 +30,7 @@ namespace TownOfUs.Roles
 
             foreach (var player in MeetingHud.Instance.playerStates) {
                 if (SusList.Any(x => x.PlayerId == player.TargetPlayerId)) {
-                    player.NameText.color = Color.gray;
+                    player.NameText.color = Color.black;
                 }
             }
         }

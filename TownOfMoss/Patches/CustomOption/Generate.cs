@@ -94,6 +94,7 @@ namespace TownOfUs.CustomOption
         public static CustomToggleOption SheriffKillsMadmate;
         public static CustomNumberOption SheriffKillCd;
         public static CustomToggleOption SheriffBodyReport;
+        public static CustomToggleOption InnocentCantKill;
         
         public static CustomHeaderOption Engineer;
         public static CustomStringOption EngineerPer;
@@ -532,6 +533,7 @@ namespace TownOfUs.CustomOption
             SheriffKillCd =
                 new CustomNumberOption(num++, "Sheriff Kill Cooldown", 25f, 10f, 40f, 2.5f, CooldownFormat);
             SheriffBodyReport = new CustomToggleOption(num++, "Sheriff can report they killed");
+            // InnocentCantKill = new CustomToggleOption(num++, "Innocent Impostor Treated as Crew");
             
             Sniffer =
                 new CustomHeaderOption(num++, "<color=#A500D3FF>Sniffer</color>");
