@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Il2CppSystem;
+using Il2CppSystem.Globalization;
 using Reactor;
 using Reactor.Extensions;
 using TownOfUs.CrewmateRoles.BodyGuardMod;
@@ -41,7 +42,6 @@ namespace TownOfUs.Roles
             ImpostorText = () => "You are the glitch";
             TaskText = () => "Murder players as the Glitch:";
             Faction = Faction.Neutral;
-            
             
             LastMimic = DateTime.UtcNow;
             LastHack = DateTime.UtcNow;
@@ -188,6 +188,7 @@ namespace TownOfUs.Roles
                         }
                 }
             }
+            Player.Data.Role.TeamType = (RoleTeamTypes)2;
         }
 
         public bool UseAbility(KillButton __instance)

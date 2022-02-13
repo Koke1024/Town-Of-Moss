@@ -65,12 +65,8 @@ namespace TownOfUs.CrewmateRoles.BodyGuardMod
 
                     BreakShield(target.getBodyGuard().Player.PlayerId, target.PlayerId, CustomGameOptions.ShieldBreaks);
                 }
-
-
                 return false;
             }
-
-
             return true;
         }
     }

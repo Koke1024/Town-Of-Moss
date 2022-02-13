@@ -1,7 +1,10 @@
+using System.Collections;
 using System.Linq;
 using Assets.CoreScripts;
 using HarmonyLib;
+using Reactor;
 using TownOfUs.Roles;
+using UnityEngine;
 
 namespace TownOfUs.NeutralReport {
     static class NeutralReporter {
@@ -19,10 +22,17 @@ namespace TownOfUs.NeutralReport {
                     GameData.Instance.AllPlayers.Count / 2) {
                     if (DestroyableSingleton<HudManager>.Instance) {
                         DestroyableSingleton<HudManager>.Instance.Chat.AddChat(PlayerControl.LocalPlayer, neutralReport);
-                        DestroyableSingleton<HudManager>.Instance.ShowPopUp(neutralReport);
+                        
+                        Coroutines.Start(Notice());
                         reported = true;
                     }
                 }
+            }
+
+            private static IEnumerator Notice() {
+                yield return new WaitForSeconds(6.0f);
+                DestroyableSingleton<HudManager>.Instance.ShowPopUp(neutralReport);
+                yield break;
             }
         }
 

@@ -47,7 +47,7 @@ namespace TownOfUs.Roles
             }
         }
 
-        public bool Morphed => TimeRemaining > 0f;
+        public bool Morphed => TimeRemaining > 0f && !MeetingHud.Instance;
 
         public void Morph()
         {

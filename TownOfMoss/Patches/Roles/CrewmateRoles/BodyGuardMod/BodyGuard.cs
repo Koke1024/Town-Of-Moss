@@ -103,18 +103,5 @@ namespace TownOfUs.Roles
                 Arrow.Destroy();                
             }
         }
-
-        public static Color ProtectedColor = Color.cyan;
-        public override void PostHudUpdate(HudManager __instance) {
-            base.PostHudUpdate(__instance);
-
-            var player = ShieldedPlayer;
-            if (player == null) return;
-
-            if (player.Data.IsDead || Player.Data.IsDead)
-            {
-                StopKill.BreakShield(Player.PlayerId, player.PlayerId, true);
-            }
-        }
     }
 }

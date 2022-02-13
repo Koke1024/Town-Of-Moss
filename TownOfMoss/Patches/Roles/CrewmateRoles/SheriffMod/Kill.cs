@@ -42,10 +42,10 @@ namespace TownOfUs.CrewmateRoles.SheriffMod
                 return false;
             }
 
-            var flag4 = role.ClosestPlayer.Data.IsImpostor() || 
+            var enableKill = role.ClosestPlayer.Data.IsImpostor() || 
                         (role.ClosestPlayer.Is(RoleEnum.Assassin) && CustomGameOptions.SheriffKillsMadmate) ||
                         role.ClosestPlayer.Is(Faction.Neutral);
-            if (!flag4)
+            if (!enableKill)
             {
                 if (CustomGameOptions.SheriffKillOther) {
                     Utils.RpcMurderPlayer(PlayerControl.LocalPlayer, role.ClosestPlayer);

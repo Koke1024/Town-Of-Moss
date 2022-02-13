@@ -335,6 +335,7 @@ public static class RpcHandling
                                 case RoleEnum.Executioner: ((Executioner) role).Loses(); break;
                                 case RoleEnum.Scavenger: ((Scavenger) role).Loses(); break;
                                 case RoleEnum.Arsonist: ((Arsonist) role).Loses(); break;
+                                case RoleEnum.Zombie: ((Zombie) role).Loses(); break;
                                 default:
                                     AmongUsExtensions.Log($"Uncaught Role {loseRoleType} lose has been received.");
                                     break;
@@ -355,6 +356,7 @@ public static class RpcHandling
                                 case RoleEnum.Executioner: ((Executioner) role).Wins(); break;
                                 case RoleEnum.Scavenger: ((Scavenger) role).Wins(); break;
                                 case RoleEnum.Arsonist: ((Arsonist) role).Wins(); break;
+                                case RoleEnum.Zombie: ((Zombie) role).Wins(); break;
                                 default:
                                     AmongUsExtensions.Log($"Uncaught Role {winRoleType} win has been received.");
                                     break;

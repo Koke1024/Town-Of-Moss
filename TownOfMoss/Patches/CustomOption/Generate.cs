@@ -682,7 +682,7 @@ namespace TownOfUs.CustomOption
             KirbyCanVent = new CustomStringOption(num++, "Popopo Can Use Vent", new[] {"On not Copy", "Always", "None"});
             
             Puppeteer = new CustomHeaderOption(num++, "<color=#FF0000FF>Puppeteer</color>");
-            PossessTime = new CustomNumberOption(num++, "Possess Time", 3.0f, 1f, 5f, 0.5f, CooldownFormat);
+            PossessTime = new CustomNumberOption(num++, "Possess Time", 1.0f, 1f, 5f, 0.5f, CooldownFormat);
             PossessMaxTime = new CustomNumberOption(num++, "Possess Max Time", 15.0f, 5f, 30f, 2.5f, CooldownFormat);
             ReleaseWaitTime = new CustomNumberOption(num++, "Wait Time After Release", 3.0f, 1f, 10f, 0.5f, CooldownFormat);
             PossessBodyReport = new CustomToggleOption(num++, "Perpetrator Can Report", false);
