@@ -13,7 +13,7 @@
             <li>ゲーム開始時、暗転が明けるまで行動不可</li>
             <li>スキャンタスク周辺に他クルーがいる場合、タスク中かどうかによらずスキャンタスク使用が無効になる</li>
             <li>Skeldのシールドのタスクを右上から実行できない</li>
-            <li>緊急サボタージュの残時間をタスクゲージに表示</li>
+            <li>緊急サボタージュの残時間、停電状況をタスクゲージに表示</li>
             <li>プレイヤーの名前を足元に表示</li>
             <li>死亡して幽霊になった際、会議を挟むまで行動不可</li>
             <li>緊急サボタージュの残時間をタスクゲージに表示</li>
@@ -28,7 +28,7 @@
 
 | Among Us - Version| Date | Mod Version | Link |
 |---|----------|-------------|-----------------|
-| 2021.11.9.5s | 2022-02-09 | v1.4.1 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/latest) |
+| 2021.11.9.5s | 2022-02-14 | v1.4.3 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/latest) |
 | 2021.6.30s | 2021-11-30 | v0.6 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v0.6) |
 
 ### 既知の不具合
@@ -37,6 +37,23 @@
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v1.4.3 </summary>
+        <ul>
+            <li>インポスターが全滅しGlitchだけが残っている場合にオートミュートが解除されないよう改良（オートミュートbotも最新のものを利用してください）</li>
+            <li>BodyGuardが護衛中のSheriffが自爆したときに巻き添えにならないように</li>
+            <li>Medic能力の容疑者の色を赤に</li>
+            <li>Popopoが会議中に名前表示が変身相手のものになる不具合を修正</li>
+            <li>ゾンビの勝利判定に関する問題を修正</li>
+        </ul>
+    </details>
+        
+    <details>
+        <summary> v1.4.2 </summary>
+        <ul>
+            <li>停電状況をタスクゲージに表示</li>
+        </ul>
+    </details>
     <details>
         <summary> v1.4.1 </summary>
         <ul>
@@ -639,7 +656,7 @@ AUCapture for MODは[AmongUsCapture](https://github.com/automuteus/amonguscaptur
 
 ### **Team: Crewmates**
 
-自身が死体をReportした時、キルを行った可能性のあるクルーの名前が会議中グレーで表示されます。\
+自身が死体をReportした時、キルを行った可能性のあるクルーの名前が会議中赤色で表示されます。\
 容疑者候補の数はキルからレポートまでの時間が短いほど少なくなり、最短でランダムで2人まで絞り込まれます。
 
 ------------------------
