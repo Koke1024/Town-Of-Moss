@@ -48,7 +48,6 @@
             <li>Puppeteerの憑依所要時間のデフォルトを1sに</li>
         </ul>
     </details>
-        
     <details>
         <summary> v1.4.2 </summary>
         <ul>
