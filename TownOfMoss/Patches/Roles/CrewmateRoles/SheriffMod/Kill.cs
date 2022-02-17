@@ -33,11 +33,12 @@ namespace TownOfUs.CrewmateRoles.SheriffMod
                     (byte) CustomRPC.AttemptSound, SendOption.Reliable, -1);
                 writer1.Write(medic);
                 writer1.Write(role.ClosestPlayer.PlayerId);
+                writer1.Write(PlayerControl.LocalPlayer.PlayerId);
                 AmongUsClient.Instance.FinishRpcImmediately(writer1);
 
                 if (CustomGameOptions.ShieldBreaks) role.LastKilled = DateTime.UtcNow;
 
-                StopKill.BreakShield(medic, role.ClosestPlayer.PlayerId, CustomGameOptions.ShieldBreaks);
+                StopKill.BreakShield(medic, role.ClosestPlayer.PlayerId, role.Player.PlayerId, CustomGameOptions.ShieldBreaks);
 
                 return false;
             }

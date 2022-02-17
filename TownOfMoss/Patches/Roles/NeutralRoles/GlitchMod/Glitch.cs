@@ -479,10 +479,12 @@ namespace TownOfUs.Roles
                             (byte)CustomRPC.AttemptSound, SendOption.Reliable, -1);
                         writer.Write(medic);
                         writer.Write(__gInstance.KillTarget.PlayerId);
+                        writer.Write(PlayerControl.LocalPlayer.PlayerId);
                         AmongUsClient.Instance.FinishRpcImmediately(writer);
                         if (CustomGameOptions.ShieldBreaks) __gInstance.LastKill = DateTime.UtcNow;
 
                         StopKill.BreakShield(medic, __gInstance.KillTarget.PlayerId,
+                            __gInstance.Player.PlayerId,
                             CustomGameOptions.ShieldBreaks);
 
                         return;

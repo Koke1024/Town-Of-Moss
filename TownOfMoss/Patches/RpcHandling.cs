@@ -530,7 +530,7 @@ public static class RpcHandling
                     case CustomRPC.AttemptSound:
                         var bodyGuardId = reader.ReadByte();
                         readByte = reader.ReadByte();
-                        StopKill.BreakShield(bodyGuardId, readByte, CustomGameOptions.ShieldBreaks);
+                        StopKill.BreakShield(bodyGuardId, readByte, reader.ReadByte(), CustomGameOptions.ShieldBreaks);
                         break;
                     case CustomRPC.BypassKill:
                         var killer = Utils.PlayerById(reader.ReadByte());
@@ -812,6 +812,9 @@ public static class RpcHandling
                         break;
                     case CustomRPC.SetPaintPlayer:
                         Painter.SetPaintPlayer(reader.ReadByte(), (PaintColor)reader.ReadByte());
+                        break;
+                    case CustomRPC.SetKillerId:
+                        Utils.OverrideDeadBodyInformation(reader.ReadByte(), reader.ReadByte());
                         break;
         }
     }

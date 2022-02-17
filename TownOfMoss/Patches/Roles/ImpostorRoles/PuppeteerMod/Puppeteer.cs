@@ -122,13 +122,14 @@ namespace TownOfUs.Roles
                             (byte) CustomRPC.AttemptSound, SendOption.Reliable, -1);
                         writer1.Write(bodyGuard);
                         writer1.Write(closestPlayer.PlayerId);
+                        writer1.Write(PlayerControl.LocalPlayer.PlayerId);
                         AmongUsClient.Instance.FinishRpcImmediately(writer1);
 
                         if (CustomGameOptions.ShieldBreaks) {
                             KillUnPossess();
                         }
 
-                        StopKill.BreakShield(bodyGuard, closestPlayer.PlayerId, CustomGameOptions.ShieldBreaks);
+                        StopKill.BreakShield(bodyGuard, closestPlayer.PlayerId, PossessPlayer.Data.PlayerId, CustomGameOptions.ShieldBreaks);
                         return;
                     }
                     

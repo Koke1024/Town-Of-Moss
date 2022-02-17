@@ -24,11 +24,11 @@
 
 
 ## 最新リリース
-12.15s版は対応できていないため公開を停止しています。
+Among Us最新版の12.15s版には対応していません。何らかの方法で旧バージョン（11.9.5s）のデータを用意していただく必要があります。
 
 | Among Us - Version| Date | Mod Version | Link |
 |---|----------|-------------|-----------------|
-| 2021.11.9.5s | 2022-02-14 | v1.4.3 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/latest) |
+| 2021.11.9.5s | 2022-02-16 | v1.4.4 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/latest) |
 | 2021.6.30s | 2021-11-30 | v0.6 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v0.6) |
 
 ### 既知の不具合
@@ -37,6 +37,12 @@
 
 <details>
     <summary> Changelog </summary>
+    <details>
+        <summary> v1.4.4 </summary>
+        <ul>
+            <li>DollMakerにキルされた際のアニメーションをDollMakerとして表示</li>
+        </ul>
+    </details>
     <details>
         <summary> v1.4.3 </summary>
         <ul>

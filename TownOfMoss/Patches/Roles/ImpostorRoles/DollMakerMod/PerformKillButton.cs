@@ -40,13 +40,14 @@ namespace TownOfUs.ImpostorRoles.DollMakerMod
                     (byte) CustomRPC.AttemptSound, SendOption.Reliable, -1);
                 writer1.Write(medic);
                 writer1.Write(role.ClosestPlayer.PlayerId);
+                writer1.Write(PlayerControl.LocalPlayer.PlayerId);
                 AmongUsClient.Instance.FinishRpcImmediately(writer1);
 
                 if (CustomGameOptions.ShieldBreaks) {
                     PlayerControl.LocalPlayer.SetKillTimer(PlayerControl.GameOptions.KillCooldown);
                 }
 
-                StopKill.BreakShield(medic, role.ClosestPlayer.PlayerId, CustomGameOptions.ShieldBreaks);
+                StopKill.BreakShield(medic, role.ClosestPlayer.PlayerId, PlayerControl.LocalPlayer.Data.PlayerId, CustomGameOptions.ShieldBreaks);
 
                 return false;
             }

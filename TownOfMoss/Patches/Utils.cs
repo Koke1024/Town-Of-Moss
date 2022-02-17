@@ -335,6 +335,13 @@ namespace TownOfUs
 
                     var killerData = killer.Data;
                     var isSwooped = false;
+                    if (killer == target) {
+                        var dollMaker = Role.GetRoles(RoleEnum.DollMaker).FirstOrDefault(r => ((DollMaker)r).DollList.ContainsKey(target.PlayerId));
+                        if (dollMaker is not null && !dollMaker.Equals(default(Role))) {
+                            killerData = dollMaker.Player.Data;
+                            killer = dollMaker.Player;
+                        }
+                    }
                     if (killerData._object.Is(RoleEnum.Swooper)) {
                         var swooper = Role.GetRole<Swooper>(killer);
                         if (swooper.IsSwooped) {
@@ -424,6 +431,19 @@ namespace TownOfUs
             };
 
             KilledPlayers.Add(target.PlayerId, deadBody);
+        }
+        
+        public static void RpcOverrideDeadBodyInformation(byte victimId, byte killerId) {
+            var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
+                (byte)CustomRPC.SetKillerId, SendOption.Reliable, -1);
+            writer.Write(victimId);
+            writer.Write(killerId);
+            AmongUsClient.Instance.FinishRpcImmediately(writer);
+            OverrideDeadBodyInformation(victimId, killerId);
+        }
+        
+        public static void OverrideDeadBodyInformation(byte victimId, byte killerId) {
+            KilledPlayers[victimId].KillerId = killerId;
         }
 
         public static void StartFlash(Color color, float alpha = 0.3f) {

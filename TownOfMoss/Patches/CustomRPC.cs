@@ -67,5 +67,6 @@ namespace TownOfUs
         SetPaintPoint,
         SetPaintVent,
         SetPaintPlayer,
+        SetKillerId,
     }
 }

@@ -11,14 +11,15 @@ namespace TownOfUs.CrewmateRoles.BodyGuardMod
     [HarmonyPatch(typeof(KillButton), nameof(KillButton.DoClick))]
     public class StopKill
     {
-        public static void BreakShield(byte bodyGuardId, byte playerId, bool flag)
+        public static void BreakShield(byte bodyGuardId, byte playerId, byte killerId, bool flag)
         {
-            if (CustomGameOptions.NotificationShield == NotificationOptions.Everyone) {
-                Coroutines.Start(Utils.FlashCoroutine(new Color(0f, 0.47f, 0.23f)));
-            } else if (CustomGameOptions.NotificationShield == NotificationOptions.Shielded && PlayerControl.LocalPlayer.PlayerId == playerId) {
-                Coroutines.Start(Utils.FlashCoroutine(new Color(0f, 0.47f, 0.23f)));
-            } else if (CustomGameOptions.NotificationShield == NotificationOptions.BodyGuard && PlayerControl.LocalPlayer.PlayerId == bodyGuardId) {
-                Coroutines.Start(Utils.FlashCoroutine(new Color(0f, 0.47f, 0.23f)));
+            switch (CustomGameOptions.NotificationShield) {
+                case NotificationOptions.Everyone:
+                case NotificationOptions.Shielded when PlayerControl.LocalPlayer.PlayerId == playerId:
+                case NotificationOptions.BodyGuard when PlayerControl.LocalPlayer.PlayerId == bodyGuardId:
+                    Coroutines.Start(Utils.FlashCoroutine(new Color(0f, 0.47f, 0.23f)));
+                    SoundManager.Instance.PlaySound(PlayerControl.LocalPlayer.KillSfx, false, 0.8f);
+                    break;
             }
 
             if (!flag)
@@ -33,7 +34,8 @@ namespace TownOfUs.CrewmateRoles.BodyGuardMod
                     }
 
                     if (CustomGameOptions.DieOnGuard) {
-                        Utils.RpcMurderPlayer(role.Player, role.Player);                        
+                        Utils.RpcMurderPlayer(role.Player, role.Player);
+                        Utils.RpcOverrideDeadBodyInformation(bodyGuardId, killerId);
                     }
                 }
             }
@@ -55,6 +57,7 @@ namespace TownOfUs.CrewmateRoles.BodyGuardMod
                         (byte) CustomRPC.AttemptSound, SendOption.Reliable, -1);
                     writer.Write(target.getBodyGuard().Player.PlayerId);
                     writer.Write(target.PlayerId);
+                    writer.Write(PlayerControl.LocalPlayer.PlayerId);
                     AmongUsClient.Instance.FinishRpcImmediately(writer);
 
                     System.Console.WriteLine(CustomGameOptions.ShieldBreaks + "- shield break");
@@ -63,7 +66,7 @@ namespace TownOfUs.CrewmateRoles.BodyGuardMod
                         killer.GetRole().PostKill(target);
                     }
 
-                    BreakShield(target.getBodyGuard().Player.PlayerId, target.PlayerId, CustomGameOptions.ShieldBreaks);
+                    BreakShield(target.getBodyGuard().Player.PlayerId, target.PlayerId, PlayerControl.LocalPlayer.Data.PlayerId, CustomGameOptions.ShieldBreaks);
                 }
                 return false;
             }

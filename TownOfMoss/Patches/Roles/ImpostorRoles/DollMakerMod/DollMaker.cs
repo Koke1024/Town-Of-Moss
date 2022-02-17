@@ -73,7 +73,8 @@ namespace TownOfUs.Roles
             foreach (var breakQueue in breakList) {
                 var target = GameData.Instance.GetPlayerById(breakQueue);
                 if (!target.IsDead) {
-                    Utils.RpcMurderPlayer(Player, target._object);
+                    Utils.RpcMurderPlayer(target._object, target._object);
+                    Utils.RpcOverrideDeadBodyInformation(target.PlayerId, Player.PlayerId);
                 }
                 DollList.Remove(breakQueue);
             }
