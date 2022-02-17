@@ -11,14 +11,16 @@ namespace TownOfUs.CrewmateRoles.BodyGuardMod
     [HarmonyPatch(typeof(KillButton), nameof(KillButton.DoClick))]
     public class StopKill
     {
-        public static void BreakShield(byte bodyGuardId, byte playerId, byte killerId, bool flag)
+        public static void BreakShield(byte bodyGuardId, byte targetId, byte killerId, bool flag)
         {
             switch (CustomGameOptions.NotificationShield) {
                 case NotificationOptions.Everyone:
-                case NotificationOptions.Shielded when PlayerControl.LocalPlayer.PlayerId == playerId:
+                case NotificationOptions.Shielded when PlayerControl.LocalPlayer.PlayerId == targetId:
                 case NotificationOptions.BodyGuard when PlayerControl.LocalPlayer.PlayerId == bodyGuardId:
                     Coroutines.Start(Utils.FlashCoroutine(new Color(0f, 0.47f, 0.23f)));
-                    SoundManager.Instance.PlaySound(PlayerControl.LocalPlayer.KillSfx, false, 0.8f);
+                    if (PlayerControl.LocalPlayer.PlayerId != killerId) {
+                        SoundManager.Instance.PlaySound(PlayerControl.LocalPlayer.KillSfx, false, 0.8f);                        
+                    }
                     break;
             }
 
@@ -26,7 +28,7 @@ namespace TownOfUs.CrewmateRoles.BodyGuardMod
                 return;
 
             foreach (var role in Role.GetRoles(RoleEnum.BodyGuard)) {
-                if (((BodyGuard)role).ShieldedPlayer.PlayerId == playerId) {
+                if (((BodyGuard)role).ShieldedPlayer.PlayerId == targetId) {
                     ((BodyGuard)role).ShieldedPlayer = null;
                     // ((BodyGuard)role).Defended = true;
                     if (role.Player.AmOwner) {
