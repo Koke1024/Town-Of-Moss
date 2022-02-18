@@ -31,8 +31,9 @@ namespace TownOfUs.NeutralReport {
 
             private static IEnumerator Notice() {
                 yield return new WaitForSeconds(6.0f);
-                DestroyableSingleton<HudManager>.Instance.ShowPopUp(neutralReport);
-                yield break;
+                if (HudManager.Instance != null) {
+                    DestroyableSingleton<HudManager>.Instance.ShowPopUp(neutralReport);
+                }
             }
         }
 

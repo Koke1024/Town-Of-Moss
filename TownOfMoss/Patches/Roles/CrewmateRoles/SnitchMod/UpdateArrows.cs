@@ -28,7 +28,9 @@ namespace TownOfUs.CrewmateRoles.SnitchMod
                     if (target.Data.IsDead)
                     {
                         arrow.Destroy();
-                        if (arrow.gameObject != null) arrow.gameObject.Destroy();
+                        if (arrow) {
+                            if (arrow.gameObject != null) arrow.gameObject.Destroy();
+                        }
                     }
 
                     arrow.target = target.transform.position;

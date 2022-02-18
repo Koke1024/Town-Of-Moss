@@ -269,6 +269,9 @@ namespace TownOfUs.CustomOption {
             }
 
             public static void Postfix(GameOptionsMenu __instance) {
+                if (__instance.Children == null) {
+                    return;
+                }
                 var commonTasksOption = __instance.Children.FirstOrDefault(x => x.name == "NumCommonTasks")
                     .TryCast<NumberOption>();
                 if (commonTasksOption != null) commonTasksOption.ValidRange = new FloatRange(0f, 4f);
