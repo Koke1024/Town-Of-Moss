@@ -309,14 +309,14 @@ namespace TownOfUs.CustomOption
                 new CustomStringOption(num++, "Polus Vital Move", new[] {"Default", "Labo", "Ship", "O2"});
             PolusReactorTimeLimit = new CustomNumberOption(num++, "Polus Reactor Time Limit", 45.0f, 30f, 60f, 5f, CooldownFormat);
             AirshipReactorTimeLimit = new CustomNumberOption(num++, "AirShip Reactor Time Limit", 75.0f, 45f, 90f, 5f, CooldownFormat);
-            AdminTimeLimitTime = new CustomNumberOption(num++, "Admin and Security Camera Usable Time", 0, 0f, 40f, 5f, CooldownFormat);
+            AdminTimeLimitTime = new CustomNumberOption(num++, "Admin and Security Camera Usable Time", 15.0f, 0f, 40f, 5f, CooldownFormat);
 
             DeadSeeRoles =
                 new CustomToggleOption(num++, "Dead can see everyone's roles", true);
 
             RoleUnderName = new CustomToggleOption(num++, "Role Appears Under Name");
             NoticeNeutral = new CustomToggleOption(num++, "Notice Assigned Neutral Roles", true);
-            GhostCantMove = new CustomToggleOption(num++, "Dead Player Can't Move Before Report", true);
+            GhostCantMove = new CustomToggleOption(num++, "Ghost Can't Move Before Report", true);
             // VanillaGame = new CustomNumberOption(num++, "Probability of a completely vanilla game", 0f, 0f, 100f, 5f,
             //     PercentFormat);
 #endregion

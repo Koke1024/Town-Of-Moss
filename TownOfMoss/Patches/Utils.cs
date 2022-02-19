@@ -443,7 +443,9 @@ namespace TownOfUs
         }
         
         public static void OverrideDeadBodyInformation(byte victimId, byte killerId) {
-            KilledPlayers[victimId].KillerId = killerId;
+            if (KilledPlayers.ContainsKey(victimId)) {
+                KilledPlayers[victimId].KillerId = killerId;                                
+            }
         }
 
         public static void StartFlash(Color color, float alpha = 0.3f) {
