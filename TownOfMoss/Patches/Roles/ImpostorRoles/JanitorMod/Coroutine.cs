@@ -23,7 +23,10 @@ namespace TownOfUs.ImpostorRoles.JanitorMod
             float maxFrame = CustomGameOptions.CleanDuration * 60;
             for (var i = 0; i < maxFrame; i++)
             {
-                if (body == null) yield break;
+                if (body == null) {
+                    role.Player.moveable = true;
+                    yield break;
+                }
                 renderer.color = Color.Lerp(backColor, newColor, i / maxFrame);
                 renderer.color = Color.Lerp(bodyColor, newColor, i / maxFrame);
                 role.Player.moveable = false;
