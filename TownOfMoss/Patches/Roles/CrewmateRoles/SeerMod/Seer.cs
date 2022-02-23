@@ -17,6 +17,9 @@ namespace TownOfUs.Roles
             TaskText = () => "Investigate roles and find the Impostor";
             Color = new Color(1f, 0.8f, 0.5f, 1f);
             RoleType = RoleEnum.Seer;
+        }
+        public override void InitializeLocal() {
+            base.InitializeLocal();
 
             LastInvestigated = DateTime.UtcNow;
         }

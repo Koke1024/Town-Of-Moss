@@ -17,7 +17,11 @@ namespace TownOfUs.Roles
             Color = Palette.ImpostorRed;
             RoleType = RoleEnum.Janitor;
             Faction = Faction.Impostors;
-            
+        }
+
+        public override void InitializeLocal() {
+            base.InitializeLocal();
+
             lastCleaned = DateTime.UtcNow;
         }
 

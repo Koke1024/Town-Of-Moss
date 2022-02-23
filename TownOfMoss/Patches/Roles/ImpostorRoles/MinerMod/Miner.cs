@@ -24,10 +24,14 @@ namespace TownOfUs.Roles
             Color = Palette.ImpostorRed;
             RoleType = RoleEnum.Miner;
             Faction = Faction.Impostors;
+            VentSize = Vector2.zero;
+        }
+
+        public override void InitializeLocal() {
+            base.InitializeLocal();
             
             LastMined = DateTime.UtcNow;
             LastMined = LastMined.AddSeconds(-10f);
-            VentSize = Vector2.zero;
         }
 
         public bool CanPlace { get; set; }

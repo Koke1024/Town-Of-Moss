@@ -20,6 +20,10 @@ namespace TownOfUs.Roles
             Color = Palette.ImpostorRed;
             RoleType = RoleEnum.Swooper;
             Faction = Faction.Impostors;
+        }
+
+        public override void InitializeLocal() {
+            base.InitializeLocal();
             
             LastSwooped = DateTime.UtcNow;
             LastSwooped = LastSwooped.AddSeconds(-10f);

@@ -23,7 +23,7 @@ namespace TownOfUs.Patches {
                 if (CustomGameOptions.AdminTimeLimitTime == 0) {
                     return;
                 }
-                if (__instance.PlayerId != PlayerControl.LocalPlayer.PlayerId) {
+                if (PlayerControl.LocalPlayer == null || __instance.PlayerId != PlayerControl.LocalPlayer.PlayerId) {
                     return;
                 }
                 TimeLimit -= Time.fixedDeltaTime * AdminWatcher.Count;

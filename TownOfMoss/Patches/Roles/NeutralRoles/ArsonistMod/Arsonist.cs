@@ -25,8 +25,12 @@ namespace TownOfUs.Roles
             Color = new Color(1f, 0.3f, 0f);
             RoleType = RoleEnum.Arsonist;
             Faction = Faction.Neutral;
+        }
+
+        public override void InitializeLocal() {
+            base.InitializeLocal();
             
-            LastDoused = DateTime.UtcNow.AddSeconds(5.0f);
+            LastDoused = DateTime.UtcNow;
         }
 
         public KillButton IgniteButton
