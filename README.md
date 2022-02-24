@@ -38,6 +38,15 @@ Among Us最新版の12.15s版には対応していません。何らかの方法
 <details>
     <summary> Changelog </summary>
     <details>
+        <summary> v1.4.5 </summary>
+        <ul>
+            <li>Janitarの能力使用中に会議が開始した場合会議後に動けなくなる不具合を修正</li>
+            <li>TimeLordのクールダウンが伸びる不具合を修正</li>
+            <li>各役職のゲーム開始時のクールダウン処理がまちまちだったのを修正</li>
+            <li>Necromancerの能力で死亡した際に幽霊で行動できない不具合を修正</li>
+        </ul>
+    </details>
+    <details>
         <summary> v1.4.4 </summary>
         <ul>
             <li>DollMakerにキルされた際のアニメーションをDollMakerとして表示</li>
