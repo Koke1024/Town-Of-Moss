@@ -2,6 +2,7 @@ using Il2CppSystem;
 using Il2CppSystem.Collections.Generic;
 using Reactor.Extensions;
 using TownOfUs.CrewmateRoles.NecromancerMod;
+using TownOfUs.Extensions;
 using UnityEngine;
 using Coroutine = TownOfUs.CrewmateRoles.NecromancerMod.Coroutine;
 
@@ -12,7 +13,7 @@ namespace TownOfUs.Roles
         public DeadBody CurrentTarget;
         public readonly Queue<PlayerControl> RevivedPlayer = new();
         public DateTime RevivedTime;
-
+        
         public Necromancer(PlayerControl player) : base(player)
         {
             Name = "Necromancer";
@@ -34,9 +35,14 @@ namespace TownOfUs.Roles
 
         public override void OnEndMeeting() {
             base.OnEndMeeting();
+
             foreach (var revived in RevivedPlayer) {
                 Utils.MurderPlayer(revived, revived);
-                Utils.GetBody(revived.PlayerId).gameObject.Destroy();
+                // Utils.GetBody(revived.PlayerId).gameObject.Destroy();
+                Utils.GetBody(revived.PlayerId).Reported = true;
+                Utils.GetBody(revived.PlayerId).myCollider.tag = "Untagged";
+                Utils.GetBody(revived.PlayerId).bodyRenderer.enabled = false;
+                Utils.KilledPlayers.Remove(revived.PlayerId);
             }
             RevivedPlayer.Clear();
         }
