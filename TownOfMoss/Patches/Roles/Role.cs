@@ -654,6 +654,10 @@ namespace TownOfUs.Roles
     [HarmonyPatch(typeof(CrewmateRole), nameof(CrewmateRole.DidWin), typeof(GameOverReason))]
     public static class CrewWinPatch {
         public static bool Prefix(CrewmateRole __instance, [HarmonyArgument(0)]GameOverReason reason, out bool __result) {
+            if (Role.GetRole(__instance.Player) == null) {
+                __result = false;
+                return true;
+            }
             __result = Role.GetRole(__instance.Player).DidWin(reason);
             return false;
         }
@@ -661,6 +665,10 @@ namespace TownOfUs.Roles
     [HarmonyPatch(typeof(ImpostorRole), nameof(ImpostorRole.DidWin), typeof(GameOverReason))]
     public static class ImpWinPatch {
         public static bool Prefix(ImpostorRole __instance, [HarmonyArgument(0)]GameOverReason reason, out bool __result) {
+            if (Role.GetRole(__instance.Player) == null) {
+                __result = false;
+                return true;
+            }
             __result = Role.GetRole(__instance.Player).DidWin(reason);
             return false;
         }

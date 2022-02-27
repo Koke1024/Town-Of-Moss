@@ -32,9 +32,17 @@ namespace TownOfUs.ImpostorRoles.AssassinMod
             if (!CustomGameOptions.MadMateOn) return;
             if (MeetingHud.Instance) UpdateMeeting(MeetingHud.Instance);
 
+            if (!PlayerControl.LocalPlayer) {
+                return;
+            }
             bool amMad = PlayerControl.LocalPlayer.Is(RoleEnum.Assassin);
 
-            foreach (var player in PlayerControl.AllPlayerControls.ToArray().Where(x => !x.Data.Disconnected && !x.AmOwner))
+            if (PlayerControl.AllPlayerControls == null) {
+                return;
+            }
+            
+            foreach (var player in PlayerControl.AllPlayerControls.ToArray().
+                Where(x => !x.Data.Disconnected && !x.AmOwner))
             {
                 if (amMad || player.Is(RoleEnum.Assassin)) {
                     player.nameText.color = Palette.White;                    

@@ -443,8 +443,8 @@ namespace TownOfUs
         }
         
         public static void OverrideDeadBodyInformation(byte victimId, byte killerId) {
-            if (KilledPlayers.ContainsKey(victimId)) {
-                KilledPlayers[victimId].KillerId = killerId;                                
+            if(KilledPlayers.TryGetValue(victimId, out var dead)){
+                dead.KillerId = killerId;                
             }
         }
 
