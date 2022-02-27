@@ -273,15 +273,15 @@ namespace TownOfUs.CustomOption {
                     return;
                 }
                 var commonTasksOption = __instance.Children.FirstOrDefault(x => x.name == "NumCommonTasks")
-                    .TryCast<NumberOption>();
+                    ?.TryCast<NumberOption>();
                 if (commonTasksOption != null) commonTasksOption.ValidRange = new FloatRange(0f, 4f);
 
                 var shortTasksOption = __instance.Children.FirstOrDefault(x => x.name == "NumShortTasks")
-                    .TryCast<NumberOption>();
+                    ?.TryCast<NumberOption>();
                 if (shortTasksOption != null) shortTasksOption.ValidRange = new FloatRange(0f, 23f);
 
                 var longTasksOption = __instance.Children.FirstOrDefault(x => x.name == "NumLongTasks")
-                    .TryCast<NumberOption>();
+                    ?.TryCast<NumberOption>();
                 if (longTasksOption != null) longTasksOption.ValidRange = new FloatRange(0f, 15f);
             }
         }
