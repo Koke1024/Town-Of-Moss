@@ -9,8 +9,10 @@ namespace TownOfUs.CrewmateRoles.SnitchMod
     {
         private static void UpdateMeeting(MeetingHud __instance)
         {
-            foreach (var state in __instance.playerStates)
-            {
+            if (PlayerControl.LocalPlayer.Data.IsDead) {
+                return;
+            }
+            foreach (var state in __instance.playerStates) {
                 if (Utils.PlayerById(state.TargetPlayerId).Data.IsImpostor()) state.NameText.color = Palette.ImpostorRed;
 
                 var role = Role.GetRole(state);

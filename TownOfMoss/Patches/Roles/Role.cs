@@ -293,15 +293,11 @@ namespace TownOfUs.Roles
             {
                 public static void Postfix(IntroCutscene __instance)
                 {
-                    //System.Console.WriteLine("REACHED HERE - CREW");
-                    var modifier = Modifier.GetModifier(PlayerControl.LocalPlayer);
-                    if (modifier != null) {
-                        // ModifierText = Object.Instantiate(__instance.Title, __instance.Title.transform.parent, false);
-                        ModifierText = Object.Instantiate(__instance.RoleText, __instance.RoleText.transform.parent, false);
-                        //System.Console.WriteLine("MODIFIER TEXT PLEASE WORK");
-                        //                        Scale = ModifierText.scale;
-                    }
-                    else
+                    // var modifier = Modifier.GetModifier(PlayerControl.LocalPlayer);
+                    // if (modifier != null) {
+                    //     ModifierText = Object.Instantiate(__instance.RoleText, __instance.RoleText.transform.parent, false);
+                    // }
+                    // else
                         ModifierText = null;
 
                     Lights.SetLights();
