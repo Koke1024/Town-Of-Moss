@@ -155,8 +155,11 @@ namespace TownOfUs.Roles
 
         public List<string> PossibleGuesses => ColorMapping.Keys.ToList();
 
-        public override void PostHudUpdate(HudManager __instance) {
-            base.PostHudUpdate(__instance);
+        public override void InitializeLocal() {
+            base.InitializeLocal();
+
+            DestroyableSingleton<HudManager>.Instance.SetHudActive(true);
         }
+        
     }
 }
