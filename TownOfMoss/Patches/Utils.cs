@@ -690,5 +690,22 @@ namespace TownOfUs
             role.firstInitialize = true;
         }
     }
-    
+
+    [HarmonyPatch(typeof(ShipStatus), nameof(ShipStatus.RpcEndGame))]
+    public class EndGame
+    {
+        public static bool Prefix(ShipStatus __instance, [HarmonyArgument(0)] GameOverReason endReason, [HarmonyArgument(1)] bool showAd)
+        {
+            if (GameData.Instance.TotalTasks <= GameData.Instance.CompletedTasks) {
+                endReason = GameOverReason.HumansByTask;
+                Debug.Log("Endgame for " + endReason.ToString());
+                MessageWriter messageWriter = AmongUsClient.Instance.StartEndGame();
+                messageWriter.Write((byte)endReason);
+                messageWriter.Write(showAd);
+                AmongUsClient.Instance.FinishEndGame(messageWriter);
+                return false;
+            }
+            return true;
+        }
+    }
 }

@@ -528,27 +528,27 @@
     {
       "Id": "toge001",
       "Name": "Kuro",
-      "Artist": "toge"
+      "Artist": "_toge"
     },
     {
       "Id": "toge002",
       "Name": "Poro",
-      "Artist": "toge"
+      "Artist": "_toge"
     },
     {
       "Id": "toge003",
       "Name": "Tirutiru",
-      "Artist": "toge"
+      "Artist": "_toge"
     },
     {
       "Id": "toge004",
       "Name": "nana",
-      "Artist": "toge"
+      "Artist": "_toge"
     },
     {
       "Id": "toge005",
       "Name": "Zoo",
-      "Artist": "toge"
+      "Artist": "_toge"
     }
   ]
 }

@@ -651,8 +651,8 @@ namespace TownOfUs.Roles
     public static class CrewWinPatch {
         public static bool Prefix(CrewmateRole __instance, [HarmonyArgument(0)]GameOverReason reason, out bool __result) {
             if (Role.GetRole(__instance.Player) == null) {
-                __result = false;
-                return true;
+                __result = TempData.DidHumansWin(reason);
+                return false;
             }
             __result = Role.GetRole(__instance.Player).DidWin(reason);
             return false;
@@ -662,8 +662,8 @@ namespace TownOfUs.Roles
     public static class ImpWinPatch {
         public static bool Prefix(ImpostorRole __instance, [HarmonyArgument(0)]GameOverReason reason, out bool __result) {
             if (Role.GetRole(__instance.Player) == null) {
-                __result = false;
-                return true;
+                __result = TempData.DidImpostorsWin(reason);
+                return false;
             }
             __result = Role.GetRole(__instance.Player).DidWin(reason);
             return false;
