@@ -549,6 +549,16 @@
       "Id": "toge005",
       "Name": "Zoo",
       "Artist": "_toge"
+    },
+    {
+      "Id": "ydk0001",
+      "Name": "fox1",
+      "Artist": "Yuzuka"
+    },
+    {
+      "Id": "ydk0002",
+      "Name": "fox2",
+      "Artist": "Yuzuka"
     }
   ]
 }
