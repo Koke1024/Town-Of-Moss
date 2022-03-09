@@ -553,12 +553,12 @@
     {
       "Id": "ydk0001",
       "Name": "fox1",
-      "Artist": "Yuzuka"
+      "Artist": "_yuzuka"
     },
     {
       "Id": "ydk0002",
       "Name": "fox2",
-      "Artist": "Yuzuka"
+      "Artist": "_yuzuka"
     }
   ]
 }
