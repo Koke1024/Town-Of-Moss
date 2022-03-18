@@ -23,6 +23,7 @@ namespace TownOfUs.NeutralRoles.AssassinMod
     public static class SabotageClickPatch {
         private static bool amMad;
         public static void Prefix(SabotageButton __instance) {
+            amMad = false;
             if (PlayerControl.AllPlayerControls.Count <= 1) return;
             if (PlayerControl.LocalPlayer == null) return;
             if (PlayerControl.LocalPlayer.Data == null) return;
