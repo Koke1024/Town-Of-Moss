@@ -10,7 +10,7 @@ namespace TownOfUs.CrewmateRoles.InvestigatorMod
         [HarmonyPatch(typeof(MapBehaviour), nameof(MapBehaviour.Close))]
         public static class InvestigatorMapClose {
             private static void Postfix(MapTaskOverlay __instance) {
-                if (!PlayerControl.LocalPlayer.Is(RoleEnum.Investigator)) {
+                if (!PlayerControl.LocalPlayer.Is(RoleEnum.Investigator) || PlayerControl.LocalPlayer.Data.IsDead) {
                     return;
                 }
                 Investigator role = Role.GetRole<Investigator>(PlayerControl.LocalPlayer);
@@ -24,7 +24,7 @@ namespace TownOfUs.CrewmateRoles.InvestigatorMod
         [HarmonyPatch(typeof(MapBehaviour), nameof(MapBehaviour.FixedUpdate))]
         public static class positionUpdate {
             private static void Postfix(MapBehaviour __instance) {
-                if (!PlayerControl.LocalPlayer.Is(RoleEnum.Investigator)) {
+                if (!PlayerControl.LocalPlayer.Is(RoleEnum.Investigator) || PlayerControl.LocalPlayer.Data.IsDead) {
                     return;
                 }
                 var role = Role.GetRole<Investigator>(PlayerControl.LocalPlayer);

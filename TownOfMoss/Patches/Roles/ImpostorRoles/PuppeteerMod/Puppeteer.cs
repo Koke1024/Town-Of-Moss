@@ -3,6 +3,7 @@ using Hazel;
 using Il2CppSystem;
 using Il2CppSystem.Collections.Generic;
 using TownOfUs.CrewmateRoles.BodyGuardMod;
+using TownOfUs.Extensions;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -106,7 +107,7 @@ namespace TownOfUs.Roles
                     Player.moveable = true;                    
                 }
             }
-            
+
             if (PossessPlayer == PlayerControl.LocalPlayer) {
                 PlayerControl closestPlayer = null;
                 var targets = PlayerControl.AllPlayerControls.ToArray().Where(
@@ -156,15 +157,15 @@ namespace TownOfUs.Roles
                 PossessButton.graphic.enabled = true;
                 PossessButton.graphic.sprite = Puppeteer.PossessSprite;
                 PossessButton.GetComponent<AspectPosition>().DistanceFromEdge = TownOfUs.ButtonPosition;
-                PossessButton.gameObject.SetActive(false);
+                PossessButton.gameObject.SetActive(!MeetingHud.Instance && !LobbyBehaviour.Instance);
             }
             PossessButton.GetComponent<AspectPosition>().Update();
 
-            if (PossessButton.graphic.sprite != Puppeteer.PossessSprite &&
-                PossessButton.graphic.sprite != Puppeteer.UnPossessSprite)
-                PossessButton.graphic.sprite = Puppeteer.PossessSprite;
+            if (PossessButton.graphic.sprite != PossessSprite &&
+                PossessButton.graphic.sprite != UnPossessSprite)
+                PossessButton.graphic.sprite = PossessSprite;
 
-            if (PossessButton.graphic.sprite == Puppeteer.PossessSprite) {
+            if (PossessButton.graphic.sprite == PossessSprite) {
                 if ((lastPossess - DateTime.UtcNow).TotalMilliseconds / 1000.0f + PlayerControl.GameOptions.KillCooldown > 0) {
                     PossessButton.SetCoolDown((float)(lastPossess - DateTime.UtcNow).TotalMilliseconds / 1000 + PlayerControl.GameOptions.KillCooldown, PlayerControl.GameOptions.KillCooldown);       
                     Player.SetKillTimer((float)(lastPossess - DateTime.UtcNow).TotalMilliseconds / 1000 + PlayerControl.GameOptions.KillCooldown);

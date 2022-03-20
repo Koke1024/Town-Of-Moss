@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using TownOfUs.Extensions;
 
 namespace TownOfUs.NeutralRoles.AssassinMod
 {
@@ -11,11 +12,10 @@ namespace TownOfUs.NeutralRoles.AssassinMod
             if (PlayerControl.AllPlayerControls.Count <= 1) return;
             if (PlayerControl.LocalPlayer == null) return;
             if (PlayerControl.LocalPlayer.Data == null) return;
-            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Assassin)) return;
-            if (!CustomGameOptions.MadMateOn) return;
-
-            __instance.KillButton.gameObject.SetActive(isActive);
-            __instance.SabotageButton.gameObject.SetActive(isActive);
+            if (PlayerControl.LocalPlayer.Is(RoleEnum.Assassin) && CustomGameOptions.MadMateOn) {
+                __instance.KillButton.gameObject.SetActive(false);
+                __instance.SabotageButton.gameObject.SetActive(isActive);
+            }
         }
     }
 

@@ -15,18 +15,21 @@ namespace TownOfUs {
                 }
                 for (var i = 0; i < __instance.AllPlayers.Count; i++) {
                     var playerInfo = __instance.AllPlayers.ToArray()[i];
-                    if (playerInfo == null) {
+                    if (playerInfo == null || playerInfo.Role == null || playerInfo.Object == null || playerInfo.Tasks == null) {
                         continue;
                     }
-                    if (!playerInfo.Disconnected && playerInfo.Tasks != null && playerInfo.Object &&
+
+                    if (!playerInfo.Disconnected &&
                         (PlayerControl.GameOptions.GhostsDoTasks || !playerInfo.IsDead) &&
                         playerInfo.Role.TeamType != RoleTeamTypes.Impostor &&
                         !playerInfo._object.Is(RoleEnum.Assassin) &&
-                        (!playerInfo._object.Is(Faction.Neutral) && !playerInfo._object.Is(RoleEnum.Zombie)))
+                        !playerInfo._object.Is(Faction.Neutral) &&
+                        !playerInfo._object.Is(RoleEnum.Zombie)) {
                         for (var j = 0; j < playerInfo.Tasks.Count; j++) {
                             __instance.TotalTasks++;
                             if (playerInfo.Tasks.ToArray()[j].Complete) __instance.CompletedTasks++;
                         }
+                    }
                 }
 
                 return false;

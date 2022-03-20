@@ -312,7 +312,7 @@ namespace TownOfUs.Roles
                         role.IntroPrefix(intro);
                         
                         __instance.TeamTitle.text = DestroyableSingleton<TranslationController>.Instance.GetString((StringNames)StringNames.Impostor, new Il2CppReferenceArray<Il2CppSystem.Object>(0));
-                        __instance.TeamTitle.color = intro.__4__this.TeamTitle.color;
+                        __instance.TeamTitle.color = new Color(1, 0, 0);
                         __instance.RoleText.text = role.Name;
                         __instance.RoleText.color = role.Color;
                         __instance.RoleBlurbText.text = role.ImpostorText();
