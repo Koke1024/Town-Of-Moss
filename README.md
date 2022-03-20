@@ -24,11 +24,13 @@
 
 
 ## 最新リリース
-Among Us最新版の12.15s版には対応していません。何らかの方法で旧バージョン（11.9.5s）のデータを用意していただく必要があります。
+Among Us最新版の12.15s版には対応していません。何らかの方法で旧バージョン（11.9.5s）のデータを用意していただく必要があります。\
+Moss***.zip：バニラのAmong Usに新規にTown of Moss MODを追加する場合に利用\
+DLL***.zip：Town of Moss導入済みのディレクトリに更新を行う場合に利用
 
 | Among Us - Version| Date | Mod Version | Link |
 |---|----------|-------------|-----------------|
-| 2021.11.9.5s | 2022-03-05 | v1.4.5 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/latest) |
+| 2021.11.9.5s | 2022-03-21 | v1.4.7 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/latest) |
 | 2021.6.30s | 2021-11-30 | v0.6 | [Download](https://github.com/Koke1024/Town-Of-Moss/releases/tag/v0.6) |
 
 ### 既知の不具合
@@ -38,7 +40,7 @@ Among Us最新版の12.15s版には対応していません。何らかの方法
 <details>
     <summary> Changelog </summary>
     <details>
-        <summary> v1.4.6 </summary>
+        <summary> v1.4.7 </summary>
         <ul>
             <li>Madmateのサボタージュボタンが無効になる不具合を修正</li>
             <li>Glitch絡みの勝利判定を修正</li>
