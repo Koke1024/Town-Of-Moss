@@ -68,7 +68,7 @@ namespace TownOfUs.NeutralRoles.SniperMod
             return false;
         }
 
-        protected override void IntroPrefix(IntroCutscene._CoBegin_d__18 __instance)
+        protected override void IntroPrefix(IntroCutscene._CoBegin_d__19 __instance)
         {
             var sniperTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
             sniperTeam.Add(PlayerControl.LocalPlayer);

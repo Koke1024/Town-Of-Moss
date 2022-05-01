@@ -17,7 +17,7 @@ namespace TownOfUs.Roles
             Faction = Faction.Neutral;
         }
 
-        protected override void IntroPrefix(IntroCutscene._CoBegin_d__18 __instance)
+        protected override void IntroPrefix(IntroCutscene._CoBegin_d__19 __instance)
         {
             var jesterTeam = new List<PlayerControl>();
             jesterTeam.Add(PlayerControl.LocalPlayer);

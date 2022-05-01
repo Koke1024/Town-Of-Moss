@@ -67,7 +67,7 @@ namespace TownOfUs
                         _playerName = " "
                     });
                     //player.nameText.text = "";
-                PlayerControl.SetPlayerMaterialColors(Color.grey, player.myRend);
+                PlayerControl.SetPlayerMaterialColors(Color.grey, player.MyRend);
                 }
             }
         }
@@ -677,7 +677,7 @@ namespace TownOfUs
         public static void Prefix(PlayerControl __instance) {
             var role = __instance.GetRole();
             if (role == null) return;
-            if (HudManager._instance.isIntroDisplayed) {
+            if (HudManager._instance.IsIntroDisplayed) {
                 role.firstInitialize = false;
             }
             if (role.firstInitialize) {

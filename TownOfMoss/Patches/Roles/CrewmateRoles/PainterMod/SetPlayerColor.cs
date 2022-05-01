@@ -15,8 +15,8 @@ namespace TownOfUs.CrewmateRoles.PainterMod {
                 if (player.Disconnected) {
                     continue;
                 }
-                if (player._object.myRend) {
-                    player._object.myRend.material.SetColor("_VisorColor", Painter.PaintColors[(int)c]);                    
+                if (player._object.MyRend) {
+                    player._object.MyRend.material.SetColor("_VisorColor", Painter.PaintColors[(int)c]);                    
                 }
             }
         }

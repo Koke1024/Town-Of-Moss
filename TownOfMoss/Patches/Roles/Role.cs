@@ -119,7 +119,7 @@ namespace TownOfUs.Roles
             return GetRole(PlayerControl.LocalPlayer) == this;
         }
 
-        protected virtual void IntroPrefix(IntroCutscene._CoBegin_d__18 __instance)
+        protected virtual void IntroPrefix(IntroCutscene._CoBegin_d__19 __instance)
         {
         }
 
@@ -308,7 +308,7 @@ namespace TownOfUs.Roles
 
                     if (PlayerControl.LocalPlayer.Is(RoleEnum.Assassin)) {
                         var role = Role.GetRole(PlayerControl.LocalPlayer);
-                        var intro = new IntroCutscene._CoBegin_d__18(0);
+                        var intro = new IntroCutscene._CoBegin_d__19(0);
                         role.IntroPrefix(intro);
                         
                         __instance.TeamTitle.text = DestroyableSingleton<TranslationController>.Instance.GetString((StringNames)StringNames.Impostor, new Il2CppReferenceArray<Il2CppSystem.Object>(0));
@@ -339,17 +339,17 @@ namespace TownOfUs.Roles
                 }
             }
 
-            [HarmonyPatch(typeof(IntroCutscene._CoBegin_d__18), nameof(IntroCutscene._CoBegin_d__18.MoveNext))]
+            [HarmonyPatch(typeof(IntroCutscene._CoBegin_d__19), nameof(IntroCutscene._CoBegin_d__19.MoveNext))]
             public static class IntroCutscene_CoBegin__d_MoveNext
             {
-                public static void Prefix(IntroCutscene._CoBegin_d__18 __instance)
+                public static void Prefix(IntroCutscene._CoBegin_d__19 __instance)
                 {
                     var role = GetRole(PlayerControl.LocalPlayer);
 
                     if (role != null) role.IntroPrefix(__instance);
                 }
 
-                public static void Postfix(IntroCutscene._CoBegin_d__18 __instance)
+                public static void Postfix(IntroCutscene._CoBegin_d__19 __instance)
                 {
                     var role = GetRole(PlayerControl.LocalPlayer);
                     var alpha = __instance.__4__this.RoleText.color.a;
@@ -378,10 +378,10 @@ namespace TownOfUs.Roles
             }
         }
 
-        [HarmonyPatch(typeof(PlayerControl._CoSetTasks_d__102), nameof(PlayerControl._CoSetTasks_d__102.MoveNext))]
+        [HarmonyPatch(typeof(PlayerControl._CoSetTasks_d__112), nameof(PlayerControl._CoSetTasks_d__112.MoveNext))]
         public static class PlayerControl_SetTasks
         {
-            public static void Postfix(PlayerControl._CoSetTasks_d__102 __instance)
+            public static void Postfix(PlayerControl._CoSetTasks_d__112 __instance)
             {
                 if (__instance == null) return;
                 var player = __instance.__4__this;

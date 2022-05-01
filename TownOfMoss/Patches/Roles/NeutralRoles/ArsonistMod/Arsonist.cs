@@ -94,7 +94,7 @@ namespace TownOfUs.Roles
             return true;
         }
 
-        protected override void IntroPrefix(IntroCutscene._CoBegin_d__18 __instance)
+        protected override void IntroPrefix(IntroCutscene._CoBegin_d__19 __instance)
         {
             var arsonistTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
             arsonistTeam.Add(PlayerControl.LocalPlayer);
@@ -131,7 +131,7 @@ namespace TownOfUs.Roles
                 if (data == null || data.Disconnected || data.IsDead)
                     continue;
 
-                // player.myRend.material.SetColor("_VisorColor", Color);
+                // player.MyRend.material.SetColor("_VisorColor", Color);
                 player.nameText.color = Color.black;
             }
 

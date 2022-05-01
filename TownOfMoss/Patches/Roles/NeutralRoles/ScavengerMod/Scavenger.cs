@@ -30,7 +30,7 @@ namespace TownOfUs.NeutralRoles.ScavengerMod
             }
         }
 
-        protected override void IntroPrefix(IntroCutscene._CoBegin_d__18 __instance)
+        protected override void IntroPrefix(IntroCutscene._CoBegin_d__19 __instance)
         {
             var myTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
             myTeam.Add(PlayerControl.LocalPlayer);

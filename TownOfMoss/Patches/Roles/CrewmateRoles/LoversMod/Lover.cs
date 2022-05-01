@@ -26,7 +26,7 @@ namespace TownOfUs.Roles {
         public int Num { get; set; }
         public bool LoverImpostor { get; set; }
 
-        protected override void IntroPrefix(IntroCutscene._CoBegin_d__18 __instance) {
+        protected override void IntroPrefix(IntroCutscene._CoBegin_d__19 __instance) {
             var loverTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
             loverTeam.Add(PlayerControl.LocalPlayer);
             loverTeam.Add(OtherLover.Player);

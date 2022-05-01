@@ -541,6 +541,11 @@
       "Artist": "_toge"
     },
     {
+      "Id": "toge003",
+      "Name": "Tirutiru",
+      "Artist": "_toge"
+    },
+    {
       "Id": "toge004",
       "Name": "nana",
       "Artist": "_toge"
@@ -548,6 +553,11 @@
     {
       "Id": "toge005",
       "Name": "Zoo",
+      "Artist": "_toge"
+    },
+    {
+      "Id": "toge006",
+      "Name": "INU",
       "Artist": "_toge"
     },
     {

@@ -15,7 +15,7 @@ namespace TownOfUs.Patches
                                || !DestroyableSingleton<HudManager>.Instance.Chat.IsOpen
                                && !DestroyableSingleton<HudManager>.Instance.KillOverlay.IsOpen
                                && !DestroyableSingleton<HudManager>.Instance.GameMenu.IsOpen
-                               && !DestroyableSingleton<HudManager>.Instance.isIntroDisplayed)
+                               && !DestroyableSingleton<HudManager>.Instance.IsIntroDisplayed)
                            /*&& (!ControllerManager.Instance || !ControllerManager.Instance.IsUiControllerActive)*/
                            && (!MapBehaviour.Instance || !MapBehaviour.Instance.IsOpenStopped)
                            && !MeetingHud.Instance

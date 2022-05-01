@@ -122,7 +122,6 @@ namespace TownOfUs {
                 if (__instance.transform.parent.parent.name == "TOUSettings") {
                     // scroller.ContentYBounds.max = 90f;
                     scroller.YBounds.max = 90f;
-                    // scroller.ScrollbarYBounds.max = 25f;
                 }
                 else {
                     scroller.YBounds.max = 20f;

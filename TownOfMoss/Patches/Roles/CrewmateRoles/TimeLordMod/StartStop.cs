@@ -24,8 +24,8 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
             PlayerControl.LocalPlayer.NetTransform.enabled = false;
 
             if (CustomGameOptions.RewindFlash) {
-                role.Player.myRend.material.SetFloat("_Outline", 10f);
-                role.Player.myRend.material.SetColor("_OutlineColor", role.Color);                
+                role.Player.MyRend.material.SetFloat("_Outline", 10f);
+                role.Player.MyRend.material.SetColor("_OutlineColor", role.Color);                
             }
 
             if (Minigame.Instance) {
@@ -46,9 +46,9 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
             HudManager.Instance.FullScreen.enabled = false;
             HudManager.Instance.FullScreen.color = oldColor;
 
-            if (CustomGameOptions.RewindFlash && role.Player != null && role.Player.myRend != null) {
-                role.Player.myRend.material.SetFloat("_Outline", 0f);
-                role.Player.myRend.material.SetColor("_OutlineColor", new Color());
+            if (CustomGameOptions.RewindFlash && role.Player != null && role.Player.MyRend != null) {
+                role.Player.MyRend.material.SetFloat("_Outline", 0f);
+                role.Player.MyRend.material.SetColor("_OutlineColor", new Color());
             }
 
             PlayerControl.LocalPlayer.MyPhysics.ResetMoveState(true);

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using HarmonyLib;
 using MonoMod.Utils;
 using UnityEngine;
 
@@ -129,7 +130,7 @@ namespace TownOfUs.Roles
                 ColorMapping.Remove("Sniper");
             }
         }
-        protected override void IntroPrefix(IntroCutscene._CoBegin_d__18 __instance)
+        protected override void IntroPrefix(IntroCutscene._CoBegin_d__19 __instance)
         {
             if (!CustomGameOptions.MadMateOn) {
                 return;
@@ -161,5 +162,15 @@ namespace TownOfUs.Roles
             DestroyableSingleton<HudManager>.Instance.SetHudActive(true);
         }
         
+    }
+}
+
+[HarmonyPatch(typeof(IntroCutscene), nameof(IntroCutscene.SelectTeamToShow))]
+public static class SelectTeamToShowAssassin {
+    public static void Prefix(IntroCutscene __instance) {
+        
+    }
+
+    public static void Postfix(IntroCutscene __instance) {
     }
 }

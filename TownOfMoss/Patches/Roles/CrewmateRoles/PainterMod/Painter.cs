@@ -146,7 +146,7 @@ namespace TownOfUs.Roles
             
             foreach (var (id, c) in PaintedPlayers) {
                 var player = GameData.Instance.GetPlayerById(id);
-                player._object.myRend.material.SetColor("_VisorColor", Palette.VisorColor);
+                player._object.MyRend.material.SetColor("_VisorColor", Palette.VisorColor);
             }
 
             if (PlayerControl.LocalPlayer.Is(RoleEnum.Painter)) {

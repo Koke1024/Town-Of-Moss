@@ -8,8 +8,8 @@ namespace TownOfUs.Patches.Roles.CrewmateRoles.PainterMod {
             public static void Prefix() {
                 foreach (var (id, c) in Painter.PaintedPlayers) {
                     var player = GameData.Instance.GetPlayerById(id);
-                    if (player._object.myRend) {
-                        player._object.SetPlayerMaterialColors(player._object.myRend);
+                    if (player._object.MyRend) {
+                        player._object.SetPlayerMaterialColors(player._object.MyRend);
                     }
                 }
                 
