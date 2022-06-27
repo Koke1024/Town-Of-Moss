@@ -53,13 +53,13 @@ namespace TownOfUs.Roles
 
             Player.HatRenderer.SetHat("", 0);
             Player.nameText.text = "";
-            if (Player.MyPhysics.Skin.skin.ProdId != DestroyableSingleton<HatManager>.Instance
-                .AllSkins.ToArray()[0].ProdId)
-                Player.MyPhysics.SetSkin("");
+            // if (Player.MyPhysics.Skin.skin.ProdId != DestroyableSingleton<HatManager>.Instance
+            //     .AllSkins.ToArray()[0].ProdId)
+            //     Player.MyPhysics.SetSkin("");
             if (Player.CurrentPet != null) Object.Destroy(Player.CurrentPet.gameObject);
-            Player.CurrentPet =
-                Object.Instantiate(
-                    DestroyableSingleton<HatManager>.Instance.AllPets.ToArray()[0].PetPrefab);  //todo pet
+            // Player.CurrentPet =
+            //     Object.Instantiate(
+            //         DestroyableSingleton<HatManager>.Instance.AllPets.ToArray()[0].PetPrefab);  //todo pet
             Player.CurrentPet.transform.position = Player.transform.position;
             Player.CurrentPet.Source = Player;
             Player.CurrentPet.Visible = Player.Visible;

@@ -21,7 +21,7 @@ namespace TownOfUs.Roles
         {
             var jesterTeam = new List<PlayerControl>();
             jesterTeam.Add(PlayerControl.LocalPlayer);
-            __instance.yourTeam = jesterTeam;
+            //__instance.yourTeam = jesterTeam;
         }
 
         internal override bool EABBNOODFGL(ShipStatus __instance)

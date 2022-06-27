@@ -106,7 +106,7 @@ namespace TownOfUs.Roles
         {
             var glitchTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
             glitchTeam.Add(PlayerControl.LocalPlayer);
-            __instance.yourTeam = glitchTeam;
+            //__instance.yourTeam = glitchTeam;
         }
 
         public void Update(HudManager __instance)

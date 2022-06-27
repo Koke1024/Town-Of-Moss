@@ -34,7 +34,7 @@ namespace TownOfUs.NeutralRoles.ScavengerMod
         {
             var myTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
             myTeam.Add(PlayerControl.LocalPlayer);
-            __instance.yourTeam = myTeam;
+            //__instance.yourTeam = myTeam;
         }
 
         public void Wins() {

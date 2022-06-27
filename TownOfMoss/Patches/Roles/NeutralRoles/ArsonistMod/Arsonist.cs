@@ -98,7 +98,7 @@ namespace TownOfUs.Roles
         {
             var arsonistTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
             arsonistTeam.Add(PlayerControl.LocalPlayer);
-            __instance.yourTeam = arsonistTeam;
+            //__instance.yourTeam = arsonistTeam;
         }
 
         public float DouseTimer()

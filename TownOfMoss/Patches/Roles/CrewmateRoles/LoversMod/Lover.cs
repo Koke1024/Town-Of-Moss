@@ -30,7 +30,7 @@ namespace TownOfUs.Roles {
             var loverTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
             loverTeam.Add(PlayerControl.LocalPlayer);
             loverTeam.Add(OtherLover.Player);
-            __instance.yourTeam = loverTeam;
+            //__instance.yourTeam = loverTeam;
         }
 
         internal override bool Criteria() {

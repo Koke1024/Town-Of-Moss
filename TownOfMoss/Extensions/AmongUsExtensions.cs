@@ -99,14 +99,16 @@ namespace TownOfUs.Extensions {
 
             var newOutfit = playerControl.Data.Outfits[outfitType];
             playerControl.CurrentOutfitType = outfitType;
+            
             playerControl.RawSetName(newOutfit.PlayerName);
             playerControl.RawSetColor(newOutfit.ColorId);
             playerControl.RawSetHat(newOutfit.HatId, newOutfit.ColorId);
             playerControl.RawSetVisor(newOutfit.VisorId);
             playerControl.RawSetPet(newOutfit.PetId, newOutfit.ColorId);
-            if (playerControl?.MyPhysics?.Skin?.skin?.ProdId != newOutfit.SkinId) {
-                playerControl.RawSetSkin(newOutfit.SkinId);
-            }
+            // todo
+            // if (playerControl?.MyPhysics?.Skin?.skin?.ProdId != newOutfit.SkinId) {
+            //     playerControl.RawSetSkin(newOutfit.SkinId);
+            // }
             if (playerControl == PlayerControl.LocalPlayer) {
                 if (!playerControl.Is(RoleEnum.Swooper) || !playerControl.GetRole<Swooper>().IsSwooped) {
                     PlayerControl.LocalPlayer.NetTransform.Halt();

@@ -26,9 +26,7 @@ namespace TownOfUs.CrewmateRoles.PainterMod {
                 var id = state.TargetPlayerId;
                 if (Painter.PaintedPlayers.ContainsKey(id)) {
                     var c = (int)Painter.PaintedPlayers[id];
-                    if (state.PlayerIcon.Body) {
-                        state.PlayerIcon.Body.material.SetColor("_VisorColor", Painter.PaintColors[c]);                        
-                    }
+                    state.PlayerIcon.CurrentBodySprite?.BodySprite.material.SetColor("_VisorColor", Painter.PaintColors[c]);
                 }
             }
         }

@@ -139,7 +139,7 @@ namespace TownOfUs.Roles
             if (Player.Is(RoleEnum.Assassin)) {
                 var madMateTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
                 madMateTeam.Add(PlayerControl.LocalPlayer);
-                __instance.yourTeam = madMateTeam;
+                //__instance.yourTeam = madMateTeam;
                 return;
             }
 
@@ -147,7 +147,7 @@ namespace TownOfUs.Roles
             if (!assassin.Any()) {
                 return;
             }
-            __instance.yourTeam.Remove(assassin.First().Player);
+            //__instance.yourTeam.Remove(assassin.First().Player);
         }
 
         public bool GuessedThisMeeting { get; set; } = false;

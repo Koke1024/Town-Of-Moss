@@ -72,7 +72,7 @@ namespace TownOfUs.NeutralRoles.SniperMod
         {
             var sniperTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
             sniperTeam.Add(PlayerControl.LocalPlayer);
-            __instance.yourTeam = sniperTeam;
+            //__instance.yourTeam = sniperTeam;
         }
 
         public void Wins() {

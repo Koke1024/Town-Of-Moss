@@ -27,7 +27,7 @@ namespace TownOfUs.Roles
         {
             var executionerteam = new List<PlayerControl>();
             executionerteam.Add(PlayerControl.LocalPlayer);
-            __instance.yourTeam = executionerteam;
+            //__instance.yourTeam = executionerteam;
         }
 
         internal override bool EABBNOODFGL(ShipStatus __instance)

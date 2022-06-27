@@ -25,7 +25,7 @@ namespace TownOfUs.Patches.CustomHats
 
         internal static void LoadHatsRoutine()
         {
-            if (LoadedHats || !DestroyableSingleton<HatManager>.InstanceExists || DestroyableSingleton<HatManager>.Instance.AllHats.Count == 0)
+            if (LoadedHats || !DestroyableSingleton<HatManager>.InstanceExists || DestroyableSingleton<HatManager>.Instance.allHats.Count == 0)
                 return;
             LoadedHats = true;
             Coroutines.Start(LoadHats());
@@ -35,16 +35,16 @@ namespace TownOfUs.Patches.CustomHats
             try
             {
                 var hatJson = LoadJson();
-                var hatBehaviours = DiscoverHatBehaviours(hatJson);
+                var hatData = DiscoverHatData(hatJson);
 
-                DestroyableSingleton<HatManager>.Instance.AllHats.ForEach(
-                    (Action<HatBehaviour>)(x => x.StoreName = "Vanilla")
+                DestroyableSingleton<HatManager>.Instance.allHats.ForEach(
+                    (Action<HatData>)(x => x.StoreName = "Vanilla")
                 );
-                var originalCount = DestroyableSingleton<HatManager>.Instance.AllHats.Count;
-                for (var i = 0; i < hatBehaviours.Count; i++)
+                var originalCount = DestroyableSingleton<HatManager>.Instance.allHats.Count;
+                for (var i = 0; i < hatData.Count; i++)
                 {
-                    hatBehaviours[i].Order = originalCount + i;
-                    HatManager.Instance.AllHats.Add(hatBehaviours[i]);
+                    hatData[i].displayOrder = originalCount + i;
+                    HatManager.Instance.allHats.Add(hatData[i]);
                 }
             }
             catch (Exception e)
@@ -62,9 +62,9 @@ namespace TownOfUs.Patches.CustomHats
             return obj;
         }
 
-        private static List<HatBehaviour> DiscoverHatBehaviours(HatMetadataJson metadata)
+        private static List<HatData> DiscoverHatData(HatMetadataJson metadata)
         {
-            var hatBehaviours = new List<HatBehaviour>();
+            var hatData = new List<HatData>();
 
             foreach (var hatCredit in metadata.Credits)
             {
@@ -73,12 +73,12 @@ namespace TownOfUs.Patches.CustomHats
                     var stream = Assembly.GetManifestResourceStream($"{HAT_RESOURCE_NAMESPACE}.{hatCredit.Id}.png");
                     if (stream != null)
                     {
-                        var hatBehaviour = GenerateHatBehaviour(stream.ReadFully());
-                        hatBehaviour.StoreName = hatCredit.Artist;
-                        hatBehaviour.ProductId = hatCredit.Id;
-                        hatBehaviour.name = hatCredit.Name;
-                        hatBehaviour.Free = true;
-                        hatBehaviours.Add(hatBehaviour);
+                        var HatData = GenerateHatData(stream.ReadFully());
+                        HatData.StoreName = hatCredit.Artist;
+                        HatData.ProductId = hatCredit.Id;
+                        HatData.name = hatCredit.Name;
+                        HatData.Free = true;
+                        hatData.Add(HatData);
                     }
                 }
                 catch (Exception e)
@@ -88,10 +88,10 @@ namespace TownOfUs.Patches.CustomHats
                      Log.LogError($"{e.Message}\nStack:{e.StackTrace}");
                 }
             }
-            return hatBehaviours;
+            return hatData;
         }
 
-        private static HatBehaviour GenerateHatBehaviour(byte[] mainImg)
+        private static HatData GenerateHatData(byte[] mainImg)
         {
             
             //TODO: Move to Graphics Utils class
@@ -100,8 +100,8 @@ namespace TownOfUs.Patches.CustomHats
             var sprite = Sprite.Create(tex2D, new Rect(0.0f, 0.0f, tex2D.width, tex2D.height), new Vector2(0.5f, 0.5f), 100);
             
             
-            var hat = ScriptableObject.CreateInstance<HatBehaviour>();
-            hat.MainImage = sprite;
+            var hat = ScriptableObject.CreateInstance<HatData>();
+            hat.hatViewData.viewData.MainImage = sprite;
             hat.ChipOffset = new Vector2(-0.1f, 0.35f);
 
             hat.InFront = true;

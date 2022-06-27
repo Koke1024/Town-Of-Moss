@@ -13,10 +13,10 @@ namespace TownOfUs.ImpostorRoles.CamouflageMod
                 foreach (var state in __instance.playerStates)
                 {
                     if (!PlayerControl.LocalPlayer.Is(RoleEnum.Seer)) state.NameText.text = "";
-                    PlayerControl.SetPlayerMaterialColors(Color.grey, state.PlayerIcon.Body);
+                    PlayerControl.SetPlayerMaterialColors(Color.grey, state.PlayerIcon.CurrentBodySprite.BodySprite);
                     state.PlayerIcon.HatSlot.SetHat("", 0);
-                    var skinById = DestroyableSingleton<HatManager>.Instance.AllSkins.ToArray()[0];
-                    state.PlayerIcon.Skin.layer.sprite = skinById.IdleFrame;
+                    var skinById = DestroyableSingleton<HatManager>.Instance.allSkins.ToArray()[0];
+                    state.PlayerIcon.Skin.layer.sprite = skinById.viewData.viewData.IdleFrame;
                 }
         }
     }
